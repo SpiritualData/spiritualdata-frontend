@@ -1,34 +1,41 @@
+import React from 'react';
+import { ThemeProvider } from '@mui/material/styles';
 import { Navigate, Route, Routes } from "react-router-dom";
 import Navbar from "./components/componentsExtended/Navbar";
 import LogIn from "./components/pages/Login";
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
 import DataDiscovery from "./components/pages/DataDiscovery";
-import LandingPage from "./components/pages/LandingPage";
 import Contact from "./components/pages/Contact";
+import Blog from "./components/pages/Blog";
+import Signup from "./components/pages/Signup";
+import Footer from './components/componentsExtended/Footer';
+import theme from './components/helpers/theme';
 
 function App() {
-  
-    const routes = (
-      <Routes>
-        <Route path="login" element={<LogIn />} />
-        <Route path="/" element={<LandingPage />} />
-        <Route path="home" element={<Home />} />
-        <Route path="data-discovery" element={<DataDiscovery/>} />
-        <Route path="blog" element={<Home />} />
-        <Route path="contact" element={<Contact/>} />
-        <Route path="about" element={<About/>} />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    );
+  const routes = (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="home" element={<Home />} />
+      <Route path="login" element={<LogIn />} />
+      <Route path="signup" element={<Signup />} />
+      <Route path="data-discovery" element={<DataDiscovery/>} />
+      <Route path="blog" element={<Blog />} />
+      <Route path="contact" element={<Contact/>} />
+      <Route path="about" element={<About/>} />
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
+  );
 
   return (
-  <>
-  <Navbar />
-  <main>
-          {routes}
+    <ThemeProvider theme={theme}>
+      <Navbar />
+      <main>
+        {routes}
       </main>
-  </>);
+      <Footer />
+    </ThemeProvider>
+  );
 }
 
 export default App;

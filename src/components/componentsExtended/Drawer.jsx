@@ -1,4 +1,4 @@
-import { Home } from "@mui/icons-material";
+import { Login, Input, Menu } from "@mui/icons-material";
 import {
   Divider,
   IconButton,
@@ -11,8 +11,22 @@ import {
   Toolbar,
 } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
 
-const DrawerItems = ({ tab }) => {
+const DrawerItems = ({ tab, handleDrawerToggle }) => {
+  const drawerTab = [
+    {
+      label: "Login",
+      path: "/login",
+      icon: <Login />,
+    },
+    {
+      label: "Signup",
+      path: "/signup",
+      icon: <Input />,
+    },
+  ];
+
   return (
     <>
       <Toolbar>
@@ -32,6 +46,9 @@ const DrawerItems = ({ tab }) => {
                 marginTop: 10,
                 marginLeft: -14,
               }}
+              onClick={handleDrawerToggle}
+              component={Link}
+              to={"/home"}
             />{" "}
             <h3 style={{ padding: "0px 3px" }}>Spiritual Data</h3>
           </Stack>
@@ -43,19 +60,24 @@ const DrawerItems = ({ tab }) => {
               aria-haspopup="true"
               color="inherit"
             >
-              {/* <Menu /> */}
+              <Menu />
             </IconButton>
           </Stack>
         </Stack>
       </Toolbar>
       <Divider />
       <List sx={{ py: 0 }}>
-        {tab.map((data, index) => (
-          <ListItem disablePadding key={index}>
+        {tab.concat(drawerTab).map((data, index) => (
+          <ListItem
+            disablePadding
+            key={index}
+            component={Link}
+            to={data.path}
+            sx={{ color: (theme) => theme.palette.text.primary }}
+            onClick={handleDrawerToggle}
+          >
             <ListItemButton>
-              <ListItemIcon>
-                <Home style={{ color: "#222" }} />
-              </ListItemIcon>
+              <ListItemIcon>{data.icon}</ListItemIcon>
               <ListItemText
                 sx={{ ml: -2 }}
                 primaryTypographyProps={{ fontSize: 13, fontWeight: "bold" }}
