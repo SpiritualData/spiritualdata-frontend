@@ -11,17 +11,28 @@ import {
   Tabs,
   Toolbar,
 } from "@mui/material";
-import { Domain, Menu } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import {
+  Book,
+  Call,
+  DataObject,
+  Domain,
+  Home,
+  Info,
+  Menu,
+} from "@mui/icons-material";
+import { Link, useLocation } from "react-router-dom";
 
 import DrawerItems from "./Drawer";
 
 export const drawerWidth = 280;
 
 const StyledTab = styled(Tab)(({ theme }) => ({
-  //   color: "#dbc895",
-  textDecoration: "none",
+  textTransform: "none",
   display: "none",
+  color: "gray",
+  "&.Mui-selected": {
+    color: theme.palette.text.primary,
+  },
   [theme.breakpoints.up("sm")]: {
     display: "block",
   },
@@ -35,30 +46,35 @@ const StyledToolbar = styled(Toolbar)({
 const tab = [
   {
     label: "Home",
-    path: "home",
+    path: "/home",
+    icon: <Home />,
   },
   {
     label: "Data Discovery",
-    path: "data-discovery",
+    path: "/data-discovery",
+    icon: <DataObject />,
   },
   {
     label: "Blog",
-    path: "blog",
+    path: "/blog",
+    icon: <Book />,
   },
   {
     label: "Contact",
-    path: "contact",
-    value: "4",
+    path: "/contact",
+    icon: <Call />,
   },
   {
     label: "About",
-    path: "about",
+    path: "/about",
+    icon: <Info />,
   },
 ];
 
 function Navbar(props) {
   //   const { window, onClickCreateData, onClickDashboard } = props;
-  const [value, setValue] = useState("0");
+  const location = useLocation();
+  const [value, setValue] = useState(location.pathname);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -84,17 +100,18 @@ function Navbar(props) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
-              color: "#black",
+              color: "textPrimary",
             },
           }}
         >
-          <DrawerItems tab={tab}/>
+          <DrawerItems tab={tab} handleDrawerToggle={handleDrawerToggle} />
         </Drawer>
       </Box>
 
       <AppBar
         sx={{
           background: "none",
+          boxShadow: { md: "none" },
         }}
         position="static"
       >
@@ -109,7 +126,7 @@ function Navbar(props) {
             <Link
               style={{ textDecoration: "none" }}
               to="/"
-              onClick={() => setValue(0)}
+              onClick={() => setValue("/home")}
             >
               <IconButton
                 sx={{ color: "black" }}
@@ -127,9 +144,9 @@ function Navbar(props) {
               mr="auto"
               value={value}
               onChange={(e, value) => setValue(value)}
-              textColor="primary"
+              // textColor="primary"
               TabIndicatorProps={{
-                sx: { backgroundColor: "#013F5D" },
+                sx: { backgroundColor: (theme) => theme.palette.primary.main },
               }}
               aria-label="secondary tabs example"
             >
@@ -137,7 +154,7 @@ function Navbar(props) {
                 <StyledTab
                   key={index}
                   label={label}
-                  value={index}
+                  value={path}
                   component={Link}
                   to={path}
                   disableRipple
@@ -145,30 +162,42 @@ function Navbar(props) {
               ))}
             </Tabs>
 
-            <Stack direction="row" spacing={2}>
-              <Button
-                variant="outlined"
-                sx={{ textTransform: "none" }}
-                LinkComponent={Link}
-                to={"/logIn"}
-                onClick={() => setValue(4)}
-              >
-                Log In
-              </Button>
-              <Button
-                sx={{
-                  background: "#013F5D",
-                  color: "white",
-                  textTransform: "none",
-                  px: 1,
-                  "&:focus": {
-                    background: "#013F5D",
+            <Stack
+              direction="row"
+              spacing={2}
+              justifyContent="flex-end"
+              sx={{ minWidth: "156px" }}
+            >
+              {location.pathname !== "/login" && (
+                <Button
+                  variant="outlined"
+                  sx={{ textTransform: "none" }}
+                  component={Link}
+                  to={"/login"}
+                  onClick={() => setValue("/login")}
+                >
+                  Log In
+                </Button>
+              )}
+              {location.pathname !== "/signup" && (
+                <Button
+                  sx={{
+                    background: (theme) => theme.palette.primary.main,
                     color: "white",
-                  },
-                }}
-              >
-                Sign Up
-              </Button>
+                    textTransform: "none",
+                    px: 1,
+                    "&:focus": {
+                      background: (theme) => theme.palette.primary.main,
+                      color: "white",
+                    },
+                  }}
+                  onClick={() => setValue("/signup")}
+                  component={Link}
+                  to={"/signup"}
+                >
+                  Sign Up
+                </Button>
+              )}
             </Stack>
           </Stack>
 
@@ -176,7 +205,11 @@ function Navbar(props) {
             size="large"
             edge="start"
             aria-label="open drawer"
-            sx={{ mr: 2, color: "#222", display: { md: "none" } }}
+            sx={{
+              mr: 2,
+              color: (theme) => theme.palette.text.primary,
+              display: { md: "none" },
+            }}
             onClick={handleDrawerToggle}
           >
             <Menu />

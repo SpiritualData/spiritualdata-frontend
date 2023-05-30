@@ -1,6 +1,6 @@
 import React from 'react'
 
-const DataDiscovery = () => {
+const Signup = () => {
   return (
     <>
       <center>
@@ -13,4 +13,4 @@ const DataDiscovery = () => {
   )
 }
 
-export default DataDiscovery
+export default Signup
