@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Grid, Typography, Box, styled } from "@mui/material";
 import { Facebook, Instagram, LinkedIn, Twitter } from "@mui/icons-material";
+import { menuItems } from "../helpers/footerData";
 
-const FooterContainer = styled(Grid)(({ theme }) => ({
+const StyledGrid = styled(Grid)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
   color: theme.palette.text.secondary,
-  //   position: "absolute",
   bottom: 0,
   width: "100%",
   padding: "20px 10px",
@@ -15,8 +15,8 @@ const FooterContainer = styled(Grid)(({ theme }) => ({
 const StyledLink = styled(Link)(({ theme }) => ({
   color: theme.palette.text.secondary,
   textDecoration: "none",
-  '&:hover': {
-    color: 'lightgray',
+  "&:hover": {
+    color: "lightgray",
   },
 }));
 
@@ -24,33 +24,15 @@ const StyledIcon = styled("div")(({ theme }) => ({
   color: theme.palette.text.secondary,
   margin: "0 10px",
   cursor: "pointer",
-  '&:hover': {
-    color: 'lightgray',
+  "&:hover": {
+    color: "lightgray",
   },
 }));
-
-const menuItems = [
-  { title: "Home", links: ["Search", "Quick Search", "What's New", "Chatbot"] },
-  { title: "About", links: ["Experiences", "Convention", "Meetings"] },
-  { title: "Blog", links: ["Upcoming Events", "Memos", "Articles"] },
-  {
-    title: "Library",
-    links: [
-      "Article Series",
-      "Spiritual Books and Links",
-      "Spiritual Experience",
-      "Spiritual Hypothesis",
-      "Spiritual Research",
-      "FAQ's",
-    ],
-  },
-  { title: "Contact", links: ["Chat Bots", "Add Experience"] },
-];
 
 const Footer = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <FooterContainer container>
+      <StyledGrid container>
         <Grid item xs={12} sm={2}>
           <Typography variant="h6">Logo Here</Typography>
         </Grid>
@@ -64,7 +46,7 @@ const Footer = () => {
             sx={{ overflow: "auto", textAlign: { xs: "center", sm: "left" } }}
           >
             <Typography
-            mb={1}
+              mb={1}
               sx={{
                 fontWeight: "500",
                 fontSize: { xs: "26px", sm: "20px", md: "28px" },
@@ -79,9 +61,7 @@ const Footer = () => {
                 key={idx}
                 py={0.4}
               >
-                <StyledLink to={`/${link.replace(/\s/g, "-").toLowerCase()}`}>
-                  {link}
-                </StyledLink>
+                <StyledLink to={link.path}>{link.name}</StyledLink>
               </Box>
             ))}
           </Grid>
@@ -100,7 +80,7 @@ const Footer = () => {
           <StyledIcon as={Twitter} />
           <StyledIcon as={LinkedIn} />
         </Grid>
-      </FooterContainer>
+      </StyledGrid>
     </Box>
   );
 };

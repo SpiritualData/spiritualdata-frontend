@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   AppBar,
   Box,
@@ -77,6 +77,10 @@ function Navbar(props) {
   const [value, setValue] = useState(location.pathname);
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  useEffect(() => {
+    setValue(location.pathname);
+  }, [location.pathname]);
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -111,7 +115,7 @@ function Navbar(props) {
       <AppBar
         sx={{
           background: "none",
-          boxShadow: { md: "none" },
+          // boxShadow: { md: "none" },
         }}
         position="static"
       >
@@ -123,11 +127,7 @@ function Navbar(props) {
             justifyContent="space-between"
             width="100%"
           >
-            <Link
-              style={{ textDecoration: "none" }}
-              to="/"
-              onClick={() => setValue("/home")}
-            >
+            <Link style={{ textDecoration: "none" }} to="/">
               <IconButton
                 sx={{ color: "black" }}
                 size="large"
@@ -140,15 +140,11 @@ function Navbar(props) {
             </Link>
 
             <Tabs
-              ml="auto"
-              mr="auto"
               value={value}
-              onChange={(e, value) => setValue(value)}
-              // textColor="primary"
               TabIndicatorProps={{
-                sx: { backgroundColor: (theme) => theme.palette.primary.main },
+                sx: { backgroundColor: 'transparent' },
               }}
-              aria-label="secondary tabs example"
+              sx={{paddingTop: 1}}
             >
               {tab.map(({ label, path }, index) => (
                 <StyledTab
@@ -174,9 +170,8 @@ function Navbar(props) {
                   sx={{ textTransform: "none" }}
                   component={Link}
                   to={"/login"}
-                  onClick={() => setValue("/login")}
                 >
-                  Log In
+                  Sign In
                 </Button>
               )}
               {location.pathname !== "/signup" && (
@@ -191,7 +186,6 @@ function Navbar(props) {
                       color: "white",
                     },
                   }}
-                  onClick={() => setValue("/signup")}
                   component={Link}
                   to={"/signup"}
                 >
