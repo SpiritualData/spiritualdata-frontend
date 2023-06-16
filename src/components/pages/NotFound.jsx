@@ -20,7 +20,7 @@ const NotFound = () => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        height: "70vh",
+        height: "100vh",
         gap: "1rem",
       }}
     >
