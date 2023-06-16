@@ -14,6 +14,7 @@ import {
 import {
   Book,
   Call,
+  Chat,
   DataObject,
   Domain,
   Home,
@@ -46,8 +47,13 @@ const StyledToolbar = styled(Toolbar)({
 const tab = [
   {
     label: "Home",
-    path: "/home",
+    path: "/",
     icon: <Home />,
+  },
+  {
+    label: "Chat",
+    path: "/chat",
+    icon: <Chat />,
   },
   {
     label: "Data Discovery",
@@ -74,11 +80,12 @@ const tab = [
 function Navbar(props) {
   //   const { window, onClickCreateData, onClickDashboard } = props;
   const location = useLocation();
-  const [value, setValue] = useState(location.pathname);
+  const [value, setValue] = useState(location.pathname || "/");
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    setValue(location.pathname);
+    const match = tab.some((item) => item.path === location.pathname);
+    setValue(match ? location.pathname : false);
   }, [location.pathname]);
 
   const handleDrawerToggle = () => {
@@ -115,7 +122,7 @@ function Navbar(props) {
       <AppBar
         sx={{
           background: "none",
-          // boxShadow: { md: "none" },
+          boxShadow: { md: "none" },
         }}
         position="static"
       >
@@ -142,9 +149,9 @@ function Navbar(props) {
             <Tabs
               value={value}
               TabIndicatorProps={{
-                sx: { backgroundColor: 'transparent' },
+                sx: { backgroundColor: "transparent" },
               }}
-              sx={{paddingTop: 1}}
+              sx={{ paddingTop: 1 }}
             >
               {tab.map(({ label, path }, index) => (
                 <StyledTab

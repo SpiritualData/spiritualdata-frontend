@@ -6,12 +6,15 @@ import {
   Button,
   InputAdornment,
   IconButton,
+  FormControlLabel,
+  Checkbox,
 } from "@mui/material";
 import { Facebook, Visibility, VisibilityOff } from "@mui/icons-material";
 
 import Login from "../../assests/Login.png";
 import GoogleLogo from "../../assests/Google__G__Logo.svg.webp";
 import {
+  ForgotPassword,
   StyledCard,
   StyledDivider,
   StyledFacebookButton,
@@ -24,12 +27,18 @@ import {
 
 const LogIn = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
+  const [forgotPassword, setForgotPassword] = useState(false);
+
+  const handleRememberMeChange = (event) => {
+    setRememberMe(event.target.checked);
+  };
 
   return (
     <Grid container justifyContent="center" alignItems="center" my={3}>
       <StyledCard>
         <Grid container spacing={4} mb={{ xs: 2, md: 0 }}>
-          <Grid item xs={12} sm={6}>
+          <Grid item sx={{ display: { xs: "none", sm: "block" } }} sm={6}>
             <img
               src={Login}
               alt="signup"
@@ -46,9 +55,12 @@ const LogIn = () => {
             <Typography variant="h4" sx={{ fontWeight: "500" }}>
               Sign In
             </Typography>
+
             <Typography sx={{ fontSize: "18px" }}>
-              Don't have an account?{" "}
-              <StyledLink to="/signup">SignUp</StyledLink>
+              {!forgotPassword
+                ? "Don't have an account?"
+                : "Recover your account"}
+              {!forgotPassword && <StyledLink to="/signup">SignUp</StyledLink>}
             </Typography>
             <Stack spacing={2} mt={3} mb={4} alignItems="center">
               <StyledTextField
@@ -57,24 +69,67 @@ const LogIn = () => {
                 size="small"
                 fullWidth
               />
-              <StyledTextField
-                label="Password"
-                variant="outlined"
-                type={showPassword ? "text" : "password"}
-                size="small"
-                fullWidth
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        onClick={() => setShowPassword(!showPassword)}
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
+
+              {!forgotPassword ? (
+                <>
+                  <StyledTextField
+                    label="Password"
+                    variant="outlined"
+                    type={showPassword ? "text" : "password"}
+                    size="small"
+                    fullWidth
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            onClick={() => setShowPassword(!showPassword)}
+                          >
+                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+
+                  <Stack
+                    direction="row"
+                    justifyContent="space-between"
+                    width="100%"
+                  >
+                    <FormControlLabel
+                      sx={{ marginTop: -2 }}
+                      control={
+                        <Checkbox
+                          checked={rememberMe}
+                          onChange={handleRememberMeChange}
+                          color="primary"
+                          sx={{ color: "gray" }}
+                        />
+                      }
+                      label={
+                        <Typography variant="body2">Remember me</Typography>
+                      }
+                    />
+                    <ForgotPassword
+                      variant="body2"
+                      onClick={() => setForgotPassword(true)}
+                    >
+                      Forgot Password?
+                    </ForgotPassword>
+                  </Stack>
+                </>
+              ) : (
+                <Stack alignItems="center" width="100%">
+                  <ForgotPassword
+                    variant="body2"
+                    sx={{ color: "gray" }}
+                    onClick={() => setForgotPassword(false)}
+                  >
+                    Back to login?
+                  </ForgotPassword>
+                </Stack>
+              )}
+
               <Button
                 variant="contained"
                 sx={{
@@ -84,7 +139,7 @@ const LogIn = () => {
                   mt: 1,
                 }}
               >
-                Sign In
+                {!forgotPassword ? "Sign In" : "Send"}
               </Button>
             </Stack>
 

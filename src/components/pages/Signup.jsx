@@ -30,7 +30,7 @@ const Signup = () => {
     <Grid container justifyContent="center" alignItems="center" my={3}>
       <StyledCard>
         <Grid container spacing={4} my={2}>
-          <Grid item xs={12} sm={6}>
+          <Grid item sx={{ display: { xs: "none", sm: "block" } }} sm={6}>
             <img
               src={SignUp}
               alt="signup"
@@ -91,7 +91,11 @@ const Signup = () => {
                           setShowPasswordRepeat(!showPasswordRepeat)
                         }
                       >
-                        {showPasswordRepeat ? <VisibilityOff /> : <Visibility />}
+                        {showPasswordRepeat ? (
+                          <VisibilityOff />
+                        ) : (
+                          <Visibility />
+                        )}
                       </IconButton>
                     </InputAdornment>
                   ),

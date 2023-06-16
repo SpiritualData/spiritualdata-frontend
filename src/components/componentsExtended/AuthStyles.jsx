@@ -1,10 +1,5 @@
 import { Link } from "react-router-dom";
-import {
-  Card,
-  TextField,
-  Button,
-  styled,
-} from "@mui/material";
+import { Card, TextField, Button, styled, Typography } from "@mui/material";
 
 export const StyledCard = styled(Card)({
   width: "80%",
@@ -32,6 +27,16 @@ export const StyledSpan = styled("span")({
 
 export const StyledLink = styled(Link)(({ theme }) => ({
   textDecoration: "none",
+  color: theme.palette.primary.main,
+  "&:hover": {
+    textDecoration: "underline",
+  },
+}));
+
+export const ForgotPassword = styled(Typography)(({ theme }) => ({
+  textDecoration: "none",
+  fontSize: "12px",
+  cursor: "pointer",
   color: theme.palette.primary.main,
   "&:hover": {
     textDecoration: "underline",
