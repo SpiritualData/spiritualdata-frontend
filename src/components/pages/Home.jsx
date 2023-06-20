@@ -1,4 +1,4 @@
-import { Box, Grid, Stack, Typography } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import React from "react";
 import Ellipse from "../../assests/Ellipse 136.png";
 import Ellipse2 from "../../assests/Ellipse 137.png";
