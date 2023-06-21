@@ -29,13 +29,21 @@ const StyledListItemIcon = styled(ListItemIcon)`
   min-width: 24px;
 `;
 
-export default function ChatHistory({ chatHistory, selected, setSelected }) {
+export default function ChatHistory({
+  chatHistory,
+  selected,
+  setSelected,
+  handleDrawerToggle,
+}) {
   return (
     <StyledList>
       {chatHistory.map((item, index) => (
         <StyledListItem
           key={index}
-          onClick={() => setSelected(item.id)}
+          onClick={() => {
+            setSelected(item.id);
+            handleDrawerToggle();
+          }}
           sx={{
             background: selected === item.id ? "#353441" : "transparent",
             "&:hover": {

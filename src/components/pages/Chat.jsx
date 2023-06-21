@@ -3,94 +3,132 @@ import {
   Box,
   Grid,
   IconButton,
+  Stack,
   TextField,
   ThemeProvider,
-  Typography,
 } from "@mui/material";
-import { Send } from "@mui/icons-material";
+import { Menu, Send } from "@mui/icons-material";
 
 import SideBar from "../componentsExtended/Chat/SideBar";
-import ChatSvg from "../componentsExtended/Chat/ChatSvg";
 import { inputTheme } from "../componentsExtended/Chat/Input";
-
-const examples = [
-  "How to use Tailwind CSS",
-  "How to use Tailwind CSS with React",
-  "How to use Tailwind CSS with Next.js",
-  "How to use Tailwind CSS with Gatsby",
-  "How to use Tailwind CSS with Svelte",
-  "How to use Tailwind CSS with Vue",
-  "How to use Tailwind CSS with Angular",
-  "How to use Tailwind CSS with Ember",
-];
+import ChatMessages from "../componentsExtended/Chat/ChatMessages";
+import ChatDrawer from "../componentsExtended/Chat/ChatDrawer";
 
 const Chat = () => {
-  const [chat, setChat] = useState([
-    // { role: "user", content: "Hi this is a message" },
-    // { role: "assistant", content: "Heres the response" },
-  ]);
+  const [chat, setChat] = useState();
   const [chatHistory, setChatHistory] = useState([
-    { id: 1, title: "Test the chats" },
-    { id: 2, title: "Test2" },
+    {
+      id: 1,
+      title: "Test the chats",
+      chat: [
+        { role: "user", content: "Hi this is a message" },
+        { role: "assistant", content: "Heres the response" },
+      ],
+    },
+    {
+      id: 2,
+      title: "Test2",
+      chat: [
+        {
+          role: "user",
+          content:
+            "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis unde quae dolor obcaecati, sunt atque cumque voluptates hic veritatis placeat quam incidunt, consequuntur ex ducimus velit animi rerum fuga omnis?",
+        },
+        {
+          role: "assistant",
+          content:
+            "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis unde quae dolor obcaecati, sunt atque cumque voluptates hic veritatis placeat quam incidunt, consequuntur ex ducimus velit animi rerum fuga omnis?",
+        },
+      ],
+    },
   ]);
   const [selected, setSelected] = useState();
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [title, setTitle] = useState("");
   const [input, setInput] = useState("");
-
   const containerRef = useRef(null);
 
   useEffect(() => {
-    // Scroll to the bottom of the container
     containerRef.current.scrollTop = containerRef.current.scrollHeight;
   }, [chat]);
+
+  useEffect(() => {
+    if (chatHistory.length > 0) {
+      setSelected(chatHistory[0].id);
+      setChat(chatHistory[0].chat);
+    }
+  }, [chatHistory]);
+
+  useEffect(() => {
+    const selectedChat = chatHistory.find((item) => item.id === selected);
+    if (selectedChat) {
+      setChat(selectedChat.chat);
+    }
+    setInput("");
+    // eslint-disable-next-line
+  }, [selected]);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
 
   const handleSend = async () => {
     if (input.trim()) {
       setChat([...chat, { role: "user", content: input }]);
+      setChatHistory((prevChatHistory) =>
+        prevChatHistory.map((item) =>
+          item.id === selected
+            ? {
+                ...item,
+                chat: [...item.chat, { role: "user", content: input }],
+              }
+            : item
+        )
+      );
       setInput("");
-      const response = await fetch("http://localhost:8000/api/chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          messages: [...chat, { role: "user", content: input }],
-        }),
-      });
+      // const response = await fetch("http://localhost:8000/api/chat", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     messages: [...chat, { role: "user", content: input }],
+      //   }),
+      // });
 
-      const readData = response.body
-        //eslint-disable-next-line
-        .pipeThrough(new TextDecoderStream())
-        .getReader();
-      let aiRes = "";
-      while (true) {
-        const { done, value } = await readData.read();
-        if (done) {
-          break;
-        }
-        aiRes += value;
-        setChat([
-          ...chat,
-          { role: "user", content: input },
-          { role: "assistant", content: aiRes },
-        ]);
-      }
+      // const readData = response.body
+      //eslint-disable-next-line
+      //   .pipeThrough(new TextDecoderStream())
+      //   .getReader();
+      // let aiRes = "";
+      // while (true) {
+      //   const { done, value } = await readData.read();
+      //   if (done) {
+      //     break;
+      //   }
+      //   aiRes += value;
+      //   setChat([
+      //     ...chat,
+      //     { role: "user", content: input },
+      //     { role: "assistant", content: aiRes },
+      //   ]);
+      // }
 
-      if (!title) {
-        const createTitle = await fetch("http://localhost:8000/api/title", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title: input,
-          }),
-        });
+      //     if (!title) {
+      //       const createTitle = await fetch("http://localhost:8000/api/title", {
+      //         method: "POST",
+      //         headers: {
+      //           "Content-Type": "application/json",
+      //         },
+      //         body: JSON.stringify({
+      //           title: input,
+      //         }),
+      //       });
 
-        const title = await createTitle.json();
-        setTitle(title?.title);
-        setChatHistory([...chatHistory, title]);
-      }
+      //       const title = await createTitle.json();
+      //       setTitle(title?.title);
+      //       setChatHistory([...chatHistory, title]);
+      //     }
     }
   };
 
@@ -109,94 +147,64 @@ const Chat = () => {
         chatHistory={chatHistory}
         selected={selected}
         setSelected={setSelected}
+        handleDrawerToggle={handleDrawerToggle}
       />
-      <Grid item xs={12} md={9.4} sx={{ background: "#454655" }}>
-        <Grid item pt={0.2} textAlign="center" sx={{ opacity: 0.8 }}>
-          <p>Model: Spiritual Data (1.0)</p>
+
+      <ChatDrawer
+        mobileOpen={mobileOpen}
+        setChat={setChat}
+        setTitle={setTitle}
+        chatHistory={chatHistory}
+        selected={selected}
+        setSelected={setSelected}
+        handleDrawerToggle={handleDrawerToggle}
+      />
+
+      <Grid
+        item
+        xs={12}
+        md={9.4}
+        sx={{
+          background: "#454655",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+        }}
+      >
+        <Grid
+          item
+          pt={0.2}
+          textAlign="center"
+          sx={{ opacity: 0.8, display: "flex", flexDirection: "row" }}
+        >
+          <IconButton
+            size="large"
+            sx={{
+              color: (theme) => theme.palette.text.secondary,
+              display: { md: "none" },
+            }}
+            onClick={handleDrawerToggle}
+          >
+            <Menu />
+          </IconButton>
+          <Stack width="100%">
+            <p>Model: Spiritual Data (1.0)</p>
+          </Stack>
         </Grid>
 
-        <Box position="absolute" bottom={0}>
-          <Box
-            ref={containerRef}
-            py={1}
-            sx={{
-              maxHeight: "100vh",
-              overflow: "auto",
-              "&::-webkit-scrollbar": {
-                width: 0,
-                height: 0,
-              },
-              scrollbarWidth: "none",
-              msOverflowStyle: "none",
-            }}
-          >
-            <Grid container>
-              {chat.length > 0 ? (
-                <Grid container sx={{ opacity: 0.9 }}>
-                  {chat.map((item, index) => (
-                    <Grid
-                      key={index}
-                      item
-                      container
-                      bgcolor={item.role === "user" ? "#353441" : "transparent"}
-                      px={{ xs: 2, md: 20 }}
-                      py={1}
-                      sx={{ display: "flex", alignItems: "center" }}
-                    >
-                      <ChatSvg item={item} />
-                      <Typography
-                        style={{ whiteSpace: "break-spaces", fontSize: "15px" }}
-                      >
-                        {item.content}
-                      </Typography>
-                    </Grid>
-                  ))}
-                </Grid>
-              ) : (
-                <Grid
-                  container
-                  px={{ xs: 2, md: 20 }}
-                  py={2}
-                  display="flex"
-                  justifyContent="center"
-                >
-                  <Grid
-                    container
-                    display="flex"
-                    justifyContent="center"
-                    sx={{ gap: 3 }}
-                  >
-                    {examples.map((item, index) => (
-                      <Grid
-                        key={index}
-                        item
-                        xs={12}
-                        sm={5}
-                        xl={3}
-                        textAlign="center"
-                        sx={{
-                          border: "1px solid #fff",
-                          borderRadius: 2,
-                          p: 1.6,
-                          cursor: "pointer",
-                        }}
-                        onClick={() => setInput(item)}
-                      >
-                        {item}
-                      </Grid>
-                    ))}
-                  </Grid>
-                </Grid>
-              )}
-            </Grid>
-          </Box>
+        <Box bottom={0}>
+          <ChatMessages
+            chat={chat}
+            containerRef={containerRef}
+            setInput={setInput}
+          />
 
           <Grid
             container
             display="flex"
             justifyContent="center"
-            px={{ xs: 2, md: 20 }}
-            my={1}
+            px={{ xs: 2, md: 16 }}
+            my={2}
           >
             <ThemeProvider theme={inputTheme}>
               <TextField
@@ -209,16 +217,21 @@ const Chat = () => {
                 placeholder="Type your message here..."
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleSend();
+                  }
+                }}
                 InputProps={{
                   endAdornment: (
                     <>
                       <IconButton
-                        // onClick={handleSend}
+                        onClick={handleSend}
                         disabled={
                           // isLoading ||
                           !input
                         }
-                        sx={{ color: (theme) => theme.palette.text.secondary }}
+                        sx={{ color: "#fff" }}
                       >
                         <Send />
                       </IconButton>
