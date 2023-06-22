@@ -4,8 +4,8 @@ import ChatHistory from "./PrevChats";
 
 const SideBar = ({
   setChat,
-  setTitle,
   chatHistory,
+  setChatHistory,
   selected,
   setSelected,
   handleDrawerToggle,
@@ -29,7 +29,6 @@ const SideBar = ({
         }}
         onClick={() => {
           setChat([]);
-          setTitle("");
           setSelected();
         }}
       >
@@ -37,6 +36,7 @@ const SideBar = ({
       </Button>
       <ChatHistory
         chatHistory={chatHistory}
+        setChatHistory={setChatHistory}
         selected={selected}
         setSelected={setSelected}
         handleDrawerToggle={handleDrawerToggle}
