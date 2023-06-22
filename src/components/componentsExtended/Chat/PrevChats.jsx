@@ -1,4 +1,9 @@
-import { MessageOutlined } from "@mui/icons-material";
+import {
+  Check,
+  Close,
+  DeleteOutline,
+  MessageOutlined,
+} from "@mui/icons-material";
 import {
   List,
   ListItem,
@@ -6,6 +11,7 @@ import {
   ListItemText,
   styled,
 } from "@mui/material";
+import { useState } from "react";
 
 const StyledList = styled(List)`
   width: 100%;
@@ -31,10 +37,26 @@ const StyledListItemIcon = styled(ListItemIcon)`
 
 export default function ChatHistory({
   chatHistory,
+  setChatHistory,
   selected,
   setSelected,
   handleDrawerToggle,
 }) {
+  const [deleteOptions, setDeleteOptions] = useState(false);
+
+  const truncateTitle = (title) => {
+    if (title.length > 22) {
+      return title.substring(0, 22) + "...";
+    }
+    return title;
+  };
+
+  const removeChatItem = () => {
+    setChatHistory((prevChatHistory) =>
+      prevChatHistory.filter((item) => item.id !== selected)
+    );
+  };
+
   return (
     <StyledList>
       {chatHistory.map((item, index) => (
@@ -47,16 +69,67 @@ export default function ChatHistory({
           sx={{
             background: selected === item.id ? "#353441" : "transparent",
             "&:hover": {
-              opacity: 0.7,
+              opacity: selected !== item.id && 0.6,
             },
           }}
         >
           <StyledListItemIcon>
             <MessageOutlined
-              sx={{ color: (theme) => theme.palette.text.secondary }}
+              sx={{
+                fontSize: "20px",
+                color: (theme) => theme.palette.text.secondary,
+              }}
             />
           </StyledListItemIcon>
-          <ListItemText primary={item.title} />
+          <ListItemText secondary={truncateTitle(item.title)} />
+          {selected === item.id && (
+            <>
+              {!deleteOptions && (
+                <DeleteOutline
+                  sx={{
+                    fontSize: "20px",
+                    "&:hover": {
+                      opacity: 0.6,
+                    },
+                  }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setDeleteOptions(true);
+                  }}
+                />
+              )}
+              {deleteOptions && (
+                <>
+                  <Check
+                    sx={{
+                      fontSize: "18px",
+                      "&:hover": {
+                        opacity: 0.6,
+                      },
+                    }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      removeChatItem();
+                      setDeleteOptions(false);
+                    }}
+                  />
+                  <Close
+                    sx={{
+                      fontSize: "18px",
+                      ml: 0.6,
+                      "&:hover": {
+                        opacity: 0.6,
+                      },
+                    }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setDeleteOptions(false);
+                    }}
+                  />
+                </>
+              )}
+            </>
+          )}
         </StyledListItem>
       ))}
     </StyledList>

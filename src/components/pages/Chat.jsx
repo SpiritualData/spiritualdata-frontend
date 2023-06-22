@@ -10,7 +10,7 @@ import {
 import { Menu, Send } from "@mui/icons-material";
 
 import SideBar from "../componentsExtended/Chat/SideBar";
-import { inputTheme } from "../componentsExtended/Chat/Input";
+import InputField, { inputTheme } from "../componentsExtended/Chat/Input";
 import ChatMessages from "../componentsExtended/Chat/ChatMessages";
 import ChatDrawer from "../componentsExtended/Chat/ChatDrawer";
 
@@ -44,7 +44,6 @@ const Chat = () => {
   ]);
   const [selected, setSelected] = useState();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [title, setTitle] = useState("");
   const [input, setInput] = useState("");
   const containerRef = useRef(null);
 
@@ -56,6 +55,9 @@ const Chat = () => {
     if (chatHistory.length > 0) {
       setSelected(chatHistory[0].id);
       setChat(chatHistory[0].chat);
+    } else {
+      setSelected();
+      setChat([]);
     }
   }, [chatHistory]);
 
@@ -72,19 +74,39 @@ const Chat = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  const handleSend = async () => {
+  const handleSend = async (e) => {
+    e.preventDefault();
     if (input.trim()) {
       setChat([...chat, { role: "user", content: input }]);
-      setChatHistory((prevChatHistory) =>
-        prevChatHistory.map((item) =>
-          item.id === selected
-            ? {
-                ...item,
-                chat: [...item.chat, { role: "user", content: input }],
-              }
-            : item
-        )
-      );
+
+      if (!selected) {
+        const words = input.trim().split(" ");
+        const title = words.slice(0, 3).join(" ");
+
+        const newChatHistoryItem = {
+          id: Math.floor(Math.random() * 1000),
+          title: title,
+          chat: [{ role: "user", content: input }],
+        };
+
+        setChatHistory((prevChatHistory) => [
+          newChatHistoryItem,
+          ...prevChatHistory,
+        ]);
+
+        setSelected(newChatHistoryItem.id);
+      } else {
+        setChatHistory((prevChatHistory) =>
+          prevChatHistory.map((item) =>
+            item.id === selected
+              ? {
+                  ...item,
+                  chat: [...item.chat, { role: "user", content: input }],
+                }
+              : item
+          )
+        );
+      }
       setInput("");
       // const response = await fetch("http://localhost:8000/api/chat", {
       //   method: "POST",
@@ -143,8 +165,8 @@ const Chat = () => {
     >
       <SideBar
         setChat={setChat}
-        setTitle={setTitle}
         chatHistory={chatHistory}
+        setChatHistory={setChatHistory}
         selected={selected}
         setSelected={setSelected}
         handleDrawerToggle={handleDrawerToggle}
@@ -153,8 +175,8 @@ const Chat = () => {
       <ChatDrawer
         mobileOpen={mobileOpen}
         setChat={setChat}
-        setTitle={setTitle}
         chatHistory={chatHistory}
+        setChatHistory={setChatHistory}
         selected={selected}
         setSelected={setSelected}
         handleDrawerToggle={handleDrawerToggle}
@@ -187,6 +209,7 @@ const Chat = () => {
           >
             <Menu />
           </IconButton>
+
           <Stack width="100%">
             <p>Model: Spiritual Data (1.0)</p>
           </Stack>
@@ -199,55 +222,11 @@ const Chat = () => {
             setInput={setInput}
           />
 
-          <Grid
-            container
-            display="flex"
-            justifyContent="center"
-            px={{ xs: 2, md: 16 }}
-            my={2}
-          >
-            <ThemeProvider theme={inputTheme}>
-              <TextField
-                sx={{
-                  width: "80%",
-                  borderRadius: "10px",
-                  border: "none",
-                  backgroundColor: "#41404F",
-                }}
-                placeholder="Type your message here..."
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    handleSend();
-                  }
-                }}
-                InputProps={{
-                  endAdornment: (
-                    <>
-                      <IconButton
-                        onClick={handleSend}
-                        disabled={
-                          // isLoading ||
-                          !input
-                        }
-                        sx={{ color: "#fff" }}
-                      >
-                        <Send />
-                      </IconButton>
-                      {/* {isLoading && (
-                    <CircularProgress
-                      size={24}
-                      color="primary"
-                      sx={{ marginLeft: "10px" }}
-                    />
-                  )} */}
-                    </>
-                  ),
-                }}
-              />
-            </ThemeProvider>
-          </Grid>
+          <InputField
+            input={input}
+            setInput={setInput}
+            handleSend={handleSend}
+          />
         </Box>
       </Grid>
     </Grid>

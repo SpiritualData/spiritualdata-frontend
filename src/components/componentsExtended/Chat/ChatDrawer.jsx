@@ -5,8 +5,8 @@ import { Box, Button, Drawer } from "@mui/material";
 const ChatDrawer = ({
   setChat,
   mobileOpen,
-  setTitle,
   chatHistory,
+  setChatHistory,
   selected,
   setSelected,
   handleDrawerToggle,
@@ -43,7 +43,6 @@ const ChatDrawer = ({
           }}
           onClick={() => {
             setChat([]);
-            setTitle("");
             setSelected();
             handleDrawerToggle();
           }}
@@ -52,6 +51,7 @@ const ChatDrawer = ({
         </Button>
         <ChatHistory
           chatHistory={chatHistory}
+          setChatHistory={setChatHistory}
           selected={selected}
           setSelected={setSelected}
           handleDrawerToggle={handleDrawerToggle}
