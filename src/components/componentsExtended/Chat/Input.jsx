@@ -48,8 +48,9 @@ const InputField = ({ input, setInput, handleSend }) => {
       container
       display="flex"
       justifyContent="center"
+      sx={{background: '#353441'}}
       px={{ xs: 2, md: 16 }}
-      my={2}
+      py={2}
     >
       <ThemeProvider theme={inputTheme}>
         <TextField

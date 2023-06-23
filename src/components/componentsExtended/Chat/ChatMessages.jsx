@@ -1,7 +1,8 @@
-import { Box, Grid, IconButton, Typography } from "@mui/material";
-import React, { useState } from "react";
+import { Box, Grid, IconButton, Tooltip, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { ArrowDownward, Check, FileCopyOutlined } from "@mui/icons-material";
+
 import ChatSvg from "./ChatSvg";
-import { Check, FileCopyOutlined } from "@mui/icons-material";
 
 const examples = [
   "What is Spiritual Data used for?",
@@ -15,16 +16,35 @@ const examples = [
 ];
 
 const ChatMessages = ({ chat, containerRef, setInput }) => {
-  const [showTick, setShowTick] = useState(false);
+  const [showScrollButton, setShowScrollButton] = useState(false);
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      const container = containerRef.current;
+      if (container) {
+        setShowScrollButton(
+          container.scrollTop + container.clientHeight < container.scrollHeight
+        );
+      }
+    };
 
-  const handleCopy = () => {
-    const chatContent = chat.map((item) => item.content).join("\n");
-    navigator.clipboard.writeText(chatContent);
-    setShowTick(true);
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener("scroll", handleScroll);
+      setShowScrollButton(
+        container.scrollTop + container.clientHeight < container.scrollHeight
+      );
+    }
 
-    setTimeout(() => {
-      setShowTick(false);
-    }, 2000);
+    return () => {
+      if (container) {
+        container.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, [containerRef]);
+
+  const handleScrollToBottom = () => {
+    containerRef.current.scrollTop = containerRef.current.scrollHeight;
   };
 
   return (
@@ -32,8 +52,9 @@ const ChatMessages = ({ chat, containerRef, setInput }) => {
       ref={containerRef}
       py={1}
       sx={{
-        maxHeight: "75vh",
+        maxHeight: "73vh",
         overflow: "auto",
+        position: "relative",
         "&::-webkit-scrollbar": {
           width: "6px",
         },
@@ -50,45 +71,37 @@ const ChatMessages = ({ chat, containerRef, setInput }) => {
         {chat?.length > 0 ? (
           <Grid container sx={{ opacity: 0.9 }}>
             {chat.map((item, index) => (
-              <Grid
+              <ChatUi
+                item={item}
                 key={index}
-                item
-                container
-                bgcolor={item.role === "user" ? "#353441" : "transparent"}
-                px={{ xs: 2, md: 16 }}
-                py={2}
-                sx={{ display: "flex", gap: 1 }}
-              >
-                <Grid item xs={1.4}>
-                  <ChatSvg item={item} />
-                </Grid>
-                <Grid item xs={10} pr={4}>
-                  <Typography
-                    sx={{ whiteSpace: "break-spaces", fontSize: "15px" }}
-                  >
-                    {item.content}
-                  </Typography>
-                </Grid>
-                <Grid item xs={0.2}>
-                  {item.role !== "user" && (
-                    <IconButton
-                      sx={{
-                        pr: 2,
-                        opacity: 0.7,
-                        color: (theme) => theme.palette.text.secondary,
-                      }}
-                      onClick={handleCopy}
-                    >
-                      {showTick ? (
-                        <Check sx={{ fontSize: "16px" }} />
-                      ) : (
-                        <FileCopyOutlined sx={{ fontSize: "16px" }} />
-                      )}
-                    </IconButton>
-                  )}
-                </Grid>
-              </Grid>
+                handleScrollToBottom={handleScrollToBottom}
+              />
             ))}
+
+            {showScrollButton && (
+              <IconButton
+                sx={{
+                  position: "sticky",
+                  color: "gray",
+                  bottom: 0,
+                  right: 0,
+                  ml: "90%",
+                }}
+                onClick={handleScrollToBottom}
+              >
+                <ArrowDownward
+                  sx={{
+                    background: (theme) => theme.palette.text.primary,
+                    borderRadius: 100,
+                    fontSize: "16px",
+                    p: 0.3,
+                    "&:hover": {
+                      color: (theme) => theme.palette.text.secondary,
+                    },
+                  }}
+                />
+              </IconButton>
+            )}
           </Grid>
         ) : (
           <Grid
@@ -135,3 +148,55 @@ const ChatMessages = ({ chat, containerRef, setInput }) => {
 };
 
 export default ChatMessages;
+
+const ChatUi = ({ item }) => {
+  const [showTick, setShowTick] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(item.content);
+    setShowTick(true);
+
+    setTimeout(() => {
+      setShowTick(false);
+    }, 2000);
+  };
+
+  return (
+    <Grid
+      item
+      container
+      bgcolor={item.role === "user" ? "#353441" : "transparent"}
+      px={{ xs: 1, md: 16 }}
+      pt={2}
+      sx={{ display: "flex", gap: 2 }}
+    >
+      <Grid item xs={1.4}>
+        <ChatSvg item={item} />
+      </Grid>
+      <Grid item xs={8.4} sm={9} pr={4}>
+        <Typography sx={{ whiteSpace: "break-spaces", fontSize: "15px" }}>
+          {item.content}
+        </Typography>
+      </Grid>
+      <Grid item xs={0.2}>
+        {item.role !== "user" && (
+          <Tooltip title="Copied!" open={showTick} placement="top" arrow>
+            <IconButton
+              sx={{
+                opacity: 0.7,
+                color: (theme) => theme.palette.text.secondary,
+              }}
+              onClick={handleCopy}
+            >
+              {showTick ? (
+                <Check sx={{ fontSize: "16px", color: "lightgreen" }} />
+              ) : (
+                <FileCopyOutlined sx={{ fontSize: "16px" }} />
+              )}
+            </IconButton>
+          </Tooltip>
+        )}
+      </Grid>
+    </Grid>
+  );
+};
