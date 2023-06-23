@@ -8,12 +8,14 @@ const SideBar = ({
   setChatHistory,
   selected,
   setSelected,
+  showSideBar,
+        setShowSideBar,
   handleDrawerToggle,
 }) => {
   return (
     <Grid
       item
-      sx={{ display: { xs: "none", md: "block" } }}
+      sx={{ display: { xs: "none", md: showSideBar ? "block" : "none" } }}
       md={2.6}
       py={3}
       px={1}

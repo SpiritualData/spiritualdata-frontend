@@ -1,16 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  Box,
-  Grid,
-  IconButton,
-  Stack,
-  TextField,
-  ThemeProvider,
-} from "@mui/material";
-import { Menu, Send } from "@mui/icons-material";
+import { Box, Grid, IconButton, Stack } from "@mui/material";
+import { Menu } from "@mui/icons-material";
 
 import SideBar from "../componentsExtended/Chat/SideBar";
-import InputField, { inputTheme } from "../componentsExtended/Chat/Input";
+import InputField from "../componentsExtended/Chat/Input";
 import ChatMessages from "../componentsExtended/Chat/ChatMessages";
 import ChatDrawer from "../componentsExtended/Chat/ChatDrawer";
 
@@ -43,6 +36,7 @@ const Chat = () => {
     },
   ]);
   const [selected, setSelected] = useState();
+  const [showSideBar, setShowSideBar] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [input, setInput] = useState("");
   const containerRef = useRef(null);
@@ -52,13 +46,16 @@ const Chat = () => {
   }, [chat]);
 
   useEffect(() => {
-    if (chatHistory.length > 0) {
-      setSelected(chatHistory[0].id);
-      setChat(chatHistory[0].chat);
-    } else {
-      setSelected();
-      setChat([]);
+    if (!selected) {
+      if (chatHistory.length > 0) {
+        setSelected(chatHistory[0].id);
+        setChat(chatHistory[0].chat);
+      } else {
+        setSelected();
+        setChat([]);
+      }
     }
+    // eslint-disable-next-line
   }, [chatHistory]);
 
   useEffect(() => {
@@ -77,7 +74,11 @@ const Chat = () => {
   const handleSend = async (e) => {
     e.preventDefault();
     if (input.trim()) {
-      setChat([...chat, { role: "user", content: input }]);
+      setChat([
+        ...chat,
+        { role: "user", content: input },
+        { role: "ai", content: input },
+      ]);
 
       if (!selected) {
         const words = input.trim().split(" ");
@@ -86,7 +87,10 @@ const Chat = () => {
         const newChatHistoryItem = {
           id: Math.floor(Math.random() * 1000),
           title: title,
-          chat: [{ role: "user", content: input }],
+          chat: [
+            { role: "user", content: input },
+            { role: "ai", content: input },
+          ],
         };
 
         setChatHistory((prevChatHistory) => [
@@ -169,6 +173,8 @@ const Chat = () => {
         setChatHistory={setChatHistory}
         selected={selected}
         setSelected={setSelected}
+        showSideBar={showSideBar}
+        setShowSideBar={setShowSideBar}
         handleDrawerToggle={handleDrawerToggle}
       />
 
@@ -185,7 +191,7 @@ const Chat = () => {
       <Grid
         item
         xs={12}
-        md={9.4}
+        md={showSideBar ? 9.4 : 12}
         sx={{
           background: "#454655",
           display: "flex",
