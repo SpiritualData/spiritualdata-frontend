@@ -1,6 +1,19 @@
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, Stack, styled } from "@mui/material";
 import React from "react";
 import ChatHistory from "./PrevChats";
+import { AutoAwesomeMosaic } from "@mui/icons-material";
+
+export const StyledButton = styled(Button)`
+  height: 100%;
+  margin-bottom: 10px;
+  border-color: gray;
+  color: #fff;
+  opacity: 0.9;
+  &:hover {
+    border-color: gray;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+`;
 
 const SideBar = ({
   setChat,
@@ -9,33 +22,38 @@ const SideBar = ({
   selected,
   setSelected,
   showSideBar,
-        setShowSideBar,
+  setShowSideBar,
   handleDrawerToggle,
 }) => {
   return (
     <Grid
       item
-      sx={{ display: { xs: "none", md: showSideBar ? "block" : "none" } }}
+      sx={{
+        display: {
+          xs: "none",
+          md: showSideBar ? "block" : "none",
+        },
+      }}
       md={2.6}
-      py={3}
+      pt={3}
       px={1}
     >
-      <Button
-        variant="outlined"
-        style={{
-          width: "100%",
-          marginBottom: "10px",
-          borderColor: "gray",
-          color: "#fff",
-          opacity: 0.9,
-        }}
-        onClick={() => {
-          setChat([]);
-          setSelected();
-        }}
-      >
-        + New Chat
-      </Button>
+      <Stack direction="row" spacing={1}>
+        <StyledButton
+          variant="outlined"
+          sx={{ width: "100%" }}
+          onClick={() => {
+            setChat([]);
+            setSelected();
+          }}
+        >
+          + New Chat
+        </StyledButton>
+
+        <StyledButton variant="outlined" onClick={() => setShowSideBar(false)}>
+          <AutoAwesomeMosaic />
+        </StyledButton>
+      </Stack>
       <ChatHistory
         chatHistory={chatHistory}
         setChatHistory={setChatHistory}

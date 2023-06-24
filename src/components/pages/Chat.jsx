@@ -1,45 +1,24 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Box, Grid, IconButton, Stack } from "@mui/material";
-import { Menu } from "@mui/icons-material";
+import { AutoAwesomeMosaic, Menu } from "@mui/icons-material";
 
-import SideBar from "../componentsExtended/Chat/SideBar";
+import SideBar, { StyledButton } from "../componentsExtended/Chat/SideBar";
 import InputField from "../componentsExtended/Chat/Input";
 import ChatMessages from "../componentsExtended/Chat/ChatMessages";
 import ChatDrawer from "../componentsExtended/Chat/ChatDrawer";
+import { DummyChatHistory } from "../componentsExtended/Chat/DummyChat";
 
 const Chat = () => {
+  const containerRef = useRef(null);
+
   const [chat, setChat] = useState();
-  const [chatHistory, setChatHistory] = useState([
-    {
-      id: 1,
-      title: "Test the chats",
-      chat: [
-        { role: "user", content: "Hi this is a message" },
-        { role: "assistant", content: "Heres the response" },
-      ],
-    },
-    {
-      id: 2,
-      title: "Test2",
-      chat: [
-        {
-          role: "user",
-          content:
-            "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis unde quae dolor obcaecati, sunt atque cumque voluptates hic veritatis placeat quam incidunt, consequuntur ex ducimus velit animi rerum fuga omnis?",
-        },
-        {
-          role: "assistant",
-          content:
-            "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis unde quae dolor obcaecati, sunt atque cumque voluptates hic veritatis placeat quam incidunt, consequuntur ex ducimus velit animi rerum fuga omnis?",
-        },
-      ],
-    },
-  ]);
   const [selected, setSelected] = useState();
   const [showSideBar, setShowSideBar] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [input, setInput] = useState("");
-  const containerRef = useRef(null);
+  const [loading, setLoading] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
+  const [chatHistory, setChatHistory] = useState(DummyChatHistory);
 
   useEffect(() => {
     containerRef.current.scrollTop = containerRef.current.scrollHeight;
@@ -49,7 +28,7 @@ const Chat = () => {
     if (!selected) {
       if (chatHistory.length > 0) {
         setSelected(chatHistory[0].id);
-        setChat(chatHistory[0].chat);
+        setChat({chat: chatHistory[0].chat, db_results: chatHistory[0].db_results});
       } else {
         setSelected();
         setChat([]);
@@ -61,7 +40,7 @@ const Chat = () => {
   useEffect(() => {
     const selectedChat = chatHistory.find((item) => item.id === selected);
     if (selectedChat) {
-      setChat(selectedChat.chat);
+      setChat({chat: selectedChat.chat, db_results: selectedChat.db_results});
     }
     setInput("");
     // eslint-disable-next-line
@@ -73,6 +52,8 @@ const Chat = () => {
 
   const handleSend = async (e) => {
     e.preventDefault();
+    setIsTyping(true);
+
     if (input.trim()) {
       setChat([
         ...chat,
@@ -216,6 +197,21 @@ const Chat = () => {
             <Menu />
           </IconButton>
 
+          {!showSideBar && (
+            <StyledButton
+              variant="outlined"
+              sx={{
+                background: (theme) => theme.palette.text.primary,
+                m: 1,
+                height: "36px",
+                width: "36px",
+              }}
+              onClick={() => setShowSideBar(true)}
+            >
+              <AutoAwesomeMosaic />
+            </StyledButton>
+          )}
+
           <Stack width="100%">
             <p>Model: Spiritual Data (1.0)</p>
           </Stack>
@@ -224,12 +220,17 @@ const Chat = () => {
         <Box bottom={0}>
           <ChatMessages
             chat={chat}
+            loading={loading}
+            isTyping={isTyping}
+            setIsTyping={setIsTyping}
+            showSideBar={showSideBar}
             containerRef={containerRef}
             setInput={setInput}
           />
 
           <InputField
             input={input}
+            loading={loading}
             setInput={setInput}
             handleSend={handleSend}
           />
