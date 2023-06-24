@@ -1,6 +1,7 @@
 import { Send } from "@mui/icons-material";
 import { Grid, IconButton, TextField } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import ButtonLoader from "../Loader";
 
 const inputTheme = createTheme({
   components: {
@@ -42,13 +43,13 @@ const inputTheme = createTheme({
   },
 });
 
-const InputField = ({ input, setInput, handleSend }) => {
+const InputField = ({ input, setInput, handleSend, loading }) => {
   return (
     <Grid
       container
       display="flex"
       justifyContent="center"
-      sx={{background: '#353441'}}
+      sx={{ background: "#353441" }}
       px={{ xs: 2, md: 16 }}
       py={2}
     >
@@ -76,21 +77,11 @@ const InputField = ({ input, setInput, handleSend }) => {
               <>
                 <IconButton
                   onClick={(e) => handleSend(e)}
-                  disabled={
-                    // isLoading ||
-                    !input
-                  }
+                  disabled={!loading && !input}
                   sx={{ color: "#fff" }}
                 >
-                  <Send />
+                  {loading ? <ButtonLoader /> : <Send />}
                 </IconButton>
-                {/* {isLoading && (
-                    <CircularProgress
-                      size={24}
-                      color="primary"
-                      sx={{ marginLeft: "10px" }}
-                    />
-                  )} */}
               </>
             ),
           }}

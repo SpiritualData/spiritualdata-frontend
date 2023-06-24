@@ -3,23 +3,23 @@ import { ThemeProvider } from "@mui/material/styles";
 import { Route, Routes } from "react-router-dom";
 
 import theme from "./components/helpers/theme";
-import Navbar from "./components/componentsExtended/Navbar";
+// import Navbar from "./components/componentsExtended/Navbar";
 import LogIn from "./components/pages/Login";
-import Home from "./components/pages/Home";
+// import Home from "./components/pages/Home";
 import About from "./components/pages/About";
 import DataDiscovery from "./components/pages/DataDiscovery";
 import Contact from "./components/pages/Contact";
 import Blog from "./components/pages/Blog";
 import Signup from "./components/pages/Signup";
-import Footer from "./components/componentsExtended/Footer";
+// import Footer from "./components/componentsExtended/Footer";
 import NotFound from "./components/pages/NotFound";
 import Chat from "./components/pages/Chat";
 
 function App() {
   const routes = (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="chat" element={<Chat />} />
+      <Route path="/" element={<Chat />} />
+      {/* <Route path="chat" element={<Chat />} /> */}
       <Route path="login" element={<LogIn />} />
       <Route path="signup" element={<Signup />} />
       <Route path="data-discovery" element={<DataDiscovery />} />
@@ -32,9 +32,9 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Navbar />
+      {/* <Navbar /> */}
       <main>{routes}</main>
-      <Footer />
+      {/* <Footer /> */}
     </ThemeProvider>
   );
 }
