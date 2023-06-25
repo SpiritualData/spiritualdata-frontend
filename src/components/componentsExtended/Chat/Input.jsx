@@ -43,7 +43,7 @@ const inputTheme = createTheme({
   },
 });
 
-const InputField = ({ input, setInput, handleSend, loading }) => {
+const InputField = ({ input, setInput, handleSend, isTyping }) => {
   return (
     <Grid
       container
@@ -77,10 +77,10 @@ const InputField = ({ input, setInput, handleSend, loading }) => {
               <>
                 <IconButton
                   onClick={(e) => handleSend(e)}
-                  disabled={!loading && !input}
+                  disabled={!isTyping && !input}
                   sx={{ color: "#fff" }}
                 >
-                  {loading ? <ButtonLoader /> : <Send />}
+                  {isTyping ? <ButtonLoader /> : <Send />}
                 </IconButton>
               </>
             ),

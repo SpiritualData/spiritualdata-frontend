@@ -1,18 +1,19 @@
-import { useState } from "react";
+// import { useState } from "react";
+import { UserButton, useUser } from "@clerk/clerk-react";
 import {
-  Check,
-  Close,
-  DeleteOutline,
+  // Check,
+  // Close,
+  // DeleteOutline,
   MessageOutlined,
-  Settings,
 } from "@mui/icons-material";
 import {
-  Button,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
   Stack,
+  Tooltip,
+  Typography,
   styled,
 } from "@mui/material";
 
@@ -40,12 +41,13 @@ const StyledListItemIcon = styled(ListItemIcon)`
 
 export default function ChatHistory({
   chatHistory,
-  setChatHistory,
+  // setChatHistory,
   selected,
   setSelected,
   handleDrawerToggle,
 }) {
-  const [deleteOptions, setDeleteOptions] = useState(false);
+  const { user } = useUser();
+  // const [deleteOptions, setDeleteOptions] = useState(false);
 
   const truncateTitle = (title) => {
     if (title.length > 22) {
@@ -54,11 +56,11 @@ export default function ChatHistory({
     return title;
   };
 
-  const removeChatItem = () => {
-    setChatHistory((prevChatHistory) =>
-      prevChatHistory.filter((item) => item.id !== selected)
-    );
-  };
+  // const removeChatItem = () => {
+  //   setChatHistory((prevChatHistory) =>
+  //     prevChatHistory.filter((item) => item.chat_id !== selected)
+  //   );
+  // };
 
   return (
     <Stack height="89vh" justifyContent="space-between">
@@ -67,13 +69,13 @@ export default function ChatHistory({
           <StyledListItem
             key={index}
             onClick={() => {
-              setSelected(item.id);
+              setSelected(item.chat_id);
               handleDrawerToggle();
             }}
             sx={{
-              background: selected === item.id ? "#353441" : "transparent",
+              background: selected === item.chat_id ? "#353441" : "transparent",
               "&:hover": {
-                opacity: selected !== item.id && 0.6,
+                opacity: selected !== item.chat_id && 0.6,
               },
             }}
           >
@@ -86,7 +88,7 @@ export default function ChatHistory({
               />
             </StyledListItemIcon>
             <ListItemText secondary={truncateTitle(item.title)} />
-            {selected === item.id && (
+            {/* {selected === item.chat_id && (
               <>
                 {!deleteOptions && (
                   <DeleteOutline
@@ -133,23 +135,28 @@ export default function ChatHistory({
                   </>
                 )}
               </>
-            )}
+            )} */}
           </StyledListItem>
         ))}
       </StyledList>
 
-      <Button
+      <Stack
+        direction="row"
+        spacing={2}
         sx={{
           color: "lightgray",
           borderTop: "1px solid gray",
-          borderTopLeftRadius: 0,
-          borderTopRightRadius: 0,
           py: 2,
-          textTransform: "none",
+          px: 1,
         }}
       >
-        <Settings sx={{ marginRight: "6px" }} /> Settings{" "}
-      </Button>
+        <UserButton />
+        {!user?.fullName && (
+          <Tooltip title="Click image for settings">
+            <Typography sx={{ pt: 0.6 }}>Manage Account</Typography>
+          </Tooltip>
+        )}
+      </Stack>
     </Stack>
   );
 }

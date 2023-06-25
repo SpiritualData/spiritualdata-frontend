@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Box, Grid, IconButton, Stack } from "@mui/material";
+import { Box, Grid, IconButton, Snackbar, Stack } from "@mui/material";
 import { AutoAwesomeMosaic, Menu } from "@mui/icons-material";
 
+import axios from "../utils/axios";
 import SideBar, { StyledButton } from "../componentsExtended/Chat/SideBar";
 import InputField from "../componentsExtended/Chat/Input";
 import ChatMessages from "../componentsExtended/Chat/ChatMessages";
@@ -13,12 +14,12 @@ const Chat = () => {
 
   const [chat, setChat] = useState();
   const [selected, setSelected] = useState();
-  const [showSideBar, setShowSideBar] = useState(true);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [error, setError] = useState(null);
   const [input, setInput] = useState("");
-  const [loading, setLoading] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const [chatHistory, setChatHistory] = useState(DummyChatHistory);
+  const [showSideBar, setShowSideBar] = useState(true);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     containerRef.current.scrollTop = containerRef.current.scrollHeight;
@@ -27,8 +28,8 @@ const Chat = () => {
   useEffect(() => {
     if (!selected) {
       if (chatHistory.length > 0) {
-        setSelected(chatHistory[0].id);
-        setChat({chat: chatHistory[0].chat, db_results: chatHistory[0].db_results});
+        setSelected(chatHistory[0].chat_id);
+        setChat(chatHistory[0].chat);
       } else {
         setSelected();
         setChat([]);
@@ -38,105 +39,89 @@ const Chat = () => {
   }, [chatHistory]);
 
   useEffect(() => {
-    const selectedChat = chatHistory.find((item) => item.id === selected);
+    const selectedChat = chatHistory.find((item) => item.chat_id === selected);
     if (selectedChat) {
-      setChat({chat: selectedChat.chat, db_results: selectedChat.db_results});
+      setChat(selectedChat.chat);
     }
     setInput("");
     // eslint-disable-next-line
   }, [selected]);
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
 
   const handleSend = async (e) => {
     e.preventDefault();
     setIsTyping(true);
 
     if (input.trim()) {
-      setChat([
-        ...chat,
-        { role: "user", content: input },
-        { role: "ai", content: input },
-      ]);
+      setChat([...chat, { role: "user", content: input }]);
 
-      if (!selected) {
-        const words = input.trim().split(" ");
-        const title = words.slice(0, 3).join(" ");
+      axios
+        .post("/chat/response", { chat_id: selected || "", message: input })
+        .then((res) => {
+          let response = res.data;
 
-        const newChatHistoryItem = {
-          id: Math.floor(Math.random() * 1000),
-          title: title,
-          chat: [
-            { role: "user", content: input },
-            { role: "ai", content: input },
-          ],
-        };
+          setChat((prevChat) => [
+            ...prevChat,
+            {
+              role: "ai",
+              content: response?.ai,
+              db_results: response?.db_results,
+            },
+          ]);
 
-        setChatHistory((prevChatHistory) => [
-          newChatHistoryItem,
-          ...prevChatHistory,
-        ]);
+          if (!selected) {
+            const newChatHistoryItem = {
+              chat_id: response?.chat_id,
+              title: response?.title,
+              chat: [
+                { role: "user", content: input },
+                {
+                  role: "ai",
+                  content: response?.ai,
+                  db_results: response?.db_results,
+                },
+              ],
+            };
 
-        setSelected(newChatHistoryItem.id);
-      } else {
-        setChatHistory((prevChatHistory) =>
-          prevChatHistory.map((item) =>
-            item.id === selected
-              ? {
-                  ...item,
-                  chat: [...item.chat, { role: "user", content: input }],
-                }
-              : item
-          )
-        );
-      }
+            setChatHistory((prevChatHistory) => [
+              newChatHistoryItem,
+              ...prevChatHistory,
+            ]);
+
+            setSelected(newChatHistoryItem.chat_id);
+          } else {
+            setChatHistory((prevChatHistory) =>
+              prevChatHistory.map((item) =>
+                item.chat_id === selected
+                  ? {
+                      ...item,
+                      chat: [
+                        ...item.chat,
+                        { role: "user", content: input },
+                        {
+                          role: "ai",
+                          content: response?.ai,
+                          db_results: response?.db_results,
+                        },
+                      ],
+                    }
+                  : item
+              )
+            );
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          setIsTyping(false);
+          setError("An error occurred. Please check your connection.");
+          setChat((prevChat) => prevChat.slice(0, prevChat.length - 1));
+        });
+
       setInput("");
-      // const response = await fetch("http://localhost:8000/api/chat", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({
-      //     messages: [...chat, { role: "user", content: input }],
-      //   }),
-      // });
-
-      // const readData = response.body
-      //eslint-disable-next-line
-      //   .pipeThrough(new TextDecoderStream())
-      //   .getReader();
-      // let aiRes = "";
-      // while (true) {
-      //   const { done, value } = await readData.read();
-      //   if (done) {
-      //     break;
-      //   }
-      //   aiRes += value;
-      //   setChat([
-      //     ...chat,
-      //     { role: "user", content: input },
-      //     { role: "assistant", content: aiRes },
-      //   ]);
-      // }
-
-      //     if (!title) {
-      //       const createTitle = await fetch("http://localhost:8000/api/title", {
-      //         method: "POST",
-      //         headers: {
-      //           "Content-Type": "application/json",
-      //         },
-      //         body: JSON.stringify({
-      //           title: input,
-      //         }),
-      //       });
-
-      //       const title = await createTitle.json();
-      //       setTitle(title?.title);
-      //       setChatHistory([...chatHistory, title]);
-      //     }
     }
+  };
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
   };
 
   return (
@@ -148,6 +133,13 @@ const Chat = () => {
         color: (theme) => theme.palette.text.secondary,
       }}
     >
+      <Snackbar
+        open={error !== null}
+        autoHideDuration={5000}
+        onClose={() => setError(null)}
+        message={error}
+      />
+
       <SideBar
         setChat={setChat}
         chatHistory={chatHistory}
@@ -220,7 +212,6 @@ const Chat = () => {
         <Box bottom={0}>
           <ChatMessages
             chat={chat}
-            loading={loading}
             isTyping={isTyping}
             setIsTyping={setIsTyping}
             showSideBar={showSideBar}
@@ -230,7 +221,7 @@ const Chat = () => {
 
           <InputField
             input={input}
-            loading={loading}
+            isTyping={isTyping}
             setInput={setInput}
             handleSend={handleSend}
           />
