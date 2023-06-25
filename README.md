@@ -13,3 +13,5 @@ Project aims to provide all the code needed for spiritual data design.
 - npm start
 
 Local host url: http://localhost:3000/
+
+https://testing-spiritual-chatbot.netlify.app/

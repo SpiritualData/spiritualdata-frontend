@@ -171,30 +171,31 @@ function Navbar(props) {
               justifyContent="flex-end"
               sx={{ minWidth: "156px" }}
             >
-              {location.pathname !== "/login" && (
+              {location.pathname !== "/sign-in" && (
                 <Button
                   variant="outlined"
                   sx={{ textTransform: "none" }}
                   component={Link}
-                  to={"/login"}
+                  to={"/sign-in"}
                 >
                   Sign In
                 </Button>
               )}
-              {location.pathname !== "/signup" && (
+              {location.pathname !== "/sign-up" && (
                 <Button
                   sx={{
                     background: (theme) => theme.palette.primary.main,
                     color: "white",
                     textTransform: "none",
                     px: 1,
-                    "&:focus": {
+                    "&:hover": {
                       background: (theme) => theme.palette.primary.main,
                       color: "white",
+                      opacity: 0.9
                     },
                   }}
                   component={Link}
-                  to={"/signup"}
+                  to={"/sign-up"}
                 >
                   Sign Up
                 </Button>

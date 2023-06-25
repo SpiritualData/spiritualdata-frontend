@@ -8,9 +8,19 @@ const Home = () => {
   return (
     <Grid
       container
+      sx={{ minHeight: "70vh", display: "flex", alignItems: "center" }}
     >
-      <Grid item xs={12}>
-        <Box
+      <Grid item xs={12} px={2} mb={8}>
+        <center>
+          <h1>Spiritual Data</h1>
+        </center>
+        <center>
+          <h3>
+            Using collaboration technology and intellectual humility to answer
+            the hard questions.
+          </h3>
+        </center>
+        {/* <Box
           sx={{
             display: "inline-block",
             width: "100%",
@@ -56,9 +66,9 @@ const Home = () => {
               backgroundRepeat: "no-repeat",
               backgroundPosition: "top right",
             }}
-          />
+          /> */}
 
-          {/* <Stack width='50%' sx={{zIndex: 1}}>
+        {/* <Stack width='50%' sx={{zIndex: 1}}>
             <Typography variant="h4" color="primary.main" fontWeight='500'>
               Welcome
             </Typography>
@@ -67,7 +77,7 @@ const Home = () => {
               posuere erat a ante.
             </Typography>
           </Stack> */}
-        </Box>
+        {/* </Box> */}
       </Grid>
     </Grid>
   );

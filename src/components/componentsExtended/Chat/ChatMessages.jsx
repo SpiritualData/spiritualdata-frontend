@@ -1,16 +1,26 @@
+import React, { useEffect, useState } from "react";
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Box,
   Grid,
   IconButton,
-  Menu,
-  MenuItem,
+  Link,
+  Stack,
   Tooltip,
   Typography,
   styled,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { ArrowDownward, Check, FileCopyOutlined, MoreVert } from "@mui/icons-material";
+import {
+  ArrowDownward,
+  Check,
+  ExpandMore,
+  FileCopyOutlined,
+  Launch,
+} from "@mui/icons-material";
 import TypeWriter from "react-typewriter";
+import { Link as RouterLink } from "react-router-dom";
 
 import ChatSvg from "./ChatSvg";
 
@@ -27,13 +37,12 @@ const examples = [
 
 const TypingSymbol = styled("span")`
   display: inline-block;
-  font-family: monospace;
   font-size: 15px;
   line-height: 1;
   background-color: #f0f0f0;
   color: transparent;
   padding: 1px;
-  animation: typing 1s infinite;
+  animation: typing 0.6s infinite;
 
   @keyframes typing {
     0% {
@@ -53,7 +62,6 @@ const ChatMessages = ({
   containerRef,
   setInput,
   showSideBar,
-  loading,
   isTyping,
   setIsTyping,
 }) => {
@@ -115,7 +123,6 @@ const ChatMessages = ({
               <ChatUi
                 item={item}
                 key={index}
-                loading={loading}
                 showSideBar={showSideBar}
                 isLastItem={index === chat.length - 1}
                 isTyping={isTyping}
@@ -198,7 +205,6 @@ export default ChatMessages;
 
 const ChatUi = ({
   item,
-  loading,
   isLastItem,
   showSideBar,
   handleScrollToBottom,
@@ -207,7 +213,6 @@ const ChatUi = ({
   showScrollButton,
 }) => {
   const [showTick, setShowTick] = useState(false);
-  const [menuAnchorEl, setMenuAnchorEl] = useState(null);
 
   useEffect(() => {
     let intervalId;
@@ -232,14 +237,6 @@ const ChatUi = ({
     }, 2000);
   };
 
-  const handleMenuOpen = (event) => {
-    setMenuAnchorEl(event.currentTarget);
-  };
-
-  const handleMenuClose = () => {
-    setMenuAnchorEl(null);
-  };
-
   return (
     <Grid
       item
@@ -252,80 +249,38 @@ const ChatUi = ({
       <Grid item xs={1.4}>
         <ChatSvg item={item} />
       </Grid>
-      <Grid item xs={8.4} sm={showSideBar ? 9 : 9.6} pr={4}>
-        <Typography sx={{ whiteSpace: "break-spaces", fontSize: "15px" }}>
-          {isLastItem && item.role !== "user" ? (
-            <TypeWriter typing={40} onTypingEnd={() => setIsTyping(false)}>
-              {item.content}
-            </TypeWriter>
-          ) : loading && isLastItem ? (
-            <TypingSymbol>.</TypingSymbol>
+      <Grid item xs={8.4} sm={showSideBar ? 9 : 9.6} pr={{ xs: 0, sm: 4 }}>
+        <Typography
+          sx={{
+            whiteSpace: "break-spaces",
+            fontSize: "15px",
+            mb: item.role !== "user" ? 2 : 0,
+          }}
+        >
+          {isLastItem && isTyping && item.role !== "user" ? (
+            <>
+              <TypeWriter typing={40} onTypingEnd={() => setIsTyping(false)}>
+                {item.content}
+              </TypeWriter>
+              <TypingSymbol>.</TypingSymbol>
+            </>
           ) : (
             item.content
           )}
         </Typography>
 
-        {item.db_results && (
-          <Grid container mt={1}>
-            <Grid item xs={12}>
-              <Tooltip title="More Options">
-                <IconButton
-                  size="small"
-                  onClick={handleMenuOpen}
-                  sx={{
-                    color: (theme) => theme.palette.text.secondary,
-                  }}
-                >
-                  <MoreVert />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                anchorEl={menuAnchorEl}
-                open={Boolean(menuAnchorEl)}
-                onClose={handleMenuClose}
-              >
-                <MenuItem onClick={handleMenuClose}>
-                  <Typography variant="subtitle1">Hypotheses</Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {item.db_results.hypotheses.map((hypothesis) => (
-                      <div key={hypothesis.url}>
-                        <a href={hypothesis.url}>{hypothesis.name}</a>
-                        <br />
-                        {hypothesis.snippet}
-                      </div>
-                    ))}
-                  </Typography>
-                </MenuItem>
-                <MenuItem onClick={handleMenuClose}>
-                  <Typography variant="subtitle1">Experiences</Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {item.db_results.experiences.map((experience) => (
-                      <div key={experience.url}>
-                        <a href={experience.url}>{experience.name}</a>
-                        <br />
-                        {experience.snippet}
-                      </div>
-                    ))}
-                  </Typography>
-                </MenuItem>
-                <MenuItem onClick={handleMenuClose}>
-                  <Typography variant="subtitle1">Research</Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {item.db_results.research.map((research) => (
-                      <div key={research.url}>
-                        <a href={research.url}>{research.name}</a>
-                        <br />
-                        {research.snippet}
-                      </div>
-                    ))}
-                  </Typography>
-                </MenuItem>
-              </Menu>
-            </Grid>
-          </Grid>
-        )}
-
+        {item.db_results ? (
+          isLastItem && isTyping ? null : (
+            <DataResults
+              item={item}
+              isLastItem={isLastItem}
+              showScrollButton={showScrollButton}
+              handleScrollToBottom={handleScrollToBottom}
+            />
+          )
+        ) : null}
       </Grid>
+
       <Grid item xs={0.2}>
         {item.role !== "user" && (
           <Tooltip title="Copied!" open={showTick} placement="top" arrow>
@@ -346,5 +301,96 @@ const ChatUi = ({
         )}
       </Grid>
     </Grid>
+  );
+};
+
+const renderItems = (items) => {
+  return items?.map((item) => (
+    <div key={item.url} style={{ fontSize: "13px" }}>
+      <b>
+        {item.name}:{" "}
+        <Tooltip title="Go to website">
+          <Link
+            component={RouterLink}
+            to={item.url}
+            color="inherit"
+            underline="none"
+            sx={{
+              color: "#fff",
+              "&:hover": {
+                color: "blue",
+              },
+            }}
+          >
+            <Launch sx={{ mb: -0.4, fontSize: "16px" }} />
+          </Link>
+        </Tooltip>
+      </b>
+      <br />
+      {item.snippet}
+    </div>
+  ));
+};
+
+const DataResults = ({
+  item,
+  handleScrollToBottom,
+  isLastItem,
+  showScrollButton,
+}) => {
+  useEffect(() => {
+    if (isLastItem && !showScrollButton) {
+      handleScrollToBottom();
+    }
+  }, [isLastItem, showScrollButton, handleScrollToBottom]);
+
+  return (
+    <Accordion sx={{ background: "#373643", color: "lightgray" }}>
+      <AccordionSummary
+        expandIcon={<ExpandMore />}
+        aria-controls="panel-content"
+        id="panel-header"
+      >
+        <Typography variant="subtitle1" fontWeight="bold">
+          Database Results:
+        </Typography>
+      </AccordionSummary>
+      <AccordionDetails>
+        <Stack spacing={1.3} mb={3}>
+          <Stack spacing={0.4}>
+            <Typography variant="subtitle1" fontWeight="bold">
+              Hypotheses:
+            </Typography>
+            {item.db_results.hypotheses ? (
+              renderItems(item.db_results.hypotheses)
+            ) : (
+              <center>No results found</center>
+            )}
+          </Stack>
+
+          <Stack spacing={0.4}>
+            <Typography variant="subtitle1" fontWeight="bold">
+              Experiences:
+            </Typography>
+            {item.db_results.experiences ? (
+              renderItems(item.db_results.experiences)
+            ) : (
+              <center>No results found</center>
+            )}
+          </Stack>
+
+          <Stack spacing={0.4}>
+            <Typography variant="subtitle1" fontWeight="bold">
+              Research:
+            </Typography>
+            {item.db_results.research ? (
+              renderItems(item.db_results.research)
+            ) : (
+              <center>No results found</center>
+            )}
+          </Stack>
+        </Stack>
+      </AccordionDetails>
+    </Accordion>
   );
 };
