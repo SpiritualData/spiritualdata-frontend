@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Box, Grid, IconButton, Snackbar, Stack } from "@mui/material";
 import { AutoAwesomeMosaic, Menu } from "@mui/icons-material";
+import { useAuth } from "@clerk/clerk-react";
 
-import axios from "../utils/axios";
+import axios, { setToken } from "../utils/axios";
 import SideBar, { StyledButton } from "../componentsExtended/Chat/SideBar";
 import InputField from "../componentsExtended/Chat/Input";
 import ChatMessages from "../componentsExtended/Chat/ChatMessages";
@@ -11,6 +12,7 @@ import { DummyChatHistory } from "../componentsExtended/Chat/DummyChat";
 
 const Chat = () => {
   const containerRef = useRef(null);
+  const { isLoaded, userId, getToken } = useAuth();
 
   const [chat, setChat] = useState();
   const [selected, setSelected] = useState();
@@ -24,6 +26,20 @@ const Chat = () => {
   useEffect(() => {
     containerRef.current.scrollTop = containerRef.current.scrollHeight;
   }, [chat]);
+
+  useEffect(() => {
+    const fetchTokenAndPerformTasks = async () => {
+      try {
+        const token = await getToken();
+        localStorage.setItem("user", JSON.stringify(token));
+        setToken(token);
+      } catch (error) {
+        console.error("Error fetching token:", error);
+      }
+    };
+
+    fetchTokenAndPerformTasks();
+  }, [getToken]);
 
   useEffect(() => {
     if (!selected) {
@@ -123,6 +139,10 @@ const Chat = () => {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  if (!isLoaded || !userId) {
+    return null;
+  }
 
   return (
     <Grid
