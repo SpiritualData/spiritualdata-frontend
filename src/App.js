@@ -1,20 +1,25 @@
 import React from "react";
-// import { useLocation } from "react-router";
+import { useLocation } from "react-router";
 import { ThemeProvider } from "@mui/material/styles";
 
 import theme from "./components/helpers/theme";
-// import Navbar from "./components/componentsExtended/Navbar";
-// import Footer from "./components/componentsExtended/Footer";
+import Navbar from "./components/componentsExtended/Navbar";
+import Footer from "./components/componentsExtended/Footer";
 import useClerkRoutes from "./components/hooks/routes";
 
 function App() {
-  // const location = useLocation();
+  const location = useLocation();
+  const locations = ["/chat", "/sign-in", "/sign-up"];
+
+  const partialSimilarityCheck = (locations, pathname) => {
+    return locations.some((location) => pathname.startsWith(location));
+  };
 
   return (
     <ThemeProvider theme={theme}>
-      {/* {location.pathname !== "/chat" && <Navbar />} */}
+      {!partialSimilarityCheck(locations, location.pathname) && <Navbar />}
       <main>{useClerkRoutes()}</main>
-      {/* {location.pathname !== "/chat" && <Footer />} */}
+      {!partialSimilarityCheck(locations, location.pathname) && <Footer />}
     </ThemeProvider>
   );
 }

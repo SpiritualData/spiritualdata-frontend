@@ -14,7 +14,6 @@ import {
 import {
   Book,
   Call,
-  Chat,
   DataObject,
   Domain,
   Home,
@@ -49,11 +48,6 @@ const tab = [
     label: "Home",
     path: "/",
     icon: <Home />,
-  },
-  {
-    label: "Chat",
-    path: "/chat",
-    icon: <Chat />,
   },
   {
     label: "Data Discovery",
@@ -171,35 +165,35 @@ function Navbar(props) {
               justifyContent="flex-end"
               sx={{ minWidth: "156px" }}
             >
-              {location.pathname !== "/sign-in" && (
-                <Button
-                  variant="outlined"
-                  sx={{ textTransform: "none" }}
-                  component={Link}
-                  to={"/sign-in"}
-                >
-                  Sign In
-                </Button>
-              )}
-              {location.pathname !== "/sign-up" && (
-                <Button
-                  sx={{
+              {/* {location.pathname !== "/sign-in" && ( */}
+              <Button
+                variant="outlined"
+                sx={{ textTransform: "none" }}
+                component={Link}
+                to={"/sign-in"}
+              >
+                Sign In
+              </Button>
+              {/* )} */}
+              {/* {location.pathname !== "/sign-up" && ( */}
+              <Button
+                sx={{
+                  background: (theme) => theme.palette.primary.main,
+                  color: "white",
+                  textTransform: "none",
+                  px: 1,
+                  "&:hover": {
                     background: (theme) => theme.palette.primary.main,
                     color: "white",
-                    textTransform: "none",
-                    px: 1,
-                    "&:hover": {
-                      background: (theme) => theme.palette.primary.main,
-                      color: "white",
-                      opacity: 0.9
-                    },
-                  }}
-                  component={Link}
-                  to={"/sign-up"}
-                >
-                  Sign Up
-                </Button>
-              )}
+                    opacity: 0.9,
+                  },
+                }}
+                component={Link}
+                to={"/sign-up"}
+              >
+                Sign Up
+              </Button>
+              {/* )} */}
             </Stack>
           </Stack>
 
