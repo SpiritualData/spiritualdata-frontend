@@ -11,11 +11,15 @@ function App() {
   const location = useLocation();
   const locations = ["/chat", "/sign-in", "/sign-up"];
 
+  const partialSimilarityCheck = (locations, pathname) => {
+    return locations.some((location) => pathname.startsWith(location));
+  };
+
   return (
     <ThemeProvider theme={theme}>
-      {!locations.includes(location.pathname) && <Navbar />}
+      {!partialSimilarityCheck(locations, location.pathname) && <Navbar />}
       <main>{useClerkRoutes()}</main>
-      {!locations.includes(location.pathname) && <Footer />}
+      {!partialSimilarityCheck(locations, location.pathname) && <Footer />}
     </ThemeProvider>
   );
 }
