@@ -13,6 +13,8 @@ import {
 import React from "react";
 import { Link } from "react-router-dom";
 
+import header_scrolled from "../../assests/header_scrolled.png";
+
 const DrawerItems = ({ tab, handleDrawerToggle }) => {
   const drawerTab = [
     {
@@ -50,7 +52,15 @@ const DrawerItems = ({ tab, handleDrawerToggle }) => {
               component={Link}
               to={"/home"}
             />{" "}
-            <h3 style={{ padding: "0px 3px" }}>Spiritual Data</h3>
+            <Link style={{ textDecoration: "none" }} to="/">
+              <IconButton size="large">
+                <img
+                  src={header_scrolled}
+                  alt=""
+                  style={{ width: "200px", marginTop: "4px" }}
+                />
+              </IconButton>
+            </Link>
           </Stack>
           <Stack mt={0.6} mr={{ xs: -2, sm: -3 }} justifySelf="flex-end">
             <IconButton
