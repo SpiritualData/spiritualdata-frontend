@@ -1,15 +1,125 @@
-import { Box, Grid } from "@mui/material";
+import {
+  Button,
+  Grid,
+  Stack,
+  Typography,
+  keyframes,
+  styled,
+} from "@mui/material";
 import React from "react";
-import Ellipse from "../../assests/Ellipse 136.png";
-import Ellipse2 from "../../assests/Ellipse 137.png";
-import Ellipse3 from "../../assests/Ellipse 139.png";
+import Image from "../../assests/home_header.webp";
+import { Link } from "react-router-dom";
+
+const fadeInBottom = keyframes`
+  0% {
+    opacity:0;
+    transform: translateY(150px);
+  }
+  100% {
+    opacity:1;
+    transform: translateY(0);
+  }
+`;
+
+const StyledHeader = styled(Grid)(({ theme }) => ({
+  backgroundImage: `url(${Image})`,
+  backgroundSize: "cover",
+  backgroundRepeat: "no-repeat",
+  position: "relative",
+  minHeight: "90vh",
+  display: "flex",
+  alignItems: "center",
+  animation: `${fadeInBottom} 3s ease`,
+  "&::after": {
+    content: '""',
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    backgroundColor: "black",
+    opacity: "0.4",
+  },
+  [theme.breakpoints.down("sm")]: {
+    backgroundPosition: "center",
+    minHeight: "70vh",
+  },
+}));
+
+export const StyledHeaderItem = styled(Grid)(() => ({
+  display: "flex",
+  alignItems: { xs: "center", md: "flex-start" },
+  flexDirection: "column",
+  zIndex: 1,
+  color: "#fff",
+}));
+
+export const StyledHeading = styled(Typography)(({ theme }) => ({
+  fontSize: "46px",
+  fontWeight: "500",
+  [theme.breakpoints.down("md")]: {
+    fontSize: "26px",
+  },
+}));
 
 const Home = () => {
   return (
-    <Grid
-      container
-      sx={{ minHeight: "70vh", display: "flex", alignItems: "center" }}
-    >
+    <Grid container>
+      <StyledHeader item xs={12} mt={{ xs: 8, md: 0 }}>
+        <StyledHeaderItem item px={{ xs: 4, sm: 10 }}>
+          <StyledHeading
+            sx={{
+              fontSize: { xs: "30px", sm: "60px" },
+              lineHeight: { xs: "3rem", sm: "5rem" },
+              textAlign: { xs: "center", md: "left" },
+            }}
+          >
+            {" "}
+            SPIRITUAL DATA
+          </StyledHeading>
+          <Typography
+            variant="subtitle1"
+            sx={{
+              fontSize: { xs: "12px", sm: "16px" },
+              textAlign: { xs: "center", md: "left" },
+              fontWeight: 300,
+              marginY: "6px",
+              whiteSpace: "break-spaces",
+            }}
+          >
+            Discover our Spiritual AI Chatbot, a transformative companion using
+            cutting-edge <br />
+            research and hypotheses to provide spiritual answers. Uncover
+            profound insights into
+            <br /> mindfulness, self-discovery, and the meaning of life. This
+            advanced AI system engages
+            <br /> in meaningful conversations, drawing from vast spiritual
+            knowledge and teachings.
+          </Typography>
+
+          <Stack alignItems={{ xs: "center", md: "flex-start" }}>
+            <Button
+              sx={{
+                background: (theme) => theme.palette.primary.focus,
+                color: "white",
+                textTransform: "none",
+                height: "38px",
+                width: "180px",
+                px: 2,
+                mt: 2,
+                borderRadius: 20,
+                "&:hover": {
+                  background: (theme) => theme.palette.primary.hover,
+                  opacity: 0.9,
+                },
+              }}
+              component={Link}
+              to={"/sign-up"}
+            >
+              Create an account
+            </Button>
+          </Stack>
+        </StyledHeaderItem>
+      </StyledHeader>
+
       <Grid item xs={12} px={2} mb={8}>
         <center>
           <h1>Spiritual Data</h1>
@@ -20,64 +130,6 @@ const Home = () => {
             the hard questions.
           </h3>
         </center>
-        {/* <Box
-          sx={{
-            display: "inline-block",
-            width: "100%",
-            height: "300px",
-            position: "relative",
-          }}
-        >
-          <Box
-            sx={{
-              position: "absolute",
-              top: 0,
-              right: 0,
-              height: "100%",
-              width: "100%",
-              backgroundImage: `url(${Ellipse})`,
-              backgroundSize: "contain",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "top right",
-            }}
-          />
-          <Box
-            sx={{
-              position: "absolute",
-              top: 0,
-              right: '10%',
-              height: "80%",
-              width: "100%",
-              backgroundImage: `url(${Ellipse2})`,
-              backgroundSize: "contain",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "top right",
-            }}
-          />
-          <Box
-            sx={{
-              position: "absolute",
-              top: "60%",
-              right: 0,
-              height: "41%",
-              width: "100%",
-              backgroundImage: `url(${Ellipse3})`,
-              backgroundSize: "contain",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "top right",
-            }}
-          /> */}
-
-        {/* <Stack width='50%' sx={{zIndex: 1}}>
-            <Typography variant="h4" color="primary.main" fontWeight='500'>
-              Welcome
-            </Typography>
-            <Typography variant="body1">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-              posuere erat a ante.
-            </Typography>
-          </Stack> */}
-        {/* </Box> */}
       </Grid>
     </Grid>
   );

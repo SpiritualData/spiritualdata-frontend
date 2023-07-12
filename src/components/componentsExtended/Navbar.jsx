@@ -11,27 +11,23 @@ import {
   Tabs,
   Toolbar,
 } from "@mui/material";
-import {
-  Book,
-  Call,
-  DataObject,
-  Domain,
-  Home,
-  Info,
-  Menu,
-} from "@mui/icons-material";
+import { Book, Call, DataObject, Home, Info, Menu } from "@mui/icons-material";
 import { Link, useLocation } from "react-router-dom";
 
 import DrawerItems from "./Drawer";
+import header from "../../assests/header.png";
+import header_scrolled from "../../assests/header_scrolled.png";
 
 export const drawerWidth = 280;
 
 const StyledTab = styled(Tab)(({ theme }) => ({
   textTransform: "none",
   display: "none",
-  color: "gray",
+  "&:hover": {
+    color: theme.palette.primary.hover,
+  },
   "&.Mui-selected": {
-    color: theme.palette.text.primary,
+    color: theme.palette.primary.focus,
   },
   [theme.breakpoints.up("sm")]: {
     display: "block",
@@ -76,11 +72,32 @@ function Navbar(props) {
   const location = useLocation();
   const [value, setValue] = useState(location.pathname || "/");
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const match = tab.some((item) => item.path === location.pathname);
     setValue(match ? location.pathname : false);
   }, [location.pathname]);
+
+  useEffect(() => {
+    if (window.innerWidth < 900) {
+      setScrolled(true);
+    }
+
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else if (window.innerWidth > 900) {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -93,7 +110,6 @@ function Navbar(props) {
     <>
       <Box>
         <Drawer
-          //   container={container}
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
@@ -115,88 +131,19 @@ function Navbar(props) {
 
       <AppBar
         sx={{
-          background: "none",
+          background: scrolled
+            ? (theme) => theme.palette.text.secondary
+            : "none",
+          color: scrolled ? (theme) => theme.palette.text.primary : "none",
+          position: "fixed",
+          zIndex: 2,
+          py: 0.6,
+          transition: "0.32s ease-in-out",
           boxShadow: { md: "none" },
         }}
         position="static"
       >
         <StyledToolbar>
-          <Stack
-            direction="row"
-            display={{ xs: "none", sm: "none", md: "flex" }}
-            alignItems="center"
-            justifyContent="space-between"
-            width="100%"
-          >
-            <Link style={{ textDecoration: "none" }} to="/">
-              <IconButton
-                sx={{ color: "black" }}
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="logo"
-              >
-                <Domain />
-              </IconButton>
-            </Link>
-
-            <Tabs
-              value={value}
-              TabIndicatorProps={{
-                sx: { backgroundColor: "transparent" },
-              }}
-              sx={{ paddingTop: 1 }}
-            >
-              {tab.map(({ label, path }, index) => (
-                <StyledTab
-                  key={index}
-                  label={label}
-                  value={path}
-                  component={Link}
-                  to={path}
-                  disableRipple
-                />
-              ))}
-            </Tabs>
-
-            <Stack
-              direction="row"
-              spacing={2}
-              justifyContent="flex-end"
-              sx={{ minWidth: "156px" }}
-            >
-              {/* {location.pathname !== "/sign-in" && ( */}
-              <Button
-                variant="outlined"
-                sx={{ textTransform: "none" }}
-                component={Link}
-                to={"/sign-in"}
-              >
-                Sign In
-              </Button>
-              {/* )} */}
-              {/* {location.pathname !== "/sign-up" && ( */}
-              <Button
-                sx={{
-                  background: (theme) => theme.palette.primary.main,
-                  color: "white",
-                  textTransform: "none",
-                  px: 1,
-                  "&:hover": {
-                    background: (theme) => theme.palette.primary.main,
-                    color: "white",
-                    opacity: 0.9,
-                  },
-                }}
-                component={Link}
-                to={"/sign-up"}
-              >
-                Sign Up
-              </Button>
-              {/* )} */}
-            </Stack>
-          </Stack>
-
           <IconButton
             size="large"
             edge="start"
@@ -210,6 +157,91 @@ function Navbar(props) {
           >
             <Menu />
           </IconButton>
+
+          <Stack
+            direction="row"
+            display={{ xs: "flex", md: "none" }}
+            justifyContent="center"
+            pr={2}
+            width="100%"
+          >
+            <Link style={{ textDecoration: "none" }} to="/">
+              <IconButton size="large">
+                <img
+                  src={scrolled ? header_scrolled : header}
+                  alt=""
+                  style={{ width: "200px" }}
+                />
+              </IconButton>
+            </Link>
+          </Stack>
+
+          <Stack
+            direction="row"
+            display={{ xs: "none", sm: "none", md: "flex" }}
+            alignItems="center"
+            justifyContent="space-between"
+            width="100%"
+          >
+            <Link style={{ textDecoration: "none" }} to="/">
+              <IconButton size="large">
+                <img
+                  src={scrolled ? header_scrolled : header}
+                  alt=""
+                  style={{ width: "200px" }}
+                />
+              </IconButton>
+            </Link>
+
+            <Stack direction="row" spacing={1} alignItems="center">
+              <Tabs
+                value={value}
+                TabIndicatorProps={{
+                  sx: {
+                    backgroundColor: "transparent",
+                  },
+                }}
+                sx={{ paddingTop: 1 }}
+              >
+                {tab.map(({ label, path }, index) => (
+                  <StyledTab
+                    sx={{ color: scrolled ? "#222222" : "#fff" }}
+                    key={index}
+                    label={label}
+                    value={path}
+                    component={Link}
+                    to={path}
+                    disableRipple
+                  />
+                ))}
+              </Tabs>
+
+              <Button
+                sx={{
+                  background: scrolled
+                    ? (theme) => theme.palette.primary.focus
+                    : "#fff",
+                  color: scrolled
+                    ? "white"
+                    : (theme) => theme.palette.primary.focus,
+                  textTransform: "none",
+                  height: "42px",
+                  minWidth: "150px",
+                  px: 6,
+                  borderRadius: 20,
+                  "&:hover": {
+                    background: (theme) => theme.palette.primary.hover,
+                    color: "white",
+                    opacity: 0.9,
+                  },
+                }}
+                component={Link}
+                to={"/sign-in"}
+              >
+                Sign In
+              </Button>
+            </Stack>
+          </Stack>
         </StyledToolbar>
       </AppBar>
     </>
