@@ -1,7 +1,6 @@
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import {
   ClerkProvider,
-  RedirectToSignIn,
   SignedIn,
   SignedOut,
 } from "@clerk/clerk-react";
@@ -50,7 +49,7 @@ const RequireAuthentication = ({ children }) => {
     <>
       <SignedIn>{children}</SignedIn>
       <SignedOut>
-        <RedirectToSignIn />
+        <Navigate to={"/sign-in"} />
       </SignedOut>
     </>
   );

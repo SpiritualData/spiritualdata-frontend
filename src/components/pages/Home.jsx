@@ -10,10 +10,10 @@ import React from "react";
 import Image from "../../assests/home_header.webp";
 import { Link } from "react-router-dom";
 
-const fadeInBottom = keyframes`
+export const fadeInBottom = keyframes`
   0% {
     opacity:0;
-    transform: translateY(150px);
+    transform: translateY(40px);
   }
   100% {
     opacity:1;
@@ -82,17 +82,15 @@ const Home = () => {
               textAlign: { xs: "center", md: "left" },
               fontWeight: 300,
               marginY: "6px",
-              whiteSpace: "break-spaces",
+              pr: { xs: 0, md: "44%" },
+              wordWrap: "break-word",
             }}
           >
             Discover our Spiritual AI Chatbot, a transformative companion using
-            cutting-edge <br />
-            research and hypotheses to provide spiritual answers. Uncover
-            profound insights into
-            <br /> mindfulness, self-discovery, and the meaning of life. This
-            advanced AI system engages
-            <br /> in meaningful conversations, drawing from vast spiritual
-            knowledge and teachings.
+            cutting-edge research and hypotheses to provide spiritual answers.
+            Uncover profound insights into mindfulness, self-discovery, and the
+            meaning of life. This advanced AI system engages in meaningful
+            conversations, drawing from vast spiritual knowledge and teachings.
           </Typography>
 
           <Stack alignItems={{ xs: "center", md: "flex-start" }}>

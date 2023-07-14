@@ -73,6 +73,16 @@ function Navbar(props) {
   const [value, setValue] = useState(location.pathname || "/");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [userExists, setUserExists] = useState(false);
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      setUserExists(true);
+    } else {
+      setUserExists(false);
+    }
+  }, []);
 
   useEffect(() => {
     const match = tab.some((item) => item.path === location.pathname);
@@ -236,9 +246,9 @@ function Navbar(props) {
                   },
                 }}
                 component={Link}
-                to={"/sign-in"}
+                to={userExists ? "/chat" : "/sign-in"}
               >
-                Sign In
+                {userExists ? "Chat" : "Sign In"}
               </Button>
             </Stack>
           </Stack>

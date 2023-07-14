@@ -54,9 +54,9 @@ const Footer = () => {
           flexDirection="column"
           alignItems={{ xs: "center", sm: "flex-start" }}
         >
-          <img style={{ width: "50%", height: "60%" }} src={logo} alt="" />
+          <img style={{ width: "180px", height: "50px" }} src={logo} alt="" />
 
-          <Grid mt={1} item sx={{ textAlign: { xs: "center", sm: "left" } }}>
+          <Grid mt={2} item sx={{ textAlign: { xs: "center", sm: "left" } }}>
             <Typography
               sx={{
                 fontSize: { xs: "14px", sm: "10px", md: "14px" },
@@ -69,7 +69,7 @@ const Footer = () => {
             </Typography>
           </Grid>
 
-          <Grid item xs={12} mt={2} display="flex" alignItems="center">
+          <Grid item xs={12} mt={2}>
             <StyledIcon as={Facebook} />
             <StyledIcon as={Instagram} />
             <StyledIcon as={Twitter} />
@@ -108,7 +108,7 @@ const Footer = () => {
 
             <Divider
               sx={{
-                background: theme => theme.palette.primary.focus,
+                background: (theme) => theme.palette.primary.focus,
                 width: { xs: "40%", sm: "40px" },
                 height: "2px",
                 borderRadius: 20,
@@ -162,7 +162,7 @@ const Footer = () => {
               fontSize: "13px",
               cursor: "pointer",
               "&:hover": {
-                color: theme => theme.palette.primary.hover,
+                color: (theme) => theme.palette.primary.hover,
               },
             }}
           >
@@ -182,7 +182,7 @@ const Footer = () => {
               fontSize: "13px",
               cursor: "pointer",
               "&:hover": {
-                color: theme => theme.palette.primary.hover,
+                color: (theme) => theme.palette.primary.hover,
               },
             }}
           >

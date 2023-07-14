@@ -1,14 +1,14 @@
-import { Stack } from '@mui/material'
 import React from 'react'
+import { Grid } from '@mui/material'
+
+import PageHeader from '../helpers/PageHeader'
+import image from '../../assests/about.webp'
 
 const About = () => {
   return (
-    <Stack sx={{ minHeight: "70vh", justifyContent: "center" }}>
-    <center>
-      <h2>Page under contruction</h2>
-      <h2>Coming soon...</h2>
-    </center>
-  </Stack>
+    <Grid container>
+      <PageHeader image={image} page={'About Us'} sx={{mb: 4}}/>
+    </Grid>
   )
 }
 
