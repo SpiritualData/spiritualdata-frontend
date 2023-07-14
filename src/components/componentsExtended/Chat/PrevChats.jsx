@@ -150,7 +150,7 @@ export default function ChatHistory({
           px: 1,
         }}
       >
-        <UserButton />
+        <UserButton afterSignOutUrl={'/sign-in'}/>
         {!user?.fullName && (
           <Tooltip title="Click image for settings">
             <Typography sx={{ pt: 0.6 }}>Manage Account</Typography>

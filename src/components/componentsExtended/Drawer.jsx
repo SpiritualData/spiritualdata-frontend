@@ -1,4 +1,4 @@
-import { Login, Input, Menu } from "@mui/icons-material";
+import { Login, Input, Menu, Message } from "@mui/icons-material";
 import {
   Divider,
   IconButton,
@@ -10,17 +10,28 @@ import {
   Stack,
   Toolbar,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import header_scrolled from "../../assests/header_scrolled.png";
 
 const DrawerItems = ({ tab, handleDrawerToggle }) => {
+  const [userExists, setUserExists] = useState(false);
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      setUserExists(true);
+    } else {
+      setUserExists(false);
+    }
+  }, []);
+
   const drawerTab = [
     {
-      label: "Login",
-      path: "/login",
-      icon: <Login />,
+      label: userExists ? "Chat" : "SignIn",
+      path: userExists ? "/chat" : "/sign-in",
+      icon: userExists ? <Message /> : <Login />,
     },
     {
       label: "Signup",
