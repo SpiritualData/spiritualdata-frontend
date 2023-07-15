@@ -6,9 +6,11 @@ import {
   keyframes,
   styled,
 } from "@mui/material";
-import React from "react";
-import Image from "../../assests/home_header.webp";
 import { Link } from "react-router-dom";
+
+import Image from "../../assests/home_header.webp";
+import NewsLetter from "../componentsExtended/Home/NewsLetter";
+import Block1 from "../componentsExtended/Home/Block1";
 
 export const fadeInBottom = keyframes`
   0% {
@@ -118,6 +120,8 @@ const Home = () => {
         </StyledHeaderItem>
       </StyledHeader>
 
+      <Block1/>
+
       <Grid item xs={12} px={2} mb={8}>
         <center>
           <h1>Spiritual Data</h1>
@@ -129,6 +133,8 @@ const Home = () => {
           </h3>
         </center>
       </Grid>
+
+      <NewsLetter />
     </Grid>
   );
 };
