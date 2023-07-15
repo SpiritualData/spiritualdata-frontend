@@ -13,6 +13,7 @@ import { Facebook, Instagram, LinkedIn, Twitter } from "@mui/icons-material";
 import PageHeader from "../helpers/PageHeader";
 import image from "../../assests/contact.webp";
 import formImage from "../../assests/contactForm.png";
+import PageDef from "../componentsExtended/PageDef";
 
 const StyledCard = styled(Card)({
   width: "80%",
@@ -23,7 +24,7 @@ const StyledCard = styled(Card)({
   boxShadow: "0px 4px 20px 0px rgba(0, 0, 0, 0.15)",
 });
 
-const StyledTextField = styled(TextField)(({ theme }) => ({
+export const StyledTextField = styled(TextField)(({ theme }) => ({
   "& .MuiInputLabel-root": {
     color: "gray",
   },
@@ -65,32 +66,13 @@ const Contact = () => {
     <Grid container>
       <PageHeader image={image} page={"Contact"} />
 
-      <Grid
-        item
-        xs={12}
-        my={{ xs: 4, sm: 8 }}
-        px={{ xs: 4, md: "26%" }}
-        sx={{ textAlign: "center" }}
-      >
-        <Typography
-          sx={{
-            fontSize: "20px",
-            color: (theme) => theme.palette.primary.focus,
-            fontWeight: "bold",
-          }}
-        >
-          CONTACT US
-        </Typography>
-        <Typography
-          sx={{ fontSize: { xs: "26px", md: "32px" }, fontWeight: 550 }}
-        >
-          Drop us Message for any Query
-        </Typography>
-        <Typography sx={{ fontSize: "16px" }}>
-          Lorem iTypographysum dolor sit amet, consectetur adipiscing elit, sed
-          do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </Typography>
-      </Grid>
+      <PageDef
+        title={"CONTACT US"}
+        heading={"Drop us Message for any Query"}
+        details={
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        }
+      />
 
       <StyledCard>
         <Grid container spacing={4} mb={{ xs: 2, md: 0 }}>

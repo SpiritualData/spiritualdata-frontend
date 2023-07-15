@@ -127,7 +127,6 @@ function Navbar(props) {
             keepMounted: true,
           }}
           sx={{
-            display: { xs: "block", sm: "block", md: "block" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
@@ -146,10 +145,10 @@ function Navbar(props) {
             : "none",
           color: scrolled ? (theme) => theme.palette.text.primary : "none",
           position: "fixed",
-          zIndex: 2,
+          zIndex: 4,
           py: 0.6,
           transition: "0.32s ease-in-out",
-          boxShadow: { md: "none" },
+          boxShadow: { md: !scrolled && "none" },
         }}
         position="static"
       >
