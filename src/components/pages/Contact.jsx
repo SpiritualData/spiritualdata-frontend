@@ -147,29 +147,10 @@ const Contact = () => {
           sx={{
             fontSize: { xs: "20px", md: "26px" },
             fontWeight: "bold",
-            mb: 2,
           }}
         >
-          Contact us by Phone Number or Email Address
+          Email Address:
         </Typography>
-        <Typography
-          sx={{
-            fontSize: { xs: "20px", md: "26px" },
-            fontWeight: "bold",
-            color: (theme) => theme.palette.primary.focus,
-            "&:hover": {
-              cursor: "pointer",
-              color: (theme) => theme.palette.primary.hover,
-            },
-          }}
-        >
-          +088 130 629 8615
-        </Typography>
-
-        <Typography sx={{ color: "gray", fontSize: "22px", fontWeight: 500 }}>
-          OR
-        </Typography>
-
         <Typography
           sx={{
             fontSize: { xs: "20px", md: "26px" },

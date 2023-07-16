@@ -9,22 +9,6 @@ export const menuItems = [
       ],
     },
     {
-      title: "About",
-      links: [
-        { name: "Experiences", path: "/" },
-        { name: "Convention", path: "/" },
-        { name: "Meetings", path: "/" },
-      ],
-    },
-    {
-      title: "Blog",
-      links: [
-        { name: "Upcoming Events", path: "/" },
-        { name: "Memos", path: "/" },
-        { name: "Articles", path: "/" },
-      ],
-    },
-    {
       title: "Library",
       links: [
         { name: "Article Series", path: "/" },
@@ -33,6 +17,14 @@ export const menuItems = [
         { name: "Spiritual Hypothesis", path: "/" },
         { name: "Spiritual Research", path: "/" },
         { name: "FAQ's", path: "/" },
+      ],
+    },
+    {
+      title: "About",
+      links: [
+        { name: "Experiences", path: "/" },
+        { name: "Convention", path: "/" },
+        { name: "Meetings", path: "/" },
       ],
     },
     {

@@ -52,7 +52,7 @@ const tab = [
   },
   {
     label: "Blog",
-    path: "/blog",
+    path: "https://spiritualdata.beehiiv.com/",
     icon: <Book />,
   },
   {
@@ -217,9 +217,13 @@ function Navbar(props) {
                     sx={{ color: scrolled ? "#222222" : "#fff" }}
                     key={index}
                     label={label}
-                    value={path}
-                    component={Link}
-                    to={path}
+                    value={label === "Blog" ? undefined : path}
+                    component={label === "Blog" ? "a" : Link}
+                    to={label === "Blog" ? undefined : path}
+                    href={label === "Blog" ? path : undefined}
+                    target={label === "Blog" ? "_blank" : undefined}
+                    rel={label === "Blog" ? "noopener noreferrer" : undefined}
+                    disabled={label === "Data Discovery"}
                     disableRipple
                   />
                 ))}
