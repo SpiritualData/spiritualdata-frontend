@@ -9,7 +9,6 @@ import Home from "../pages/Home";
 import About from "../pages/About";
 import DataDiscovery from "../pages/DataDiscovery";
 import Contact from "../pages/Contact";
-import Blog from "../pages/Blog";
 import NotFound from "../pages/NotFound";
 import Chat from "../pages/Chat";
 import LogIn from "../pages/Login";
@@ -25,7 +24,6 @@ const useClerkRoutes = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="data-discovery" element={<DataDiscovery />} />
-        <Route path="blog" element={<Blog />} />
         <Route path="contact" element={<Contact />} />
         <Route path="about" element={<About />} />
         <Route path="*" element={<NotFound />} />

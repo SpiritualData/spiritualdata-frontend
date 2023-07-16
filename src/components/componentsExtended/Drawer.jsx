@@ -92,8 +92,12 @@ const DrawerItems = ({ tab, handleDrawerToggle }) => {
           <ListItem
             disablePadding
             key={index}
-            component={Link}
-            to={data.path}
+            component={data.label === "Blog" ? "a" : Link}
+            to={data.label === "Blog" ? undefined : data.path}
+            href={data.label === "Blog" ? data.path : undefined}
+            target={data.label === "Blog" ? "_blank" : undefined}
+            rel={data.label === "Blog" ? "noopener noreferrer" : undefined}
+            disabled={data.label === "Data Discovery"}
             sx={{ color: (theme) => theme.palette.text.primary }}
             onClick={handleDrawerToggle}
           >

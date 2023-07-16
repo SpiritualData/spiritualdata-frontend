@@ -47,7 +47,7 @@ const Footer = () => {
         <Grid
           item
           xs={12}
-          sm={2.5}
+          sm={2.8}
           p={{ xs: 0, sm: 2.6 }}
           mb={{ xs: 2, sm: 0 }}
           display="flex"
@@ -81,8 +81,8 @@ const Footer = () => {
           <Grid
             key={index}
             item
-            xs={item.title === "Contact" ? 12 : 6}
-            sm={1.9}
+            xs={6}
+            sm={2.3}
             p={1}
             mt={{ xs: 2, sm: 0 }}
             sx={{
