@@ -1,14 +1,12 @@
 import {
-  Button,
   Grid,
   Stack,
-  TextField,
   Typography,
   styled,
 } from "@mui/material";
 
-import women from "../../../assests/woman2.jpg";
-import orange from "../../../assests/orange.png";
+import women from "../../../assets/woman2.jpg";
+import orange from "../../../assets/orange.png";
 
 const NewsletterGrid = styled(Grid)(({ theme }) => ({
   color: "#fff",
@@ -38,45 +36,10 @@ const NewsletterGrid = styled(Grid)(({ theme }) => ({
   },
 }));
 
-const StyledNewLetterText = styled(TextField)(() => ({
-  "& .MuiOutlinedInput-root": {
-    "& fieldset": {
-      borderColor: "transparent",
-    },
-    "&:hover fieldset": {
-      borderColor: "transparent",
-    },
-    "&.Mui-focused fieldset": {
-      borderColor: "transparent",
-    },
-    "& input": {
-      caretColor: "#fff",
-    },
-  },
-  input: {
-    WebkitBoxShadow: "0 0 0 1000px #323233 inset",
-    WebkitTextFillColor: "#fff",
-    borderRadius: "40px",
-  },
-}));
-
-const StyledButton = styled(Button)(({ theme }) => ({
-  background: "#fff",
-  color: theme.palette.primary.focus,
-  textTransform: "none",
-  padding: theme.spacing(0, 5),
-  borderRadius: 30,
-  "&:hover": {
-    background: theme.palette.primary.hover,
-    color: "white",
-    opacity: 0.9,
-  },
-}));
-
 const NewsLetter = () => {
   return (
     <NewsletterGrid container justifyContent="center" alignItems="center">
-      <Grid xs={0} sm={6}></Grid>
+      <Grid item xs={0} sm={6}></Grid>
       <Grid
         item
         xs={12}
@@ -84,45 +47,31 @@ const NewsLetter = () => {
         zIndex={2}
         p={{ xs: 1, md: 4 }}
         pr={{ xs: 1, md: 0 }}
+        display="flex"
+        flexDirection="column"
+        alignItems={{ xs: "center", sm: "flex-start" }}
       >
         <Typography
           sx={{
             fontSize: { xs: "24px", md: "32px" },
-            textAlign: { xs: "center", md: "left" },
+            textAlign: { xs: "center", sm: "left" },
             fontWeight: "bold",
+            mb: 1,
           }}
         >
           Join our newsletter
         </Typography>
 
-        <Stack
-          direction={{ xs: "column", sm: "row" }}
-          spacing={1}
-          mt={2}
-          alignItems="flex-end"
-        >
-          <StyledNewLetterText
-            sx={{
-              border: "none",
-              color: "#fff",
-              backgroundColor: "#333",
-              borderRadius: "30px",
-              padding: { xs: "1px", md: "3px" },
-            }}
-            type="email"
-            size="small"
-            placeholder="Enter your email here"
-            fullWidth
-          />
-          <StyledButton
-            variant="contained"
-            sx={{
-              width: "160px",
-              height: { xs: "32px", sm: "40px", md: "44px" },
-            }}
-          >
-            Subscribe
-          </StyledButton>
+        <Stack sx={{ width: { xs: "100%", lg: "460px" } }}>
+          <iframe
+            title="Newsletter"
+            src="https://embeds.beehiiv.com/51f0c52b-4966-4cde-8f8d-e761d1b07095?slim=true"
+            data-test-id="beehiiv-embed"
+            height="52"
+            width="100%"
+            frameborder="0"
+            scrolling="no"
+          ></iframe>
         </Stack>
 
         <Typography
@@ -136,8 +85,7 @@ const NewsLetter = () => {
             wordWrap: "break-word",
           }}
         >
-          Stay updated with our weekly updates regarding the bot and research
-          programmes.
+          Spiritual Data's Newsletter- We seek Board Members
         </Typography>
       </Grid>
     </NewsletterGrid>

@@ -4,8 +4,8 @@ import { Grid, Typography, Box, styled, Divider } from "@mui/material";
 import { Facebook, Instagram, LinkedIn, Twitter } from "@mui/icons-material";
 
 import { menuItems } from "../helpers/footerData";
-import footerImage from "../../assests/footer.png";
-import logo from "../../assests/header.png";
+import footerImage from "../../assets/footer.png";
+import logo from "../../assets/header.png";
 
 const StyledGrid = styled(Grid)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
@@ -54,7 +54,7 @@ const Footer = () => {
           flexDirection="column"
           alignItems={{ xs: "center", sm: "flex-start" }}
         >
-          <img style={{ width: "180px", height: "50px" }} src={logo} alt="" />
+          <img style={{ width: "150px", height: "40px" }} src={logo} alt="" />
 
           <Grid mt={2} item sx={{ textAlign: { xs: "center", sm: "left" } }}>
             <Typography
@@ -64,8 +64,7 @@ const Footer = () => {
                 letterSpacing: "0.2px",
               }}
             >
-              Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
-              maecenas accumsan.
+              Platform that fosters enlightenment and deeper understanding of spirituality.
             </Typography>
           </Grid>
 

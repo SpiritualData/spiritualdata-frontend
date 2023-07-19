@@ -35,3 +35,8 @@ export const menuItems = [
       ],
     },
   ];
+
+  // const links ={
+  //   linkedIn: 'https://www.linkedin.com/company/spiritual-data',
+  //   twitter: '@spiritual_data'
+  // }

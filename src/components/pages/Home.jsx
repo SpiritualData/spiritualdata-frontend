@@ -8,9 +8,14 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
-import Image from "../../assests/home_header.webp";
+import Image from "../../assets/home_header.webp";
+import homeContent from "../../assets/homeContent.jpg";
+import homeContent2 from "../../assets/homeContent2.jpg";
 import NewsLetter from "../componentsExtended/Home/NewsLetter";
 import Block1 from "../componentsExtended/Home/Block1";
+import DiscoverMore from "../componentsExtended/Home/DiscoverMore";
+import ContentSection from "../componentsExtended/Home/ContentSection";
+import FAQ from "../componentsExtended/Home/FAQ";
 
 export const fadeInBottom = keyframes`
   0% {
@@ -120,19 +125,33 @@ const Home = () => {
         </StyledHeaderItem>
       </StyledHeader>
 
-      <Block1/>
+      <>
+        <Block1 />
 
-      <Grid item xs={12} px={2} mb={8}>
-        <center>
-          <h1>Spiritual Data</h1>
-        </center>
-        <center>
-          <h3>
-            Using collaboration technology and intellectual humility to answer
-            the hard questions.
-          </h3>
-        </center>
-      </Grid>
+        <ContentSection
+          imageSrc={homeContent}
+          heading={"Engaging New Audiences through Smart Approach"}
+          subText={
+            "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage."
+          }
+          buttonText={"Read More"}
+          path={''}
+        />
+      </>
+
+      <DiscoverMore />
+
+      <ContentSection
+        imageSrc2={homeContent2}
+        heading={"Check out our latest webinar"}
+        subText={
+          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage."
+        }
+        buttonText={"Read More"}
+        path={''}
+      />
+
+      <FAQ />
 
       <NewsLetter />
     </Grid>
