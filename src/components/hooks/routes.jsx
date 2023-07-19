@@ -13,6 +13,7 @@ import NotFound from "../pages/NotFound";
 import Chat from "../pages/Chat";
 import LogIn from "../pages/Login";
 import Signup from "../pages/Signup";
+import Donations from "../pages/Donations";
 
 const useClerkRoutes = () => {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ const useClerkRoutes = () => {
     <ClerkProvider publishableKey={clerkPubKey} navigate={(to) => navigate(to)}>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="donations" element={<Donations />} />
         <Route path="data-discovery" element={<DataDiscovery />} />
         <Route path="contact" element={<Contact />} />
         <Route path="about" element={<About />} />
