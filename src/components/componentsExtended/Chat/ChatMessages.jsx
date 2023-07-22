@@ -59,6 +59,7 @@ const TypingSymbol = styled("span")`
 
 const ChatMessages = ({
   chat,
+  loading,
   containerRef,
   setInput,
   showSideBar,
