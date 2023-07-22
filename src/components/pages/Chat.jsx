@@ -8,20 +8,48 @@ import SideBar, { StyledButton } from "../componentsExtended/Chat/SideBar";
 import InputField from "../componentsExtended/Chat/Input";
 import ChatMessages from "../componentsExtended/Chat/ChatMessages";
 import ChatDrawer from "../componentsExtended/Chat/ChatDrawer";
-import { DummyChatHistory } from "../componentsExtended/Chat/DummyChat";
+// import { DummyChatHistory } from "../componentsExtended/Chat/DummyChat";
 
 const Chat = () => {
   const containerRef = useRef(null);
   const { isLoaded, userId, getToken } = useAuth();
 
-  const [chat, setChat] = useState();
+  const [chat, setChat] = useState([]);
   const [selected, setSelected] = useState();
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
-  const [chatHistory, setChatHistory] = useState(DummyChatHistory);
+  const [chatHistory, setChatHistory] = useState([]);
   const [showSideBar, setShowSideBar] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const fetchChat = async (chatId) => {
+    try {
+      const response = await axios.get("/chat/get", {
+        params: {
+          chat_id: chatId,
+        },
+      });
+
+      const chatIndex = chatHistory.findIndex((item) => item.chat_id === chatId);
+
+      const updatedChatHistory = [...chatHistory];
+      updatedChatHistory[chatIndex].chat = response.data.chat;
+      setChatHistory(updatedChatHistory);
+      setChat(response.data.chat);
+      setLoading(false)
+
+      console.log('chat', response.data.chat)
+      console.log('History', chatHistory)
+
+    } catch (error) {
+      console.error("Error fetching chat:", error);
+      setError(
+        "An error occurred while fetching the chat. Please check your connection."
+      );
+    }
+  };
 
   useEffect(() => {
     containerRef.current.scrollTop = containerRef.current.scrollHeight;
@@ -42,22 +70,54 @@ const Chat = () => {
   }, [getToken]);
 
   useEffect(() => {
+    const fetchChatHistory = async () => {
+      try {
+        const response = await axios.get("/chat/list");
+        setChatHistory(response.data);
+      } catch (error) {
+        console.error("Error fetching chat list:", error);
+        setError(
+          "An error occurred while fetching the chat list. Please check your connection."
+        );
+      }
+    };
+
+    fetchChatHistory();
+  }, []);
+
+  useEffect(() => {
     if (!selected) {
+      setLoading(true)
       if (chatHistory.length > 0) {
         setSelected(chatHistory[0].chat_id);
-        setChat(chatHistory[0].chat);
+
+        // console.log(chatHistory[0].chat)
+        if (chatHistory[0].chat) {
+          setChat(chatHistory[0].chat);
+          setLoading(false)
+        } else {
+          fetchChat(chatHistory[0].chat_id);
+        }
       } else {
         setSelected();
         setChat([]);
+        setLoading(false)
       }
     }
     // eslint-disable-next-line
   }, [chatHistory]);
 
   useEffect(() => {
+    setLoading(true)
     const selectedChat = chatHistory.find((item) => item.chat_id === selected);
+    // console.log(selectedChat);
     if (selectedChat) {
-      setChat(selectedChat.chat);
+      if (selectedChat.chat) {
+        setChat(selectedChat.chat);
+        setLoading(false)
+      } else {
+        fetchChat(selectedChat.chat_id);
+      }
     }
     setInput("");
     // eslint-disable-next-line
@@ -71,10 +131,12 @@ const Chat = () => {
       setChat([...chat, { role: "user", content: input }]);
 
       axios
-        .post("/chat/response", { chat_id: selected || "", message: input })
+        .post("/chat/response", {
+          chat_id: selected || "",
+          message: input,
+        })
         .then((res) => {
           let response = res.data;
-
           setChat((prevChat) => [
             ...prevChat,
             {
@@ -232,6 +294,7 @@ const Chat = () => {
         <Box bottom={0}>
           <ChatMessages
             chat={chat}
+            loading={loading}
             isTyping={isTyping}
             setIsTyping={setIsTyping}
             showSideBar={showSideBar}
