@@ -97,7 +97,6 @@ const DrawerItems = ({ tab, handleDrawerToggle }) => {
             href={data.label === "Blog" ? data.path : undefined}
             target={data.label === "Blog" ? "_blank" : undefined}
             rel={data.label === "Blog" ? "noopener noreferrer" : undefined}
-            disabled={data.label === "Data Discovery"}
             sx={{ color: (theme) => theme.palette.text.primary }}
             onClick={handleDrawerToggle}
           >

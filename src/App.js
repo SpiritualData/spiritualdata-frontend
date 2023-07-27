@@ -15,6 +15,10 @@ function App() {
     return locations.some((location) => pathname.startsWith(location));
   };
 
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
     <ThemeProvider theme={theme}>
       {!partialSimilarityCheck(locations, location.pathname) && <Navbar />}

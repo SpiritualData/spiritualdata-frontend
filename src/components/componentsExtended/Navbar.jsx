@@ -113,9 +113,6 @@ function Navbar(props) {
     setMobileOpen(!mobileOpen);
   };
 
-  //   const container =
-  //     window !== undefined ? () => window().document.body : undefined;
-
   return (
     <>
       <Box>
@@ -223,7 +220,6 @@ function Navbar(props) {
                     href={label === "Blog" ? path : undefined}
                     target={label === "Blog" ? "_blank" : undefined}
                     rel={label === "Blog" ? "noopener noreferrer" : undefined}
-                    disabled={label === "Data Discovery"}
                     disableRipple
                   />
                 ))}

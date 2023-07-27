@@ -69,7 +69,7 @@ const NewsLetter = () => {
             data-test-id="beehiiv-embed"
             height="52"
             width="100%"
-            frameborder="0"
+            frameBorder="0"
             scrolling="no"
           ></iframe>
         </Stack>

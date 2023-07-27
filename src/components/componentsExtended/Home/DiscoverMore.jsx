@@ -89,6 +89,9 @@ const DiscoverMore = () => {
                       color: "white",
                       opacity: 0.9,
                     },
+                    "& h5": {
+                      color: (theme) => theme.palette.primary.hover,
+                    },
                   },
                 }}
               >
@@ -100,13 +103,11 @@ const DiscoverMore = () => {
                 />
                 <CardContent sx={{ flexGrow: 1, pb: 1 }}>
                   <Typography
+                    variant="h5"
                     sx={{
-                      fontSize: "26px",
                       fontWeight: "bold",
                       letterSpacing: "1px",
-                      "&:hover": {
-                        color: (theme) => theme.palette.primary.hover,
-                      },
+                      lineHeight: "2.4rem",
                     }}
                   >
                     {item.label}
