@@ -42,12 +42,16 @@ export const StyledGridItem = styled(Grid)(({ theme }) => ({
     left: "-100%",
     width: "100%",
     height: "100%",
-    background: theme.palette.primary.hover,
+    background: theme.palette.primary.focus,
     transition: "left 0.5s ease-in-out",
     zIndex: -1,
   },
   "&:hover:before": {
     left: 0,
+  },
+  [theme.breakpoints.down("md")]: {
+    borderBottom: `2px solid ${theme.palette.primary.focus}`,
+    borderLeft: "none",
   },
 }));
 
@@ -59,27 +63,27 @@ const Block1 = () => {
   const data = [
     {
       name: "Spiritual Hypotheses",
-      icon: <TipsAndUpdates sx={{ fontSize: 60 }} />,
+      icon: <TipsAndUpdates sx={{ fontSize: 70 }} />,
       count: 9876,
       info: "With well-grounded hypotheses, Spiritual Data challenges traditional perspectives. Experience the essence of spirituality through empirical data, fostering innovative thought processes",
     },
     {
       name: "Spiritual Experiences",
-      icon: <PsychologyAlt sx={{ fontSize: 60 }} />,
+      icon: <PsychologyAlt sx={{ fontSize: 70 }} />,
       count: 5432,
       info: "Dive into diverse spiritual experiences with Spiritual Data. Reflect on personal journeys, deepen your spiritual cosmos connection, and foster enlightenment",
     },
     {
       name: "Spiritual Research",
-      icon: <Psychology sx={{ fontSize: 60 }} />,
+      icon: <Psychology sx={{ fontSize: 70 }} />,
       count: 3456,
       info: "Venture into Spiritual Data's in-depth research that unravels spirituality's mysteries. We bridge spirituality and science, fostering personal growth and enhanced understanding",
     },
   ];
   return (
-    <Grid container item px={"8%"}>
+    <Grid container item px={{xs:'2%', sm:"8%"}} sx={{gap:{xs: 5, md: 0}}}>
       {data.map((val, index) => (
-        <StyledGridItem key={index} item xs={12} sm={6} md={4} px={2} py={3}>
+        <StyledGridItem key={index} item xs={12} sm={12} md={4} px={2} py={3}>
           <StyledIcon>{val.icon}</StyledIcon>
           <Stack direction='row'>
             <Typography variant="h5">{val.name}:&nbsp;</Typography>

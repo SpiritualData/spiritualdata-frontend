@@ -4,7 +4,7 @@ import { Box, Grid, Typography, styled } from "@mui/material";
 
 import image from "../../assets/dataDiscovery.png";
 import PageHeader from "../helpers/PageHeader";
-import PageDef from "../componentsExtended/PageDef";
+import PageDef from "../helpers/PageDef";
 
 export const StyledGridItem = styled(Grid)(({ theme }) => ({
   backgroundColor: theme.palette.text.secondary,
@@ -44,7 +44,7 @@ const DataItem = ({ val }) => {
   return (
     <StyledGridItem item xs={12} sm={6} md={4} px={2} py={4}>
       <Typography fontSize='28px' fontWeight='bold' my={1}>{val.name}</Typography>
-      <Typography sx={{ color: "darkgrey", fontSize: "32px" }}>
+      <Typography sx={{ color: "grey", fontSize: "32px", fontWeight:500 }}>
         {count}
       </Typography>
     </StyledGridItem>

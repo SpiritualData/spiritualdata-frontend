@@ -6,6 +6,7 @@ import theme from "./components/helpers/theme";
 import Navbar from "./components/componentsExtended/Navbar";
 import Footer from "./components/componentsExtended/Footer";
 import useClerkRoutes from "./components/hooks/routes";
+import ScrollToTop from "./components/helpers/ScrollToTop";
 
 function App() {
   const location = useLocation();
@@ -22,8 +23,10 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       {!partialSimilarityCheck(locations, location.pathname) && <Navbar />}
+      <div id="back-to-top-anchor"></div> 
       <main>{useClerkRoutes()}</main>
       {!partialSimilarityCheck(locations, location.pathname) && <Footer />}
+      {!partialSimilarityCheck(locations, location.pathname) && <ScrollToTop />}
     </ThemeProvider>
   );
 }

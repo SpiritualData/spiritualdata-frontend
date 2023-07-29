@@ -61,7 +61,7 @@ export const StyledHeaderItem = styled(Grid)(() => ({
 
 export const StyledHeading = styled(Typography)(({ theme }) => ({
   fontSize: "46px",
-  fontWeight: "500",
+  fontWeight: "bold",
   [theme.breakpoints.down("md")]: {
     fontSize: "26px",
   },
@@ -87,8 +87,8 @@ const Home = () => {
             sx={{
               fontSize: { xs: "12px", sm: "16px" },
               textAlign: { xs: "center", md: "left" },
-              fontWeight: 300,
-              marginY: "6px",
+              fontWeight: 400,
+              marginY: "8px",
               pr: { xs: 0, md: "44%" },
               wordWrap: "break-word",
             }}
@@ -109,7 +109,7 @@ const Home = () => {
                 height: "38px",
                 width: "180px",
                 px: 2,
-                mt: 2,
+                mt: 3,
                 borderRadius: 20,
                 "&:hover": {
                   background: (theme) => theme.palette.primary.hover,

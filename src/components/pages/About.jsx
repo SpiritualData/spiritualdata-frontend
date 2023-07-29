@@ -4,7 +4,7 @@ import { Box, Grid, Typography } from "@mui/material";
 import PageHeader from "../helpers/PageHeader";
 import image from "../../assets/about.webp";
 import Joshua from "../../assets/Joshua.jpeg";
-import PageDef from "../componentsExtended/PageDef";
+import PageDef from "../helpers/PageDef";
 import { Link } from "react-router-dom";
 import ContentSection from "../componentsExtended/Home/ContentSection";
 
