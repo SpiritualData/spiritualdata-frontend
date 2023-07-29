@@ -54,8 +54,10 @@ const Footer = () => {
           flexDirection="column"
           alignItems={{ xs: "center", sm: "flex-start" }}
         >
-          <img style={{ width: "150px", height: "40px" }} src={logo} alt="" />
-
+          <Link style={{ textDecoration: "none" }} to="/">
+            <img style={{ width: "150px", height: "20px" }} src={logo} alt="" />
+          </Link>
+          
           <Grid mt={2} item sx={{ textAlign: { xs: "center", sm: "left" } }}>
             <Typography
               sx={{
@@ -64,7 +66,8 @@ const Footer = () => {
                 letterSpacing: "0.2px",
               }}
             >
-              Platform that fosters enlightenment and deeper understanding of spirituality.
+              Platform that fosters enlightenment and deeper understanding of
+              spirituality.
             </Typography>
           </Grid>
 

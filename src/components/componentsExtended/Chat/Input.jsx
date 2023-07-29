@@ -1,7 +1,7 @@
 import { Send } from "@mui/icons-material";
 import { Grid, IconButton, TextField } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import ButtonLoader from "../Loader";
+import ButtonLoader from "../../helpers/Loader";
 
 const inputTheme = createTheme({
   components: {

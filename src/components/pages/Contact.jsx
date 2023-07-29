@@ -15,7 +15,7 @@ import emailjs from "@emailjs/browser";
 import PageHeader from "../helpers/PageHeader";
 import image from "../../assets/contact.webp";
 import formImage from "../../assets/contactForm.png";
-import PageDef from "../componentsExtended/PageDef";
+import PageDef from "../helpers/PageDef";
 
 const StyledCard = styled(Card)({
   width: "80%",

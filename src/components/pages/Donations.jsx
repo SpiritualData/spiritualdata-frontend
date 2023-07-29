@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 
 import image from "../../assets/donation.png";
 import PageHeader from "../helpers/PageHeader";
-import PageDef from "../componentsExtended/PageDef";
+import PageDef from "../helpers/PageDef";
 
 const Donations = () => {
   return (
