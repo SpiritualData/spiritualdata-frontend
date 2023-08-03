@@ -43,8 +43,10 @@ const DataItem = ({ val }) => {
 
   return (
     <StyledGridItem item xs={12} sm={6} md={4} px={2} py={4}>
-      <Typography fontSize='28px' fontWeight='bold' my={1}>{val.name}</Typography>
-      <Typography sx={{ color: "grey", fontSize: "32px", fontWeight:500 }}>
+      <Typography fontSize="28px" fontWeight="bold" my={1}>
+        {val.name}
+      </Typography>
+      <Typography sx={{ color: "grey", fontSize: "32px", fontWeight: 500 }}>
         {count}
       </Typography>
     </StyledGridItem>
@@ -62,7 +64,7 @@ const DataDiscovery = () => {
       maxNumber: 5432,
     },
     {
-      name: "Spiritual Research",
+      name: "Spiritual Researchs",
       maxNumber: 3456,
     },
   ];
@@ -112,10 +114,12 @@ const DataDiscovery = () => {
         </b>
       </Typography>
 
-      <Box sx={{ background: "#F3F6F8", width: "100%", p: 6, textAlign:'center' }}>
-      <Typography sx={{ fontWeight: "bold", mb: 4 }} variant="h4">
+      <Box
+        sx={{ background: "#F3F6F8", width: "100%", p: 6, textAlign: "center" }}
+      >
+        <Typography sx={{ fontWeight: "bold", mb: 4 }} variant="h4">
           Our Database Stats
-          </Typography>
+        </Typography>
         <Grid container item px={{ xs: 0, sm: "8%" }}>
           {data.map((val, index) => (
             <DataItem key={index} val={val} />

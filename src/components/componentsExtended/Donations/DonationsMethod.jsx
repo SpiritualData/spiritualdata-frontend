@@ -1,14 +1,17 @@
+import { useState } from "react";
 import {
   Button,
   Card,
   CardContent,
   Grid,
+  Snackbar,
   Stack,
   Typography,
 } from "@mui/material";
 
 import paypal from "../../../assets/paypal-logo.webp";
 import stripe from "../../../assets/stripe.png";
+import AmountDialouge from "./AmountDialouge";
 
 const data = [
   {
@@ -28,6 +31,36 @@ const data = [
 ];
 
 const DonationMethod = () => {
+  const [openPopup, setOpenPopup] = useState(false);
+  const [label, setLabel] = useState();
+  const [showSnackbar, setShowSnackbar] = useState(false);
+  const [amount, setAmount] = useState("10");
+
+  const numberPattern = /^(\d+\.?\d*|\.\d+)$/;
+
+  const handleOpenPopup = (label) => {
+    setLabel(label);
+    setOpenPopup(true);
+  };
+
+  const handleClosePopup = () => {
+    setOpenPopup(false);
+  };
+
+  const handleAmountChange = (event) => {
+    const { value } = event.target;
+    if (numberPattern.test(value)) {
+      setAmount(value);
+    }
+  };
+
+  const handleContinue = () => {
+    handleClosePopup();
+  };
+
+  const onToken = (token) => {
+    setShowSnackbar(true);
+  };
 
   return (
     <Grid
@@ -75,7 +108,7 @@ const DonationMethod = () => {
                   },
                 },
               }}
-              // onClick={() => handleOpenPopup(item.label)}
+              onClick={() => handleOpenPopup(item.label)}
             >
               <CardContent sx={{ flexGrow: 1, pb: 1 }}>
                 <img
@@ -109,6 +142,27 @@ const DonationMethod = () => {
           </Grid>
         );
       })}
+
+      <AmountDialouge
+        openPopup={openPopup}
+        handleAmountChange={handleAmountChange}
+        handleContinue={handleContinue}
+        handleClosePopup={handleClosePopup}
+        onToken={onToken}
+        amount={amount}
+        label={label}
+      />
+
+      <Snackbar
+        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+        open={showSnackbar}
+        autoHideDuration={3000}
+        onClose={() => setShowSnackbar(false)}
+        message="Donation Successful, thank you for your contribution!"
+        ContentProps={{
+          style: { backgroundColor: "green", color: "white" },
+        }}
+      />
     </Grid>
   );
 };
