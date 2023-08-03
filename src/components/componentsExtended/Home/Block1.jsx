@@ -43,7 +43,7 @@ export const StyledGridItem = styled(Grid)(({ theme }) => ({
     width: "100%",
     height: "100%",
     background: theme.palette.primary.focus,
-    transition: "left 0.5s ease-in-out",
+    transition: "left 0.3s ease-in-out",
     zIndex: -1,
   },
   "&:hover:before": {
