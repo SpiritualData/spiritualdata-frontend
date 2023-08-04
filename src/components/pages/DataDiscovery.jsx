@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Box, Grid, Typography, styled } from "@mui/material";
+import { Box, Button, Grid, Typography, styled } from "@mui/material";
 
 import image from "../../assets/dataDiscovery.png";
 import PageHeader from "../helpers/PageHeader";
 import PageDef from "../helpers/PageDef";
+import { East } from "@mui/icons-material";
 
 export const StyledGridItem = styled(Grid)(({ theme }) => ({
   backgroundColor: theme.palette.text.secondary,
@@ -83,7 +84,7 @@ const DataDiscovery = () => {
         sx={{
           mt: { xs: -3, md: -6 },
           mb: 6,
-          fontSize: "16px",
+          fontSize: { xs: "13px", sm: "16px" },
           color: "grey",
           px: { xs: 4, md: "17%" },
           textAlign: "center",
@@ -120,10 +121,72 @@ const DataDiscovery = () => {
         <Typography sx={{ fontWeight: "bold", mb: 4 }} variant="h4">
           Our Database Stats
         </Typography>
+
+        <Typography
+          sx={{
+            mt: -3,
+            mb: 3,
+            fontSize: { xs: "13px", sm: "16px" },
+            color: "grey",
+            px: { xs: 0, md: "17%" },
+            textAlign: "center",
+          }}
+        >
+          Years of research and data collection from real users have provided
+          insights into profound spiritual experiences. Analyzing patterns and
+          commonalities, we continue to develop hypotheses, deepening our
+          understanding of spirituality's impact on individuals and communities.
+          Embracing the mysteries, we aim to enrich the human spiritual journey
+          with our rapidly increasing numbers of database statistics.
+        </Typography>
+
         <Grid container item px={{ xs: 0, sm: "8%" }}>
           {data.map((val, index) => (
             <DataItem key={index} val={val} />
           ))}
+        </Grid>
+
+        <Grid
+          item
+          xs={12}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: { xs: "center", md: "flex-start" },
+            height: "40px",
+          }}
+        >
+          <a
+            href="https://spiritualdata.org"
+            target="_blank"
+            rel="noreferrer"
+            style={{ textDecoration: "none" }}
+          >
+            <Button
+              variant="text"
+              sx={{
+                my: 3,
+                "&:hover": {
+                  backgroundColor: "transparent",
+                  color: "inherit",
+                },
+              }}
+            >
+              <Typography
+                sx={{
+                  color: (theme) => theme.palette.primary.focus,
+                  fontSize: "16px",
+                  textDecoration: "none",
+                  "&:hover": { textDecoration: "underline" },
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                Make a contribution{" "}
+                <East sx={{ marginLeft: "4px", fontSize: "16px" }} />
+              </Typography>
+            </Button>
+          </a>
         </Grid>
       </Box>
     </Grid>
