@@ -16,6 +16,7 @@ import PageHeader from "../helpers/PageHeader";
 import image from "../../assets/contact.webp";
 import formImage from "../../assets/contactForm.png";
 import PageDef from "../helpers/PageDef";
+import { Alert, TransitionUp } from "../helpers/SnackbarAlert";
 
 const StyledCard = styled(Card)({
   width: "80%",
@@ -69,6 +70,8 @@ const Contact = () => {
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarColor, setSnackbarColor] = useState("");
+  // eslint-disable-next-line
+  const [transition, setTransition] = useState(() => TransitionUp);
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -84,7 +87,7 @@ const Contact = () => {
       .then(
         (result) => {
           setSnackbarMessage("Email sent successfully!");
-          setSnackbarColor("green");
+          setSnackbarColor("success");
           setShowSnackbar(true);
           setButtonText("Send");
           e.target.reset();
@@ -93,7 +96,7 @@ const Contact = () => {
           setSnackbarMessage(
             "Request failed, please try again or contact on the email provided below!"
           );
-          setSnackbarColor("red");
+          setSnackbarColor("error");
           setShowSnackbar(true);
           setButtonText("Send");
         }
@@ -203,20 +206,13 @@ const Contact = () => {
               <Snackbar
                 open={showSnackbar}
                 autoHideDuration={2000}
+                TransitionComponent={transition}
                 onClose={handleCloseSnackbar}
-                message={snackbarMessage}
-                style={{
-                  position: "fixed",
-                  backgroundColor: snackbarColor,
-                  bottom: "20px",
-                  left: "20px",
-                  minWidth: "200px",
-                  zIndex: 9999,
-                }}
-                ContentProps={{
-                  style: { backgroundColor: snackbarColor, color: "white" },
-                }}
-              />
+              >
+                <Alert severity={snackbarColor} onClose={handleCloseSnackbar}>
+                  {snackbarMessage}
+                </Alert>
+              </Snackbar>
             </Stack>
           </Grid>
         </Grid>
