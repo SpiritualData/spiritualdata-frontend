@@ -62,7 +62,7 @@ const NewsLetter = () => {
           Join our newsletter
         </Typography>
 
-        <Stack sx={{ width: { xs: "100%", lg: "460px" } }}>
+        <Stack sx={{ width: { xs: "100%", lg: "80%" } }}>
           <iframe
             title="Newsletter"
             src="https://embeds.beehiiv.com/51f0c52b-4966-4cde-8f8d-e761d1b07095?slim=true"
