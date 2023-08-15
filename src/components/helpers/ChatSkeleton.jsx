@@ -6,11 +6,21 @@ const ChatSkeleton = () => {
     <Stack
       spacing={{ xs: 2, md: 3 }}
       mb={1}
-      sx={{ opacity: 4, pr: { xs: 0, md: 5 } }}
+      sx={{ opacity: 0.4, pr: { xs: 0, md: 5 } }}
     >
       <Stack direction="row" spacing={2} width="100%" justifyContent="center">
-        <Skeleton variant="circular" width={60} height={60} />
-        <Skeleton variant="rounded" width={"60%"} height={140} />
+        <Skeleton
+          variant="circular"
+          width={60}
+          height={60}
+          sx={{ background: "gray" }}
+        />
+        <Skeleton
+          variant="rounded"
+          width={"60%"}
+          height={140}
+          sx={{ background: "gray" }}
+        />
       </Stack>
 
       <Stack
@@ -19,8 +29,18 @@ const ChatSkeleton = () => {
         width="100%"
         justifyContent="center"
       >
-        <Skeleton variant="circular" width={60} height={60} />
-        <Skeleton variant="rounded" width={"60%"} height={60} />
+        <Skeleton
+          variant="circular"
+          width={60}
+          height={60}
+          sx={{ background: "gray" }}
+        />
+        <Skeleton
+          variant="rounded"
+          width={"60%"}
+          height={60}
+          sx={{ background: "gray" }}
+        />
       </Stack>
 
       <Stack
@@ -29,8 +49,18 @@ const ChatSkeleton = () => {
         width="100%"
         justifyContent="center"
       >
-        <Skeleton variant="circular" width={60} height={60} />
-        <Skeleton variant="rounded" width={"60%"} height={120} />
+        <Skeleton
+          variant="circular"
+          width={60}
+          height={60}
+          sx={{ background: "gray" }}
+        />
+        <Skeleton
+          variant="rounded"
+          width={"60%"}
+          height={120}
+          sx={{ background: "gray" }}
+        />
       </Stack>
 
       <Stack
@@ -39,8 +69,18 @@ const ChatSkeleton = () => {
         width="100%"
         justifyContent="center"
       >
-        <Skeleton variant="circular" width={60} height={60} />
-        <Skeleton variant="rounded" width={"60%"} height={80} />
+        <Skeleton
+          variant="circular"
+          width={60}
+          height={60}
+          sx={{ background: "gray" }}
+        />
+        <Skeleton
+          variant="rounded"
+          width={"60%"}
+          height={80}
+          sx={{ background: "gray" }}
+        />
       </Stack>
     </Stack>
   );
