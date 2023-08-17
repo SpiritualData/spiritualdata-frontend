@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Box, Grid, IconButton, Snackbar, Stack } from "@mui/material";
+import { Box, Grid, IconButton, Stack } from "@mui/material";
 import { AutoAwesomeMosaic, Menu } from "@mui/icons-material";
 import { useAuth } from "@clerk/clerk-react";
 
@@ -8,6 +8,7 @@ import SideBar, { StyledButton } from "../componentsExtended/Chat/SideBar";
 import InputField from "../componentsExtended/Chat/Input";
 import ChatMessages from "../componentsExtended/Chat/ChatMessages";
 import ChatDrawer from "../componentsExtended/Chat/ChatDrawer";
+import SnackbarAlert from "../helpers/SnackbarAlert";
 // import { DummyChatHistory } from "../componentsExtended/Chat/DummyChat";
 
 const Chat = () => {
@@ -17,7 +18,9 @@ const Chat = () => {
   const [chat, setChat] = useState([]);
   const [selected, setSelected] = useState();
   const [loading, setLoading] = useState(false);
+  const [loadingList, setLoadingList] = useState(false);
   const [error, setError] = useState(null);
+  const [errorList, setErrorList] = useState(false);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const [chatHistory, setChatHistory] = useState([]);
@@ -32,18 +35,20 @@ const Chat = () => {
         },
       });
 
-      const chatIndex = chatHistory.findIndex((item) => item.chat_id === chatId);
+      const chatIndex = chatHistory.findIndex(
+        (item) => item.chat_id === chatId
+      );
 
       const updatedChatHistory = [...chatHistory];
       updatedChatHistory[chatIndex].chat = response.data.chat;
       setChatHistory(updatedChatHistory);
       setChat(response.data.chat);
-      setLoading(false)
+      setLoading(false);
 
-      console.log('chat', response.data.chat)
-      console.log('History', chatHistory)
-
+      console.log("chat", response.data.chat);
+      console.log("History", chatHistory);
     } catch (error) {
+      setLoading(false);
       console.error("Error fetching chat:", error);
       setError(
         "An error occurred while fetching the chat. Please check your connection."
@@ -70,51 +75,54 @@ const Chat = () => {
   }, [getToken]);
 
   useEffect(() => {
+    setLoadingList(true);
     const fetchChatHistory = async () => {
       try {
         const response = await axios.get("/chat/list");
         setChatHistory(response.data);
       } catch (error) {
         console.error("Error fetching chat list:", error);
-        setError(
+        setErrorList(
           "An error occurred while fetching the chat list. Please check your connection."
         );
       }
     };
 
+    setLoadingList(false);
     fetchChatHistory();
   }, []);
 
   useEffect(() => {
     if (!selected) {
-      setLoading(true)
+      setLoading(true);
       if (chatHistory.length > 0) {
         setSelected(chatHistory[0].chat_id);
 
         // console.log(chatHistory[0].chat)
         if (chatHistory[0].chat) {
           setChat(chatHistory[0].chat);
-          setLoading(false)
+          setLoading(false);
         } else {
           fetchChat(chatHistory[0].chat_id);
         }
       } else {
         setSelected();
         setChat([]);
-        setLoading(false)
+        setLoading(false);
       }
     }
     // eslint-disable-next-line
   }, [chatHistory]);
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
+    console.log(selected)
     const selectedChat = chatHistory.find((item) => item.chat_id === selected);
     // console.log(selectedChat);
     if (selectedChat) {
       if (selectedChat.chat) {
         setChat(selectedChat.chat);
-        setLoading(false)
+        setLoading(false);
       } else {
         fetchChat(selectedChat.chat_id);
       }
@@ -125,6 +133,8 @@ const Chat = () => {
 
   const handleSend = async (e) => {
     e.preventDefault();
+    let msg = input;
+    setInput("");
     setIsTyping(true);
 
     if (input.trim()) {
@@ -192,9 +202,8 @@ const Chat = () => {
           setIsTyping(false);
           setError("An error occurred. Please check your connection.");
           setChat((prevChat) => prevChat.slice(0, prevChat.length - 1));
+          setInput(msg);
         });
-
-      setInput("");
     }
   };
 
@@ -215,18 +224,17 @@ const Chat = () => {
         color: (theme) => theme.palette.text.secondary,
       }}
     >
-      <Snackbar
-        open={error !== null}
-        autoHideDuration={5000}
-        onClose={() => setError(null)}
-        message={error}
-      />
+      <SnackbarAlert error={error} />
+
+      <SnackbarAlert error={errorList} />
 
       <SideBar
         setChat={setChat}
         chatHistory={chatHistory}
         setChatHistory={setChatHistory}
         selected={selected}
+        loadingList={loadingList}
+        errorList={errorList}
         setSelected={setSelected}
         showSideBar={showSideBar}
         setShowSideBar={setShowSideBar}
@@ -295,6 +303,7 @@ const Chat = () => {
           <ChatMessages
             chat={chat}
             loading={loading}
+            error={error}
             isTyping={isTyping}
             setIsTyping={setIsTyping}
             showSideBar={showSideBar}
