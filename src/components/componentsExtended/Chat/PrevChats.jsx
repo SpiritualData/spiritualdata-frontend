@@ -16,6 +16,7 @@ import {
   Typography,
   styled,
 } from "@mui/material";
+import { ListSkeleton } from "../../helpers/ChatSkeleton";
 
 const StyledList = styled(List)`
   width: 100%;
@@ -43,6 +44,8 @@ export default function ChatHistory({
   chatHistory,
   // setChatHistory,
   selected,
+  loadingList,
+  errorList,
   setSelected,
   handleDrawerToggle,
 }) {
@@ -64,31 +67,37 @@ export default function ChatHistory({
 
   return (
     <Stack height="89vh" justifyContent="space-between">
-      <StyledList>
-        {chatHistory.map((item, index) => (
-          <StyledListItem
-            key={index}
-            onClick={() => {
-              setSelected(item.chat_id);
-              handleDrawerToggle();
-            }}
-            sx={{
-              background: selected === item.chat_id ? "#353441" : "transparent",
-              "&:hover": {
-                opacity: selected !== item.chat_id && 0.6,
-              },
-            }}
-          >
-            <StyledListItemIcon>
-              <MessageOutlined
-                sx={{
-                  fontSize: "20px",
-                  color: (theme) => theme.palette.text.secondary,
-                }}
-              />
-            </StyledListItemIcon>
-            <ListItemText secondary={truncateTitle(item.title)} />
-            {/* {selected === item.chat_id && (
+      {loadingList ? (
+        <ListSkeleton />
+      ) : errorList ? (
+        <center><br/><small >An error occoured</small></center>
+      ) : (
+        <StyledList>
+          {chatHistory.map((item, index) => (
+            <StyledListItem
+              key={index}
+              onClick={() => {
+                setSelected(item.chat_id);
+                handleDrawerToggle();
+              }}
+              sx={{
+                background:
+                  selected === item.chat_id ? "#353441" : "transparent",
+                "&:hover": {
+                  opacity: selected !== item.chat_id && 0.6,
+                },
+              }}
+            >
+              <StyledListItemIcon>
+                <MessageOutlined
+                  sx={{
+                    fontSize: "20px",
+                    color: (theme) => theme.palette.text.secondary,
+                  }}
+                />
+              </StyledListItemIcon>
+              <ListItemText secondary={truncateTitle(item.title)} />
+              {/* {selected === item.chat_id && (
               <>
                 {!deleteOptions && (
                   <DeleteOutline
@@ -136,9 +145,10 @@ export default function ChatHistory({
                 )}
               </>
             )} */}
-          </StyledListItem>
-        ))}
-      </StyledList>
+            </StyledListItem>
+          ))}
+        </StyledList>
+      )}
 
       <Stack
         direction="row"
@@ -150,7 +160,7 @@ export default function ChatHistory({
           px: 1,
         }}
       >
-        <UserButton afterSignOutUrl={'/sign-in'}/>
+        <UserButton afterSignOutUrl={"/sign-in"} />
         {!user?.fullName && (
           <Tooltip title="Click image for settings">
             <Typography sx={{ pt: 0.6 }}>Manage Account</Typography>
