@@ -23,6 +23,7 @@ import TypeWriter from "react-typewriter";
 import { Link as RouterLink } from "react-router-dom";
 
 import ChatSvg from "./ChatSvg";
+import ChatSkeleton from "../../helpers/ChatSkeleton";
 
 const examples = [
   "What is Spiritual Data used for?",
@@ -60,6 +61,7 @@ const TypingSymbol = styled("span")`
 const ChatMessages = ({
   chat,
   loading,
+  error,
   containerRef,
   setInput,
   showSideBar,
@@ -117,87 +119,96 @@ const ChatMessages = ({
         },
       }}
     >
-      <Grid container>
-        {chat?.length > 0 ? (
-          <Grid container sx={{ opacity: 0.9 }}>
-            {chat.map((item, index) => (
-              <ChatUi
-                item={item}
-                key={index}
-                showSideBar={showSideBar}
-                isLastItem={index === chat.length - 1}
-                isTyping={isTyping}
-                showScrollButton={showScrollButton}
-                setIsTyping={setIsTyping}
-                handleScrollToBottom={handleScrollToBottom}
-              />
-            ))}
-
-            {showScrollButton && (
-              <IconButton
-                sx={{
-                  position: "sticky",
-                  color: "gray",
-                  bottom: 0,
-                  right: 0,
-                  ml: "90%",
-                }}
-                onClick={handleScrollToBottom}
-              >
-                <ArrowDownward
-                  sx={{
-                    background: (theme) => theme.palette.text.primary,
-                    borderRadius: 100,
-                    fontSize: "16px",
-                    p: 0.3,
-                    "&:hover": {
-                      color: (theme) => theme.palette.text.secondary,
-                    },
-                  }}
+      {loading ? (
+        <ChatSkeleton />
+      ) : error ? (
+        <center style={{ marginBottom: "30px" }}>
+          <br />
+          <small>An error occoured</small>
+        </center>
+      ) : (
+        <Grid container>
+          {chat?.length > 0 ? (
+            <Grid container sx={{ opacity: 0.9 }}>
+              {chat.map((item, index) => (
+                <ChatUi
+                  item={item}
+                  key={index}
+                  showSideBar={showSideBar}
+                  isLastItem={index === chat.length - 1}
+                  isTyping={isTyping}
+                  showScrollButton={showScrollButton}
+                  setIsTyping={setIsTyping}
+                  handleScrollToBottom={handleScrollToBottom}
                 />
-              </IconButton>
-            )}
-          </Grid>
-        ) : (
-          <Grid
-            container
-            px={{ xs: 2, md: 16 }}
-            py={2}
-            display="flex"
-            justifyContent="center"
-          >
+              ))}
+
+              {showScrollButton && (
+                <IconButton
+                  sx={{
+                    position: "sticky",
+                    color: "gray",
+                    bottom: 0,
+                    right: 0,
+                    ml: "90%",
+                  }}
+                  onClick={handleScrollToBottom}
+                >
+                  <ArrowDownward
+                    sx={{
+                      background: (theme) => theme.palette.text.primary,
+                      borderRadius: 100,
+                      fontSize: "16px",
+                      p: 0.3,
+                      "&:hover": {
+                        color: (theme) => theme.palette.text.secondary,
+                      },
+                    }}
+                  />
+                </IconButton>
+              )}
+            </Grid>
+          ) : (
             <Grid
               container
+              px={{ xs: 2, md: 16 }}
+              py={2}
               display="flex"
               justifyContent="center"
-              sx={{ gap: 3 }}
             >
-              {examples.map((item, index) => (
-                <Grid
-                  key={index}
-                  item
-                  xs={12}
-                  sm={5}
-                  xl={3}
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  textAlign="center"
-                  sx={{
-                    border: "1px solid #fff",
-                    borderRadius: 2,
-                    p: 1.6,
-                    cursor: "pointer",
-                  }}
-                  onClick={() => setInput(item)}
-                >
-                  {item}
-                </Grid>
-              ))}
+              <Grid
+                container
+                display="flex"
+                justifyContent="center"
+                sx={{ gap: 3 }}
+              >
+                {examples.map((item, index) => (
+                  <Grid
+                    key={index}
+                    item
+                    xs={12}
+                    sm={5}
+                    xl={3}
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    textAlign="center"
+                    sx={{
+                      border: "1px solid #fff",
+                      borderRadius: 2,
+                      p: 1.6,
+                      cursor: "pointer",
+                    }}
+                    onClick={() => setInput(item)}
+                  >
+                    {item}
+                  </Grid>
+                ))}
+              </Grid>
             </Grid>
-          </Grid>
-        )}
-      </Grid>
+          )}
+        </Grid>
+      )}
     </Box>
   );
 };
