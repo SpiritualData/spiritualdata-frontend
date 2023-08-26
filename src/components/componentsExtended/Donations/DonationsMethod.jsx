@@ -51,6 +51,8 @@ const DonationMethod = () => {
     const { value } = event.target;
     if (numberPattern.test(value)) {
       setAmount(value);
+    } else if (value === '') {
+      setAmount('0.1');
     }
   };
 

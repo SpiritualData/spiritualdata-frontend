@@ -52,7 +52,7 @@ const AmountDialouge = ({
   return (
     <Dialog open={openPopup} onClose={handleClosePopup}>
       <DialogContent sx={popupStyle}>
-        <DialogTitle sx={popupTitleStyle}>Enter Amount(USD)</DialogTitle>
+        <DialogTitle sx={popupTitleStyle}>Enter Amount (USD)</DialogTitle>
         <Stack>
           <TextField
             type="number"
@@ -68,6 +68,7 @@ const AmountDialouge = ({
               currency="USD"
               panelLabel="Donate"
               amount={Number(amount) * 100}
+              disabled={!amount || Number(amount) === 0}
             >
               <Button
                 disabled={!amount || Number(amount) === 0}
@@ -77,7 +78,7 @@ const AmountDialouge = ({
                 Continue
               </Button>
             </StripeCheckout>
-          ) : (
+          ) : amount > 0 ? (
             <PayPalScriptProvider
               options={{ "client-id": process.env.REACT_APP_VITE_CLIENT_ID }}
             >
@@ -100,7 +101,7 @@ const AmountDialouge = ({
                 }}
               />
             </PayPalScriptProvider>
-          )}
+          ) : null }
         </Stack>
       </DialogContent>
     </Dialog>
