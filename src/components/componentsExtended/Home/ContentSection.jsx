@@ -22,12 +22,7 @@ const ContentSection = ({
       my={{ xs: 3, md: 8 }}
       px={"8%"}
     >
-      <Grid
-        item
-        xs={12}
-        md={6}
-        sx={{ marginLeft: { xs: 0, md: "16px" } }}
-      >
+      <Grid item xs={12} md={6} sx={{ marginLeft: { xs: 0, md: "16px" } }}>
         <Grid
           item
           md={11}
@@ -47,13 +42,17 @@ const ContentSection = ({
           <Typography
             sx={{
               color: "#78716c",
-              fontSize: heading?.includes("Joshua") ? '14px' : "16px",
-              marginTop: heading?.includes("Joshua") ? '20px' : "32px",
+              fontSize: heading?.includes("Joshua") ? "14px" : "16px",
+              marginTop: heading?.includes("Joshua") ? "20px" : "32px",
             }}
           >
             {subText}
           </Typography>
-          <Link to={path} style={{ textDecoration: "none" }}>
+          <Link
+            to={path}
+            style={{ textDecoration: "none" }}
+            target={path.startsWith("https") ? "_blank" : ""}
+          >
             <Button
               variant="text"
               sx={{

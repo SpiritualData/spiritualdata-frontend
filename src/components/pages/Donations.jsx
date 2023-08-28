@@ -30,7 +30,9 @@ const Donations = () => {
           "Help us grow, become part of Spiritual Data's non-profit mission to explore spirituality and empower seekers worldwide. Contribute your skills and insights to foster growth, understanding, and unity among our community. Together, we make a meaningful impact on the spiritual journey of countless individuals."
         }
         buttonText={"Join Now"}
-        path={"/contact"}
+        path={
+          "https://docs.google.com/forms/u/1/d/e/1FAIpQLSdy6G90oR1lgRv1BqPd3jkbVG11xOlWptQ88IXfKtb2R3lmyg/viewform?usp=send_form"
+        }
       />
 
       <Questions />
