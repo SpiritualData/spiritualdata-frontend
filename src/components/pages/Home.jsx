@@ -94,7 +94,7 @@ const Home = () => {
             }}
           >
             Discover our Spiritual AI Chatbot, a transformative companion using
-            cutting-edge research and hypotheses to provide spiritual answers.
+            cutting-edge research and hypothesis to provide spiritual answers.
             Uncover profound insights into mindfulness, self-discovery, and the
             meaning of life. This advanced AI system engages in meaningful
             conversations, drawing from vast spiritual knowledge and teachings.

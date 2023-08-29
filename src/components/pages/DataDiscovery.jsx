@@ -50,6 +50,31 @@ const DataItem = ({ val }) => {
       <Typography sx={{ color: "grey", fontSize: "32px", fontWeight: 500 }}>
         {count}
       </Typography>
+
+      <Link to={val.path} style={{ textDecoration: "none" }} target={"_blank"}>
+        <Button
+          variant="text"
+          sx={{
+            "&:hover": {
+              backgroundColor: "transparent",
+              color: "inherit",
+            },
+          }}
+        >
+          <Typography
+            sx={{
+              color: (theme) => theme.palette.primary.focus,
+              fontSize: "14px",
+              textDecoration: "none",
+              "&:hover": { textDecoration: "underline" },
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            {val.buttonText}{" "}
+          </Typography>
+        </Button>
+      </Link>
     </StyledGridItem>
   );
 };
@@ -58,15 +83,21 @@ const DataDiscovery = () => {
   const data = [
     {
       name: "Spiritual Hypotheses",
+      buttonText: "SUBMIT A HYPOTHESIS",
       maxNumber: 9876,
+      path: "https://forms.gle/GmCTXs8V6ZCpFs8z5",
     },
     {
       name: "Spiritual Experiences",
+      buttonText: "SUBMIT AN EXPERIENCE",
       maxNumber: 5432,
+      path: "https://forms.gle/oF6HvwPoc2Ndf9bT9",
     },
     {
       name: "Spiritual Researchs",
+      buttonText: "SUBMIT EVIDENCE OR RESERCH STUDY",
       maxNumber: 3456,
+      path: "https://docs.google.com/forms/u/1/d/e/1FAIpQLSfsRYQBweDGRGrFsu52UbwZx4px5h9G-7XWRHMtMywtN7jelw/viewform?usp=send_form",
     },
   ];
 
@@ -92,7 +123,7 @@ const DataDiscovery = () => {
       >
         Data discovery is a pivotal feature of our Spiritual Data platform. This
         vast, user-curated database is a rich tapestry interweaving diverse
-        spiritual hypotheses, comprehensive research, and deeply personal
+        spiritual hypothesis, comprehensive research, and deeply personal
         experiences. What sets Spiritual Data apart is its organic,
         user-generated growth—every piece of information, every insight, every
         revelation has been contributed by real individuals traversing their
