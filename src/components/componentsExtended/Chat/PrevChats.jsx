@@ -21,7 +21,6 @@ import { ListSkeleton } from "../../helpers/ChatSkeleton";
 const StyledList = styled(List)`
   width: 100%;
   overflow: auto;
-  max-height: 70%;
   margin-bottom: 1rem;
 `;
 
@@ -70,34 +69,38 @@ export default function ChatHistory({
       {loadingList ? (
         <ListSkeleton />
       ) : errorList ? (
-        <center><br/><small >An error occoured</small></center>
+        <center>
+          <br />
+          <small>An error occoured</small>
+        </center>
       ) : (
         <StyledList>
-          {chatHistory.map((item, index) => (
-            <StyledListItem
-              key={index}
-              onClick={() => {
-                setSelected(item.chat_id);
-                handleDrawerToggle();
-              }}
-              sx={{
-                background:
-                  selected === item.chat_id ? "#353441" : "transparent",
-                "&:hover": {
-                  opacity: selected !== item.chat_id && 0.6,
-                },
-              }}
-            >
-              <StyledListItemIcon>
-                <MessageOutlined
-                  sx={{
-                    fontSize: "20px",
-                    color: (theme) => theme.palette.text.secondary,
-                  }}
-                />
-              </StyledListItemIcon>
-              <ListItemText secondary={truncateTitle(item.title)} />
-              {/* {selected === item.chat_id && (
+          {chatHistory.length > 0 ? (
+            chatHistory.map((item, index) => (
+              <StyledListItem
+                key={index}
+                onClick={() => {
+                  setSelected(item.chat_id);
+                  handleDrawerToggle();
+                }}
+                sx={{
+                  background:
+                    selected === item.chat_id ? "#353441" : "transparent",
+                  "&:hover": {
+                    opacity: selected !== item.chat_id && 0.6,
+                  },
+                }}
+              >
+                <StyledListItemIcon>
+                  <MessageOutlined
+                    sx={{
+                      fontSize: "20px",
+                      color: (theme) => theme.palette.text.secondary,
+                    }}
+                  />
+                </StyledListItemIcon>
+                <ListItemText secondary={truncateTitle(item.title)} />
+                {/* {selected === item.chat_id && (
               <>
                 {!deleteOptions && (
                   <DeleteOutline
@@ -145,8 +148,14 @@ export default function ChatHistory({
                 )}
               </>
             )} */}
-            </StyledListItem>
-          ))}
+              </StyledListItem>
+            ))
+          ) : (
+            <center>
+              <br />
+              <small>No chats found.</small>
+            </center>
+          )}
         </StyledList>
       )}
 

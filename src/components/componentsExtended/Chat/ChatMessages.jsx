@@ -61,6 +61,7 @@ const TypingSymbol = styled("span")`
 const ChatMessages = ({
   chat,
   loading,
+  selected,
   error,
   containerRef,
   setInput,
@@ -121,7 +122,7 @@ const ChatMessages = ({
     >
       {loading ? (
         <ChatSkeleton />
-      ) : error ? (
+      ) : error && selected ? (
         <center style={{ marginBottom: "30px" }}>
           <br />
           <small>An error occoured</small>
@@ -373,7 +374,7 @@ const DataResults = ({
             <Typography variant="subtitle1" fontWeight="bold">
               Hypotheses:
             </Typography>
-            {item.db_results.hypotheses ? (
+            {item.db_results.hypotheses?.length > 0 ? (
               renderItems(item.db_results.hypotheses)
             ) : (
               <center>No results found</center>
@@ -384,7 +385,7 @@ const DataResults = ({
             <Typography variant="subtitle1" fontWeight="bold">
               Experiences:
             </Typography>
-            {item.db_results.experiences ? (
+            {item.db_results.experiences?.length > 0 ? (
               renderItems(item.db_results.experiences)
             ) : (
               <center>No results found</center>
@@ -395,7 +396,7 @@ const DataResults = ({
             <Typography variant="subtitle1" fontWeight="bold">
               Research:
             </Typography>
-            {item.db_results.research ? (
+            {item.db_results.research?.length > 0 ? (
               renderItems(item.db_results.research)
             ) : (
               <center>No results found</center>

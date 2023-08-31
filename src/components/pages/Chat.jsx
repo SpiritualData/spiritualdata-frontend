@@ -21,6 +21,7 @@ const Chat = () => {
   const [loadingList, setLoadingList] = useState(false);
   const [error, setError] = useState(null);
   const [errorList, setErrorList] = useState(false);
+  const [errorResponse, setErrorResponse] = useState(null);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const [chatHistory, setChatHistory] = useState([]);
@@ -46,7 +47,6 @@ const Chat = () => {
       setLoading(false);
 
       console.log("chat", response.data.chat);
-      console.log("History", chatHistory);
     } catch (error) {
       setLoading(false);
       console.error("Error fetching chat:", error);
@@ -78,19 +78,24 @@ const Chat = () => {
     setLoadingList(true);
     const fetchChatHistory = async () => {
       try {
-        const response = await axios.get("/chat/list");
+        const response = await axios.get("/chat/list", {
+          params: {
+            user_id: userId,
+          },
+        });
         setChatHistory(response.data);
+        setLoadingList(false);
       } catch (error) {
-        console.error("Error fetching chat list:", error);
+        setLoadingList(false);
+        console.error("Error fetching chat list:", error.message);
         setErrorList(
           "An error occurred while fetching the chat list. Please check your connection."
         );
       }
     };
 
-    setLoadingList(false);
     fetchChatHistory();
-  }, []);
+  }, [userId]);
 
   useEffect(() => {
     if (!selected) {
@@ -116,17 +121,20 @@ const Chat = () => {
 
   useEffect(() => {
     setLoading(true);
-    console.log(selected)
+    console.log(selected);
     const selectedChat = chatHistory.find((item) => item.chat_id === selected);
     // console.log(selectedChat);
-    if (selectedChat) {
-      if (selectedChat.chat) {
+    if (selectedChat && selected) {
+      if (selectedChat.chat?.length > 0) {
         setChat(selectedChat.chat);
         setLoading(false);
       } else {
         fetchChat(selectedChat.chat_id);
       }
+    } else {
+      setLoading(false);
     }
+
     setInput("");
     // eslint-disable-next-line
   }, [selected]);
@@ -136,6 +144,7 @@ const Chat = () => {
     let msg = input;
     setInput("");
     setIsTyping(true);
+    setError(null);
 
     if (input.trim()) {
       setChat([...chat, { role: "user", content: input }]);
@@ -143,10 +152,17 @@ const Chat = () => {
       axios
         .post("/chat/response", {
           chat_id: selected || "",
-          message: input,
+          message: input.trim(),
+          // data_sources: ["experiences", "hypotheses", "research"],
+          // return_results: true,
+          // answer_model: "gpt-3.5-turbo",
+          // save: true,
         })
         .then((res) => {
           let response = res.data;
+
+          console.log(res.data);
+
           setChat((prevChat) => [
             ...prevChat,
             {
@@ -183,7 +199,7 @@ const Chat = () => {
                   ? {
                       ...item,
                       chat: [
-                        ...item.chat,
+                        ...item?.chat,
                         { role: "user", content: input },
                         {
                           role: "ai",
@@ -198,9 +214,19 @@ const Chat = () => {
           }
         })
         .catch((error) => {
-          console.error("Error:", error);
+          console.error("Error:", error.code);
           setIsTyping(false);
-          setError("An error occurred. Please check your connection.");
+
+          if (error?.code === "ERR_BAD_REQUEST") {
+            setErrorResponse("Clerk session timed out, please log in again.");
+          } else {
+            setErrorResponse(
+              "An error occurred. Please check your connection."
+            );
+          }
+          setTimeout(() => {
+            setErrorResponse(null);
+          }, 2000);
           setChat((prevChat) => prevChat.slice(0, prevChat.length - 1));
           setInput(msg);
         });
@@ -227,6 +253,8 @@ const Chat = () => {
       <SnackbarAlert error={error} />
 
       <SnackbarAlert error={errorList} />
+
+      <SnackbarAlert error={errorResponse} />
 
       <SideBar
         setChat={setChat}
@@ -303,6 +331,7 @@ const Chat = () => {
           <ChatMessages
             chat={chat}
             loading={loading}
+            selected={selected}
             error={error}
             isTyping={isTyping}
             setIsTyping={setIsTyping}
@@ -313,6 +342,9 @@ const Chat = () => {
 
           <InputField
             input={input}
+            selected={selected}
+            error={error}
+            chatHistory={chatHistory}
             isTyping={isTyping}
             setInput={setInput}
             handleSend={handleSend}
