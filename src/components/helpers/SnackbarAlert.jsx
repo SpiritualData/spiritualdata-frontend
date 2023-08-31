@@ -16,7 +16,7 @@ const SnackbarAlert = ({ error }) => {
   const [transition, setTransition] = useState(() => TransitionUp);
 
   useEffect(() => {
-    if (error !== null) {
+    if (error) {
       setIsOpen(true);
       const timeout = setTimeout(() => {
         setIsOpen(false);

@@ -43,7 +43,15 @@ const inputTheme = createTheme({
   },
 });
 
-const InputField = ({ input, setInput, handleSend, isTyping }) => {
+const InputField = ({
+  input,
+  setInput,
+  chatHistory,
+  handleSend,
+  isTyping,
+  error,
+  selected,
+}) => {
   return (
     <Grid
       container
@@ -68,7 +76,14 @@ const InputField = ({ input, setInput, handleSend, isTyping }) => {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => {
-            if (e.key === "Enter") {
+            if (
+              e.key === "Enter" &&
+              !(
+                (!isTyping && !input) ||
+                (selected && error?.length > 0) ||
+                chatHistory?.length === 0
+              )
+            ) {
               handleSend(e);
             }
           }}
@@ -77,7 +92,11 @@ const InputField = ({ input, setInput, handleSend, isTyping }) => {
               <>
                 <IconButton
                   onClick={(e) => handleSend(e)}
-                  disabled={!isTyping && !input}
+                  disabled={
+                    (!isTyping && !input) ||
+                    (selected && error?.length > 0) ||
+                    chatHistory?.length === 0
+                  }
                   sx={{ color: "#fff" }}
                 >
                   {isTyping ? <ButtonLoader /> : <Send />}
