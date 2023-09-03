@@ -4,8 +4,8 @@ import { Grid, Typography, Box, styled, Divider } from "@mui/material";
 import { Facebook, Instagram, LinkedIn, Twitter } from "@mui/icons-material";
 
 import { menuItems } from "../helpers/footerData";
-import footerImage from "../../assests/footer.png";
-import logo from "../../assests/header.png";
+import footerImage from "../../assets/footer.png";
+import logo from "../../assets/header.png";
 
 const StyledGrid = styled(Grid)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
@@ -47,15 +47,17 @@ const Footer = () => {
         <Grid
           item
           xs={12}
-          sm={2.5}
+          sm={2.8}
           p={{ xs: 0, sm: 2.6 }}
           mb={{ xs: 2, sm: 0 }}
           display="flex"
           flexDirection="column"
           alignItems={{ xs: "center", sm: "flex-start" }}
         >
-          <img style={{ width: "180px", height: "50px" }} src={logo} alt="" />
-
+          <Link style={{ textDecoration: "none" }} to="/">
+            <img style={{ width: "150px", height: "20px" }} src={logo} alt="" />
+          </Link>
+          
           <Grid mt={2} item sx={{ textAlign: { xs: "center", sm: "left" } }}>
             <Typography
               sx={{
@@ -64,8 +66,8 @@ const Footer = () => {
                 letterSpacing: "0.2px",
               }}
             >
-              Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
-              maecenas accumsan.
+              Platform that fosters enlightenment and deeper understanding of
+              spirituality.
             </Typography>
           </Grid>
 
@@ -81,8 +83,8 @@ const Footer = () => {
           <Grid
             key={index}
             item
-            xs={item.title === "Contact" ? 12 : 6}
-            sm={1.9}
+            xs={6}
+            sm={2.3}
             p={1}
             mt={{ xs: 2, sm: 0 }}
             sx={{

@@ -8,9 +8,14 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
-import Image from "../../assests/home_header.webp";
+import Image from "../../assets/home_header.webp";
+import homeContent from "../../assets/homeContent.jpg";
+import homeContent2 from "../../assets/homeContent2.jpg";
 import NewsLetter from "../componentsExtended/Home/NewsLetter";
 import Block1 from "../componentsExtended/Home/Block1";
+import DiscoverMore from "../componentsExtended/Home/DiscoverMore";
+import ContentSection from "../componentsExtended/Home/ContentSection";
+import FAQ from "../componentsExtended/Home/FAQ";
 
 export const fadeInBottom = keyframes`
   0% {
@@ -56,7 +61,7 @@ export const StyledHeaderItem = styled(Grid)(() => ({
 
 export const StyledHeading = styled(Typography)(({ theme }) => ({
   fontSize: "46px",
-  fontWeight: "500",
+  fontWeight: "bold",
   [theme.breakpoints.down("md")]: {
     fontSize: "26px",
   },
@@ -82,14 +87,14 @@ const Home = () => {
             sx={{
               fontSize: { xs: "12px", sm: "16px" },
               textAlign: { xs: "center", md: "left" },
-              fontWeight: 300,
-              marginY: "6px",
+              fontWeight: 400,
+              marginY: "8px",
               pr: { xs: 0, md: "44%" },
               wordWrap: "break-word",
             }}
           >
             Discover our Spiritual AI Chatbot, a transformative companion using
-            cutting-edge research and hypotheses to provide spiritual answers.
+            cutting-edge research and hypothesis to provide spiritual answers.
             Uncover profound insights into mindfulness, self-discovery, and the
             meaning of life. This advanced AI system engages in meaningful
             conversations, drawing from vast spiritual knowledge and teachings.
@@ -104,7 +109,7 @@ const Home = () => {
                 height: "38px",
                 width: "180px",
                 px: 2,
-                mt: 2,
+                mt: 3,
                 borderRadius: 20,
                 "&:hover": {
                   background: (theme) => theme.palette.primary.hover,
@@ -120,19 +125,33 @@ const Home = () => {
         </StyledHeaderItem>
       </StyledHeader>
 
-      <Block1/>
+      <>
+        <Block1 />
 
-      <Grid item xs={12} px={2} mb={8}>
-        <center>
-          <h1>Spiritual Data</h1>
-        </center>
-        <center>
-          <h3>
-            Using collaboration technology and intellectual humility to answer
-            the hard questions.
-          </h3>
-        </center>
-      </Grid>
+        <ContentSection
+          imageSrc={homeContent}
+          heading={"Engaging New Audiences through Smart Approach"}
+          subText={
+            "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage."
+          }
+          buttonText={"Read More"}
+          path={''}
+        />
+      </>
+
+      <DiscoverMore />
+
+      <ContentSection
+        imageSrc2={homeContent2}
+        heading={"Check out our latest webinar"}
+        subText={
+          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage."
+        }
+        buttonText={"Read More"}
+        path={''}
+      />
+
+      <FAQ />
 
       <NewsLetter />
     </Grid>

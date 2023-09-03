@@ -13,7 +13,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import header_scrolled from "../../assests/header_scrolled.png";
+import header_scrolled from "../../assets/header_scrolled.png";
 
 const DrawerItems = ({ tab, handleDrawerToggle }) => {
   const [userExists, setUserExists] = useState(false);
@@ -92,8 +92,11 @@ const DrawerItems = ({ tab, handleDrawerToggle }) => {
           <ListItem
             disablePadding
             key={index}
-            component={Link}
-            to={data.path}
+            component={data.label === "Blog" ? "a" : Link}
+            to={data.label === "Blog" ? undefined : data.path}
+            href={data.label === "Blog" ? data.path : undefined}
+            target={data.label === "Blog" ? "_blank" : undefined}
+            rel={data.label === "Blog" ? "noopener noreferrer" : undefined}
             sx={{ color: (theme) => theme.palette.text.primary }}
             onClick={handleDrawerToggle}
           >

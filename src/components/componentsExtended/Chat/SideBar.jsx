@@ -20,6 +20,8 @@ const SideBar = ({
   chatHistory,
   setChatHistory,
   selected,
+  loadingList,
+  errorList,
   setSelected,
   showSideBar,
   setShowSideBar,
@@ -58,6 +60,8 @@ const SideBar = ({
         chatHistory={chatHistory}
         setChatHistory={setChatHistory}
         selected={selected}
+        loadingList={loadingList}
+        errorList={errorList}
         setSelected={setSelected}
         handleDrawerToggle={handleDrawerToggle}
       />
