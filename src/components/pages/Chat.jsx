@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Box, Grid, IconButton, Snackbar, Stack } from "@mui/material";
+import { Box, Grid, IconButton, Stack } from "@mui/material";
 import { AutoAwesomeMosaic, Menu } from "@mui/icons-material";
 import { useAuth } from "@clerk/clerk-react";
 
@@ -8,20 +8,53 @@ import SideBar, { StyledButton } from "../componentsExtended/Chat/SideBar";
 import InputField from "../componentsExtended/Chat/Input";
 import ChatMessages from "../componentsExtended/Chat/ChatMessages";
 import ChatDrawer from "../componentsExtended/Chat/ChatDrawer";
-import { DummyChatHistory } from "../componentsExtended/Chat/DummyChat";
+import SnackbarAlert from "../helpers/SnackbarAlert";
+// import { DummyChatHistory } from "../componentsExtended/Chat/DummyChat";
 
 const Chat = () => {
   const containerRef = useRef(null);
   const { isLoaded, userId, getToken } = useAuth();
 
-  const [chat, setChat] = useState();
+  const [chat, setChat] = useState([]);
   const [selected, setSelected] = useState();
+  const [loading, setLoading] = useState(false);
+  const [loadingList, setLoadingList] = useState(false);
   const [error, setError] = useState(null);
+  const [errorList, setErrorList] = useState(false);
+  const [errorResponse, setErrorResponse] = useState(null);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
-  const [chatHistory, setChatHistory] = useState(DummyChatHistory);
+  const [chatHistory, setChatHistory] = useState([]);
   const [showSideBar, setShowSideBar] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const fetchChat = async (chatId) => {
+    try {
+      const response = await axios.get("/chat/get", {
+        params: {
+          chat_id: chatId,
+        },
+      });
+
+      const chatIndex = chatHistory.findIndex(
+        (item) => item.chat_id === chatId
+      );
+
+      const updatedChatHistory = [...chatHistory];
+      updatedChatHistory[chatIndex].chat = response.data.chat;
+      setChatHistory(updatedChatHistory);
+      setChat(response.data.chat);
+      setLoading(false);
+
+      console.log("chat", response.data.chat);
+    } catch (error) {
+      setLoading(false);
+      console.error("Error fetching chat:", error);
+      setError(
+        "An error occurred while fetching the chat. Please check your connection."
+      );
+    }
+  };
 
   useEffect(() => {
     containerRef.current.scrollTop = containerRef.current.scrollHeight;
@@ -42,38 +75,93 @@ const Chat = () => {
   }, [getToken]);
 
   useEffect(() => {
+    setLoadingList(true);
+    const fetchChatHistory = async () => {
+      try {
+        const response = await axios.get("/chat/list", {
+          params: {
+            user_id: userId,
+          },
+        });
+        setChatHistory(response.data);
+        setLoadingList(false);
+      } catch (error) {
+        setLoadingList(false);
+        console.error("Error fetching chat list:", error.message);
+        setErrorList(
+          "An error occurred while fetching the chat list. Please check your connection."
+        );
+      }
+    };
+
+    fetchChatHistory();
+  }, [userId]);
+
+  useEffect(() => {
     if (!selected) {
+      setLoading(true);
       if (chatHistory.length > 0) {
         setSelected(chatHistory[0].chat_id);
-        setChat(chatHistory[0].chat);
+
+        // console.log(chatHistory[0].chat)
+        if (chatHistory[0].chat) {
+          setChat(chatHistory[0].chat);
+          setLoading(false);
+        } else {
+          fetchChat(chatHistory[0].chat_id);
+        }
       } else {
         setSelected();
         setChat([]);
+        setLoading(false);
       }
     }
     // eslint-disable-next-line
   }, [chatHistory]);
 
   useEffect(() => {
+    setLoading(true);
+    console.log(selected);
     const selectedChat = chatHistory.find((item) => item.chat_id === selected);
-    if (selectedChat) {
-      setChat(selectedChat.chat);
+    // console.log(selectedChat);
+    if (selectedChat && selected) {
+      if (selectedChat.chat?.length > 0) {
+        setChat(selectedChat.chat);
+        setLoading(false);
+      } else {
+        fetchChat(selectedChat.chat_id);
+      }
+    } else {
+      setLoading(false);
     }
+
     setInput("");
     // eslint-disable-next-line
   }, [selected]);
 
   const handleSend = async (e) => {
     e.preventDefault();
+    let msg = input;
+    setInput("");
     setIsTyping(true);
+    setError(null);
 
     if (input.trim()) {
       setChat([...chat, { role: "user", content: input }]);
 
       axios
-        .post("/chat/response", { chat_id: selected || "", message: input })
+        .post("/chat/response", {
+          chat_id: selected || "",
+          message: input.trim(),
+          // data_sources: ["experiences", "hypotheses", "research"],
+          // return_results: true,
+          // answer_model: "gpt-3.5-turbo",
+          // save: true,
+        })
         .then((res) => {
           let response = res.data;
+
+          console.log(res.data);
 
           setChat((prevChat) => [
             ...prevChat,
@@ -111,7 +199,7 @@ const Chat = () => {
                   ? {
                       ...item,
                       chat: [
-                        ...item.chat,
+                        ...item?.chat,
                         { role: "user", content: input },
                         {
                           role: "ai",
@@ -126,13 +214,22 @@ const Chat = () => {
           }
         })
         .catch((error) => {
-          console.error("Error:", error);
+          console.error("Error:", error.code);
           setIsTyping(false);
-          setError("An error occurred. Please check your connection.");
-          setChat((prevChat) => prevChat.slice(0, prevChat.length - 1));
-        });
 
-      setInput("");
+          if (error?.code === "ERR_BAD_REQUEST") {
+            setErrorResponse("Clerk session timed out, please log in again.");
+          } else {
+            setErrorResponse(
+              "An error occurred. Please check your connection."
+            );
+          }
+          setTimeout(() => {
+            setErrorResponse(null);
+          }, 2000);
+          setChat((prevChat) => prevChat.slice(0, prevChat.length - 1));
+          setInput(msg);
+        });
     }
   };
 
@@ -153,18 +250,19 @@ const Chat = () => {
         color: (theme) => theme.palette.text.secondary,
       }}
     >
-      <Snackbar
-        open={error !== null}
-        autoHideDuration={5000}
-        onClose={() => setError(null)}
-        message={error}
-      />
+      <SnackbarAlert error={error} />
+
+      <SnackbarAlert error={errorList} />
+
+      <SnackbarAlert error={errorResponse} />
 
       <SideBar
         setChat={setChat}
         chatHistory={chatHistory}
         setChatHistory={setChatHistory}
         selected={selected}
+        loadingList={loadingList}
+        errorList={errorList}
         setSelected={setSelected}
         showSideBar={showSideBar}
         setShowSideBar={setShowSideBar}
@@ -232,6 +330,9 @@ const Chat = () => {
         <Box bottom={0}>
           <ChatMessages
             chat={chat}
+            loading={loading}
+            selected={selected}
+            error={error}
             isTyping={isTyping}
             setIsTyping={setIsTyping}
             showSideBar={showSideBar}
@@ -241,6 +342,9 @@ const Chat = () => {
 
           <InputField
             input={input}
+            selected={selected}
+            error={error}
+            chatHistory={chatHistory}
             isTyping={isTyping}
             setInput={setInput}
             handleSend={handleSend}

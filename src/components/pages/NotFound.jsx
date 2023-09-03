@@ -1,7 +1,7 @@
 import React from "react";
 import { Box } from "@mui/material";
 
-import NotFoundSVG from "../../assests/Not Found.svg";
+import NotFoundSVG from "../../assets/Not Found.svg";
 
 const NotFound = () => {
   return (

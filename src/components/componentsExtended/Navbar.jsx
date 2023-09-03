@@ -15,8 +15,8 @@ import { Book, Call, DataObject, Home, Info, Menu } from "@mui/icons-material";
 import { Link, useLocation } from "react-router-dom";
 
 import DrawerItems from "./Drawer";
-import header from "../../assests/header.png";
-import header_scrolled from "../../assests/header_scrolled.png";
+import header from "../../assets/header.png";
+import header_scrolled from "../../assets/header_scrolled.png";
 
 export const drawerWidth = 280;
 
@@ -52,7 +52,7 @@ const tab = [
   },
   {
     label: "Blog",
-    path: "/blog",
+    path: "https://spiritualdata.beehiiv.com/",
     icon: <Book />,
   },
   {
@@ -112,9 +112,6 @@ function Navbar(props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
-  //   const container =
-  //     window !== undefined ? () => window().document.body : undefined;
 
   return (
     <>
@@ -217,9 +214,12 @@ function Navbar(props) {
                     sx={{ color: scrolled ? "#222222" : "#fff" }}
                     key={index}
                     label={label}
-                    value={path}
-                    component={Link}
-                    to={path}
+                    value={label === "Blog" ? undefined : path}
+                    component={label === "Blog" ? "a" : Link}
+                    to={label === "Blog" ? undefined : path}
+                    href={label === "Blog" ? path : undefined}
+                    target={label === "Blog" ? "_blank" : undefined}
+                    rel={label === "Blog" ? "noopener noreferrer" : undefined}
                     disableRipple
                   />
                 ))}

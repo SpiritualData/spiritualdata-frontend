@@ -1,19 +1,22 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import {
   Button,
   Card,
   Grid,
+  Snackbar,
   Stack,
   TextField,
   Typography,
   styled,
 } from "@mui/material";
 import { Facebook, Instagram, LinkedIn, Twitter } from "@mui/icons-material";
+import emailjs from "@emailjs/browser";
 
 import PageHeader from "../helpers/PageHeader";
-import image from "../../assests/contact.webp";
-import formImage from "../../assests/contactForm.png";
-import PageDef from "../componentsExtended/PageDef";
+import image from "../../assets/contact.webp";
+import formImage from "../../assets/contactForm.png";
+import PageDef from "../helpers/PageDef";
+import { Alert, TransitionUp } from "../helpers/SnackbarAlert";
 
 const StyledCard = styled(Card)({
   width: "80%",
@@ -62,6 +65,48 @@ const StyledIcon = styled("div")(({ theme }) => ({
 }));
 
 const Contact = () => {
+  const form = useRef();
+  const [buttonText, setButtonText] = useState("Send");
+  const [showSnackbar, setShowSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [snackbarColor, setSnackbarColor] = useState("");
+  // eslint-disable-next-line
+  const [transition, setTransition] = useState(() => TransitionUp);
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setButtonText("Sending...");
+
+    emailjs
+      .sendForm(
+        process.env.REACT_APP_SERVICE_ID,
+        process.env.REACT_APP_TEMPLATE_ID,
+        form.current,
+        process.env.REACT_APP_PUBLIC_KEY
+      )
+      .then(
+        (result) => {
+          setSnackbarMessage("Email sent successfully!");
+          setSnackbarColor("success");
+          setShowSnackbar(true);
+          setButtonText("Send");
+          e.target.reset();
+        },
+        (error) => {
+          setSnackbarMessage(
+            "Request failed, please try again or contact on the email provided below!"
+          );
+          setSnackbarColor("error");
+          setShowSnackbar(true);
+          setButtonText("Send");
+        }
+      );
+  };
+
+  const handleCloseSnackbar = () => {
+    setShowSnackbar(false);
+  };
+
   return (
     <Grid container>
       <PageHeader image={image} page={"Contact"} />
@@ -70,7 +115,7 @@ const Contact = () => {
         title={"CONTACT US"}
         heading={"Drop us Message for any Query"}
         details={
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          "Your voice matters at Spiritual Data. Get involved, share experiences, contribute insights. We grow and learn together in this spiritual journey"
         }
       />
 
@@ -96,41 +141,78 @@ const Contact = () => {
             }}
           >
             <Stack spacing={2} mt={3} mb={4} alignItems="flex-end">
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                  <StyledTextField label="Name" size="small" fullWidth />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <StyledTextField label="Email" size="small" fullWidth />
+              <form ref={form} onSubmit={sendEmail}>
+                <Grid container spacing={2} mb={2}>
+                  <Grid item xs={12} sm={6}>
+                    <StyledTextField
+                      label="Name"
+                      name="name"
+                      size="small"
+                      fullWidth
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <StyledTextField
+                      label="Email"
+                      name="email"
+                      size="small"
+                      fullWidth
+                      required
+                    />
+                  </Grid>
+
+                  <Grid item xs={12} sm={6}>
+                    <StyledTextField
+                      label="Phone"
+                      name="number"
+                      size="small"
+                      fullWidth
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <StyledTextField
+                      label="Subject"
+                      name="subject"
+                      size="small"
+                      fullWidth
+                    />
+                  </Grid>
                 </Grid>
 
-                <Grid item xs={12} sm={6}>
-                  <StyledTextField label="Phone" size="small" fullWidth />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <StyledTextField label="Subject" size="small" fullWidth />
-                </Grid>
-              </Grid>
+                <StyledTextField
+                  label="Message"
+                  name="message"
+                  minRows={6}
+                  maxRows={6}
+                  multiline
+                  fullWidth
+                  required
+                />
 
-              <StyledTextField
-                label="Message"
-                minRows={6}
-                maxRows={6}
-                multiline
-                fullWidth
-              />
+                <Button
+                  variant="contained"
+                  type="submit"
+                  sx={{
+                    textTransform: "none",
+                    width: "30%",
+                    py: "2%",
+                    mt: 1,
+                  }}
+                >
+                  {buttonText}
+                </Button>
+              </form>
 
-              <Button
-                variant="contained"
-                sx={{
-                  textTransform: "none",
-                  width: "30%",
-                  py: "2%",
-                  mt: 1,
-                }}
+              <Snackbar
+                open={showSnackbar}
+                autoHideDuration={2000}
+                TransitionComponent={transition}
+                onClose={handleCloseSnackbar}
               >
-                {"Send"}
-              </Button>
+                <Alert severity={snackbarColor} onClose={handleCloseSnackbar}>
+                  {snackbarMessage}
+                </Alert>
+              </Snackbar>
             </Stack>
           </Grid>
         </Grid>
@@ -147,10 +229,9 @@ const Contact = () => {
           sx={{
             fontSize: { xs: "20px", md: "26px" },
             fontWeight: "bold",
-            mb: 2,
           }}
         >
-          Contact us by Phone Number or Email Address
+          Email Address:
         </Typography>
         <Typography
           sx={{
@@ -158,25 +239,6 @@ const Contact = () => {
             fontWeight: "bold",
             color: (theme) => theme.palette.primary.focus,
             "&:hover": {
-              cursor: "pointer",
-              color: (theme) => theme.palette.primary.hover,
-            },
-          }}
-        >
-          +088 130 629 8615
-        </Typography>
-
-        <Typography sx={{ color: "gray", fontSize: "22px", fontWeight: 500 }}>
-          OR
-        </Typography>
-
-        <Typography
-          sx={{
-            fontSize: { xs: "20px", md: "26px" },
-            fontWeight: "bold",
-            color: (theme) => theme.palette.primary.focus,
-            "&:hover": {
-              cursor: "pointer",
               color: (theme) => theme.palette.primary.hover,
             },
           }}

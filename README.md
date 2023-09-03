@@ -11,8 +11,13 @@ Project aims to provide all the code needed for spiritual data design.
 
 ## Enviorment variables 
 - set to .env
-REACT_APP_BACKEND_URL= https://18.189.128.76:8000
+REACT_APP_BACKEND_URL= https://api.qa.spiritualdata.org
 REACT_APP_CLERK_PUBLISHABLE_KEY= pk_test_*key here*
+
+###From EmailJs
+REACT_APP_SERVICE_ID=*key here*
+REACT_APP_TEMPLATE_ID=*key here*
+REACT_APP_PUBLIC_KEY=*key here*
 
 ## Run commmands
 - npm start

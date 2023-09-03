@@ -9,22 +9,6 @@ export const menuItems = [
       ],
     },
     {
-      title: "About",
-      links: [
-        { name: "Experiences", path: "/" },
-        { name: "Convention", path: "/" },
-        { name: "Meetings", path: "/" },
-      ],
-    },
-    {
-      title: "Blog",
-      links: [
-        { name: "Upcoming Events", path: "/" },
-        { name: "Memos", path: "/" },
-        { name: "Articles", path: "/" },
-      ],
-    },
-    {
       title: "Library",
       links: [
         { name: "Article Series", path: "/" },
@@ -36,6 +20,14 @@ export const menuItems = [
       ],
     },
     {
+      title: "About",
+      links: [
+        { name: "Experiences", path: "/" },
+        { name: "Convention", path: "/" },
+        { name: "Meetings", path: "/" },
+      ],
+    },
+    {
       title: "Contact",
       links: [
         { name: "Chat Bots", path: "/" },
@@ -43,3 +35,8 @@ export const menuItems = [
       ],
     },
   ];
+
+  // const links ={
+  //   linkedIn: 'https://www.linkedin.com/company/spiritual-data',
+  //   twitter: '@spiritual_data'
+  // }
