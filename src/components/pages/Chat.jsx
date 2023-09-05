@@ -45,8 +45,6 @@ const Chat = () => {
       setChatHistory(updatedChatHistory);
       setChat(response.data.chat);
       setLoading(false);
-
-      console.log("chat", response.data.chat);
     } catch (error) {
       setLoading(false);
       console.error("Error fetching chat:", error);
@@ -78,11 +76,7 @@ const Chat = () => {
     setLoadingList(true);
     const fetchChatHistory = async () => {
       try {
-        const response = await axios.get("/chat/list", {
-          params: {
-            user_id: userId,
-          },
-        });
+        const response = await axios.get("/chat/list");
         setChatHistory(response.data);
         setLoadingList(false);
       } catch (error) {
@@ -94,7 +88,9 @@ const Chat = () => {
       }
     };
 
-    fetchChatHistory();
+    setTimeout(() => {
+      fetchChatHistory();
+    }, 10);
   }, [userId]);
 
   useEffect(() => {
@@ -102,8 +98,6 @@ const Chat = () => {
       setLoading(true);
       if (chatHistory.length > 0) {
         setSelected(chatHistory[0].chat_id);
-
-        // console.log(chatHistory[0].chat)
         if (chatHistory[0].chat) {
           setChat(chatHistory[0].chat);
           setLoading(false);
@@ -123,7 +117,6 @@ const Chat = () => {
     setLoading(true);
     console.log(selected);
     const selectedChat = chatHistory.find((item) => item.chat_id === selected);
-    // console.log(selectedChat);
     if (selectedChat && selected) {
       if (selectedChat.chat?.length > 0) {
         setChat(selectedChat.chat);
@@ -160,8 +153,6 @@ const Chat = () => {
         })
         .then((res) => {
           let response = res.data;
-
-          console.log(res.data);
 
           setChat((prevChat) => [
             ...prevChat,
