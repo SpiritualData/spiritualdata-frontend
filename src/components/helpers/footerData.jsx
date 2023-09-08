@@ -37,7 +37,7 @@ export const menuItems = [
 ];
 
 export const links = {
-  linkedIn: "https://www.linkedin.com/company/spiritual-data",
+  linkedin: "https://www.linkedin.com/company/spiritual-data",
   twitter: "https://twitter.com/spiritual_data",
   youtube: "https://www.youtube.com/@spiritualdataproject",
 };
