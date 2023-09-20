@@ -9,8 +9,9 @@ import {
 import { Link } from "react-router-dom";
 
 import Image from "../../assets/home_header.webp";
-import homeContent from "../../assets/homeContent.jpg";
-import homeContent2 from "../../assets/homeContent2.jpg";
+import conciusness from "../../assets/conciusness.webp";
+import explore from "../../assets/explore.png";
+import discord from "../../assets/discord.png";
 import NewsLetter from "../componentsExtended/Home/NewsLetter";
 import Block1 from "../componentsExtended/Home/Block1";
 import DiscoverMore from "../componentsExtended/Home/DiscoverMore";
@@ -129,26 +130,37 @@ const Home = () => {
         <Block1 />
 
         <ContentSection
-          imageSrc={homeContent}
-          heading={"Engaging New Audiences through Smart Approach"}
+          imageSrc2={explore}
+          heading={"Explore Spiritual Insights With Our Bot"}
           subText={
-            "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage."
+            "Curious about spiritual questions? Let our intuitive bot provide answers, guiding you on a journey of discovery and enlightenment. Unveil the wisdom you seek with illuminating guidance, leading you to answers that foster deeper understanding and growth on your journey."
           }
-          buttonText={"Read More"}
-          path={''}
+          buttonText={"Join Now"}
+          path={"/sign-in"}
+        />
+
+        <ContentSection
+          imageSrc={conciusness}
+          heading={"Dive Deep Into Spiritual Conciousness."}
+          subText={
+            "Embark on a transformative journey of self-discovery and spiritual consciousness. Dive deep into research analysis, explore mindfulness, and elevate your inner being to new dimensions of understanding and awareness. Add your voice or perspective on how we should analyze reliable evidence."
+          }
+          buttonText={"Add your voice"}
+          path={"https://forms.gle/pQWE2XZM9n8Pvu5v5"}
         />
       </>
 
       <DiscoverMore />
 
       <ContentSection
-        imageSrc2={homeContent2}
-        heading={"Check out our latest webinar"}
+        imageSrc2={discord}
+        heading={"Join Our Vibrant Discord Community!"}
         subText={
-          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage."
+          "Connect with like-minded individuals, share ideas, learn from experts, and engage in meaningful discussions. Unlock a world of knowledge and collaboration today!"
         }
-        buttonText={"Read More"}
-        path={''}
+        buttonText={"Join Now"}
+        path={"https://discord.gg/MPBprbvt"}
+        altText={"discord"}
       />
 
       <FAQ />
