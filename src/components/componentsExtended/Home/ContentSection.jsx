@@ -51,7 +51,7 @@ const ContentSection = ({
           <Link
             to={path}
             style={{ textDecoration: "none" }}
-            target={path.startsWith("https") ? "_blank" : ""}
+            target={path.startsWith("http") ? "_blank" : ""}
           >
             <Button
               variant="text"
@@ -91,9 +91,17 @@ const ContentSection = ({
           justifyContent: "center",
         }}
       >
-        <Grid item xs={12}>
+        <Grid
+          item
+          xs={12}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <img
-            style={{ width: "100%" }}
+            style={{ width: altText === "discord" ? "60%" : "90%" }}
             src={imageSrc || imageSrc2}
             alt={altText || "image"}
           />

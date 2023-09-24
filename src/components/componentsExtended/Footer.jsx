@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Grid, Typography, Box, styled, Divider } from "@mui/material";
-import { Facebook, Instagram, LinkedIn, Twitter } from "@mui/icons-material";
+import { LinkedIn, Twitter, YouTube } from "@mui/icons-material";
 
-import { menuItems } from "../helpers/footerData";
+import { links, menuItems } from "../helpers/footerData";
 import footerImage from "../../assets/footer.png";
 import logo from "../../assets/header.png";
 
@@ -57,7 +57,7 @@ const Footer = () => {
           <Link style={{ textDecoration: "none" }} to="/">
             <img style={{ width: "150px", height: "20px" }} src={logo} alt="" />
           </Link>
-          
+
           <Grid mt={2} item sx={{ textAlign: { xs: "center", sm: "left" } }}>
             <Typography
               sx={{
@@ -72,10 +72,17 @@ const Footer = () => {
           </Grid>
 
           <Grid item xs={12} mt={2}>
-            <StyledIcon as={Facebook} />
-            <StyledIcon as={Instagram} />
-            <StyledIcon as={Twitter} />
-            <StyledIcon as={LinkedIn} />
+            <a href={links.linkedin} target="_blank" rel="noopener noreferrer">
+              <StyledIcon as={LinkedIn} />
+            </a>
+
+            <a href={links.twitter} target="_blank" rel="noopener noreferrer">
+              <StyledIcon as={Twitter} />
+            </a>
+
+            <a href={links.youtube} target="_blank" rel="noopener noreferrer">
+              <StyledIcon as={YouTube} />
+            </a>
           </Grid>
         </Grid>
 

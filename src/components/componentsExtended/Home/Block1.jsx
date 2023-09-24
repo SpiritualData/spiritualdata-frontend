@@ -65,7 +65,7 @@ const Block1 = () => {
       name: "Spiritual Hypotheses",
       icon: <TipsAndUpdates sx={{ fontSize: 70 }} />,
       count: 9876,
-      info: "With well-grounded hypotheses, Spiritual Data challenges traditional perspectives. Experience the essence of spirituality through empirical data, fostering innovative thought processes",
+      info: "With well-grounded hypothesis, Spiritual Data challenges traditional perspectives. Experience the essence of spirituality through empirical data, fostering innovative thought processes",
     },
     {
       name: "Spiritual Experiences",
