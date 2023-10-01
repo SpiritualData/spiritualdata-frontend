@@ -5,7 +5,6 @@ import PageHeader from "../helpers/PageHeader";
 import image from "../../assets/about.webp";
 import Joshua from "../../assets/Joshua.jpeg";
 import PageDef from "../helpers/PageDef";
-import { Link } from "react-router-dom";
 import ContentSection from "../componentsExtended/Home/ContentSection";
 
 const About = () => {
