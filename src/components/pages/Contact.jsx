@@ -30,7 +30,7 @@ const StyledCard = styled(Card)({
 
 export const StyledTextField = styled(TextField)(({ theme }) => ({
   "& .MuiInputLabel-root": {
-    color: "gray",
+    color: "black",
   },
   "& .MuiInputBase-input": {
     color: "#333",
@@ -114,9 +114,9 @@ const Contact = () => {
 
       <PageDef
         title={"CONTACT US"}
-        heading={"Drop us Message for any Query"}
+        heading={"We'd love to hear from you!"}
         details={
-          "Your voice matters at Spiritual Data. Get involved, share experiences, contribute insights. We grow and learn together in this spiritual journey"
+          "Your voice matters at Spiritual Data. Get involved, share experiences, critique our methods. Spiritual Data is community-driven."
         }
       />
 

@@ -18,14 +18,14 @@ const data = [
     label: "Paypal",
     image: paypal,
     description:
-      "Support Spiritual Data in exploring life's biggest questions with secure and hassle-free payments through Paypal. Your generous donations empower our community to dive deeper into the realms of spirituality, fostering growth, understanding, and unity.",
+      "PayPal is supported in more than 200 countries. A PayPal account is not required.",
     path: "#paypal",
   },
   {
     label: "Stripe",
     image: stripe,
     description:
-      "Explore the uncharted territories of spirituality with Spiritual Data's Discovery page, and contribute through Stripe's seamless and trusted payment system. Together, we pool knowledge, experiences, and insights, helping you navigate your personal spiritual journey with more clarity and confidence.",
+      "Stripe is supported in 46 countries.",
     path: "#stripe",
   },
 ];
@@ -123,13 +123,13 @@ const DonationMethod = () => {
                       item.label === "Paypal" ? "scale(1.6)" : "scale(1.1)",
                   }}
                 />
-                <Typography variant="body1" sx={{ color: "gray" }}>
+                <Typography variant="body1" sx={{ textAlign: "left", color: "black" }}>
                   {item.description}
                 </Typography>
               </CardContent>
               <Button
                 sx={{
-                  background: "gray",
+                  background: "black",
                   color: (theme) => theme.palette.text.secondary,
                   textTransform: "none",
                   height: "42px",
@@ -144,6 +144,7 @@ const DonationMethod = () => {
           </Grid>
         );
       })}
+
 
       <AmountDialouge
         openPopup={openPopup}

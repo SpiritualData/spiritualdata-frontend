@@ -148,7 +148,7 @@ const ChatMessages = ({
                 <IconButton
                   sx={{
                     position: "sticky",
-                    color: "gray",
+                    color: "black",
                     bottom: 0,
                     right: 0,
                     ml: "90%",

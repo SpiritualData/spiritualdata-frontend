@@ -47,7 +47,7 @@ const DataItem = ({ val }) => {
       <Typography fontSize="28px" fontWeight="bold" my={1}>
         {val.name}
       </Typography>
-      <Typography sx={{ color: "grey", fontSize: "32px", fontWeight: 500 }}>
+      <Typography sx={{ color: "black", fontSize: "32px", fontWeight: 500 }}>
         {count}
       </Typography>
 
@@ -116,7 +116,7 @@ const DataDiscovery = () => {
           mt: { xs: -3, md: -6 },
           mb: 6,
           fontSize: { xs: "13px", sm: "16px" },
-          color: "grey",
+          color: "black",
           px: { xs: 4, md: "17%" },
           textAlign: "center",
         }}
@@ -158,7 +158,7 @@ const DataDiscovery = () => {
             mt: -3,
             mb: 3,
             fontSize: { xs: "13px", sm: "16px" },
-            color: "grey",
+            color: "black",
             px: { xs: 0, md: "17%" },
             textAlign: "center",
           }}

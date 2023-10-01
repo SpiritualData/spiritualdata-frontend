@@ -9,7 +9,7 @@ import {
 import { Link } from "react-router-dom";
 
 import Image from "../../assets/home_header.webp";
-import conciusness from "../../assets/conciusness.webp";
+import ai_hand from "../../assets/ai-hand-human-hand.png";
 import explore from "../../assets/explore.png";
 import discord from "../../assets/discord.png";
 import NewsLetter from "../componentsExtended/Home/NewsLetter";
@@ -94,11 +94,7 @@ const Home = () => {
               wordWrap: "break-word",
             }}
           >
-            Discover our Spiritual AI Chatbot, a transformative companion using
-            cutting-edge research and hypothesis to provide spiritual answers.
-            Uncover profound insights into mindfulness, self-discovery, and the
-            meaning of life. This advanced AI system engages in meaningful
-            conversations, drawing from vast spiritual knowledge and teachings.
+Our methods are intellectual humility and automation, letting the data speak for itself. What we offer you is intellectual autonomy to see the data for yourself. Answers to the most profound questions about reality are right at your fingertips with our AI chatbot which draws upon firsthand accounts (such as near-death experiences), research papers, and scientific hypotheses. Try it out for free with the button below!
           </Typography>
 
           <Stack alignItems={{ xs: "center", md: "flex-start" }}>
@@ -131,21 +127,21 @@ const Home = () => {
 
         <ContentSection
           imageSrc2={explore}
-          heading={"Explore Spiritual Insights With Our Bot"}
+          heading={"Overcome bias in research review"}
           subText={
-            "Curious about spiritual questions? Let our intuitive bot provide answers, guiding you on a journey of discovery and enlightenment. Unveil the wisdom you seek with illuminating guidance, leading you to answers that foster deeper understanding and growth on your journey."
+            "Humans are inherently biased and limited in perspective. Do we really want to limit our understanding of reality to what most researchers agree on? Tons of research has been done in the areas of spiritual science and metaphysics, yet it's ignored due to an assumption that it must not be scientific, and most people don't even know about this research and the reliable evidence out there. What do you consider reliable evidence? Complete a short survey at the link below to add your voice!"
           }
-          buttonText={"Join Now"}
-          path={"/sign-in"}
+          buttonText={"Add your voice"}
+          path={"https://forms.gle/pQWE2XZM9n8Pvu5v5"}
         />
 
         <ContentSection
-          imageSrc={conciusness}
-          heading={"Dive Deep Into Spiritual Conciousness."}
+          imageSrc={ai_hand}
+          heading={"Overcoming bias in AI"}
           subText={
-            "Embark on a transformative journey of self-discovery and spiritual consciousness. Dive deep into research analysis, explore mindfulness, and elevate your inner being to new dimensions of understanding and awareness. Add your voice or perspective on how we should analyze reliable evidence."
+            "Generative AI, like humans, is often biased and inaccurate. While that's the case, we can still use AI in systematic ways to identify and review all relevant data and then use statistics to determine what is most likely true. That's what Spiritual Data is doing, and we're making this available to developers and companies as an API. Join the waitlist today!"
           }
-          buttonText={"Add your voice"}
+          buttonText={"Join our API waitlist"}
           path={"https://forms.gle/pQWE2XZM9n8Pvu5v5"}
         />
       </>
@@ -156,7 +152,7 @@ const Home = () => {
         imageSrc2={discord}
         heading={"Join Our Vibrant Discord Community!"}
         subText={
-          "Connect with like-minded individuals, share ideas, learn from experts, and engage in meaningful discussions. Unlock a world of knowledge and collaboration today!"
+          "Discord is our team's primary source of communication. We have many channels to discuss a wide variety of topics within spiritual science and other phenomena. We post relevant research here regularly."
         }
         buttonText={"Join Now"}
         path={"https://discord.gg/MPBprbvt"}

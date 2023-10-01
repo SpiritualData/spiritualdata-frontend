@@ -66,8 +66,7 @@ const Footer = () => {
                 letterSpacing: "0.2px",
               }}
             >
-              Platform that fosters enlightenment and deeper understanding of
-              spirituality.
+              Calculating truth with AI.
             </Typography>
           </Grid>
 

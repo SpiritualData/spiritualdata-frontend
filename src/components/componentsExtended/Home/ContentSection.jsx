@@ -41,7 +41,7 @@ const ContentSection = ({
           </Typography>
           <Typography
             sx={{
-              color: "#78716c",
+              color: "black",
               fontSize: heading?.includes("Joshua") ? "14px" : "16px",
               marginTop: heading?.includes("Joshua") ? "20px" : "32px",
             }}
