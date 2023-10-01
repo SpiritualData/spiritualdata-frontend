@@ -9,8 +9,9 @@ import {
 import { Link } from "react-router-dom";
 
 import Image from "../../assets/home_header.webp";
-import homeContent from "../../assets/homeContent.jpg";
-import homeContent2 from "../../assets/homeContent2.jpg";
+import ai_hand from "../../assets/ai-hand-human-hand.png";
+import explore from "../../assets/explore.png";
+import discord from "../../assets/discord.png";
 import NewsLetter from "../componentsExtended/Home/NewsLetter";
 import Block1 from "../componentsExtended/Home/Block1";
 import DiscoverMore from "../componentsExtended/Home/DiscoverMore";
@@ -93,11 +94,7 @@ const Home = () => {
               wordWrap: "break-word",
             }}
           >
-            Discover our Spiritual AI Chatbot, a transformative companion using
-            cutting-edge research and hypothesis to provide spiritual answers.
-            Uncover profound insights into mindfulness, self-discovery, and the
-            meaning of life. This advanced AI system engages in meaningful
-            conversations, drawing from vast spiritual knowledge and teachings.
+Our methods are intellectual humility and automation, letting the data speak for itself. What we offer you is intellectual autonomy to see the data for yourself. Answers to the most profound questions about reality are right at your fingertips with our AI chatbot which draws upon firsthand accounts (such as near-death experiences), research papers, and scientific hypotheses. Try it out for free with the button below!
           </Typography>
 
           <Stack alignItems={{ xs: "center", md: "flex-start" }}>
@@ -129,26 +126,37 @@ const Home = () => {
         <Block1 />
 
         <ContentSection
-          imageSrc={homeContent}
-          heading={"Engaging New Audiences through Smart Approach"}
+          imageSrc2={explore}
+          heading={"Overcome bias in research review"}
           subText={
-            "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage."
+            "Humans are inherently biased and limited in perspective. Do we really want to limit our understanding of reality to what most researchers agree on? Tons of research has been done in the areas of spiritual science and metaphysics, yet it's ignored due to an assumption that it must not be scientific, and most people don't even know about this research and the reliable evidence out there. What do you consider reliable evidence? Complete a short survey at the link below to add your voice!"
           }
-          buttonText={"Read More"}
-          path={''}
+          buttonText={"Add your voice"}
+          path={"https://forms.gle/pQWE2XZM9n8Pvu5v5"}
+        />
+
+        <ContentSection
+          imageSrc={ai_hand}
+          heading={"Overcoming bias in AI"}
+          subText={
+            "Generative AI, like humans, is often biased and inaccurate. While that's the case, we can still use AI in systematic ways to identify and review all relevant data and then use statistics to determine what is most likely true. That's what Spiritual Data is doing, and we're making this available to developers and companies as an API. Join the waitlist today!"
+          }
+          buttonText={"Join our API waitlist"}
+          path={"https://forms.gle/pQWE2XZM9n8Pvu5v5"}
         />
       </>
 
       <DiscoverMore />
 
       <ContentSection
-        imageSrc2={homeContent2}
-        heading={"Check out our latest webinar"}
+        imageSrc2={discord}
+        heading={"Join Our Vibrant Discord Community!"}
         subText={
-          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage."
+          "Discord is our team's primary source of communication. We have many channels to discuss a wide variety of topics within spiritual science and other phenomena. We post relevant research here regularly."
         }
-        buttonText={"Read More"}
-        path={''}
+        buttonText={"Join Now"}
+        path={"https://discord.gg/MPBprbvt"}
+        altText={"discord"}
       />
 
       <FAQ />

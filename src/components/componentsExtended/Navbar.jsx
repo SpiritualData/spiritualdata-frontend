@@ -47,11 +47,11 @@ const tab = [
   },
   {
     label: "Data Discovery",
-    path: "/data-discovery",
+    path: "https://spiritualdata.notion.site/Spiritual-Data-7d4fd0cf93454243997820ae6ff0836e",
     icon: <DataObject />,
   },
   {
-    label: "Blog",
+    label: "Newsletter",
     path: "https://spiritualdata.beehiiv.com/",
     icon: <Book />,
   },
@@ -66,6 +66,7 @@ const tab = [
     icon: <Info />,
   },
 ];
+
 
 function Navbar(props) {
   //   const { window, onClickCreateData, onClickDashboard } = props;
@@ -209,20 +210,20 @@ function Navbar(props) {
                 }}
                 sx={{ paddingTop: 1 }}
               >
-                {tab.map(({ label, path }, index) => (
-                  <StyledTab
-                    sx={{ color: scrolled ? "#222222" : "#fff" }}
-                    key={index}
-                    label={label}
-                    value={label === "Blog" ? undefined : path}
-                    component={label === "Blog" ? "a" : Link}
-                    to={label === "Blog" ? undefined : path}
-                    href={label === "Blog" ? path : undefined}
-                    target={label === "Blog" ? "_blank" : undefined}
-                    rel={label === "Blog" ? "noopener noreferrer" : undefined}
-                    disableRipple
-                  />
-                ))}
+              {tab.map(({ label, path }, index) => (
+                <StyledTab
+                  sx={{ color: scrolled ? "#222222" : "#fff" }}
+                  key={index}
+                  label={label}
+                  value={path.startsWith('http') ? undefined : path}
+                  component={path.startsWith('http') ? "a" : Link}
+                  to={path.startsWith('http') ? undefined : path}
+                  href={path.startsWith('http') ? path : undefined}
+                  target={path.startsWith('http') ? "_blank" : undefined}
+                  rel={path.startsWith('http') ? "noopener noreferrer" : undefined}
+                  disableRipple
+                />
+              ))}
               </Tabs>
 
               <Button
@@ -245,7 +246,7 @@ function Navbar(props) {
                   },
                 }}
                 component={Link}
-                to={userExists ? "/chat" : "/sign-in"}
+                to={"/chat"}
               >
                 {userExists ? "Chat" : "Sign In"}
               </Button>
