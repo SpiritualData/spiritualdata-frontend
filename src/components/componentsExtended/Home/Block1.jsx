@@ -64,20 +64,20 @@ const Block1 = () => {
     {
       name: "Hypotheses",
       icon: <TipsAndUpdates sx={{ fontSize: 70 }} />,
-      count: 9876,
-      info: "With well-grounded hypothesis, Spiritual Data challenges traditional perspectives. Experience the essence of spirituality through empirical data, fostering innovative thought processes",
+      count: 100,
+      info: "We calculate the probability of hypotheses given all experiences and research as evidence for or against.",
     },
     {
       name: "Experiences",
       icon: <PsychologyAlt sx={{ fontSize: 70 }} />,
-      count: 5432,
-      info: "Dive into diverse spiritual experiences with Spiritual Data. Reflect on personal journeys, deepen your spiritual cosmos connection, and foster enlightenment",
+      count: 5022,
+      info: "Experiences are firsthand accounts of phenomena. Our strategy is to differentiate between one's interpretation of the experience and the implications of the experience itself.",
     },
     {
       name: "Research",
       icon: <Psychology sx={{ fontSize: 70 }} />,
-      count: 3456,
-      info: "Venture into Spiritual Data's in-depth research that unravels spirituality's mysteries. We bridge spirituality and science, fostering personal growth and enhanced understanding",
+      count: 26,
+      info: "Research, experiements, or other scientific evidence.",
     },
   ];
   return (
