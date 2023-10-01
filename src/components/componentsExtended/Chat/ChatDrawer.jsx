@@ -37,7 +37,7 @@ const ChatDrawer = ({
           style={{
             width: "100%",
             marginBottom: "10px",
-            borderColor: "gray",
+            borderColor: "black",
             color: "#fff",
             opacity: 0.9,
           }}

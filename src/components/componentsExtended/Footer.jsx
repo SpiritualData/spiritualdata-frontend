@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Grid, Typography, Box, styled, Divider } from "@mui/material";
-import { Facebook, Instagram, LinkedIn, Twitter } from "@mui/icons-material";
+import { LinkedIn, Twitter, YouTube } from "@mui/icons-material";
 
-import { menuItems } from "../helpers/footerData";
+import { links, menuItems } from "../helpers/footerData";
 import footerImage from "../../assets/footer.png";
 import logo from "../../assets/header.png";
 
@@ -57,7 +57,7 @@ const Footer = () => {
           <Link style={{ textDecoration: "none" }} to="/">
             <img style={{ width: "150px", height: "20px" }} src={logo} alt="" />
           </Link>
-          
+
           <Grid mt={2} item sx={{ textAlign: { xs: "center", sm: "left" } }}>
             <Typography
               sx={{
@@ -66,16 +66,22 @@ const Footer = () => {
                 letterSpacing: "0.2px",
               }}
             >
-              Platform that fosters enlightenment and deeper understanding of
-              spirituality.
+              Calculating truth with AI.
             </Typography>
           </Grid>
 
           <Grid item xs={12} mt={2}>
-            <StyledIcon as={Facebook} />
-            <StyledIcon as={Instagram} />
-            <StyledIcon as={Twitter} />
-            <StyledIcon as={LinkedIn} />
+            <a href={links.linkedin} target="_blank" rel="noopener noreferrer">
+              <StyledIcon as={LinkedIn} />
+            </a>
+
+            <a href={links.twitter} target="_blank" rel="noopener noreferrer">
+              <StyledIcon as={Twitter} />
+            </a>
+
+            <a href={links.youtube} target="_blank" rel="noopener noreferrer">
+              <StyledIcon as={YouTube} />
+            </a>
           </Grid>
         </Grid>
 
@@ -129,7 +135,17 @@ const Footer = () => {
                 key={idx}
                 py={0.4}
               >
-                <StyledLink to={link.path}>{link.name}</StyledLink>
+                <StyledLink
+                  to={link.path}
+                  target={link.path?.includes("http") ? "_blank" : undefined}
+                  rel={
+                    link.path?.includes("http")
+                      ? "noopener noreferrer"
+                      : undefined
+                  }
+                >
+                  {link.name}
+                </StyledLink>
               </Box>
             ))}
           </Grid>
@@ -159,17 +175,26 @@ const Footer = () => {
             justifyContent: { xs: "center", sm: "flex-end" },
           }}
         >
-          <Typography
-            sx={{
-              fontSize: "13px",
-              cursor: "pointer",
-              "&:hover": {
-                color: (theme) => theme.palette.primary.hover,
-              },
-            }}
+          <Link
+            style={{ textDecoration: "none", color: "white" }}
+            target={"_blank"}
+            rel={"noopener noreferrer"}
+            to={
+              "https://app.termly.io/dashboard/website/8439202e-7208-4a9c-8e0a-66c5065d71d5/privacy-policy"
+            }
           >
-            Privacy Policy
-          </Typography>
+            <Typography
+              sx={{
+                fontSize: "13px",
+                cursor: "pointer",
+                "&:hover": {
+                  color: (theme) => theme.palette.primary.hover,
+                },
+              }}
+            >
+              Privacy Policy
+            </Typography>
+          </Link>
           &nbsp;
           <Typography
             sx={{
@@ -179,17 +204,26 @@ const Footer = () => {
             -
           </Typography>
           &nbsp;
-          <Typography
-            sx={{
-              fontSize: "13px",
-              cursor: "pointer",
-              "&:hover": {
-                color: (theme) => theme.palette.primary.hover,
-              },
-            }}
+          <Link
+            style={{ textDecoration: "none", color: "white" }}
+            target={"_blank"}
+            rel={"noopener noreferrer"}
+            to={
+              "https://app.termly.io/dashboard/website/8439202e-7208-4a9c-8e0a-66c5065d71d5"
+            }
           >
-            Terms & Conditions
-          </Typography>
+            <Typography
+              sx={{
+                fontSize: "13px",
+                cursor: "pointer",
+                "&:hover": {
+                  color: (theme) => theme.palette.primary.hover,
+                },
+              }}
+            >
+              Cookies Policy
+            </Typography>
+          </Link>
         </Grid>
       </Grid>
     </Box>

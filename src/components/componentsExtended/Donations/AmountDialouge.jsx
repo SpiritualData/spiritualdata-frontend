@@ -26,7 +26,7 @@ const popupTextFieldStyle = {
 };
 
 const popupButtonStyle = {
-  background: "gray",
+  background: "black",
   color: (theme) => theme.palette.text.secondary,
   textTransform: "none",
   height: "46px",

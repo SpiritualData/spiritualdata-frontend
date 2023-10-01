@@ -16,25 +16,25 @@ import { Link } from "react-router-dom";
 const DiscoverMore = () => {
   const data = [
     {
-      label: "Donations",
+      label: "Donate",
       image: donation,
       description:
-        "Support Spiritual Data in exploring life's biggest questions. Your donations empower our community to dive deeper into the realms of spirituality, fostering growth, understanding, and unity.",
+        "Spiritual Data is a US-based nonprofit. Your donations fund refining our methods for calculating truth, gathering more data, and the free use of our chatbot.",
       path: "/donations",
     },
     {
-      label: "Data Discovery",
+      label: "Review the Data",
       image: dataDiscovery,
       description:
-        "Explore the uncharted territories of spirituality with Spiritual Data's Discovery page. Here, we pool knowledge, experiences, and insights, helping you to navigate your personal spiritual journey with more clarity and confidence.",
-      path: "/data-discovery",
+        "Click here to see the data for yourself at our Notion databases. You'll find experiences, research papers, hypotheses, and current and future data sources.",
+      path: "https://spiritualdata.notion.site/Spiritual-Data-7d4fd0cf93454243997820ae6ff0836e",
     },
     {
-      label: "Our Blog",
+      label: "Follow our Newsletter",
       image: blog,
       description:
-        "Embark on a thought-provoking journey with the Spiritual Data Blog. It's a space where we explore various facets of spirituality, reflect on profound questions, and share insights that spark enlightenment and foster deeper understanding.",
-      path: "https://spiritualdata.beehiiv.com/",
+        "Stay up to date on Spiritual Data's journey, new product features, and the latest insights from our truth analysis.",
+      path: "https://spiritualdata.beehiiv.com",
     },
   ];
   return (
@@ -56,17 +56,16 @@ const DiscoverMore = () => {
         <Typography sx={{ fontWeight: "bold", mb: 1 }} variant="h4">
           Discover More
         </Typography>
-        <Typography sx={{ fontWeight: 400, fontSize: "16px", color: "gray" }}>
-          Dive deeper into Spiritual Data and contribute to our growth. Your
-          exploration aids our collective enlightenment journey.
+        <Typography sx={{ fontWeight: 400, fontSize: "16px", color: "black" }}>
+          Dive deeper into Spiritual Data and contribute to our growth.
         </Typography>
       </Stack>
 
       {data.map((item, index) => {
-        const LinkComponent = item.label === "Our Blog" ? "a" : Link;
-        const linkProps =
-          item.label === "Our Blog"
-            ? { href: item.path, target: "_blank", rel: "noreferrer noopener" }
+        const LinkComponent = item.path.startsWith('http') ? 'a' : Link;
+        const linkProps = 
+          item.path.startsWith('http') 
+            ? { href: item.path, target: "_blank", rel: "noreferrer noopener" } 
             : { to: item.path };
 
         return (
@@ -112,13 +111,13 @@ const DiscoverMore = () => {
                   >
                     {item.label}
                   </Typography>
-                  <Typography variant="body2" sx={{ color: "gray" }}>
+                  <Typography variant="body2" sx={{ color: "black" }}>
                     {item.description}
                   </Typography>
                 </CardContent>
                 <Button
                   sx={{
-                    background: "gray",
+                    background: "black",
                     color: (theme) => theme.palette.text.secondary,
                     textTransform: "none",
                     height: "42px",

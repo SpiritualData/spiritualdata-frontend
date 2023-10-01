@@ -9,7 +9,7 @@ import {
   Typography,
   styled,
 } from "@mui/material";
-import { Facebook, Instagram, LinkedIn, Twitter } from "@mui/icons-material";
+import { LinkedIn, Twitter, YouTube } from "@mui/icons-material";
 import emailjs from "@emailjs/browser";
 
 import PageHeader from "../helpers/PageHeader";
@@ -17,6 +17,7 @@ import image from "../../assets/contact.webp";
 import formImage from "../../assets/contactForm.png";
 import PageDef from "../helpers/PageDef";
 import { Alert, TransitionUp } from "../helpers/SnackbarAlert";
+import { links } from "../helpers/footerData";
 
 const StyledCard = styled(Card)({
   width: "80%",
@@ -29,7 +30,7 @@ const StyledCard = styled(Card)({
 
 export const StyledTextField = styled(TextField)(({ theme }) => ({
   "& .MuiInputLabel-root": {
-    color: "gray",
+    color: "black",
   },
   "& .MuiInputBase-input": {
     color: "#333",
@@ -113,9 +114,9 @@ const Contact = () => {
 
       <PageDef
         title={"CONTACT US"}
-        heading={"Drop us Message for any Query"}
+        heading={"We'd love to hear from you!"}
         details={
-          "Your voice matters at Spiritual Data. Get involved, share experiences, contribute insights. We grow and learn together in this spiritual journey"
+          "Your voice matters at Spiritual Data. Get involved, share experiences, critique our methods. Spiritual Data is community-driven."
         }
       />
 
@@ -247,10 +248,17 @@ const Contact = () => {
         </Typography>
 
         <Grid item mt={2} sx={{ gap: 10 }}>
-          <StyledIcon as={Facebook} />
-          <StyledIcon as={Instagram} />
-          <StyledIcon as={Twitter} />
-          <StyledIcon as={LinkedIn} />
+          <a href={links.linkedin} target="_blank" rel="noopener noreferrer">
+            <StyledIcon as={LinkedIn} />
+          </a>
+
+          <a href={links.twitter} target="_blank" rel="noopener noreferrer">
+            <StyledIcon as={Twitter} />
+          </a>
+
+          <a href={links.youtube} target="_blank" rel="noopener noreferrer">
+            <StyledIcon as={YouTube} />
+          </a>
         </Grid>
       </Grid>
     </Grid>

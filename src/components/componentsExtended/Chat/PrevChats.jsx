@@ -164,7 +164,7 @@ export default function ChatHistory({
         spacing={2}
         sx={{
           color: "lightgray",
-          borderTop: "1px solid gray",
+          borderTop: "1px solid black",
           py: 2,
           px: 1,
         }}

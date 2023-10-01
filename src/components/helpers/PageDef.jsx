@@ -23,7 +23,9 @@ const PageDef = ({ title, heading, details }) => {
       >
         {heading}
       </Typography>
-      <Typography sx={{ fontSize: "16px" }}>{details}</Typography>
+      <Typography sx={{ fontSize: "16px", textAlign: "left" }}>
+        {details}
+      </Typography>
     </Grid>
   );
 };

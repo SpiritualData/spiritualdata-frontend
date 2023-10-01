@@ -69,7 +69,7 @@ export const StyledFacebookButton = styled(Button)(() => ({
 
 export const StyledTextField = styled(TextField)({
   "& .MuiInputLabel-root": {
-    color: "gray",
+    color: "black",
   },
   "& .MuiInputBase-input": {
     color: "#333",
