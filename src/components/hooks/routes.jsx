@@ -4,6 +4,7 @@ import {
   SignedIn,
   SignedOut,
 } from "@clerk/clerk-react";
+import { hotjar } from 'react-hotjar';
 
 import Home from "../pages/Home";
 import About from "../pages/About";
@@ -14,6 +15,9 @@ import Chat from "../pages/Chat";
 import LogIn from "../pages/Login";
 import Signup from "../pages/Signup";
 import Donations from "../pages/Donations";
+
+
+hotjar.initialize(process.env.REACT_APP_HOTJAR_ID, process.env.REACT_APP_HOTJAR_VERSION || 6)
 
 const useClerkRoutes = () => {
   const navigate = useNavigate();
