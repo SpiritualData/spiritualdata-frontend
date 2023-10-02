@@ -4,6 +4,8 @@ import { Box, Grid, Typography } from "@mui/material";
 import PageHeader from "../helpers/PageHeader";
 import image from "../../assets/about.webp";
 import Joshua from "../../assets/Joshua.jpeg";
+import Sanjay from "../../assets/Sanjay_Rout.jpeg";
+import Jason from "../../assets/Jason_Bramble.jpeg";
 import PageDef from "../helpers/PageDef";
 import ContentSection from "../componentsExtended/Home/ContentSection";
 
@@ -40,7 +42,6 @@ But while answering spiritual questions is our niche and why Joshua founded this
 </ol></p>
         <p><b>Interested in joining our team? <a href="https://forms.gle/E6A9p3GgvUDoy2q18" style={{ color: '#4691B8' }} target="_blank" rel="noopener noreferrer">Fill out this form!</a></b></p>
       </Typography>
-
       <Box sx={{background: "#F3F6F8"}}>
         <ContentSection
           imageSrc2={Joshua}
@@ -50,6 +51,21 @@ But while answering spiritual questions is our niche and why Joshua founded this
           }
           buttonText={"Get in touch"}
           path={"/contact"}
+          bioHeading={"Spiritual Data's Board Members"}
+        />
+        <ContentSection
+          imageSrc2={Sanjay}
+          heading={"Sanjay Rout"}
+          subText={
+            "CEO at Innovation Solution Lab, PhD in Human Resource Management."
+          }
+        />
+        <ContentSection
+          imageSrc2={Jason}
+          heading={"Jason Bramble"}
+          subText={
+            "Co-founder at Revcarto, Director of Development and Board Member at the education non-profit We Love Philly."
+          }
         />
       </Box>
     </Grid>

@@ -26,7 +26,7 @@ const faqs = [
   {
     question: "Can anyone contribute to Spiritual Data?",
     answer:
-      "Yes. Ask how at our Discord chat server, or submit your own experiences, research, or hypotheses using one of the links at the top of this page (where it says Hypotheses, Experiences, Research).",
+      "Yes. Ask how at our Discord chat server, or submit your own experiences, research, or hypotheses.",
   },
   {
     question: "How do I join the Spiritual Data community?",
