@@ -15,7 +15,6 @@ import Chat from "../pages/Chat";
 import LogIn from "../pages/Login";
 import Signup from "../pages/Signup";
 import Donations from "../pages/Donations";
-import Privacy from "../pages/Privacy";
 
 
 hotjar.initialize(process.env.REACT_APP_HOTJAR_ID, process.env.REACT_APP_HOTJAR_VERSION || 6)
@@ -33,7 +32,6 @@ const useClerkRoutes = () => {
         <Route path="data-discovery" element={<DataDiscovery />} />
         <Route path="contact" element={<Contact />} />
         <Route path="about" element={<About />} />
-        <Route path="privacy" element={<Privacy />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/sign-in/*" element={<LogIn />} />
         <Route path="/sign-up/*" element={<Signup />} />
