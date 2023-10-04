@@ -6,11 +6,11 @@ import { AutoAwesomeMosaic } from "@mui/icons-material";
 export const StyledButton = styled(Button)`
   height: 100%;
   margin-bottom: 10px;
-  border-color: gray;
+  border-color: black;
   color: #fff;
   opacity: 0.9;
   &:hover {
-    border-color: gray;
+    border-color: black;
     background-color: rgba(255, 255, 255, 0.1);
   }
 `;

@@ -5,7 +5,7 @@ import { LinkedIn, Twitter, YouTube } from "@mui/icons-material";
 
 import { links, menuItems } from "../helpers/footerData";
 import footerImage from "../../assets/footer.png";
-import logo from "../../assets/header.png";
+import logo from "../../assets/logo_footer.png";
 
 const StyledGrid = styled(Grid)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
@@ -55,7 +55,7 @@ const Footer = () => {
           alignItems={{ xs: "center", sm: "flex-start" }}
         >
           <Link style={{ textDecoration: "none" }} to="/">
-            <img style={{ width: "150px", height: "20px" }} src={logo} alt="" />
+            <img style={{ width: "150px", height: "100px" }} src={logo} alt="" />
           </Link>
 
           <Grid mt={2} item sx={{ textAlign: { xs: "center", sm: "left" } }}>
@@ -66,8 +66,7 @@ const Footer = () => {
                 letterSpacing: "0.2px",
               }}
             >
-              Platform that fosters enlightenment and deeper understanding of
-              spirituality.
+              Calculating truth with AI.
             </Typography>
           </Grid>
 
@@ -164,7 +163,7 @@ const Footer = () => {
           sm={5.8}
           sx={{ textAlign: { xs: "center", sm: "left" } }}
         >
-          <small>Copyright 2022 Spiritual Data. All Rights Reserved</small>
+          <small>Copyright 2023 Spiritual Data. All Rights Reserved.</small>
         </Grid>
 
         <Grid
@@ -181,7 +180,7 @@ const Footer = () => {
             target={"_blank"}
             rel={"noopener noreferrer"}
             to={
-              "https://app.termly.io/dashboard/website/8439202e-7208-4a9c-8e0a-66c5065d71d5/privacy-policy"
+              "https://app.termly.io/document/privacy-policy/e47d621d-6e02-4088-b35f-f51a55f10112"
             }
           >
             <Typography
@@ -210,7 +209,7 @@ const Footer = () => {
             target={"_blank"}
             rel={"noopener noreferrer"}
             to={
-              "https://app.termly.io/dashboard/website/8439202e-7208-4a9c-8e0a-66c5065d71d5"
+              "https://app.termly.io/document/cookie-policy/af11c7bd-67ff-49a6-a6a6-e24a2fc2c780"
             }
           >
             <Typography
@@ -222,7 +221,36 @@ const Footer = () => {
                 },
               }}
             >
-              Cookies Policy
+              Cookie Policy
+            </Typography>
+          </Link>
+          &nbsp;
+          <Typography
+            sx={{
+              fontSize: "13px",
+            }}
+          >
+            -
+          </Typography>
+          &nbsp;
+          <Link
+            style={{ textDecoration: "none", color: "white" }}
+            target={"_blank"}
+            rel={"noopener noreferrer"}
+            to={
+              "https://app.termly.io/document/terms-of-service/ac135d6d-cdbd-47a4-ab67-74474ddec515"
+            }
+          >
+            <Typography
+              sx={{
+                fontSize: "13px",
+                cursor: "pointer",
+                "&:hover": {
+                  color: (theme) => theme.palette.primary.hover,
+                },
+              }}
+            >
+              Terms and Conditions
             </Typography>
           </Link>
         </Grid>

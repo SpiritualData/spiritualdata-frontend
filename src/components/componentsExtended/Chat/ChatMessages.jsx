@@ -26,14 +26,14 @@ import ChatSvg from "./ChatSvg";
 import ChatSkeleton from "../../helpers/ChatSkeleton";
 
 const examples = [
-  "What is Spiritual Data used for?",
-  "What are the benefits of using Spiritual Data?",
-  "What are the main features of Spiritual Data?",
-  "What are the advantages of Spiritual Data?",
-  "What industries can benefit from Spiritual Data?",
-  "What are some real-world examples of using Spiritual Data?",
-  "What technologies are used in Spiritual Data?",
-  "What are the potential applications of Spiritual Data?",
+  "Who are you?",
+  "What evidence is there that near-death experiences are real?",
+  "What research is there on telepathy?",
+  "How do people describe oneness?",
+  "Is there any research on mediums?",
+  "What are common themes in near-death experiences?",
+  "What do experiences say about the big bang or creation of the universe?",
+  "Does it feel nice to be out of body?",
 ];
 
 const TypingSymbol = styled("span")`
@@ -148,7 +148,7 @@ const ChatMessages = ({
                 <IconButton
                   sx={{
                     position: "sticky",
-                    color: "gray",
+                    color: "black",
                     bottom: 0,
                     right: 0,
                     ml: "90%",
@@ -282,7 +282,7 @@ const ChatUi = ({
           )}
         </Typography>
 
-        {item.db_results ? (
+        {item.db_results && (item.db_results.hypotheses?.length > 0 || item.db_results.research?.length > 0 || item.db_results.experiences?.length > 0) ? (
           isLastItem && isTyping ? null : (
             <DataResults
               item={item}

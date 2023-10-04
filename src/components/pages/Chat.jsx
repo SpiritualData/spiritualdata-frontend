@@ -314,7 +314,7 @@ const Chat = () => {
           )}
 
           <Stack width="100%">
-            <p>Model: Spiritual Data (1.0)</p>
+            <p>Model: OpenAI GPT3.5</p>
           </Stack>
         </Grid>
 

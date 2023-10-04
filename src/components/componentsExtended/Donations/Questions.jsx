@@ -30,28 +30,30 @@ const Questions = () => {
               fontWeight: "bold",
             }}
           >
-            ASK QUESTIONS
+            MORE DETAILS
           </Typography>
           <Typography
             sx={{ fontSize: { xs: "22px", md: "30px" }, fontWeight: 550 }}
           >
             What are the donations used for?
           </Typography>
-          <Typography sx={{ fontSize: "16px", mt: 2 }}>
-            The donations we receive are wholly dedicated to making our product
-            better and supporting the ongoing development of Spiritual Data.
-            Your contributions play a crucial role in enhancing our platform,
-            allowing us to implement new features, improve user experience, and
-            conduct research that fosters deep spiritual insights. By supporting
-            us through donations, you become an essential part of our mission to
-            provide a transformative and enriching journey for our global
-            community of seekers. Your generosity enables us to continuously
-            grow and refine our platform, ensuring that we can offer valuable
-            resources and foster an environment of unity and understanding among
-            our users. We are deeply grateful for your support in fueling our
-            pursuit of spiritual growth and enlightenment. Together, we can
-            create a meaningful impact on the lives of countless individuals
-            seeking profound spiritual experiences and knowledge.
+          <Typography sx={{ fontSize: "16px", mt: 2 , textAlign: "left"}}>
+  <p>Your donations will fund a solid foundation that demonstrates how Spiritual Data can change research, AI, and society through automated evidence analysis.</p>
+
+  <h4>Research:</h4>
+  <ul>
+    <li>Gathering thousands of spiritual experiences, research papers, and hypotheses into a single database.</li>
+    <li>Automatically calculating the probability of hypotheses by relating research papers and spiritual experiences.</li>
+    <li>Validating our methods with the research community and the public.</li>
+  </ul>
+
+  <h4>Product:</h4>
+  <ul>
+    <li>An intelligent Spiritual Data chatbot that automatically finds experiences, research, and hypotheses from our database.</li>
+    <li>Impactful analysis about spiritual data presented on our website.</li>
+    <li>Search interface with filters and an interface to review the evidence for and against each hypothesis.</li>
+  </ul>
+            <p><a href="https://givebutter.com/spiritualdatamvp">Learn more at our givebutter fundraising page.</a></p>
           </Typography>
         </Grid>
       </Grid>
@@ -87,7 +89,7 @@ const Questions = () => {
                 alignItems: "center",
               }}
             >
-              Do you have any question?{" "}
+              Questions? Click here to send us a message.{" "}
               <East sx={{ marginLeft: "4px", fontSize: "16px" }} />
             </Typography>
           </Button>
