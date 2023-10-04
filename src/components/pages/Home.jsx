@@ -159,7 +159,7 @@ const Home = () => {
           "Connect with like-minded individuals, share ideas, learn from experts, and engage in meaningful discussions. Unlock a world of knowledge and collaboration today!"
         }
         buttonText={"Join Now"}
-        path={"https://discord.gg/MPBprbvt"}
+        path={"https://discord.com/invite/thQNvPGcJF"}
         altText={"discord"}
       />
 
