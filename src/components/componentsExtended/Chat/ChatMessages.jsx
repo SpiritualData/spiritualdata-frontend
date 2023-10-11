@@ -317,14 +317,18 @@ const ChatUi = ({
   );
 };
 
+const AnchorTag = (props) => (
+  <a href={props.to} target="_blank" rel="noopener noreferrer" {...props} />
+);
+
 const renderItems = (items) => {
   return items?.map((item) => (
     <div key={item.url} style={{ fontSize: "13px" }}>
       <b>
         {item.name}:{" "}
-        <Tooltip title="Go to website">
+        <Tooltip title="Go to source website">
           <Link
-            component={RouterLink}
+            component={AnchorTag} // Use the wrapper component here to open the link in a new tab
             to={item.url}
             color="inherit"
             underline="none"
