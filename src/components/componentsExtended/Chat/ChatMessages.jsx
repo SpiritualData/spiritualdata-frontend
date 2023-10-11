@@ -282,7 +282,10 @@ const ChatUi = ({
           )}
         </Typography>
 
-        {item.db_results && (item.db_results.hypotheses?.length > 0 || item.db_results.research?.length > 0 || item.db_results.experiences?.length > 0) ? (
+        {item.db_results &&
+        (item.db_results.hypotheses?.length > 0 ||
+          item.db_results.research?.length > 0 ||
+          item.db_results.experiences?.length > 0) ? (
           isLastItem && isTyping ? null : (
             <DataResults
               item={item}
@@ -325,6 +328,8 @@ const renderItems = (items) => {
         <Tooltip title="Go to website">
           <Link
             component={RouterLink}
+            target="_blank"
+            rel="noopener noreferrer"
             to={item.url}
             color="inherit"
             underline="none"
