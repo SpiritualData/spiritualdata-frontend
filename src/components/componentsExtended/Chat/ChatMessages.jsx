@@ -72,21 +72,16 @@ const ChatMessages = ({
   const [showScrollButton, setShowScrollButton] = useState(false);
 
   useEffect(() => {
+    const container = containerRef.current;
     const handleScroll = () => {
-      const container = containerRef.current;
-      if (container) {
-        setShowScrollButton(
-          container.scrollTop + container.clientHeight < container.scrollHeight
-        );
-      }
+      setShowScrollButton(
+        container.scrollTop + container.clientHeight <
+          container.scrollHeight - 10
+      );
     };
 
-    const container = containerRef.current;
     if (container) {
       container.addEventListener("scroll", handleScroll);
-      setShowScrollButton(
-        container.scrollTop + container.clientHeight < container.scrollHeight
-      );
     }
 
     return () => {
@@ -325,20 +320,20 @@ const renderItems = (items) => {
     <div key={item.url} style={{ fontSize: "13px" }}>
       <b>
         {item.name}:{" "}
-        <Tooltip title="Go to website">
+        <Tooltip title="Go to source website" placement="top">
           <Link
             component={RouterLink}
-            target="_blank"
-            rel="noopener noreferrer"
             to={item.url}
             color="inherit"
             underline="none"
             sx={{
               color: "#fff",
               "&:hover": {
-                color: "blue",
+                color: "#4691B8",
               },
             }}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <Launch sx={{ mb: -0.4, fontSize: "16px" }} />
           </Link>
