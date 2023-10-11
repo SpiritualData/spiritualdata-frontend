@@ -155,7 +155,7 @@ Our methods are intellectual humility and automation, letting the data speak for
           "Discord is our team's primary source of communication. We have many channels to discuss a wide variety of topics within spiritual science and other phenomena. We post relevant research here regularly."
         }
         buttonText={"Join Now"}
-        path={"https://discord.gg/MPBprbvt"}
+        path={"https://discord.com/invite/thQNvPGcJF"}
         altText={"discord"}
       />
 
