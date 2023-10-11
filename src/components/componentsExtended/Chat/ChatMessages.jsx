@@ -317,7 +317,9 @@ const ChatUi = ({
 };
 
 const AnchorTag = (props) => (
-  <a href={props.to} target="_blank" rel="noopener noreferrer" {...props} />
+  <a href={props.to} target="_blank" rel="noopener noreferrer" {...props}>
+    {props.children}
+  </a>
 );
 
 const renderItems = (items) => {
