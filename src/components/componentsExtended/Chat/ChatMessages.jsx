@@ -20,7 +20,6 @@ import {
   Launch,
 } from "@mui/icons-material";
 import TypeWriter from "react-typewriter";
-import { Link as RouterLink } from "react-router-dom";
 
 import ChatSvg from "./ChatSvg";
 import ChatSkeleton from "../../helpers/ChatSkeleton";
@@ -330,6 +329,7 @@ const renderItems = (items) => {
           <Link
             component={AnchorTag} // Use the wrapper component here to open the link in a new tab
             to={item.url}
+            aria-label={`Go to ${item.name} source website`}  // Added aria-label here
             color="inherit"
             underline="none"
             sx={{
