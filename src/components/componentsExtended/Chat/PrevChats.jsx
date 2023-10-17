@@ -1,9 +1,9 @@
-// import { useState } from "react";
+import { useState } from "react";
 import { UserButton, useUser } from "@clerk/clerk-react";
 import {
-  // Check,
-  // Close,
-  // DeleteOutline,
+  Check,
+  Close,
+  DeleteOutline,
   MessageOutlined,
 } from "@mui/icons-material";
 import {
@@ -41,7 +41,7 @@ const StyledListItemIcon = styled(ListItemIcon)`
 
 export default function ChatHistory({
   chatHistory,
-  // setChatHistory,
+  setChatHistory,
   selected,
   loadingList,
   errorList,
@@ -49,7 +49,7 @@ export default function ChatHistory({
   handleDrawerToggle,
 }) {
   const { user } = useUser();
-  // const [deleteOptions, setDeleteOptions] = useState(false);
+  const [deleteOptions, setDeleteOptions] = useState(false);
 
   const truncateTitle = (title) => {
     if (title.length > 22) {
@@ -58,11 +58,11 @@ export default function ChatHistory({
     return title;
   };
 
-  // const removeChatItem = () => {
-  //   setChatHistory((prevChatHistory) =>
-  //     prevChatHistory.filter((item) => item.chat_id !== selected)
-  //   );
-  // };
+  const removeChatItem = () => {
+    setChatHistory((prevChatHistory) =>
+      prevChatHistory.filter((item) => item.chat_id !== selected)
+    );
+  };
 
   return (
     <Stack height="89vh" justifyContent="space-between">
@@ -100,7 +100,7 @@ export default function ChatHistory({
                   />
                 </StyledListItemIcon>
                 <ListItemText secondary={truncateTitle(item.title)} />
-                {/* {selected === item.chat_id && (
+                {selected === item.chat_id && (
               <>
                 {!deleteOptions && (
                   <DeleteOutline
@@ -147,7 +147,7 @@ export default function ChatHistory({
                   </>
                 )}
               </>
-            )} */}
+            )}
               </StyledListItem>
             ))
           ) : (
