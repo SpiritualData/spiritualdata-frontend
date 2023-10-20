@@ -7,6 +7,7 @@ import {
   MessageOutlined,
 } from "@mui/icons-material";
 import {
+  CircularProgress,
   List,
   ListItem,
   ListItemIcon,
@@ -16,6 +17,8 @@ import {
   Typography,
   styled,
 } from "@mui/material";
+
+import axios from "../../utils/axios";
 import { ListSkeleton } from "../../helpers/ChatSkeleton";
 
 const StyledList = styled(List)`
@@ -49,6 +52,7 @@ export default function ChatHistory({
   handleDrawerToggle,
 }) {
   const { user } = useUser();
+  const [loading, setLoading] = useState(false);
   const [deleteOptions, setDeleteOptions] = useState(false);
 
   const truncateTitle = (title) => {
@@ -59,9 +63,30 @@ export default function ChatHistory({
   };
 
   const removeChatItem = () => {
-    setChatHistory((prevChatHistory) =>
-      prevChatHistory.filter((item) => item.chat_id !== selected)
-    );
+    setLoading(true);
+    axios
+      .delete("/chat/delete", {
+        params: {
+          chat_id: selected || "",
+        },
+      })
+      .then((res) => {
+        let delResult = res.data;
+
+        if (delResult.success) {
+          setChatHistory((prevChatHistory) =>
+            prevChatHistory.filter((item) => item.chat_id !== selected)
+          );
+        } else {
+          console.error("Chat Deletion failed");
+        }
+
+        setLoading(false);
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.error("Error:", error);
+      });
   };
 
   return (
@@ -101,53 +126,61 @@ export default function ChatHistory({
                 </StyledListItemIcon>
                 <ListItemText secondary={truncateTitle(item.title)} />
                 {selected === item.chat_id && (
-              <>
-                {!deleteOptions && (
-                  <DeleteOutline
-                    sx={{
-                      fontSize: "20px",
-                      "&:hover": {
-                        opacity: 0.6,
-                      },
-                    }}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setDeleteOptions(true);
-                    }}
-                  />
-                )}
-                {deleteOptions && (
                   <>
-                    <Check
-                      sx={{
-                        fontSize: "18px",
-                        "&:hover": {
-                          opacity: 0.6,
-                        },
-                      }}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        removeChatItem();
-                        setDeleteOptions(false);
-                      }}
-                    />
-                    <Close
-                      sx={{
-                        fontSize: "18px",
-                        ml: 0.6,
-                        "&:hover": {
-                          opacity: 0.6,
-                        },
-                      }}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setDeleteOptions(false);
-                      }}
-                    />
+                    {!deleteOptions && !loading && (
+                      <DeleteOutline
+                        sx={{
+                          fontSize: "20px",
+                          "&:hover": {
+                            opacity: 0.6,
+                          },
+                        }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setDeleteOptions(true);
+                        }}
+                      />
+                    )}
+                    {deleteOptions && (
+                      <>
+                        <Check
+                          sx={{
+                            fontSize: "18px",
+                            "&:hover": {
+                              opacity: 0.6,
+                            },
+                          }}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            removeChatItem();
+                            setDeleteOptions(false);
+                          }}
+                        />
+                        <Close
+                          sx={{
+                            fontSize: "18px",
+                            ml: 0.6,
+                            "&:hover": {
+                              opacity: 0.6,
+                            },
+                          }}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setDeleteOptions(false);
+                          }}
+                        />
+                      </>
+                    )}
+                    {loading && (
+                      <CircularProgress
+                        size={20}
+                        sx={{
+                          color: (theme) => theme.palette.text.secondary,
+                        }}
+                      />
+                    )}
                   </>
                 )}
-              </>
-            )}
               </StyledListItem>
             ))
           ) : (
