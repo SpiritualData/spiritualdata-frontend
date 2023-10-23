@@ -115,7 +115,6 @@ const Chat = () => {
 
   useEffect(() => {
     setLoading(true);
-    console.log(selected);
     const selectedChat = chatHistory.find((item) => item.chat_id === selected);
     if (selectedChat && selected) {
       if (selectedChat.chat?.length > 0) {
