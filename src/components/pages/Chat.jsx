@@ -9,6 +9,7 @@ import InputField from "../componentsExtended/Chat/Input";
 import ChatMessages from "../componentsExtended/Chat/ChatMessages";
 import ChatDrawer from "../componentsExtended/Chat/ChatDrawer";
 import SnackbarAlert from "../helpers/SnackbarAlert";
+import SettingsMenu from "../componentsExtended/Chat/Settings";
 // import { DummyChatHistory } from "../componentsExtended/Chat/DummyChat";
 
 const Chat = () => {
@@ -24,6 +25,7 @@ const Chat = () => {
   const [errorResponse, setErrorResponse] = useState(null);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const [saveChat, setSaveChat] = useState(true);
   const [chatHistory, setChatHistory] = useState([]);
   const [showSideBar, setShowSideBar] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -148,7 +150,7 @@ const Chat = () => {
           // data_sources: ["experiences", "hypotheses", "research"],
           // return_results: true,
           // answer_model: "gpt-3.5-turbo",
-          // save: true,
+          save: saveChat,
         })
         .then((res) => {
           let response = res.data;
@@ -315,6 +317,8 @@ const Chat = () => {
           <Stack width="100%">
             <p>Model: OpenAI GPT3.5</p>
           </Stack>
+
+          <SettingsMenu saveChat={saveChat} setSaveChat={setSaveChat} />
         </Grid>
 
         <Box bottom={0}>
