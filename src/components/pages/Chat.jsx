@@ -185,8 +185,8 @@ const Chat = () => {
 
             setSelected(newChatHistoryItem.chat_id);
           } else {
-            setChatHistory((prevChatHistory) =>
-              prevChatHistory.map((item) =>
+            setChatHistory((prevChatHistory) => {
+              const updatedChatHistory = prevChatHistory.map((item) =>
                 item.chat_id === selected
                   ? {
                       ...item,
@@ -201,8 +201,20 @@ const Chat = () => {
                       ],
                     }
                   : item
-              )
-            );
+              );
+
+              const selectedIndex = updatedChatHistory.findIndex(
+                (item) => item.chat_id === selected
+              );
+              if (selectedIndex > 0) {
+                const selectedItem = updatedChatHistory.splice(
+                  selectedIndex,
+                  1
+                )[0];
+                updatedChatHistory.unshift(selectedItem);
+              }
+              return updatedChatHistory;
+            });
           }
         })
         .catch((error) => {
