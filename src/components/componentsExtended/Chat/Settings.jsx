@@ -9,10 +9,6 @@ import {
 } from "@mui/material";
 import SettingsIcon from "@mui/icons-material/Settings";
 
-const menuStyle = {
-  paddingTop: 0, // Remove padding
-};
-
 const IOSSwitch = styled((props) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
 ))(({ theme }) => ({
