@@ -5,8 +5,10 @@ import {
   Close,
   DeleteOutline,
   MessageOutlined,
+  Replay,
 } from "@mui/icons-material";
 import {
+  Button,
   CircularProgress,
   List,
   ListItem,
@@ -97,6 +99,22 @@ export default function ChatHistory({
         <center>
           <br />
           <small>An error occoured</small>
+          <br />
+          <Button
+            variant="contained"
+            sx={{
+              marginTop: 2,
+              color: theme=> theme.palette.text.secondary,
+              background: "#4691c8",
+              "&:hover": {
+                background: "#4691A8",
+                opacity: 8
+              },
+            }}
+            startIcon={<Replay />}
+          >
+            Reload
+          </Button>
         </center>
       ) : (
         <StyledList>
