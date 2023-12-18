@@ -30,6 +30,22 @@ const Chat = () => {
   const [showSideBar, setShowSideBar] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  const fetchChatHistory = async () => {
+    setErrorList(false);
+    setLoadingList(true);
+    try {
+      const response = await axios.get("/chat/list");
+      setChatHistory(response.data);
+      setLoadingList(false);
+    } catch (error) {
+      setLoadingList(false);
+      console.error("Error fetching chat list:", error.message);
+      setErrorList(
+        "An error occurred while fetching the chat list. Please check your connection."
+      );
+    }
+  };
+
   const fetchChat = async (chatId) => {
     try {
       const response = await axios.get("/chat/get", {
@@ -75,21 +91,6 @@ const Chat = () => {
   }, [getToken]);
 
   useEffect(() => {
-    setLoadingList(true);
-    const fetchChatHistory = async () => {
-      try {
-        const response = await axios.get("/chat/list");
-        setChatHistory(response.data);
-        setLoadingList(false);
-      } catch (error) {
-        setLoadingList(false);
-        console.error("Error fetching chat list:", error.message);
-        setErrorList(
-          "An error occurred while fetching the chat list. Please check your connection."
-        );
-      }
-    };
-
     setTimeout(() => {
       fetchChatHistory();
     }, 10);
@@ -270,6 +271,7 @@ const Chat = () => {
         setSelected={setSelected}
         showSideBar={showSideBar}
         setShowSideBar={setShowSideBar}
+        fetchChatHistory={fetchChatHistory}
         handleDrawerToggle={handleDrawerToggle}
       />
 
@@ -280,6 +282,7 @@ const Chat = () => {
         setChatHistory={setChatHistory}
         selected={selected}
         setSelected={setSelected}
+        fetchChatHistory={fetchChatHistory}
         handleDrawerToggle={handleDrawerToggle}
       />
 
