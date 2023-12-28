@@ -9,6 +9,7 @@ const ChatDrawer = ({
   setChatHistory,
   selected,
   setSelected,
+  fetchChatHistory,
   handleDrawerToggle,
 }) => {
   return (
@@ -54,6 +55,7 @@ const ChatDrawer = ({
           setChatHistory={setChatHistory}
           selected={selected}
           setSelected={setSelected}
+          fetchChatHistory={fetchChatHistory}
           handleDrawerToggle={handleDrawerToggle}
         />
       </Drawer>
