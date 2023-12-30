@@ -5,10 +5,8 @@ import {
   Close,
   DeleteOutline,
   MessageOutlined,
-  Replay,
 } from "@mui/icons-material";
 import {
-  Button,
   CircularProgress,
   List,
   ListItem,
@@ -22,6 +20,7 @@ import {
 
 import axios from "../../utils/axios";
 import { ListSkeleton } from "../../helpers/ChatSkeleton";
+import ErrorComponent from "./Error";
 
 const StyledList = styled(List)`
   width: 100%;
@@ -51,6 +50,7 @@ export default function ChatHistory({
   loadingList,
   errorList,
   setSelected,
+  fetchChatHistory,
   handleDrawerToggle,
 }) {
   const { user } = useUser();
@@ -96,26 +96,7 @@ export default function ChatHistory({
       {loadingList ? (
         <ListSkeleton />
       ) : errorList ? (
-        <center>
-          <br />
-          <small>An error occoured</small>
-          <br />
-          <Button
-            variant="contained"
-            sx={{
-              marginTop: 2,
-              color: theme=> theme.palette.text.secondary,
-              background: "#4691c8",
-              "&:hover": {
-                background: "#4691A8",
-                opacity: 8
-              },
-            }}
-            startIcon={<Replay />}
-          >
-            Reload
-          </Button>
-        </center>
+        <ErrorComponent errorFunction={fetchChatHistory} />
       ) : (
         <StyledList>
           {chatHistory.length > 0 ? (
