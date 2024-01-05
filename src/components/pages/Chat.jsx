@@ -47,6 +47,8 @@ const Chat = () => {
   };
 
   const fetchChat = async (chatId) => {
+    setError(null);
+    setLoading(true);
     try {
       const response = await axios.get("/chat/get", {
         params: {
@@ -346,6 +348,7 @@ const Chat = () => {
             setIsTyping={setIsTyping}
             showSideBar={showSideBar}
             containerRef={containerRef}
+            fetchChat={fetchChat}
             setInput={setInput}
           />
 
