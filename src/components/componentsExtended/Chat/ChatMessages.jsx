@@ -20,7 +20,6 @@ import {
   Launch,
 } from "@mui/icons-material";
 import TypeWriter from "react-typewriter";
-import { Link as RouterLink } from "react-router-dom";
 
 import ChatSvg from "./ChatSvg";
 import ChatSkeleton from "../../helpers/ChatSkeleton";
@@ -315,6 +314,12 @@ const ChatUi = ({
   );
 };
 
+const AnchorTag = (props) => (
+  <a href={props.to} target="_blank" rel="noopener noreferrer" {...props}>
+    {props.children}
+  </a>
+);
+
 const renderItems = (items) => {
   return items?.map((item) => (
     <div key={item.url} style={{ fontSize: "13px" }}>
@@ -322,8 +327,9 @@ const renderItems = (items) => {
         {item.name}:{" "}
         <Tooltip title="Go to source website" placement="top">
           <Link
-            component={RouterLink}
+            component={AnchorTag} // Use the wrapper component here to open the link in a new tab
             to={item.url}
+            aria-label={`Go to ${item.name} source website`}  // Added aria-label here
             color="inherit"
             underline="none"
             sx={{
