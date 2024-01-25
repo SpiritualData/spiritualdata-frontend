@@ -85,7 +85,7 @@ const NewsLetter = () => {
             wordWrap: "break-word",
           }}
         >
-          Spiritual Data's Newsletter- We seek Board Members
+          Spiritual Data's Monthly Newsletter on beehiiv.com.
         </Typography>
       </Grid>
     </NewsletterGrid>

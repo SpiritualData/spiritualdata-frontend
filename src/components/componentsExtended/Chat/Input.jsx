@@ -77,13 +77,9 @@ const InputField = ({
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => {
             if (
-              e.key === "Enter" &&
-              !(
-                (!isTyping && !input) ||
-                (selected && error?.length > 0) ||
-                chatHistory?.length === 0
-              )
+              e.key === "Enter" && !e.shiftKey
             ) {
+              e.preventDefault();
               handleSend(e);
             }
           }}
@@ -92,11 +88,6 @@ const InputField = ({
               <>
                 <IconButton
                   onClick={(e) => handleSend(e)}
-                  disabled={
-                    (!isTyping && !input) ||
-                    (selected && error?.length > 0) ||
-                    chatHistory?.length === 0
-                  }
                   sx={{ color: "#fff" }}
                 >
                   {isTyping ? <ButtonLoader /> : <Send />}

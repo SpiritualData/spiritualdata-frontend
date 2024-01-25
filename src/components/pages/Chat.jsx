@@ -9,6 +9,7 @@ import InputField from "../componentsExtended/Chat/Input";
 import ChatMessages from "../componentsExtended/Chat/ChatMessages";
 import ChatDrawer from "../componentsExtended/Chat/ChatDrawer";
 import SnackbarAlert from "../helpers/SnackbarAlert";
+import SettingsMenu from "../componentsExtended/Chat/Settings";
 // import { DummyChatHistory } from "../componentsExtended/Chat/DummyChat";
 
 const Chat = () => {
@@ -24,11 +25,30 @@ const Chat = () => {
   const [errorResponse, setErrorResponse] = useState(null);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const [saveChat, setSaveChat] = useState(true);
   const [chatHistory, setChatHistory] = useState([]);
   const [showSideBar, setShowSideBar] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  const fetchChatHistory = async () => {
+    setErrorList(false);
+    setLoadingList(true);
+    try {
+      const response = await axios.get("/chat/list");
+      setChatHistory(response.data);
+      setLoadingList(false);
+    } catch (error) {
+      setLoadingList(false);
+      console.error("Error fetching chat list:", error.message);
+      setErrorList(
+        "An error occurred while fetching the chat list. Please check your connection."
+      );
+    }
+  };
+
   const fetchChat = async (chatId) => {
+    setError(null);
+    setLoading(true);
     try {
       const response = await axios.get("/chat/get", {
         params: {
@@ -73,21 +93,6 @@ const Chat = () => {
   }, [getToken]);
 
   useEffect(() => {
-    setLoadingList(true);
-    const fetchChatHistory = async () => {
-      try {
-        const response = await axios.get("/chat/list");
-        setChatHistory(response.data);
-        setLoadingList(false);
-      } catch (error) {
-        setLoadingList(false);
-        console.error("Error fetching chat list:", error.message);
-        setErrorList(
-          "An error occurred while fetching the chat list. Please check your connection."
-        );
-      }
-    };
-
     setTimeout(() => {
       fetchChatHistory();
     }, 10);
@@ -115,7 +120,6 @@ const Chat = () => {
 
   useEffect(() => {
     setLoading(true);
-    console.log(selected);
     const selectedChat = chatHistory.find((item) => item.chat_id === selected);
     if (selectedChat && selected) {
       if (selectedChat.chat?.length > 0) {
@@ -149,7 +153,7 @@ const Chat = () => {
           // data_sources: ["experiences", "hypotheses", "research"],
           // return_results: true,
           // answer_model: "gpt-3.5-turbo",
-          // save: true,
+          save: saveChat,
         })
         .then((res) => {
           let response = res.data;
@@ -184,8 +188,8 @@ const Chat = () => {
 
             setSelected(newChatHistoryItem.chat_id);
           } else {
-            setChatHistory((prevChatHistory) =>
-              prevChatHistory.map((item) =>
+            setChatHistory((prevChatHistory) => {
+              const updatedChatHistory = prevChatHistory.map((item) =>
                 item.chat_id === selected
                   ? {
                       ...item,
@@ -200,8 +204,20 @@ const Chat = () => {
                       ],
                     }
                   : item
-              )
-            );
+              );
+
+              const selectedIndex = updatedChatHistory.findIndex(
+                (item) => item.chat_id === selected
+              );
+              if (selectedIndex > 0) {
+                const selectedItem = updatedChatHistory.splice(
+                  selectedIndex,
+                  1
+                )[0];
+                updatedChatHistory.unshift(selectedItem);
+              }
+              return updatedChatHistory;
+            });
           }
         })
         .catch((error) => {
@@ -257,6 +273,7 @@ const Chat = () => {
         setSelected={setSelected}
         showSideBar={showSideBar}
         setShowSideBar={setShowSideBar}
+        fetchChatHistory={fetchChatHistory}
         handleDrawerToggle={handleDrawerToggle}
       />
 
@@ -267,6 +284,7 @@ const Chat = () => {
         setChatHistory={setChatHistory}
         selected={selected}
         setSelected={setSelected}
+        fetchChatHistory={fetchChatHistory}
         handleDrawerToggle={handleDrawerToggle}
       />
 
@@ -314,8 +332,10 @@ const Chat = () => {
           )}
 
           <Stack width="100%">
-            <p>Model: Spiritual Data (1.0)</p>
+            <p>Model: OpenAI GPT3.5</p>
           </Stack>
+
+          <SettingsMenu saveChat={saveChat} setSaveChat={setSaveChat} />
         </Grid>
 
         <Box bottom={0}>
@@ -328,6 +348,7 @@ const Chat = () => {
             setIsTyping={setIsTyping}
             showSideBar={showSideBar}
             containerRef={containerRef}
+            fetchChat={fetchChat}
             setInput={setInput}
           />
 

@@ -1,12 +1,13 @@
-// import { useState } from "react";
+import { useState } from "react";
 import { UserButton, useUser } from "@clerk/clerk-react";
 import {
-  // Check,
-  // Close,
-  // DeleteOutline,
+  Check,
+  Close,
+  DeleteOutline,
   MessageOutlined,
 } from "@mui/icons-material";
 import {
+  CircularProgress,
   List,
   ListItem,
   ListItemIcon,
@@ -16,7 +17,10 @@ import {
   Typography,
   styled,
 } from "@mui/material";
+
+import axios from "../../utils/axios";
 import { ListSkeleton } from "../../helpers/ChatSkeleton";
+import ErrorComponent from "./Error";
 
 const StyledList = styled(List)`
   width: 100%;
@@ -41,15 +45,17 @@ const StyledListItemIcon = styled(ListItemIcon)`
 
 export default function ChatHistory({
   chatHistory,
-  // setChatHistory,
+  setChatHistory,
   selected,
   loadingList,
   errorList,
   setSelected,
+  fetchChatHistory,
   handleDrawerToggle,
 }) {
   const { user } = useUser();
-  // const [deleteOptions, setDeleteOptions] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [deleteOptions, setDeleteOptions] = useState(false);
 
   const truncateTitle = (title) => {
     if (title.length > 22) {
@@ -58,21 +64,39 @@ export default function ChatHistory({
     return title;
   };
 
-  // const removeChatItem = () => {
-  //   setChatHistory((prevChatHistory) =>
-  //     prevChatHistory.filter((item) => item.chat_id !== selected)
-  //   );
-  // };
+  const removeChatItem = () => {
+    setLoading(true);
+    axios
+      .delete("/chat/delete", {
+        params: {
+          chat_id: selected || "",
+        },
+      })
+      .then((res) => {
+        let delResult = res.data;
+
+        if (delResult.success) {
+          setChatHistory((prevChatHistory) =>
+            prevChatHistory.filter((item) => item.chat_id !== selected)
+          );
+        } else {
+          console.error("Chat Deletion failed");
+        }
+
+        setLoading(false);
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.error("Error:", error);
+      });
+  };
 
   return (
     <Stack height="89vh" justifyContent="space-between">
       {loadingList ? (
         <ListSkeleton />
       ) : errorList ? (
-        <center>
-          <br />
-          <small>An error occoured</small>
-        </center>
+        <ErrorComponent errorFunction={fetchChatHistory} />
       ) : (
         <StyledList>
           {chatHistory.length > 0 ? (
@@ -100,54 +124,62 @@ export default function ChatHistory({
                   />
                 </StyledListItemIcon>
                 <ListItemText secondary={truncateTitle(item.title)} />
-                {/* {selected === item.chat_id && (
-              <>
-                {!deleteOptions && (
-                  <DeleteOutline
-                    sx={{
-                      fontSize: "20px",
-                      "&:hover": {
-                        opacity: 0.6,
-                      },
-                    }}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setDeleteOptions(true);
-                    }}
-                  />
-                )}
-                {deleteOptions && (
+                {selected === item.chat_id && (
                   <>
-                    <Check
-                      sx={{
-                        fontSize: "18px",
-                        "&:hover": {
-                          opacity: 0.6,
-                        },
-                      }}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        removeChatItem();
-                        setDeleteOptions(false);
-                      }}
-                    />
-                    <Close
-                      sx={{
-                        fontSize: "18px",
-                        ml: 0.6,
-                        "&:hover": {
-                          opacity: 0.6,
-                        },
-                      }}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setDeleteOptions(false);
-                      }}
-                    />
+                    {!deleteOptions && !loading && (
+                      <DeleteOutline
+                        sx={{
+                          fontSize: "20px",
+                          "&:hover": {
+                            opacity: 0.6,
+                          },
+                        }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setDeleteOptions(true);
+                        }}
+                      />
+                    )}
+                    {deleteOptions && (
+                      <>
+                        <Check
+                          sx={{
+                            fontSize: "18px",
+                            "&:hover": {
+                              opacity: 0.6,
+                            },
+                          }}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            removeChatItem();
+                            setDeleteOptions(false);
+                          }}
+                        />
+                        <Close
+                          sx={{
+                            fontSize: "18px",
+                            ml: 0.6,
+                            "&:hover": {
+                              opacity: 0.6,
+                            },
+                          }}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setDeleteOptions(false);
+                          }}
+                        />
+                      </>
+                    )}
+                    {loading && (
+                      <CircularProgress
+                        size={20}
+                        sx={{
+                          color: (theme) => theme.palette.text.secondary,
+                        }}
+                      />
+                    )}
                   </>
                 )}
-              </>
-            )} */}
               </StyledListItem>
             ))
           ) : (
@@ -164,7 +196,7 @@ export default function ChatHistory({
         spacing={2}
         sx={{
           color: "lightgray",
-          borderTop: "1px solid gray",
+          borderTop: "1px solid black",
           py: 2,
           px: 1,
         }}

@@ -9,6 +9,7 @@ const ChatDrawer = ({
   setChatHistory,
   selected,
   setSelected,
+  fetchChatHistory,
   handleDrawerToggle,
 }) => {
   return (
@@ -37,7 +38,7 @@ const ChatDrawer = ({
           style={{
             width: "100%",
             marginBottom: "10px",
-            borderColor: "gray",
+            borderColor: "black",
             color: "#fff",
             opacity: 0.9,
           }}
@@ -54,6 +55,7 @@ const ChatDrawer = ({
           setChatHistory={setChatHistory}
           selected={selected}
           setSelected={setSelected}
+          fetchChatHistory={fetchChatHistory}
           handleDrawerToggle={handleDrawerToggle}
         />
       </Drawer>

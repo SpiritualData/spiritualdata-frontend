@@ -10,6 +10,7 @@ const ContentSection = ({
   buttonText,
   altText,
   path,
+  bioHeading
 }) => {
   return (
     <Grid
@@ -22,6 +23,11 @@ const ContentSection = ({
       my={{ xs: 3, md: 8 }}
       px={"8%"}
     >
+      <Grid item xs={12}>
+        <Typography sx={{ fontSize: "30px", fontWeight: 500, textAlign: 'center', marginBottom: { xs: 0, md: "30px" }}}>
+          {bioHeading}
+        </Typography>
+      </Grid>
       <Grid item xs={12} md={6} sx={{ marginLeft: { xs: 0, md: "16px" } }}>
         <Grid
           item
@@ -41,9 +47,9 @@ const ContentSection = ({
           </Typography>
           <Typography
             sx={{
-              color: "#78716c",
-              fontSize: heading?.includes("Joshua") ? "14px" : "16px",
-              marginTop: heading?.includes("Joshua") ? "20px" : "32px",
+              color: "black",
+              fontSize: bioHeading ? "14px" : "16px",
+              marginTop: bioHeading ? "20px" : "32px",
             }}
           >
             {subText}
@@ -51,8 +57,9 @@ const ContentSection = ({
           <Link
             to={path}
             style={{ textDecoration: "none" }}
-            target={path.startsWith("http") ? "_blank" : ""}
+            target={path && path.startsWith("http") ? "_blank" : ""}
           >
+          {path?
             <Button
               variant="text"
               sx={{
@@ -77,6 +84,7 @@ const ContentSection = ({
                 <East sx={{ marginLeft: "4px", fontSize: "16px" }} />
               </Typography>
             </Button>
+          : null}
           </Link>
         </Grid>
       </Grid>

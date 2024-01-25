@@ -4,6 +4,7 @@ import {
   SignedIn,
   SignedOut,
 } from "@clerk/clerk-react";
+import { hotjar } from 'react-hotjar';
 
 import Home from "../pages/Home";
 import About from "../pages/About";
@@ -14,6 +15,30 @@ import Chat from "../pages/Chat";
 import LogIn from "../pages/Login";
 import Signup from "../pages/Signup";
 import Donations from "../pages/Donations";
+import { useEffect, useRef } from 'react';
+
+hotjar.initialize(process.env.REACT_APP_HOTJAR_ID, process.env.REACT_APP_HOTJAR_VERSION || 6)
+export const useRefresh = () => {
+  const refreshedRef = useRef(0); // use const
+
+  useEffect(() => {
+    // Timeout to allow Clerk to load its elements
+    const timer = setTimeout(() => {
+      // Query for a Clerk-specific DOM element or class
+      const clerkElement = document.querySelector('.cl-rootBox');
+      
+      // If Clerk elements are not found, reload the page
+      if (!clerkElement && refreshedRef.current < 1) { // use current property
+        console.log("Reloading to get Clerk log in to appear");
+        window.location.reload(false);
+        refreshedRef.current += 1;
+      }
+    }, 1000); // 1000 milliseconds = 1 second
+
+    // Cleanup
+    return () => clearTimeout(timer);
+  }, []);
+};
 
 const useClerkRoutes = () => {
   const navigate = useNavigate();
@@ -45,6 +70,7 @@ const useClerkRoutes = () => {
 };
 
 const RequireAuthentication = ({ children }) => {
+  useRefresh();
   return (
     <>
       <SignedIn>{children}</SignedIn>

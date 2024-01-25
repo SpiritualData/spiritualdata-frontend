@@ -16,32 +16,32 @@ const faqs = [
   {
     question: "What is Spiritual Data?",
     answer:
-      "Spiritual Data is a platform that fosters enlightenment and deeper understanding of spirituality.",
+      "Spiritual Data is a non-profit organization that seeks to leverage all available data to calculate reliable answers about reality, including spiritual sources of information and spiritual explanations.",
   },
   {
-    question: "How does Spiritual Data work?",
+    question: "What's the chatbot for?",
     answer:
-      "We combine insights and experiences from our community, presenting a vast range of spiritual perspectives.",
+      "The chatbot allows you to interact with the data through natural language questions. For example, you could ask how oneness is described in near-death experiences, or what research there is on telepathy.",
   },
   {
     question: "Can anyone contribute to Spiritual Data?",
     answer:
-      "Yes, our platform encourages everyone to share their spiritual insights and experiences.",
+      "Yes. Ask how at our Discord chat server, or submit your own experiences, research, or hypotheses.",
   },
   {
     question: "How do I join the Spiritual Data community?",
     answer:
-      "You can join by subscribing to our newsletter, participating in our programs, and contributing to our discussions.",
+      "You can subscribe to our newsletter, join our Discord server, or join the team using this form: https://forms.gle/E6A9p3GgvUDoy2q18",
   },
   {
     question: "How can I donate to Spiritual Data?",
     answer:
-      "You can support us by visiting our donations page from the discover section below and following the instructions provided.",
+      "You can donate by visiting the Donations page from the Discover section above (spiritualdata.org/donations).",
   },
   {
-    question: "What does my donation to Spiritual Data do?",
+    question: "Are you religious?",
     answer:
-      "Your donations support the running of our platform, ensuring we can continue to explore life’s biggest questions.",
+      "Spiritual Data is not associated with any particular religion. Some of our hypotheses are related to religious beliefs, but we let the data speak for itself.",
   },
 ];
 
@@ -117,7 +117,7 @@ const FAQ = () => {
               fontWeight: "bold",
             }}
           >
-            ASK QUESTION
+            ASK QUESTIONS
           </Typography>
           <Typography
             sx={{ fontSize: { xs: "22px", md: "30px" }, fontWeight: 550 }}
@@ -125,8 +125,7 @@ const FAQ = () => {
             Frequently Asked Questions
           </Typography>
           <Typography sx={{ fontSize: "15px" }}>
-            Discover quick answers to common questions about Spiritual Data. Our
-            FAQs cover key aspects to enhance your knowledge journey.
+            Discover quick answers to common questions about Spiritual Data.
           </Typography>
         </Grid>
 
@@ -166,7 +165,7 @@ const FAQ = () => {
                 alignItems: "center",
               }}
             >
-              Do you have any question?{" "}
+              Questions? Click here to send us a message.{" "}
               <East sx={{ marginLeft: "4px", fontSize: "16px" }} />
             </Typography>
           </Button>

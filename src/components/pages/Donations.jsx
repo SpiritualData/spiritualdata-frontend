@@ -15,9 +15,9 @@ const Donations = () => {
 
       <PageDef
         title={"Donations"}
-        heading={" Why choose us?"}
+        heading={"Why choose us?"}
         details={
-          "Embark on a transformative journey with Spiritual Data through your generous donations. Fuel our relentless pursuit of profound spiritual insights, growth, and unity, and be an integral part of our impactful global community."
+          "We're fundamentally changing science in general. Spiritual Data's approach is to focus on methods for calculating truth and unbiased ways to analyze evidence, because we know that the solution can scale once it's done right and once we demonstrate the value to people like you. Because of this approach, your donations are well used because once our solution is solid, it can change the world."
         }
       />
 
@@ -27,7 +27,7 @@ const Donations = () => {
         imageSrc={skill}
         heading={"Donate Your Skills"}
         subText={
-          "Help us grow, become part of Spiritual Data's non-profit mission to explore spirituality and empower seekers worldwide. Contribute your skills and insights to foster growth, understanding, and unity among our community. Together, we make a meaningful impact on the spiritual journey of countless individuals."
+          "Help us grow by becoming part of Spiritual Data's non-profit mission to calculate truth with AI and move society beyond limiting biases. You can choose how you'd like to contribute and what skills you'd like to use."
         }
         buttonText={"Join Now"}
         path={
