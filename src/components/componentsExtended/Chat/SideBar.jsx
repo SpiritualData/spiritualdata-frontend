@@ -25,7 +25,8 @@ const SideBar = ({
   setSelected,
   showSideBar,
   setShowSideBar,
-  handleDrawerToggle,
+  fetchChatHistory,
+  handleDrawerToggle
 }) => {
   return (
     <Grid
@@ -63,6 +64,7 @@ const SideBar = ({
         loadingList={loadingList}
         errorList={errorList}
         setSelected={setSelected}
+        fetchChatHistory={fetchChatHistory}
         handleDrawerToggle={handleDrawerToggle}
       />
     </Grid>

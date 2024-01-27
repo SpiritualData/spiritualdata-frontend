@@ -246,7 +246,7 @@ function Navbar(props) {
                   },
                 }}
                 component={Link}
-                to={"/chat"}
+                to={userExists ? "/chat" : "/sign-in"}
               >
                 {userExists ? "Chat" : "Sign In"}
               </Button>
