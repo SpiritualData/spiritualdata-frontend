@@ -24,6 +24,7 @@ import { Link as RouterLink } from "react-router-dom";
 
 import ChatSvg from "./ChatSvg";
 import ChatSkeleton from "../../helpers/ChatSkeleton";
+import ErrorComponent from "./Error";
 
 const examples = [
   "Who are you?",
@@ -68,6 +69,7 @@ const ChatMessages = ({
   showSideBar,
   isTyping,
   setIsTyping,
+  fetchChat,
 }) => {
   const [showScrollButton, setShowScrollButton] = useState(false);
 
@@ -119,8 +121,7 @@ const ChatMessages = ({
         <ChatSkeleton />
       ) : error && selected ? (
         <center style={{ marginBottom: "30px" }}>
-          <br />
-          <small>An error occoured</small>
+          <ErrorComponent errorFunction={() => fetchChat(selected)} />
         </center>
       ) : (
         <Grid container>
