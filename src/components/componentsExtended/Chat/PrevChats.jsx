@@ -5,8 +5,10 @@ import {
   Close,
   DeleteOutline,
   MessageOutlined,
+  Replay,
 } from "@mui/icons-material";
 import {
+  Button,
   CircularProgress,
   List,
   ListItem,
@@ -50,6 +52,7 @@ export default function ChatHistory({
   loadingList,
   errorList,
   setSelected,
+  fetchChatHistory,
   fetchChatHistory,
   handleDrawerToggle,
 }) {
