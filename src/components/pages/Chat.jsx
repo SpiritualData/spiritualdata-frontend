@@ -93,6 +93,21 @@ const Chat = () => {
   }, [getToken]);
 
   useEffect(() => {
+    setLoadingList(true);
+    const fetchChatHistory = async () => {
+      try {
+        const response = await axios.get("/chat/list");
+        setChatHistory(response.data);
+        setLoadingList(false);
+      } catch (error) {
+        setLoadingList(false);
+        console.error("Error fetching chat list:", error.message);
+        setErrorList(
+          "An error occurred while fetching the chat list. Please check your connection."
+        );
+      }
+    };
+
     setTimeout(() => {
       fetchChatHistory();
     }, 10);

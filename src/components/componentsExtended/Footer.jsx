@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Grid, Typography, Box, styled, Divider } from "@mui/material";
-import { LinkedIn, Twitter, YouTube } from "@mui/icons-material";
+import { LinkedIn, X, YouTube } from "@mui/icons-material";
 
 import { links, menuItems } from "../helpers/footerData";
 import footerImage from "../../assets/footer.png";
@@ -33,6 +33,8 @@ const StyledIcon = styled("div")(({ theme }) => ({
 }));
 
 const Footer = () => {
+  const location = useLocation();
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <StyledGrid
@@ -55,7 +57,11 @@ const Footer = () => {
           alignItems={{ xs: "center", sm: "flex-start" }}
         >
           <Link style={{ textDecoration: "none" }} to="/">
-            <img style={{ width: "150px", height: "100px" }} src={logo} alt="" />
+            <img
+              style={{ width: "150px", height: "100px" }}
+              src={logo}
+              alt=""
+            />
           </Link>
 
           <Grid mt={2} item sx={{ textAlign: { xs: "center", sm: "left" } }}>
@@ -76,7 +82,7 @@ const Footer = () => {
             </a>
 
             <a href={links.twitter} target="_blank" rel="noopener noreferrer">
-              <StyledIcon as={Twitter} />
+              <StyledIcon as={X} />
             </a>
 
             <a href={links.youtube} target="_blank" rel="noopener noreferrer">
@@ -175,84 +181,82 @@ const Footer = () => {
             justifyContent: { xs: "center", sm: "flex-end" },
           }}
         >
-          <Link
-            style={{ textDecoration: "none", color: "white" }}
-            target={"_blank"}
-            rel={"noopener noreferrer"}
-            to={
-              "https://app.termly.io/document/privacy-policy/e47d621d-6e02-4088-b35f-f51a55f10112"
-            }
-          >
-            <Typography
-              sx={{
-                fontSize: "13px",
-                cursor: "pointer",
-                "&:hover": {
-                  color: (theme) => theme.palette.primary.hover,
-                },
-              }}
+          {location.pathname !== "/privacy" && (
+            <Link
+              style={{ textDecoration: "none", color: "white" }}
+              to={"/privacy"}
             >
-              Privacy Policy
-            </Typography>
-          </Link>
+              <Typography
+                sx={{
+                  fontSize: "13px",
+                  cursor: "pointer",
+                  "&:hover": {
+                    color: (theme) => theme.palette.primary.hover,
+                  },
+                }}
+              >
+                Privacy Policy
+              </Typography>
+            </Link>
+          )}
+          {location.pathname !== "/privacy" &&
+            location.pathname !== "/cookies" && (
+              <Typography
+                sx={{
+                  fontSize: "13px",
+                }}
+              >
+                &nbsp;-&nbsp;
+              </Typography>
+            )}
           &nbsp;
-          <Typography
-            sx={{
-              fontSize: "13px",
-            }}
-          >
-            -
-          </Typography>
-          &nbsp;
-          <Link
-            style={{ textDecoration: "none", color: "white" }}
-            target={"_blank"}
-            rel={"noopener noreferrer"}
-            to={
-              "https://app.termly.io/document/cookie-policy/af11c7bd-67ff-49a6-a6a6-e24a2fc2c780"
-            }
-          >
-            <Typography
-              sx={{
-                fontSize: "13px",
-                cursor: "pointer",
-                "&:hover": {
-                  color: (theme) => theme.palette.primary.hover,
-                },
-              }}
+          {location.pathname !== "/cookies" && (
+            <Link
+              style={{ textDecoration: "none", color: "white" }}
+              to={"/cookies"}
             >
-              Cookie Policy
-            </Typography>
-          </Link>
+              <Typography
+                sx={{
+                  fontSize: "13px",
+                  cursor: "pointer",
+                  "&:hover": {
+                    color: (theme) => theme.palette.primary.hover,
+                  },
+                }}
+              >
+                Cookie Policy
+              </Typography>
+            </Link>
+          )}
           &nbsp;
-          <Typography
-            sx={{
-              fontSize: "13px",
-            }}
-          >
-            -
-          </Typography>
-          &nbsp;
-          <Link
-            style={{ textDecoration: "none", color: "white" }}
-            target={"_blank"}
-            rel={"noopener noreferrer"}
-            to={
-              "https://app.termly.io/document/terms-of-service/ac135d6d-cdbd-47a4-ab67-74474ddec515"
-            }
-          >
-            <Typography
-              sx={{
-                fontSize: "13px",
-                cursor: "pointer",
-                "&:hover": {
-                  color: (theme) => theme.palette.primary.hover,
-                },
-              }}
-            >
-              Terms and Conditions
-            </Typography>
-          </Link>
+          {location.pathname !== "/terms" && (
+            <>
+              <Typography
+                sx={{
+                  fontSize: "13px",
+                }}
+              >
+                -
+              </Typography>
+              &nbsp;
+              <Link
+                style={{ textDecoration: "none", color: "white" }}
+                to={"/terms"}
+              >
+                <Typography
+                  sx={{
+                    fontSize: "13px",
+                    cursor: "pointer",
+                    "&:hover": {
+                      color: (theme) => theme.palette.primary.hover,
+                    },
+                  }}
+                >
+                  Terms and Conditions
+                </Typography>
+              </Link>
+            </>
+          )}
         </Grid>
       </Grid>
     </Box>

@@ -40,6 +40,10 @@ const DrawerItems = ({ tab, handleDrawerToggle }) => {
     },
   ];
 
+  if (userExists) {
+    drawerTab.pop();
+  }
+
   return (
     <>
       <Toolbar>
@@ -92,11 +96,13 @@ const DrawerItems = ({ tab, handleDrawerToggle }) => {
           <ListItem
             disablePadding
             key={index}
-            component={data.path.startsWith('http') ? 'a' : Link}
-            to={data.path.startsWith('http') ? undefined : data.path}
-            href={data.path.startsWith('http') ? data.path : undefined}
-            target={data.path.startsWith('http') ? '_blank' : undefined}
-            rel={data.path.startsWith('http') ? 'noopener noreferrer' : undefined}
+            component={data.path.startsWith("http") ? "a" : Link}
+            to={data.path.startsWith("http") ? undefined : data.path}
+            href={data.path.startsWith("http") ? data.path : undefined}
+            target={data.path.startsWith("http") ? "_blank" : undefined}
+            rel={
+              data.path.startsWith("http") ? "noopener noreferrer" : undefined
+            }
             sx={{ color: (theme) => theme.palette.text.primary }}
             onClick={handleDrawerToggle}
           >

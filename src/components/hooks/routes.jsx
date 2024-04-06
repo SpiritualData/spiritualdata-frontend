@@ -1,10 +1,7 @@
+import { useEffect, useRef } from "react";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
-import {
-  ClerkProvider,
-  SignedIn,
-  SignedOut,
-} from "@clerk/clerk-react";
-import { hotjar } from 'react-hotjar';
+import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-react";
+import { hotjar } from "react-hotjar";
 
 import Home from "../pages/Home";
 import About from "../pages/About";
@@ -15,9 +12,12 @@ import Chat from "../pages/Chat";
 import LogIn from "../pages/Login";
 import Signup from "../pages/Signup";
 import Donations from "../pages/Donations";
-import { useEffect, useRef } from 'react';
+import Policies from "../pages/Policies";
 
-hotjar.initialize(process.env.REACT_APP_HOTJAR_ID, process.env.REACT_APP_HOTJAR_VERSION || 6)
+hotjar.initialize(
+  process.env.REACT_APP_HOTJAR_ID,
+  process.env.REACT_APP_HOTJAR_VERSION || 6
+);
 export const useRefresh = () => {
   const refreshedRef = useRef(0); // use const
 
@@ -25,10 +25,11 @@ export const useRefresh = () => {
     // Timeout to allow Clerk to load its elements
     const timer = setTimeout(() => {
       // Query for a Clerk-specific DOM element or class
-      const clerkElement = document.querySelector('.cl-rootBox');
-      
+      const clerkElement = document.querySelector(".cl-rootBox");
+
       // If Clerk elements are not found, reload the page
-      if (!clerkElement && refreshedRef.current < 1) { // use current property
+      if (!clerkElement && refreshedRef.current < 1) {
+        // use current property
         console.log("Reloading to get Clerk log in to appear");
         window.location.reload(false);
         refreshedRef.current += 1;
@@ -56,6 +57,15 @@ const useClerkRoutes = () => {
         <Route path="*" element={<NotFound />} />
         <Route path="/sign-in/*" element={<LogIn />} />
         <Route path="/sign-up/*" element={<Signup />} />
+        <Route
+          path="/cookies"
+          element={<Policies fileName="/cookies.html" />}
+        />
+        <Route
+          path="/privacy"
+          element={<Policies fileName="/privacy.html" />}
+        />
+        <Route path="/terms" element={<Policies fileName="/terms.html" />} />
         <Route
           path="/chat"
           element={
