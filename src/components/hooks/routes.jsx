@@ -31,7 +31,7 @@ export const useRefresh = () => {
       if (!clerkElement && refreshedRef.current < 1) {
         // use current property
         console.log("Reloading to get Clerk log in to appear");
-        window.location.reload(false);
+        window.location.reload();
         refreshedRef.current += 1;
       }
     }, 1000); // 1000 milliseconds = 1 second

@@ -9,7 +9,7 @@ import {
   Typography,
   styled,
 } from "@mui/material";
-import { LinkedIn, Twitter, YouTube } from "@mui/icons-material";
+import { LinkedIn, X, YouTube } from "@mui/icons-material";
 import emailjs from "@emailjs/browser";
 
 import PageHeader from "../helpers/PageHeader";
@@ -253,7 +253,7 @@ const Contact = () => {
           </a>
 
           <a href={links.twitter} target="_blank" rel="noopener noreferrer">
-            <StyledIcon as={Twitter} />
+            <StyledIcon as={X} />
           </a>
 
           <a href={links.youtube} target="_blank" rel="noopener noreferrer">
