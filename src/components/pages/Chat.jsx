@@ -268,7 +268,7 @@ const Chat = () => {
       container
       sx={{
         minHeight: "100vh",
-        background: (theme) => theme.palette.text.primary,
+        background: (theme) => theme.palette.chatbot.sidebar,
         color: (theme) => theme.palette.text.secondary,
       }}
     >
@@ -307,8 +307,9 @@ const Chat = () => {
         item
         xs={12}
         md={showSideBar ? 9.4 : 12}
+        lg={showSideBar ? 9.8 : 12}
         sx={{
-          background: "#454655",
+          background: (theme) => theme.palette.chatbot.chatBox,
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
