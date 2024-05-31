@@ -191,7 +191,8 @@ const ChatMessages = ({
                     alignItems="center"
                     textAlign="center"
                     sx={{
-                      border: "1px solid #fff",
+                      border: "1px solid grey",
+                      color: "lightgrey",
                       borderRadius: 2,
                       p: 1.6,
                       cursor: "pointer",
@@ -250,7 +251,11 @@ const ChatUi = ({
     <Grid
       item
       container
-      bgcolor={item.role === "user" ? "#353441" : "transparent"}
+      bgcolor={
+        item.role === "user"
+          ? (theme) => theme.palette.chatbot.sidebar
+          : "transparent"
+      }
       px={{ xs: 1, md: 16 }}
       py={2}
       sx={{ display: "flex", gap: 2 }}
@@ -359,7 +364,12 @@ const DataResults = ({
   }, [isLastItem, showScrollButton, handleScrollToBottom]);
 
   return (
-    <Accordion sx={{ background: "#373643", color: "lightgray" }}>
+    <Accordion
+      sx={{
+        background: (theme) => theme.palette.chatbot.chatBox,
+        color: "lightgray",
+      }}
+    >
       <AccordionSummary
         expandIcon={<ExpandMore />}
         aria-controls="panel-content"
