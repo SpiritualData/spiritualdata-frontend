@@ -153,7 +153,8 @@ const ChatMessages = ({
                 >
                   <ArrowDownward
                     sx={{
-                      background: (theme) => theme.palette.text.primary,
+                      background: '#636363',
+                      color: (theme) => theme.palette.chatbot.sidebar,
                       borderRadius: 100,
                       fontSize: "16px",
                       p: 0.3,
@@ -366,12 +367,12 @@ const DataResults = ({
   return (
     <Accordion
       sx={{
-        background: (theme) => theme.palette.chatbot.chatBox,
+        background: (theme) => theme.palette.chatbot.sidebar,
         color: "lightgray",
       }}
     >
       <AccordionSummary
-        expandIcon={<ExpandMore />}
+        expandIcon={<ExpandMore sx={{color: "lightgray"}}/>}
         aria-controls="panel-content"
         id="panel-header"
       >
