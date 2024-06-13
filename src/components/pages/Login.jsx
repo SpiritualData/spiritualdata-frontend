@@ -1,6 +1,6 @@
 import { SignIn } from "@clerk/clerk-react";
 import { ArrowBack } from "@mui/icons-material";
-import { Button, Grid, Stack } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const LogIn = () => {
