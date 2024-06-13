@@ -6,6 +6,7 @@ import image from "../../assets/about.webp";
 import Joshua from "../../assets/Joshua.jpeg";
 import Sanjay from "../../assets/Sanjay_Rout.jpeg";
 import Jason from "../../assets/Jason_Bramble.jpeg";
+import Petra from "../../assets/Petra_Frese.png";
 import PageDef from "../helpers/PageDef";
 import ContentSection from "../componentsExtended/Home/ContentSection";
 
@@ -47,24 +48,31 @@ But while answering spiritual or metaphysical questions is our niche and why Jos
           imageSrc2={Joshua}
           heading={"Joshua Mathias (Executive Director, Founder)"}
           subText={
-            "Joshua was originally a tech entrepreneur, computational linguist, project manager, and machine learning architect for AI projects. He was also extremely passionate about religion his entire life. In 2022, Joshua realized that subjective feelings wasn't the best way to determine what is true or what authority to listen to, and what's more, he found reliable evidence of spiritual or paranormal concepts that he hadn't heard about or taken seriously before. Joshua became concerned that he and others hadn't learned these things earlier and is determined to find unbiased answers to spiritual questions by letting the data speak for itself. Joshua is now leveraging his experience in computational linguistics and generative AI to analyze firsthand accounts of experiences and research papers to aggregate evidence on both sides of the argument for specific hypotheses. In 2023, he started a PhD in Integral and Transpersonal Psychology at the California Institute of Integral Studies to further this work. He also enjoys barefoot long distance running and helping people as a certified hypnotherapist."
+            "Joshua was originally a tech entrepreneur, computational linguist, project manager, and machine learning architect for AI projects. He was also extremely passionate about religion his entire life. In 2022, Joshua realized that subjective feelings wasn't the best way to determine what is true or what authority to listen to, and what's more, he found reliable evidence of spiritual or paranormal concepts that he hadn't heard about or taken seriously before. Joshua became concerned that he and others hadn't learned these things earlier and is determined to find unbiased answers to spiritual questions by letting the data speak for itself. Joshua is now leveraging his experience in computational linguistics and generative AI to analyze firsthand accounts of experiences and research papers to aggregate evidence on both sides of the argument for scientific hypotheses. In 2023, he started a PhD in Integral and Transpersonal Psychology at the California Institute of Integral Studies to further this work. He also enjoys barefoot long distance running and helping individuals as a certified hypnotherapist."
           }
           buttonText={"Get in touch"}
           path={"/contact"}
           bioHeading={"Spiritual Data's Board Members"}
         />
         <ContentSection
-          imageSrc2={Sanjay}
-          heading={"Sanjay Rout"}
-          subText={
-            "CEO at Innovation Solution Lab, PhD in Human Resource Management."
-          }
-        />
-        <ContentSection
           imageSrc2={Jason}
           heading={"Jason Bramble"}
           subText={
-            "Co-founder at Revcarto (marketing and revenue strategy), Director of Development and Board Member at the education non-profit We Love Philly."
+            "Jason is the CEO & Co-founder of a Revcarto, a revenue operations and enablement agency. Jason is a true visionary and entrepreneur from the inner city of Philadelphia. Jason has been apart of growing (and starting) startups across multiple industries including SAAS, marketing, real estate, web3, entertainment, non-profits, etc. Most recently, Jason created an apprenticeship program with his education non-profit We Love Philly."
+          }
+        />
+        <ContentSection
+          imageSrc2={Petra}
+          heading={"Petra Frese"}
+          subText={
+            "Dr. Petra Frese, a scientist and engineer turned spiritual healer, is an expert in brain health science and peak mental performance. After her multiple Near-Death Experiences, which dramatically widened her horizon and views on life, she integrated her spiritual insights into her science-based coaching practice. Petra is the founder of Peak Mind Academy, serving clients around the globe. She is the award-winning author of two bestselling books and earned the Excellence in Hypnosis Award. Petra holds two PhDs in Psychology. Her motto: “Science plus Wisdom is LOVE.”"
+          }
+        />
+        <ContentSection
+          imageSrc2={Sanjay}
+          heading={"Sanjay Rout"}
+          subText={
+            "Sanjay Rout seamlessly navigates the worlds of psychiatry, technology, journalism, law, coaching, authorship, innovation, and research, bringing together disparate disciplines for the common goal of finding solutions to pressing global issues. Sanjay is a visionary leader with a passion for advancing humanity through his groundbreaking work as CEO of Innovation Solution Lab. He holds a PhD in Human Resource Management and demonstrates his continuing passion for education through a wide variety of online degress."
           }
         />
       </Box>

@@ -57,7 +57,6 @@ const InputField = ({
       container
       display="flex"
       justifyContent="center"
-      sx={{ background: "#353441" }}
       px={{ xs: 2, md: 16 }}
       py={2}
     >
@@ -66,8 +65,7 @@ const InputField = ({
           sx={{
             width: "80%",
             borderRadius: "10px",
-            border: "none",
-            backgroundColor: "#41404F",
+            border: "0.8px solid grey",
           }}
           size="small"
           multiline
