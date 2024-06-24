@@ -67,7 +67,6 @@ const tab = [
   },
 ];
 
-
 function Navbar(props) {
   //   const { window, onClickCreateData, onClickDashboard } = props;
   const location = useLocation();
@@ -210,20 +209,28 @@ function Navbar(props) {
                 }}
                 sx={{ paddingTop: 1 }}
               >
-              {tab.map(({ label, path }, index) => (
-                <StyledTab
-                  sx={{ color: scrolled ? "#222222" : "#fff" }}
-                  key={index}
-                  label={label}
-                  value={path.startsWith('http') ? undefined : path}
-                  component={path.startsWith('http') ? "a" : Link}
-                  to={path.startsWith('http') ? undefined : path}
-                  href={path.startsWith('http') ? path : undefined}
-                  target={path.startsWith('http') ? "_blank" : undefined}
-                  rel={path.startsWith('http') ? "noopener noreferrer" : undefined}
-                  disableRipple
-                />
-              ))}
+                {tab.map(({ label, path }, index) => (
+                  <StyledTab
+                    sx={{ color: scrolled ? "#222222" : "#fff" }}
+                    key={index}
+                    label={label}
+                    value={path.startsWith("http") ? undefined : path}
+                    component={path.startsWith("http") ? "a" : Link}
+                    to={path.startsWith("http") ? undefined : path}
+                    href={path.startsWith("http") ? path : undefined}
+                    target={
+                      path.startsWith("http") && label !== "Newsletter"
+                        ? "_blank"
+                        : undefined
+                    }
+                    rel={
+                      path.startsWith("http") && label !== "Newsletter"
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
+                    disableRipple
+                  />
+                ))}
               </Tabs>
 
               <Button
