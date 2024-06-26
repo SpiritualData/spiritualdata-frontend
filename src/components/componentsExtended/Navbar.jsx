@@ -47,7 +47,7 @@ const tab = [
   },
   {
     label: "Data Discovery",
-    path: "https://spiritualdata.notion.site/Spiritual-Data-7d4fd0cf93454243997820ae6ff0836e",
+    path: "/data-discovery",
     icon: <DataObject />,
   },
   {
