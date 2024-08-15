@@ -27,7 +27,7 @@ const DiscoverMore = () => {
       image: dataDiscovery,
       description:
         "Click here to see the data for yourself at our Notion databases. You'll find experiences, research papers, hypotheses, and current and future data sources.",
-      path: "https://spiritualdata.notion.site/Spiritual-Data-7d4fd0cf93454243997820ae6ff0836e",
+      path: "/data-discovery",
     },
     {
       label: "Follow our Newsletter",
@@ -62,11 +62,14 @@ const DiscoverMore = () => {
       </Stack>
 
       {data.map((item, index) => {
-        const LinkComponent = item.path.startsWith('http') ? 'a' : Link;
-        const linkProps = 
-          item.path.startsWith('http') 
-            ? { href: item.path, target: "_blank", rel: "noreferrer noopener" } 
-            : { to: item.path };
+        const LinkComponent = "a";
+        // item.path.startsWith('http') ? 'a' : Link;
+        const linkProps = {
+          href: item.path,
+        };
+        // item.path.startsWith('http')
+        //   ? { href: item.path, target: "_blank", rel: "noreferrer noopener" }
+        //   : { to: item.path };
 
         return (
           <Grid item xs={12} sm={5.5} md={3.5} key={index}>

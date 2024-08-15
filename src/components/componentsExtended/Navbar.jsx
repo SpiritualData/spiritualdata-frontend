@@ -47,7 +47,7 @@ const tab = [
   },
   {
     label: "Data Discovery",
-    path: "https://spiritualdata.notion.site/Spiritual-Data-7d4fd0cf93454243997820ae6ff0836e",
+    path: "/data-discovery",
     icon: <DataObject />,
   },
   {
@@ -66,7 +66,6 @@ const tab = [
     icon: <Info />,
   },
 ];
-
 
 function Navbar(props) {
   //   const { window, onClickCreateData, onClickDashboard } = props;
@@ -210,20 +209,28 @@ function Navbar(props) {
                 }}
                 sx={{ paddingTop: 1 }}
               >
-              {tab.map(({ label, path }, index) => (
-                <StyledTab
-                  sx={{ color: scrolled ? "#222222" : "#fff" }}
-                  key={index}
-                  label={label}
-                  value={path.startsWith('http') ? undefined : path}
-                  component={path.startsWith('http') ? "a" : Link}
-                  to={path.startsWith('http') ? undefined : path}
-                  href={path.startsWith('http') ? path : undefined}
-                  target={path.startsWith('http') ? "_blank" : undefined}
-                  rel={path.startsWith('http') ? "noopener noreferrer" : undefined}
-                  disableRipple
-                />
-              ))}
+                {tab.map(({ label, path }, index) => (
+                  <StyledTab
+                    sx={{ color: scrolled ? "#222222" : "#fff" }}
+                    key={index}
+                    label={label}
+                    value={path.startsWith("http") ? undefined : path}
+                    component={path.startsWith("http") ? "a" : Link}
+                    to={path.startsWith("http") ? undefined : path}
+                    href={path.startsWith("http") ? path : undefined}
+                    target={
+                      path.startsWith("http") && label !== "Newsletter"
+                        ? "_blank"
+                        : undefined
+                    }
+                    rel={
+                      path.startsWith("http") && label !== "Newsletter"
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
+                    disableRipple
+                  />
+                ))}
               </Tabs>
 
               <Button

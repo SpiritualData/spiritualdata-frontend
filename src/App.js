@@ -10,7 +10,7 @@ import ScrollToTop from "./components/helpers/ScrollToTop";
 
 function App() {
   const location = useLocation();
-  const locations = ["/chat", "/sign-in", "/sign-up"];
+  const locations = ["/outcome-chat", "/chat", "/sign-in", "/sign-up"];
 
   const partialSimilarityCheck = (locations, pathname) => {
     return locations.some((location) => pathname.startsWith(location));

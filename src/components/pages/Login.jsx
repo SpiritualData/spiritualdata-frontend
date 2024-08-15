@@ -1,11 +1,25 @@
 import { SignIn } from "@clerk/clerk-react";
-import { ArrowBack } from "@mui/icons-material";
-import { Button, Grid } from "@mui/material";
+import { ArrowBack, Info } from "@mui/icons-material";
+import { Button, Chip, Grid, Tooltip } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const LogIn = () => {
   localStorage.removeItem("user");
-  
+
+  const tooltipContent = (
+    <>
+      Ensure that Chrome’s popup blocker is not preventing the Clerk popup from
+      appearing:
+      <br />
+      <br />
+      - Go to Chrome Settings → Privacy and Security → Site Settings → Pop-ups
+      and redirects.
+      <br />
+      <br />- Make sure the setting allows pop-ups from the site you are working
+      on.
+    </>
+  );
+
   return (
     <Grid
       container
@@ -29,6 +43,22 @@ const LogIn = () => {
       >
         Go to Home
       </Button>
+
+      <Tooltip title={tooltipContent} placement="top" arrow>
+        <Chip
+          icon={<Info />}
+          label="Still don't see a pop-up? Hover for instructions or click to refresh"
+          sx={{
+            position: "absolute",
+            top: { xs: 70, sm: 20 },
+            right: { xs: 10, sm: 20 },
+            color: "#4691B8",
+            borderColor: "#4691B8",
+            cursor: "pointer",
+          }}
+          onClick={() => window.location.reload(false)}
+        />
+      </Tooltip>
 
       <SignIn
         redirectUrl={"/chat"}

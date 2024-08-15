@@ -86,15 +86,17 @@ function SettingsMenu({ saveChat, setSaveChat }) {
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleClose}
-        MenuListProps={{ sx: { py: 0 } }}
+        MenuListProps={{
+          sx: { py: 0, background: (theme) => theme.palette.chatbot.sidebar },
+        }}
       >
         <MenuItem
           sx={{
             paddingLeft: 0,
-            background: (theme) => theme.palette.text.primary,
+            background: (theme) => theme.palette.chatbot.sidebar,
             color: (theme) => theme.palette.text.secondary,
             "&:hover": {
-              background: (theme) => theme.palette.text.primary,
+              background: (theme) => theme.palette.chatbot.sidebar,
               color: (theme) => theme.palette.text.secondary,
             },
           }}

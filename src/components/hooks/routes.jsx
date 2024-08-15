@@ -13,6 +13,7 @@ import LogIn from "../pages/Login";
 import Signup from "../pages/Signup";
 import Donations from "../pages/Donations";
 import Policies from "../pages/Policies";
+import OutcomeChat from "../pages/OutcomeChat";
 
 hotjar.initialize(
   process.env.REACT_APP_HOTJAR_ID,
@@ -71,6 +72,14 @@ const useClerkRoutes = () => {
           element={
             <RequireAuthentication>
               <Chat />
+            </RequireAuthentication>
+          }
+        />
+        <Route
+          path="/outcome-chat"
+          element={
+            <RequireAuthentication>
+              <OutcomeChat />
             </RequireAuthentication>
           }
         />
