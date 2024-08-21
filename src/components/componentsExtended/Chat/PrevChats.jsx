@@ -44,7 +44,7 @@ const StyledListItemIcon = styled(ListItemIcon)`
 `;
 
 export default function ChatHistory({
-  chatHistory,
+  chatHistory = [],
   setChatHistory,
   selected,
   loadingList,
@@ -99,7 +99,7 @@ export default function ChatHistory({
         <ErrorComponent errorFunction={fetchChatHistory} />
       ) : (
         <StyledList>
-          {chatHistory.length > 0 ? (
+          {Array.isArray(chatHistory) && chatHistory.length > 0 ? (
             chatHistory.map((item, index) => (
               <StyledListItem
                 key={index}

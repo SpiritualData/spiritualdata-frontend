@@ -97,7 +97,8 @@ const Chat = () => {
     const fetchChatHistory = async () => {
       try {
         const response = await axios.get("/chat/list");
-        setChatHistory(response.data);
+        const chats = Array.isArray(response.data) ? response.data : [];
+        setChatHistory(chats);
         setLoadingList(false);
       } catch (error) {
         setLoadingList(false);
