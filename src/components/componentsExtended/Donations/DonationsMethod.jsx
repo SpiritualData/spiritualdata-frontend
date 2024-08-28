@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import {
   Button,
   Card,
@@ -29,20 +28,6 @@ const data = [
 ];
 
 const DonationMethod = () => {
-  useEffect(() => {
-      // Load PayPal SDK when the component is mounted
-      if (window.PayPal) {
-        window.PayPal.Donation.Button({
-          env: "production",
-          hosted_button_id: "KVX8B435LBFY4",
-          image: {
-            src: "https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif",
-            alt: "Donate with PayPal button",
-            title: "PayPal - The safer, easier way to pay online!",
-          },
-        }).render("#paypal-button-container");
-      }
-    });
 
   return (
     <Grid
