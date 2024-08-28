@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Button,
   Card,
@@ -9,24 +9,23 @@ import {
   Typography,
 } from "@mui/material";
 
-import paypal from "../../../assets/paypal-logo.webp";
 import stripe from "../../../assets/stripe.png";
-import AmountDialouge from "./AmountDialouge";
+import paypal from "../../../assets/paypal-logo.webp";
 
 const data = [
   {
     label: "Paypal",
-    image: paypal,
+    image: paypal, // We will directly embed the PayPal button instead of using an image
     description:
       "PayPal is supported in more than 200 countries. A PayPal account is not required.",
-    path: "#paypal",
+    path: "https://www.paypal.com/donate/?hosted_button_id=KVX8B435LBFY4",
   },
   {
     label: "Stripe",
     image: stripe,
     description:
       "Stripe is supported in 46 countries.",
-    path: "#stripe",
+    path: "https://donate.stripe.com/7sI03ggDG42kb6g9AA",
   },
 ];
 
@@ -35,6 +34,21 @@ const DonationMethod = () => {
   const [label, setLabel] = useState();
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [amount, setAmount] = useState("10");
+
+  useEffect(() => {
+      // Load PayPal SDK when the component is mounted
+      if (window.PayPal) {
+        window.PayPal.Donation.Button({
+          env: "production",
+          hosted_button_id: "KVX8B435LBFY4",
+          image: {
+            src: "https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif",
+            alt: "Donate with PayPal button",
+            title: "PayPal - The safer, easier way to pay online!",
+          },
+        }).render("#paypal-button-container");
+      }
+    });
 
   const numberPattern = /^(\d+\.?\d*|\.\d+)$/;
 
@@ -51,13 +65,16 @@ const DonationMethod = () => {
     const { value } = event.target;
     if (numberPattern.test(value)) {
       setAmount(value);
-    } else if (value === '') {
-      setAmount('0.1');
+    } else if (value === "") {
+      setAmount("0.1");
     }
   };
 
   const handleContinue = () => {
     handleClosePopup();
+    if (label === "Stripe") {
+      window.location.href = "https://your-stripe-checkout-url";
+    }
   };
 
   const onToken = (token) => {
@@ -110,62 +127,42 @@ const DonationMethod = () => {
                   },
                 },
               }}
-              onClick={() => handleOpenPopup(item.label)}
             >
               <CardContent sx={{ flexGrow: 1, pb: 1 }}>
-                <img
-                  src={item.image}
-                  alt={item.label}
-                  width="180"
-                  height="120"
-                  style={{
-                    transform:
-                      item.label === "Paypal" ? "scale(1.6)" : "scale(1.1)",
-                  }}
-                />
-                <Typography variant="body1" sx={{ textAlign: "left", color: "black" }}>
-                  {item.description}
-                </Typography>
+                  <>
+                    <img
+                      src={item.image}
+                      alt={item.label}
+                      width="180"
+                      height="120"
+                      style={{
+                        transform: item.label === "Stripe" ? "scale(1.1)" : "none",
+                      }}
+                    />
+                    <Typography variant="body1" sx={{ textAlign: "left", color: "black" }}>
+                      {item.description}
+                    </Typography>
+                  </>
               </CardContent>
-              <Button
-                sx={{
-                  background: "black",
-                  color: (theme) => theme.palette.text.secondary,
-                  textTransform: "none",
-                  height: "42px",
-                  width: "200px",
-                  px: 6,
-                  borderRadius: 20,
-                }}
-              >
-                Use {item.label}
-              </Button>
+                <Button
+                  sx={{
+                    background: "black",
+                    color: (theme) => theme.palette.text.secondary,
+                    textTransform: "none",
+                    height: "42px",
+                    width: "200px",
+                    px: 6,
+                    borderRadius: 20,
+                  }}
+                  onClick={() => window.location.href = item.path}
+                >
+                  Use {item.label}
+                </Button>
             </Card>
           </Grid>
         );
       })}
 
-
-      <AmountDialouge
-        openPopup={openPopup}
-        handleAmountChange={handleAmountChange}
-        handleContinue={handleContinue}
-        handleClosePopup={handleClosePopup}
-        onToken={onToken}
-        amount={amount}
-        label={label}
-      />
-
-      <Snackbar
-        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-        open={showSnackbar}
-        autoHideDuration={3000}
-        onClose={() => setShowSnackbar(false)}
-        message="Donation Successful, thank you for your contribution!"
-        ContentProps={{
-          style: { backgroundColor: "green", color: "white" },
-        }}
-      />
     </Grid>
   );
 };

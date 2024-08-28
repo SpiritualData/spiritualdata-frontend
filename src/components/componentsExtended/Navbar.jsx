@@ -65,6 +65,11 @@ const tab = [
     path: "/about",
     icon: <Info />,
   },
+  {
+    label: "Donate",
+    path: "/donations",
+    icon: <Info />,
+  }
 ];
 
 function Navbar(props) {

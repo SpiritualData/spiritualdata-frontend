@@ -82,21 +82,21 @@ const DataItem = ({ val }) => {
 const DataDiscovery = () => {
   const data = [
     {
-      name: "Spiritual Hypotheses",
+      name: "Hypotheses",
       buttonText: "SUBMIT A HYPOTHESIS",
-      maxNumber: 9876,
+      maxNumber: 100,
       path: "https://forms.gle/GmCTXs8V6ZCpFs8z5",
     },
     {
-      name: "Spiritual Experiences",
+      name: "Experiences",
       buttonText: "SUBMIT AN EXPERIENCE",
-      maxNumber: 5432,
+      maxNumber: 5998,
       path: "https://forms.gle/oF6HvwPoc2Ndf9bT9",
     },
     {
-      name: "Spiritual Researchs",
+      name: "Research",
       buttonText: "SUBMIT EVIDENCE OR RESEARCH STUDY",
-      maxNumber: 3456,
+      maxNumber: 24,
       path: "https://docs.google.com/forms/u/1/d/e/1FAIpQLSfsRYQBweDGRGrFsu52UbwZx4px5h9G-7XWRHMtMywtN7jelw/viewform?usp=send_form",
     },
   ];
@@ -163,7 +163,7 @@ const DataDiscovery = () => {
             textAlign: "center",
           }}
         >
-          Years of research and data collection from real users have provided
+          Years of research and data collection have provided
           insights into profound spiritual experiences. Analyzing patterns and
           commonalities, we continue to develop hypotheses, deepening our
           understanding of spirituality's impact on individuals and communities.
