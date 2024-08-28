@@ -47,7 +47,7 @@ const LogIn = () => {
       <Tooltip title={tooltipContent} placement="top" arrow>
         <Chip
           icon={<Info />}
-          label="Still don't see a pop-up? Hover for instructions or click to refresh"
+          label="Still don't see the form? Hover for instructions or click to refresh"
           sx={{
             position: "absolute",
             top: { xs: 70, sm: 20 },
