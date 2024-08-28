@@ -29,8 +29,6 @@ const data = [
 ];
 
 const DonationMethod = () => {
-  const [label, setLabel] = useState();
-
   useEffect(() => {
       // Load PayPal SDK when the component is mounted
       if (window.PayPal) {
