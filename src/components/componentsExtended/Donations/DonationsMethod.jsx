@@ -4,7 +4,6 @@ import {
   Card,
   CardContent,
   Grid,
-  Snackbar,
   Stack,
   Typography,
 } from "@mui/material";
@@ -30,10 +29,7 @@ const data = [
 ];
 
 const DonationMethod = () => {
-  const [openPopup, setOpenPopup] = useState(false);
   const [label, setLabel] = useState();
-  const [showSnackbar, setShowSnackbar] = useState(false);
-  const [amount, setAmount] = useState("10");
 
   useEffect(() => {
       // Load PayPal SDK when the component is mounted
@@ -49,37 +45,6 @@ const DonationMethod = () => {
         }).render("#paypal-button-container");
       }
     });
-
-  const numberPattern = /^(\d+\.?\d*|\.\d+)$/;
-
-  const handleOpenPopup = (label) => {
-    setLabel(label);
-    setOpenPopup(true);
-  };
-
-  const handleClosePopup = () => {
-    setOpenPopup(false);
-  };
-
-  const handleAmountChange = (event) => {
-    const { value } = event.target;
-    if (numberPattern.test(value)) {
-      setAmount(value);
-    } else if (value === "") {
-      setAmount("0.1");
-    }
-  };
-
-  const handleContinue = () => {
-    handleClosePopup();
-    if (label === "Stripe") {
-      window.location.href = "https://your-stripe-checkout-url";
-    }
-  };
-
-  const onToken = (token) => {
-    setShowSnackbar(true);
-  };
 
   return (
     <Grid
