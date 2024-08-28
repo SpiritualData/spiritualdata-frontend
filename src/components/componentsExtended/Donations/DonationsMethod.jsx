@@ -18,7 +18,7 @@ const data = [
     image: paypal, // We will directly embed the PayPal button instead of using an image
     description:
       "PayPal is supported in more than 200 countries. A PayPal account is not required.",
-    path: "#paypal",
+    path: "https://www.paypal.com/donate/?hosted_button_id=KVX8B435LBFY4",
   },
   {
     label: "Stripe",
@@ -129,11 +129,6 @@ const DonationMethod = () => {
               }}
             >
               <CardContent sx={{ flexGrow: 1, pb: 1 }}>
-                {item.label === "PayPal" ? (
-                  <div id="paypal-button-container">
-                    {/* PayPal button will be rendered here */}
-                  </div>
-                ) : (
                   <>
                     <img
                       src={item.image}
@@ -148,9 +143,7 @@ const DonationMethod = () => {
                       {item.description}
                     </Typography>
                   </>
-                )}
               </CardContent>
-              {item.label === "Stripe" ? (
                 <Button
                   sx={{
                     background: "black",
@@ -165,13 +158,6 @@ const DonationMethod = () => {
                 >
                   Use {item.label}
                 </Button>
-              ) : (
-                <div style={{ width: "100%", textAlign: "center" }}>
-                  <div id="paypal-button-container">
-                    {/* PayPal button is rendered here */}
-                  </div>
-                </div>
-              )}
             </Card>
           </Grid>
         );
