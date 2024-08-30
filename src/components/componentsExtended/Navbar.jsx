@@ -46,6 +46,11 @@ const tab = [
     icon: <Home />,
   },
   {
+    label: "Donate",
+    path: "/donations",
+    icon: <Info />,
+  },
+  {
     label: "Data Discovery",
     path: "/data-discovery",
     icon: <DataObject />,
@@ -63,11 +68,6 @@ const tab = [
   {
     label: "About",
     path: "/about",
-    icon: <Info />,
-  },
-  {
-    label: "Donate",
-    path: "/donations",
     icon: <Info />,
   }
 ];
