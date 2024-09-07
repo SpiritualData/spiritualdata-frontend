@@ -34,7 +34,7 @@ const DrawerItems = ({ tab, handleDrawerToggle }) => {
       icon: userExists ? <Message /> : <Login />,
     },
     {
-      label: "Sign up",
+      label: "Sign Up",
       path: "/sign-up",
       icon: <Input />,
     },
