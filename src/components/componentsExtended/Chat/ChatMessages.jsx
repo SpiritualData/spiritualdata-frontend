@@ -20,7 +20,7 @@ import {
   Launch,
 } from "@mui/icons-material";
 import TypeWriter from "react-typewriter";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useLocation } from "react-router-dom";
 
 import ChatSvg from "./ChatSvg";
 import ChatSkeleton from "../../helpers/ChatSkeleton";
@@ -71,6 +71,7 @@ const ChatMessages = ({
   setIsTyping,
   fetchChat,
 }) => {
+  const location = useLocation();
   const [showScrollButton, setShowScrollButton] = useState(false);
 
   useEffect(() => {
@@ -153,7 +154,7 @@ const ChatMessages = ({
                 >
                   <ArrowDownward
                     sx={{
-                      background: '#636363',
+                      background: "#636363",
                       color: (theme) => theme.palette.chatbot.sidebar,
                       borderRadius: 100,
                       fontSize: "16px",
@@ -169,7 +170,7 @@ const ChatMessages = ({
           ) : (
             <Grid
               container
-              px={{ xs: 2, md: 16 }}
+              px={location.pathname === "/chat" ? { xs: 2, md: 16 } : 2}
               py={2}
               display="flex"
               justifyContent="center"
@@ -223,6 +224,7 @@ const ChatUi = ({
   setIsTyping,
   showScrollButton,
 }) => {
+  const location = useLocation();
   const [showTick, setShowTick] = useState(false);
 
   useEffect(() => {
@@ -257,7 +259,7 @@ const ChatUi = ({
           ? (theme) => theme.palette.chatbot.sidebar
           : "transparent"
       }
-      px={{ xs: 1, md: 16 }}
+      px={location.pathname === "/chat" ? { xs: 1, md: 16 } : { xs: 1, md: 2 }}
       py={2}
       sx={{ display: "flex", gap: 2 }}
     >
@@ -372,7 +374,7 @@ const DataResults = ({
       }}
     >
       <AccordionSummary
-        expandIcon={<ExpandMore sx={{color: "lightgray"}}/>}
+        expandIcon={<ExpandMore sx={{ color: "lightgray" }} />}
         aria-controls="panel-content"
         id="panel-header"
       >

@@ -11,7 +11,6 @@ import {
 import donation from "../../../assets/donation.png";
 import dataDiscovery from "../../../assets/data.jpeg";
 import blog from "../../../assets/blog.png";
-// import { Link } from "react-router-dom";
 
 const DiscoverMore = () => {
   const data = [

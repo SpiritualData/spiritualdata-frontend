@@ -163,12 +163,12 @@ const DataDiscovery = () => {
             textAlign: "center",
           }}
         >
-          Years of research and data collection have provided
-          insights into profound spiritual experiences. Analyzing patterns and
-          commonalities, we continue to develop hypotheses, deepening our
-          understanding of spirituality's impact on individuals and communities.
-          Embracing the mysteries, we aim to enrich the human spiritual journey
-          with our rapidly increasing numbers of database statistics.
+          Years of research and data collection have provided insights into
+          profound spiritual experiences. Analyzing patterns and commonalities,
+          we continue to develop hypotheses, deepening our understanding of
+          spirituality's impact on individuals and communities. Embracing the
+          mysteries, we aim to enrich the human spiritual journey with our
+          rapidly increasing numbers of database statistics.
         </Typography>
 
         <Grid container item px={{ xs: 0, sm: "8%" }}>
@@ -187,12 +187,7 @@ const DataDiscovery = () => {
             height: "40px",
           }}
         >
-          <a
-            href="https://spiritualdata.org"
-            target="_blank"
-            rel="noreferrer"
-            style={{ textDecoration: "none" }}
-          >
+          <a href="/donations" style={{ textDecoration: "none" }}>
             <Button
               variant="text"
               sx={{

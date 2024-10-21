@@ -1,22 +1,22 @@
 import { SignUp } from "@clerk/clerk-react";
-import { ArrowBack, Info } from "@mui/icons-material";
-import { Button, Chip, Grid, Tooltip } from "@mui/material";
+import { ArrowBack } from "@mui/icons-material";
+import { Button, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const Signup = () => {
-  const tooltipContent = (
-    <>
-      Ensure that Chrome’s popup blocker is not preventing the Clerk popup from
-      appearing:
-      <br />
-      <br />
-      - Go to Chrome Settings → Privacy and Security → Site Settings → Pop-ups
-      and redirects.
-      <br />
-      <br />- Make sure the setting allows pop-ups from the site you are working
-      on.
-    </>
-  );
+  // const tooltipContent = (
+  //   <>
+  //     Ensure that Chrome’s popup blocker is not preventing the Clerk popup from
+  //     appearing:
+  //     <br />
+  //     <br />
+  //     - Go to Chrome Settings → Privacy and Security → Site Settings → Pop-ups
+  //     and redirects.
+  //     <br />
+  //     <br />- Make sure the setting allows pop-ups from the site you are working
+  //     on.
+  //   </>
+  // );
 
   return (
     <Grid
@@ -42,7 +42,7 @@ const Signup = () => {
         Go to Home
       </Button>
 
-      <Tooltip title={tooltipContent} placement="top" arrow>
+      {/* <Tooltip title={tooltipContent} placement="top" arrow>
         <Chip
           icon={<Info />}
           label="Still don't see the form? Hover for instructions or click to refresh"
@@ -56,7 +56,7 @@ const Signup = () => {
           }}
           onClick={() => window.location.reload(false)}
         />
-      </Tooltip>
+      </Tooltip> */}
 
       <SignUp
         redirectUrl={"/chat"}
