@@ -109,7 +109,9 @@ export default function ChatHistory({
                 }}
                 sx={{
                   background:
-                    selected === item.chat_id ? "#353441" : "transparent",
+                    selected === item.chat_id
+                      ? (theme) => theme.palette.chatbot.chatBox
+                      : "transparent",
                   "&:hover": {
                     opacity: selected !== item.chat_id && 0.6,
                   },
@@ -196,8 +198,8 @@ export default function ChatHistory({
         spacing={2}
         sx={{
           color: "lightgray",
-          borderTop: "1px solid black",
-          py: 2,
+          borderTop: "0.8px solid grey",
+          pt: 2,
           px: 1,
         }}
       >

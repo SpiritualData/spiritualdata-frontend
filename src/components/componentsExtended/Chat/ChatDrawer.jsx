@@ -26,7 +26,7 @@ const ChatDrawer = ({
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
             width: "280px",
-            background: (theme) => theme.palette.text.primary,
+            background: (theme) => theme.palette.chatbot.sidebar,
             color: (theme) => theme.palette.text.secondary,
             py: 2,
             px: 1,

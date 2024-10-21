@@ -43,7 +43,6 @@ const popupButtonStyle = {
 const AmountDialouge = ({
   openPopup,
   handleAmountChange,
-  handleContinue,
   onToken,
   handleClosePopup,
   amount,
@@ -72,7 +71,6 @@ const AmountDialouge = ({
             >
               <Button
                 disabled={!amount || Number(amount) === 0}
-                onClick={handleContinue}
                 sx={popupButtonStyle}
               >
                 Continue

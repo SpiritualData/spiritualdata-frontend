@@ -9,7 +9,7 @@ import {
   Typography,
   styled,
 } from "@mui/material";
-import { LinkedIn, Twitter, YouTube } from "@mui/icons-material";
+import { LinkedIn, X, YouTube } from "@mui/icons-material";
 import emailjs from "@emailjs/browser";
 
 import PageHeader from "../helpers/PageHeader";
@@ -234,18 +234,23 @@ const Contact = () => {
         >
           Email Address:
         </Typography>
-        <Typography
-          sx={{
-            fontSize: { xs: "20px", md: "26px" },
-            fontWeight: "bold",
-            color: (theme) => theme.palette.primary.focus,
-            "&:hover": {
-              color: (theme) => theme.palette.primary.hover,
-            },
-          }}
+        <a
+          href="mailto:support@spiritualdata.org"
+          style={{ textDecoration: "none" }}
         >
-          support@spiritualdata.org
-        </Typography>
+          <Typography
+            sx={{
+              fontSize: { xs: "20px", md: "26px" },
+              fontWeight: "bold",
+              color: (theme) => theme.palette.primary.focus,
+              "&:hover": {
+                color: (theme) => theme.palette.primary.hover,
+              },
+            }}
+          >
+            support@spiritualdata.org
+          </Typography>
+        </a>
 
         <Grid item mt={2} sx={{ gap: 10 }}>
           <a href={links.linkedin} target="_blank" rel="noopener noreferrer">
@@ -253,7 +258,7 @@ const Contact = () => {
           </a>
 
           <a href={links.twitter} target="_blank" rel="noopener noreferrer">
-            <StyledIcon as={Twitter} />
+            <StyledIcon as={X} />
           </a>
 
           <a href={links.youtube} target="_blank" rel="noopener noreferrer">

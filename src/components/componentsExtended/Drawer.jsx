@@ -29,13 +29,13 @@ const DrawerItems = ({ tab, handleDrawerToggle }) => {
 
   const drawerTab = [
     {
-      label: userExists ? "Chat" : "SignIn",
+      label: userExists ? "Chat" : "Sign In",
       path: userExists ? "/chat" : "/sign-in",
       icon: userExists ? <Message /> : <Login />,
     },
     {
-      label: "Signup",
-      path: "/signup",
+      label: "Sign Up",
+      path: "/sign-up",
       icon: <Input />,
     },
   ];

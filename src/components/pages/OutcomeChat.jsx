@@ -1,6 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Box, Grid, IconButton, Stack } from "@mui/material";
-import { AutoAwesomeMosaic, Menu } from "@mui/icons-material";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Button,
+  Card,
+  Grid,
+  IconButton,
+  Stack,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+import { AutoAwesomeMosaic, ExpandMore, Menu } from "@mui/icons-material";
 import { useAuth } from "@clerk/clerk-react";
 
 import axios, { setToken } from "../utils/axios";
@@ -10,11 +22,14 @@ import ChatMessages from "../componentsExtended/Chat/ChatMessages";
 import ChatDrawer from "../componentsExtended/Chat/ChatDrawer";
 import SnackbarAlert from "../helpers/SnackbarAlert";
 import SettingsMenu from "../componentsExtended/Chat/Settings";
+import Outcome from "../componentsExtended/Chat/Outcome";
 // import { DummyChatHistory } from "../componentsExtended/Chat/DummyChat";
 
-const Chat = () => {
+const OutcomeChat = () => {
+  const theme = useTheme();
   const containerRef = useRef(null);
   const { isLoaded, userId, getToken } = useAuth();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const [chat, setChat] = useState([]);
   const [selected, setSelected] = useState();
@@ -354,33 +369,103 @@ const Chat = () => {
           <SettingsMenu saveChat={saveChat} setSaveChat={setSaveChat} />
         </Grid>
 
-        <Box bottom={0}>
-          <ChatMessages
-            chat={chat}
-            loading={loading}
-            selected={selected}
-            error={error}
-            isTyping={isTyping}
-            setIsTyping={setIsTyping}
-            showSideBar={showSideBar}
-            containerRef={containerRef}
-            fetchChat={fetchChat}
-            setInput={setInput}
-          />
+        {isSmallScreen && (
+          <Grid item xs={12}>
+            <Accordion
+              sx={{
+                mx: 2,
+                background: (theme) => theme.palette.chatbot.sidebar,
+              }}
+            >
+              <AccordionSummary
+                expandIcon={
+                  <ExpandMore
+                    sx={{ color: (theme) => theme.palette.text.secondary }}
+                  />
+                }
+              >
+                <Button
+                  variant="text"
+                  sx={{ color: (theme) => theme.palette.text.secondary }}
+                >
+                  Chat Outcome
+                </Button>
+              </AccordionSummary>
+              <AccordionDetails>
+                <div
+                  style={{
+                    color: "white",
+                    padding: "16px",
+                  }}
+                >
+                  <Outcome />
+                </div>
+              </AccordionDetails>
+            </Accordion>
+          </Grid>
+        )}
 
-          <InputField
-            input={input}
-            selected={selected}
-            error={error}
-            chatHistory={chatHistory}
-            isTyping={isTyping}
-            setInput={setInput}
-            handleSend={handleSend}
-          />
+        <Box bottom={0}>
+          <Grid container>
+            <Grid
+              item
+              xs={12}
+              md={9}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-end",
+              }}
+            >
+              <ChatMessages
+                chat={chat}
+                loading={loading}
+                selected={selected}
+                error={error}
+                isTyping={isTyping}
+                setIsTyping={setIsTyping}
+                showSideBar={showSideBar}
+                containerRef={containerRef}
+                fetchChat={fetchChat}
+                setInput={setInput}
+              />
+
+              <InputField
+                input={input}
+                selected={selected}
+                error={error}
+                chatHistory={chatHistory}
+                isTyping={isTyping}
+                setInput={setInput}
+                handleSend={handleSend}
+              />
+            </Grid>
+
+            {!isSmallScreen && (
+              <Grid item md={3} sx={{ pr: 2, pb: 6 }}>
+                  <Card
+                    style={{
+                      backgroundColor: "#2f2f2f",
+                      color: "white",
+                      padding: "16px",
+                      height: "80vh",
+                      mr: "10px",
+                      borderRadius: 10,
+                    }}
+                  >
+                    <br />
+                    <b>
+                      <center>Chat Outcome</center>
+                    </b>
+                    <Outcome />
+                  </Card>
+              </Grid>
+            )}
+          </Grid>
         </Box>
       </Grid>
     </Grid>
   );
 };
 
-export default Chat;
+export default OutcomeChat;

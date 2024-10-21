@@ -13,6 +13,7 @@ import LogIn from "../pages/Login";
 import Signup from "../pages/Signup";
 import Donations from "../pages/Donations";
 import Policies from "../pages/Policies";
+import OutcomeChat from "../pages/OutcomeChat";
 
 hotjar.initialize(
   process.env.REACT_APP_HOTJAR_ID,
@@ -31,7 +32,7 @@ export const useRefresh = () => {
       if (!clerkElement && refreshedRef.current < 1) {
         // use current property
         console.log("Reloading to get Clerk log in to appear");
-        window.location.reload(false);
+        window.location.reload();
         refreshedRef.current += 1;
       }
     }, 1000); // 1000 milliseconds = 1 second
@@ -71,6 +72,14 @@ const useClerkRoutes = () => {
           element={
             <RequireAuthentication>
               <Chat />
+            </RequireAuthentication>
+          }
+        />
+        <Route
+          path="/outcome-chat"
+          element={
+            <RequireAuthentication>
+              <OutcomeChat />
             </RequireAuthentication>
           }
         />
