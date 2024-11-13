@@ -73,7 +73,26 @@ const Outcome = () => {
             </List>
           </Box>
 
-          
+          <Box my={2}>
+            <Typography fontWeight="bold">Progress</Typography>
+            <Box
+              bgcolor="grey.100"
+              height={200}
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              marginTop={2}
+            >
+             <BarChart
+                width={320}
+                height={250}
+                dataset={chartData} 
+                series={[{ dataKey: "value" }]}
+                xAxis={[{ scaleType: "band", dataKey: "label" }]}
+                yAxis={[{ dataKey: "value" }]}
+              />
+            </Box>
+          </Box>
         </Box>
       </Box>
     </Box>
