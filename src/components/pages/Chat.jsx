@@ -348,7 +348,7 @@ const Chat = () => {
           )}
 
           <Stack width="100%">
-            <p>Model: OpenAI GPT3.5</p>
+            <p>Model: OpenAI GPT4o Mini</p>
           </Stack>
 
           <SettingsMenu saveChat={saveChat} setSaveChat={setSaveChat} />
