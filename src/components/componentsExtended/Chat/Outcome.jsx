@@ -61,7 +61,7 @@ const Outcome = () => {
           </Box>
 
           <Box my={2}>
-            <Typography fontWeight="bold">Suggestions</Typography>
+            <Typography fontWeight="bold">Plan</Typography>
             <List dense>
               {suggestions.map((item, index) => (
                 <ListItem key={index} sx={{ padding: 0 }}>
