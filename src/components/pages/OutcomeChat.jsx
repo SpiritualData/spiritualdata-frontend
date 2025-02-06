@@ -23,8 +23,8 @@ import SnackbarAlert from "../helpers/SnackbarAlert";
 import SettingsMenu from "../componentsExtended/Chat/Settings";
 import Outcome from "../componentsExtended/Chat/Outcome";
 import ChatSkeleton from "../helpers/ChatSkeleton";
-import SubscriptionModal from "../componentsExtended/StripeSubscription/SubscriptionModal";
-import ConfirmationModal from "../componentsExtended/StripeSubscription/PaymentConfirmation";
+// import SubscriptionModal from "../componentsExtended/StripeSubscription/SubscriptionModal";
+// import ConfirmationModal from "../componentsExtended/StripeSubscription/PaymentConfirmation";
 import { useSearchParams } from 'react-router-dom';
 
 const OutcomeChat = () => {
@@ -317,7 +317,7 @@ const OutcomeChat = () => {
 
   return (
     <>
-      {isSubscribed &&
+      {/* {isSubscribed &&
         <SubscriptionModal isSubscribed={isSubscribed} userId={userId} setIsSubscribed={setIsSubscribed} />
       }
       {isSuccess &&
@@ -325,7 +325,7 @@ const OutcomeChat = () => {
       }
       {isCancel &&
         <ConfirmationModal isOpen={isCancel} setOpen={setIsCancel} box={"cancel"} />
-      }
+      } */}
       <Grid
         container
         sx={{
