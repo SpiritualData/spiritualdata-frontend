@@ -14,7 +14,7 @@ import paypal from "../../../assets/paypal-logo.webp";
 const data = [
   {
     label: "Paypal",
-    image: paypal, // We will directly embed the PayPal button instead of using an image
+    image: paypal,
     description:
       "PayPal is supported in more than 200 countries. A PayPal account is not required.",
     path: "https://www.paypal.com/donate/?hosted_button_id=KVX8B435LBFY4",
