@@ -1,10 +1,6 @@
-import { Modal, Box, Typography, Button } from "@mui/material";
-import {
-  createSubscription,
-  redirectToCheckout,
-} from "../../utils/services/paymentService";
+import { Modal, Box, Typography } from "@mui/material";
 
-const SubscriptionModal = ({ isSubscribed, userId, setIsSubscribed }) => {
+const SubscriptionModal = ({ isSubscribed, setIsSubscribed }) => {
   // const handleSubscribe = async () => {
   //   try {
   //     const session = await createSubscription(
@@ -81,7 +77,7 @@ const SubscriptionModal = ({ isSubscribed, userId, setIsSubscribed }) => {
         >
           Please click the Subscribe button to start chatting.
         </Typography>
-        {/* <Box
+        <Box
           sx={{
             display: "flex",
             gap: 2,
@@ -89,7 +85,7 @@ const SubscriptionModal = ({ isSubscribed, userId, setIsSubscribed }) => {
             mt: 4,
           }}
         >
-          <Button
+          {/* <Button
             variant="outlined"
             color="primary"
             onClick={() => setIsSubscribed(false)}
@@ -114,8 +110,8 @@ const SubscriptionModal = ({ isSubscribed, userId, setIsSubscribed }) => {
             }}
           >
             Subscribe
-          </Button>
-        </Box> */}
+          </Button> */}
+        </Box>
       </Box>
     </Modal>
   );
