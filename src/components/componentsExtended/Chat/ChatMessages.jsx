@@ -399,11 +399,7 @@ const DataResults = ({
             <Typography variant="subtitle1" fontWeight="bold">
               Experiences:
             </Typography>
-            {item.db_results.experiences?.length > 0 ? (
-              renderItems(item.db_results.experiences)
-            ) : (
-              <center>No results found</center>
-            )}
+            5998
           </Stack>
 
           <Stack spacing={0.4}>

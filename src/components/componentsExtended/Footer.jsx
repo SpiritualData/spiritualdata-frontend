@@ -169,7 +169,7 @@ const Footer = () => {
           sm={5.8}
           sx={{ textAlign: { xs: "center", sm: "left" } }}
         >
-          <small>Copyright 2023 Spiritual Data. All Rights Reserved.</small>
+          <small>Copyright 2025 Spiritual Data. All Rights Reserved.</small>
         </Grid>
 
         <Grid
