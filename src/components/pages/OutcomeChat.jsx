@@ -14,8 +14,7 @@ import {
 } from "@mui/material";
 import { AutoAwesomeMosaic, ExpandMore, Menu } from "@mui/icons-material";
 import { useAuth } from "@clerk/clerk-react";
-
-import axios, { setToken } from "../utils/axios";
+import apiClient, { setToken } from "../utils/axios";
 import SideBar, { StyledButton } from "../componentsExtended/Chat/SideBar";
 import InputField from "../componentsExtended/Chat/Input";
 import ChatMessages from "../componentsExtended/Chat/ChatMessages";
@@ -23,14 +22,17 @@ import ChatDrawer from "../componentsExtended/Chat/ChatDrawer";
 import SnackbarAlert from "../helpers/SnackbarAlert";
 import SettingsMenu from "../componentsExtended/Chat/Settings";
 import Outcome from "../componentsExtended/Chat/Outcome";
-// import { DummyChatHistory } from "../componentsExtended/Chat/DummyChat";
+import ChatSkeleton from "../helpers/ChatSkeleton";
+// import SubscriptionModal from "../componentsExtended/StripeSubscription/SubscriptionModal";
+// import ConfirmationModal from "../componentsExtended/StripeSubscription/PaymentConfirmation";
+import { useSearchParams } from 'react-router-dom';
 
 const OutcomeChat = () => {
+  const [params, setParams] = useSearchParams();
   const theme = useTheme();
   const containerRef = useRef(null);
   const { isLoaded, userId, getToken } = useAuth();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-
   const [chat, setChat] = useState([]);
   const [selected, setSelected] = useState();
   const [loading, setLoading] = useState(false);
@@ -44,13 +46,37 @@ const OutcomeChat = () => {
   const [chatHistory, setChatHistory] = useState([]);
   const [showSideBar, setShowSideBar] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [outCome, setOutCome] = useState({});
+  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isCancel, setIsCancel] = useState(false);
+  useEffect(() => {
+    const successParam = params.get('success') === 'true';
+    const cancelParam = params.get('cancel') === 'true';
+    let timeOut;
+    if (successParam) {
+      setIsSuccess(true);
+      timeOut = setTimeout(() => {
+        setIsSuccess(false);
+        setParams({});
+      }, 2000);
+    } else if (cancelParam) {
+      setIsCancel(true);
+      timeOut = setTimeout(() => {
+        setIsCancel(false);
+        setParams({});
+      }, 2000);
+    }
 
+    return () => clearTimeout(timeOut);
+  }, [params, setParams]);
   const fetchChatHistory = async () => {
     setErrorList(false);
     setLoadingList(true);
     try {
-      const response = await axios.get("/chat/list");
+      const response = await apiClient.get("/chat/list");
       setChatHistory(response.data);
+      setChatHistory(chatHistory);
       setLoadingList(false);
     } catch (error) {
       setLoadingList(false);
@@ -65,7 +91,7 @@ const OutcomeChat = () => {
     setError(null);
     setLoading(true);
     try {
-      const response = await axios.get("/chat/get", {
+      const response = await apiClient.get("/chat/get", {
         params: {
           chat_id: chatId,
         },
@@ -111,7 +137,7 @@ const OutcomeChat = () => {
     setLoadingList(true);
     const fetchChatHistory = async () => {
       try {
-        const response = await axios.get("/chat/list");
+        const response = await apiClient.get("/chat/list");
         setChatHistory(response.data);
         setLoadingList(false);
       } catch (error) {
@@ -167,32 +193,43 @@ const OutcomeChat = () => {
   }, [selected]);
 
   const handleSend = async (e) => {
+
+    // const subscriptionId = localStorage.getItem('subscriptionId');
+
+    // if (!subscriptionId) {
+    //   setIsSubscribed(true);
+    //   return;
+    // }
+
     e.preventDefault();
     let msg = input;
     setInput("");
     setIsTyping(true);
     setError(null);
-
     if (input.trim()) {
       setChat([...chat, { role: "user", content: input }]);
 
-      axios
+      apiClient
         .post("/chat/response", {
           chat_id: selected || "",
           message: input.trim(),
-          // data_sources: ["experiences", "hypotheses", "research"],
+          chat_type: "outcome",
           // return_results: true,
-          // answer_model: "gpt-3.5-turbo",
+          // answer_model: "gpt-4o-mini",
           save: saveChat,
+          // ai_response: true,
+          // ai_query: true,
+          // search_data: true
+          // data_sources: ["experiences", "hypotheses", "research"],
         })
         .then((res) => {
           let response = res.data;
-
+          setOutCome(response);
           setChat((prevChat) => [
             ...prevChat,
             {
               role: "ai",
-              content: response?.ai,
+              content: response?.ai_message,
               db_results: response?.db_results,
             },
           ]);
@@ -205,8 +242,8 @@ const OutcomeChat = () => {
                 { role: "user", content: input },
                 {
                   role: "ai",
-                  content: response?.ai,
-                  db_results: response?.db_results,
+                  content: response?.ai_message,
+                  db_results: response?.db_results || [],
                 },
               ],
             };
@@ -219,32 +256,32 @@ const OutcomeChat = () => {
             setSelected(newChatHistoryItem.chat_id);
           } else {
             setChatHistory((prevChatHistory) => {
-              const updatedChatHistory = prevChatHistory.map((item) =>
+              const updatedChatHistory = prevChatHistory?.map((item) =>
                 item.chat_id === selected
                   ? {
-                      ...item,
-                      chat: [
-                        ...item?.chat,
-                        { role: "user", content: input },
-                        {
-                          role: "ai",
-                          content: response?.ai,
-                          db_results: response?.db_results,
-                        },
-                      ],
-                    }
+                    ...item,
+                    chat: [
+                      ...item?.chat,
+                      { role: "user", content: input },
+                      {
+                        role: "ai",
+                        content: response?.ai_message,
+                        db_results: response?.db_results,
+                      },
+                    ],
+                  }
                   : item
               );
 
-              const selectedIndex = updatedChatHistory.findIndex(
+              const selectedIndex = updatedChatHistory?.findIndex(
                 (item) => item.chat_id === selected
               );
               if (selectedIndex > 0) {
-                const selectedItem = updatedChatHistory.splice(
+                const selectedItem = updatedChatHistory?.splice(
                   selectedIndex,
                   1
                 )[0];
-                updatedChatHistory.unshift(selectedItem);
+                updatedChatHistory?.unshift(selectedItem);
               }
               return updatedChatHistory;
             });
@@ -279,170 +316,170 @@ const OutcomeChat = () => {
   }
 
   return (
-    <Grid
-      container
-      sx={{
-        minHeight: "100vh",
-        background: (theme) => theme.palette.chatbot.sidebar,
-        color: (theme) => theme.palette.text.secondary,
-      }}
-    >
-      <SnackbarAlert error={error} />
-
-      <SnackbarAlert error={errorList} />
-
-      <SnackbarAlert error={errorResponse} />
-
-      <SideBar
-        setChat={setChat}
-        chatHistory={chatHistory}
-        setChatHistory={setChatHistory}
-        selected={selected}
-        loadingList={loadingList}
-        errorList={errorList}
-        setSelected={setSelected}
-        showSideBar={showSideBar}
-        setShowSideBar={setShowSideBar}
-        fetchChatHistory={fetchChatHistory}
-        handleDrawerToggle={handleDrawerToggle}
-      />
-
-      <ChatDrawer
-        mobileOpen={mobileOpen}
-        setChat={setChat}
-        chatHistory={chatHistory}
-        setChatHistory={setChatHistory}
-        selected={selected}
-        setSelected={setSelected}
-        fetchChatHistory={fetchChatHistory}
-        handleDrawerToggle={handleDrawerToggle}
-      />
-
+    <>
+      {/* {isSubscribed &&
+        <SubscriptionModal isSubscribed={isSubscribed} userId={userId} setIsSubscribed={setIsSubscribed} />
+      }
+      {isSuccess &&
+        <ConfirmationModal isOpen={isSuccess} setOpen={setIsSuccess} box={"success"} />
+      }
+      {isCancel &&
+        <ConfirmationModal isOpen={isCancel} setOpen={setIsCancel} box={"cancel"} />
+      } */}
       <Grid
-        item
-        xs={12}
-        md={showSideBar ? 9.4 : 12}
-        lg={showSideBar ? 9.8 : 12}
+        container
         sx={{
-          background: (theme) => theme.palette.chatbot.chatBox,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
+          minHeight: "100vh",
+          background: (theme) => theme.palette.chatbot.sidebar,
+          color: (theme) => theme.palette.text.secondary,
         }}
       >
+        <SnackbarAlert error={error} />
+        <SnackbarAlert error={errorList} />
+        <SnackbarAlert error={errorResponse} />
+        <SideBar
+          setChat={setChat}
+          chatHistory={chatHistory}
+          setChatHistory={setChatHistory}
+          selected={selected}
+          loadingList={loadingList}
+          errorList={errorList}
+          setSelected={setSelected}
+          showSideBar={showSideBar}
+          setShowSideBar={setShowSideBar}
+          fetchChatHistory={fetchChatHistory}
+          handleDrawerToggle={handleDrawerToggle}
+        />
+
+        <ChatDrawer
+          mobileOpen={mobileOpen}
+          setChat={setChat}
+          chatHistory={chatHistory}
+          setChatHistory={setChatHistory}
+          selected={selected}
+          setSelected={setSelected}
+          fetchChatHistory={fetchChatHistory}
+          handleDrawerToggle={handleDrawerToggle}
+        />
         <Grid
           item
-          pt={0.2}
-          textAlign="center"
-          sx={{ opacity: 0.8, display: "flex", flexDirection: "row" }}
+          xs={12}
+          md={showSideBar ? 9.4 : 12}
+          lg={showSideBar ? 9.8 : 12}
+          sx={{
+            background: (theme) => theme.palette.chatbot.chatBox,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
         >
-          <IconButton
-            size="large"
-            sx={{
-              color: (theme) => theme.palette.text.secondary,
-              display: { md: "none" },
-            }}
-            onClick={handleDrawerToggle}
+          <Grid
+            item
+            pt={0.2}
+            textAlign="center"
+            sx={{ opacity: 0.8, display: "flex", flexDirection: "row" }}
           >
-            <Menu />
-          </IconButton>
-
-          {!showSideBar && (
-            <StyledButton
-              variant="outlined"
+            <IconButton
+              size="large"
               sx={{
-                background: (theme) => theme.palette.text.primary,
-                m: 1,
-                height: "36px",
-                width: "36px",
+                color: (theme) => theme.palette.text.secondary,
+                display: { md: "none" },
               }}
-              onClick={() => setShowSideBar(true)}
+              onClick={handleDrawerToggle}
             >
-              <AutoAwesomeMosaic />
-            </StyledButton>
+              <Menu />
+            </IconButton>
+            {!showSideBar && (
+              <StyledButton
+                variant="outlined"
+                sx={{
+                  background: (theme) => theme.palette.text.primary,
+                  m: 1,
+                  height: "36px",
+                  width: "36px",
+                }}
+                onClick={() => setShowSideBar(true)}
+              >
+                <AutoAwesomeMosaic />
+              </StyledButton>
+            )}
+            <Stack width="100%">
+              <p>Model: OpenAI GPT4o Mini</p>
+            </Stack>
+            <SettingsMenu saveChat={saveChat} setSaveChat={setSaveChat} />
+          </Grid>
+          {isSmallScreen && (
+            <Grid item xs={12}>
+              <Accordion
+                sx={{
+                  mx: 2,
+                  background: (theme) => theme.palette.chatbot.sidebar,
+                }}
+              >
+                <AccordionSummary
+                  expandIcon={
+                    <ExpandMore
+                      sx={{ color: (theme) => theme.palette.text.secondary }}
+                    />
+                  }
+                >
+                  <Button
+                    variant="text"
+                    sx={{ color: (theme) => theme.palette.text.secondary }}
+                  >
+                    Chat Outcome
+                  </Button>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <div
+                    style={{
+                      color: "white",
+                      padding: "16px",
+                    }}
+                  >
+                    {!loading ? <Outcome title={outCome?.title} additional_info={outCome?.additional_info} /> : <ChatSkeleton />}
+                  </div>
+                </AccordionDetails>
+              </Accordion>
+            </Grid>
           )}
 
-          <Stack width="100%">
-            <p>Model: OpenAI GPT3.5</p>
-          </Stack>
-
-          <SettingsMenu saveChat={saveChat} setSaveChat={setSaveChat} />
-        </Grid>
-
-        {isSmallScreen && (
-          <Grid item xs={12}>
-            <Accordion
-              sx={{
-                mx: 2,
-                background: (theme) => theme.palette.chatbot.sidebar,
-              }}
-            >
-              <AccordionSummary
-                expandIcon={
-                  <ExpandMore
-                    sx={{ color: (theme) => theme.palette.text.secondary }}
-                  />
-                }
+          <Box bottom={0}>
+            <Grid container>
+              <Grid
+                item
+                xs={12}
+                md={9}
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-end",
+                }}
               >
-                <Button
-                  variant="text"
-                  sx={{ color: (theme) => theme.palette.text.secondary }}
-                >
-                  Chat Outcome
-                </Button>
-              </AccordionSummary>
-              <AccordionDetails>
-                <div
-                  style={{
-                    color: "white",
-                    padding: "16px",
-                  }}
-                >
-                  <Outcome />
-                </div>
-              </AccordionDetails>
-            </Accordion>
-          </Grid>
-        )}
-
-        <Box bottom={0}>
-          <Grid container>
-            <Grid
-              item
-              xs={12}
-              md={9}
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "flex-end",
-              }}
-            >
-              <ChatMessages
-                chat={chat}
-                loading={loading}
-                selected={selected}
-                error={error}
-                isTyping={isTyping}
-                setIsTyping={setIsTyping}
-                showSideBar={showSideBar}
-                containerRef={containerRef}
-                fetchChat={fetchChat}
-                setInput={setInput}
-              />
-
-              <InputField
-                input={input}
-                selected={selected}
-                error={error}
-                chatHistory={chatHistory}
-                isTyping={isTyping}
-                setInput={setInput}
-                handleSend={handleSend}
-              />
-            </Grid>
-
-            {!isSmallScreen && (
-              <Grid item md={3} sx={{ pr: 2, pb: 6 }}>
+                <ChatMessages
+                  chat={chat}
+                  loading={loading}
+                  selected={selected}
+                  error={error}
+                  isTyping={isTyping}
+                  setIsTyping={setIsTyping}
+                  showSideBar={showSideBar}
+                  containerRef={containerRef}
+                  fetchChat={fetchChat}
+                  setInput={setInput}
+                />
+                <InputField
+                  input={input}
+                  selected={selected}
+                  error={error}
+                  chatHistory={chatHistory}
+                  isTyping={isTyping}
+                  setInput={setInput}
+                  handleSend={handleSend}
+                />
+              </Grid>
+              {!isSmallScreen && (
+                <Grid item md={3} sx={{ pr: 2, pb: 6 }}>
                   <Card
                     style={{
                       backgroundColor: "#2f2f2f",
@@ -457,14 +494,15 @@ const OutcomeChat = () => {
                     <b>
                       <center>Chat Outcome</center>
                     </b>
-                    <Outcome />
+                    {!loading ? <Outcome title={outCome?.title} additional_info={outCome?.additional_info} /> : <ChatSkeleton />}
                   </Card>
-              </Grid>
-            )}
-          </Grid>
-        </Box>
+                </Grid>
+              )}
+            </Grid>
+          </Box>
+        </Grid>
       </Grid>
-    </Grid>
+    </>
   );
 };
 

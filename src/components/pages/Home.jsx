@@ -129,10 +129,10 @@ Our methods are intellectual humility and automation, letting the data speak for
           imageSrc2={explore}
           heading={"Overcome bias in research review"}
           subText={
-            "Humans are inherently biased and limited in perspective. Do we really want to limit our understanding of reality to what most researchers agree on? Tons of research has been done in the areas of spiritual science and metaphysics, yet it's ignored due to an assumption that it must not be scientific, and most people don't even know about this research and the reliable evidence out there. What do you consider reliable evidence? Complete a short survey at the link below to add your voice!"
+            "Humans are inherently biased and limited in perspective. Do we really want to limit our understanding of reality to what most researchers agree on? Tons of research has been done in the areas of spiritual science and metaphysics, yet it's ignored due to an assumption that it must not be scientific, and most people don't even know about this research and the reliable evidence out there. We've started an initiative to update Wikipedia. Please sign up below to add your voice!"
           }
           buttonText={"Add your voice"}
-          path={"https://forms.gle/pQWE2XZM9n8Pvu5v5"}
+          path={"https://docs.google.com/forms/d/e/1FAIpQLSf0WTmE0RXZb5XWzRMKSNIUGX2kjqpMSY3aNLsvwH_UZqQJ6A/viewform?usp=dialog"}
         />
 
         <ContentSection
