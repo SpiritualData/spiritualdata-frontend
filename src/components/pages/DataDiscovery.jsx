@@ -96,7 +96,7 @@ const DataDiscovery = () => {
     {
       name: "Research",
       buttonText: "SUBMIT EVIDENCE OR RESEARCH STUDY",
-      maxNumber: 24,
+      maxNumber: 26,
       path: "https://docs.google.com/forms/u/1/d/e/1FAIpQLSfsRYQBweDGRGrFsu52UbwZx4px5h9G-7XWRHMtMywtN7jelw/viewform?usp=send_form",
     },
   ];

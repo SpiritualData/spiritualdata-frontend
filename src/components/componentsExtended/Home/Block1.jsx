@@ -77,7 +77,7 @@ const Block1 = () => {
       name: "Research",
       icon: <Psychology sx={{ fontSize: 70 }} />,
       count: 26,
-      info: "Research, experiements, or other scientific evidence.",
+      info: "Research, experiments, or other scientific evidence.",
     },
   ];
   return (
