@@ -1,6 +1,10 @@
-import { Modal, Box, Typography } from "@mui/material";
+import { Modal, Box, Typography, Button } from "@mui/material";
+import {
+  createSubscription,
+  redirectToCheckout,
+} from "../../utils/services/paymentService";
 
-const SubscriptionModal = ({ isSubscribed, setIsSubscribed }) => {
+const SubscriptionModal = ({ isSubscribed, userId, setIsSubscribed }) => {
   // const handleSubscribe = async () => {
   //   try {
   //     const session = await createSubscription(
@@ -97,7 +101,7 @@ const SubscriptionModal = ({ isSubscribed, setIsSubscribed }) => {
             }}
           >
             Cancel
-          </Button>
+          </Button>*/}
           <Button
             variant="contained"
             color="primary"
@@ -110,7 +114,7 @@ const SubscriptionModal = ({ isSubscribed, setIsSubscribed }) => {
             }}
           >
             Subscribe
-          </Button> */}
+          </Button> 
         </Box>
       </Box>
     </Modal>

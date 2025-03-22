@@ -25,4 +25,5 @@ export const links = {
   linkedin: "https://www.linkedin.com/company/spiritual-data",
   twitter: "https://twitter.com/spiritual_data",
   youtube: "https://www.youtube.com/channel/UCIiKo5K5DOXcSun5xhZcd6A",
+  discord: "https://discord.com/invite/thQNvPGcJF",
 };
