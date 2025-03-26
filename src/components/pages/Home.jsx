@@ -142,7 +142,7 @@ Our methods are intellectual humility and automation, letting the data speak for
             "Generative AI, like humans, is often biased and inaccurate. While that's the case, we can still use AI in systematic ways to identify and review all relevant data and then use statistics to determine what is most likely true. That's what Spiritual Data is doing, and we're making this available to developers and companies as an API. Join the waitlist today!"
           }
           buttonText={"Join our API waitlist"}
-          path={"https://forms.gle/pQWE2XZM9n8Pvu5v5"}
+          path={"https://docs.google.com/forms/d/e/1FAIpQLSc3d3BGiYRA1VQVpD9GeusBuEscUZN-VkGQeNoKyWjKiyuswg/viewform"}
         />
       </>
 

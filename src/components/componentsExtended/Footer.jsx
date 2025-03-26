@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Grid, Typography, Box, styled, Divider } from "@mui/material";
+import { Typography, Box, styled, Divider, SvgIcon } from "@mui/material";
+import Grid from "@mui/material/Grid2"; // ✅ Upgraded to Grid v2
 import { LinkedIn, X, YouTube } from "@mui/icons-material";
 
 import { links, menuItems } from "../helpers/footerData";
@@ -10,7 +11,6 @@ import logo from "../../assets/logo_footer.png";
 const StyledGrid = styled(Grid)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
   color: theme.palette.text.secondary,
-  bottom: 0,
   width: "100%",
   padding: "60px 10px",
 }));
@@ -25,7 +25,7 @@ const StyledLink = styled(Link)(({ theme }) => ({
 
 const StyledIcon = styled("div")(({ theme }) => ({
   color: theme.palette.text.secondary,
-  margin: "0 6px 0 6px",
+  margin: "0 6px",
   cursor: "pointer",
   "&:hover": {
     color: theme.palette.primary.hover,
@@ -46,10 +46,9 @@ const Footer = () => {
           backgroundRepeat: "no-repeat",
         }}
       >
+        {/* Logo and Social Icons */}
         <Grid
-          item
-          xs={12}
-          sm={2.8}
+          size={{ xs: 12, sm: 3 }}
           p={{ xs: 0, sm: 2.6 }}
           mb={{ xs: 2, sm: 0 }}
           display="flex"
@@ -60,43 +59,54 @@ const Footer = () => {
             <img
               style={{ width: "150px", height: "100px" }}
               src={logo}
-              alt=""
+              alt="Logo"
             />
           </Link>
 
-          <Grid mt={2} item sx={{ textAlign: { xs: "center", sm: "left" } }}>
-            <Typography
-              sx={{
-                fontSize: { xs: "14px", sm: "10px", md: "14px" },
-                lineHeight: "1.2rem",
-                letterSpacing: "0.2px",
-              }}
-            >
-              Calculating truth with AI.
-            </Typography>
-          </Grid>
+          <Typography
+            sx={{
+              fontSize: { xs: "14px", sm: "10px", md: "14px" },
+              lineHeight: "1.2rem",
+              letterSpacing: "0.2px",
+              mt: 2,
+            }}
+          >
+            Calculating truth with AI.
+          </Typography>
 
-          <Grid item xs={12} mt={2}>
+          <Grid
+            size={12}
+            mt={2}
+            sx={{
+              display: "flex",
+              justifyContent: { xs: "center", sm: "flex-start" },
+              gap: 1,
+            }}
+          >
             <a href={links.linkedin} target="_blank" rel="noopener noreferrer">
               <StyledIcon as={LinkedIn} />
             </a>
-
             <a href={links.twitter} target="_blank" rel="noopener noreferrer">
               <StyledIcon as={X} />
             </a>
-
             <a href={links.youtube} target="_blank" rel="noopener noreferrer">
               <StyledIcon as={YouTube} />
+            </a>
+            <a href={links.discord} target="_blank" rel="noopener noreferrer">
+              <StyledIcon>
+                <SvgIcon>
+                  <path d="M20.32 4.37a19.8 19.8 0 0 0-4.89-1.52.07.07 0 0 0-.08.04c-.2.38-.44.87-.6 1.25a18.27 18.27 0 0 0-5.5 0c-.16-.4-.4-.87-.6-1.25a.08.08 0 0 0-.09-.04 19.74 19.74 0 0 0-4.88 1.52.07.07 0 0 0-.04.03A20.26 20.26 0 0 0 .1 18.06a.08.08 0 0 0 .03.05 19.9 19.9 0 0 0 6 3.03.08.08 0 0 0 .08-.02c.46-.63.87-1.3 1.22-2a.08.08 0 0 0-.04-.1 13.1 13.1 0 0 1-1.87-.9.08.08 0 0 1 0-.12l.36-.3a.07.07 0 0 1 .08 0 14.2 14.2 0 0 0 12.06 0 .07.07 0 0 1 .08 0l.37.3a.08.08 0 0 1 0 .12 12.3 12.3 0 0 1-1.88.9.08.08 0 0 0-.04.1c.36.7.78 1.36 1.23 2a.08.08 0 0 0 .08.02c1.96-.6 3.95-1.52 6-3.03a.08.08 0 0 0 .04-.05c.5-5.18-.84-9.68-3.55-13.66a.06.06 0 0 0-.03-.03zM8.02 15.33c-1.18 0-2.16-1.08-2.16-2.42 0-1.33.96-2.42 2.16-2.42 1.21 0 2.18 1.1 2.16 2.42 0 1.34-.96 2.42-2.16 2.42zm7.97 0c-1.18 0-2.15-1.08-2.15-2.42 0-1.33.95-2.42 2.15-2.42 1.22 0 2.18 1.1 2.16 2.42 0 1.34-.94 2.42-2.16 2.42Z" />
+                </SvgIcon>
+              </StyledIcon>
             </a>
           </Grid>
         </Grid>
 
+        {/* Footer Menu Links */}
         {menuItems.map((item, index) => (
           <Grid
             key={index}
-            item
-            xs={6}
-            sm={2.3}
+            size={{ xs: 6, sm: 2.3 }}
             p={1}
             mt={{ xs: 2, sm: 0 }}
             sx={{
@@ -130,15 +140,16 @@ const Footer = () => {
                 mx: { xs: "30%", sm: 0 },
               }}
             />
+
             {item.links.map((link, idx) => (
               <Box
                 component="div"
+                key={idx}
                 sx={{
                   fontSize: { xs: "14px", sm: "10px", md: "14px" },
                   lineHeight: "1.4rem",
                   letterSpacing: "1px",
                 }}
-                key={idx}
                 py={0.4}
               >
                 <StyledLink
@@ -158,90 +169,72 @@ const Footer = () => {
         ))}
       </StyledGrid>
 
+      {/* Bottom Copyright & Links */}
       <Grid
         container
-        p={2}
+        px={2}
+        py={1}
         sx={{ background: "black", color: "white", gap: 2 }}
       >
         <Grid
-          item
-          xs={12}
-          sm={5.8}
-          sx={{ textAlign: { xs: "center", sm: "left" } }}
+          size={{ xs: 12, md: 5.8 }}
+          sx={{ textAlign: { xs: "center", md: "left" } }}
         >
           <small>Copyright 2025 Spiritual Data. All Rights Reserved.</small>
         </Grid>
 
         <Grid
-          item
-          xs={12}
-          sm={5.8}
+          size={{ xs: 12, md: 6 }}
           sx={{
             display: "flex",
-            justifyContent: { xs: "center", sm: "flex-end" },
+            justifyContent: { xs: "center", md: "flex-end" },
           }}
         >
           {location.pathname !== "/privacy" && (
             <Link
               style={{ textDecoration: "none", color: "white" }}
-              to={"/privacy"}
+              to="/privacy"
             >
               <Typography
                 sx={{
                   fontSize: "13px",
                   cursor: "pointer",
-                  "&:hover": {
-                    color: (theme) => theme.palette.primary.hover,
-                  },
+                  "&:hover": { color: (theme) => theme.palette.primary.hover },
                 }}
               >
                 Privacy Policy
               </Typography>
             </Link>
           )}
+
           {location.pathname !== "/privacy" &&
             location.pathname !== "/cookies" && (
-              <Typography
-                sx={{
-                  fontSize: "13px",
-                }}
-              >
-                &nbsp;-&nbsp;
-              </Typography>
+              <Typography sx={{ fontSize: "13px" }}>&nbsp;-&nbsp;</Typography>
             )}
-          &nbsp;
+
           {location.pathname !== "/cookies" && (
             <Link
               style={{ textDecoration: "none", color: "white" }}
-              to={"/cookies"}
+              to="/cookies"
             >
               <Typography
                 sx={{
                   fontSize: "13px",
                   cursor: "pointer",
-                  "&:hover": {
-                    color: (theme) => theme.palette.primary.hover,
-                  },
+                  "&:hover": { color: (theme) => theme.palette.primary.hover },
                 }}
               >
                 Cookie Policy
               </Typography>
             </Link>
           )}
-          &nbsp;
+
           {location.pathname !== "/terms" && (
             <>
-              <Typography
-                sx={{
-                  fontSize: "13px",
-                }}
-              >
-                -
-              </Typography>
-              &nbsp;
+              <Typography sx={{ fontSize: "13px" }}>-</Typography>&nbsp;
               <Link
                 style={{ textDecoration: "none", color: "white" }}
-                to={"/terms"}
+                to="/terms"
               >
                 <Typography
                   sx={{
