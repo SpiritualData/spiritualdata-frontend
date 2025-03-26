@@ -10,6 +10,7 @@ const StyledHeader = styled(Grid)(({ theme }) => ({
   minHeight: "64vh",
   display: "flex",
   alignItems: "center",
+  justifyContent: "center",
   animation: `${fadeInBottom} 3s ease`,
   "&::after": {
     content: '""',
