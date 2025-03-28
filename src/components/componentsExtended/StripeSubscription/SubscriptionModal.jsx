@@ -89,7 +89,7 @@ const SubscriptionModal = ({ isSubscribed, userId, setIsSubscribed }) => {
             mt: 4,
           }}
         >
-          {/* <Button
+          <Button
             variant="outlined"
             color="primary"
             onClick={() => setIsSubscribed(false)}
@@ -101,7 +101,7 @@ const SubscriptionModal = ({ isSubscribed, userId, setIsSubscribed }) => {
             }}
           >
             Cancel
-          </Button>*/}
+          </Button>
           <Button
             variant="contained"
             color="primary"
