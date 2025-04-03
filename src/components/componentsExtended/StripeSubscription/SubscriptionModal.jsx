@@ -1,8 +1,8 @@
 import { Modal, Box, Typography, Button } from "@mui/material";
-import {
-  createSubscription,
-  redirectToCheckout,
-} from "../../utils/services/paymentService";
+// import {
+//   createSubscription,
+//   redirectToCheckout,
+// } from "../../utils/services/paymentService";
 
 const SubscriptionModal = ({ isSubscribed, userId, setIsSubscribed }) => {
   // const handleSubscribe = async () => {
