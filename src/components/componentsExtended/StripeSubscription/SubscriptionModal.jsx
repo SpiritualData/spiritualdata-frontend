@@ -114,7 +114,7 @@ const SubscriptionModal = ({ isSubscribed, userId, setIsSubscribed }) => {
             }}
           >
             Subscribe
-          </Button> 
+          </Button>
         </Box>
       </Box>
     </Modal>
