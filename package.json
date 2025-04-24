@@ -1,5 +1,5 @@
 {
-  "name": "spiritual-data-frontend",
+  "name": "react-vite",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -17,6 +17,7 @@
     "@mui/icons-material": "^7.0.2",
     "@mui/material": "^7.0.2",
     "@mui/system": "^7.0.2",
+    "@mui/types": "^7.4.1",
     "@paypal/react-paypal-js": "^8.8.2",
     "@stripe/stripe-js": "^7.0.0",
     "axios": "^1.8.4",
@@ -25,17 +26,21 @@
     "react-dom": "^19.0.0",
     "react-hotjar": "^6.3.1",
     "react-router-dom": "^7.5.0",
-    "react-simple-typewriter": "^5.0.1"
+    "react-simple-typewriter": "^5.0.1",
+    "react-stripe-checkout": "^2.6.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
+    "@types/node": "^22.14.1",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
+    "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9.21.0",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^15.15.0",
+    "typescript": "^5.8.3",
     "vite": "^6.2.0"
   }
 }
