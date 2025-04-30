@@ -37,9 +37,7 @@ const useClerkRoutes = (): ReactElement => {
   const clerkPubKey: string = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
   return (
-    <ClerkProvider
-      publishableKey={clerkPubKey}
-    >
+    <ClerkProvider publishableKey={clerkPubKey}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="donations" element={<Donations />} />
@@ -76,6 +74,7 @@ const useClerkRoutes = (): ReactElement => {
         />
         {/* PlaceHolder Pages Routes */}
         <Route path="/products" element={<Products />} />
+        {/* To be replaced later with dynamic routing*/}
         <Route
           path="/products/outcome-chat"
           element={<ProductsOutcomeChat />}
