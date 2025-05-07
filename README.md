@@ -1,65 +1,141 @@
 # SpiritualData Frontend
 
-## Table of Contents
+A modern, responsive React application powered by Vite and TypeScript, built for delivering personalized spiritual insights through an elegant UI and AI-driven chatbot.
 
-1. [Introduction](#introduction)
-2. [Requirements](#requirements)
-3. [Installation](#installation)
-   - [Clone the Repository](#clone-the-repository)
-   - [Environment Variables](#environment-variables)
-   - [Install Dependencies](#install-dependencies)
-4. [Running the Application](#running-the-application)
-5. [Features](#features)
-6. [Deployment](#deployment)
-7. [Contributing](#contributing)
-8. [Support](#support)
-9. [License](#license)
+## 🚀 Key Features
 
-## Introduction
+- 🔐 Clerk Authentication
+- 💳 Payment Integration (PayPal & Stripe)
+- 📧 Email Support via EmailJS
+- 📊 Hotjar Analytics
+- 🎨 Material-UI based design
+- 🔄 Routing with React Router
+- ✍️ Typewriter Text Animations
+- 📱 Fully Responsive
+- 🔍 Strong Type Safety with TypeScript
 
-Welcome to the Spiritual Data Frontend, a dedicated platform providing all the necessary code for the spiritual data design and AI chatbot. Our project aims to deliver a deep, interactive user experience for spiritual guidance and data-driven insights.
+## 🛠️ Tech Stack
 
-## Requirements
+- React 19
+- Vite 6
+- TypeScript
+- Material-UI 7
+- React Router DOM 7
+- Clerk Authentication
+- PayPal & Stripe
+- EmailJS
+- Hotjar
+- Axios
 
-- **Node.js**: Latest LTS version recommended.
+## 📁 Project Structure
 
-## Installation
+```
+src/
+├── assets/              # Static assets
+├── components/
+│   ├── Auth/            # Auth-related components
+│   ├── componentsExtended/
+│   ├── helpers/
+│   ├── hooks/
+│   ├── pages/           # Page views
+│   └── utils/
+├── Style/               # Custom styling
+├── App.tsx              # Main app component
+└── main.tsx             # App entry point
+```
 
-### Clone the Repository
+## 📦 Installation
 
-Clone the repository: `https://github.com/SpiritualData/spiritualdata-frontend.git`
+### 1. Clone the Repository
 
-### Environment Variables
+```bash
+git clone https://github.com/SpiritualData/spiritualdata-frontend.git
+cd spiritualdata-frontend
+```
 
-Create a `.env` file in the project root folder and fill it with the necessary environment variables as shown in `.env.example`.
+### 2. Install Dependencies
 
-### Install Dependencies
+```bash
+npm install
+```
 
-Install node modules: `npm install`
+### 3. Set Up Environment Variables
 
-## Running the Application
+```bash
+cp .env.example .env
+```
 
-Execute `npm start` to launch the app on `http://localhost:3000/`.
+Update the `.env` file with:
 
-## Features
+- `VITE_CLERK_PUBLISHABLE_KEY`
+- `VITE_EMAILJS_PUBLIC_KEY`
+- `VITE_STRIPE_PUBLIC_KEY`
+- `VITE_PAYPAL_CLIENT_ID`
+- `VITE_HOTJAR_ID`
 
-1. AI Chatbot: Engage in thoughtful conversations with a spiritually-aware AI designed to provide guidance and insights.
-2. Responsive Design: Enjoy a seamless experience across various devices and platforms.
-3. Data Insights: Gain personalized spiritual advice and data-driven guidance to assist in your personal growth.
+## 💻 Running the Application
 
-## Deployment
+### Development
 
-The application is readily accessible via Netlify. Visit the link to interact with the AI chatbot and explore various features.
-Test URL: `https://testing-spiritual-chatbot.netlify.app/`
+```bash
+npm run dev
+```
 
-## Contributing
+Runs at: [http://localhost:5173](http://localhost:5173)
 
-Your contributions are what make the community strong and the project successful. If you wish to contribute code, suggestions, or improvements, please fork the repository and submit a pull request. For major changes or enhancements, please open an issue first to discuss what you would like to change. If you're unsure where to start or have any questions, reach out to us at `support@spiritualdata.org`.
+### Production Build
 
-## Support
+```bash
+npm run build
+```
 
-If you encounter any issues or require further assistance, please file an issue on the GitHub repository. For additional help or to discuss more extensive feedback, you can email us at `support@spiritualdata.org`.
+### Preview Build
 
-## License
+```bash
+npm run preview
+```
 
-This project is licensed under the MIT License. By participating in this project, you agree to abide by its terms.
+### Lint Code
+
+```bash
+npm run lint
+```
+
+## 🌐 Deployment
+
+The application is deployed via Netlify.  
+Test it here: [https://qa.spiritualdata.org/](https://qa.spiritualdata.org/)
+
+## 🧘 Introduction
+
+SpiritualData is an interactive platform offering AI-powered spiritual guidance and personalized insights. With a sleek interface and deep conversational design, it helps users explore spiritual growth supported by intelligent recommendations and analytics.
+
+## 🤝 Contributing
+
+We welcome all contributors!
+
+1. Fork the repo
+2. Create a new branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m "Add amazing feature"`
+4. Push to the branch: `git push origin feature/amazing-feature`
+5. Submit a Pull Request
+
+For major changes, please open an issue to discuss.
+
+## 🛟 Support
+
+If you need help or want to report a bug, open an issue on GitHub or email us at [support@spiritualdata.org](mailto:support@spiritualdata.org)
+
+## 🪪 License
+
+MIT License – you are free to use and contribute under the terms.
+
+## 🙏 Acknowledgments
+
+- [React](https://reactjs.org)
+- [Vite](https://vitejs.dev)
+- [Material-UI](https://mui.com)
+- [Clerk](https://clerk.dev)
+- [Stripe](https://stripe.com)
+- [PayPal](https://paypal.com)
+- [EmailJS](https://emailjs.com)
