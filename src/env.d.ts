@@ -17,19 +17,19 @@ interface ImportMetaEnv {
    * EmailJS service ID
    * @example "service_ynlzw2t"
    */
-  readonly VITE_SERVICE_ID: string;
+  readonly VITE_EMAILJS_SERVICE_ID: string;
 
   /**
    * EmailJS template ID
    * @example "template_hb31yxe"
    */
-  readonly VITE_TEMPLATE_ID: string;
+  readonly VITE_EMAILJS_TEMPLATE_ID: string;
 
   /**
    * EmailJS public key
    * @example "2oFODktJ6wJ1GmE48"
    */
-  readonly VITE_PUBLIC_KEY: string;
+  readonly VITE_EMAILJS_PUBLIC_KEY: string;
 
   /**
    * Hotjar tracking ID
