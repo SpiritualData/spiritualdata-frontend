@@ -1,16 +1,24 @@
 import React from "react";
 import ChatHistory from "./PrevChats";
 import { Box, Button, Drawer } from "@mui/material";
+import { ChatMessage, ChatHistoryItem } from "../../pages/Chat";
+
+interface ChatItem {
+  chat_id: string;
+  title: string;
+}
 
 interface ChatDrawerProps {
-  setChat: React.Dispatch<React.SetStateAction<any[]>>;
+  setChat: React.Dispatch<React.SetStateAction<ChatMessage[]>>;
   mobileOpen: boolean;
-  chatHistory: any[];
-  setChatHistory: React.Dispatch<React.SetStateAction<any[]>>;
-  selected: any;
-  setSelected: React.Dispatch<React.SetStateAction<any>>;
-  fetchChatHistory: () => void;
+  chatHistory: ChatHistoryItem[];
+  setChatHistory: React.Dispatch<React.SetStateAction<ChatHistoryItem[]>>;
+  selected: string | null;
+  setSelected: React.Dispatch<React.SetStateAction<string | null>>;
+  fetchChatHistory: () => Promise<void>;
   handleDrawerToggle: () => void;
+  loadingList: boolean;
+  errorList: boolean;
 }
 
 const ChatDrawer: React.FC<ChatDrawerProps> = ({
@@ -22,6 +30,8 @@ const ChatDrawer: React.FC<ChatDrawerProps> = ({
   setSelected,
   fetchChatHistory,
   handleDrawerToggle,
+  loadingList,
+  errorList,
 }) => {
   return (
     <Box>
@@ -55,7 +65,7 @@ const ChatDrawer: React.FC<ChatDrawerProps> = ({
           }}
           onClick={() => {
             setChat([]);
-            setSelected(undefined);
+            setSelected(null);
             handleDrawerToggle();
           }}
         >
@@ -68,6 +78,8 @@ const ChatDrawer: React.FC<ChatDrawerProps> = ({
           setSelected={setSelected}
           fetchChatHistory={fetchChatHistory}
           handleDrawerToggle={handleDrawerToggle}
+          loadingList={loadingList}
+          errorList={errorList}
         />
       </Drawer>
     </Box>

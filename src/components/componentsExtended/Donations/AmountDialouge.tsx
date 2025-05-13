@@ -68,32 +68,38 @@ const AmountDialouge: React.FC<AmountDialogueProps> = ({
             sx={popupTextFieldStyle}
           />
           {label === "Stripe" ? (
-            <StripeCheckout
-              token={onToken}
-              stripeKey={import.meta.env.VITE_STRIPE_PUBLIC_KEY}
-              name="Spiritual Data Donation"
-              currency="USD"
-              panelLabel="Donate"
-              amount={Number(amount) * 100}
-              disabled={!amount || Number(amount) === 0}
-            >
-              <Button
-                disabled={!amount || Number(amount) === 0}
-                sx={popupButtonStyle}
-              >
-                Continue
-              </Button>
-            </StripeCheckout>
+            <div>
+              {!amount || Number(amount) === 0 ? (
+                <Button disabled sx={popupButtonStyle}>
+                  Continue
+                </Button>
+              ) : (
+                <StripeCheckout
+                  token={onToken}
+                  stripeKey={import.meta.env.VITE_STRIPE_PUBLIC_KEY}
+                  name="Spiritual Data Donation"
+                  currency="USD"
+                  panelLabel="Donate"
+                  amount={Number(amount) * 100}
+                  label="Continue"
+                />
+              )}
+            </div>
           ) : Number(amount) > 0 ? (
             <PayPalScriptProvider
-              options={{ "client-id": import.meta.env.VITE_PAYPAL_CLIENT_ID }}
+              options={{
+                clientId: import.meta.env.VITE_PAYPAL_CLIENT_ID,
+                currency: "USD",
+              }}
             >
               <PayPalButtons
                 createOrder={(data, actions) => {
                   return actions.order.create({
+                    intent: "CAPTURE",
                     purchase_units: [
                       {
                         amount: {
+                          currency_code: "USD",
                           value: amount,
                         },
                       },
@@ -102,7 +108,7 @@ const AmountDialouge: React.FC<AmountDialogueProps> = ({
                 }}
                 onApprove={async (data, actions) => {
                   const details = await actions.order?.capture();
-                  const name = details?.payer.name?.given_name;
+                  const name = details?.payer?.name?.given_name || "Anonymous";
                   alert("Transaction completed by " + name);
                 }}
               />

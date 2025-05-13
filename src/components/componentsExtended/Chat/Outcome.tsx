@@ -15,6 +15,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import EmojiFlagsIcon from "@mui/icons-material/EmojiFlags";
 import AdjustIcon from "@mui/icons-material/Adjust";
+import { Stack } from "@mui/system";
 
 interface AdditionalInfo {
   outcome?: string;
@@ -59,7 +60,6 @@ const Outcome: React.FC<OutcomeProps> = ({ title, additional_info }) => {
           p={{ xs: 2, md: 1 }}
           mt={{ xs: 1, md: 2 }}
           component={Container}
-          spacing={3}
           sx={{
             animation: "slideUp 0.5s ease-in-out",
             "@keyframes slideUp": {
@@ -68,23 +68,25 @@ const Outcome: React.FC<OutcomeProps> = ({ title, additional_info }) => {
             },
           }}
         >
-          {/* Title (Main Heading) */}
-          <Box mb={2}>
-            <Typography
-              variant="h5"
-              fontWeight="bold"
-              sx={{
-                animation: "slideIn 1.3s ease-in-out",
-                "@keyframes slideIn": {
-                  "0%": { transform: "translateY(10px)", opacity: 0 },
-                  "100%": { transform: "translateY(0)", opacity: 1 },
-                },
-                textAlign: "center",
-              }}
-            >
-              {title || "No Title"}
-            </Typography>
-          </Box>
+          <Stack spacing={3}>
+            {/* Title (Main Heading) */}
+            <Box mb={2}>
+              <Typography
+                variant="h5"
+                fontWeight="bold"
+                sx={{
+                  animation: "slideIn 1.3s ease-in-out",
+                  "@keyframes slideIn": {
+                    "0%": { transform: "translateY(10px)", opacity: 0 },
+                    "100%": { transform: "translateY(0)", opacity: 1 },
+                  },
+                  textAlign: "center",
+                }}
+              >
+                {title || "No Title"}
+              </Typography>
+            </Box>
+          </Stack>
 
           {/* Additional Info Heading (Secondary Heading) */}
           <Box mb={2} display="flex" alignItems="center">

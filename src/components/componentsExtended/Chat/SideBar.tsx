@@ -1,31 +1,38 @@
-import { Button, Grid, Stack, styled } from "@mui/material";
 import React from "react";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Grid,
+  Stack,
+  Typography,
+} from "@mui/material";
+import { styled } from "@mui/material/styles";
+import { ChatMessage, ChatHistoryItem } from "../../pages/Chat";
 import ChatHistory from "./PrevChats";
 import { AutoAwesomeMosaic } from "@mui/icons-material";
 
-export const StyledButton = styled(Button)`
-  height: 100%;
-  margin-bottom: 10px;
-  border-color: black;
-  color: #fff;
-  opacity: 0.9;
-  &:hover {
-    border-color: black;
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-`;
+export const StyledButton = styled(Button)({
+  minWidth: "auto",
+  padding: "8px",
+  borderRadius: "8px",
+  color: "#fff",
+  "&:hover": {
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
+  },
+});
 
 interface SideBarProps {
-  setChat: (chat: any[]) => void;
-  chatHistory: any[];
-  setChatHistory: (history: any[]) => void;
+  setChat: React.Dispatch<React.SetStateAction<ChatMessage[]>>;
+  chatHistory: ChatHistoryItem[];
+  setChatHistory: React.Dispatch<React.SetStateAction<ChatHistoryItem[]>>;
   selected: string | null;
   loadingList: boolean;
   errorList: boolean;
-  setSelected: (id: string | null) => void;
+  setSelected: React.Dispatch<React.SetStateAction<string | null>>;
   showSideBar: boolean;
-  setShowSideBar: (show: boolean) => void;
-  fetchChatHistory: () => void;
+  setShowSideBar: React.Dispatch<React.SetStateAction<boolean>>;
+  fetchChatHistory: () => Promise<void>;
   handleDrawerToggle: () => void;
 }
 

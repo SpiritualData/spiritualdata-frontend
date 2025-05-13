@@ -25,52 +25,59 @@ const ContentSection = ({
 }: ContentSectionProps) => {
   return (
     <Grid
-          container
+      container
+      sx={{
+        display: "flex",
+        flexDirection: imageSrc2 ? "row-reverse" : "row",
+        justifyContent: "space-between",
+      }}
+      my={{ xs: 3, md: 8 }}
+      px={"8%"}
+    >
+      <Grid size={{ xs: 12 }}>
+        <Typography
+          sx={{
+            fontSize: "30px",
+            fontWeight: 500,
+            textAlign: "center",
+            marginBottom: { xs: 0, md: "30px" },
+          }}
+        >
+          {bioHeading}
+        </Typography>
+      </Grid>
+      <Grid size={{ xs: 12, md: 6 }} sx={{ marginLeft: { xs: 0, md: "16px" } }}>
+        <Grid
+          size={{ md: 11 }}
+          py={{ xs: 0, md: 4 }}
           sx={{
             display: "flex",
-            flexDirection: imageSrc2 ? "row-reverse" : "row",
-            justifyContent: "space-between",
+            justifyContent: "center",
+            alignItems: { xs: "center", md: "flex-start" },
+            flexDirection: "column",
+            height: "100%",
+            textAlign: { xs: "center", md: "left" },
           }}
-          my={{ xs: 3, md: 8 }}
-          px={"8%"}
         >
-          <Grid size={{xs:12}} >
-            <Typography sx={{ fontSize: "30px", fontWeight: 500, textAlign: 'center', marginBottom: { xs: 0, md: "30px" }}}>
-              {bioHeading}
-            </Typography>
-          </Grid>
-          <Grid size={{xs:12, md:6}}  sx={{ marginLeft: { xs: 0, md: "16px" } }}>
-            <Grid
-              
-              size={{md:11}}
-              py={{ xs: 0, md: 4 }}
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: { xs: "center", md: "flex-start" },
-                flexDirection: "column",
-                height: "100%",
-                textAlign: { xs: "center", md: "left" },
-              }}
+          <Typography sx={{ fontSize: "30px", fontWeight: 500 }}>
+            {heading}
+          </Typography>
+          <Typography
+            sx={{
+              color: "black",
+              fontSize: bioHeading ? "14px" : "16px",
+              marginTop: bioHeading ? "20px" : "32px",
+            }}
+          >
+            {subText}
+          </Typography>
+          {path && (
+            <Link
+              to={path}
+              style={{ textDecoration: "none" }}
+              target={path.startsWith("http") ? "_blank" : ""}
             >
-              <Typography sx={{ fontSize: "30px", fontWeight: 500 }}>
-                {heading}
-              </Typography>
-              <Typography
-                sx={{
-                  color: "black",
-                  fontSize: bioHeading ? "14px" : "16px",
-                  marginTop: bioHeading ? "20px" : "32px",
-                }}
-              >
-                {subText}
-              </Typography>
-              <Link
-                to={path}
-                style={{ textDecoration: "none" }}
-                target={path && path.startsWith("http") ? "_blank" : ""}
-              >
-              {path?
+              {buttonText && (
                 <Button
                   variant="text"
                   sx={{
@@ -95,37 +102,36 @@ const ContentSection = ({
                     <East sx={{ marginLeft: "4px", fontSize: "16px" }} />
                   </Typography>
                 </Button>
-              : null}
-              </Link>
-            </Grid>
-          </Grid>
-          <Grid
-            
-            container
-            size={{ xs: 12, md: 5 }}
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Grid
-            
-              size={{xs:12}}
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <img
-                style={{ width: altText === "discord" ? "60%" : "90%" }}
-                src={imageSrc || imageSrc2}
-                alt={altText || "image"}
-              />
-            </Grid>
-          </Grid>
+              )}
+            </Link>
+          )}
         </Grid>
+      </Grid>
+      <Grid
+        container
+        size={{ xs: 12, md: 5 }}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Grid
+          size={{ xs: 12 }}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <img
+            style={{ width: altText === "discord" ? "60%" : "90%" }}
+            src={imageSrc || imageSrc2}
+            alt={altText || "image"}
+          />
+        </Grid>
+      </Grid>
+    </Grid>
   );
 };
 

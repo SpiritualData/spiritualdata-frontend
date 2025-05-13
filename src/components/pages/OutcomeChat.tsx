@@ -23,41 +23,33 @@ import SnackbarAlert from "../helpers/SnackbarAlert";
 import SettingsMenu from "../componentsExtended/Chat/Settings";
 import Outcome from "../componentsExtended/Chat/Outcome";
 import ChatSkeleton from "../helpers/ChatSkeleton";
+// import SubscriptionModal from "../componentsExtended/StripeSubscription/SubscriptionModal";
+// import ConfirmationModal from "../componentsExtended/StripeSubscription/PaymentConfirmation";
 import { useSearchParams } from "react-router-dom";
+import { ChatMessage, ChatHistoryItem } from "./Chat";
 
-interface ChatMessage {
-  role: string;
-  content: string;
-  db_results?: any[];
-}
-
-interface ChatHistoryItem {
+interface OutcomeResponse {
   chat_id: string;
-  title?: string;
-  chat?: ChatMessage[];
-}
-
-interface OutcomeData {
-  title?: string;
-  additional_info?: string;
-  ai_message?: string;
-  db_results?: any[];
-  chat_id?: string;
+  title: string;
+  ai_message: string;
+  db_results?: any;
+  additional_info?: any;
 }
 
 const OutcomeChat: React.FC = () => {
   const [params, setParams] = useSearchParams();
   const theme = useTheme();
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(
+    null
+  ) as React.RefObject<HTMLDivElement>;
   const { isLoaded, userId, getToken } = useAuth();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-
   const [chat, setChat] = useState<ChatMessage[]>([]);
-  const [selected, setSelected] = useState<string | undefined>();
+  const [selected, setSelected] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [loadingList, setLoadingList] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [errorList, setErrorList] = useState<string | boolean>(false);
+  const [errorList, setErrorList] = useState<boolean>(false);
   const [errorResponse, setErrorResponse] = useState<string | null>(null);
   const [input, setInput] = useState<string>("");
   const [isTyping, setIsTyping] = useState<boolean>(false);
@@ -65,43 +57,44 @@ const OutcomeChat: React.FC = () => {
   const [chatHistory, setChatHistory] = useState<ChatHistoryItem[]>([]);
   const [showSideBar, setShowSideBar] = useState<boolean>(true);
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
-  const [outCome, setOutCome] = useState<OutcomeData>({});
-
+  const [outCome, setOutCome] = useState<OutcomeResponse>(
+    {} as OutcomeResponse
+  );
+  // const [isSubscribed, setIsSubscribed] = useState(false);
+  // const [isSuccess, setIsSuccess] = useState(false);
+  // const [isCancel, setIsCancel] = useState(false);
   useEffect(() => {
     const successParam = params.get("success") === "true";
     const cancelParam = params.get("cancel") === "true";
     let timeOut: NodeJS.Timeout;
-
     if (successParam) {
+      // setIsSuccess(true);
       timeOut = setTimeout(() => {
+        // setIsSuccess(false);
         setParams({});
       }, 2000);
     } else if (cancelParam) {
+      // setIsCancel(true);
       timeOut = setTimeout(() => {
+        // setIsCancel(false);
         setParams({});
       }, 2000);
     }
 
     return () => clearTimeout(timeOut);
   }, [params, setParams]);
-
   const fetchChatHistory = async () => {
     setErrorList(false);
     setLoadingList(true);
     try {
       const response = await apiClient.get("/chat/list");
       setChatHistory(response.data);
+      setChatHistory(chatHistory);
       setLoadingList(false);
     } catch (error) {
       setLoadingList(false);
-      if (error instanceof Error) {
-        console.error("Error fetching chat list:", error.message);
-      } else {
-        console.error("Error fetching chat list:", error);
-      }
-      setErrorList(
-        "An error occurred while fetching the chat list. Please check your connection."
-      );
+      console.error("Error fetching chat list:", (error as Error).message);
+      setErrorList(true);
     }
   };
 
@@ -120,9 +113,7 @@ const OutcomeChat: React.FC = () => {
       );
 
       const updatedChatHistory = [...chatHistory];
-      if (chatIndex !== -1) {
-        updatedChatHistory[chatIndex].chat = response.data.chat;
-      }
+      updatedChatHistory[chatIndex].chat = response.data.chat;
       setChatHistory(updatedChatHistory);
       setChat(response.data.chat);
       setLoading(false);
@@ -145,11 +136,9 @@ const OutcomeChat: React.FC = () => {
     const fetchTokenAndPerformTasks = async () => {
       try {
         const token = await getToken();
-        localStorage.setItem("user", JSON.stringify(token));
         if (token) {
+          localStorage.setItem("user", JSON.stringify(token));
           setToken(token);
-        } else {
-          console.error("Token is null");
         }
       } catch (error) {
         console.error("Error fetching token:", error);
@@ -168,14 +157,8 @@ const OutcomeChat: React.FC = () => {
         setLoadingList(false);
       } catch (error) {
         setLoadingList(false);
-        if (error instanceof Error) {
-          console.error("Error fetching chat list:", error.message);
-        } else {
-          console.error("Error fetching chat is of unknown type.", error);
-        }
-        setErrorList(
-          "An error occurred while fetching the chat list. Please check your connection."
-        );
+        console.error("Error fetching chat list:", (error as Error).message);
+        setErrorList(true);
       }
     };
 
@@ -185,21 +168,19 @@ const OutcomeChat: React.FC = () => {
   }, [userId]);
 
   useEffect(() => {
-    if (!selected) {
-      setLoading(true);
-      if (chatHistory.length > 0) {
-        setSelected(chatHistory[0].chat_id);
-        if (chatHistory[0].chat) {
-          setChat(chatHistory[0].chat);
-          setLoading(false);
-        } else {
-          fetchChat(chatHistory[0].chat_id);
-        }
-      } else {
-        setSelected(undefined);
-        setChat([]);
+    setLoading(true);
+    if (chatHistory.length > 0) {
+      setSelected(chatHistory[0].chat_id);
+      if (chatHistory[0].chat) {
+        setChat(chatHistory[0].chat);
         setLoading(false);
+      } else {
+        fetchChat(chatHistory[0].chat_id);
       }
+    } else {
+      setSelected(null);
+      setChat([]);
+      setLoading(false);
     }
   }, [chatHistory]);
 
@@ -207,7 +188,7 @@ const OutcomeChat: React.FC = () => {
     setLoading(true);
     const selectedChat = chatHistory.find((item) => item.chat_id === selected);
     if (selectedChat && selected) {
-      if (selectedChat.chat?.length) {
+      if (selectedChat.chat && selectedChat.chat.length > 0) {
         setChat(selectedChat.chat);
         setLoading(false);
       } else {
@@ -221,96 +202,116 @@ const OutcomeChat: React.FC = () => {
   }, [selected]);
 
   const handleSend = async (e: React.FormEvent) => {
+    // const subscriptionId = localStorage.getItem('subscriptionId');
+
+    // if (!subscriptionId) {
+    //   setIsSubscribed(true);
+    //   return;
+    // }
+
     e.preventDefault();
-    const msg = input;
+    let msg = input;
     setInput("");
     setIsTyping(true);
     setError(null);
-
     if (input.trim()) {
       setChat([...chat, { role: "user", content: input }]);
 
-      try {
-        const res = await apiClient.post("/chat/response", {
+      apiClient
+        .post("/chat/response", {
           chat_id: selected || "",
           message: input.trim(),
           chat_type: "outcome",
+          // return_results: true,
+          // answer_model: "gpt-4o-mini",
           save: saveChat,
+          // ai_response: true,
+          // ai_query: true,
+          // search_data: true
+          // data_sources: ["experiences", "hypotheses", "research"],
+        })
+        .then((res) => {
+          let response = res.data;
+          setOutCome(response);
+          setChat((prevChat) => [
+            ...prevChat,
+            {
+              role: "ai",
+              content: response?.ai_message,
+              db_results: response?.db_results,
+            },
+          ]);
+
+          if (!selected) {
+            const newChatHistoryItem = {
+              chat_id: response?.chat_id,
+              title: response?.title,
+              chat: [
+                { role: "user", content: input },
+                {
+                  role: "ai",
+                  content: response?.ai_message,
+                  db_results: response?.db_results,
+                },
+              ],
+            };
+
+            setChatHistory((prevChatHistory) => [
+              newChatHistoryItem,
+              ...prevChatHistory,
+            ]);
+
+            setSelected(newChatHistoryItem.chat_id);
+          } else {
+            setChatHistory((prevChatHistory) => {
+              const updatedChatHistory = prevChatHistory?.map((item) =>
+                item.chat_id === selected
+                  ? {
+                      ...item,
+                      chat: [
+                        ...(item?.chat ?? []),
+                        { role: "user", content: input },
+                        {
+                          role: "ai",
+                          content: response?.ai_message,
+                          db_results: response?.db_results,
+                        },
+                      ],
+                    }
+                  : item
+              );
+
+              const selectedIndex = updatedChatHistory?.findIndex(
+                (item) => item.chat_id === selected
+              );
+              if (selectedIndex > 0) {
+                const selectedItem = updatedChatHistory?.splice(
+                  selectedIndex,
+                  1
+                )[0];
+                updatedChatHistory?.unshift(selectedItem);
+              }
+              return updatedChatHistory;
+            });
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error.code);
+          setIsTyping(false);
+
+          if (error?.code === "ERR_BAD_REQUEST") {
+            setErrorResponse("Clerk session timed out, please log in again.");
+          } else {
+            setErrorResponse(
+              "An error occurred. Please check your connection."
+            );
+          }
+          setTimeout(() => {
+            setErrorResponse(null);
+          }, 2000);
+          setChat((prevChat) => prevChat.slice(0, prevChat.length - 1));
+          setInput(msg);
         });
-
-        const response = res.data;
-        setOutCome(response);
-        setChat((prevChat) => [
-          ...prevChat,
-          {
-            role: "ai",
-            content: response?.ai_message,
-            db_results: response?.db_results,
-          },
-        ]);
-
-        if (!selected) {
-          const newChatHistoryItem: ChatHistoryItem = {
-            chat_id: response?.chat_id,
-            title: response?.title,
-            chat: [
-              { role: "user", content: input },
-              {
-                role: "ai",
-                content: response?.ai_message,
-                db_results: response?.db_results || [],
-              },
-            ],
-          };
-
-          setChatHistory((prev) => [newChatHistoryItem, ...prev]);
-          setSelected(newChatHistoryItem.chat_id);
-        } else {
-          setChatHistory((prev) => {
-            const updated = prev?.map((item) =>
-              item.chat_id === selected
-                ? {
-                    ...item,
-                    chat: [
-                      ...(item?.chat ?? []),
-                      { role: "user", content: input },
-                      {
-                        role: "ai",
-                        content: response?.ai_message,
-                        db_results: response?.db_results,
-                      },
-                    ],
-                  }
-                : item
-            );
-
-            const selectedIndex = updated?.findIndex(
-              (item) => item.chat_id === selected
-            );
-            if (selectedIndex > 0) {
-              const selectedItem = updated?.splice(selectedIndex, 1)[0];
-              updated?.unshift(selectedItem);
-            }
-            return updated;
-          });
-        }
-      } catch (error: any) {
-        console.error("Error:", error.code);
-        setIsTyping(false);
-
-        if (error?.code === "ERR_BAD_REQUEST") {
-          setErrorResponse("Clerk session timed out, please log in again.");
-        } else {
-          setErrorResponse("An error occurred. Please check your connection.");
-        }
-
-        setTimeout(() => {
-          setErrorResponse(null);
-        }, 2000);
-
-        setChat((prev) => prev.slice(0, prev.length - 1));
-        setInput(msg);
-      }
     }
   };
 
@@ -323,197 +324,207 @@ const OutcomeChat: React.FC = () => {
   }
 
   return (
-    <Grid
-      container
-      sx={{
-        minHeight: "100vh",
-        background: (theme) => theme.palette.chatbot.sidebar,
-        color: (theme) => theme.palette.text.secondary,
-      }}
-    >
-      <SnackbarAlert error={error} />
-      <SnackbarAlert error={typeof errorList === "string" ? errorList : null} />
-      <SnackbarAlert error={errorResponse} />
-
-      <SideBar
-        setChat={setChat}
-        chatHistory={chatHistory}
-        setChatHistory={setChatHistory}
-        selected={selected ?? null}
-        loadingList={loadingList}
-        errorList={errorList}
-        setSelected={setSelected}
-        showSideBar={showSideBar}
-        setShowSideBar={setShowSideBar}
-        fetchChatHistory={fetchChatHistory}
-        handleDrawerToggle={handleDrawerToggle}
-      />
-
-      <ChatDrawer
-        mobileOpen={mobileOpen}
-        setChat={setChat}
-        chatHistory={chatHistory}
-        setChatHistory={setChatHistory}
-        selected={selected}
-        setSelected={setSelected}
-        fetchChatHistory={fetchChatHistory}
-        handleDrawerToggle={handleDrawerToggle}
-      />
-
+    <>
+      {/* {isSubscribed &&
+        <SubscriptionModal isSubscribed={isSubscribed} userId={userId} setIsSubscribed={setIsSubscribed} />
+      }
+      {isSuccess &&
+        <ConfirmationModal isOpen={isSuccess} setOpen={setIsSuccess} box={"success"} />
+      }
+      {isCancel &&
+        <ConfirmationModal isOpen={isCancel} setOpen={setIsCancel} box={"cancel"} />
+      } */}
       <Grid
-        item
-        xs={12}
-        md={showSideBar ? 9.4 : 12}
-        lg={showSideBar ? 9.8 : 12}
+        container
         sx={{
-          background: (theme) => theme.palette.chatbot.chatBox,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
+          minHeight: "100vh",
+          background: (theme) => theme.palette.chatbot.sidebar,
+          color: (theme) => theme.palette.text.secondary,
         }}
       >
-        <Grid
-          pt={0.2}
-          textAlign="center"
-          sx={{ opacity: 0.8, display: "flex", flexDirection: "row" }}
-        >
-          <IconButton
-            size="large"
-            sx={{
-              color: (theme) => theme.palette.text.secondary,
-              display: { md: "none" },
-            }}
-            onClick={handleDrawerToggle}
-          >
-            <Menu />
-          </IconButton>
+        <SnackbarAlert error={error} />
+        <SnackbarAlert error={errorList} />
+        <SnackbarAlert error={errorResponse} />
+        <SideBar
+          setChat={setChat}
+          chatHistory={chatHistory}
+          setChatHistory={setChatHistory}
+          selected={selected}
+          loadingList={loadingList}
+          errorList={errorList}
+          setSelected={setSelected}
+          showSideBar={showSideBar}
+          setShowSideBar={setShowSideBar}
+          fetchChatHistory={fetchChatHistory}
+          handleDrawerToggle={handleDrawerToggle}
+        />
 
-          {!showSideBar && (
-            <StyledButton
-              variant="outlined"
+        <ChatDrawer
+          mobileOpen={mobileOpen}
+          setChat={setChat}
+          chatHistory={chatHistory}
+          setChatHistory={setChatHistory}
+          selected={selected}
+          setSelected={setSelected}
+          fetchChatHistory={fetchChatHistory}
+          handleDrawerToggle={handleDrawerToggle}
+          loadingList={loadingList}
+          errorList={errorList}
+        />
+        <Grid
+          size={{
+            xs: 12,
+            md: showSideBar ? 9.4 : 12,
+            lg: showSideBar ? 9.8 : 12,
+          }}
+          sx={{
+            background: (theme) => theme.palette.chatbot.chatBox,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
+          <Grid
+            pt={0.2}
+            textAlign="center"
+            sx={{ opacity: 0.8, display: "flex", flexDirection: "row" }}
+          >
+            <IconButton
+              size="large"
               sx={{
-                background: (theme) => theme.palette.text.primary,
-                m: 1,
-                height: "36px",
-                width: "36px",
+                color: (theme) => theme.palette.text.secondary,
+                display: { md: "none" },
               }}
-              onClick={() => setShowSideBar(true)}
+              onClick={handleDrawerToggle}
             >
-              <AutoAwesomeMosaic />
-            </StyledButton>
+              <Menu />
+            </IconButton>
+            {!showSideBar && (
+              <StyledButton
+                variant="outlined"
+                sx={{
+                  background: (theme) => theme.palette.text.primary,
+                  m: 1,
+                  height: "36px",
+                  width: "36px",
+                }}
+                onClick={() => setShowSideBar(true)}
+              >
+                <AutoAwesomeMosaic />
+              </StyledButton>
+            )}
+            <Stack width="100%">
+              <p>Model: OpenAI GPT4o Mini</p>
+            </Stack>
+            <SettingsMenu saveChat={saveChat} setSaveChat={setSaveChat} />
+          </Grid>
+          {isSmallScreen && (
+            <Grid size={{ xs: 12 }}>
+              <Accordion
+                sx={{
+                  mx: 2,
+                  background: (theme) => theme.palette.chatbot.sidebar,
+                }}
+              >
+                <AccordionSummary
+                  expandIcon={
+                    <ExpandMore
+                      sx={{ color: (theme) => theme.palette.text.secondary }}
+                    />
+                  }
+                >
+                  <Button
+                    variant="text"
+                    sx={{ color: (theme) => theme.palette.text.secondary }}
+                  >
+                    Chat Outcome
+                  </Button>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <div
+                    style={{
+                      color: "white",
+                      padding: "16px",
+                    }}
+                  >
+                    {!loading ? (
+                      <Outcome
+                        title={outCome?.title}
+                        additional_info={outCome?.additional_info}
+                      />
+                    ) : (
+                      <ChatSkeleton />
+                    )}
+                  </div>
+                </AccordionDetails>
+              </Accordion>
+            </Grid>
           )}
 
-          <Stack width="100%">
-            <p>Model: OpenAI GPT4o Mini</p>
-          </Stack>
-
-          <SettingsMenu saveChat={saveChat} setSaveChat={setSaveChat} />
-        </Grid>
-
-        {isSmallScreen && (
-          <Grid item xs={12}>
-            <Accordion
-              sx={{
-                mx: 2,
-                background: (theme) => theme.palette.chatbot.sidebar,
-              }}
-            >
-              <AccordionSummary
-                expandIcon={
-                  <ExpandMore
-                    sx={{ color: (theme) => theme.palette.text.secondary }}
-                  />
-                }
+          <Box bottom={0}>
+            <Grid container>
+              <Grid
+                size={{ xs: 12, md: 9 }}
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-end",
+                }}
               >
-                <Button
-                  variant="text"
-                  sx={{ color: (theme) => theme.palette.text.secondary }}
-                >
-                  Chat Outcome
-                </Button>
-              </AccordionSummary>
-              <AccordionDetails>
-                <div style={{ color: "white", padding: "16px" }}>
-                  {!loading ? (
-                    <Outcome
-                      title={outCome?.title}
-                      additional_info={outCome?.additional_info}
-                    />
-                  ) : (
-                    <ChatSkeleton />
-                  )}
-                </div>
-              </AccordionDetails>
-            </Accordion>
-          </Grid>
-        )}
-
-        <Box bottom={0}>
-          <Grid container>
-            <Grid
-              item
-              xs={12}
-              md={9}
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "flex-end",
-              }}
-            >
-              <ChatMessages
-                chat={chat}
-                loading={loading}
-                selected={selected}
-                error={error}
-                isTyping={isTyping}
-                setIsTyping={setIsTyping}
-                showSideBar={showSideBar}
-                containerRef={containerRef}
-                fetchChat={fetchChat}
-                setInput={setInput}
-              />
-              <InputField
-                input={input}
-                selected={selected}
-                error={error}
-                chatHistory={chatHistory}
-                isTyping={isTyping}
-                setInput={setInput}
-                handleSend={handleSend}
-              />
-            </Grid>
-
-            {!isSmallScreen && (
-              <Grid item md={3} sx={{ pr: 2, pb: 6 }}>
-                <Card
-                  sx={{
-                    backgroundColor: "#2f2f2f",
-                    color: "white",
-                    padding: "16px",
-                    height: "80vh",
-                    mr: "10px",
-                    borderRadius: 10,
-                  }}
-                >
-                  <br />
-                  <b>
-                    <center>Chat Outcome</center>
-                  </b>
-                  {!loading ? (
-                    <Outcome
-                      title={outCome?.title}
-                      additional_info={outCome?.additional_info}
-                    />
-                  ) : (
-                    <ChatSkeleton />
-                  )}
-                </Card>
+                <ChatMessages
+                  chat={chat}
+                  loading={loading}
+                  selected={selected}
+                  error={error}
+                  isTyping={isTyping}
+                  setIsTyping={setIsTyping}
+                  showSideBar={showSideBar}
+                  containerRef={containerRef}
+                  fetchChat={fetchChat}
+                  setInput={setInput}
+                />
+                <InputField
+                  input={input}
+                  selected={selected}
+                  error={error}
+                  chatHistory={chatHistory}
+                  isTyping={isTyping}
+                  setInput={setInput}
+                  handleSend={handleSend}
+                />
               </Grid>
-            )}
-          </Grid>
-        </Box>
+              {!isSmallScreen && (
+                <Grid size={{ md: 3 }} sx={{ pr: 2, pb: 6 }}>
+                  <Card
+                    style={{
+                      backgroundColor: "#2f2f2f",
+                      color: "white",
+                      padding: "16px",
+                      height: "80vh",
+                      marginRight: "10px",
+                      borderRadius: 10,
+                    }}
+                  >
+                    <br />
+                    <b>
+                      <center>Chat Outcome</center>
+                    </b>
+                    {!loading ? (
+                      <Outcome
+                        title={outCome?.title}
+                        additional_info={outCome?.additional_info}
+                      />
+                    ) : (
+                      <ChatSkeleton />
+                    )}
+                  </Card>
+                </Grid>
+              )}
+            </Grid>
+          </Box>
+        </Grid>
       </Grid>
-    </Grid>
+    </>
   );
 };
 

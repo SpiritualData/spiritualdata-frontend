@@ -1,8 +1,9 @@
 import React from "react";
 import { Grid, Stack, Typography, styled } from "@mui/material";
 import { Psychology, PsychologyAlt, TipsAndUpdates } from "@mui/icons-material";
+import { GridProps } from "@mui/material/Grid";
 
-export const StyledGridItem = styled(Grid)(({ theme }) => ({
+export const StyledGridItem = styled(Grid)<GridProps>(({ theme }) => ({
   position: "relative",
   overflow: "hidden",
   backgroundColor: theme.palette.text.secondary,
@@ -89,27 +90,27 @@ const Block1 = () => {
   ];
 
   return (
-  <Grid container px={{ xs: "2%", sm: "8%" }} sx={{ gap: { xs: 5, md: 0 } }}>
-        {data.map((val, index) => (
-          <StyledGridItem
-            key={index}
-            size={{ xs: 12, sm: 12, md: 4 }}
-            px={2}
-            py={3}
-          >
-            <StyledIcon>{val.icon}</StyledIcon>
-            <Stack direction="row">
-              <Typography variant="h5">{val.name}:&nbsp;</Typography>
-              <Typography variant="h5" sx={{ color: "black", mt: 0.2 }}>
-                {val.count}
-              </Typography>
-            </Stack>
-            <Typography sx={{ color: "black", fontSize: "14px" }}>
-              {val.info}
+    <Grid container px={{ xs: "2%", sm: "8%" }} sx={{ gap: { xs: 5, md: 0 } }}>
+      {data.map((val, index) => (
+        <StyledGridItem
+          key={index}
+          size={{ xs: 12, sm: 12, md: 4 }}
+          px={2}
+          py={3}
+        >
+          <StyledIcon>{val.icon}</StyledIcon>
+          <Stack direction="row">
+            <Typography variant="h5">{val.name}:&nbsp;</Typography>
+            <Typography variant="h5" sx={{ color: "black", mt: 0.2 }}>
+              {val.count}
             </Typography>
-          </StyledGridItem>
-        ))}
-      </Grid>
+          </Stack>
+          <Typography sx={{ color: "black", fontSize: "14px" }}>
+            {val.info}
+          </Typography>
+        </StyledGridItem>
+      ))}
+    </Grid>
   );
 };
 

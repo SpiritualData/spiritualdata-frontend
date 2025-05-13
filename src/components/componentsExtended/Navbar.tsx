@@ -10,6 +10,7 @@ import {
   Tab,
   Tabs,
   Toolbar,
+  Tab as MuiTab,
 } from "@mui/material";
 import { Book, Call, DataObject, Home, Info, Menu } from "@mui/icons-material";
 import { Link, useLocation } from "react-router-dom";
@@ -20,7 +21,7 @@ import header_scrolled from "../../assets/header_scrolled.png";
 
 export const drawerWidth = 280;
 
-const StyledTab = styled(Tab)(({ theme }) => ({
+const StyledTab = styled((props: any) => <MuiTab {...props} />)(({ theme }) => ({
   textTransform: "none",
   display: "none",
   "&:hover": {
@@ -42,7 +43,7 @@ const StyledToolbar = styled(Toolbar)({
 interface TabItem {
   label: string;
   path: string;
-  icon: JSX.Element;
+  icon: React.ReactElement;
 }
 
 const tab: TabItem[] = [
@@ -155,7 +156,7 @@ function Navbar() {
           zIndex: 4,
           py: 0.6,
           transition: "0.32s ease-in-out",
-          boxShadow: { md: !scrolled && "none" },
+          boxShadow: { md: scrolled ? undefined : "none" },
         }}
         position="static"
       >

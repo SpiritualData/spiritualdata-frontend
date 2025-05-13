@@ -1,9 +1,11 @@
+import React from "react";
 import { Send } from "@mui/icons-material";
 import { Grid, IconButton, TextField } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import ButtonLoader from "../../helpers/Loader";
 import { useLocation } from "react-router-dom";
 import { KeyboardEvent, ChangeEvent } from "react";
+import { ChatHistoryItem } from "../../pages/Chat";
 
 const inputTheme = createTheme({
   components: {
@@ -47,9 +49,12 @@ const inputTheme = createTheme({
 
 interface InputFieldProps {
   input: string;
-  setInput: (value: string) => void;
-  handleSend: (event: KeyboardEvent | React.MouseEvent) => void;
+  selected: string | null;
+  error: string | null;
+  chatHistory: ChatHistoryItem[];
   isTyping: boolean;
+  setInput: React.Dispatch<React.SetStateAction<string>>;
+  handleSend: (e: React.FormEvent) => Promise<void>;
 }
 
 const InputField = ({

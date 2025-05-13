@@ -11,24 +11,7 @@ import Petra from "../../assets/Petra_Frese.png";
 import PageDef from "../helpers/PageDef";
 import ContentSection from "../componentsExtended/Home/ContentSection";
 
-interface ContentSectionProps {
-  imageSrc2: string;
-  heading: string;
-  subText: string;
-  buttonText?: string;
-  path?: string;
-  bioHeading?: string;
-}
-
 const About: React.FC = () => {
-  const textStyles: SxProps = {
-    fontSize: "16px",
-    color: "black",
-    px: { xs: 4, md: "17%" },
-    textAlign: "left",
-    mb: 2,
-  };
-
   return (
     <Grid container>
       <PageHeader image={image} page={"About Us"} sx={{ mb: 4 }} />
@@ -42,6 +25,7 @@ const About: React.FC = () => {
       <Typography
         sx={{
           mt: { xs: -3, md: -6 },
+          mb: 6,
           fontSize: "16px",
           color: "black",
           px: { xs: 4, md: "17%" },
@@ -93,14 +77,15 @@ const About: React.FC = () => {
       >
         Here’s how Spiritual Data stands out:
       </Typography>
-      <ol
-        style={{
+
+      <Box
+        component="ol"
+        sx={{
           fontSize: "16px",
+          color: "black",
+          px: { xs: 4, md: "17%" },
           textAlign: "left",
-          marginBottom: 10,
-          paddingLeft: 280,
-          paddingRight: 250,
-          lineHeight: 1.5
+          mb: 2,
         }}
       >
         <li>
@@ -124,7 +109,7 @@ const About: React.FC = () => {
           established, it will scale and allow people around the world to
           contribute and leverage each other's research automatically.
         </li>
-      </ol>
+      </Box>
 
       <Typography
         sx={{
@@ -132,7 +117,6 @@ const About: React.FC = () => {
           color: "black",
           px: { xs: 4, md: "17%" },
           textAlign: "left",
-          marginBottom: 7
         }}
       >
         <b>

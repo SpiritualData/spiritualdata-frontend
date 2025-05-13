@@ -20,20 +20,24 @@ interface ChatMessage {
 
 interface ChatHistoryItem {
   chat_id: string;
-  title?: string;
+  title: string;
   chat?: ChatMessage[];
 }
 
+export type { ChatMessage, ChatHistoryItem };
+
 const Chat: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(
+    null
+  ) as React.RefObject<HTMLDivElement>;
   const { isLoaded, userId, getToken } = useAuth();
 
   const [chat, setChat] = useState<ChatMessage[]>([]);
-  const [selected, setSelected] = useState<string | undefined>();
+  const [selected, setSelected] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [loadingList, setLoadingList] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [errorList, setErrorList] = useState<string | boolean>(false);
+  const [errorList, setErrorList] = useState<boolean>(false);
   const [errorResponse, setErrorResponse] = useState<string | null>(null);
   const [input, setInput] = useState<string>("");
   const [isTyping, setIsTyping] = useState<boolean>(false);
@@ -52,9 +56,7 @@ const Chat: React.FC = () => {
     } catch (error) {
       setLoadingList(false);
       console.error("Error fetching chat list:", (error as Error).message);
-      setErrorList(
-        "An error occurred while fetching the chat list. Please check your connection."
-      );
+      setErrorList(true);
     }
   };
 
@@ -97,7 +99,9 @@ const Chat: React.FC = () => {
       try {
         const token = await getToken();
         localStorage.setItem("user", JSON.stringify(token));
-        setToken(token);
+        if (token) {
+          setToken(token);
+        }
       } catch (error) {
         console.error("Error fetching token:", error);
       }
@@ -116,9 +120,7 @@ const Chat: React.FC = () => {
       } catch (error) {
         setLoadingList(false);
         console.error("Error fetching chat list:", (error as Error).message);
-        setErrorList(
-          "An error occurred while fetching the chat list. Please check your connection."
-        );
+        setErrorList(true);
       }
     };
 
@@ -139,7 +141,7 @@ const Chat: React.FC = () => {
           fetchChat(chatHistory[0].chat_id);
         }
       } else {
-        setSelected(undefined);
+        setSelected(null);
         setChat([]);
         setLoading(false);
       }
@@ -150,7 +152,7 @@ const Chat: React.FC = () => {
     setLoading(true);
     const selectedChat = chatHistory.find((item) => item.chat_id === selected);
     if (selectedChat && selected) {
-      if (selectedChat.chat?.length > 0) {
+      if (selectedChat.chat && selectedChat.chat.length > 0) {
         setChat(selectedChat.chat);
         setLoading(false);
       } else {
@@ -282,7 +284,9 @@ const Chat: React.FC = () => {
       }}
     >
       <SnackbarAlert error={error} />
+
       <SnackbarAlert error={errorList} />
+
       <SnackbarAlert error={errorResponse} />
 
       <SideBar
@@ -308,13 +312,16 @@ const Chat: React.FC = () => {
         setSelected={setSelected}
         fetchChatHistory={fetchChatHistory}
         handleDrawerToggle={handleDrawerToggle}
+        loadingList={loadingList}
+        errorList={errorList}
       />
 
       <Grid
-        item
-        xs={12}
-        md={showSideBar ? 9.4 : 12}
-        lg={showSideBar ? 9.8 : 12}
+        size={{
+          xs: 12,
+          md: showSideBar ? 9.4 : 12,
+          lg: showSideBar ? 9.8 : 12,
+        }}
         sx={{
           background: (theme) => theme.palette.chatbot.chatBox,
           display: "flex",
@@ -323,7 +330,6 @@ const Chat: React.FC = () => {
         }}
       >
         <Grid
-          item
           pt={0.2}
           textAlign="center"
           sx={{ opacity: 0.8, display: "flex", flexDirection: "row" }}

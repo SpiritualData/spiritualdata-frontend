@@ -19,53 +19,15 @@ import {
   FileCopyOutlined,
   Launch,
 } from "@mui/icons-material";
-import { TypeWriter } from "react-simple-typewriter";
+import { Typewriter } from "react-simple-typewriter";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 
 import ChatSvg from "./ChatSvg";
 import ChatSkeleton from "../../helpers/ChatSkeleton";
 import ErrorComponent from "./Error";
+import { ChatMessage } from "../../pages/Chat";
 
-interface ChatMessageProps {
-  chat: ChatItem[];
-  loading: boolean;
-  selected: any;
-  error: boolean;
-  containerRef: RefObject<HTMLDivElement>;
-  setInput: (input: string) => void;
-  showSideBar: boolean;
-  isTyping: boolean;
-  setIsTyping: React.Dispatch<React.SetStateAction<boolean>>;
-  fetchChat: (selected: any) => void;
-}
-
-interface ChatItem {
-  role: string;
-  content: string;
-  db_results?: {
-    hypotheses?: DbResult[];
-    research?: DbResult[];
-    experiences?: DbResult[];
-  };
-}
-
-interface DbResult {
-  name: string;
-  url: string;
-  snippet: string;
-}
-
-interface ChatUiProps {
-  item: ChatItem;
-  isLastItem: boolean;
-  showSideBar: boolean;
-  handleScrollToBottom: () => void;
-  isTyping: boolean;
-  setIsTyping: React.Dispatch<React.SetStateAction<boolean>>;
-  showScrollButton: boolean;
-}
-
-const examples: string[] = [
+const examples = [
   "Who are you?",
   "What evidence is there that near-death experiences are real?",
   "What research is there on telepathy?",
@@ -98,7 +60,20 @@ const TypingSymbol = styled("span")`
   }
 `;
 
-const ChatMessages: React.FC<ChatMessageProps> = ({
+interface ChatMessagesProps {
+  chat: ChatMessage[];
+  loading: boolean;
+  selected: string | null;
+  error: string | null;
+  containerRef: RefObject<HTMLDivElement>;
+  setInput: (input: string) => void;
+  showSideBar: boolean;
+  isTyping: boolean;
+  setIsTyping: (isTyping: boolean) => void;
+  fetchChat: (selected: string) => void;
+}
+
+const ChatMessages: React.FC<ChatMessagesProps> = ({
   chat,
   loading,
   selected,
@@ -116,12 +91,10 @@ const ChatMessages: React.FC<ChatMessageProps> = ({
   useEffect(() => {
     const container = containerRef.current;
     const handleScroll = () => {
-      if (container) {
-        setShowScrollButton(
-          container.scrollTop + container.clientHeight <
-            container.scrollHeight - 10
-        );
-      }
+      setShowScrollButton(
+        container.scrollTop + container.clientHeight <
+          container.scrollHeight - 10
+      );
     };
 
     if (container) {
@@ -136,9 +109,7 @@ const ChatMessages: React.FC<ChatMessageProps> = ({
   }, [containerRef]);
 
   const handleScrollToBottom = () => {
-    if (containerRef.current) {
-      containerRef.current.scrollTop = containerRef.current.scrollHeight;
-    }
+    containerRef.current.scrollTop = containerRef.current.scrollHeight;
   };
 
   return (
@@ -227,9 +198,7 @@ const ChatMessages: React.FC<ChatMessageProps> = ({
                 {examples.map((item, index) => (
                   <Grid
                     key={index}
-                    xs={12}
-                    sm={5}
-                    xl={3}
+                    size={{ xs: 12, sm: 5, xl: 3 }}
                     display="flex"
                     justifyContent="center"
                     alignItems="center"
@@ -257,6 +226,16 @@ const ChatMessages: React.FC<ChatMessageProps> = ({
 
 export default ChatMessages;
 
+interface ChatUiProps {
+  item: ChatMessage;
+  isLastItem: boolean;
+  showSideBar: boolean;
+  handleScrollToBottom: () => void;
+  isTyping: boolean;
+  setIsTyping: (isTyping: boolean) => void;
+  showScrollButton: boolean;
+}
+
 const ChatUi: React.FC<ChatUiProps> = ({
   item,
   isLastItem,
@@ -270,7 +249,7 @@ const ChatUi: React.FC<ChatUiProps> = ({
   const [showTick, setShowTick] = useState(false);
 
   useEffect(() => {
-    let intervalId: NodeJS.Timeout;
+    let intervalId: NodeJS.Timeout | undefined;
 
     if (isTyping && !showScrollButton) {
       intervalId = setInterval(() => {
@@ -279,7 +258,9 @@ const ChatUi: React.FC<ChatUiProps> = ({
     }
 
     return () => {
-      clearInterval(intervalId);
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
     };
   }, [isTyping, showScrollButton, handleScrollToBottom]);
 
@@ -304,10 +285,10 @@ const ChatUi: React.FC<ChatUiProps> = ({
       py={2}
       sx={{ display: "flex", gap: 2 }}
     >
-      <Grid xs={1.4}>
+      <Grid size={{ xs: 1.4 }}>
         <ChatSvg item={item} />
       </Grid>
-      <Grid xs={8.4} sm={showSideBar ? 9 : 9.6} pr={{ xs: 0, sm: 4 }}>
+      <Grid size={{ xs: 8.4, sm: showSideBar ? 9 : 9.6 }} pr={{ xs: 0, sm: 4 }}>
         <Typography
           sx={{
             whiteSpace: "break-spaces",
@@ -317,9 +298,11 @@ const ChatUi: React.FC<ChatUiProps> = ({
         >
           {isLastItem && isTyping && item.role !== "user" ? (
             <>
-              <TypeWriter typing={40} onTypingEnd={() => setIsTyping(false)}>
-                {item.content}
-              </TypeWriter>
+              <Typewriter
+                words={[item.content]}
+                typeSpeed={40}
+                onLoopDone={() => setIsTyping(false)}
+              />
               <TypingSymbol>.</TypingSymbol>
             </>
           ) : (
@@ -342,7 +325,7 @@ const ChatUi: React.FC<ChatUiProps> = ({
         ) : null}
       </Grid>
 
-      <Grid xs={0.2}>
+      <Grid size={{ xs: 0.2 }}>
         {item.role !== "user" && (
           <Tooltip title="Copied!" open={showTick} placement="top" arrow>
             <IconButton
@@ -365,7 +348,13 @@ const ChatUi: React.FC<ChatUiProps> = ({
   );
 };
 
-const renderItems = (items: DbResult[]) => {
+interface DbResult {
+  url: string;
+  name: string;
+  snippet: string;
+}
+
+const renderItems = (items: DbResult[] | undefined) => {
   return items?.map((item) => (
     <div key={item.url} style={{ fontSize: "13px" }}>
       <b>
@@ -396,7 +385,7 @@ const renderItems = (items: DbResult[]) => {
 };
 
 interface DataResultsProps {
-  item: ChatItem;
+  item: ChatMessage;
   handleScrollToBottom: () => void;
   isLastItem: boolean;
   showScrollButton: boolean;
@@ -436,7 +425,7 @@ const DataResults: React.FC<DataResultsProps> = ({
             <Typography variant="subtitle1" fontWeight="bold">
               Hypotheses:
             </Typography>
-            {item.db_results?.hypotheses?.length > 0 ? (
+            {item.db_results.hypotheses?.length > 0 ? (
               renderItems(item.db_results.hypotheses)
             ) : (
               <center>No results found</center>
@@ -447,18 +436,14 @@ const DataResults: React.FC<DataResultsProps> = ({
             <Typography variant="subtitle1" fontWeight="bold">
               Experiences:
             </Typography>
-            {item.db_results?.experiences?.length > 0 ? (
-              renderItems(item.db_results.experiences)
-            ) : (
-              <center>No results found</center>
-            )}
+            5998
           </Stack>
 
           <Stack spacing={0.4}>
             <Typography variant="subtitle1" fontWeight="bold">
               Research:
             </Typography>
-            {item.db_results?.research?.length > 0 ? (
+            {item.db_results.research?.length > 0 ? (
               renderItems(item.db_results.research)
             ) : (
               <center>No results found</center>

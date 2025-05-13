@@ -13,33 +13,26 @@ export function TransitionUp(props: SlideProps) {
 }
 
 interface SnackbarAlertProps {
-  error: string | null;
+  error: string | boolean | null;
 }
 
 const SnackbarAlert: React.FC<SnackbarAlertProps> = ({ error }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [transition] = useState(() => TransitionUp);
+  const [open, setOpen] = React.useState(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (error) {
-      setIsOpen(true);
-      const timeout = setTimeout(() => {
-        setIsOpen(false);
-      }, 2000);
-      return () => clearTimeout(timeout);
+      setOpen(true);
     }
   }, [error]);
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <Snackbar
-      key={error}
-      open={isOpen}
-      autoHideDuration={5000}
-      TransitionComponent={transition}
-      onClose={() => setIsOpen(false)}
-    >
-      <Alert severity="error" onClose={() => setIsOpen(false)}>
-        {error}
+    <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+      <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
+        {typeof error === "string" ? error : "An error occurred"}
       </Alert>
     </Snackbar>
   );

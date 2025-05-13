@@ -116,7 +116,7 @@ function SettingsMenu({ saveChat, setSaveChat }: SettingsMenuProps) {
             }
             label="Save Chat"
             labelPlacement="start"
-            spacing={2}
+            sx={{ margin: 2 }}
           />
         </MenuItem>
       </Menu>

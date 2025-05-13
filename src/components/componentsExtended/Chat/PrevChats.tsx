@@ -50,7 +50,7 @@ interface ChatItem {
 
 interface ChatHistoryProps {
   chatHistory: ChatItem[];
-  setChatHistory: (history: ChatItem[]) => void;
+  setChatHistory: React.Dispatch<React.SetStateAction<ChatItem[]>>;
   selected: string | null;
   loadingList: boolean;
   errorList: boolean;
@@ -92,8 +92,10 @@ export default function ChatHistory({
         const delResult = res.data;
 
         if (delResult.success) {
-          setChatHistory((prevChatHistory) =>
-            prevChatHistory.filter((item) => item.chat_id !== selected)
+          setChatHistory((prevChatHistory: ChatItem[]) =>
+            prevChatHistory.filter(
+              (item: ChatItem) => item.chat_id !== selected
+            )
           );
         } else {
           console.error("Chat Deletion failed");
@@ -128,9 +130,11 @@ export default function ChatHistory({
                     selected === item.chat_id
                       ? (theme) => theme.palette.chatbot.chatBox
                       : "transparent",
-                  "&:hover": {
-                    opacity: selected !== item.chat_id && 0.6,
-                  },
+                  ...(selected !== item.chat_id && {
+                    "&:hover": {
+                      opacity: 0.6,
+                    },
+                  }),
                 }}
               >
                 <StyledListItemIcon>
