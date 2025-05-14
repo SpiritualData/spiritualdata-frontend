@@ -7,7 +7,6 @@ import {
   IconButton,
   Stack,
   styled,
-  Tab,
   Tabs,
   Toolbar,
   Tab as MuiTab,
