@@ -23,7 +23,7 @@ import { Typewriter } from "react-simple-typewriter";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 
 import ChatSvg from "./ChatSvg";
-import ChatSkeleton from "../../helpers/ChatSkeleton";
+import ChatSkeleton from "../ChatSkeleton";
 import ErrorComponent from "./Error";
 import { ChatMessage } from "../../pages/Chat";
 

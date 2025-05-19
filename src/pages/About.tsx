@@ -1,13 +1,13 @@
 import React from "react";
 import { Box, Grid, Typography } from "@mui/material";
 
-import PageHeader from "../helpers/PageHeader";
+import PageHeader from "../components/PageHeader";
 import image from "../assets/about.webp";
 import Joshua from "../assets/Joshua.jpeg";
 import Sanjay from "../assets/Sanjay_Rout.jpeg";
 import Jason from "../assets/Jason_Bramble.jpeg";
 import Petra from "../assets/Petra_Frese.png";
-import PageDef from "../helpers/PageDef";
+import PageDef from "../components/PageDef";
 import ContentSection from "../components/Home/ContentSection";
 
 const About: React.FC = () => {

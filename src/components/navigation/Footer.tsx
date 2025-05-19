@@ -4,7 +4,7 @@ import { Typography, Box, styled, Divider, SvgIcon } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { LinkedIn, X, YouTube } from "@mui/icons-material";
 
-import { links, menuItems } from "../helpers/footerData";
+import { links, menuItems } from "../../data/footerData";
 import footerImage from "../assets/footer.png";
 import logo from "../assets/logo_footer.png";
 

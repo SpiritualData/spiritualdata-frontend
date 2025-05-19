@@ -3,8 +3,8 @@ import React from "react";
 
 import image from "../assets/donation.png";
 import skill from "../assets/skill.jpeg";
-import PageHeader from "../helpers/PageHeader";
-import PageDef from "../helpers/PageDef";
+import PageHeader from "../components/PageHeader";
+import PageDef from "../components/PageDef";
 import DonationMethod from "../components/Donations/DonationsMethod";
 import Questions from "../components/Donations/Questions";
 import ContentSection from "../components/Home/ContentSection";

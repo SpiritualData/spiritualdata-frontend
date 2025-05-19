@@ -2,7 +2,7 @@ import React from "react";
 import { Send } from "@mui/icons-material";
 import { Grid, IconButton, TextField } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import ButtonLoader from "../../helpers/Loader";
+import ButtonLoader from "../Loader";
 import { useLocation } from "react-router-dom";
 import { KeyboardEvent, ChangeEvent } from "react";
 import { ChatHistoryItem } from "../../pages/Chat";

@@ -2,7 +2,7 @@ import React from "react";
 import { Modal, Box } from "@mui/material";
 import ConfirmationCard from "./ConfirmationCard";
 import gitGif from "../../../assets/git-right.gif";
-import GifImage from "../../helpers/GifImage";
+import GifImage from "../GifImage";
 import AnimatedCancelIcon from "./AnimatedCancelIcon";
 
 interface ConfirmationModalProps {
