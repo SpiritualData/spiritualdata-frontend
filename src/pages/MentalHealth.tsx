@@ -1,8 +1,8 @@
 import React from "react";
 import { Grid } from "@mui/material";
-import PageHeader from "../helpers/PageHeader";
+import PageHeader from "../components/PageHeader";
 import image from "../assets/conciusness.webp";
-import PageDef from "../helpers/PageDef";
+import PageDef from "../components/PageDef";
 
 const MentalHealth: React.FC = () => {
   return (

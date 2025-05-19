@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { Box, Button, Grid, Typography, styled } from "@mui/material";
 
 import image from "../assets/dataDiscovery.png";
-import PageHeader from "../helpers/PageHeader";
-import PageDef from "../helpers/PageDef";
+import PageHeader from "../components/PageHeader";
+import PageDef from "../components/PageDef";
 import { East } from "@mui/icons-material";
 
 export const StyledGridItem = styled(Grid)(({ theme }) => ({

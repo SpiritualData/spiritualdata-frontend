@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ProgressBar from "../../helpers/ProgressBar";
+import ProgressBar from "../ProgressBar";
 import {
   Box,
   Typography,

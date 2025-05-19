@@ -19,7 +19,7 @@ import {
 } from "@mui/material";
 
 import axios from "../../utils/axios";
-import { ListSkeleton } from "../../helpers/ChatSkeleton";
+import { ListSkeleton } from "../ChatSkeleton";
 import ErrorComponent from "./Error";
 
 const StyledList = styled(List)`

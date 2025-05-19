@@ -9,7 +9,7 @@ import SideBar, { StyledButton } from "../components/Chat/SideBar";
 import InputField from "../components/Chat/UserInput";
 import ChatMessages from "../components/Chat/ChatMessages";
 import ChatDrawer from "../components/Chat/ChatDrawer";
-import SnackbarAlert from "../helpers/SnackbarAlert";
+import SnackbarAlert from "../components/SnackbarAlert";
 import SettingsMenu from "../components/Chat/Settings";
 
 interface ChatMessage {

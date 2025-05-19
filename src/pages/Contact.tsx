@@ -15,12 +15,12 @@ import emailjs from "@emailjs/browser";
 import { FormEvent } from "react";
 import { SxProps } from "@mui/material/styles";
 
-import PageHeader from "../helpers/PageHeader";
+import PageHeader from "../components/PageHeader";
 import image from "../assets/contact.webp";
 import formImage from "../assets/contactForm.png";
-import PageDef from "../helpers/PageDef";
-import { Alert, TransitionUp } from "../helpers/SnackbarAlert";
-import { links } from "../helpers/footerData";
+import PageDef from "../components/PageDef";
+import { Alert, TransitionUp } from "../components/SnackbarAlert";
+import { links } from "../data/footerData";
 
 const StyledCard = styled(Card)({
   width: "80%",

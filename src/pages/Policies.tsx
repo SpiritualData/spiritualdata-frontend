@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Typography, Card, CardContent } from "@mui/material";
 
 import image from "../assets/policies.jpg";
-import PageHeader from "../helpers/PageHeader";
+import PageHeader from "../components/PageHeader";
 
 interface PoliciesProps {
   fileName: string;

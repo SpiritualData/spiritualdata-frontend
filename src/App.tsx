@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import { Theme } from "@mui/material";
-import theme from "./helpers/theme";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import theme from "./style/theme";
+import Navbar from "./components/navigation/Navbar";
+import Footer from "./components/navigation/Footer";
 import useClerkRoutes from "./hooks/routes";
-import ScrollToTop from "./helpers/ScrollToTop";
+import ScrollToTop from "./components/ScrollToTop";
 
 const App: React.FC = () => {
   const location = useLocation();
