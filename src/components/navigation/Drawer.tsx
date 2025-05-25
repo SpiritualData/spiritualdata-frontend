@@ -1,4 +1,4 @@
-import { Login, Input, Menu, Message } from "@mui/icons-material";
+import { Login, Input, Menu, Message, Close } from "@mui/icons-material";
 import {
   Divider,
   IconButton,
@@ -13,7 +13,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import header_scrolled from "../assets/header_scrolled.png";
+import header_scrolled from "../../assets/header_scrolled.png"
 
 interface DrawerItem {
   label: string;
@@ -64,17 +64,19 @@ const DrawerItems: React.FC<DrawerItemsProps> = ({
           alignItems="center"
         >
           <Stack direction="row">
-            <img
-              src={undefined}
-              alt=""
-              style={{
-                width: "50px",
-                height: "40px",
-                marginTop: 10,
-                marginLeft: -14,
-              }}
+            <IconButton
               onClick={handleDrawerToggle}
-            />
+              sx={{ 
+                ml: -1,
+                mt: 1,
+                color: (theme) => theme.palette.text.primary,
+                '&:hover': {
+                  backgroundColor: 'transparent'
+                }
+              }}
+            >
+              <Close />
+            </IconButton>
             <Link style={{ textDecoration: "none" }} to="/">
               <IconButton size="large">
                 <img

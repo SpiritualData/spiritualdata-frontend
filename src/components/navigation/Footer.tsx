@@ -5,8 +5,8 @@ import Grid from "@mui/material/Grid";
 import { LinkedIn, X, YouTube } from "@mui/icons-material";
 
 import { links, menuItems } from "../../data/footerData";
-import footerImage from "../assets/footer.png";
-import logo from "../assets/logo_footer.png";
+import footerImage from "../../assets/footer.png";
+import logo from "../../assets/logo_footer.png";
 
 interface FooterLink {
   name: string;
@@ -22,7 +22,7 @@ const StyledGrid = styled(Grid)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
   color: theme.palette.text.secondary,
   width: "100%",
-  padding: "60px 10px",
+  padding: "40px 10px",
 }));
 
 const StyledLink = styled(Link)(({ theme }) => ({
@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
         sx={{
           backgroundImage: `url(${footerImage})`,
           backgroundPosition: { xs: "top", sm: "right" },
-          backgroundSize: { xs: "auto 50%", sm: "50% auto" },
+          backgroundSize: { xs: "auto 40%", sm: "40% auto" },
           backgroundRepeat: "no-repeat",
         }}
       >
@@ -60,8 +60,8 @@ const Footer: React.FC = () => {
         <Grid
           sx={{
             width: { xs: "100%", sm: "25%" },
-            p: { xs: 0, sm: 2.6 },
-            mb: { xs: 2, sm: 0 },
+            p: { xs: 0, sm: 2 },
+            mb: { xs: 1, sm: 0 },
             display: "flex",
             flexDirection: "column",
             alignItems: { xs: "center", sm: "flex-start" },
@@ -69,7 +69,7 @@ const Footer: React.FC = () => {
         >
           <Link style={{ textDecoration: "none" }} to="/">
             <img
-              style={{ width: "150px", height: "100px" }}
+              style={{ width: "120px", height: "80px" }}
               src={logo}
               alt="Logo"
             />
@@ -77,10 +77,10 @@ const Footer: React.FC = () => {
 
           <Typography
             sx={{
-              fontSize: { xs: "14px", sm: "10px", md: "14px" },
-              lineHeight: "1.2rem",
+              fontSize: { xs: "12px", sm: "10px", md: "12px" },
+              lineHeight: "1.1rem",
               letterSpacing: "0.2px",
-              mt: 2,
+              mt: 1,
             }}
           >
             Calculating truth with AI.
@@ -89,7 +89,7 @@ const Footer: React.FC = () => {
           <Grid
             sx={{
               width: "100%",
-              mt: 2,
+              mt: 1,
               display: "flex",
               justifyContent: { xs: "center", sm: "flex-start" },
               gap: 1,
@@ -121,10 +121,10 @@ const Footer: React.FC = () => {
             sx={{
               width: { xs: "50%", sm: "23%" },
               p: 1,
-              mt: { xs: 2, sm: 0 },
+              mt: { xs: 1, sm: 0 },
               overflow: "auto",
               borderLeft: { xs: "0", sm: "1px solid #3A3B3C" },
-              pl: { xs: 0, sm: 3 },
+              pl: { xs: 0, sm: 2 },
               textAlign: { xs: "center", sm: "left" },
             }}
           >
@@ -132,11 +132,11 @@ const Footer: React.FC = () => {
               sx={{
                 fontWeight: "700",
                 fontFamily: "Dosis,sans-serif",
-                lineHeight: "2.2rem",
+                lineHeight: "1.8rem",
                 display: "inline-block",
                 transform: "scaleY(1.1)",
                 letterSpacing: "1px",
-                fontSize: { xs: "26px", sm: "20px", md: "20px" },
+                fontSize: { xs: "20px", sm: "16px", md: "18px" },
               }}
             >
               {item.title}
@@ -145,10 +145,10 @@ const Footer: React.FC = () => {
             <Divider
               sx={{
                 background: (theme) => theme.palette.primary.focus,
-                width: { xs: "40%", sm: "40px" },
+                width: { xs: "40%", sm: "30px" },
                 height: "2px",
                 borderRadius: 20,
-                mb: 1.4,
+                mb: 1,
                 mx: { xs: "30%", sm: 0 },
               }}
             />
@@ -158,11 +158,11 @@ const Footer: React.FC = () => {
                 component="div"
                 key={idx}
                 sx={{
-                  fontSize: { xs: "14px", sm: "10px", md: "14px" },
-                  lineHeight: "1.4rem",
-                  letterSpacing: "1px",
+                  fontSize: { xs: "12px", sm: "10px", md: "12px" },
+                  lineHeight: "1.2rem",
+                  letterSpacing: "0.5px",
                 }}
-                py={0.4}
+                py={0.2}
               >
                 <StyledLink
                   to={link.path}
@@ -185,7 +185,7 @@ const Footer: React.FC = () => {
       <Grid
         container
         px={2}
-        py={1}
+        py={0.5}
         sx={{ background: "black", color: "white", gap: 2 }}
       >
         <Grid
@@ -194,7 +194,7 @@ const Footer: React.FC = () => {
             textAlign: { xs: "center", md: "left" },
           }}
         >
-          <small>Copyright 2025 Spiritual Data. All Rights Reserved.</small>
+          <small style={{ fontSize: "11px" }}>Copyright 2025 Spiritual Data. All Rights Reserved.</small>
         </Grid>
 
         <Grid
@@ -211,7 +211,7 @@ const Footer: React.FC = () => {
             >
               <Typography
                 sx={{
-                  fontSize: "13px",
+                  fontSize: "11px",
                   cursor: "pointer",
                   "&:hover": { color: (theme) => theme.palette.primary.hover },
                 }}
@@ -223,7 +223,7 @@ const Footer: React.FC = () => {
 
           {location.pathname !== "/privacy" &&
             location.pathname !== "/cookies" && (
-              <Typography sx={{ fontSize: "13px" }}>&nbsp;-&nbsp;</Typography>
+              <Typography sx={{ fontSize: "11px" }}>&nbsp;-&nbsp;</Typography>
             )}
 
           {location.pathname !== "/cookies" && (
@@ -233,7 +233,7 @@ const Footer: React.FC = () => {
             >
               <Typography
                 sx={{
-                  fontSize: "13px",
+                  fontSize: "11px",
                   cursor: "pointer",
                   "&:hover": { color: (theme) => theme.palette.primary.hover },
                 }}
@@ -245,14 +245,14 @@ const Footer: React.FC = () => {
 
           {location.pathname !== "/terms" && (
             <>
-              <Typography sx={{ fontSize: "13px" }}>-</Typography>&nbsp;
+              <Typography sx={{ fontSize: "11px" }}>-</Typography>&nbsp;
               <Link
                 style={{ textDecoration: "none", color: "white" }}
                 to="/terms"
               >
                 <Typography
                   sx={{
-                    fontSize: "13px",
+                    fontSize: "11px",
                     cursor: "pointer",
                     "&:hover": {
                       color: (theme) => theme.palette.primary.hover,

@@ -15,8 +15,8 @@ import { Book, Call, DataObject, Home, Info, Menu } from "@mui/icons-material";
 import { Link, useLocation } from "react-router-dom";
 
 import DrawerItems from "./Drawer";
-import header from "../assets/header.png";
-import header_scrolled from "../assets/header_scrolled.png";
+import header from "../../assets/header.png";
+import header_scrolled from "../../assets/header_scrolled.png";
 
 export const drawerWidth = 280;
 
@@ -212,12 +212,12 @@ function Navbar() {
             <Stack direction="row" spacing={1} alignItems="center">
               <Tabs
                 value={value}
-                TabIndicatorProps={{
-                  sx: {
-                    backgroundColor: "transparent",
-                  },
+                sx={{
+                  paddingTop: 1,
+                  '& .MuiTabs-indicator': {
+                    backgroundColor: 'transparent'
+                  }
                 }}
-                sx={{ paddingTop: 1 }}
               >
                 {tab.map(({ label, path }, index) => (
                   <StyledTab

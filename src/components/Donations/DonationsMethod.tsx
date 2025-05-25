@@ -99,6 +99,8 @@ const DonationMethod = () => {
         display: "flex",
         justifyContent: "center",
         gap: { xs: 6, sm: 4 },
+        borderRadius: "8px",
+        overflow: "hidden",
       }}
       pt={{ xs: 4, md: 8 }}
       pb={{ xs: 8, md: 12 }}
@@ -128,38 +130,31 @@ const DonationMethod = () => {
                 pb: 4,
                 cursor: "pointer",
                 transition: "transform 0.3s",
+                borderRadius: "8px",
                 "&:hover": {
                   transform: "scale(1.03)",
-                  "& Button": {
-                    background: (theme) => theme.palette.primary.hover,
-                    color: "white",
-                    opacity: 0.9,
-                  },
                   "& h4": {
                     color: (theme) => theme.palette.primary.hover,
                   },
                 },
               }}
             >
-              <CardContent sx={{ flexGrow: 1, pb: 1 }}>
-                <>
-                  <img
-                    src={item.image}
-                    alt={item.label}
-                    width="180"
-                    height="120"
-                    style={{
-                      transform:
-                        item.label === "Stripe" ? "scale(1.1)" : "none",
-                    }}
-                  />
-                  <Typography
-                    variant="body1"
-                    sx={{ textAlign: "left", color: "black" }}
-                  >
-                    {item.description}
-                  </Typography>
-                </>
+              <CardContent>
+                <img
+                  src={item.image}
+                  alt={item.label}
+                  width="180"
+                  height="120"
+                  style={{
+                    transform: item.label === "Stripe" ? "scale(1.1)" : "none",
+                  }}
+                />
+                <Typography
+                  variant="body1"
+                  sx={{ textAlign: "left", color: "black" }}
+                >
+                  {item.description}
+                </Typography>
               </CardContent>
               <Button
                 sx={{
@@ -170,6 +165,12 @@ const DonationMethod = () => {
                   width: "200px",
                   px: 6,
                   borderRadius: 20,
+                  transition: "all 0.3s ease",
+                  "&:hover": {
+                    background: (theme) => theme.palette.primary.hover,
+                    color: "white",
+                    opacity: 0.9,
+                  },
                 }}
                 onClick={() => (window.location.href = item.path)}
               >

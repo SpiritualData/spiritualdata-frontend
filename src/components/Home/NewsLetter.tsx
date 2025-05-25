@@ -20,7 +20,7 @@ const NewsletterGrid = styled(Grid)(({ theme }) => ({
     width: "68%",
     height: "100%",
     backgroundImage: `url(${orange})`,
-    backgroundSize: "fit",
+    backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     zIndex: 1,
   },

@@ -8,29 +8,12 @@ interface PageDefProps {
 }
 
 const PageDef: React.FC<PageDefProps> = ({ title, heading, details }) => {
-  const titleStyles: SxProps<Theme> = {
-    fontSize: "20px",
-    color: (theme) => theme.palette.primary.focus,
-    fontWeight: "bold",
-  };
-
-  const headingStyles: SxProps = {
-    fontSize: { xs: "26px", md: "32px" },
-    fontWeight: 550,
-  };
-
-  const detailsStyles: SxProps = {
-    fontSize: "16px",
-    textAlign: "left",
-  };
-
   return (
     <Grid
       size={{ xs: 12 }}
       my={{ xs: 4, sm: 8 }}
-      px={{ xs: 4, md: "26%" }}
+      px={{ xs: 2, md: 4 }}
       sx={{ textAlign: "center" }}
-      minWidth={"100%"}
     >
       <Typography
         sx={{
@@ -42,11 +25,24 @@ const PageDef: React.FC<PageDefProps> = ({ title, heading, details }) => {
         {title}
       </Typography>
       <Typography
-        sx={{ fontSize: { xs: "26px", md: "32px" }, fontWeight: 550 }}
+        sx={{
+          fontSize: { xs: "24px", md: "32px" },
+          fontWeight: 550,
+          wordBreak: "break-word",
+          px: { xs: 1, md: 0 },
+        }}
       >
         {heading}
       </Typography>
-      <Typography sx={{ fontSize: "16px", textAlign: "left" }}>
+      <Typography 
+        sx={{ 
+          fontSize: "16px", 
+          textAlign: "center",
+          maxWidth: "800px",
+          mx: "auto",
+          px: { xs: 1, md: 0 },
+        }}
+      >
         {details}
       </Typography>
     </Grid>

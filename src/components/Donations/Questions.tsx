@@ -1,8 +1,11 @@
-import { Button, Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography, useTheme } from "@mui/material";
 import { East } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import { Box } from "@mui/material";
 
 const Questions = () => {
+  const theme = useTheme();
+  
   return (
     <Grid
       container
@@ -11,12 +14,14 @@ const Questions = () => {
         display: "flex",
         justifyContent: "space-between",
         gap: 2,
+        borderRadius: "8px",
+        overflow: "hidden",
       }}
-      py={{ xs: 3, md: 8 }}
-      px={{ xs: 4, md: "20%" }}
+      py={{ xs: 4, md: 8 }}
+      px={{ xs: 4, md: 6 }}
     >
       <Grid container size={{ xs: 12 }} sx={{ textAlign: "center" }}>
-        <Grid size={{ xs: 12 }} mt={{ xs: 2, md: 0 }} mb={1} gap={5}>
+        <Grid size={{ xs: 12 }} mt={{ xs: 2, md: 0 }} mb={1} gap={5} sx={{ textAlign: "left" }}>
           <Typography
             sx={{
               fontSize: "16px",
@@ -33,14 +38,13 @@ const Questions = () => {
             What are the donations used for?
           </Typography>
 
-          <Typography sx={{ fontSize: "16px", mt: 2, textAlign: "left" }}>
+          <Typography sx={{ fontSize: "16px", mt: 2 }}>
             Your donations will fund a solid foundation that demonstrates how
             Spiritual Data can change research, AI, and society through
             automated evidence analysis.
           </Typography>
 
           <Typography
-            align="left"
             variant="inherit"
             sx={{ mt: 2, fontWeight: "bold" }}
           >
@@ -54,7 +58,7 @@ const Questions = () => {
               lineHeight: 1.5,
               letterSpacing: "0.00938em",
               fontSize: "16px",
-              textAlign: "left",
+              paddingLeft: "20px",
             }}
           >
             <li>
@@ -71,7 +75,6 @@ const Questions = () => {
           </ul>
 
           <Typography
-            align="left"
             variant="inherit"
             sx={{ mt: 2, fontWeight: "bold" }}
           >
@@ -85,7 +88,7 @@ const Questions = () => {
               lineHeight: 1.5,
               letterSpacing: "0.00938em",
               fontSize: "16px",
-              textAlign: "left",
+              paddingLeft: "20px",
             }}
           >
             <li>
@@ -101,11 +104,23 @@ const Questions = () => {
             </li>
           </ul>
 
-          <Typography sx={{ textAlign: "left",fontSize: "16px", mt: 2 }}>
-            <a href="https://givebutter.com/spiritualdatamvp">
+          <Box sx={{ mt: 2 }}>
+            <Typography 
+              component="a"
+              href="https://givebutter.com/spiritualdatamvp"
+              sx={{ 
+                fontSize: "16px",
+                color: (theme) => theme.palette.primary.focus,
+                textDecoration: "none",
+                display: "inline-block",
+                "&:hover": {
+                  textDecoration: "underline",
+                },
+              }}
+            >
               Learn more at our givebutter fundraising page.
-            </a>
-          </Typography>
+            </Typography>
+          </Box>
         </Grid>
       </Grid>
 
@@ -125,7 +140,6 @@ const Questions = () => {
               my: 3,
               "&:hover": {
                 backgroundColor: "transparent",
-                color: "inherit",
               },
             }}
           >
@@ -133,14 +147,19 @@ const Questions = () => {
               sx={{
                 color: (theme) => theme.palette.primary.focus,
                 fontSize: "16px",
-                textDecoration: "none",
-                "&:hover": { textDecoration: "underline" },
                 display: "flex",
                 alignItems: "center",
+                padding: "8px 16px",
+                borderRadius: "20px",
+                transition: "all 0.3s ease",
+                "&:hover": {
+                  backgroundColor: (theme) => theme.palette.primary.focus,
+                  color: "black",
+                },
               }}
             >
               Questions? Click here to send us a message.{" "}
-              <East sx={{ marginLeft: "4px", fontSize: "16px" }} />
+              <East sx={{ ml: 1, fontSize: "16px" }} />
             </Typography>
           </Button>
         </Link>

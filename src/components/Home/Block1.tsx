@@ -12,14 +12,6 @@ export const StyledGridItem = styled(Grid)<GridProps>(({ theme }) => ({
   marginTop: -40,
   zIndex: 1,
   boxShadow: `0px 6px 10px #00000029`,
-  ":first-of-type": {
-    borderTopLeftRadius: 2,
-    borderBottomLeftRadius: 2,
-  },
-  "&:last-child": {
-    borderTopRightRadius: 2,
-    borderBottomRightRadius: 2,
-  },
   "& div": {
     color: theme.palette.primary.focus,
     transition: "color 0.5s ease-in-out",
@@ -50,9 +42,27 @@ export const StyledGridItem = styled(Grid)<GridProps>(({ theme }) => ({
   "&:hover:before": {
     left: 0,
   },
+  [theme.breakpoints.up("md")]: {
+    '&:first-of-type': {
+      borderTopLeftRadius: 8,
+      borderBottomLeftRadius: 8,
+    },
+    '&:last-child': {
+      borderTopRightRadius: 8,
+      borderBottomRightRadius: 8,
+    },
+  },
   [theme.breakpoints.down("md")]: {
     borderBottom: `2px solid ${theme.palette.primary.focus}`,
     borderLeft: "none",
+    '&:first-of-type': {
+      borderTopLeftRadius: 8,
+      borderTopRightRadius: 8,
+    },
+    '&:last-child': {
+      borderBottomLeftRadius: 8,
+      borderBottomRightRadius: 8,
+    },
   },
 }));
 
@@ -90,7 +100,9 @@ const Block1 = () => {
   ];
 
   return (
-    <Grid container px={{ xs: "2%", sm: "8%" }} sx={{ gap: { xs: 5, md: 0 } }}>
+    <Grid container 
+    // px={{ xs: "2%", sm: "8%" }}
+    sx={{ gap: { xs: 5, md: 0 } }}>
       {data.map((val, index) => (
         <StyledGridItem
           key={index}

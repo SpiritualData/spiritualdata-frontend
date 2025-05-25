@@ -54,127 +54,160 @@ const FAQ = () => {
 
   return (
     <Grid
-          container
-          sx={{
-            background: "#F3F6F8",
-            display: "flex",
-            justifyContent: "space-between",
-            gap: 2,
-          }}
-          py={{ xs: 3, md: 8 }}
-          px={"8%"}
-        >
-          <Grid size={{ xs: 12, md: 5.8 }} pr={{ xs: 0, md: 5 }}>
-            {faqs.map((faq, index) => (
-              <Accordion
-                key={index}
-                expanded={expanded === index}
-                sx={{
-                  mt: expanded !== -1 ? 0 : 1.8,
-                  boxShadow: "0px 4px 12px 0px rgba(0, 0, 0, 0.15)",
-                }}
-              >
-                <AccordionSummary
-                  expandIcon={
-                    <>
-                      {expanded === index ? (
-                        <Remove
-                          sx={{
-                            color: "white",
-                            bgcolor: (theme) => theme.palette.primary.focus,
-                          }}
-                        />
-                      ) : (
-                        <Add
-                          sx={{
-                            color: "white",
-                            bgcolor: (theme) => theme.palette.primary.focus,
-                          }}
-                        />
-                      )}
-                    </>
-                  }
-                  aria-controls="panel-content"
-                  id="panel-header"
-                  onClick={() => setExpanded(expanded === index ? -1 : index)}
-                >
-                  <Typography sx={{ fontWeight: 500 }}>{faq.question}</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Typography sx={{ fontSize: "14px" }}>{faq.answer}</Typography>
-                </AccordionDetails>
-              </Accordion>
-            ))}
-          </Grid>
-          <Grid
-            container
-            size={{
-            xs:12,
-            md:5.8}}
-            sx={{ textAlign: { xs: "center", md: "left" } }}
-          >
-            <Grid size={{xs:12}}  mt={{ xs: 2, md: 0 }} mb={1}>
-              <Typography
-                sx={{
-                  fontSize: "16px",
-                  color: (theme) => theme.palette.primary.focus,
-                  fontWeight: "bold",
-                }}
-              >
-                ASK QUESTIONS
-              </Typography>
-              <Typography
-                sx={{ fontSize: { xs: "22px", md: "30px" }, fontWeight: 550 }}
-              >
-                Frequently Asked Questions
-              </Typography>
-              <Typography sx={{ fontSize: "15px" }}>
-                Discover quick answers to common questions about Spiritual Data.
-              </Typography>
-            </Grid>
-    
-            <Grid size={{xs:12}} >
-              <img style={{ width: "100%" }} src={imageSrc} alt={""} />
-            </Grid>
-          </Grid>
-    
-          <Grid
-            size={{xs:12}}
+      container
+      sx={{
+        background: "#F3F6F8",
+        display: "flex",
+        justifyContent: "space-between",
+        gap: 2,
+        borderRadius: "8px",
+        overflow: "hidden",
+        px: { xs: 2, sm: 4, md: 6 },
+      }}
+      py={{ xs: 3, md: 8 }}
+    >
+      <Grid size={{ xs: 12, md: 5.8 }} pr={{ xs: 0, md: 5 }}>
+        {faqs.map((faq, index) => (
+          <Accordion
+            key={index}
+            expanded={expanded === index}
             sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: { xs: "center", md: "flex-start" },
-              height: "40px",
+              mt: expanded !== -1 ? 0 : 1.8,
+              boxShadow: "0px 4px 12px 0px rgba(0, 0, 0, 0.15)",
+              borderRadius: index === 0 ? "8px 8px 0 0" : 
+                          index === faqs.length - 1 ? "0 0 8px 8px" : "0",
+              "&:first-of-type": {
+                borderRadius: "8px 8px 0 0",
+                borderTop: "none",
+              },
+              "&:last-of-type": {
+                borderRadius: "0 0 8px 8px",
+              },
+              borderTop: index !== 0 && expanded !== index ? "1px solid rgba(0, 0, 0, 0.12)" : "none",
+              "&:before": {
+                display: "none",
+              },
+              transition: "background-color 0.2s ease",
+              "&:hover": {
+                backgroundColor: "rgba(0, 0, 0, 0.02)",
+              },
             }}
           >
-            <Link to="/contact" style={{ textDecoration: "none" }}>
-              <Button
-                variant="text"
-                sx={{
-                  my: 3,
-                  "&:hover": {
-                    backgroundColor: "transparent",
-                    color: "inherit",
-                  },
-                }}
-              >
-                <Typography
-                  sx={{
-                    color: (theme) => theme.palette.primary.focus,
-                    fontSize: "16px",
-                    textDecoration: "none",
-                    "&:hover": { textDecoration: "underline" },
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  Questions? Click here to send us a message.{" "}
-                  <East sx={{ marginLeft: "4px", fontSize: "16px" }} />
-                </Typography>
-              </Button>
-            </Link>
-          </Grid>
+            <AccordionSummary
+              expandIcon={
+                <>
+                  {expanded === index ? (
+                    <Remove
+                      sx={{
+                        color: "white",
+                        bgcolor: (theme) => theme.palette.primary.focus,
+                      }}
+                    />
+                  ) : (
+                    <Add
+                      sx={{
+                        color: "white",
+                        bgcolor: (theme) => theme.palette.primary.focus,
+                      }}
+                    />
+                  )}
+                </>
+              }
+              aria-controls="panel-content"
+              id="panel-header"
+              onClick={() => setExpanded(expanded === index ? -1 : index)}
+            >
+              <Typography sx={{ fontWeight: 500 }}>{faq.question}</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography sx={{ fontSize: "14px" }}>{faq.answer}</Typography>
+            </AccordionDetails>
+          </Accordion>
+        ))}
+      </Grid>
+      <Grid
+        container
+        size={{
+          xs: 12,
+          md: 5.8
+        }}
+        sx={{ textAlign: { xs: "center", md: "left" } }}
+      >
+        <Grid size={{ xs: 12 }} mt={{ xs: 2, md: 0 }} mb={1}>
+          <Typography
+            sx={{
+              fontSize: "16px",
+              color: (theme) => theme.palette.primary.focus,
+              fontWeight: "bold",
+            }}
+          >
+            ASK QUESTIONS
+          </Typography>
+          <Typography
+            sx={{ fontSize: { xs: "22px", md: "30px" }, fontWeight: 550 }}
+          >
+            Frequently Asked Questions
+          </Typography>
+          <Typography sx={{ fontSize: "15px" }}>
+            Discover quick answers to common questions about Spiritual Data.
+          </Typography>
         </Grid>
+
+        <Grid size={{ xs: 12 }}>
+          <img 
+            style={{ 
+              width: "100%",
+              borderRadius: "8px",
+            }} 
+            src={imageSrc} 
+            alt={""} 
+          />
+        </Grid>
+      </Grid>
+
+      <Grid
+        size={{ xs: 12 }}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: { xs: "center", md: "flex-start" },
+          height: "40px",
+        }}
+      >
+        <Link to="/contact" style={{ textDecoration: "none" }}>
+          <Button
+            variant="text"
+            sx={{
+              my: 3,
+              "&:hover": {
+                backgroundColor: "transparent",
+                color: "inherit",
+              },
+            }}
+          >
+            <Typography
+              sx={{
+                color: (theme) => theme.palette.primary.focus,
+                fontSize: "16px",
+                textDecoration: "none",
+                display: "flex",
+                alignItems: "center",
+                padding: "8px 16px",
+                borderRadius: "20px",
+                transition: "all 0.3s ease",
+                "&:hover": {
+                  backgroundColor: (theme) => theme.palette.primary.focus,
+                  color: "black",
+                },
+              }}
+            >
+              Questions? Click here to send us a message.{" "}
+              <East sx={{ marginLeft: "4px", fontSize: "16px" }} />
+            </Typography>
+          </Button>
+        </Link>
+      </Grid>
+    </Grid>
   );
 };
 

@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Grid, Stack, Typography, styled } from "@mui/material";
 import { Link } from "react-router-dom";
-import { fadeInBottom } from "../style/animations/FadeInBottom";
+import { fadeInBottom } from "../Style/Animations/FadeInBottom";
+import { KeyboardArrowDown } from "@mui/icons-material";
 
 import Image from "../assets/home_header.webp";
 import ai_hand from "../assets/ai-hand-human-hand.png";
 import explore from "../assets/explore.png";
-import discord from "../assets/discord.png";
+import discord from "../assets/Discord-Symbol-Blurple.png";
 import NewsLetter from "../components/Home/NewsLetter";
 import Block1 from "../components/Home/Block1";
 import DiscoverMore from "../components/Home/DiscoverMore";
@@ -34,6 +35,10 @@ const StyledHeader = styled(Grid)(({ theme }) => ({
     backgroundPosition: "center",
     minHeight: "70vh",
   },
+  [theme.breakpoints.up("md")]: {
+    height: "100vh",
+    minHeight: "100vh",
+  },
 }));
 
 export const StyledHeaderItem = styled(Grid)`
@@ -56,7 +61,58 @@ export const StyledHeading = styled(Typography)(({ theme }) => ({
   },
 }));
 
+const ScrollIndicator = styled(Stack)(({ theme }) => ({
+  position: "absolute",
+  bottom: "40px",
+  left: "50%",
+  transform: "translateX(-50%)",
+  zIndex: 1,
+  color: "#fff",
+  alignItems: "center",
+  cursor: "pointer",
+  animation: "bounce 2s infinite",
+  transition: "opacity 0.3s ease-in-out",
+  "@keyframes bounce": {
+    "0%, 20%, 50%, 80%, 100%": {
+      transform: "translateY(0) translateX(-50%)",
+    },
+    "40%": {
+      transform: "translateY(-20px) translateX(-50%)",
+    },
+    "60%": {
+      transform: "translateY(-10px) translateX(-50%)",
+    },
+  },
+  [theme.breakpoints.down("md")]: {
+    display: "none",
+  },
+}));
+
 const Home: React.FC = () => {
+  const [showScrollIndicator, setShowScrollIndicator] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const heroHeight = window.innerHeight;
+      setShowScrollIndicator(scrollPosition < heroHeight * 0.5);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToContent = () => {
+    const contentSection = document.querySelector('.content-section');
+    if (contentSection) {
+      const heroHeight = window.innerHeight;
+      window.scrollTo({
+        top: heroHeight-50,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <Grid container>
       <StyledHeader size={{ xs: 12 }} mt={{ xs: 8, md: 0 }}>
@@ -91,73 +147,89 @@ const Home: React.FC = () => {
             the button below!
           </Typography>
 
-          <Stack alignItems={{ xs: "center", md: "flex-start" }}>
-            <Button
-              sx={{
-                background: (theme) => theme.palette.primary.focus,
-                color: "white",
-                textTransform: "none",
-                height: "38px",
-                width: "180px",
-                px: 2,
-                mt: 3,
-                borderRadius: 20,
-                "&:hover": {
-                  background: (theme) => theme.palette.primary.hover,
-                  opacity: 0.9,
-                },
-              }}
-              component={Link}
-              to={"/sign-up"}
-            >
-              Create an account
-            </Button>
-          </Stack>
+          <Button
+            sx={{
+              background: (theme) => theme.palette.primary.focus,
+              color: "white",
+              textTransform: "none",
+              height: "38px",
+              width: "180px",
+              px: 2,
+              mt: 3,
+              borderRadius: 20,
+              "&:hover": {
+                background: (theme) => theme.palette.primary.hover,
+                opacity: 0.9,
+              },
+            }}
+            component={Link}
+            to={"/sign-up"}
+          >
+            Create an account
+          </Button>
         </StyledHeaderItem>
+
+        <ScrollIndicator 
+          onClick={scrollToContent}
+          sx={{ 
+            opacity: showScrollIndicator ? 1 : 0,
+            pointerEvents: showScrollIndicator ? 'auto' : 'none'
+          }}
+        >
+          <Typography sx={{ fontSize: "14px", mb: 1 }}>
+            Scroll to explore
+          </Typography>
+          <KeyboardArrowDown sx={{ fontSize: "32px" }} />
+        </ScrollIndicator>
       </StyledHeader>
 
-      <>
-        <Block1 />
+      <Grid
+        container
+        spacing={{ xs: 4, md: 6 }}
+        direction="column"
+        p={{ xs: 5, md: 15 }}
+        className="content-section"
+      >
+        <Grid>
+          <Block1 />
+        </Grid>
 
         <ContentSection
-          imageSrc2={explore}
-          heading={"Overcome bias in research review"}
-          subText={
-            "Humans are inherently biased and limited in perspective. Do we really want to limit our understanding of reality to what most researchers agree on? Tons of research has been done in the areas of spiritual science and metaphysics, yet it's ignored due to an assumption that it must not be scientific, and most people don't even know about this research and the reliable evidence out there. We've started an initiative to update Wikipedia. Please sign up below to add your voice!"
-          }
-          buttonText={"Add your voice"}
-          path={
-            "https://docs.google.com/forms/d/e/1FAIpQLSf0WTmE0RXZb5XWzRMKSNIUGX2kjqpMSY3aNLsvwH_UZqQJ6A/viewform?usp=dialog"
-          }
+          imageSrc={explore}
+          heading="Overcome bias in research review"
+          description="Humans are inherently biased and limited in perspective. Do we really want to limit our understanding of reality to what most researchers agree on? Tons of research has been done in the areas of spiritual science and metaphysics, yet it's ignored due to an assumption that it must not be scientific, and most people don't even know about this research and the reliable evidence out there. We've started an initiative to update Wikipedia. Please sign up below to add your voice!"
+          buttonText="Add your voice"
+          buttonLink="https://docs.google.com/forms/d/e/1FAIpQLSf0WTmE0RXZb5XWzRMKSNIUGX2kjqpMSY3aNLsvwH_UZqQJ6A/viewform?usp=dialog"
+          imagePosition="right"
         />
 
         <ContentSection
           imageSrc={ai_hand}
-          heading={"Overcoming bias in AI"}
-          subText={
-            "Generative AI, like humans, is often biased and inaccurate. While that's the case, we can still use AI in systematic ways to identify and review all relevant data and then use statistics to determine what is most likely true. That's what Spiritual Data is doing, and we're making this available to developers and companies as an API. Join the waitlist today!"
-          }
-          buttonText={"Join our API waitlist"}
-          path={
-            "https://docs.google.com/forms/d/e/1FAIpQLSc3d3BGiYRA1VQVpD9GeusBuEscUZN-VkGQeNoKyWjKiyuswg/viewform"
-          }
+          heading="Overcoming bias in AI"
+          description="Generative AI, like humans, is often biased and inaccurate. While that's the case, we can still use AI in systematic ways to identify and review all relevant data and then use statistics to determine what is most likely true. That's what Spiritual Data is doing, and we're making this available to developers and companies as an API. Join the waitlist today!"
+          buttonText="Join our API waitlist"
+          buttonLink="https://docs.google.com/forms/d/e/1FAIpQLSc3d3BGiYRA1VQVpD9GeusBuEscUZN-VkGQeNoKyWjKiyuswg/viewform"
+          imagePosition="left"
         />
-      </>
 
-      <DiscoverMore />
+        <ContentSection
+          imageSrc={discord}
+          heading="Join Our Vibrant Discord Community!"
+          description="Discord is our team's primary source of communication. We have many channels to discuss a wide variety of topics within spiritual science and other phenomena. We post relevant research here regularly."
+          buttonText="Join Now"
+          buttonLink="https://discord.com/invite/thQNvPGcJF"
+          imagePosition="right"
+          imageAlt="discord"
+        />
 
-      <ContentSection
-        imageSrc2={discord}
-        heading={"Join Our Vibrant Discord Community!"}
-        subText={
-          "Discord is our team's primary source of communication. We have many channels to discuss a wide variety of topics within spiritual science and other phenomena. We post relevant research here regularly."
-        }
-        buttonText={"Join Now"}
-        path={"https://discord.com/invite/thQNvPGcJF"}
-        altText={"discord"}
-      />
+        <Grid>
+          <DiscoverMore />
+        </Grid>
 
-      <FAQ />
+        <Grid>
+          <FAQ />
+        </Grid>
+      </Grid>
 
       <NewsLetter />
     </Grid>
