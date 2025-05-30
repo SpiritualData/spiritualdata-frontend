@@ -1,4 +1,4 @@
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { ClerkProvider } from "@clerk/clerk-react";
 import { hotjar } from "react-hotjar";
 import { ReactElement } from "react";
@@ -33,7 +33,6 @@ const hotjarConfig: HotjarConfig = {
 hotjar.initialize({ id: Number(hotjarConfig.id), sv: hotjarConfig.sv });
 
 const useClerkRoutes = (): ReactElement => {
-  const navigate = useNavigate();
   const clerkPubKey: string = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
   return (
