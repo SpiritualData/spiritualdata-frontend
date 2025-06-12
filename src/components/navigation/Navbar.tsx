@@ -15,8 +15,8 @@ import { Book, Call, DataObject, Home, Info, Menu } from "@mui/icons-material";
 import { Link, useLocation } from "react-router-dom";
 
 import DrawerItems from "./Drawer";
-import header from "../assets/header.png";
-import header_scrolled from "../assets/header_scrolled.png";
+import header from "../../assets/header.png";
+import header_scrolled from "../../assets/header_scrolled.png";
 
 export const drawerWidth = 280;
 

@@ -13,7 +13,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import header_scrolled from "../assets/header_scrolled.png";
+import header_scrolled from "../../assets/header_scrolled.png";
 
 interface DrawerItem {
   label: string;
