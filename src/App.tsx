@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import { Theme } from "@mui/material";
-import theme from "./style/theme";
+import theme from "./styles/theme";
 import Navbar from "./components/navigation/Navbar";
 import Footer from "./components/navigation/Footer";
 import useClerkRoutes from "./hooks/routes";

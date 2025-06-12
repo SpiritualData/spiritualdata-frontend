@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Grid, Stack, Typography, styled } from "@mui/material";
 import { Link } from "react-router-dom";
-import { fadeInBottom } from "../style/animations/FadeInBottom";
+import { fadeInBottom } from "../styles/animations/FadeInBottom";
 
 import Image from "../assets/home_header.webp";
 import ai_hand from "../assets/ai-hand-human-hand.png";
