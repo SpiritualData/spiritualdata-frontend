@@ -26,7 +26,7 @@ const SideBar = ({
   showSideBar,
   setShowSideBar,
   fetchChatHistory,
-  handleDrawerToggle
+  handleDrawerToggle,
 }) => {
   return (
     <Grid
@@ -37,6 +37,7 @@ const SideBar = ({
           md: showSideBar ? "block" : "none",
         },
       }}
+      lg={2.2}
       md={2.6}
       pt={3}
       px={1}

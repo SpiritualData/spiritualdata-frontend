@@ -20,9 +20,11 @@ import {
   Launch,
 } from "@mui/icons-material";
 import TypeWriter from "react-typewriter";
+import { Link as RouterLink, useLocation } from "react-router-dom";
 
 import ChatSvg from "./ChatSvg";
 import ChatSkeleton from "../../helpers/ChatSkeleton";
+import ErrorComponent from "./Error";
 
 const examples = [
   "Who are you?",
@@ -67,7 +69,9 @@ const ChatMessages = ({
   showSideBar,
   isTyping,
   setIsTyping,
+  fetchChat,
 }) => {
+  const location = useLocation();
   const [showScrollButton, setShowScrollButton] = useState(false);
 
   useEffect(() => {
@@ -118,8 +122,7 @@ const ChatMessages = ({
         <ChatSkeleton />
       ) : error && selected ? (
         <center style={{ marginBottom: "30px" }}>
-          <br />
-          <small>An error occoured</small>
+          <ErrorComponent errorFunction={() => fetchChat(selected)} />
         </center>
       ) : (
         <Grid container>
@@ -151,7 +154,8 @@ const ChatMessages = ({
                 >
                   <ArrowDownward
                     sx={{
-                      background: (theme) => theme.palette.text.primary,
+                      background: "#636363",
+                      color: (theme) => theme.palette.chatbot.sidebar,
                       borderRadius: 100,
                       fontSize: "16px",
                       p: 0.3,
@@ -166,7 +170,7 @@ const ChatMessages = ({
           ) : (
             <Grid
               container
-              px={{ xs: 2, md: 16 }}
+              px={location.pathname === "/chat" ? { xs: 2, md: 16 } : 2}
               py={2}
               display="flex"
               justifyContent="center"
@@ -189,7 +193,8 @@ const ChatMessages = ({
                     alignItems="center"
                     textAlign="center"
                     sx={{
-                      border: "1px solid #fff",
+                      border: "1px solid grey",
+                      color: "lightgrey",
                       borderRadius: 2,
                       p: 1.6,
                       cursor: "pointer",
@@ -219,6 +224,7 @@ const ChatUi = ({
   setIsTyping,
   showScrollButton,
 }) => {
+  const location = useLocation();
   const [showTick, setShowTick] = useState(false);
 
   useEffect(() => {
@@ -248,8 +254,12 @@ const ChatUi = ({
     <Grid
       item
       container
-      bgcolor={item.role === "user" ? "#353441" : "transparent"}
-      px={{ xs: 1, md: 16 }}
+      bgcolor={
+        item.role === "user"
+          ? (theme) => theme.palette.chatbot.sidebar
+          : "transparent"
+      }
+      px={location.pathname === "/chat" ? { xs: 1, md: 16 } : { xs: 1, md: 2 }}
       py={2}
       sx={{ display: "flex", gap: 2 }}
     >
@@ -314,12 +324,6 @@ const ChatUi = ({
   );
 };
 
-const AnchorTag = (props) => (
-  <a href={props.to} target="_blank" rel="noopener noreferrer" {...props}>
-    {props.children}
-  </a>
-);
-
 const renderItems = (items) => {
   return items?.map((item) => (
     <div key={item.url} style={{ fontSize: "13px" }}>
@@ -327,9 +331,8 @@ const renderItems = (items) => {
         {item.name}:{" "}
         <Tooltip title="Go to source website" placement="top">
           <Link
-            component={AnchorTag} // Use the wrapper component here to open the link in a new tab
+            component={RouterLink}
             to={item.url}
-            aria-label={`Go to ${item.name} source website`}  // Added aria-label here
             color="inherit"
             underline="none"
             sx={{
@@ -364,9 +367,14 @@ const DataResults = ({
   }, [isLastItem, showScrollButton, handleScrollToBottom]);
 
   return (
-    <Accordion sx={{ background: "#373643", color: "lightgray" }}>
+    <Accordion
+      sx={{
+        background: (theme) => theme.palette.chatbot.sidebar,
+        color: "lightgray",
+      }}
+    >
       <AccordionSummary
-        expandIcon={<ExpandMore />}
+        expandIcon={<ExpandMore sx={{ color: "lightgray" }} />}
         aria-controls="panel-content"
         id="panel-header"
       >

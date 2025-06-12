@@ -29,16 +29,20 @@ const DrawerItems = ({ tab, handleDrawerToggle }) => {
 
   const drawerTab = [
     {
-      label: userExists ? "Chat" : "SignIn",
+      label: userExists ? "Chat" : "Sign In",
       path: userExists ? "/chat" : "/sign-in",
       icon: userExists ? <Message /> : <Login />,
     },
     {
-      label: "Signup",
-      path: "/signup",
+      label: "Sign Up",
+      path: "/sign-up",
       icon: <Input />,
     },
   ];
+
+  if (userExists) {
+    drawerTab.pop();
+  }
 
   return (
     <>
@@ -92,11 +96,13 @@ const DrawerItems = ({ tab, handleDrawerToggle }) => {
           <ListItem
             disablePadding
             key={index}
-            component={data.path.startsWith('http') ? 'a' : Link}
-            to={data.path.startsWith('http') ? undefined : data.path}
-            href={data.path.startsWith('http') ? data.path : undefined}
-            target={data.path.startsWith('http') ? '_blank' : undefined}
-            rel={data.path.startsWith('http') ? 'noopener noreferrer' : undefined}
+            component={data.path.startsWith("http") ? "a" : Link}
+            to={data.path.startsWith("http") ? undefined : data.path}
+            href={data.path.startsWith("http") ? data.path : undefined}
+            target={data.path.startsWith("http") ? "_blank" : undefined}
+            rel={
+              data.path.startsWith("http") ? "noopener noreferrer" : undefined
+            }
             sx={{ color: (theme) => theme.palette.text.primary }}
             onClick={handleDrawerToggle}
           >

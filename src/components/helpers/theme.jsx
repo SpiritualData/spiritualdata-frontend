@@ -11,6 +11,10 @@ const theme = createTheme({
       primary: '#222',
       secondary: '#fff',
     },
+    chatbot: {
+      sidebar: '#171717',
+      chatBox: '#212121',
+    }
   },
 });
 

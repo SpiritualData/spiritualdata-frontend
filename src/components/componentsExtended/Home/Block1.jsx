@@ -70,14 +70,14 @@ const Block1 = () => {
     {
       name: "Experiences",
       icon: <PsychologyAlt sx={{ fontSize: 70 }} />,
-      count: 5022,
+      count: 5998,
       info: "Experiences are firsthand accounts of phenomena. Our strategy is to differentiate between one's interpretation of the experience and the implications of the experience itself.",
     },
     {
       name: "Research",
       icon: <Psychology sx={{ fontSize: 70 }} />,
       count: 26,
-      info: "Research, experiements, or other scientific evidence.",
+      info: "Research, experiments, or other scientific evidence.",
     },
   ];
   return (

@@ -2,6 +2,7 @@ import { Send } from "@mui/icons-material";
 import { Grid, IconButton, TextField } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import ButtonLoader from "../../helpers/Loader";
+import { useLocation } from "react-router-dom";
 
 const inputTheme = createTheme({
   components: {
@@ -52,13 +53,14 @@ const InputField = ({
   error,
   selected,
 }) => {
+  const location = useLocation();
+
   return (
     <Grid
       container
       display="flex"
       justifyContent="center"
-      sx={{ background: "#353441" }}
-      px={{ xs: 2, md: 16 }}
+      px={location.pathname === "/chat" ? { xs: 2, md: 16 } : 2}
       py={2}
     >
       <ThemeProvider theme={inputTheme}>
@@ -66,8 +68,7 @@ const InputField = ({
           sx={{
             width: "80%",
             borderRadius: "10px",
-            border: "none",
-            backgroundColor: "#41404F",
+            border: "0.8px solid grey",
           }}
           size="small"
           multiline
@@ -76,9 +77,7 @@ const InputField = ({
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => {
-            if (
-              e.key === "Enter" && !e.shiftKey
-            ) {
+            if (e.key === "Enter" && !e.shiftKey) {
               e.preventDefault();
               handleSend(e);
             }

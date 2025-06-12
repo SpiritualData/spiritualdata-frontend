@@ -3,7 +3,7 @@ import { Box, Grid, IconButton, Stack } from "@mui/material";
 import { AutoAwesomeMosaic, Menu } from "@mui/icons-material";
 import { useAuth } from "@clerk/clerk-react";
 
-import axios, { setToken } from "../utils/axios";
+import apiClient, { setToken } from "../utils/axios";
 import SideBar, { StyledButton } from "../componentsExtended/Chat/SideBar";
 import InputField from "../componentsExtended/Chat/Input";
 import ChatMessages from "../componentsExtended/Chat/ChatMessages";
@@ -34,7 +34,7 @@ const Chat = () => {
     setErrorList(false);
     setLoadingList(true);
     try {
-      const response = await axios.get("/chat/list");
+      const response = await apiClient.get("/chat/list");
       setChatHistory(response.data);
       setLoadingList(false);
     } catch (error) {
@@ -50,7 +50,7 @@ const Chat = () => {
     setError(null);
     setLoading(true);
     try {
-      const response = await axios.get("/chat/get", {
+      const response = await apiClient.get("/chat/get", {
         params: {
           chat_id: chatId,
         },
@@ -93,6 +93,21 @@ const Chat = () => {
   }, [getToken]);
 
   useEffect(() => {
+    setLoadingList(true);
+    const fetchChatHistory = async () => {
+      try {
+        const response = await apiClient.get("/chat/list");
+        setChatHistory(response.data);
+        setLoadingList(false);
+      } catch (error) {
+        setLoadingList(false);
+        console.error("Error fetching chat list:", error.message);
+        setErrorList(
+          "An error occurred while fetching the chat list. Please check your connection."
+        );
+      }
+    };
+
     setTimeout(() => {
       fetchChatHistory();
     }, 10);
@@ -142,18 +157,26 @@ const Chat = () => {
     setInput("");
     setIsTyping(true);
     setError(null);
+    // const subscriptionId = JSON.parse(localStorage.getItem('subscriptionId'));
+    // if (!subscriptionId) {
+    //   setIsSubscribed(true);
+    //   return;
+    // }
 
     if (input.trim()) {
       setChat([...chat, { role: "user", content: input }]);
 
-      axios
+      apiClient
         .post("/chat/response", {
           chat_id: selected || "",
           message: input.trim(),
-          // data_sources: ["experiences", "hypotheses", "research"],
           // return_results: true,
-          // answer_model: "gpt-3.5-turbo",
+          // answer_model: "gpt-4o-mini",
           save: saveChat,
+          // ai_response: true,
+          // ai_query: true,
+          // search_data: true
+          // data_sources: ["experiences", "hypotheses", "research"],
         })
         .then((res) => {
           let response = res.data;
@@ -192,17 +215,17 @@ const Chat = () => {
               const updatedChatHistory = prevChatHistory.map((item) =>
                 item.chat_id === selected
                   ? {
-                      ...item,
-                      chat: [
-                        ...item?.chat,
-                        { role: "user", content: input },
-                        {
-                          role: "ai",
-                          content: response?.ai,
-                          db_results: response?.db_results,
-                        },
-                      ],
-                    }
+                    ...item,
+                    chat: [
+                      ...item?.chat,
+                      { role: "user", content: input },
+                      {
+                        role: "ai",
+                        content: response?.ai,
+                        db_results: response?.db_results,
+                      },
+                    ],
+                  }
                   : item
               );
 
@@ -253,7 +276,7 @@ const Chat = () => {
       container
       sx={{
         minHeight: "100vh",
-        background: (theme) => theme.palette.text.primary,
+        background: (theme) => theme.palette.chatbot.sidebar,
         color: (theme) => theme.palette.text.secondary,
       }}
     >
@@ -292,8 +315,9 @@ const Chat = () => {
         item
         xs={12}
         md={showSideBar ? 9.4 : 12}
+        lg={showSideBar ? 9.8 : 12}
         sx={{
-          background: "#454655",
+          background: (theme) => theme.palette.chatbot.chatBox,
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
@@ -332,7 +356,7 @@ const Chat = () => {
           )}
 
           <Stack width="100%">
-            <p>Model: OpenAI GPT3.5</p>
+            <p>Model: OpenAI GPT4o Mini</p>
           </Stack>
 
           <SettingsMenu saveChat={saveChat} setSaveChat={setSaveChat} />
