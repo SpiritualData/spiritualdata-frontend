@@ -1,6 +1,6 @@
 import { Grid, Stack, Typography, styled } from "@mui/material";
 import React from "react";
-import { fadeInBottom } from "../style/animations/FadeInBottom";
+import { fadeInBottom } from "../styles/animations/FadeInBottom";
 import { Link } from "react-router-dom";
 import { SxProps, Theme } from "@mui/material/styles";
 
