@@ -80,7 +80,7 @@ const useClerkRoutes = (): ReactElement => {
         />
         <Route path="/products/research-chat" element={<ResearchChat />} />
         <Route path="/products/general-chat" element={<GeneralChat />} />
-        <Route path="/products/mental-health" element={<MentalHealth />} />
+        <Route path="/products/mental-health-chat" element={<MentalHealth />} />
         {/*  */}
       </Routes>
     </ClerkProvider>

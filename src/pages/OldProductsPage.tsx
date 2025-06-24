@@ -1,16 +1,16 @@
 import React from "react";
 import { Grid } from "@mui/material";
 import PageHeader from "../components/PageHeader";
-import image from "../assets/general-chat.png";
+import image from "../assets/conciusness.webp";
 import PageDef from "../components/PageDef";
 
 const Products: React.FC = () => {
   return (
     <Grid container>
-      <PageHeader image={image} page={"General-Chat"} sx={{ mb: 4 }} />
+      <PageHeader image={image} page={"Products"} sx={{ mb: 4 }} />
       <PageDef
-        title={"General-Chat"}
-        heading={"General-Chat Page Data Goes Here"}
+        title={"Products"}
+        heading={"Products Page Data Goes Here"}
         details={""}
       />
     </Grid>

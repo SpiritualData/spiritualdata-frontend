@@ -20,19 +20,21 @@ import header_scrolled from "../../assets/header_scrolled.png";
 
 export const drawerWidth = 280;
 
-const StyledTab = styled((props: any) => <MuiTab {...props} />)(({ theme }) => ({
-  textTransform: "none",
-  display: "none",
-  "&:hover": {
-    color: theme.palette.primary.hover,
-  },
-  "&.Mui-selected": {
-    color: theme.palette.primary.focus,
-  },
-  [theme.breakpoints.up("sm")]: {
-    display: "block",
-  },
-}));
+const StyledTab = styled((props: any) => <MuiTab {...props} />)(
+  ({ theme }) => ({
+    textTransform: "none",
+    display: "none",
+    "&:hover": {
+      color: theme.palette.primary.hover,
+    },
+    "&.Mui-selected": {
+      color: theme.palette.primary.focus,
+    },
+    [theme.breakpoints.up("sm")]: {
+      display: "block",
+    },
+  })
+);
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -59,6 +61,11 @@ const tab: TabItem[] = [
   {
     label: "Data Discovery",
     path: "/data-discovery",
+    icon: <DataObject />,
+  },
+  {
+    label: "Products",
+    path: "/products",
     icon: <DataObject />,
   },
   {

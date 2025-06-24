@@ -79,7 +79,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ image, page }) => {
               {page}
             </Typography>
     
-            <Stack direction="row">
+            <Stack direction="row" justifyContent="center">
               <Typography
                 component={Link}
                 to="/"
