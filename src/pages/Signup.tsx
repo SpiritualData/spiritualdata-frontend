@@ -5,20 +5,6 @@ import { Button, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const Signup: React.FC = () => {
-  // const tooltipContent = (
-  //   <>
-  //     Ensure that Chrome's popup blocker is not preventing the Clerk popup from
-  //     appearing:
-  //     <br />
-  //     <br />
-  //     - Go to Chrome Settings → Privacy and Security → Site Settings → Pop-ups
-  //     and redirects.
-  //     <br />
-  //     <br />- Make sure the setting allows pop-ups from the site you are working
-  //     on.
-  //   </>
-  // );
-
   return (
     <Grid
       container
