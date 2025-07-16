@@ -31,22 +31,6 @@ const LogIn: React.FC = () => {
         Go to Home
       </Button>
 
-      {/* <Tooltip title={tooltipContent} placement="top" arrow>
-        <Chip
-          icon={<Info />}
-          label="Still don't see the form? Hover for instructions or click to refresh"
-          sx={{
-            position: "absolute",
-            top: { xs: 70, sm: 20 },
-            right: { xs: 10, sm: 20 },
-            color: "#4691B8",
-            borderColor: "#4691B8",
-            cursor: "pointer",
-          }}
-          onClick={() => window.location.reload(false)}
-        />
-      </Tooltip> */}
-
       <SignIn
         fallbackRedirectUrl={"/chat"}
         routing="path"
