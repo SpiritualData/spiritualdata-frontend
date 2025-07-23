@@ -1,3 +1,4 @@
+import theme from "@/styles/theme";
 import { East } from "@mui/icons-material";
 import { Button, Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -11,6 +12,7 @@ interface ContentSectionProps {
   altText?: string;
   path?: string;
   bioHeading?: string;
+  buttonFunc?: () => void;
 }
 
 const ContentSection = ({
@@ -22,6 +24,7 @@ const ContentSection = ({
   altText,
   path,
   bioHeading,
+  buttonFunc,
 }: ContentSectionProps) => {
   return (
     <Grid
@@ -32,7 +35,6 @@ const ContentSection = ({
         justifyContent: "space-between",
       }}
       my={{ xs: 3, md: 8 }}
-      px={"8%"}
     >
       <Grid size={{ xs: 12 }}>
         <Typography
@@ -71,40 +73,74 @@ const ContentSection = ({
           >
             {subText}
           </Typography>
-          {path && (
-            <Link
-              to={path}
-              style={{ textDecoration: "none" }}
-              target={path.startsWith("http") ? "_blank" : ""}
-            >
-              {buttonText && (
-                <Button
-                  variant="text"
-                  sx={{
-                    my: 3,
-                    "&:hover": {
-                      backgroundColor: "transparent",
-                      color: "inherit",
-                    },
-                  }}
+          {buttonText &&
+            (buttonFunc ? (
+              <Button
+                onClick={buttonFunc}
+                variant="text"
+                sx={{
+                  backgroundColor: theme.palette.primary.hero,
+                  borderRadius: 8,
+                  height: 42,
+                  px: 3,
+                  mt: 3,
+                  fontWeight: 600,
+                  fontSize: "14px",
+                  textTransform: "uppercase",
+                  fontFamily: "Poppins, sans-serif",
+                  letterSpacing: "0.5px",
+                  transition: "all 0.3s ease",
+                  color: theme.palette.primary.focus,
+                  "&:hover": {
+                    backgroundColor: theme.palette.primary.focus,
+                    color: theme.palette.primary.hero,
+                  },
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                {buttonText}
+                <East sx={{ ml: 0.5, fontSize: "16px" }} />
+              </Button>
+            ) : (
+              path && (
+                <Link
+                  to={path}
+                  style={{ textDecoration: "none" }}
+                  target={path.startsWith("http") ? "_blank" : undefined}
+                  rel={
+                    path.startsWith("http") ? "noopener noreferrer" : undefined
+                  }
                 >
-                  <Typography
+                  <Button
+                    variant="text"
                     sx={{
-                      color: (theme) => theme.palette.primary.focus,
-                      fontSize: "16px",
-                      textDecoration: "none",
-                      "&:hover": { textDecoration: "underline" },
+                      backgroundColor: theme.palette.primary.hero,
+                      borderRadius: 8,
+                      height: 42,
+                      px: 3,
+                      mt: 3,
+                      fontWeight: 600,
+                      fontSize: "14px",
+                      textTransform: "uppercase",
+                      fontFamily: "Poppins, sans-serif",
+                      letterSpacing: "0.5px",
+                      transition: "all 0.3s ease",
+                      color: theme.palette.primary.focus,
+                      "&:hover": {
+                        backgroundColor: theme.palette.primary.focus,
+                        color: theme.palette.primary.hero,
+                      },
                       display: "flex",
                       alignItems: "center",
                     }}
                   >
-                    {buttonText}{" "}
-                    <East sx={{ marginLeft: "4px", fontSize: "16px" }} />
-                  </Typography>
-                </Button>
-              )}
-            </Link>
-          )}
+                    {buttonText}
+                    <East sx={{ ml: 0.5, fontSize: "16px" }} />
+                  </Button>
+                </Link>
+              )
+            ))}
         </Grid>
       </Grid>
       <Grid
@@ -122,10 +158,17 @@ const ContentSection = ({
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            borderRadius: "100%",
           }}
         >
           <img
-            style={{ width: altText === "discord" ? "60%" : "90%" }}
+            style={{
+              width: altText === "discord" ? "60%" : "90%",
+              borderRadius: "1vw",
+              boxShadow:
+                altText === "discord" ? "none" : "0 4px 8px rgba(0, 0, 0, 0.7)",
+              transition: "transform 0.3s ease",
+            }}
             src={imageSrc || imageSrc2}
             alt={altText || "image"}
           />
