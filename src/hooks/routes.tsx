@@ -19,6 +19,7 @@ import ProductsOutcomeChat from "../pages/ProductsOutcomeChat";
 import ResearchChat from "../pages/ResearchChat";
 import GeneralChat from "../pages/GeneralChat";
 import MentalHealth from "../pages/MentalHealth";
+import Quest from "../pages/Products/Quest";
 
 interface HotjarConfig {
   id: string;
@@ -81,6 +82,8 @@ const useClerkRoutes = (): ReactElement => {
         <Route path="/products/research-chat" element={<ResearchChat />} />
         <Route path="/products/general-chat" element={<GeneralChat />} />
         <Route path="/products/mental-health-chat" element={<MentalHealth />} />
+        <Route path="/products/quest" element={<Quest />} />
+
         {/*  */}
       </Routes>
     </ClerkProvider>

@@ -113,6 +113,7 @@ const Navbar = () => {
   const staticLinks = [
     { label: "Research", path: "/data-discovery" },
     { label: "Donate", path: "/donations" },
+    { label: "Contact", path: "/contact" },
     { label: "About", path: "/about" },
   ];
 
