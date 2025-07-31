@@ -1,11 +1,10 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
 import PageHeader from "../components/PageHeader";
 import PageDef from "../components/PageDef";
-import DonationsMethod from "../components/Donations/DonationsMethod";
 import ContentSection from "../components/Home/ContentSection";
 import skill from "../assets/Images/Donate/skill.webp";
 import mission from "../assets/Images/Donate/mission.webp";
-import image from "../assets/Images/Donate/nj.png";
+import image from "../assets/Images/Donate/nj.webp";
 import image1 from "../assets/Images/Donate/tier1.webp";
 import image2 from "../assets/Images/Donate/tier2.webp";
 import image3 from "../assets/Images/Donate/tier3.webp";

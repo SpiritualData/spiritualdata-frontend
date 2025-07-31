@@ -1,10 +1,8 @@
-import React from "react";
 import { Box, Typography } from "@mui/material";
-import image1 from "../assets/images/About/sliderImage1.webp";
+import image1 from "../assets/Images/About/sliderImage1.webp";
 import image2 from "../assets/images/About/sliderImage2.webp";
 import image3 from "../assets/images/About/sliderImage3.webp";
 import image4 from "../assets/images/About/sliderImage4.webp";
-import theme from "@/styles/theme";
 
 const images = [image2, image1, image3, image4, image2, image1, image3, image4];
 

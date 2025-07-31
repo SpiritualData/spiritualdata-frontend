@@ -16,30 +16,7 @@ import StorageIcon from "@mui/icons-material/Storage";
 import FloatingLabel from "./heroSection/FloatingLabel";
 import heroImage from "../assets/Images/hero/heroImage.webp";
 import { useNavigate } from "react-router-dom";
-
-
-const floaters = [
-  {
-    text: "Truth Estimation AI",
-    icon: <InsightsIcon fontSize="inherit" />,
-    link: "/truth-estimation-ai",
-  },
-  {
-    text: "Crisis We Are Dealing With",
-    icon: <PublicIcon fontSize="inherit" />,
-    link: "/crisis",
-  },
-  {
-    text: "Change We Are Bringing",
-    icon: <PsychologyIcon fontSize="inherit" />,
-    link: "/change",
-  },
-  {
-    text: "Spiritual Crisis Support",
-    icon: <StorageIcon fontSize="inherit" />,
-    link: "/crisis",
-  },
-];
+import { floatersData } from "../data/homeData";
 
 const HeroSection: React.FC = () => {
   const theme = useTheme();
@@ -167,7 +144,7 @@ const HeroSection: React.FC = () => {
                 display={{ xs: "flex", md: "none" }}
                 alignItems="center"
               >
-                {floaters.map((item, index) => (
+                {floatersData.map((item, index) => (
                   <Box
                     onClick={() => {
                       navigate(item.link);

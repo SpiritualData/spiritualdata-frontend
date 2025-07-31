@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   Box,
   Grid,
   Typography,
-  Avatar,
   useTheme,
   Button,
   Slide,
@@ -68,7 +67,7 @@ const ClientReviewsSection: React.FC = () => {
       text: "Spiritual Data isn't just about information—it's about Truth. Combining science and AI to help people make sense of life.",
       img: reviewImage4,
     },
-  ];  
+  ];
 
   return (
     <Box sx={{ py: 13, px: { xs: 2, md: 24 }, bgcolor: "white" }}>

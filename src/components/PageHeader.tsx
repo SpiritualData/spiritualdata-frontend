@@ -3,7 +3,7 @@ import React from "react";
 import { fadeInBottom } from "../styles/animations/FadeInBottom";
 import { Link } from "react-router-dom";
 import { SxProps, Theme } from "@mui/material/styles";
-import theme from "@/styles/theme";
+import theme from "../styles/theme";
 
 interface PageHeaderProps {
   image?: string;
@@ -14,6 +14,7 @@ interface PageHeaderProps {
 const StyledHeader = styled(Grid)(({ theme }) => ({
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
+  backgroundColor: theme.palette.primary.main,
   position: "relative",
   minHeight: "64vh",
   display: "flex",

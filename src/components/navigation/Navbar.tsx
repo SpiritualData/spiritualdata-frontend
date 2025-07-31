@@ -12,7 +12,6 @@ import {
   IconButton,
   Drawer,
   List,
-  ListItem,
   ListItemText,
   Divider,
   Collapse,
@@ -90,7 +89,7 @@ const Navbar = () => {
       link: "/products",
       items: [
         { name: "Quest", path: "/products/quest" },
-        { name: "Concept AI", path: "/products/Concept AI" },
+        { name: "Concept AI", path: "/products/concept-ai" },
       ],
     },
     {
@@ -113,8 +112,8 @@ const Navbar = () => {
   const staticLinks = [
     { label: "Research", path: "/data-discovery" },
     { label: "Donate", path: "/donations" },
-    { label: "Contact", path: "/contact" },
     { label: "About", path: "/about" },
+    { label: "Contact", path: "/contact" },
   ];
 
   const navLinkStyles = {
@@ -137,7 +136,9 @@ const Navbar = () => {
         position="fixed"
         elevation={0}
         sx={{
-          backgroundColor: scrolled ? theme.palette.primary.main : "transparent",
+          backgroundColor: scrolled
+            ? theme.palette.primary.main
+            : "transparent",
           boxShadow: scrolled
             ? `0px 0.05px 7px ${theme.palette.primary.hero}`
             : "none",
@@ -171,7 +172,7 @@ const Navbar = () => {
                   component="img"
                   src={navbarLogo}
                   alt="Logo"
-                  sx={{ height: "100%", objectFit: "contain" }}
+                  sx={{ height: { xs: 40, md: 50 }, objectFit: "contain" }}
                 />
               </Box>
 

@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Box,
   Typography,
@@ -14,8 +13,8 @@ import { Facebook, Instagram, LinkedIn, Twitter } from "@mui/icons-material";
 import { useInView } from "@/hooks/useInView";
 import { useNavigate } from "react-router-dom";
 import contactImage1 from "../assets/images/Contact/contactbg.gif";
-import contactImage2 from "../assets/images/Contact/contact1-al.png";
-import contactImage3 from "../assets/images/Contact/contact2-al.png";
+import contactImage2 from "../assets/images/Contact/contact1-al.webp";
+import contactImage3 from "../assets/images/Contact/contact2-al.webp";
 
 const socialIcons = [
   { icon: <Facebook />, link: "#" },
@@ -24,7 +23,15 @@ const socialIcons = [
   { icon: <Twitter />, link: "#" },
 ];
 
-const ContactSection = () => {
+interface contactSectionProps {
+  isContactPage?: boolean;
+  onClickFunc?: () => void;
+}
+
+const ContactSection = ({
+  isContactPage,
+  onClickFunc,
+}: contactSectionProps) => {
   const theme = useTheme();
   const { ref, inView } = useInView({ threshold: 0.3 });
   const Navigate = useNavigate();
@@ -39,7 +46,7 @@ const ContactSection = () => {
         backgroundSize: "cover",
         backgroundPosition: "center",
         py: { xs: 8, md: 12 },
-        px: { xs: 6, md: 20 },
+        px: { xs: 4, sm: 6, md: 20 },
         color: theme.palette.text.primary,
         overflow: "hidden",
         "&::before": {
@@ -51,17 +58,21 @@ const ContactSection = () => {
         },
       }}
     >
-      {/* Centered Text on Top */}
+      {/* Centered Text */}
       <Box
         sx={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
+          position: { xs: "relative", md: "absolute" },
+          top: { md: "50%" },
+          left: { md: "50%" },
+          transform: {
+            md: "translate(-50%, -50%)",
+            xs: "none",
+          },
           textAlign: "center",
           zIndex: 2,
           width: "100%",
           px: 2,
+          py: { xs: 6, md: 0 },
         }}
       >
         <Fade in={inView} timeout={1000}>
@@ -71,9 +82,9 @@ const ContactSection = () => {
                 variant="subtitle1"
                 sx={{
                   color: theme.palette.primary.main,
-                  scale: 0.9,
                   fontWeight: 600,
                   letterSpacing: 3,
+                  fontSize: { xs: "0.9rem", md: "1rem" },
                 }}
               >
                 DISCOVER SPIRITUAL DATA
@@ -82,12 +93,17 @@ const ContactSection = () => {
               <Typography
                 variant="h1"
                 sx={{
-                  fontWeight: 600,
-                  scale: 0.85,
+                  fontWeight: 700,
                   mb: 2,
                   lineHeight: 1.2,
                   color: theme.palette.primary.main,
-                  letterSpacing: 3,
+                  letterSpacing: 4,
+                  fontSize: {
+                    xs: "1.8rem",
+                    sm: "2.2rem",
+                    md: "3rem",
+                    lg: "3.5rem",
+                  },
                 }}
               >
                 POWER A NEW ERA OF
@@ -98,21 +114,30 @@ const ContactSection = () => {
               <Typography
                 variant="body1"
                 sx={{
-                  maxWidth: 500,
+                  maxWidth: 520,
                   letterSpacing: 1,
                   mx: "auto",
                   mb: 4,
                   color: theme.palette.primary.main,
+                  fontSize: {
+                    xs: "0.9rem",
+                    sm: "1rem",
+                    md: "1.1rem",
+                  },
                 }}
               >
                 We're rethinking spiritual truth using open data, deep research,
-                and unbiased AI - no dogma, just clear, evidence backed
+                and unbiased AI — no dogma, just clear, evidence-backed
                 insights.
               </Typography>
 
               <Button
+                onClick={() =>
+                  isContactPage && onClickFunc
+                    ? onClickFunc()
+                    : Navigate("/contact")
+                }
                 variant="contained"
-                onClick={() => Navigate("/contact")}
                 sx={{
                   backgroundColor: theme.palette.primary.focus,
                   color: "#1F2540",
@@ -135,27 +160,27 @@ const ContactSection = () => {
                 CONTACT US
               </Button>
 
-              {/* Social Icons Row */}
+              {/* Social Icons */}
               <Box
                 mt={5}
                 display="flex"
                 justifyContent="center"
                 alignItems="center"
-                flexDirection={"column"}
+                flexDirection="column"
                 gap={1}
               >
-                <Box>
-                  <Typography
-                    variant="subtitle2"
-                    sx={{
-                      fontWeight: 600,
-                      letterSpacing: 3,
-                      color: "white",
-                    }}
-                  >
-                    Follow Us:
-                  </Typography>
-                </Box>
+                <Typography
+                  variant="subtitle2"
+                  sx={{
+                    fontWeight: 600,
+                    letterSpacing: 3,
+                    color: "white",
+                    mb: 1,
+                  }}
+                >
+                  Follow Us:
+                </Typography>
+
                 <Box>
                   {socialIcons.map((item, index) => (
                     <IconButton
@@ -168,7 +193,6 @@ const ContactSection = () => {
                         boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
                         transition: "all 0.3s ease-in-out",
                         m: 0.5,
-
                         "&:hover": {
                           backgroundColor: theme.palette.primary.focus,
                           color: theme.palette.primary.hover,
@@ -185,70 +209,54 @@ const ContactSection = () => {
         </Fade>
       </Box>
 
-      {/* Behind Content: Side Images */}
-      <Container maxWidth="xl" sx={{ position: "relative", zIndex: 0 }}>
+      {/* Side Images */}
+      <Container
+        maxWidth="xl"
+        sx={{
+          position: "relative",
+          zIndex: 0,
+          display: { sm: "none", md: "block" },
+        }}
+      >
         <Grid
           container
-          spacing={4}
+          spacing={8}
           alignItems="center"
-          justifyContent="space-between"
-          wrap="nowrap"
+          justifyContent="center"
           sx={{
-            [theme.breakpoints.down("md")]: {
-              flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
-            },
+            flexDirection: { xs: "column", md: "row" },
+            textAlign: { xs: "center", md: "inherit" },
+            justifyContent: { md: "space-between" },
           }}
         >
           {/* Left Image */}
-          <Grid
-            item
-            xs={12}
-            md={4}
-            lg={3}
-            flexShrink={0}
-            component="div"
-            {...({} as any)}
-          >
+          <Grid item xs={12} md={4} lg={3} component="div" {...({} as any)}>
             <Box
               component="img"
               src={contactImage2}
               alt="Left"
               sx={{
-                width: "100%",
+                width: { xs: "60%", sm: "50%", md: "100%" },
                 maxHeight: 500,
                 borderRadius: 4,
-                backgroundColor: "transparent",
                 filter: "brightness(1.25)",
-                // boxShadow: `0 4px 20px ${theme.palette.cardshadow.main}`,
+                mx: { xs: "auto", md: 0 },
               }}
             />
           </Grid>
 
-          {/* Empty grid space to center text absolutely */}
-          <Grid item xs={12} md={6} component="div" {...({} as any)} />
-
           {/* Right Image */}
-          <Grid
-            item
-            xs={12}
-            md={4}
-            lg={3}
-            flexShrink={0}
-            component="div"
-            {...({} as any)}
-          >
+          <Grid item xs={12} md={4} lg={3} component="div" {...({} as any)}>
             <Box
               component="img"
               src={contactImage3}
               alt="Right"
               sx={{
-                width: "100%",
+                width: { xs: "60%", sm: "50%", md: "100%" },
                 maxHeight: 500,
                 borderRadius: 4,
                 filter: "brightness(1.25)",
-                // boxShadow: `0 4px 10px ${theme.palette.cardshadow.main}`,
+                mx: { xs: "auto", md: 0 },
               }}
             />
           </Grid>

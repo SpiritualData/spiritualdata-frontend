@@ -5,7 +5,6 @@ import {
   IconButton,
   Button,
   useTheme,
-  InputAdornment,
 } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import {
@@ -13,8 +12,6 @@ import {
   LinkedIn,
   Facebook,
   GitHub,
-  ArrowForward,
-  KeyboardArrowUp,
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import DiscordIcon from "@mui/icons-material/ChatBubbleOutline";

@@ -21,31 +21,50 @@ export default function Quest() {
       <QuestHero onScrollClick={scrollToUseCases} />
       <Features data={featuresData} />
       <Steps data={stepsData} />
+      <UseCases data={useCasesData} />
 
-      {/* Scroll Target */}
       <div
         ref={useCasesRef}
         style={{
-          scrollMarginTop: "20px",
+          scrollMarginTop: "150px",
         }}
       >
-        <UseCases data={useCasesData} />
-      </div>
-
-      <Container maxWidth="md">
-        <Box textAlign="center" mb={6} mt={1}>
-          <Typography variant="h4" fontWeight={700} mb={2} letterSpacing={1}>
-            Ready to Begin Your <b style={{ color: theme.palette.primary.focus, textShadow: "2px 2px 2px rgba(0, 0, 0, 0.5)" }}>Quest</b>...?
+        <Box
+          sx={{
+            width: "100%",
+            height: "70vh",
+            background: `linear-gradient(to bottom, ${theme.palette.primary.main} 0%, white 100%)`,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+            textAlign: "center",
+          }}
+        >
+          <Typography variant="h3" fontWeight={700} mb={3} letterSpacing={2}>
+            Ready to Begin Your{" "}
+            <b
+              style={{
+                color: theme.palette.primary.focus,
+                textShadow: "2px 2px 2px rgba(0, 0, 0, 0.5)",
+              }}
+            >
+              Quest
+            </b>
+            ...?
           </Typography>
+
           <Typography
-            variant="body1"
+            variant="h6"
             color="text.secondary"
-            mb={3}
-            letterSpacing={1}
+            mb={4}
+            letterSpacing={2}
           >
             Add meaning to your life through clear direction and smart
-            strategies. Your journey starts now.
+            strategies.
+            <br /> Your journey starts now.
           </Typography>
+
           <Button
             variant="contained"
             onClick={() => navigate("/sign-up")}
@@ -60,7 +79,6 @@ export default function Quest() {
               textTransform: "uppercase",
               fontFamily: "Poppins, sans-serif",
               letterSpacing: 2,
-              ml: 2,
               transition: "all 0.3s ease",
               "&:hover": {
                 backgroundColor: theme.palette.primary.hero,
@@ -70,11 +88,12 @@ export default function Quest() {
           >
             Start Your First Quest
           </Button>
-          <Typography variant="body2" mt={2} letterSpacing={1.5} lineHeight={2}>
+
+          <Typography variant="body2" mt={2} lineHeight={2} letterSpacing={1.5}>
             Free to try &nbsp;-&nbsp; $10 a month <br /> Your data stays private
           </Typography>
         </Box>
-      </Container>
+      </div>
     </>
   );
 }

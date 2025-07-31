@@ -11,7 +11,7 @@ import {
   Collapse,
 } from "@mui/material";
 import EmailIcon from "@mui/icons-material/Email";
-import { useInView } from "@/hooks/useInView";
+import { useInView } from "../hooks/useInView";
 import faqImage from "../assets/images/Faq/faq.webp";
 
 const faqs = [
@@ -46,8 +46,6 @@ const faqs = [
       "Spiritual Data is not affiliated with any religion. While some hypotheses explore religious themes, our project remains neutral and lets the available data guide all our conclusions and investigations forward.",
   },
 ];
-
-  
 
 const FaqSection = () => {
   const theme = useTheme();

@@ -1,4 +1,4 @@
-import theme from "@/styles/theme";
+import theme from "../../styles/theme";
 import { East } from "@mui/icons-material";
 import { Button, Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";

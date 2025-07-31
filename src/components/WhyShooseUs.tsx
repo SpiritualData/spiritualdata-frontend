@@ -1,8 +1,7 @@
-import React from "react";
 import { Box, Typography, useTheme } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { useInView } from "@/hooks/useInView";
-import whyChooseUsImage from "../assets/images/WhyChooseUs/whyChooseUs.webp"; 
+import whyChooseUsImage from "../assets/images/WhyChooseUs/whyChooseUs.webp";
 
 const reasons = [
   {
@@ -26,7 +25,6 @@ const reasons = [
       "We,re a nonprofit powered by people—not corporations—committed to truth, mental clarity, and spiritual autonomy.",
   },
 ];
-
 
 const WhyChooseUs = () => {
   const theme = useTheme();

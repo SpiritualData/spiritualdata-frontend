@@ -6,7 +6,7 @@ import initiativeImage3 from "../assets/images/Initiatives/initiatives3.webp";
 import initiativeImage4 from "../assets/images/Initiatives/initiatives4.webp";
 import initiativeImage5 from "../assets/images/Initiatives/initiatives5.webp";
 import initiativeImage6 from "../assets/images/Initiatives/initiatives6.webp";
-import InitiativeCard from "../components/Initiatives/HeroInitiativeCard";
+import InitiativeCard from "./Initiatives/HeroInitiativeCard";
 
 const Initiatives = [
   {
@@ -46,7 +46,6 @@ const Initiatives = [
       "A global collaboration to develop transparent, unbiased spiritual knowledge—freely accessible to all.",
   },
 ];
-
 
 const HeroInitiativeSection: React.FC = () => {
   const theme = useTheme();

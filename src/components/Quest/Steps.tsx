@@ -36,7 +36,7 @@ const Steps = ({
     <Box
       ref={ref}
       sx={{
-        py: { xs: 8, md: 12 },
+        py: { xs: 8, md: 16 },
         px: { xs: 2, sm: 4 },
         background: `linear-gradient(to bottom, ${theme.palette.primary.main} 0%, white 100%)`,
         position: "relative",
@@ -103,8 +103,8 @@ const Steps = ({
                   mx: "auto",
                   mt: {
                     xs: 4,
-                    sm: index === 1 || index === 2 ? 10 : 6,
-                    md: index === 1 || index === 2 ? 15 : 6,
+                    sm: index === 1 || index === 2 ? 20 : 6,
+                    md: index === 1 || index === 2 ? 20 : 6,
                   },
                 }}
               >

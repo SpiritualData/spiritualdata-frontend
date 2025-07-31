@@ -1,4 +1,4 @@
-import { Box, Button, Slide, Typography, useTheme } from "@mui/material";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 import image from "../../assets/Images/Products/questSideImage.webp";
 import { fadeInBottom } from "../../styles/animations/FadeInBottom";
 
@@ -45,88 +45,100 @@ const QuestHero = ({ onScrollClick }: QuestHeroProps) => {
       {/* Right-side Content */}
       <Box
         sx={{
-          width: { xs: "100%", md: "58%" },
-          py: { xs: 5, sm: 6, md: 12 },
-          px: { xs: 3, sm: 6, md: 10, lg: 15 },
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          minHeight: { xs: "auto", md: "100vh" },
+          pl: { xs: 2, sm: 4, md: 12 },
+          py: { xs: 6, md: 0 },
         }}
       >
         <Box
           sx={{
             display: "flex",
             flexDirection: "column",
-            justifyContent: "space-between",
-            height: "100%",
-            width: "100%",
             maxWidth: 600,
-            maxHeight: { md: "80%", lg: "70%" },
+            gap: 4,
+            textAlign: { xs: "center", md: "left" },
           }}
         >
-          {/* Top Content */}
-          <Box textAlign={{ xs: "center", md: "left" }}>
+          {/* Title */}
+          <Box>
             <Typography
               variant="h2"
-              mb={4}
-              fontWeight={600}
+              fontWeight={700}
               color="primary.hero"
+              sx={{
+                fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" },
+                mb: 1,
+                position: "relative",
+                display: "inline-block",
+                "&::after": {
+                  content: '""',
+                  display: "block",
+                  width: 40,
+                  height: 3,
+                  backgroundColor: theme.palette.primary.focus,
+                  mt: 1,
+                  ml: { xs: "auto", md: 0 },
+                  mr: { xs: "auto", md: "initial" },
+                },
+              }}
             >
               Quest
             </Typography>
-
             <Typography
-              variant="h5"
+              variant="h6"
               color="text.secondary"
-              mb={5}
-              textAlign="justify"
+              mt={2}
+              sx={{ maxWidth: 600, textAlign: "justify" }}
             >
               Your AI companion for meaningful transformation. Turn aspirations
               into achievements through guided conversations, intelligent
               accountability, and progress tracking.
             </Typography>
-
-            <Button
-              variant="contained"
-              onClick={() => onScrollClick()}
-              sx={{
-                backgroundColor: theme.palette.primary.focus,
-                color: theme.palette.primary.hero,
-                borderRadius: 8,
-                height: 42,
-                px: 4,
-                fontWeight: 700,
-                fontSize: "14px",
-                textTransform: "uppercase",
-                fontFamily: "Poppins, sans-serif",
-                letterSpacing: "0.5px",
-                transition: "all 0.3s ease",
-                "&:hover": {
-                  backgroundColor: theme.palette.primary.hero,
-                  color: theme.palette.primary.focus,
-                },
-              }}
-            >
-              Begin Your Quest
-            </Button>
           </Box>
 
-          {/* Bottom Content */}
-          <Box textAlign={{ xs: "center", md: "left" }} mt={4}>
+          {/* Button */}
+          <Button
+            variant="contained"
+            onClick={() => onScrollClick()}
+            sx={{
+              backgroundColor: theme.palette.primary.focus,
+              color: theme.palette.primary.hero,
+              borderRadius: 8,
+              height: 48,
+              px: 4,
+              fontWeight: 700,
+              fontSize: "14px",
+              textTransform: "uppercase",
+              letterSpacing: 2,
+              alignSelf: { xs: "center", md: "flex-start" },
+              boxShadow: "0px 4px 14px rgba(0,0,0,0.1)",
+              transition: "all 0.3s ease",
+              "&:hover": {
+                backgroundColor: theme.palette.primary.hero,
+                color: theme.palette.primary.focus,
+              },
+            }}
+          >
+            Begin Your Quest
+          </Button>
+
+          {/* Bottom Section */}
+          <Box>
             <Typography
               variant="h5"
               fontWeight={600}
               color="primary.hero"
-              mb={2}
+              mb={1}
             >
               Every Journey Deserves a Guide
             </Typography>
-
             <Typography
               variant="body1"
               color="text.secondary"
-              textAlign="justify"
-              letterSpacing={1}
+              sx={{ letterSpacing: 0.5, maxWidth: 520, textAlign: "justify" }}
             >
               Whether you're pursuing spiritual growth, personal transformation,
               or practical goals, Quest provides the structure and support you

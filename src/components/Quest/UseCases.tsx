@@ -40,12 +40,11 @@ const UseCases: React.FC<UseCasesProps> = ({ data }) => {
   return (
     <Box
       sx={{
-        height: { xs: "auto", md: "700px" },
+        height: { xs: "auto", md: "800px" },
         width: "100%",
         overflowY: "hidden",
         background: `linear-gradient(to bottom, ${theme.palette.primary.main} 0%, white 100%)`,
         position: "relative",
-        // mb: 8,
         pt: { xs: 6, md: 0 },
         pb: { xs: 6, md: 0 },
       }}
@@ -59,7 +58,7 @@ const UseCases: React.FC<UseCasesProps> = ({ data }) => {
           mx: { xs: "auto", md: "unset" },
           right: { xs: "unset", md: 0 },
           pr: { xs: 0, md: 15 },
-          pt: { xs: 0, md: 13 },
+          pt: { xs: 0, md: 15 },
           textAlign: { xs: "center", md: "right" },
         }}
       >
