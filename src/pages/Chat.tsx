@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Box, Grid, IconButton, Stack } from "@mui/material";
 import { AutoAwesomeMosaic, Menu } from "@mui/icons-material";
-import { useAuth } from "@clerk/clerk-react";
 import { AxiosError } from "axios";
 
-import apiClient, { setToken } from "../utils/axios";
+import apiClient from "../utils/axios";
+import { useAuthToken } from "../hooks/useAuthToken";
 import SideBar, { StyledButton } from "../components/Chat/SideBar";
 import InputField from "../components/Chat/UserInput";
 import ChatMessages from "../components/Chat/ChatMessages";
@@ -30,7 +30,8 @@ const Chat: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(
     null
   ) as React.RefObject<HTMLDivElement>;
-  const { isLoaded, userId, getToken } = useAuth();
+  const { isLoaded, userId, isTokenSet, isLoading, refreshToken } =
+    useAuthToken();
 
   const [chat, setChat] = useState<ChatMessage[]>([]);
   const [selected, setSelected] = useState<string | null>(null);
@@ -47,6 +48,11 @@ const Chat: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
 
   const fetchChatHistory = async () => {
+    if (!isTokenSet) {
+      console.log("Token not set, skipping chat history fetch");
+      return;
+    }
+
     setErrorList(false);
     setLoadingList(true);
     try {
@@ -56,11 +62,27 @@ const Chat: React.FC = () => {
     } catch (error) {
       setLoadingList(false);
       console.error("Error fetching chat list:", (error as Error).message);
+
+      // Try to refresh token if it's an auth error
+      if ((error as AxiosError)?.response?.status === 401) {
+        const refreshed = await refreshToken();
+        if (refreshed) {
+          // Retry the request
+          fetchChatHistory();
+          return;
+        }
+      }
+
       setErrorList(true);
     }
   };
 
   const fetchChat = async (chatId: string) => {
+    if (!isTokenSet) {
+      console.log("Token not set, skipping chat fetch");
+      return;
+    }
+
     setError(null);
     setLoading(true);
     try {
@@ -82,6 +104,17 @@ const Chat: React.FC = () => {
     } catch (error) {
       setLoading(false);
       console.error("Error fetching chat:", error);
+
+      // Try to refresh token if it's an auth error
+      if ((error as AxiosError)?.response?.status === 401) {
+        const refreshed = await refreshToken();
+        if (refreshed) {
+          // Retry the request
+          fetchChat(chatId);
+          return;
+        }
+      }
+
       setError(
         "An error occurred while fetching the chat. Please check your connection."
       );
@@ -95,39 +128,10 @@ const Chat: React.FC = () => {
   }, [chat]);
 
   useEffect(() => {
-    const fetchTokenAndPerformTasks = async () => {
-      try {
-        const token = await getToken();
-        localStorage.setItem("user", JSON.stringify(token));
-        if (token) {
-          setToken(token);
-        }
-      } catch (error) {
-        console.error("Error fetching token:", error);
-      }
-    };
-
-    fetchTokenAndPerformTasks();
-  }, [getToken]);
-
-  useEffect(() => {
-    setLoadingList(true);
-    const fetchChatHistory = async () => {
-      try {
-        const response = await apiClient.get("/chat/list");
-        setChatHistory(response.data);
-        setLoadingList(false);
-      } catch (error) {
-        setLoadingList(false);
-        console.error("Error fetching chat list:", (error as Error).message);
-        setErrorList(true);
-      }
-    };
-
-    setTimeout(() => {
+    if (isLoaded && !isLoading && isTokenSet) {
       fetchChatHistory();
-    }, 10);
-  }, [userId]);
+    }
+  }, [isLoaded, isLoading, isTokenSet]);
 
   useEffect(() => {
     if (!selected) {
@@ -167,6 +171,12 @@ const Chat: React.FC = () => {
 
   const handleSend = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!isTokenSet) {
+      setErrorResponse("Authentication required. Please log in again.");
+      return;
+    }
+
     let msg = input;
     setInput("");
     setIsTyping(true);
@@ -175,94 +185,108 @@ const Chat: React.FC = () => {
     if (input.trim()) {
       setChat([...chat, { role: "user", content: input }]);
 
-      apiClient
-        .post("/chat/response", {
+      try {
+        const response = await apiClient.post("/chat/response", {
           chat_id: selected || "",
           message: input.trim(),
           save: saveChat,
-        })
-        .then((res) => {
-          let response = res.data;
+        });
 
-          setChat((prevChat) => [
-            ...prevChat,
-            {
-              role: "ai",
-              content: response?.ai,
-              db_results: response?.db_results,
-            },
+        let responseData = response.data;
+
+        setChat((prevChat) => [
+          ...prevChat,
+          {
+            role: "ai",
+            content: responseData?.ai,
+            db_results: responseData?.db_results,
+          },
+        ]);
+
+        if (!selected) {
+          const newChatHistoryItem = {
+            chat_id: responseData?.chat_id,
+            title: responseData?.title,
+            chat: [
+              { role: "user", content: input },
+              {
+                role: "ai",
+                content: responseData?.ai,
+                db_results: responseData?.db_results,
+              },
+            ],
+          };
+
+          setChatHistory((prevChatHistory) => [
+            newChatHistoryItem,
+            ...prevChatHistory,
           ]);
 
-          if (!selected) {
-            const newChatHistoryItem = {
-              chat_id: response?.chat_id,
-              title: response?.title,
-              chat: [
-                { role: "user", content: input },
-                {
-                  role: "ai",
-                  content: response?.ai,
-                  db_results: response?.db_results,
-                },
-              ],
-            };
-
-            setChatHistory((prevChatHistory) => [
-              newChatHistoryItem,
-              ...prevChatHistory,
-            ]);
-
-            setSelected(newChatHistoryItem.chat_id);
-          } else {
-            setChatHistory((prevChatHistory) => {
-              const updatedChatHistory = prevChatHistory.map((item) =>
-                item.chat_id === selected
-                  ? {
-                      ...item,
-                      chat: [
-                        ...(item?.chat ?? []),
-                        { role: "user", content: input },
-                        {
-                          role: "ai",
-                          content: response?.ai,
-                          db_results: response?.db_results,
-                        },
-                      ],
-                    }
-                  : item
-              );
-
-              const selectedIndex = updatedChatHistory.findIndex(
-                (item) => item.chat_id === selected
-              );
-              if (selectedIndex > 0) {
-                const selectedItem = updatedChatHistory.splice(
-                  selectedIndex,
-                  1
-                )[0];
-                updatedChatHistory.unshift(selectedItem);
-              }
-              return updatedChatHistory;
-            });
-          }
-        })
-        .catch((error: AxiosError) => {
-          console.error("Error:", error.code);
-          setIsTyping(false);
-
-          if (error?.code === "ERR_BAD_REQUEST") {
-            setErrorResponse("Clerk session timed out, please log in again.");
-          } else {
-            setErrorResponse(
-              "An error occurred. Please check your connection."
+          setSelected(newChatHistoryItem.chat_id);
+        } else {
+          setChatHistory((prevChatHistory) => {
+            const updatedChatHistory = prevChatHistory.map((item) =>
+              item.chat_id === selected
+                ? {
+                    ...item,
+                    chat: [
+                      ...(item?.chat ?? []),
+                      { role: "user", content: input },
+                      {
+                        role: "ai",
+                        content: responseData?.ai,
+                        db_results: responseData?.db_results,
+                      },
+                    ],
+                  }
+                : item
             );
+
+            const selectedIndex = updatedChatHistory.findIndex(
+              (item) => item.chat_id === selected
+            );
+            if (selectedIndex > 0) {
+              const selectedItem = updatedChatHistory.splice(
+                selectedIndex,
+                1
+              )[0];
+              updatedChatHistory.unshift(selectedItem);
+            }
+            return updatedChatHistory;
+          });
+        }
+      } catch (error: any) {
+        console.error("Error sending message:", error);
+        setIsTyping(false);
+
+        // Try to refresh token if it's an auth error
+        if (error?.response?.status === 401) {
+          const refreshed = await refreshToken();
+          if (refreshed) {
+            // Retry the request
+            handleSend(e);
+            return;
           }
-          setTimeout(() => {
-            setErrorResponse(null);
-          }, 2000);
-          setChat((prevChat) => prevChat.slice(0, prevChat.length - 1));
-          setInput(msg);
-        });
+        }
+
+        if (
+          error?.code === "ERR_BAD_REQUEST" ||
+          error?.response?.status === 401
+        ) {
+          setErrorResponse("Authentication expired. Please log in again.");
+        } else if (error?.code === "ERR_NETWORK") {
+          setErrorResponse("Network error. Please check your connection.");
+        } else {
+          setErrorResponse("An error occurred. Please try again.");
+        }
+
+        setTimeout(() => {
+          setErrorResponse(null);
+        }, 3000);
+
+        setChat((prevChat) => prevChat.slice(0, prevChat.length - 1));
+        setInput(msg);
+      }
     }
   };
 

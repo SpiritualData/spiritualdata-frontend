@@ -1,5 +1,4 @@
-import { Card, CardContent, Typography, Box } from "@mui/material";
-import Grid from "@mui/material/Grid";
+import { Card, CardContent, Typography, Box, Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 interface ProductCardProps {
@@ -19,14 +18,12 @@ const ProductCards: React.FC<ProductCardProps> = ({ item, index }) => {
   const navigate = useNavigate();
 
   return (
-    <Grid
-      item
-      xs={12}
-      sm={5.2}
-      md={3.7}
-      lg={2.5}
-      key={index}
-      sx={{ display: "flex", justifyContent: "center" }}
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        width: { xs: "100%", sm: "41.6%", md: "29.6%", lg: "20%" },
+      }}
     >
       <Card
         onClick={() => navigate(`/products/${item.name}`)}
@@ -111,7 +108,7 @@ const ProductCards: React.FC<ProductCardProps> = ({ item, index }) => {
           >
             Stack
           </Typography>
-          <Grid
+          <Box
             sx={{
               display: "flex",
               justifyContent: "center",
@@ -134,8 +131,8 @@ const ProductCards: React.FC<ProductCardProps> = ({ item, index }) => {
                 backgroundColor: "#B6B3B3",
               }}
             ></span>
-          </Grid>
-          <Grid
+          </Box>
+          <Box
             sx={{
               display: "flex",
               justifyContent: "space-around",
@@ -157,10 +154,10 @@ const ProductCards: React.FC<ProductCardProps> = ({ item, index }) => {
               alt={item.label}
               style={{ cursor: "pointer", width: "20px", height: "20px" }}
             />
-          </Grid>
+          </Box>
         </CardContent>
       </Card>
-    </Grid>
+    </Box>
   );
 };
 

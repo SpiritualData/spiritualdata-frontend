@@ -7,6 +7,7 @@ import Navbar from "./components/navigation/Navbar";
 import Footer from "./components/navigation/Footer";
 import useClerkRoutes from "./hooks/routes";
 import ScrollToTop from "./components/ScrollToTop";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 const App: React.FC = () => {
   const location = useLocation();
@@ -22,13 +23,17 @@ const App: React.FC = () => {
   }, [location.pathname]);
 
   return (
-    <ThemeProvider theme={theme as Theme}>
-      {!shouldHideElements(hiddenRoutes, location.pathname) && <Navbar />}
-      <div id="back-to-top-anchor"></div>
-      <main>{useClerkRoutes()}</main>
-      {!shouldHideElements(hiddenRoutes, location.pathname) && <Footer />}
-      {!shouldHideElements(hiddenRoutes, location.pathname) && <ScrollToTop />}
-    </ThemeProvider>
+    <ErrorBoundary>
+      <ThemeProvider theme={theme as Theme}>
+        {!shouldHideElements(hiddenRoutes, location.pathname) && <Navbar />}
+        <div id="back-to-top-anchor"></div>
+        <main>{useClerkRoutes()}</main>
+        {!shouldHideElements(hiddenRoutes, location.pathname) && <Footer />}
+        {!shouldHideElements(hiddenRoutes, location.pathname) && (
+          <ScrollToTop />
+        )}
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 };
 
