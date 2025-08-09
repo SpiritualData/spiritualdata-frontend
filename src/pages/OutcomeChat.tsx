@@ -13,8 +13,10 @@ import {
   useTheme,
 } from "@mui/material";
 import { AutoAwesomeMosaic, ExpandMore, Menu } from "@mui/icons-material";
-import { useAuth } from "@clerk/clerk-react";
-import apiClient, { setToken } from "../utils/axios";
+import { AxiosError } from "axios";
+
+import apiClient from "../utils/axios";
+import { useAuthToken } from "../hooks/useAuthToken";
 import SideBar, { StyledButton } from "../components/Chat/SideBar";
 import InputField from "../components/Chat/UserInput";
 import ChatMessages from "../components/Chat/ChatMessages";
@@ -42,7 +44,8 @@ const OutcomeChat: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(
     null
   ) as React.RefObject<HTMLDivElement>;
-  const { isLoaded, userId, getToken } = useAuth();
+  const { isLoaded, userId, isTokenSet, isLoading, refreshToken } =
+    useAuthToken();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const [chat, setChat] = useState<ChatMessage[]>([]);
   const [selected, setSelected] = useState<string | null>(null);
@@ -84,6 +87,11 @@ const OutcomeChat: React.FC = () => {
     return () => clearTimeout(timeOut);
   }, [params, setParams]);
   const fetchChatHistory = async () => {
+    if (!isTokenSet) {
+      console.log("Token not set, skipping chat history fetch");
+      return;
+    }
+
     setErrorList(false);
     setLoadingList(true);
     try {
@@ -94,11 +102,27 @@ const OutcomeChat: React.FC = () => {
     } catch (error) {
       setLoadingList(false);
       console.error("Error fetching chat list:", (error as Error).message);
+
+      // Try to refresh token if it's an auth error
+      if ((error as AxiosError)?.response?.status === 401) {
+        const refreshed = await refreshToken();
+        if (refreshed) {
+          // Retry the request
+          fetchChatHistory();
+          return;
+        }
+      }
+
       setErrorList(true);
     }
   };
 
   const fetchChat = async (chatId: string) => {
+    if (!isTokenSet) {
+      console.log("Token not set, skipping chat fetch");
+      return;
+    }
+
     setError(null);
     setLoading(true);
     try {
@@ -120,6 +144,17 @@ const OutcomeChat: React.FC = () => {
     } catch (error) {
       setLoading(false);
       console.error("Error fetching chat:", error);
+
+      // Try to refresh token if it's an auth error
+      if ((error as AxiosError)?.response?.status === 401) {
+        const refreshed = await refreshToken();
+        if (refreshed) {
+          // Retry the request
+          fetchChat(chatId);
+          return;
+        }
+      }
+
       setError(
         "An error occurred while fetching the chat. Please check your connection."
       );
@@ -133,39 +168,10 @@ const OutcomeChat: React.FC = () => {
   }, [chat]);
 
   useEffect(() => {
-    const fetchTokenAndPerformTasks = async () => {
-      try {
-        const token = await getToken();
-        if (token) {
-          localStorage.setItem("user", JSON.stringify(token));
-          setToken(token);
-        }
-      } catch (error) {
-        console.error("Error fetching token:", error);
-      }
-    };
-
-    fetchTokenAndPerformTasks();
-  }, [getToken]);
-
-  useEffect(() => {
-    setLoadingList(true);
-    const fetchChatHistory = async () => {
-      try {
-        const response = await apiClient.get("/chat/list");
-        setChatHistory(response.data);
-        setLoadingList(false);
-      } catch (error) {
-        setLoadingList(false);
-        console.error("Error fetching chat list:", (error as Error).message);
-        setErrorList(true);
-      }
-    };
-
-    setTimeout(() => {
+    if (isLoaded && !isLoading && isTokenSet) {
       fetchChatHistory();
-    }, 10);
-  }, [userId]);
+    }
+  }, [isLoaded, isLoading, isTokenSet]);
 
   useEffect(() => {
     setLoading(true);
