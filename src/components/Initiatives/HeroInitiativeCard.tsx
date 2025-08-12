@@ -1,6 +1,5 @@
-import theme from "@/styles/theme";
+import theme from"../../styles/theme";
 import { Grid, Box, Typography } from "@mui/material";
-import React from 'react'
 
 interface InitiativeData {
   icon: string;

@@ -10,7 +10,7 @@ import image2 from "../assets/Images/Donate/tier2.webp";
 import image3 from "../assets/Images/Donate/tier3.webp";
 import image4 from "../assets/Images/Donate/tier4.webp";
 import RecurringTiers from "../components/Donations/RecurringTiers";
-import ContactSection from "@/components/ContactSection";
+import ContactSection from "../components/ContactSection";
 import { useRef } from "react";
 import { useInView } from "../hooks/useInView";
 

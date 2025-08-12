@@ -14,12 +14,12 @@ import Donations from "../pages/Donations";
 import Policies from "../pages/Policies";
 import OutcomeChat from "../pages/OutcomeChat";
 import RequireAuthentication from "../auth/RequireAuthentication";
-import Products from "../pages/Products";
 import ProductsOutcomeChat from "../pages/ProductsOutcomeChat";
 import ResearchChat from "../pages/ResearchChat";
 import GeneralChat from "../pages/GeneralChat";
 import MentalHealth from "../pages/MentalHealth";
 import Quest from "../pages/Products/Quest";
+import Change from "../pages/Change";
 
 interface HotjarConfig {
   id: string;
@@ -43,6 +43,7 @@ const useClerkRoutes = (): ReactElement => {
         <Route path="donations" element={<Donations />} />
         <Route path="data-discovery" element={<DataDiscovery />} />
         <Route path="contact" element={<Contact />} />
+        <Route path="change" element={<Change />} />
         <Route path="about" element={<About />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/sign-in/*" element={<LogIn />} />
@@ -72,9 +73,6 @@ const useClerkRoutes = (): ReactElement => {
             </RequireAuthentication>
           }
         />
-        {/* PlaceHolder Pages Routes */}
-        <Route path="/products" element={<Products />} />
-        {/* To be replaced later with dynamic routing*/}
         <Route
           path="/products/outcome-chat"
           element={<ProductsOutcomeChat />}

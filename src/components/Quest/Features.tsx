@@ -115,7 +115,6 @@ const FeaturesSection: React.FC<{
                     flexDirection: "column",
                     alignItems: "center",
                     minHeight: "50px", 
-                    // mb: 2,
                   }}
                 >
                   <Box

@@ -8,7 +8,7 @@ import {
   Slide,
   Fade,
 } from "@mui/material";
-import { useInView } from "@/hooks/useInView";
+import { useInView } from "../hooks/useInView";
 import image from "../assets/images/Achievments/ag.webp";
 
 const CardContainer = styled(Box, {

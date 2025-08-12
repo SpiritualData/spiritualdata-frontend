@@ -45,6 +45,7 @@ const UseCases: React.FC<UseCasesProps> = ({ data }) => {
         overflowY: "hidden",
         background: `linear-gradient(to bottom, ${theme.palette.primary.main} 0%, white 100%)`,
         position: "relative",
+        // mb: 8,
         pt: { xs: 6, md: 0 },
         pb: { xs: 6, md: 0 },
       }}

@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Grid,
   Typography,
+  Avatar,
   useTheme,
   Button,
   Slide,
 } from "@mui/material";
-import { useInView } from "@/hooks/useInView";
+import { useInView } from "../hooks/useInView";
 import ReviewCard from "./reviewSection/ReviewCard";
 import reviewImage1 from "../assets/images/Reviews/review1.webp";
 import reviewImage2 from "../assets/images/Reviews/review2.webp";

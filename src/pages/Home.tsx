@@ -19,17 +19,9 @@ const Home: React.FC = () => {
       <InitiativeSection />
       <ContactSection />
       <ReviewsSection />
-      <FaqSection/>
+      <FaqSection />
     </>
   );
 };
 
 export default Home;
-
-
-
-
-
-
-
-

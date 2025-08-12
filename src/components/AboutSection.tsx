@@ -8,7 +8,7 @@ import {
   useTheme,
 } from "@mui/material";
 import React from "react";
-import { useInView } from "@/hooks/useInView";
+import { useInView } from "../hooks/useInView";
 import ImageSlider from "./ImageSlider";
 import { useNavigate } from "react-router-dom";
 import mainImage from "../assets/images/About/about1.webp";

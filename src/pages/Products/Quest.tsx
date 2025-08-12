@@ -1,13 +1,14 @@
-import { Box, Typography, Button, useTheme, Container } from "@mui/material";
+import { Box, Typography, Button, useTheme } from "@mui/material";
 import { useRef } from "react";
 import Steps from "../../components/Quest/Steps";
 import Features from "../../components/Quest/Features";
 import UseCases from "../../components/Quest/UseCases";
-import QuestHero from "../../components/Quest/QuestHero";
 import { stepsData, featuresData, useCasesData } from "../../data/questData";
 import { useNavigate } from "react-router-dom";
+import { questData } from "../../data/ProductData";
+import ProductHero from "../../components/Products/ProductHero";
 
-export default function Quest() {
+const Quest = () => {
   const theme = useTheme();
   const useCasesRef = useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
@@ -18,11 +19,16 @@ export default function Quest() {
 
   return (
     <>
-      <QuestHero onScrollClick={scrollToUseCases} />
+      <ProductHero
+        content={questData}
+        product="quest"
+        onScrollClick={scrollToUseCases}
+      />
       <Features data={featuresData} />
       <Steps data={stepsData} />
       <UseCases data={useCasesData} />
 
+      {/* Scroll Target */}
       <div
         ref={useCasesRef}
         style={{
@@ -96,4 +102,6 @@ export default function Quest() {
       </div>
     </>
   );
-}
+};
+
+export default Quest;
