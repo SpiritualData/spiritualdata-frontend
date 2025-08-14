@@ -8,8 +8,6 @@ import DataDiscovery from "../pages/DataDiscovery";
 import Contact from "../pages/Contact";
 import NotFound from "../pages/NotFound";
 import Chat from "../pages/Chat";
-import LogIn from "../pages/Login";
-import Signup from "../pages/Signup";
 import Donations from "../pages/Donations";
 import Policies from "../pages/Policies";
 import OutcomeChat from "../pages/OutcomeChat";
@@ -20,6 +18,8 @@ import GeneralChat from "../pages/GeneralChat";
 import MentalHealth from "../pages/MentalHealth";
 import Quest from "../pages/Products/Quest";
 import Change from "../pages/Change";
+import AuthPage from "../pages/AuthPage";
+
 
 interface HotjarConfig {
   id: string;
@@ -46,8 +46,8 @@ const useClerkRoutes = (): ReactElement => {
         <Route path="change" element={<Change />} />
         <Route path="about" element={<About />} />
         <Route path="*" element={<NotFound />} />
-        <Route path="/sign-in/*" element={<LogIn />} />
-        <Route path="/sign-up/*" element={<Signup />} />
+        <Route path="/sign-in/*" element={<AuthPage />} />
+        <Route path="/sign-up/*" element={<AuthPage />} />
         <Route
           path="/cookies"
           element={<Policies fileName="/cookies.html" />}
