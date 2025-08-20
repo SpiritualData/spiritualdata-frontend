@@ -331,7 +331,7 @@ const Footer = () => {
                 key={label}
                 onClick={() => navigate(path)}
                 sx={{
-                  color: "text.primary",
+                  color: "text.secondary",
                   textTransform: "none",
                   minWidth: "unset",
                   mr: 2,
@@ -345,6 +345,7 @@ const Footer = () => {
           </Box>
           <Typography
             variant="body1"
+            color="text.secondary"
             mt={{ xs: 2, sm: 0 }}
             sx={{ fontSize: { xs: 13, sm: 14 } }}
           >

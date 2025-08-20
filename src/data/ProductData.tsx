@@ -119,24 +119,3 @@ export const availableProductData = [
     expert: ["AI & NLP", "Data Processing", "Knowledge Structuring"],
   },
 ];
-
-export const questData = {
-  title: "Quest",
-  description:
-    "Your AI companion for meaningful transformation. Turn aspirations into achievements through guided conversations, intelligent accountability, and progress tracking.",
-  buttonText: "Begin Your Quest",
-  subHead: "Every Journey Deserves a Guide",
-  subDesc:
-    "Whether you're pursuing spiritual growth, personal transformation, or practical goals, Quest provides the structure and support you need to succeed.",
-};
-
-export const conceptAiData = {
-  title: "Concept AI",
-  description:
-    "An innovative platform designed to help you brainstorm, refine, and develop your creative ideas into actionable concepts. Use AI-driven insights to explore possibilities and bring your vision to life.",
-  buttonText: "Explore Concepts",
-  subHead: "Every Idea Starts with a Spark",
-  subDesc:
-    "Whether you're shaping a new product, crafting a story, or planning a project, Concept AI gives you the tools and guidance to turn inspiration into reality.",
-};
-

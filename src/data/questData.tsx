@@ -12,6 +12,13 @@ import CloudQueueIcon from "@mui/icons-material/CloudQueue";
 import MicIcon from "@mui/icons-material/Mic";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 
+interface heroData {
+    title: string,
+    description: string,
+    buttonText: string,
+    subHead: string,
+    subDesc: string
+}
 interface stepsData {
   step: string;
   icon: JSX.Element;
@@ -30,6 +37,29 @@ interface useCasesData {
     id: number,
     title: string
 }
+
+interface callToAction {
+  title: string;
+  highlight?: string;
+  suffix?: string;
+  subtitle: string;
+  additionalSubtitle?: string
+  buttonText: string;
+  buttonLink?: string;
+  footerNote: string;
+  additionalFooterNote1?: string;
+  additionalFooterNote2?: string;
+}
+
+export const heroData = {
+  title: "Quest",
+  description:
+    "Your AI companion for meaningful transformation. Turn aspirations into achievements through guided conversations, intelligent accountability, and progress tracking.",
+  buttonText: "Begin Your Quest",
+  subHead: "Every Journey Deserves a Guide",
+  subDesc:
+    "Whether you're pursuing spiritual growth, personal transformation, or practical goals, Quest provides the structure and support you need to succeed.",
+};
 
 export const stepsData: stepsData[] = [
   {
@@ -163,3 +193,17 @@ export const useCasesData: useCasesData[] = [
     title: "Push Boundaries",
   },
 ];
+
+export const callToAction: callToAction = {
+  title: "Ready to Begin Your",
+  highlight: "Quest",
+  suffix: "...?",
+  subtitle:
+    "Add meaning to your life through clear direction and smart strategies.",
+  additionalSubtitle: "Your journey starts now.",
+  buttonText: "Start Your First Quest",
+  buttonLink: "/sign-up",
+  footerNote: "Free to try - $10 a month",
+  additionalFooterNote1: "$10 a month",
+  additionalFooterNote2: "Your data stays private",
+};

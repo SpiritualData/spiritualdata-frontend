@@ -6,7 +6,7 @@ import WhyWeStarted from "../components/About/WhyWeStarted";
 import GuidingPrinciples from "../components/About/GuidingPrinciples";
 import SocialImpact from "../components/About/SocialImpact";
 import WhereWeAreHeading from "../components/About/WhereWeAreHeading";
-import BoardMembers from "../components/About/BoarMembers";
+import BoardMembers from "../components/About/BoardMembers";
 
 const About: React.FC = () => {
   return (

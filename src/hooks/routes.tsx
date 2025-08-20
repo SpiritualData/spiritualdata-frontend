@@ -19,7 +19,7 @@ import MentalHealth from "../pages/MentalHealth";
 import Quest from "../pages/Products/Quest";
 import Change from "../pages/Change";
 import AuthPage from "../pages/AuthPage";
-
+import Careers from "../pages/Careers";
 
 interface HotjarConfig {
   id: string;
@@ -45,6 +45,7 @@ const useClerkRoutes = (): ReactElement => {
         <Route path="contact" element={<Contact />} />
         <Route path="change" element={<Change />} />
         <Route path="about" element={<About />} />
+        <Route path="careers" element={<Careers />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/sign-in/*" element={<AuthPage />} />
         <Route path="/sign-up/*" element={<AuthPage />} />
