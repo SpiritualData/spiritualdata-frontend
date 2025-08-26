@@ -217,7 +217,7 @@ const HeroSection: React.FC = () => {
               text="Crisis We Are Dealing With"
               icon={<InsightsIcon fontSize="inherit" />}
               sx={{ top: "115px", left: "6%" }}
-              link="/crisis"
+              link="/about"
             />
             <FloatingLabel
               text="Truth Estimation AI"
@@ -235,7 +235,7 @@ const HeroSection: React.FC = () => {
               text="Spiritual Crisis Support"
               icon={<StorageIcon fontSize="inherit" />}
               sx={{ bottom: "200px", right: "12.5%" }}
-              link="/crisis"
+              link="/contact"
             />
             <Box
               component="img"

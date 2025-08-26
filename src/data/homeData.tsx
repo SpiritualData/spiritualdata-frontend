@@ -14,7 +14,7 @@ export const floatersData: floatersData[] = [
   {
     text: "Crisis We Are Dealing With",
     icon: <PublicIcon fontSize="inherit" />,
-    link: "/crisis",
+    link: "/about",
   },
   {
     text: "Truth Estimation AI",
@@ -29,6 +29,6 @@ export const floatersData: floatersData[] = [
   {
     text: "Spiritual Crisis Support",
     icon: <StorageIcon fontSize="inherit" />,
-    link: "/crisis",
+    link: "/contact",
   },
 ];

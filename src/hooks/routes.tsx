@@ -20,6 +20,8 @@ import Quest from "../pages/Products/Quest";
 import Change from "../pages/Change";
 import AuthPage from "../pages/AuthPage";
 import Careers from "../pages/Careers";
+import Products from "../pages/Products";
+import ConceptAi from "../pages/Products/ConceptAi";
 
 interface HotjarConfig {
   id: string;
@@ -74,6 +76,7 @@ const useClerkRoutes = (): ReactElement => {
             </RequireAuthentication>
           }
         />
+        <Route path="/products" element={<Products />} />
         <Route
           path="/products/outcome-chat"
           element={<ProductsOutcomeChat />}
@@ -82,7 +85,7 @@ const useClerkRoutes = (): ReactElement => {
         <Route path="/products/general-chat" element={<GeneralChat />} />
         <Route path="/products/mental-health-chat" element={<MentalHealth />} />
         <Route path="/products/quest" element={<Quest />} />
-
+        <Route path="/products/concept-ai" element={<ConceptAi />} />
         {/*  */}
       </Routes>
     </ClerkProvider>
