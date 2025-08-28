@@ -22,6 +22,7 @@ import AuthPage from "../pages/AuthPage";
 import Careers from "../pages/Careers";
 import Products from "../pages/Products";
 import ConceptAi from "../pages/Products/ConceptAi";
+import Initiatives from "../pages/Initiatives";
 
 interface HotjarConfig {
   id: string;
@@ -48,6 +49,7 @@ const useClerkRoutes = (): ReactElement => {
         <Route path="change" element={<Change />} />
         <Route path="about" element={<About />} />
         <Route path="careers" element={<Careers />} />
+        <Route path="initiatives" element={<Initiatives />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/sign-in/*" element={<AuthPage />} />
         <Route path="/sign-up/*" element={<AuthPage />} />
