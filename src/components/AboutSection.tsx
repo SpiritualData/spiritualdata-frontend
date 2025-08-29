@@ -36,7 +36,11 @@ const AboutSection: React.FC = () => {
         }}
       >
         {/* Top Row: ABOUT US label */}
-        <Box>
+        <Box
+          sx={{
+            textAlign: { xs: "center", md: "start" },// I kept everything the same except for the small devices "xs", to be aligned center
+          }}
+        >
           <Typography
             variant="overline"
             sx={{
@@ -55,8 +59,8 @@ const AboutSection: React.FC = () => {
         <Box
           sx={{
             display: "flex",
-            flexDirection: "row",
-            alignItems: "end",
+            flexDirection: { xs: "column", md: "row" },
+            alignItems: { xs: "center", md: "end" }, // I kept everything the same except for the small devices "xs", to be aligned center
             justifyContent: "space-between",
             gap: 2,
             flexWrap: { xs: "wrap", md: "nowrap" },
@@ -72,6 +76,7 @@ const AboutSection: React.FC = () => {
               flex: 1,
               minWidth: 0,
               fontFamily: "revert",
+              textAlign: "center", // I aligned the items to be center, for a better look
             }}
           >
             The Most Important Truths Were Hidden. At Spiritual Data, We Let AI
@@ -118,7 +123,10 @@ const AboutSection: React.FC = () => {
             item
             xs={12}
             md={10}
-            sx={{ maxWidth: "57%", height: "200%" }}
+            sx={{
+              maxWidth: { xs: "100%", md: "57%" }, // full width on mobile, 57% only on desktop
+              height: "auto",
+            }}
             component="div"
             {...({} as any)}
           >
@@ -141,9 +149,11 @@ const AboutSection: React.FC = () => {
                       fontSize: "1.05rem",
                       lineHeight: 1.6,
                       letterSpacing: "0.05rem",
+                      mt: 2,
                       mb: 23,
                       wordWrap: "normal",
                       textWrap: "pretty",
+                      textAlign: "center",
                     }}
                   >
                     The most important truths have been hidden by taboo and
@@ -166,16 +176,12 @@ const AboutSection: React.FC = () => {
               )}
 
               {/* Bottom: Nested 2 Columns */}
-              <Grid
-                container
-                spacing={3}
-                sx={{ justifyContent: "space-between" }}
-              >
+              <Grid container spacing={3} sx={{ justifyContent: "center" }}>
                 <Grid
                   item
                   xs={12}
                   sm={6}
-                  sx={{ width: "48%", height: "100%" }}
+                  sx={{ width: "70%", height: "100%" }}
                   component="div"
                   {...({} as any)}
                 >
@@ -210,7 +216,7 @@ const AboutSection: React.FC = () => {
                   item
                   xs={12}
                   sm={6}
-                  sx={{ width: "48%", height: "100%" }}
+                  sx={{ width: "97%", height: "100%" }}
                   component="div"
                   {...({} as any)}
                 >

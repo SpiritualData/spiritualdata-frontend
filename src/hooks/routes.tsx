@@ -40,7 +40,7 @@ const useClerkRoutes = (): ReactElement => {
   const clerkPubKey: string = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
   return (
-    <ClerkProvider publishableKey={clerkPubKey}>
+    <>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="donations" element={<Donations />} />
@@ -90,7 +90,7 @@ const useClerkRoutes = (): ReactElement => {
         <Route path="/products/concept-ai" element={<ConceptAi />} />
         {/*  */}
       </Routes>
-    </ClerkProvider>
+    </>
   );
 };
 
