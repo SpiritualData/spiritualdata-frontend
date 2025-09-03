@@ -64,16 +64,16 @@ const WhyChooseUs = () => {
       {/* Left spacer to balance the layout */}
       <Box
         sx={{
-          width: "50vw",
+          width: {md: "50vw", xs: "0vw"},
           minHeight: "100vh",
-          flexShrink: 0,
+          flexShrink: 1,
         }}
       />
 
       {/* Right scrollable content */}
       <Box
         sx={{
-          width: "50%",
+          width: {md: "50%"},
           backgroundColor: theme.palette.primary.main,
           pl: { xs: 3, md: 20 },
           pr: { xs: 3, md: 20 },
