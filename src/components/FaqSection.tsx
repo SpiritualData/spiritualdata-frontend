@@ -148,7 +148,7 @@ const FaqSection = () => {
             // backgroundColor: "red"
           }}
           height={"100%"}
-          width="50%"
+          width="100%"
           component="div"
           {...({} as any)}
         >
@@ -164,15 +164,14 @@ const FaqSection = () => {
               FAQS
             </Typography>
             <Typography
-              variant="h2"
+              variant="h4"
               sx={{
                 fontWeight: 500,
-                fontSize: "3rem",
                 mb: 4,
                 color: theme.palette.text.primary,
               }}
             >
-              Everything You Want to <br /> Know About AI
+              Everything You Want to  Know About AI
             </Typography>
           </Box>
 

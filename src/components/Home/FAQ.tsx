@@ -166,7 +166,7 @@ const FAQ = () => {
                     "&:hover": { textDecoration: "underline" },
                     display: "flex",
                     alignItems: "center",
-                  }}
+                  }} 
                 >
                   Questions? Click here to send us a message.{" "}
                   <East sx={{ marginLeft: "4px", fontSize: "16px" }} />
