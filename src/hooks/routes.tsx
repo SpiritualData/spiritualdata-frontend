@@ -17,12 +17,12 @@ import ResearchChat from "../pages/ResearchChat";
 import GeneralChat from "../pages/GeneralChat";
 import MentalHealth from "../pages/MentalHealth";
 import Quest from "../pages/Products/Quest";
-import Change from "../pages/Change";
 import AuthPage from "../pages/AuthPage";
 import Careers from "../pages/Careers";
 import Products from "../pages/Products";
 import ConceptAi from "../pages/Products/ConceptAi";
 import Initiatives from "../pages/Initiatives";
+import EstimatingTruth from "../pages/Initiatives/EstimatingTruth";
 
 interface HotjarConfig {
   id: string;
@@ -46,10 +46,13 @@ const useClerkRoutes = (): ReactElement => {
         <Route path="donations" element={<Donations />} />
         <Route path="data-discovery" element={<DataDiscovery />} />
         <Route path="contact" element={<Contact />} />
-        <Route path="change" element={<Change />} />
         <Route path="about" element={<About />} />
         <Route path="careers" element={<Careers />} />
-        <Route path="initiatives" element={<Initiatives />} />
+        <Route path="/initiatives" element={<Initiatives />} />
+        <Route
+          path="/initiatives/estimating-truth"
+          element={<EstimatingTruth />}
+        />
         <Route path="*" element={<NotFound />} />
         <Route path="/sign-in/*" element={<AuthPage />} />
         <Route path="/sign-up/*" element={<AuthPage />} />

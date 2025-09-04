@@ -12,6 +12,7 @@ import {
   IconButton,
   Drawer,
   List,
+  ListItem,
   ListItemText,
   Divider,
   Collapse,
@@ -39,7 +40,6 @@ const Navbar = () => {
   const theme = useTheme();
   const navigate = useNavigate();
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
-
   const productsRef = useRef<HTMLDivElement>(null!);
   const initiativesRef = useRef<HTMLDivElement>(null!);
 
@@ -98,12 +98,12 @@ const Navbar = () => {
       items: [
         { name: "Estimating Truth", path: "/initiatives/estimating-truth" },
         {
-          name: "Wikipedia Parapsychology",
-          path: "/initiatives/wikipedia-parapsychology",
+          name: "Wikipedia Advocacy",
+          path: "/initiatives/wikipedia-advocacy",
         },
         {
-          name: "Psychic Certification",
-          path: "/initiatives/psychic-certification",
+          name: "Psychic Ability Certification",
+          path: "/initiatives/psychic-ability-certification",
         },
       ],
     },
