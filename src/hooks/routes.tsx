@@ -23,6 +23,7 @@ import Products from "../pages/Products";
 import ConceptAi from "../pages/Products/ConceptAi";
 import Initiatives from "../pages/Initiatives";
 import EstimatingTruth from "../pages/Initiatives/EstimatingTruth";
+import WikipediaAdvocacy from "../pages/Initiatives/WikipediaAdvocacy";
 
 interface HotjarConfig {
   id: string;
@@ -52,6 +53,10 @@ const useClerkRoutes = (): ReactElement => {
         <Route
           path="/initiatives/estimating-truth"
           element={<EstimatingTruth />}
+        />
+        <Route
+          path="/initiatives/wikipedia-advocacy"
+          element={<WikipediaAdvocacy />}
         />
         <Route path="*" element={<NotFound />} />
         <Route path="/sign-in/*" element={<AuthPage />} />
