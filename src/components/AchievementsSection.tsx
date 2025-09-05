@@ -157,6 +157,8 @@ const AchievementsSection = () => {
             variant="h3"
             sx={{
               fontWeight: 600,
+                            fontSize: { xs: "34px", md: "48px" },
+
               color: theme.palette.primary.hover,
               letterSpacing: 2,
               fontFamily: theme.typography.fontFamily,

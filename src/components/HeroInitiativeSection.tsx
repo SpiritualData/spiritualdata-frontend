@@ -59,7 +59,7 @@ const HeroInitiativeSection: React.FC = () => {
       }}
     >
       {/* Top Heading */}
-      <Box textAlign="center" mb={6}>
+      <Box mb={6}>
         <Typography
           variant="body2"
           sx={{
@@ -73,12 +73,13 @@ const HeroInitiativeSection: React.FC = () => {
         <Typography
           variant="h3"
           sx={{
+              fontSize: { xs: "34px", md: "48px" },
             fontWeight: 600,
             color: theme.palette.primary.hero,
             mt: 1,
           }}
         >
-          Powering Truth Through <br /> AI and Collective Insight
+          Powering Truth Through  AI and Collective Insight
         </Typography>
       </Box>
 

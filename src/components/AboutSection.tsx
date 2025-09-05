@@ -33,14 +33,11 @@ const AboutSection: React.FC = () => {
           pb: { xs: 0, md: 0 },
           px: { xs: 3, md: 24 },
           backgroundColor: "white",
+          textAlign: "start"
         }}
       >
         {/* Top Row: ABOUT US label */}
-        <Box
-          sx={{
-            textAlign: { xs: "center", md: "start" },// I kept everything the same except for the small devices "xs", to be aligned center
-          }}
-        >
+        <Box>
           <Typography
             variant="overline"
             sx={{
@@ -59,8 +56,8 @@ const AboutSection: React.FC = () => {
         <Box
           sx={{
             display: "flex",
-            flexDirection: { xs: "column", md: "row" },
-            alignItems: { xs: "center", md: "end" }, // I kept everything the same except for the small devices "xs", to be aligned center
+            flexDirection: {md: "row", xs: "column"} , 
+            alignItems: {md: "end", xs: "center"} , 
             justifyContent: "space-between",
             gap: 2,
             flexWrap: { xs: "wrap", md: "nowrap" },
@@ -70,13 +67,12 @@ const AboutSection: React.FC = () => {
             variant="h3"
             sx={{
               fontWeight: 500,
-              fontSize: { xs: "2rem", md: "3.3rem" },
+              fontSize: { xs: "34px", md: "48px" },
               lineHeight: 1,
               color: "#1F2540",
               flex: 1,
               minWidth: 0,
               fontFamily: "revert",
-              textAlign: "center", // I aligned the items to be center, for a better look
             }}
           >
             The Most Important Truths Were Hidden. At Spiritual Data, We Let AI
@@ -123,10 +119,7 @@ const AboutSection: React.FC = () => {
             item
             xs={12}
             md={10}
-            sx={{
-              maxWidth: { xs: "100%", md: "57%" }, // full width on mobile, 57% only on desktop
-              height: "auto",
-            }}
+            sx={{ maxWidth: {md: "57%", xs: "100%"}, height: "200%" }} 
             component="div"
             {...({} as any)}
           >
@@ -153,7 +146,7 @@ const AboutSection: React.FC = () => {
                       mb: 23,
                       wordWrap: "normal",
                       textWrap: "pretty",
-                      textAlign: "center",
+                      textAlign: {xs: "center", md: "left"},
                     }}
                   >
                     The most important truths have been hidden by taboo and
@@ -175,13 +168,13 @@ const AboutSection: React.FC = () => {
                 </Fade>
               )}
 
-              {/* Bottom: Nested 2 Columns */}
-              <Grid container spacing={3} sx={{ justifyContent: "center" }}>
+              {/* Bottom: Nested 2 Columns */} 
+              <Grid container spacing={3} sx={{ justifyContent: "space-between" }}> 
                 <Grid
                   item
                   xs={12}
                   sm={6}
-                  sx={{ width: "70%", height: "100%" }}
+                  sx={{ width:{ md: "48%", xs: "100%"}, height: "100%" }}
                   component="div"
                   {...({} as any)}
                 >
@@ -194,7 +187,7 @@ const AboutSection: React.FC = () => {
                             color: theme.palette.darkcard.contrastText,
                             borderRadius: "16px",
                             display: "flex",
-                            flexDirection: "column",
+                            flexDirection: {md: "column", xs: "row"},
                             justifyContent: "center",
                             alignItems: "flex-start",
                             boxShadow: `0 6px 24px ${theme.palette.cardshadow.main}`,
@@ -216,7 +209,7 @@ const AboutSection: React.FC = () => {
                   item
                   xs={12}
                   sm={6}
-                  sx={{ width: "97%", height: "100%" }}
+                  sx={{ width: {xs: "100%",md: "48%"}, height: "100%" }} 
                   component="div"
                   {...({} as any)}
                 >
@@ -231,7 +224,7 @@ const AboutSection: React.FC = () => {
                             px: 5,
                             py: 3,
                             display: "flex",
-                            flexDirection: "column",
+                            flexDirection: {xs: "column", md: "row"},
                             justifyContent: "center",
                             alignItems: "flex-start",
                             boxShadow: `0 6px 24px ${theme.palette.cardshadow.main}`,

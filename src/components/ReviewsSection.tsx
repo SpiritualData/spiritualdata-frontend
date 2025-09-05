@@ -90,8 +90,9 @@ const ClientReviewsSection: React.FC = () => {
             CLIENT REVIEWS
           </Typography>
           <Typography
-            variant="h2"
+            variant="h3"
             sx={{
+              fontSize: { xs: "34px", md: "48px" },
               fontWeight: 500,
               color: theme.palette.text.primary,
               letterSpacing: "-0.5px",

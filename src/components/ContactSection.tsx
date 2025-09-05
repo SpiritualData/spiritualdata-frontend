@@ -71,7 +71,6 @@ const ContactSection = ({
           textAlign: "center",
           zIndex: 2,
           width: "100%",
-          px: 2,
           py: { xs: 6, md: 0 },
         }}
       >

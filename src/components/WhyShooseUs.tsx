@@ -64,16 +64,16 @@ const WhyChooseUs = () => {
       {/* Left spacer to balance the layout */}
       <Box
         sx={{
-          width: {md: "50vw", xs: "0vw"},
+          width: { md: "50vw", xs: "0vw" },
           minHeight: "100vh",
-          flexShrink: 1,
+          flexShrink: { xs: 0, md: 1 },
         }}
       />
 
       {/* Right scrollable content */}
       <Box
         sx={{
-          width: {md: "50%"},
+          width: { xs: "100%", md: "50%" },
           backgroundColor: theme.palette.primary.main,
           pl: { xs: 3, md: 20 },
           pr: { xs: 3, md: 20 },
@@ -98,10 +98,10 @@ const WhyChooseUs = () => {
           variant="h3"
           sx={{
             fontWeight: 600,
+              fontSize: { xs: "34px", md: "48px" },
             mb: 8,
             color: theme.palette.primary.hover,
             lineHeight: 1.2,
-            fontSize: "2.5rem",
           }}
         >
           Powered by Evidence

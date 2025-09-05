@@ -145,10 +145,9 @@ const FaqSection = () => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "end",
-            // backgroundColor: "red"
+            width: { xs: "100%", md: "50%" },
           }}
           height={"100%"}
-          width="100%"
           component="div"
           {...({} as any)}
         >
@@ -164,14 +163,15 @@ const FaqSection = () => {
               FAQS
             </Typography>
             <Typography
-              variant="h4"
+              variant="h3"
               sx={{
+                fontSize: { xs: "34px", md: "48px" },
                 fontWeight: 500,
                 mb: 4,
                 color: theme.palette.text.primary,
               }}
             >
-              Everything You Want to  Know About AI
+              Everything You Want to Know About AI
             </Typography>
           </Box>
 
