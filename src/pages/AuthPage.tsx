@@ -14,7 +14,7 @@ import ParticlesBg from "../components/Particle";
 
 const styles = (theme: any) => `
 .dual-auth-container {
-  width: 1000px; max-width: 98vw; height: 650px; position: relative;
+  width: 1000px; max-width: 98vw; min-height: 650px; position: relative;
   border-radius: 24px; overflow: hidden; box-shadow: 0 8px 32px ${theme.palette.cardshadow.main};
   background: ${theme.palette.primary.main}; display: flex; align-items: stretch;
 }
@@ -25,7 +25,7 @@ const styles = (theme: any) => `
   transform: translateX(0%);
 }
 .auth-form-side {
-  width: 50%; min-width: 50%; height: 100%;
+  width: 50%; min-width: 50%; min-height: 650px;
   display: flex; flex-direction: column; justify-content: center; align-items: center;
   background: ${theme.palette.primary.main}; z-index: 1; padding: 32px;
   transition: opacity 0.5s;
@@ -99,6 +99,22 @@ const styles = (theme: any) => `
 @keyframes loader-spin1 { 100% { transform: rotate(360deg);} }
 @keyframes loader-spin2 { 100% { transform: rotate(-360deg);} }
 @keyframes loader-spin3 { 100% { transform: rotate(360deg);} }
+
+/* Hide Clerk logo and branding only */
+.cl-internal-b3fm6y, .cl-logoBox, .cl-footer, .cl-footerAction, .cl-footerActionLink, .cl-logoImage, .cl-footerActionText {
+  display: none !important;
+}
+
+/* Change button color to match app theme */
+.cl-formButtonPrimary {
+  background-color: ${theme.palette.primary.focus} !important;
+  color: ${theme.palette.text.primary} !important;
+  font-family: 'Outfit', sans-serif !important;
+}
+
+.cl-formButtonPrimary:hover {
+  background-color: #B8D954 !important;
+}
 `;
 
 type LoaderProps = { fade: boolean; theme: any };
@@ -220,7 +236,7 @@ const AuthPage: React.FC = () => {
                   <div className="auth-form-side">
                     <Box
                       sx={{
-                        width: 380,
+                        width: "100%",
                         maxWidth: "98vw",
                         mx: "auto",
                         my: "auto",
@@ -230,98 +246,68 @@ const AuthPage: React.FC = () => {
                       }}
                     >
                       <Typography
-                        variant="h4"
-                        mb={4}
-                        fontWeight="bold"
-                        letterSpacing={1}
+                        variant="h3"
+                        mb={6}
+                        fontWeight="800"
+                        letterSpacing={2}
                         sx={{
                           color: theme.palette.text.primary,
-                          textShadow: `0px 0px 10px ${theme.palette.primary.focus}`,
+                          fontFamily: "Outfit",
+                          textAlign: "center",
+                          fontSize: { xs: "2rem", md: "2.5rem" },
                         }}
                       >
-                        Sign in
+                        Welcome Back
                       </Typography>
 
                       <SignIn
                         signUpUrl="/sign-up"
-                        fallbackRedirectUrl="/chat"
+                        fallbackRedirectUrl="/onboarding"
                         appearance={{
                           elements: {
-                            rootBox: {
-                              background: "transparent",
-                              boxShadow: "none",
-                            },
-                            card: {
-                              background: "white",
-                              boxShadow: "none",
-                              padding: 0,
-                            },
                             headerTitle: { display: "none" },
                             headerSubtitle: { display: "none" },
-                            socialButtonsBlockButton: {
-                              backgroundColor: `${theme.palette.primary.focus} !important`,
-                              border: `2px solid ${theme.palette.primary.main} !important`,
-                              borderRadius: "50% !important",
-                              width: "50px !important",
-                              height: "50px !important",
-                              minWidth: "50px !important",
-                              padding: "0 !important",
-                              display: "flex !important",
-                              alignItems: "center !important",
-                              justifyContent: "center !important",
-                              margin: "0 5px",
-                              overflow: "hidden",
-                              textIndent: "-9999px",
-                            },
-                            socialButtonsProviderIcon: {
-                              width: "24px !important",
-                              height: "24px !important",
-                              margin: "0 auto",
-                            },
-                            formFieldOptional: { display: "none !important" },
-                            dividerLine: { display: "none" },
-                            dividerText: {
-                              fontWeight: "bold",
-                              color: theme.palette.text.secondary,
-                            },
-                            formFieldLabel: { display: "none" },
-                            formFieldInput: {
-                              width: "90%",
-                              maxWidth: "320px",
-                              backgroundColor: theme.palette.primary.main,
-                              padding: "12px 16px",
-                              borderRadius: "6px",
-                              fontSize: "14px",
-                              margin: "0px auto",
-                              display: "block",
-                            },
-                            formButtonPrimary: {
-                              backgroundColor: theme.palette.primary.focus,
-                              color: theme.palette.primary.hero,
-                              borderRadius: "50px",
-                              height: 42,
-                              width: "50%",
-                              px: 4,
-                              marginBottom: "16px",
-                              fontWeight: 700,
-                              fontSize: "14px",
-                              textTransform: "uppercase",
-                              fontFamily: theme.typography.fontFamily,
-                              letterSpacing: "0.5px",
-                              transition: "all 0.3s ease",
-                              cursor: "pointer",
-                              border: "2px solid transparent",
-                              "&:hover": {
-                                backgroundColor: theme.palette.primary.hero,
-                                color: theme.palette.primary.focus,
-                              },
-                            },
+                            logoBox: { display: "none" },
+                            logoImage: { display: "none" },
+                            footer: { display: "none" },
                             footerAction: { display: "none" },
                             footerActionLink: { display: "none" },
                           },
-                          layout: { socialButtonsVariant: "iconButton" },
                         }}
                       />
+                      
+                      {/* Sign In to Sign Up Link */}
+                      <Box sx={{ mt: 4, textAlign: "center" }}>
+                        <Typography 
+                          variant="body2" 
+                          sx={{ 
+                            color: theme.palette.text.secondary,
+                            fontFamily: "Outfit",
+                            mb: 1
+                          }}
+                        >
+                          Don't have an account?
+                        </Typography>
+                        <Typography
+                          component={Link}
+                          to="/sign-up"
+                          sx={{
+                            color: theme.palette.primary.focus,
+                            fontFamily: "Outfit",
+                            fontWeight: "600",
+                            fontSize: "16px",
+                            textDecoration: "none",
+                            cursor: "pointer",
+                            transition: "all 0.3s ease",
+                            "&:hover": {
+                              color: theme.palette.text.primary,
+                              textDecoration: "underline",
+                            },
+                          }}
+                        >
+                          Create Account
+                        </Typography>
+                      </Box>
                     </Box>
                   </div>
                 )}
@@ -330,7 +316,7 @@ const AuthPage: React.FC = () => {
                   <div className="auth-form-side">
                     <Box
                       sx={{
-                        width: 380,
+                        width: "100%",
                         maxWidth: "98vw",
                         mx: "auto",
                         my: "auto",
@@ -340,138 +326,68 @@ const AuthPage: React.FC = () => {
                       }}
                     >
                       <Typography
-                        variant="h4"
-                        mb={4}
-                        fontWeight="bold"
-                        letterSpacing={1}
+                        variant="h3"
+                        mb={6}
+                        fontWeight="800"
+                        letterSpacing={2}
                         sx={{
                           color: theme.palette.text.primary,
-                          textShadow: `0px 0px 10px ${theme.palette.primary.focus}`,
+                          fontFamily: "Outfit",
+                          textAlign: "center",
+                          fontSize: { xs: "2rem", md: "2.5rem" },
                         }}
                       >
-                        Create Account
+                        Join Us
                       </Typography>
 
                       <SignUp
-                        fallbackRedirectUrl="/chat"
+                        fallbackRedirectUrl="/onboarding"
                         signInUrl="/sign-in"
                         appearance={{
-                          baseTheme: undefined,
                           elements: {
-                            rootBox: {
-                              background: "transparent",
-                              boxShadow: "none",
-                              textAlign: "center",
-                            },
-                            card: {
-                              background: "white",
-                              boxShadow: "none",
-                              elevated: 0,
-                              padding: 0,
-                              display: "flex",
-                              flexDirection: "column",
-                              alignItems: "center",
-                            },
                             headerTitle: { display: "none" },
                             headerSubtitle: { display: "none" },
-                            socialButtonsBlockButton: {
-                              backgroundColor: `${theme.palette.primary.focus} !important`,
-                              border: `2px solid ${theme.palette.primary.main} !important`,
-                              borderRadius: "50% !important",
-                              width: "50px !important",
-                              height: "50px !important",
-                              minWidth: "50px !important",
-                              padding: "0 !important",
-                              display: "flex !important",
-                              alignItems: "center !important",
-                              justifyContent: "center !important",
-                              margin: "0 5px",
-                              overflow: "hidden",
-                              textIndent: "-9999px",
-                            },
-                            socialButtonsProviderIcon: {
-                              width: "24px !important",
-                              height: "24px !important",
-                              margin: "0 auto",
-                            },
-                            formFieldOptional: { display: "none !important" },
-                            dividerLine: { display: "none" },
-                            dividerText: {
-                              fontWeight: "bold",
-                              color: theme.palette.text.secondary,
-                            },
-                            formFieldLabel: { display: "none" },
-                            formFieldInput: {
-                              width: "90%",
-                              maxWidth: "320px",
-                              backgroundColor: theme.palette.primary.main,
-                              padding: "12px 16px",
-                              borderRadius: "6px",
-                              fontSize: "14px",
-                              margin: "0px auto",
-                              display: "block",
-                            },
-                            formField__password: {
-                              position: "relative",
-                              width: "90%",
-                              maxWidth: "320px",
-                              margin: "0 auto",
-                            },
-                            formFieldInput__password: {
-                              width: "100%",
-                              paddingRight: "40px",
-                            },
-                            passwordToggle: {
-                              position: "absolute",
-                              right: "16px",
-                              top: "50%",
-                              transform: "translateY(-50%)",
-                              cursor: "pointer",
-                              background: "transparent",
-                            },
-                            formFieldRow: { gap: 0, position: "relative" },
-                            formField: { marginBottom: "0px" },
-                            formField__firstName: {
-                              width: "45%",
-                              display: "inline-block",
-                              marginLeft: "5%",
-                              '& span:contains("Optional")': {
-                                display: "none !important",
-                              },
-                            },
-                            formFieldLabel__firstName: { display: "none" },
-                            formField__lastName: {
-                              width: "45%",
-                              display: "inline-block",
-                              marginRight: "5%",
-                            },
-                            formButtonPrimary: {
-                              backgroundColor: theme.palette.primary.focus,
-                              color: theme.palette.primary.hero,
-                              borderRadius: "50px",
-                              height: 42,
-                              width: "50%",
-                              px: 4,
-                              marginBottom: "16px",
-                              fontWeight: 700,
-                              fontSize: "14px",
-                              textTransform: "uppercase",
-                              fontFamily: theme.typography.fontFamily,
-                              letterSpacing: "0.5px",
-                              transition: "all 0.3s ease",
-                              cursor: "pointer",
-                              margin: "-10px auto 20px auto",
-                              "&:hover": {
-                                backgroundColor: theme.palette.primary.hero,
-                                color: theme.palette.primary.focus,
-                              },
-                            },
-                            footerAction: { display: "none !important" },
-                            footerActionLink: { display: "none !important" },
+                            logoBox: { display: "none" },
+                            logoImage: { display: "none" },
+                            footer: { display: "none" },
+                            footerAction: { display: "none" },
+                            footerActionLink: { display: "none" },
                           },
-                          layout: { socialButtonsVariant: "iconButton" },
                         }}
                       />
+                      
+                      {/* Sign Up to Sign In Link */}
+                      <Box sx={{ mt: 4, textAlign: "center" }}>
+                        <Typography 
+                          variant="body2" 
+                          sx={{ 
+                            color: theme.palette.text.secondary,
+                            fontFamily: "Outfit",
+                            mb: 1
+                          }}
+                        >
+                          Already have an account?
+                        </Typography>
+                        <Typography
+                          component={Link}
+                          to="/sign-in"
+                          sx={{
+                            color: theme.palette.primary.focus,
+                            fontFamily: "Outfit",
+                            fontWeight: "600",
+                            fontSize: "16px",
+                            textDecoration: "none",
+                            cursor: "pointer",
+                            transition: "all 0.3s ease",
+                            "&:hover": {
+                              color: theme.palette.text.primary,
+                              textDecoration: "underline",
+                            },
+                          }}
+                        >
+                          Sign In
+                        </Typography>
+                      </Box>
                     </Box>
                   </div>
                 )}

@@ -24,6 +24,7 @@ import ConceptAi from "../pages/Products/ConceptAi";
 import Initiatives from "../pages/Initiatives";
 import EstimatingTruth from "../pages/Initiatives/EstimatingTruth";
 import WikipediaAdvocacy from "../pages/Initiatives/WikipediaAdvocacy";
+import OnboardingFlow from "../pages/Onboarding";
 
 interface HotjarConfig {
   id: string;
@@ -61,6 +62,14 @@ const useClerkRoutes = (): ReactElement => {
         <Route path="*" element={<NotFound />} />
         <Route path="/sign-in/*" element={<AuthPage />} />
         <Route path="/sign-up/*" element={<AuthPage />} />
+        <Route 
+          path="/onboarding" 
+          element={
+            <RequireAuthentication>
+              <OnboardingFlow />
+            </RequireAuthentication>
+          } 
+        />
         <Route
           path="/cookies"
           element={<Policies fileName="/cookies.html" />}

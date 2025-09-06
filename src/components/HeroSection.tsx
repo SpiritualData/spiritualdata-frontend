@@ -16,17 +16,27 @@ import StorageIcon from "@mui/icons-material/Storage";
 import FloatingLabel from "./heroSection/FloatingLabel";
 import heroImage from "../assets/Images/hero/heroImage.webp";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "@clerk/clerk-react";
 import { floatersData } from "../data/homeData";
 
 const HeroSection: React.FC = () => {
   const theme = useTheme();
   const [loaded, setLoaded] = useState(false);
   const navigate = useNavigate();
+  const { isSignedIn } = useAuth();
 
   useEffect(() => {
     const timer = setTimeout(() => setLoaded(true), 100);
     return () => clearTimeout(timer);
   }, []);
+
+  const handleJoinCommunity = () => {
+    if (isSignedIn) {
+      navigate("/chat");
+    } else {
+      navigate("/sign-in");
+    }
+  };
 
   return (
     <Box
@@ -96,6 +106,7 @@ const HeroSection: React.FC = () => {
               >
                 <Button
                   variant="contained"
+                  onClick={handleJoinCommunity}
                   sx={{
                     backgroundColor: theme.palette.primary.focus,
                     color: theme.palette.primary.hover,
@@ -111,7 +122,7 @@ const HeroSection: React.FC = () => {
                     },
                   }}
                 >
-                  Join our Community
+                  {isSignedIn ? "Go to Chat" : "Join our Community"}
                 </Button>
                 <Button
                   variant="outlined"
