@@ -18,6 +18,7 @@ const App: React.FC = () => {
     "/sign-in",
     "/sign-up",
     "/dual-auth",
+    "/onboarding",
   ];
 
   const shouldHideElements = (routes: string[], pathname: string): boolean => {
