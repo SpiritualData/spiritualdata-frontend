@@ -89,3 +89,4 @@ export const wikipediaDetailsData = [
     secSubHead2: "ADVOCACY",
   },
 ];
+

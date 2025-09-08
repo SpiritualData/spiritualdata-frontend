@@ -1,0 +1,91 @@
+import bannerImage from "../assets/Images/Initiatives/pacheader.webp";
+import scrollimage1 from "../assets/Images/Products/app1.webp";
+import scrollimage2 from "../assets/Images/Products/app2.webp";
+import scrollimage3 from "../assets/Images/Products/app3.webp";
+
+export const headerData = {
+  image: bannerImage,
+  heading: "Psychic Ability Certification",
+  desc: "A rigorous scientific program to test, verify, and certify genuine psychic abilities with transparency and credibility.",
+};
+
+export const tiltHeadData = {
+  bgText: "Psychic Initiative",
+  title: "Psychic Ability Certification Initiative",
+  desc: "The Psychic Ability Certification program aims to provide undeniable evidence of psychic abilities through transparent and ethical testing. By applying scientific standards—witness verification, control experiments, and independent PhD-level review—Spiritual Data offers the world's first structured certification system for psychics, helping regulate the industry and motivating further research.",
+};
+
+export const scrollCardsData = [
+  {
+    title: "Background",
+    desc: "Despite decades of claims and anecdotal evidence, systematic testing of psychic abilities has been limited due to lack of resources and motivation. Spiritual Data intends to change this by creating a transparent and scientific program for testing telekinesis, ESP, levitation, and more.",
+    btn: "Explore Background",
+    img: scrollimage1,
+    link: "/initiatives/psychic/background",
+  },
+  {
+    title: "Purpose",
+    desc: "The purpose of this initiative is to provide undeniable evidence of psychic abilities, create a regulated certification system, motivate scientific research, and guide individuals to authentic practitioners who demonstrate real, verifiable skills.",
+    btn: "See Why It Matters",
+    img: scrollimage2,
+    link: "/initiatives/psychic/purpose",
+  },
+  {
+    title: "Approach",
+    desc: "Our certification process includes ethics review, standardized and customizable tests, unbiased witnesses, video recording, and independent researcher validation. Participants are classified by reliability, from Demonstrably Psychic to Super Psychic.",
+    btn: "Learn About the Process",
+    img: scrollimage3,
+    link: "/initiatives/psychic/approach",
+  },
+];
+
+export const psychicAbilityDetailsData = [
+  {
+    id: 1,
+    title: "Scientific Testing",
+    desc: "All demonstrations are conducted under strict conditions, including ethics approval, unbiased witnesses, and video documentation.",
+    secHead: "DETAILS",
+    secSubHead1: "PSYCHIC",
+    secSubHead2: "CERTIFICATION",
+  },
+  {
+    id: 2,
+    title: "Standardized Abilities",
+    desc: "Testing procedures focus on abilities such as telekinesis, ESP, and levitation, with flexibility for unique skills.",
+    secHead: "DETAILS",
+    secSubHead1: "PSYCHIC",
+    secSubHead2: "CERTIFICATION",
+  },
+  {
+    id: 3,
+    title: "Certification Levels",
+    desc: "Participants are ranked as Demonstrably Psychic, Certified Psychic, Reliably Psychic, or Super Psychic, depending on results.",
+    secHead: "DETAILS",
+    secSubHead1: "PSYCHIC",
+    secSubHead2: "CERTIFICATION",
+  },
+  {
+    id: 4,
+    title: "Verification Standards",
+    desc: "Tests require multiple unbiased witnesses, at least one PhD researcher, control experiments, and statistical significance where possible.",
+    secHead: "DETAILS",
+    secSubHead1: "PSYCHIC",
+    secSubHead2: "CERTIFICATION",
+  },
+  {
+    id: 5,
+    title: "Transparency",
+    desc: "Results are published with full detail, including accuracy rates, conditions, and methodology, ensuring credibility and public trust.",
+    secHead: "DETAILS",
+    secSubHead1: "PSYCHIC",
+    secSubHead2: "CERTIFICATION",
+  },
+  {
+    id: 6,
+    title: "Impact",
+    desc: "This initiative could change global perception of psychic abilities, support further research, and create opportunities for genuine practitioners.",
+    secHead: "DETAILS",
+    secSubHead1: "PSYCHIC",
+    secSubHead2: "CERTIFICATION",
+  },
+];
