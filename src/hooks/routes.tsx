@@ -26,6 +26,7 @@ import EstimatingTruth from "../pages/Initiatives/EstimatingTruth";
 import WikipediaAdvocacy from "../pages/Initiatives/WikipediaAdvocacy";
 import PsychicAbilityCertification from "../pages/Initiatives/PsychicAbilityCertification";
 import Crisis from "../pages/Crisis";
+import Change from "../pages/Change";
 
 interface HotjarConfig {
   id: string;
@@ -51,6 +52,7 @@ const useClerkRoutes = (): ReactElement => {
         <Route path="contact" element={<Contact />} />
         <Route path="about" element={<About />} />
         <Route path="crisis" element={<Crisis />} />
+        <Route path="change" element={<Change />} />
         <Route path="careers" element={<Careers />} />
         <Route path="/initiatives" element={<Initiatives />} />
         <Route
