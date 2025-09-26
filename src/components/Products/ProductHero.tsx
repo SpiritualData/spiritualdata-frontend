@@ -1,18 +1,18 @@
-import { Box, Button, Slide, Typography, useTheme } from "@mui/material";
-import image from "../../assets/Images/Products/questSideImage.webp";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 import { fadeInBottom } from "../../styles/animations/FadeInBottom";
+import questBanner from "../../assets/Images/Products/questSideImage.webp";
 import cAiBanner from "../../assets/Images/Products/conceptAiBanner.webp";
 
 type QuestHeroProps = {
   onScrollClick: () => void;
-    product: string;
-    content: {
-        title: string;
-        description: string;
-        buttonText: string;
-        subHead: string;
-        subDesc: string;
-      };
+  product: string;
+  content: {
+    title: string;
+    description: string;
+    buttonText: string;
+    subHead: string;
+    subDesc: string;
+  };
 };
 
 const ProductHero = ({ onScrollClick, product, content }: QuestHeroProps) => {
@@ -37,7 +37,7 @@ const ProductHero = ({ onScrollClick, product, content }: QuestHeroProps) => {
       {/* Left-side Image */}
       <Box
         sx={{
-          width: { xs: "100%", md: "42%" },
+          width: { xs: "100%", md: "45%" },
           height: { xs: 300, sm: 400, md: "100%" },
           flexShrink: 0,
         }}
@@ -47,7 +47,7 @@ const ProductHero = ({ onScrollClick, product, content }: QuestHeroProps) => {
             width: "100%",
             height: "100%",
             backgroundImage: `url(${
-              product === "concept-ai" ? cAiBanner : image
+              product === "concept-ai" ? cAiBanner : questBanner
             })`,
             backgroundSize: "cover",
             backgroundPosition: "center",
@@ -63,8 +63,9 @@ const ProductHero = ({ onScrollClick, product, content }: QuestHeroProps) => {
           alignItems: "center",
           justifyContent: "center",
           minHeight: { xs: "auto", md: "100vh" },
-          pr: product === "concept-ai" ? { xs: 2, sm: 4, md: 20 } : {},
-          pl: product === "quest" ? { xs: 2, sm: 4, md: 12 } : {},
+          // pr: product === "concept-ai" ? { xs: 2, sm: 4, md: 10 } : {},
+          // pl: product === "quest" ? { xs: 2, sm: 4, md: 12 } : { xs: 5 },
+          px: product === "concept-ai" ? { xs: 2, sm: 4, md: 15 } : { xs: 10 },
           py: { xs: 6, md: 0 },
         }}
       >
@@ -108,9 +109,7 @@ const ProductHero = ({ onScrollClick, product, content }: QuestHeroProps) => {
               mt={2}
               sx={{ maxWidth: 600, textAlign: "justify" }}
             >
-              Your AI companion for meaningful transformation. Turn aspirations
-              into achievements through guided conversations, intelligent
-              accountability, and progress tracking.
+              {content.description}
             </Typography>
           </Box>
 
@@ -153,7 +152,11 @@ const ProductHero = ({ onScrollClick, product, content }: QuestHeroProps) => {
             <Typography
               variant="body1"
               color="text.secondary"
-              sx={{ letterSpacing: 0.5, maxWidth: 520, textAlign: "justify" }}
+              sx={{
+                letterSpacing: 0.5,
+                maxWidth: { sm: "100%", md: 520 },
+                textAlign: "justify",
+              }}
             >
               {content.subDesc}
             </Typography>

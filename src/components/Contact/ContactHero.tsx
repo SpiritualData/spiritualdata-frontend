@@ -205,21 +205,22 @@ const Contact = () => {
                     sx={{
                       backgroundColor: "#3D4050",
                       color: "#fff",
-                      px: 3,
-                      py: 1.2,
+                      px: { xs: 2, sm: 3 },
+                      py: { xs: 1, sm: 1.2 },
                       borderRadius: "12px",
                       fontWeight: 500,
-                      fontSize: "0.85rem",
+                      fontSize: { xs: "0.75rem", sm: "0.85rem" },
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      gap: 1,
+                      gap: { xs: 0.5, sm: 1 },
                       boxShadow: "0 6px 20px rgba(0, 0, 0, 0.15)",
                       fontFamily: theme.typography.fontFamily,
                       zIndex: 2,
                       transition: "all 0.3s ease, box-shadow 0.3s ease",
-                      height: 65,
-                      width: 300,
+                      height: { xs: 55, sm: 65 },
+                      width: { xs: "100%", sm: 300 },
+                      maxWidth: 320,
                       "&:hover": {
                         transform: "scale(1.03)",
                         boxShadow: "0 10px 24px rgba(0, 0, 0, 0.2)",
@@ -237,30 +238,31 @@ const Contact = () => {
                       sx={{
                         backgroundColor: theme.palette.primary.focus,
                         color: theme.palette.primary.hover,
-                        width: 45,
-                        height: 45,
+                        width: { xs: 38, sm: 45 },
+                        height: { xs: 38, sm: 45 },
                         borderRadius: 3,
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
                         fontWeight: "bold",
-                        fontSize: "1.8rem",
+                        fontSize: { xs: "1.4rem", sm: "1.8rem" },
                         px: 0.75,
+                        flexShrink: 1,
                       }}
                     >
                       A
                     </Box>
-                    <Box sx={{ flexGrow: 1, padding: 1 }}>
+                    <Box sx={{ flexGrow: 1, padding: { xs: 0.5, sm: 1 } }}>
                       <Typography
                         variant="body1"
                         sx={{
                           color: "white",
                           fontWeight: 500,
-                          fontSize: "1.4rem",
+                          fontSize: { xs: "1rem", sm: "1.4rem" },
                           wordWrap: "break-word",
                           lineHeight: 1.2,
                           textAlign: "left",
-                          letterSpacing: 2,
+                          letterSpacing: { xs: 1, sm: 2 },
                           width: "auto",
                         }}
                       >

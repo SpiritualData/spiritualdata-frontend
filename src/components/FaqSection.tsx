@@ -78,7 +78,7 @@ const FaqSection = () => {
         backgroundColor: theme.palette.primary.main,
       }}
     >
-      <Grid container sx={{ justifyContent: "space-between" }}>
+      <Grid container sx={{ justifyContent: "space-around" }}>
         {/* Left: Image and Contact */}
         <Grid item xs={12} md={6} component="div" {...({} as any)}>
           <Box
@@ -95,7 +95,11 @@ const FaqSection = () => {
               component="img"
               src={faqImage}
               alt="FAQ"
-              sx={{ width: "100%", height: "100%", objectFit: "cover" }}
+              sx={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
             />
             <Box
               component={"a"}
@@ -104,7 +108,7 @@ const FaqSection = () => {
                 position: "absolute",
                 bottom: 20,
                 left: 20,
-                backgroundColor: "#fff",
+                backgroundColor: theme.palette.common.white,
                 borderRadius: 2,
                 display: "flex",
                 alignItems: "center",
@@ -126,7 +130,11 @@ const FaqSection = () => {
               </Avatar>
               <Typography
                 variant="h6"
-                sx={{ fontWeight: 500, color: theme.palette.text.primary }}
+                sx={{
+                  fontSize: { xs: "0.8rem", sm: "1rem", md: "1.2rem" },
+                  fontWeight: 500,
+                  color: theme.palette.text.primary,
+                }}
               >
                 support@spiritualdata.org
               </Typography>
@@ -140,12 +148,12 @@ const FaqSection = () => {
           xs={12}
           md={6}
           sx={{
-            pl: { xs: 2, md: 8 },
+            ml: { xs: 2, md: 8 },
             py: { xs: 4, md: 0 },
             display: "flex",
             flexDirection: "column",
             justifyContent: "end",
-            // backgroundColor: "red"
+            width: { xs: "100%", md: "50%" },
           }}
           height={"100%"}
           width="50%"
@@ -159,6 +167,7 @@ const FaqSection = () => {
                 color: theme.palette.text.secondary,
                 fontWeight: 600,
                 letterSpacing: "3px",
+                textAlign: { xs: "center", md: "left" },
               }}
             >
               FAQS
@@ -170,6 +179,7 @@ const FaqSection = () => {
                 fontSize: "3rem",
                 mb: 4,
                 color: theme.palette.text.primary,
+                textAlign: { xs: "center", md: "left" },
               }}
             >
               Everything You Want to <br /> Know About AI
@@ -231,7 +241,7 @@ const FaqSection = () => {
                     >
                       <AccordionDetails
                         sx={{
-                          backgroundColor: "#fff",
+                          backgroundColor: theme.palette.common.white,
                           px: 4,
                           py: 3,
                         }}

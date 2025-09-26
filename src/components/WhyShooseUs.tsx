@@ -36,6 +36,7 @@ const WhyChooseUs = () => {
       id="why-choose-us-section"
       sx={{
         display: "flex",
+        flexDirection: { xs: "column", md: "row" }, // ✅ stack on mobile, side by side on md+
         position: "relative",
         width: "100%",
         minHeight: "100vh",
@@ -46,11 +47,12 @@ const WhyChooseUs = () => {
       {inView && (
         <Box
           sx={{
-            position: "fixed",
+            position: { xs: "relative", md: "fixed" }, // ✅ fixed only on md+, relative on mobile
+            display: { xs: "none", md: "block" },
             top: 0,
             left: 0,
-            width: "50vw",
-            height: "100vh",
+            width: { xs: "100%", md: "50vw" },
+            height: { xs: "40vh", md: "100vh" },
             backgroundImage: `url(${whyChooseUsImage})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
@@ -61,11 +63,12 @@ const WhyChooseUs = () => {
         />
       )}
 
-      {/* Left spacer to balance the layout */}
+      {/* Left spacer to balance the layout (only needed on md+) */}
       <Box
         sx={{
-          width: "50vw",
-          minHeight: "100vh",
+          display: { xs: "none", md: "block" },
+          width: { md: "50vw" },
+          minHeight: { md: "100vh" },
           flexShrink: 0,
         }}
       />
@@ -73,10 +76,9 @@ const WhyChooseUs = () => {
       {/* Right scrollable content */}
       <Box
         sx={{
-          width: "50%",
+          width: { xs: "100%", md: "50%" },
           backgroundColor: theme.palette.primary.main,
-          pl: { xs: 3, md: 20 },
-          pr: { xs: 3, md: 20 },
+          px: { xs: 3, md: 10, lg: 20 },
           py: { xs: 6, md: 12 },
           zIndex: 1,
         }}
@@ -85,7 +87,7 @@ const WhyChooseUs = () => {
           variant="overline"
           sx={{
             fontWeight: 600,
-            fontSize: "14px",
+            fontSize: { xs: "12px", md: "14px" },
             letterSpacing: "4px",
             color: theme.palette.primary.hover,
             textTransform: "uppercase",
@@ -101,7 +103,7 @@ const WhyChooseUs = () => {
             mb: 8,
             color: theme.palette.primary.hover,
             lineHeight: 1.2,
-            fontSize: "2.5rem",
+            fontSize: { xs: "1.8rem", md: "2.5rem" },
           }}
         >
           Powered by Evidence
@@ -144,7 +146,7 @@ const WhyChooseUs = () => {
                 <CheckCircleIcon
                   sx={{
                     color: theme.palette.primary.main,
-                    fontSize: 30,
+                    fontSize: { xs: 24, md: 30 },
                   }}
                 />
               </Box>
@@ -155,7 +157,7 @@ const WhyChooseUs = () => {
                 sx={{
                   fontWeight: 500,
                   color: "#1F2540",
-                  fontSize: 28,
+                  fontSize: { xs: 20, md: 28 },
                 }}
               >
                 {item.title}
@@ -168,6 +170,7 @@ const WhyChooseUs = () => {
               sx={{
                 color: theme.palette.primary.dark,
                 lineHeight: 1.6,
+                fontSize: { xs: 14, md: 16 },
               }}
             >
               {item.description}

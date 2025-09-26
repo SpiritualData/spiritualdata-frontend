@@ -216,26 +216,32 @@ const HeroSection: React.FC = () => {
             <FloatingLabel
               text="Crisis We Are Dealing With"
               icon={<InsightsIcon fontSize="inherit" />}
-              sx={{ top: "115px", left: "6%" }}
+              sx={{
+                top: { lg: "20%", md: "10%" },
+                left: { lg: "6%", md: "-3%" },
+              }}
               link="/crisis"
             />
             <FloatingLabel
               text="Truth Estimation AI"
               icon={<PublicIcon fontSize="inherit" />}
-              sx={{ bottom: "200px", left: "12.5%" }}
+              sx={{ bottom: "33%", left: { lg: "12.5%", md: "-5%" } }}
               link="/change"
             />
             <FloatingLabel
               text="Change We Are Bringing"
               icon={<PsychologyIcon fontSize="inherit" />}
-              sx={{ top: "115px", right: "6%" }}
+              sx={{
+                top: { lg: "20%", md: "10%" },
+                right: { lg: "6%", md: "-3%" },
+              }}
               link="/change"
             />
             <FloatingLabel
               text="Spiritual Crisis Support"
               icon={<StorageIcon fontSize="inherit" />}
-              sx={{ bottom: "200px", right: "12.5%" }}
-              link="/contact"
+              sx={{ bottom: "33%", right: { lg: "12.5%", md: "-5%" } }}
+              link="/crisis"
             />
             <Box
               component="img"

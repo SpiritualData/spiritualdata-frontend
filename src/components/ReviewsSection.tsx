@@ -132,7 +132,7 @@ const ClientReviewsSection: React.FC = () => {
       </Grid>
 
       {/* Card Grid */}
-      <Grid container spacing={2}>
+      <Grid container spacing={2} justifyContent="center">
         {reviews.map((review, index) => {
           const { ref, inView } = useInView({ threshold: 0.2 });
 

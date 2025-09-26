@@ -117,8 +117,8 @@ const Donate = () => {
           {recurring.inView && (
             <Grid
               container
-              spacing={1}
-              justifyContent="space-between"
+              spacing={3}
+              justifyContent="center"
               sx={{ my: 15 }}
               component="div"
               {...({} as any)}

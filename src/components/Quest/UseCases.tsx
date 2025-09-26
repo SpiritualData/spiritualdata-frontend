@@ -53,7 +53,7 @@ const UseCases: React.FC<UseCasesProps> = ({ data }) => {
       {/* Text Section */}
       <Box
         sx={{
-          width: { xs: "90%", md: "38%" },
+          width: { xs: "100%", md: "38%" },
           position: "absolute",
           zIndex: 2,
           mx: { xs: "auto", md: "unset" },
@@ -95,15 +95,15 @@ const UseCases: React.FC<UseCasesProps> = ({ data }) => {
       <Box
         ref={scrollRef}
         sx={{
-          height: { xs: "600px", md: "250%" },
+          height: { xs: "300px", md: "250%" },
           width: { xs: "80%", sm: "60%", md: "30%" },
           overflowY: "hidden",
           position: "relative",
           transform: { xs: "none", md: "rotateX(51deg) rotateZ(-43deg)" },
-          top: { xs: "unset", md: -450 },
+          top: { xs: "unset", md: -500 },
           left: { xs: "auto", md: 350 },
           mx: { xs: "auto", md: "unset" },
-          mt: { xs: 6, md: 0 },
+          mt: { xs: 40, md: 0 },
         }}
       >
         <Box
@@ -113,6 +113,7 @@ const UseCases: React.FC<UseCasesProps> = ({ data }) => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            // ml: {xs: 2, md: "-10px"}
           }}
         >
           {fullData.map((item, index) => (

@@ -215,7 +215,18 @@ const ContactRequest = () => {
         </Grid>
 
         {/* Image Section */}
-        <Grid item xs={12} md={6} component="div" {...({} as any)}>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          component="div"
+          {...({} as any)}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <Box
             ref={imageRef}
             sx={{

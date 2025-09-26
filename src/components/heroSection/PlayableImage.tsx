@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, IconButton } from "@mui/material";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
-import PlayCircleFilledSharpIcon from "@mui/icons-material/PlayCircleFilledSharp";
 import { useTheme } from "@mui/material/styles";
 
 interface PlayableImageProps {
@@ -28,9 +27,9 @@ const PlayableImage: React.FC<PlayableImageProps> = ({
         overflow: "hidden",
         borderRadius: "16px",
         boxShadow: `0 0 16px ${theme.palette.primary.focus}33`,
-        display: "inline-block",
+        display: "flex",
         width: "100%",
-        height: "auto",
+        height: "100%",
         "&:hover img": {
           transform: "scale(1.06) rotateZ(1.2deg)",
         },
@@ -42,7 +41,8 @@ const PlayableImage: React.FC<PlayableImageProps> = ({
         alt={alt}
         sx={{
           width: "100%",
-          height: "auto",
+          height: "100%",
+          objectFit: "cover",
           display: "block",
           transition: "transform 0.3s ease-in-out",
         }}
@@ -73,8 +73,12 @@ const PlayableImage: React.FC<PlayableImageProps> = ({
           }}
           aria-label="Play Video"
         >
-          {/* <PlayCircleFilledSharpIcon sx={{ fontSize: 60, color: theme.palette.primary.focus }} /> */}
-          <PlayCircleOutlineIcon sx={{ fontSize: 60, color: theme.palette.primary.focus }} />
+          <PlayCircleOutlineIcon
+            sx={{
+              fontSize: { xs: 48, md: 60 },
+              color: theme.palette.primary.focus,
+            }}
+          />
         </IconButton>
       </Box>
     </Box>

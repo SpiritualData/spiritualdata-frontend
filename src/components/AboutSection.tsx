@@ -29,49 +29,45 @@ const AboutSection: React.FC = () => {
         component="section"
         sx={{
           color: theme.palette.text.primary,
-          pt: { xs: 8, md: 10 },
-          pb: { xs: 0, md: 0 },
-          px: { xs: 3, md: 24 },
+          py: { xs: 8, md: 10 },
+          px: { xs: 3, md: 12, lg: 24 },
           backgroundColor: "white",
         }}
       >
         {/* Top Row: ABOUT US label */}
-        <Box>
-          <Typography
-            variant="overline"
-            sx={{
-              fontWeight: 600,
-              letterSpacing: "3px",
-              color: "#1F2540",
-              fontSize: 15,
-              fontFamily: theme.typography.fontFamily,
-            }}
-          >
-            ABOUT US
-          </Typography>
-        </Box>
+        <Typography
+          variant="overline"
+          sx={{
+            fontWeight: 600,
+            letterSpacing: "3px",
+            color: "#1F2540",
+            fontSize: 15,
+            fontFamily: theme.typography.fontFamily,
+          }}
+        >
+          ABOUT US
+        </Typography>
 
         {/* Middle Row: Heading + CTA */}
         <Box
           sx={{
             display: "flex",
-            flexDirection: "row",
-            alignItems: "end",
+            flexDirection: { xs: "column", md: "row" },
+            alignItems: { xs: "center", md: "flex-end" },
             justifyContent: "space-between",
-            gap: 2,
-            flexWrap: { xs: "wrap", md: "nowrap" },
+            gap: 3,
+            textAlign: { xs: "center", md: "left" },
+            mb: { xs: 6, md: 6 },
           }}
         >
           <Typography
             variant="h3"
             sx={{
               fontWeight: 500,
-              fontSize: { xs: "2rem", md: "3.3rem" },
-              lineHeight: 1,
+              fontSize: { xs: "1.8rem", md: "3.3rem" },
+              lineHeight: 1.3,
               color: "#1F2540",
               flex: 1,
-              minWidth: 0,
-              fontFamily: "revert",
             }}
           >
             The Most Important Truths Were Hidden. At Spiritual Data, We Let AI
@@ -80,9 +76,7 @@ const AboutSection: React.FC = () => {
 
           <Button
             variant="contained"
-            onClick={() => {
-              navigate("/about");
-            }}
+            onClick={() => navigate("/about")}
             sx={{
               backgroundColor: theme.palette.primary.focus,
               color: "#1F2540",
@@ -92,13 +86,12 @@ const AboutSection: React.FC = () => {
               borderRadius: 8,
               textTransform: "none",
               fontSize: "0.9rem",
-              whiteSpace: "nowrap",
               letterSpacing: "0.08rem",
-              ml: { xs: 0, md: 3 },
+              width: { xs: "100%", md: "auto" },
               mt: { xs: 3, md: 0 },
               "&:hover": {
                 backgroundColor: theme.palette.primary.hover,
-                color: "#fff",
+                color: theme.palette.common.white,
               },
             }}
           >
@@ -106,44 +99,29 @@ const AboutSection: React.FC = () => {
           </Button>
         </Box>
 
-        {/* Bottom Row: Left Info Blocks + Right Image */}
-        <Grid
-          container
-          spacing={6}
-          alignItems="center"
-          justifyContent="space-between"
-        >
+        {/* Bottom Row */}
+        <Grid container spacing={2} alignItems="stretch" flexDirection="row">
           {/* Left Column */}
-          <Grid
-            item
-            xs={12}
-            md={10}
-            sx={{ maxWidth: "57%", height: "200%" }}
-            component="div"
-            {...({} as any)}
-          >
+          <Grid item xs={12} md={7} flex={2} component="div" {...({} as any)}>
             <Box
               sx={{
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "space-between",
                 height: "100%",
-                minHeight: 400,
+                justifyContent: "space-between",
               }}
             >
-              {/* Top: Typography */}
+              {/* Top Text */}
               {inView && (
-                <Fade in={true} timeout={2000}>
+                <Fade in timeout={2000}>
                   <Typography
                     variant="body1"
                     sx={{
-                      color: "#444",
+                      color: theme.palette.text.secondary,
                       fontSize: "1.05rem",
                       lineHeight: 1.6,
-                      letterSpacing: "0.05rem",
-                      mb: 23,
-                      wordWrap: "normal",
-                      textWrap: "pretty",
+                      mb: { xs: 4, md: 8 },
+                      textAlign: { xs: "center", md: "left" },
                     }}
                   >
                     The most important truths have been hidden by taboo and
@@ -165,101 +143,103 @@ const AboutSection: React.FC = () => {
                 </Fade>
               )}
 
-              {/* Bottom: Nested 2 Columns */}
-              <Grid
-                container
-                spacing={3}
-                sx={{ justifyContent: "space-between" }}
-              >
+              {/* Cards */}
+              <Grid container spacing={3} flexDirection="row">
+                {/* Left Card */}
                 <Grid
                   item
                   xs={12}
                   sm={6}
-                  sx={{ width: "48%", height: "100%" }}
+                  flex={1}
                   component="div"
                   {...({} as any)}
                 >
                   {inView && (
-                    <Fade in={true} timeout={2000}>
+                    <Fade in timeout={2000}>
                       <Slide direction="up" in={loaded} timeout={2000}>
                         <Box
                           sx={{
-                            backgroundColor: theme.palette.darkcard.main,
-                            color: theme.palette.darkcard.contrastText,
-                            borderRadius: "16px",
-                            display: "flex",
-                            flexDirection: "column",
-                            justifyContent: "center",
-                            alignItems: "flex-start",
-                            boxShadow: `0 6px 24px ${theme.palette.cardshadow.main}`,
                             height: "100%",
                             width: "100%",
+                            backgroundColor: theme.palette.darkcard.main,
+                            borderRadius: "16px",
+                            overflow: "hidden",
+                            boxShadow: `0 6px 24px ${theme.palette.cardshadow.main}`,
                           }}
                         >
                           <PlayableImage
                             imageSrc={playImage}
                             alt="Play Video"
-                            videoLink="https://drive.google.com/drive/u/2/folders/1vdME4X8jWs-uVepZ8tsWns36Wq6MnSwL"
+                            videoLink="https://drive.google.com/..."
                           />
                         </Box>
                       </Slide>
                     </Fade>
                   )}
                 </Grid>
+
+                {/* Right Card */}
                 <Grid
                   item
                   xs={12}
                   sm={6}
-                  sx={{ width: "48%", height: "100%" }}
+                  flex={1}
+                  sx={{
+                    backgroundColor: theme.palette.darkcard.main,
+                    color: theme.palette.darkcard.contrastText,
+                    borderRadius: "16px",
+                    boxShadow: `0 6px 24px ${theme.palette.cardshadow.main}`,
+                  }}
                   component="div"
                   {...({} as any)}
                 >
                   {inView && (
-                    <Fade in={true} timeout={2000}>
-                      <Slide direction="up" in={loaded} timeout={2000}>
+                    <Fade in timeout={3000}>
+                      <Slide direction="up" in={loaded} timeout={3000}>
                         <Box
                           sx={{
-                            backgroundColor: theme.palette.darkcard.main,
-                            color: theme.palette.darkcard.contrastText,
-                            borderRadius: "16px",
-                            px: 5,
-                            py: 3,
+                            px: { xs: 2.5, sm: 3, md: 5 },
+                            py: { xs: 2, sm: 5 },
                             display: "flex",
                             flexDirection: "column",
-                            justifyContent: "center",
-                            alignItems: "flex-start",
-                            boxShadow: `0 6px 24px ${theme.palette.cardshadow.main}`,
-                            height: "auto",
+                            justifyContent: "space-between",
+                            height: "73%",
+                            width: "80%",
                           }}
                         >
                           <Typography
                             variant="h5"
                             sx={{
                               fontWeight: 500,
-                              mb: 9,
                               lineHeight: 1.3,
-                              fontSize: { xs: "1.6rem", md: "1.9rem" },
+                              fontSize: {
+                                xs: "1rem",
+                                sm: "1.2rem",
+                                lg: "1.8rem",
+                              },
                             }}
                           >
                             Join the Movement
                             <br />
                             With Spiritual Data
                           </Typography>
+
                           <Button
                             onClick={() => navigate("/sign-up")}
                             variant="contained"
                             sx={{
                               backgroundColor: theme.palette.primary.focus,
                               color: "#1F2540",
-                              px: 3.5,
-                              py: 1.2,
+                              px: { xs: 2.5, sm: 3 },
+                              py: { xs: 0.8, sm: 1.5 },
                               fontWeight: 600,
                               borderRadius: "30px",
                               textTransform: "uppercase",
-                              fontSize: "0.75rem",
+                              fontSize: { xs: "0.75rem", md: "0.85rem" },
                               letterSpacing: "0.1rem",
-                              mb: 2.5,
-                              transition: "scale 0.3s ease-in-out",
+                              mt: { xs: 2, sm: 0 },
+                              transition: "all 0.3s ease",
+                              maxWidth: "50%",
                               "&:hover": {
                                 backgroundColor: theme.palette.primary.light,
                                 color: theme.palette.primary.hero,
@@ -278,29 +258,31 @@ const AboutSection: React.FC = () => {
             </Box>
           </Grid>
 
-          {/* Right Column: Main Image */}
+          {/* Right Column Image */}
           <Grid
             item
             xs={12}
-            md={6}
-            maxHeight={"30%"}
+            md={5}
+            sx={{
+              display: { xs: "none", md: "flex" },
+              justifyContent: "center",
+              alignItems: "center",
+            }}
             component="div"
             {...({} as any)}
           >
             {inView && (
-              <Fade in={true} timeout={2000}>
+              <Fade in timeout={2000}>
                 <Box
                   component="img"
                   src={mainImage}
                   alt="Main Visual"
                   sx={{
                     width: "100%",
-                    objectFit: "fill",
-                    maxWidth: "450px",
+                    maxWidth: 450,
+                    height: "auto",
                     borderRadius: "16px",
                     boxShadow: `0 0 24px ${theme.palette.primary.hero}44`,
-                    my: 10,
-                    display: "block",
                   }}
                 />
               </Fade>
@@ -308,6 +290,7 @@ const AboutSection: React.FC = () => {
           </Grid>
         </Grid>
       </Box>
+
       <ImageSlider />
     </>
   );

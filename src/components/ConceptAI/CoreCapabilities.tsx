@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Grid, Box, Typography, useTheme, Fade, Slide } from "@mui/material";
-import { useInView } from "../../hooks/useInView"; 
+import { useInView } from "../../hooks/useInView";
 
 type CapabilitiesData = {
   title: string;
@@ -28,7 +28,7 @@ const CoreCapabilities = ({ data }: { data: CapabilitiesData[] }) => {
       spacing={0}
       sx={{
         height: { xs: "auto", md: "90vh" },
-        width: "100%",
+        width: "100vw",
         px: { xs: 2, sm: 6, md: 12, lg: 24 },
         py: 10,
         pt: { xs: 4, md: 7 },
@@ -194,7 +194,7 @@ const CoreCapabilities = ({ data }: { data: CapabilitiesData[] }) => {
           ref={middleRef}
           sx={{
             height: { xs: "auto", md: "100%" },
-            width: { xs: "100%", md: "70%" },
+            width: { xs: "88%", sm: "93%", md: "70%" },
             transition: "all 0.3s ease",
             zIndex: 0,
             boxShadow: `0px 0px 50px rgba(0, 0, 0, 0.2)`,
@@ -253,6 +253,7 @@ const CoreCapabilities = ({ data }: { data: CapabilitiesData[] }) => {
                         pl: { xs: 0, md: 8 },
                         lineHeight: 1.2,
                         letterSpacing: 1.5,
+                        textAlign: { xs: "center", md: "left" },
                         fontSize: {
                           xs: "1.5rem",
                           sm: "2rem",
@@ -292,7 +293,10 @@ const CoreCapabilities = ({ data }: { data: CapabilitiesData[] }) => {
                   <img
                     src={data[selectedIndex]?.image}
                     alt={data[selectedIndex]?.title}
-                    style={{ maxWidth: "80%", height: "auto" }}
+                    style={{
+                      maxWidth: "80%",
+                      height: "auto",
+                    }}
                   />
                 </Box>
               </Box>

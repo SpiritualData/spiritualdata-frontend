@@ -49,7 +49,15 @@ const CallToAction: React.FC<{
           textAlign: "center",
         }}
       >
-        <Typography variant="h3" fontWeight={700} mb={3} letterSpacing={2}>
+        <Typography
+          variant="h3"
+          fontWeight={700}
+          mb={3}
+          letterSpacing={2}
+          sx={{
+            fontSize: { xs: "1.7rem", sm: "2rem", md: "3rem" },
+          }}
+        >
           {data.title}{" "}
           <b
             style={{
@@ -67,6 +75,9 @@ const CallToAction: React.FC<{
           color="text.secondary"
           mb={4}
           letterSpacing={2}
+          sx={{
+            fontSize: { xs: "1rem", md: "1.25rem" },
+          }}
         >
           {data.subtitle}
           <br />

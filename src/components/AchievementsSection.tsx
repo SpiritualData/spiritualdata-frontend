@@ -171,9 +171,11 @@ const AchievementsSection = () => {
       {/* BOTTOM ROW - CARDS */}
       <Grid
         container
-        spacing={2}
+        spacing={4}
         alignItems="center"
-        justifyContent="space-between"
+        justifyContent="center"
+        component="div"
+        {...({} as any)}
       >
         {data.map((item, index) => {
           const count = useCountUp(item.value, inView);

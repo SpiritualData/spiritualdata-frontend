@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Box,
   Typography,
@@ -10,7 +11,7 @@ import {
   Slide,
 } from "@mui/material";
 import { Facebook, Instagram, LinkedIn, Twitter } from "@mui/icons-material";
-import { useInView } from "@/hooks/useInView";
+import { useInView } from "../hooks/useInView";
 import { useNavigate } from "react-router-dom";
 import contactImage1 from "../assets/images/Contact/contactbg.gif";
 import contactImage2 from "../assets/images/Contact/contact1-al.webp";
@@ -216,6 +217,13 @@ const ContactSection = ({
           position: "relative",
           zIndex: 0,
           display: { sm: "none", md: "block" },
+          // Custom overrides for specific widths
+          "@media (max-width: 560px)": {
+            display: "none", // hide around 553px
+          },
+          "@media (min-width: 1180px) and (max-width: 1120px)": {
+            display: "none", // hide around 1105px
+          },
         }}
       >
         <Grid
@@ -230,7 +238,15 @@ const ContactSection = ({
           }}
         >
           {/* Left Image */}
-          <Grid item xs={12} md={4} lg={3} component="div" {...({} as any)}>
+          <Grid
+            item
+            xs={12}
+            md={4}
+            lg={3}
+            width={"30%"}
+            component="div"
+            {...({} as any)}
+          >
             <Box
               component="img"
               src={contactImage2}
@@ -246,7 +262,15 @@ const ContactSection = ({
           </Grid>
 
           {/* Right Image */}
-          <Grid item xs={12} md={4} lg={3} component="div" {...({} as any)}>
+          <Grid
+            item
+            xs={12}
+            md={4}
+            lg={3}
+            width={"30%"}
+            component="div"
+            {...({} as any)}
+          >
             <Box
               component="img"
               src={contactImage3}

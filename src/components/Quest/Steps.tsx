@@ -36,7 +36,7 @@ const Steps = ({
     <Box
       ref={ref}
       sx={{
-        py: { xs: 8, md: 16 },
+        py: { xs: 6, sm: 10, md: 16 },
         px: { xs: 2, sm: 4 },
         background: `linear-gradient(to bottom, ${theme.palette.primary.main} 0%, white 100%)`,
         position: "relative",
@@ -50,7 +50,7 @@ const Steps = ({
           top: 0,
           left: 0,
           right: 0,
-          height: 120,
+          height: { xs: 80, sm: 100, md: 140 },
           background: `radial-gradient(ellipse at top, ${theme.palette.primary.main} 20%, transparent 70%)`,
           zIndex: 0,
         }}
@@ -65,11 +65,11 @@ const Steps = ({
         }}
       >
         <Typography
-          variant="h3"
+          variant="h4"
           fontWeight={700}
           color="text.primary"
           align="center"
-          mb={1}
+          mb={{ xs: 1, sm: 2 }}
         >
           Your Quest in 4 Steps
         </Typography>
@@ -78,7 +78,8 @@ const Steps = ({
           variant="body1"
           color="text.secondary"
           align="center"
-          mb={6}
+          mb={{ xs: 4, sm: 6 }}
+          px={{ xs: 2, sm: 6, md: 12 }}
         >
           Everything you need for your Quest.
         </Typography>
@@ -86,32 +87,34 @@ const Steps = ({
         <Fade in={inView} timeout={800}>
           <Box
             sx={{
-              display: "flex",
-              justifyContent: "center",
-              flexWrap: "wrap",
+              display: "grid",
+              gridTemplateColumns: {
+                xs: "1fr",
+                sm: "1fr 1fr",
+                md: "repeat(4, 1fr)",
+              },
               gap: { xs: 4, sm: 6, md: 8 },
-              px: { xs: 0, sm: 2 },
+              justifyItems: "center",
             }}
           >
             {data.map((item, index) => (
               <Box
                 key={index}
                 sx={{
-                  flex: "1 1 220px",
-                  maxWidth: 260,
+                  maxWidth: { xs: "100%", sm: 280 },
                   textAlign: "center",
-                  mx: "auto",
                   mt: {
                     xs: 4,
-                    sm: index === 1 || index === 2 ? 20 : 6,
-                    md: index === 1 || index === 2 ? 20 : 6,
+                    sm: index === 1 || index === 2 ? 0 : 0,
+                    md: index === 1 || index === 2 ? 15 : 0,
                   },
                 }}
               >
+                {/* Icon */}
                 <Box
                   sx={{
-                    width: 72,
-                    height: 72,
+                    width: { xs: 64, sm: 72, md: 80 },
+                    height: { xs: 64, sm: 72, md: 80 },
                     mx: "auto",
                     mb: 2,
                     borderRadius: "50%",
@@ -120,6 +123,7 @@ const Steps = ({
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    fontSize: { xs: 28, sm: 32 },
                     color: theme.palette.primary.focus,
                     "&::before": {
                       content: '""',
@@ -140,6 +144,7 @@ const Steps = ({
                   {item.icon}
                 </Box>
 
+                {/* Step */}
                 <Typography
                   variant="subtitle1"
                   fontWeight={600}
@@ -149,18 +154,16 @@ const Steps = ({
                   {item.step}
                 </Typography>
 
+                {/* Description */}
                 <Typography
                   variant="body2"
                   color="text.secondary"
                   sx={{
                     mx: "auto",
-                    textAlign: "justify",
-                    display: "-webkit-box",
-                    WebkitLineClamp: 3,
-                    WebkitBoxOrient: "vertical",
-                    overflow: "hidden",
-                    lineHeight: 1.5,
-                    letterSpacing: 0.5,
+                    textAlign: { xs: "center", sm: "justify" },
+                    lineHeight: 1.6,
+                    letterSpacing: 0.3,
+                    px: { xs: 2, sm: 0 },
                   }}
                 >
                   <b>{item.title}</b> {item.desc}
