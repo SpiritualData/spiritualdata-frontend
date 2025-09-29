@@ -4,8 +4,8 @@ import banner from "../assets/images/About/banner.webp";
 import AboutHero from "../components/About/AboutHero";
 import WhyWeStarted from "../components/About/WhyWeStarted";
 import GuidingPrinciples from "../components/About/GuidingPrinciples";
+import gpbg from "../assets/Images/About/gpbg.webp";
 import SocialImpact from "../components/About/SocialImpact";
-import WhereWeAreHeading from "../components/About/WhereWeAreHeading";
 import BoardMembers from "../components/About/BoardMembers";
 
 const About: React.FC = () => {
@@ -14,10 +14,9 @@ const About: React.FC = () => {
       <PageHeader image={banner} page={"ABOUT"} sx={{ mb: 4 }} />
       <AboutHero />
       <WhyWeStarted />
-      <GuidingPrinciples />
-      <SocialImpact />
+      <GuidingPrinciples backgroundImage={gpbg} />
       <BoardMembers />
-      <WhereWeAreHeading />
+      <SocialImpact />
     </>
   );
 };

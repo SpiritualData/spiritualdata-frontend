@@ -6,7 +6,6 @@ import {
   Typography,
   Stack,
   Divider,
-  useMediaQuery,
   Fade,
   Slide,
 } from "@mui/material";
@@ -14,7 +13,13 @@ import { useTheme } from "@mui/material/styles";
 import CheckRounded from "@mui/icons-material/CheckRounded";
 import { useInView } from "../../hooks/useInView";
 
-const GuidingPrinciples: React.FC = () => {
+interface GuidingPrinciplesProps {
+  backgroundImage: string;
+}
+
+const GuidingPrinciples: React.FC<GuidingPrinciplesProps> = ({
+  backgroundImage,
+}) => {
   const theme = useTheme();
   const { ref, inView } = useInView({ threshold: 0.2 });
 
@@ -44,7 +49,7 @@ const GuidingPrinciples: React.FC = () => {
   const rightCards = [
     {
       title: "Truth Estimation Engine",
-      body: "AI that evaluates research and calculates what’s most likely true - free from human bias.",
+      body: "AI that evaluates research and calculates what's most likely true - free from human bias.",
     },
     {
       title: "Education & Advocacy",
@@ -62,80 +67,69 @@ const GuidingPrinciples: React.FC = () => {
       ref={ref}
       sx={{
         position: "relative",
-        overflow: "hidden",
-        py: { xs: 8, md: 12 },
-        background: {
-          xs: theme.palette.primary.main,
-          md: `linear-gradient(90deg, ${theme.palette.primary.focus} 0 50%, ${theme.palette.primary.main} 50% 100%)`,
-        },
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
-      {/* Vertical divider */}
-      <Box
-        sx={{
-          position: "absolute",
-          inset: 0,
-          pointerEvents: "none",
-          "&:after": {
-            content: '""',
-            position: "absolute",
-            left: "50%",
-            top: 0,
-            bottom: 0,
-            width: "1px",
-            backgroundColor: "rgba(0,0,0,0.06)",
-            transform: "translateX(-0.5px)",
-          },
-        }}
-      />
-
-      <Container maxWidth="lg">
+      <Container maxWidth={false} disableGutters>
         <Grid
           container
-          spacing={0}
-          justifyContent="center"
+          direction={{ xs: "column", md: "row" }}
           sx={{ position: "relative", zIndex: 2 }}
         >
-          {/* LEFT: What Guides Us */}
+          {/* LEFT */}
           <Grid
             item
             xs={12}
-            md={5}
+            md={6}
             sx={{
-              flexBasis: { md: "40%" },
-              maxWidth: { md: "40%" },
-              mr: { md: "15%" },
+              width: { xs: "100%", md: "50vw" },
+              position: "relative",
+              py: { xs: 6, sm: 8, md: 10 },
             }}
             component="div"
             {...({} as any)}
           >
-            <Slide direction="up" in={inView} timeout={600}>
-              <Box
-                sx={{
-                  backgroundColor: {
-                    xs: theme.palette.primary.focus,
-                    md: "transparent",
-                  },
-                  color: theme.palette.text.primary,
-                  minHeight: "100%",
-                }}
-              >
-                <Stack spacing={10} sx={{ maxWidth: 560, mx: "auto" }}>
+            {/* overlay */}
+            <Box
+              sx={{
+                position: "absolute",
+                inset: 0,
+                backgroundColor: theme.palette.primary.focus,
+                opacity: 0.925,
+                zIndex: 1,
+              }}
+            />
+            <Box
+              sx={{
+                position: "relative",
+                zIndex: 2,
+                px: { xs: 2, sm: 3, md: 6 },
+                py: { xs: 4, sm: 6, md: 8 },
+              }}
+            >
+              <Slide direction="up" in={inView} timeout={600}>
+                <Stack
+                  spacing={{ xs: 6, sm: 8, md: 10 }}
+                  sx={{ maxWidth: 560, mx: "auto" }}
+                >
                   <Typography
                     variant="h3"
                     sx={{
                       fontWeight: 700,
                       lineHeight: 1.05,
-                      fontSize: { xs: 26, sm: 32, md: 38 },
+                      fontSize: { xs: 22, sm: 28, md: 38 },
                       color: theme.palette.primary.hover,
-                      letterSpacing: 2,
+                      letterSpacing: { xs: 1, sm: 1.5, md: 2 },
                       textShadow: `0 0 10px ${theme.palette.primary.main}`,
+                      textAlign: { xs: "center", md: "left" },
                     }}
                   >
                     What Guides Us
                   </Typography>
 
-                  <Stack spacing={4}>
+                  <Stack spacing={{ xs: 3, sm: 4 }}>
                     {leftItems.map((item, idx) => (
                       <Fade
                         in={inView}
@@ -150,8 +144,8 @@ const GuidingPrinciples: React.FC = () => {
                           >
                             <Box
                               sx={{
-                                width: 30,
-                                height: 30,
+                                width: 28,
+                                height: 28,
                                 borderRadius: 1.5,
                                 display: "grid",
                                 placeItems: "center",
@@ -172,7 +166,7 @@ const GuidingPrinciples: React.FC = () => {
                               <Typography
                                 sx={{
                                   fontWeight: 700,
-                                  fontSize: { xs: 18, md: 20 },
+                                  fontSize: { xs: 16, sm: 18, md: 20 },
                                   lineHeight: 1.2,
                                   color: theme.palette.primary.hero,
                                   mb: 0.75,
@@ -183,7 +177,7 @@ const GuidingPrinciples: React.FC = () => {
                               <Typography
                                 sx={{
                                   color: theme.palette.text.secondary,
-                                  fontSize: { xs: 15, md: 16 },
+                                  fontSize: { xs: 14, sm: 15, md: 16 },
                                   lineHeight: 1.6,
                                 }}
                               >
@@ -202,48 +196,62 @@ const GuidingPrinciples: React.FC = () => {
                     ))}
                   </Stack>
                 </Stack>
-              </Box>
-            </Slide>
+              </Slide>
+            </Box>
           </Grid>
-
-          {/* RIGHT: What We Do */}
+          {/* RIGHT */}
           <Grid
             item
             xs={12}
-            md={5}
+            md={6}
             sx={{
-              flexBasis: { md: "40%" },
-              maxWidth: { md: "40%" },
-              ml: { md: "5%" },
+              width: { xs: "100%", md: "50vw" },
+              position: "relative",
+              py: { xs: 6, sm: 8, md: 10 },
             }}
             component="div"
             {...({} as any)}
           >
-            <Slide direction="up" in={inView} timeout={700}>
-              <Box
-                sx={{
-                  backgroundColor: theme.palette.primary.main,
-                  minHeight: "100%",
-                }}
-              >
-                <Stack spacing={5} sx={{ maxWidth: 400, mx: "auto" }}>
+            {/* overlay */}
+            <Box
+              sx={{
+                position: "absolute",
+                inset: 0,
+                backgroundColor: theme.palette.primary.main,
+                opacity: 0.8,
+                zIndex: 1,
+              }}
+            />
+            <Box
+              sx={{
+                position: "relative",
+                zIndex: 2,
+                px: { xs: 2, sm: 3, md: 6 },
+                py: { xs: 4, sm: 6, md: 8 },
+              }}
+            >
+              <Slide direction="up" in={inView} timeout={700}>
+                <Stack
+                  spacing={{ xs: 4, sm: 5 }}
+                  sx={{ maxWidth: 400, mx: "auto" }}
+                >
                   <Typography
                     variant="h3"
                     sx={{
                       fontWeight: 700,
                       lineHeight: 1.05,
-                      fontSize: { xs: 28, sm: 36, md: 44 },
+                      fontSize: { xs: 24, sm: 32, md: 44 },
                       color: theme.palette.primary.hover,
                       textAlign: "center",
-                      mb: 6,
-                      letterSpacing: 2,
+                      mb: { xs: 4, sm: 5, md: 6 },
+                      letterSpacing: { xs: 1, sm: 1.5, md: 2 },
                       textShadow: `0 0 10px ${theme.palette.primary.focus}`,
                     }}
                   >
                     What We Do
                   </Typography>
 
-                  <Stack spacing={3}>
+                  <Stack spacing={{ xs: 2.5, sm: 3 }}>
                     {rightCards.map((card, idx) => (
                       <Fade
                         in={inView}
@@ -252,12 +260,12 @@ const GuidingPrinciples: React.FC = () => {
                       >
                         <Box
                           sx={{
-                            py: 3,
-                            px: 5,
+                            py: { xs: 2, sm: 3 },
+                            px: { xs: 3, sm: 4, md: 5 },
                             borderRadius: 3,
                             backgroundColor: theme.palette.darkcard.main,
                             color: theme.palette.darkcard.contrastText,
-                            minHeight: { xs: 110, sm: 120, md: 140 },
+                            minHeight: { xs: 100, sm: 120, md: 140 },
                             display: "flex",
                             flexDirection: "column",
                             justifyContent: "center",
@@ -276,14 +284,20 @@ const GuidingPrinciples: React.FC = () => {
                             variant="h6"
                             sx={{
                               fontWeight: 700,
-                              mb: 3,
+                              mb: 2,
                               color: theme.palette.darkcard.contrastText,
                               letterSpacing: 1,
+                              fontSize: { xs: 16, sm: 18, md: 20 },
                             }}
                           >
                             {card.title}
                           </Typography>
-                          <Typography sx={{ color: theme.palette.grey[300] }}>
+                          <Typography
+                            sx={{
+                              color: theme.palette.grey[300],
+                              fontSize: { xs: 14, sm: 15, md: 16 },
+                            }}
+                          >
                             {card.body}
                           </Typography>
                         </Box>
@@ -291,8 +305,8 @@ const GuidingPrinciples: React.FC = () => {
                     ))}
                   </Stack>
                 </Stack>
-              </Box>
-            </Slide>
+              </Slide>
+            </Box>
           </Grid>
         </Grid>
       </Container>

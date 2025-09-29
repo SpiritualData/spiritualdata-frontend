@@ -19,6 +19,7 @@ const BoardMembers: React.FC = () => {
     theme.palette.primary.main
   );
 
+  // Array of board member data
   const members = [
     {
       heading: "Joshua Mathias (Executive Director, Founder)",
@@ -30,7 +31,7 @@ const BoardMembers: React.FC = () => {
     {
       heading: "Patrizio Tressoldi",
       subText:
-        "atrizio Tressoldi is an Italian psychologist and consciousness researcher leading the Science of Consciousness Research Group and affiliated with the Studium Patavinum of University of Padova, Italy. He has a long-term interest in psi phenomena, and began experimentation in the early 2000s, starting exploring the presentiment response and making notable progress in developing new methodologies. More recently he has designed novel experiments to investigate psychokinetic influences. He has also contributed several meta-analyses of the evidence for various forms of psi.",
+        "Patrizio Tressoldi is an Italian psychologist and consciousness researcher leading the Science of Consciousness Research Group and affiliated with the Studium Patavinum of University of Padova, Italy. He has a long-term interest in psi phenomena, and began experimentation in the early 2000s, starting exploring the presentiment response and making notable progress in developing new methodologies. More recently he has designed novel experiments to investigate psychokinetic influences. He has also contributed several meta-analyses of the evidence for various forms of psi.",
       buttonText: "Get In Touch →",
       imageSrc: bm2,
     },
@@ -61,9 +62,9 @@ const BoardMembers: React.FC = () => {
     <Box
       ref={sectionRef}
       sx={{
-        pt: 20,
-        pb: 10,
-        px: { xs: 2, md: 30 },
+        pt: 15,
+        pb: 0,
+        px: { xs: 0, md: 10, lg: 30 },
         background: `linear-gradient(180deg, ${theme.palette.primary.main} 0%, transparent 100%)`,
       }}
     >
@@ -79,6 +80,7 @@ const BoardMembers: React.FC = () => {
             textAlign: "center",
             fontSize: { xs: "26px", md: "50px" },
             mb: 8,
+            fontFamily: "Sansation, sans-serif",
           }}
         >
           Our Board Members
@@ -94,13 +96,16 @@ const BoardMembers: React.FC = () => {
           timeout={600 + index * 200}
         >
           <div>
-            <ContentSection
-              heading={member.heading}
-              subText={member.subText}
-              buttonText={member.buttonText}
-              imageSrc={index % 2 === 0 ? member.imageSrc : undefined}
-              imageSrc2={index % 2 === 1 ? member.imageSrc : undefined}
-            />
+            <Box borderBottom={1} borderColor="divider" sx={{ pb: 5 }}>
+              <ContentSection
+                heading={member.heading}
+                subText={member.subText}
+                buttonText={member.buttonText}
+                boardMember={true}
+                imageSrc={index % 2 === 0 ? member.imageSrc : undefined}
+                imageSrc2={index % 2 === 1 ? member.imageSrc : undefined}
+              />
+            </Box>
           </div>
         </Slide>
       ))}

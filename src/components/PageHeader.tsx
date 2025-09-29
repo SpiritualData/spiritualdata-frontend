@@ -65,7 +65,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ image, page }) => {
   return (
     <StyledHeader
       size={{ xs: 12 }}
-      mt={{ xs: 8, md: 0 }}
+      // mt={{ xs: 8, md: 0 }}
       sx={{ backgroundImage: `url(${image})` }}
     >
       <StyledHeaderItem px={{ xs: 4, sm: 8 }} textAlign={"center"}>
@@ -99,7 +99,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ image, page }) => {
               textShadow: "2px 2px 2px rgba(255, 255, 255, 0.5)",
             }}
           >
-            Home
+            {page === "Estimating Truth" ? "Initiatives" : "Home"}
           </Typography>
 
           <Typography

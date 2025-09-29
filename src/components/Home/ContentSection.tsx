@@ -1,18 +1,20 @@
 import theme from "../../styles/theme";
 import { East } from "@mui/icons-material";
-import { Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 interface ContentSectionProps {
   imageSrc?: string;
   imageSrc2?: string;
-  heading: string;
+  heading?: string;
   subText: string;
   buttonText?: string;
   altText?: string;
   path?: string;
   bioHeading?: string;
   buttonFunc?: () => void;
+  boardMember?: boolean;
 }
 
 const ContentSection = ({
@@ -25,7 +27,9 @@ const ContentSection = ({
   path,
   bioHeading,
   buttonFunc,
+  boardMember,
 }: ContentSectionProps) => {
+  const [expanded, setExpanded] = useState(false);
   return (
     <Grid
       container
@@ -33,6 +37,8 @@ const ContentSection = ({
         display: "flex",
         flexDirection: imageSrc2 ? "row-reverse" : "row",
         justifyContent: "space-between",
+        fontFamily: "Sansation",
+        px: { xs: 5, md: 8 },
       }}
       my={{ xs: 3, md: 8 }}
     >
@@ -43,6 +49,7 @@ const ContentSection = ({
             fontWeight: 500,
             textAlign: "center",
             marginBottom: { xs: 0, md: "30px" },
+            fontFamily: "Sansation, sans-serif",
           }}
         >
           {bioHeading}
@@ -61,18 +68,83 @@ const ContentSection = ({
             textAlign: { xs: "center", md: "left" },
           }}
         >
-          <Typography sx={{ fontSize: "30px", fontWeight: 500 }}>
-            {heading}
-          </Typography>
           <Typography
             sx={{
-              color: "black",
-              fontSize: bioHeading ? "14px" : "16px",
-              marginTop: bioHeading ? "20px" : "32px",
+              fontSize: "30px",
+              fontWeight: 500,
+              fontFamily: "Sansation, sans-serif",
             }}
           >
-            {subText}
+            {heading}
           </Typography>
+
+          {boardMember ? (
+            <Box
+              onClick={() => setExpanded((prev) => !prev)}
+              sx={{ cursor: "pointer", position: "relative" }}
+            >
+              <Typography
+                sx={{
+                  color: "black",
+                  fontSize: bioHeading ? "14px" : "16px",
+                  marginTop: bioHeading ? "20px" : "32px",
+                  fontFamily: "Sansation, sans-serif",
+                  textAlign: "justify",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  display: "-webkit-box",
+                  WebkitBoxOrient: "vertical",
+                  WebkitLineClamp: expanded ? "unset" : "5",
+                  px: { xs: 5, md: 0 },
+                  mb: 2,
+                  transition: "all 0.3s ease",
+                }}
+              >
+                {subText}
+              </Typography>
+
+              {/* "..." indicator at the end when collapsed */}
+              {!expanded && (
+                <Box
+                  sx={{
+                    position: "absolute",
+                    bottom: 15,
+                    right: { xs: 40, md: 0 },
+                    background: theme.palette.primary.main,
+                    pl: 1.5,
+                    pr: 0.5,
+                    py: 0.5,
+                    color: "primary.hero",
+                    textShadow: `0px 0px 10px ${theme.palette.primary.focus}`,
+                    fontWeight: 600,
+                    fontSize: "16px",
+                    borderRadius: 2,
+                  }}
+                >
+                  ...read more
+                </Box>
+              )}
+            </Box>
+          ) : (
+            <Typography
+              sx={{
+                color: "black",
+                fontSize: bioHeading ? "14px" : "16px",
+                marginTop: bioHeading ? "20px" : "32px",
+                fontFamily: "Sansation, sans-serif",
+                textAlign: "justify",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                display: "-webkit-box",
+                WebkitLineClamp: "8",
+                WebkitBoxOrient: "vertical",
+                px: { xs: 5, md: 0 },
+                mb: 2,
+              }}
+            >
+              {subText}
+            </Typography>
+          )}
           {buttonText &&
             (buttonFunc ? (
               <Button
@@ -84,6 +156,7 @@ const ContentSection = ({
                   height: 42,
                   px: 3,
                   mt: 3,
+                  mb: 4,
                   fontWeight: 600,
                   fontSize: "14px",
                   textTransform: "uppercase",
@@ -120,6 +193,7 @@ const ContentSection = ({
                       height: 42,
                       px: 3,
                       mt: 3,
+                      mb: 4,
                       fontWeight: 600,
                       fontSize: "14px",
                       textTransform: "uppercase",

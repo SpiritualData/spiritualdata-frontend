@@ -55,7 +55,7 @@ const SocialImpact: React.FC = () => {
   const { ref: titleRef, inView: titleInView } = useInView({ threshold: 0.2 });
 
   return (
-    <Container sx={{ py: 20 }}>
+    <Container sx={{ py: 10, bgcolor: "white" }}>
       <Slide direction="up" in={titleInView} timeout={600}>
         <Typography
           ref={titleRef}
@@ -81,7 +81,7 @@ const SocialImpact: React.FC = () => {
         sx={{
           display: "flex",
           flexDirection: "row",
-          justifyContent: "space-between",
+          justifyContent: "center",
         }}
       >
         {data.map((item, index) => {
@@ -93,6 +93,7 @@ const SocialImpact: React.FC = () => {
               xs={12}
               sm={6}
               md={4}
+              mb={4}
               key={item.title}
               component="div"
               maxWidth={"385px"}

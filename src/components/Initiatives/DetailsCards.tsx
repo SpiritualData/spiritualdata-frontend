@@ -1,7 +1,12 @@
 import React from "react";
 import { Box, Container, Typography, Paper, useTheme } from "@mui/material";
 import { styled } from "@mui/system";
-import bgimage from "../../assets/Images/Initiatives/EstimatingTruth/cardsbg.webp";
+import bgi1 from "../../assets/Images/Initiatives/initiatives1.webp";
+import bgi2 from "../../assets/Images/Initiatives/initiatives2.webp";
+import bgi3 from "../../assets/Images/Initiatives/initiatives3.webp";
+import bgi4 from "../../assets/Images/Initiatives/initiatives4.webp";
+import bgi5 from "../../assets/Images/Initiatives/initiatives5.webp";
+import bgi6 from "../../assets/Images/Initiatives/initiatives6.webp";
 
 interface DetailsCard {
   id: number;
@@ -25,7 +30,7 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
     p: 3,
     borderRadius: 2,
     bgcolor: "background.paper",
-    boxShadow: 3,
+    boxShadow: 5,
     height: "100%",
     display: "flex",
     flexDirection: "column",
@@ -50,34 +55,68 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
     lineHeight: 1,
   }));
 
-  const DirectionAwareCard = styled(Paper)(({ theme }) => ({
-    position: "relative",
-    overflow: "hidden",
-    cursor: "pointer",
-    border: `8px solid ${theme.palette.primary.main}`,
-
-    "&::before": {
-      content: '""',
-      position: "absolute",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      background: `linear-gradient(to bottom, transparent 0%, ${theme.palette.primary.focus} 100%)`,
-      transform: "var(--overlay-transform, translateY(-100%))",
-      transition: "transform 0.35s ease",
-      zIndex: 0,
-    },
-
-    "&.entering::before": {
-      transform: "translate(0,0)",
-    },
-
-    "& > *": {
+  const DirectionAwareCard = styled(Paper)<{ image?: string }>(
+    ({ theme, image }) => ({
       position: "relative",
-      zIndex: 1,
-    },
-  }));
+      overflow: "hidden",
+      cursor: "pointer",
+      border: `8px solid ${theme.palette.primary.main}`,
+      backgroundImage: `url(${image})`,
+      backgroundSize: "10rem",
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "center",
+      color: theme.palette.primary.hover,
+      textShadow: `0 0 15px ${theme.palette.text.secondary}`,
+      fontFamily: "Sansation, sans-serif",
+
+      "&::before": {
+        content: '""',
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        background: `linear-gradient(to bottom, transparent 0%, ${theme.palette.primary.focus} 100%)`,
+        transform: "var(--overlay-transform, translateY(-100%))",
+        transition: "transform 0.35s ease",
+        zIndex: 0,
+      },
+
+      "&.entering::before": {
+        transform: "translate(0,0)",
+      },
+
+      "& .card-content": {
+        opacity: 0,
+        transform: "translateY(20px)",
+        transition: "opacity 0.35s ease, transform 0.35s ease",
+        position: "relative",
+        zIndex: 2,
+      },
+
+      "&.entering .card-content": {
+        opacity: 1,
+        transform: "translateY(0)",
+      },
+
+      "& > *": {
+        position: "relative",
+        zIndex: 1,
+      },
+
+      [theme.breakpoints.down("md")]: {
+        backgroundImage: "none !important", // hide image completely
+        "&::before": {
+          transform: "translate(0,0) !important",
+          background: `linear-gradient(to bottom, transparent 0%, ${theme.palette.primary.focus} 100%)`,
+        },
+        "& .card-content": {
+          opacity: "1 !important",
+          transform: "translateY(0) !important",
+        },
+      },
+    })
+  );
 
   const getDirection = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -85,12 +124,10 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-
     const topDist = y;
     const bottomDist = rect.height - y;
     const leftDist = x;
     const rightDist = rect.width - x;
-
     const min = Math.min(topDist, bottomDist, leftDist, rightDist);
 
     switch (min) {
@@ -116,12 +153,9 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
     const target = e.currentTarget as HTMLElement;
     const enterDirection = getDirection(e);
 
-    // Step A: teleport overlay to new enter side instantly (no transition)
     target.classList.remove("entering", "exiting");
     target.style.setProperty("--overlay-transform", dirMap[enterDirection]);
     void target.offsetWidth; // force reflow
-
-    // Step B: animate into center
     target.classList.add("entering");
   };
 
@@ -129,11 +163,12 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
     const target = e.currentTarget as HTMLElement;
     const exitDirection = getDirection(e);
 
-    // Animate out towards exit side
     target.style.setProperty("--overlay-transform", dirMap[exitDirection]);
     target.classList.remove("entering");
     target.classList.add("exiting");
   };
+  const topBgImages = [bgi1, bgi2];
+  const bottomBgImages = [bgi3, bgi4, bgi5, bgi6];
 
   return (
     <Box
@@ -145,9 +180,15 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
       }}
     >
       <Container>
-        <Box display="flex" flexDirection="column" gap={11}>
+        <Box display="flex" flexDirection="column" gap={{ xs: 3, sm: 11 }}>
           {/* Top Row */}
-          <Box display="flex" gap={3} width="100%" height="auto">
+          <Box
+            display="flex"
+            flexDirection={{ xs: "column", md: "row" }}
+            gap={3}
+            width="100%"
+            height="auto"
+          >
             {/* Left Heading */}
             <Box
               flex={1}
@@ -169,6 +210,7 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
               <Typography
                 variant="h1"
                 sx={{
+                  fontSize: { xs: "4rem", sm: "6rem" },
                   fontWeight: "bold",
                   letterSpacing: 8,
                   color: "primary.hero",
@@ -176,6 +218,7 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
                   position: "relative",
                   zIndex: 1,
                   textShadow: `-1px -1px 0 ${theme.palette.primary.focus}, 1px -1px 0 ${theme.palette.primary.focus}, -1px 1px 0 ${theme.palette.primary.focus}, 1px 1px 0 ${theme.palette.primary.focus}`,
+                  textAlign: { xs: "center", md: "left" },
                 }}
               >
                 {data[0]?.secHead}
@@ -183,19 +226,94 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
             </Box>
 
             {/* Right Column */}
-            <Box flex={1} display="flex" flexDirection="row" gap={3}>
-              {topBoxes.map((item) => (
+            <Box
+              flex={1}
+              display="flex"
+              flexDirection={{ xs: "column", sm: "row" }}
+              gap={3}
+            >
+              {topBoxes.map((item, i) => (
                 <Box flex={1} key={item.id}>
                   <DirectionAwareCard
+                    image={topBgImages[i]}
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                     sx={{ ...boxStyle, minHeight: 125 }}
                   >
-                    <Typography variant="h6" textAlign="center">
+                    <Box
+                      className="card-content"
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        height: "100%",
+                        gap: 5,
+                      }}
+                    >
+                      <Typography
+                        variant="h5"
+                        fontWeight={600}
+                        textAlign="center"
+                        maxWidth={150}
+                      >
+                        {item.title}
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                        textAlign="center"
+                        sx={{
+                          display: "-webkit-box",
+                          WebkitLineClamp: 3,
+                          WebkitBoxOrient: "vertical",
+                          overflow: "hidden",
+                        }}
+                      >
+                        {item.desc}
+                      </Typography>
+                    </Box>
+                  </DirectionAwareCard>
+                </Box>
+              ))}
+            </Box>
+          </Box>
+          {/* Bottom Row */}
+          <Box
+            display="flex"
+            flexDirection={{ xs: "column", sm: "column", md: "row" }}
+            flexWrap="wrap"
+            gap={3}
+            width="100%"
+          >
+            {bottomBoxes.map((item, i) => (
+              <Box flex={{ xs: "1 1 100%", md: 1 }} key={item.id}>
+                <DirectionAwareCard
+                  image={bottomBgImages[i]}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                  sx={{ ...boxStyle, minHeight: 125 }}
+                >
+                  <Box
+                    className="card-content"
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      height: "100%",
+                      gap: 5,
+                    }}
+                  >
+                    <Typography
+                      variant="h5"
+                      fontWeight={600}
+                      textAlign="center"
+                      maxWidth={150}
+                    >
                       {item.title}
                     </Typography>
                     <Typography
-                      variant="body2"
+                      variant="body1"
                       textAlign="center"
                       sx={{
                         display: "-webkit-box",
@@ -206,36 +324,7 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
                     >
                       {item.desc}
                     </Typography>
-                  </DirectionAwareCard>
-                </Box>
-              ))}
-            </Box>
-          </Box>
-
-          {/* Bottom Row */}
-          <Box display="flex" gap={3} width="100%">
-            {bottomBoxes.map((item) => (
-              <Box flex={1} key={item.id}>
-                <DirectionAwareCard
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                  sx={{ ...boxStyle, minHeight: 125 }}
-                >
-                  <Typography variant="h6" textAlign="center">
-                    {item.title}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    textAlign="center"
-                    sx={{
-                      display: "-webkit-box",
-                      WebkitLineClamp: 3,
-                      WebkitBoxOrient: "vertical",
-                      overflow: "hidden",
-                    }}
-                  >
-                    {item.desc}
-                  </Typography>
+                  </Box>
                 </DirectionAwareCard>
               </Box>
             ))}

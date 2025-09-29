@@ -47,46 +47,35 @@ const TitleHead = ({ data }: TiltHeadProps) => {
         py: { xs: 8, md: 12 },
         overflow: "hidden",
         bgcolor: theme.palette.primary.main,
-        position: "relative", // ✅ sticky removed
+        position: "relative",
       }}
     >
       {/* Oversized Background Text */}
-      <Fade in={inView} timeout={1000}>
+      <Fade in={inView} timeout={500}>
         <BackgroundText>{data.bgText}</BackgroundText>
       </Fade>
 
       <Container sx={{ position: "relative", zIndex: 1 }}>
         {/* Section Title */}
-        <Slide direction="down" in={inView} timeout={900}>
+        <Fade in={inView} timeout={1200}>
           <Typography
             variant="h4"
             gutterBottom
             sx={{
-              display: "inline-block",
               position: "relative",
               fontFamily: "Sansation, sans-serif",
               fontWeight: 700,
+              display: "inline-block",
+              borderBottom: `5px solid ${theme.palette.primary.focus}`,
+              paddingBottom: "4px",
             }}
           >
             {data.title}
           </Typography>
-        </Slide>
-
-        {/* Small underline accent */}
-        <Slide direction="right" in={inView} timeout={1200}>
-          <Box
-            sx={{
-              height: 5,
-              width: 550,
-              bgcolor: theme.palette.primary.focus,
-              mx: "auto",
-              borderRadius: 2,
-            }}
-          />
-        </Slide>
+        </Fade>
 
         {/* Subtitle */}
-        <Fade in={inView} timeout={1500}>
+        <Fade in={inView} timeout={2000}>
           <Typography
             variant="body1"
             color="text.secondary"

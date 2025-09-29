@@ -130,7 +130,7 @@ const AuthPage: React.FC = () => {
 
   useEffect(() => {
     const isSignUp = location.pathname.startsWith("/sign-up");
-    setSignupMode(!isSignUp);
+    setSignupMode(isSignUp);
   }, [location.pathname]);
 
   useEffect(() => {
@@ -141,6 +141,15 @@ const AuthPage: React.FC = () => {
       clearTimeout(removeTimer);
     };
   }, []);
+
+  // ----------------- SWITCH BUTTON (for < md screens) -----------------
+  const switchForms = () => {
+    if (signupMode) {
+      goToSignIn();
+    } else {
+      goToSignUp();
+    }
+  };
 
   const overlayBg = useMemo(
     () => ({
@@ -184,8 +193,8 @@ const AuthPage: React.FC = () => {
               startIcon={<ArrowBack />}
               sx={{
                 position: "absolute",
-                top: 30,
-                left: 20,
+                top: { xs: 10, sm: 30 },
+                left: { xs: -5, sm: 20 },
                 borderColor: theme.palette.text.primary,
                 backgroundColor: theme.palette.primary.focus,
                 color: theme.palette.primary.hero,
@@ -201,6 +210,8 @@ const AuthPage: React.FC = () => {
                 transition: "all 0.3s ease",
                 cursor: "pointer",
                 border: "2px solid transparent",
+                zIndex: 99,
+                scale: { xs: "0.75", md: "1" },
                 "&:hover": {
                   backgroundColor: theme.palette.primary.hero,
                   color: theme.palette.primary.focus,
@@ -209,6 +220,41 @@ const AuthPage: React.FC = () => {
             >
               Go to Home
             </Button>
+            {/* SWITCH FORMS BUTTON (only on small–md screens) */}
+            {isMobile && (
+              <Button
+                variant="outlined"
+                onClick={switchForms}
+                sx={{
+                  position: "absolute",
+                  top: { xs: 10, sm: 30 },
+                  right: { xs: -5, sm: 20 },
+                  borderColor: theme.palette.text.primary,
+                  backgroundColor: theme.palette.primary.hero,
+                  color: theme.palette.primary.focus,
+                  borderRadius: "50px",
+                  height: 50,
+                  px: 4,
+                  mb: "16px",
+                  fontWeight: 700,
+                  fontSize: "16px",
+                  textTransform: "uppercase",
+                  fontFamily: theme.typography.fontFamily,
+                  letterSpacing: 1,
+                  transition: "all 0.3s ease",
+                  cursor: "pointer",
+                  border: "2px solid transparent",
+                  zIndex: 99,
+                  scale: { xs: "0.75", md: "1" },
+                  "&:hover": {
+                    backgroundColor: theme.palette.primary.focus,
+                    color: theme.palette.primary.hero,
+                  },
+                }}
+              >
+                {signupMode ? "Sign In Instead" : "Let's Sign Up"}
+              </Button>
+            )}
 
             <div
               className={`dual-auth-container${
@@ -221,7 +267,7 @@ const AuthPage: React.FC = () => {
                     <Box
                       sx={{
                         width: 380,
-                        maxWidth: "98vw",
+                        maxWidth: "70vw",
                         mx: "auto",
                         my: "auto",
                         display: "flex",
@@ -237,6 +283,7 @@ const AuthPage: React.FC = () => {
                         sx={{
                           color: theme.palette.text.primary,
                           textShadow: `0px 0px 10px ${theme.palette.primary.focus}`,
+                          textAlign: "center",
                         }}
                       >
                         Sign in
@@ -254,7 +301,10 @@ const AuthPage: React.FC = () => {
                             card: {
                               background: "white",
                               boxShadow: "none",
+                              elevated: 0,
                               padding: 0,
+                              display: "flex",
+                              flexDirection: "column",
                             },
                             headerTitle: { display: "none" },
                             headerSubtitle: { display: "none" },
@@ -331,7 +381,7 @@ const AuthPage: React.FC = () => {
                     <Box
                       sx={{
                         width: 380,
-                        maxWidth: "98vw",
+                        maxWidth: "70vw",
                         mx: "auto",
                         my: "auto",
                         display: "flex",
@@ -347,6 +397,7 @@ const AuthPage: React.FC = () => {
                         sx={{
                           color: theme.palette.text.primary,
                           textShadow: `0px 0px 10px ${theme.palette.primary.focus}`,
+                          textAlign: "center",
                         }}
                       >
                         Create Account
@@ -477,105 +528,107 @@ const AuthPage: React.FC = () => {
                 )}
               </div>
 
-              <div className="overlay-slider-panel" style={overlayBg}>
-                <div className="overlay-content">
-                  {!signupMode ? (
-                    <>
-                      <Typography
-                        variant="h4"
-                        fontWeight="bold"
-                        mb={4}
-                        letterSpacing={2}
-                        fontFamily={theme.typography.fontFamily}
-                      >
-                        Already <br />
-                        Registered
-                      </Typography>
-                      <Typography
-                        variant="body1"
-                        mb={5}
-                        lineHeight={1.5}
-                        letterSpacing={1}
-                      >
-                        Access your sacred insights <br />
-                        and continue your journey.
-                      </Typography>
-                      <Button
-                        variant="outlined"
-                        onClick={goToSignIn}
-                        sx={{
-                          backgroundColor: theme.palette.primary.hero,
-                          color: theme.palette.primary.focus,
-                          border: `2px solid ${theme.palette.primary.hero}`,
-                          borderRadius: 8,
-                          height: 45,
-                          px: 4,
-                          fontWeight: 700,
-                          fontSize: "16px",
-                          textTransform: "uppercase",
-                          fontFamily: theme.typography.fontFamily,
-                          letterSpacing: 2,
-                          transition: "all 0.3s ease",
-                          "&:hover": {
-                            backgroundColor: theme.palette.primary.focus,
-                            color: theme.palette.primary.hero,
+              {!isMobile && (
+                <div className="overlay-slider-panel" style={overlayBg}>
+                  <div className="overlay-content">
+                    {!signupMode ? (
+                      <>
+                        <Typography
+                          variant="h4"
+                          fontWeight="bold"
+                          mb={4}
+                          letterSpacing={2}
+                          fontFamily={theme.typography.fontFamily}
+                        >
+                          Already <br />
+                          Registered
+                        </Typography>
+                        <Typography
+                          variant="body1"
+                          mb={5}
+                          lineHeight={1.5}
+                          letterSpacing={1}
+                        >
+                          Access your sacred insights <br />
+                          and continue your journey.
+                        </Typography>
+                        <Button
+                          variant="outlined"
+                          onClick={goToSignIn}
+                          sx={{
+                            backgroundColor: theme.palette.primary.hero,
+                            color: theme.palette.primary.focus,
                             border: `2px solid ${theme.palette.primary.hero}`,
-                          },
-                        }}
-                      >
-                        CONTINUE JOURNEY
-                      </Button>
-                    </>
-                  ) : (
-                    <>
-                      <Typography
-                        variant="h4"
-                        fontWeight="bold"
-                        mb={4}
-                        letterSpacing={2}
-                        fontFamily={theme.typography.fontFamily}
-                      >
-                        New to <br />
-                        Spiritual Data?
-                      </Typography>
-                      <Typography
-                        variant="body1"
-                        mb={5}
-                        lineHeight={1.5}
-                        letterSpacing={1}
-                      >
-                        Create your account <br />
-                        and unlock the wisdom within.
-                      </Typography>
-                      <Button
-                        variant="outlined"
-                        onClick={goToSignUp}
-                        sx={{
-                          backgroundColor: theme.palette.primary.hero,
-                          color: theme.palette.primary.focus,
-                          border: `2px solid ${theme.palette.primary.hero}`,
-                          borderRadius: 8,
-                          height: 45,
-                          px: 4,
-                          fontWeight: 700,
-                          fontSize: "16px",
-                          textTransform: "uppercase",
-                          fontFamily: theme.typography.fontFamily,
-                          letterSpacing: 2,
-                          transition: "all 0.3s ease",
-                          "&:hover": {
-                            backgroundColor: theme.palette.primary.focus,
-                            color: theme.palette.primary.hero,
+                            borderRadius: 8,
+                            height: 45,
+                            px: 4,
+                            fontWeight: 700,
+                            fontSize: { xs: "12px", md: "16px" },
+                            textTransform: "uppercase",
+                            fontFamily: theme.typography.fontFamily,
+                            letterSpacing: 2,
+                            transition: "all 0.3s ease",
+                            "&:hover": {
+                              backgroundColor: theme.palette.primary.focus,
+                              color: theme.palette.primary.hero,
+                              border: `2px solid ${theme.palette.primary.hero}`,
+                            },
+                          }}
+                        >
+                          CONTINUE JOURNEY
+                        </Button>
+                      </>
+                    ) : (
+                      <>
+                        <Typography
+                          variant="h4"
+                          fontWeight="bold"
+                          mb={4}
+                          letterSpacing={2}
+                          fontFamily={theme.typography.fontFamily}
+                        >
+                          New to <br />
+                          Spiritual Data?
+                        </Typography>
+                        <Typography
+                          variant="body1"
+                          mb={5}
+                          lineHeight={1.5}
+                          letterSpacing={1}
+                        >
+                          Create your account <br />
+                          and unlock the wisdom within.
+                        </Typography>
+                        <Button
+                          variant="outlined"
+                          onClick={goToSignUp}
+                          sx={{
+                            backgroundColor: theme.palette.primary.hero,
+                            color: theme.palette.primary.focus,
                             border: `2px solid ${theme.palette.primary.hero}`,
-                          },
-                        }}
-                      >
-                        BEGIN JOURNEY
-                      </Button>
-                    </>
-                  )}
+                            borderRadius: 8,
+                            height: 45,
+                            px: 4,
+                            fontWeight: 700,
+                            fontSize: { xs: "12px", md: "16px" },
+                            textTransform: "uppercase",
+                            fontFamily: theme.typography.fontFamily,
+                            letterSpacing: 2,
+                            transition: "all 0.3s ease",
+                            "&:hover": {
+                              backgroundColor: theme.palette.primary.focus,
+                              color: theme.palette.primary.hero,
+                              border: `2px solid ${theme.palette.primary.hero}`,
+                            },
+                          }}
+                        >
+                          BEGIN JOURNEY
+                        </Button>
+                      </>
+                    )}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </Grid>
         )}
