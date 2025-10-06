@@ -20,9 +20,9 @@ const WhyWeStarted = () => {
   const cardData = [
     {
       id: "Autonomy",
-      title: "People stop arguing",
+      title: "Intellectual freedom",
       description:
-        "Instead, they start listening  -  because truth becomes visible.",
+        "Access to reliable, unbiased information empowers people to think for themselves.",
     },
     {
       id: "Unity",
