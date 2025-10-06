@@ -19,19 +19,19 @@ const WhyWeStarted = () => {
 
   const cardData = [
     {
-      id: "100%",
+      id: "Unity",
       title: "People stop arguing",
       description:
         "Instead, they start listening  -  because truth becomes visible.",
     },
     {
-      id: "100%",
+      id: "Connection",
       title: "Divisions shrink",
       description:
         "A shared sense of reality helps humanity unify across lines of difference.",
     },
     {
-      id: "10x",
+      id: "Growth",
       title: "Curiosity replaces fear",
       description:
         "When evidence leads the way, exploration becomes safer than dogma.",
