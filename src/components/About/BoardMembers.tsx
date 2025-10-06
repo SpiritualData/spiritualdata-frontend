@@ -7,6 +7,9 @@ import bm2 from "../../assets/images/about/bm2.webp";
 import bm3 from "../../assets/images/about/bm3.webp";
 import bm4 from "../../assets/images/about/bm4.webp";
 import bm5 from "../../assets/images/about/bm5.webp";
+import yugen from "../../assets/images/about/yugen_korat.webp";
+import armin from "../../assets/images/about/armin_masoumian.jpg";
+import sander from "../../assets/images/about/sander_stepanov.jpg";
 
 const BoardMembers: React.FC = () => {
   const { ref: sectionRef, inView: sectionInView } = useInView({
@@ -59,6 +62,27 @@ const BoardMembers: React.FC = () => {
         "Patrizio Tressoldi is an Italian psychologist and consciousness researcher leading the Science of Consciousness Research Group and affiliated with the Studium Patavinum of University of Padova, Italy. He has a long-term interest in psi phenomena, and began experimentation in the early 2000s, starting exploring the presentiment response and making notable progress in developing new methodologies. More recently he has designed novel experiments to investigate psychokinetic influences. He has also contributed several meta-analyses of the evidence for various forms of psi.",
       buttonText: "Get In Touch →",
       imageSrc: bm2,
+    },
+    {
+      heading: "Yugen Korat",
+      subText:
+        "Dr. Yugen Korat serves as Director of Science at Spiritual Data and CTO at MarvinLabs, bringing expertise at the intersection of linguistics and technology. He holds a PhD in Linguistics with specialized research in semantics, applying rigorous linguistic analysis to understand meaning and communication. At Spiritual Data, Yugen leads scientific methodology and research design, ensuring that spiritual and consciousness studies are approached with academic rigor. His unique combination of linguistic theory and technical leadership enables innovative approaches to analyzing and structuring spiritual data, bridging the gap between human meaning-making and computational analysis.",
+      buttonText: "Get In Touch →",
+      imageSrc: yugen,
+    },
+    {
+      heading: "Armin Masoumian",
+      subText:
+        "Dr. Armin Masoumian is an AI Evaluations Research Scientist at Spiritual Data, specializing in machine learning, computer vision, and deep learning. He holds a PhD in Computer Science from Universitat Rovira i Virgili, where his dissertation focused on self-supervised monocular depth estimation using graph convolutional networks. Armin's research expertise spans AI applications in medical imaging, federated learning, and advanced neural network architectures. As a peer reviewer for over 20 ISI journals and recipient of a Catalan government scholarship, he brings rigorous academic standards to evaluating AI systems. At Spiritual Data, Armin develops and validates machine learning models that analyze spiritual and consciousness-related phenomena, ensuring methodological soundness and reproducibility.",
+      buttonText: "Get In Touch →",
+      imageSrc: armin,
+    },
+    {
+      heading: "Sander Stepanov",
+      subText:
+        "Dr. Sander Stepanov is an independent industry expert combining expertise in artificial intelligence, electronics engineering, and consciousness studies. He holds a PhD in Electronics Engineering from Saint Petersburg State Technological University of Communication Systems and currently works as an AI Developer at Jesta I.S. in Toronto. Sander's research bridges theoretical and applied AI, with published work in MIMO signal detection, optical communication systems, and signal processing algorithms. His unique interdisciplinary approach integrates AI and data science with consciousness research, exploring how computational methods can illuminate questions about awareness and subjective experience. Sander is passionate about solving complex problems at the intersection of technology and human consciousness.",
+      buttonText: "Get In Touch →",
+      imageSrc: sander,
     },
   ];
 
