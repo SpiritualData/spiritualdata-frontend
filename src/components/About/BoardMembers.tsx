@@ -65,22 +65,19 @@ const BoardMembers: React.FC = () => {
     },
     {
       heading: "Yugen Korat",
-      subText:
-        "Dr. Yugen Korat serves as Director of Science at Spiritual Data and CTO at MarvinLabs, bringing expertise at the intersection of linguistics and technology. He holds a PhD in Linguistics with specialized research in semantics, applying rigorous linguistic analysis to understand meaning and communication. At Spiritual Data, Yugen leads scientific methodology and research design, ensuring that spiritual and consciousness studies are approached with academic rigor. His unique combination of linguistic theory and technical leadership enables innovative approaches to analyzing and structuring spiritual data, bridging the gap between human meaning-making and computational analysis.",
+      subText: "Dr. Yugen Korat serves as Director of Science at Spiritual Data and CTO at MarvinLabs, bringing expertise at the intersection of linguistics and technology. He holds a PhD in Linguistics with specialized research in semantics, applying rigorous linguistic analysis to understand meaning and communication. At Spiritual Data, Yugen leads scientific methodology and research design, ensuring that spiritual and consciousness studies are approached with academic rigor. His unique combination of linguistic theory and technical leadership enables innovative approaches to analyzing and structuring spiritual data, bridging the gap between human meaning-making and computational analysis.",
       buttonText: "Get In Touch →",
       imageSrc: yugen,
     },
     {
       heading: "Armin Masoumian",
-      subText:
-        "Dr. Armin Masoumian is an AI Evaluations Research Scientist at Spiritual Data, specializing in machine learning, computer vision, and deep learning. He holds a PhD in Computer Science from Universitat Rovira i Virgili, where his dissertation focused on self-supervised monocular depth estimation using graph convolutional networks. Armin's research expertise spans AI applications in medical imaging, federated learning, and advanced neural network architectures. As a peer reviewer for over 20 ISI journals and recipient of a Catalan government scholarship, he brings rigorous academic standards to evaluating AI systems. At Spiritual Data, Armin develops and validates machine learning models that analyze spiritual and consciousness-related phenomena, ensuring methodological soundness and reproducibility.",
+      subText: "Dr. Armin Masoumian is an AI Evaluations Research Scientist at Spiritual Data, specializing in machine learning, computer vision, and deep learning. He holds a PhD in Computer Science from Universitat Rovira i Virgili, where his dissertation focused on self-supervised monocular depth estimation using graph convolutional networks. Armin's research expertise spans AI applications in medical imaging, federated learning, and advanced neural network architectures. As a peer reviewer for over 20 ISI journals and recipient of a Catalan government scholarship, he brings rigorous academic standards to evaluating AI systems. At Spiritual Data, Armin develops and validates machine learning models that analyze spiritual and consciousness-related phenomena, ensuring methodological soundness and reproducibility.",
       buttonText: "Get In Touch →",
       imageSrc: armin,
     },
     {
       heading: "Sander Stepanov",
-      subText:
-        "Dr. Sander Stepanov is an independent industry expert combining expertise in artificial intelligence, electronics engineering, and consciousness studies. He holds a PhD in Electronics Engineering from Saint Petersburg State Technological University of Communication Systems and currently works as an AI Developer at Jesta I.S. in Toronto. Sander's research bridges theoretical and applied AI, with published work in MIMO signal detection, optical communication systems, and signal processing algorithms. His unique interdisciplinary approach integrates AI and data science with consciousness research, exploring how computational methods can illuminate questions about awareness and subjective experience. Sander is passionate about solving complex problems at the intersection of technology and human consciousness.",
+      subText: "Dr. Sander Stepanov is an independent industry expert combining expertise in artificial intelligence, electronics engineering, and consciousness studies. He holds a PhD in Electronics Engineering from Saint Petersburg State Technological University of Communication Systems and has worked as an AI Developer at Jesta I.S. in Toronto. Sander's research bridges theoretical and applied AI, with published work in MIMO signal detection, optical communication systems, and signal processing algorithms. His unique interdisciplinary approach integrates AI and data science with consciousness research, exploring how computational methods can illuminate questions about awareness and subjective experience. Sander is passionate about solving complex problems at the intersection of technology and human consciousness.",
       buttonText: "Get In Touch →",
       imageSrc: sander,
     },
