@@ -1,272 +1,359 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Typography, Box, styled, Divider, SvgIcon } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import {
+  Box,
+  Typography,
+  IconButton,
+  Button,
+  useTheme,
+} from "@mui/material";
 import Grid from "@mui/material/Grid";
-import { LinkedIn, X, YouTube } from "@mui/icons-material";
+import {
+  Instagram,
+  LinkedIn,
+  Facebook,
+  GitHub,
+} from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import DiscordIcon from "@mui/icons-material/ChatBubbleOutline";
+import footerImage from "../../assets/images/Footer/footerLogo.webp";
 
-import { links, menuItems } from "../../data/footerData";
-import footerImage from "../../assets/footer.png";
-import logo from "../../assets/logo_footer.png";
+const Footer = () => {
+  const navigate = useNavigate();
+  const theme = useTheme();
+  const [showScroll, setShowScroll] = useState(false);
 
-interface FooterLink {
-  name: string;
-  path: string;
-}
+  useEffect(() => {
+    const handleScroll = () => setShowScroll(window.scrollY > 300);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-interface MenuItem {
-  title: string;
-  links: FooterLink[];
-}
+  const quickLinks = [
+    ["Home", "/"],
+    ["About", "/about"],
+    ["Contact", "/contact"],
+    ["Careers", "/careers"],
+    ["Donate", "/donate"],
+    ["Contribute", "/contribute"],
+    ["Newsletter", "/newsletter"],
+    ["Initiatives", "/initiatives"],
+    ["Product", "/products"],
+    ["Research", "/research"],
+  ];
 
-const StyledGrid = styled(Grid)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
-  color: theme.palette.text.secondary,
-  width: "100%",
-  padding: "60px 10px",
-}));
-
-const StyledLink = styled(Link)(({ theme }) => ({
-  color: theme.palette.text.secondary,
-  textDecoration: "none",
-  "&:hover": {
-    color: theme.palette.primary.hover,
-  },
-}));
-
-const StyledIcon = styled("div")(({ theme }) => ({
-  color: theme.palette.text.secondary,
-  margin: "0 6px",
-  cursor: "pointer",
-  "&:hover": {
-    color: theme.palette.primary.hover,
-  },
-}));
-
-const Footer: React.FC = () => {
-  const location = useLocation();
+  const firstHalf = quickLinks.slice(0, Math.ceil(quickLinks.length / 2));
+  const secondHalf = quickLinks.slice(Math.ceil(quickLinks.length / 2));
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <StyledGrid
-        container
+    <>
+      <Box
         sx={{
-          backgroundImage: `url(${footerImage})`,
-          backgroundPosition: { xs: "top", sm: "right" },
-          backgroundSize: { xs: "auto 50%", sm: "50% auto" },
-          backgroundRepeat: "no-repeat",
+          bgcolor: "primary.hero",
+          color: "text.primary",
+          px: { xs: 4, sm: 10, md: 25 },
+          py: { xs: 6, sm: 10 },
         }}
       >
-        {/* Logo and Social Icons */}
-        <Grid
-          sx={{
-            width: { xs: "100%", sm: "25%" },
-            p: { xs: 0, sm: 2.6 },
-            mb: { xs: 2, sm: 0 },
-            display: "flex",
-            flexDirection: "column",
-            alignItems: { xs: "center", sm: "flex-start" },
-          }}
-        >
-          <Link style={{ textDecoration: "none" }} to="/">
-            <img
-              style={{ width: "150px", height: "100px" }}
-              src={logo}
-              alt="Logo"
-            />
-          </Link>
-
-          <Typography
-            sx={{
-              fontSize: { xs: "14px", sm: "10px", md: "14px" },
-              lineHeight: "1.2rem",
-              letterSpacing: "0.2px",
-              mt: 2,
-            }}
-          >
-            Calculating truth with AI.
-          </Typography>
-
+        {/* Top CTA */}
+        <Grid container spacing={4} justifyContent="space-between">
           <Grid
-            sx={{
-              width: "100%",
-              mt: 2,
-              display: "flex",
-              justifyContent: { xs: "center", sm: "flex-start" },
-              gap: 1,
-            }}
-          >
-            <a href={links.linkedin} target="_blank" rel="noopener noreferrer">
-              <StyledIcon as={LinkedIn} />
-            </a>
-            <a href={links.twitter} target="_blank" rel="noopener noreferrer">
-              <StyledIcon as={X} />
-            </a>
-            <a href={links.youtube} target="_blank" rel="noopener noreferrer">
-              <StyledIcon as={YouTube} />
-            </a>
-            <a href={links.discord} target="_blank" rel="noopener noreferrer">
-              <StyledIcon>
-                <SvgIcon>
-                  <path d="M20.32 4.37a19.8 19.8 0 0 0-4.89-1.52.07.07 0 0 0-.08.04c-.2.38-.44.87-.6 1.25a18.27 18.27 0 0 0-5.5 0c-.16-.4-.4-.87-.6-1.25a.08.08 0 0 0-.09-.04 19.74 19.74 0 0 0-4.88 1.52.07.07 0 0 0-.04.03A20.26 20.26 0 0 0 .1 18.06a.08.08 0 0 0 .03.05 19.9 19.9 0 0 0 6 3.03.08.08 0 0 0 .08-.02c.46-.63.87-1.3 1.22-2a.08.08 0 0 0-.04-.1 13.1 13.1 0 0 1-1.87-.9.08.08 0 0 1 0-.12l.36-.3a.07.07 0 0 1 .08 0 14.2 14.2 0 0 0 12.06 0 .07.07 0 0 1 .08 0l.37.3a.08.08 0 0 1 0 .12 12.3 12.3 0 0 1-1.88.9.08.08 0 0 0-.04.1c.36.7.78 1.36 1.23 2a.08.08 0 0 0 .08.02c1.96-.6 3.95-1.52 6-3.03a.08.08 0 0 0 .04-.05c.5-5.18-.84-9.68-3.55-13.66a.06.06 0 0 0-.03-.03zM8.02 15.33c-1.18 0-2.16-1.08-2.16-2.42 0-1.33.96-2.42 2.16-2.42 1.21 0 2.18 1.1 2.16 2.42 0 1.34-.96 2.42-2.16 2.42zm7.97 0c-1.18 0-2.15-1.08-2.15-2.42 0-1.33.95-2.42 2.15-2.42 1.22 0 2.18 1.1 2.16 2.42 0 1.34-.94 2.42-2.16 2.42Z" />
-                </SvgIcon>
-              </StyledIcon>
-            </a>
-          </Grid>
-        </Grid>
-
-        {/* Footer Menu Links */}
-        {menuItems.map((item, index) => (
-          <Grid
-            key={index}
-            sx={{
-              width: { xs: "50%", sm: "23%" },
-              p: 1,
-              mt: { xs: 2, sm: 0 },
-              overflow: "auto",
-              borderLeft: { xs: "0", sm: "1px solid #3A3B3C" },
-              pl: { xs: 0, sm: 3 },
-              textAlign: { xs: "center", sm: "left" },
-            }}
+            item
+            xs={12}
+            md={6}
+            maxWidth={600}
+            component="div"
+            {...({} as any)}
           >
             <Typography
+              fontWeight={600}
+              mb={2}
               sx={{
-                fontWeight: "700",
-                fontFamily: "Dosis,sans-serif",
-                lineHeight: "2.2rem",
-                display: "inline-block",
-                transform: "scaleY(1.1)",
-                letterSpacing: "1px",
-                fontSize: { xs: "26px", sm: "20px", md: "20px" },
+                fontSize: {
+                  xs: "1.75rem",
+                  sm: "2.25rem",
+                  md: "2.75rem",
+                  color: theme.palette.primary.main,
+                },
               }}
             >
-              {item.title}
+              Start Your AI Journey With Our Experts
             </Typography>
-
-            <Divider
+            <Button
+              variant="contained"
+              onClick={() => navigate("/contact")}
               sx={{
-                background: (theme) => theme.palette.primary.focus,
-                width: { xs: "40%", sm: "40px" },
-                height: "2px",
-                borderRadius: 20,
-                mb: 1.4,
-                mx: { xs: "30%", sm: 0 },
+                backgroundColor: "primary.focus",
+                color: "primary.hero",
+                textTransform: "none",
+                fontWeight: "bold",
+                borderRadius: "999px",
+                px: 3,
+                letterSpacing: 1,
+                "&:hover": {
+                  backgroundColor: "primary.hover",
+                  color: "primary.main",
+                },
               }}
-            />
-
-            {item.links.map((link, idx) => (
-              <Box
-                component="div"
-                key={idx}
-                sx={{
-                  fontSize: { xs: "14px", sm: "10px", md: "14px" },
-                  lineHeight: "1.4rem",
-                  letterSpacing: "1px",
-                }}
-                py={0.4}
-              >
-                <StyledLink
-                  to={link.path}
-                  target={link.path?.includes("http") ? "_blank" : undefined}
-                  rel={
-                    link.path?.includes("http")
-                      ? "noopener noreferrer"
-                      : undefined
-                  }
-                >
-                  {link.name}
-                </StyledLink>
-              </Box>
-            ))}
+            >
+              Get in Touch
+            </Button>
           </Grid>
-        ))}
-      </StyledGrid>
 
-      {/* Bottom Copyright & Links */}
-      <Grid
-        container
-        px={2}
-        py={1}
-        sx={{ background: "black", color: "white", gap: 2 }}
-      >
-        <Grid
-          sx={{
-            width: { xs: "100%", md: "48%" },
-            textAlign: { xs: "center", md: "left" },
-          }}
-        >
-          <small>Copyright 2025 Spiritual Data. All Rights Reserved.</small>
+          {/* REPLACED TextField with iframe inside styled Box */}
+          <Grid
+            item
+            xs={12}
+            md={6}
+            textAlign={{ xs: "left", md: "right" }}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "flex-end",
+              flexGrow: 1,
+              ml: { xs: 0, md: 20 },
+            }}
+            component="div"
+            {...({} as any)}
+          >
+            <Box
+              sx={{
+                bgcolor: "transparent",
+                borderRadius: "999px",
+                maxWidth: 400,
+                p: 0,
+                width: "100%",
+                alignSelf: { md: "flex-end" },
+                overflow: "hidden",
+                border: `1px solid ${theme.palette.text.primary}`,
+                "&:hover": {
+                  borderColor: "primary.focus",
+                },
+              }}
+            >
+              <iframe
+                title="Newsletter"
+                src="https://embeds.beehiiv.com/51f0c52b-4966-4cde-8f8d-e761d1b07095?slim=true"
+                data-test-id="beehiiv-embed"
+                height="52"
+                width="100%"
+                style={{
+                  border: "none",
+                  display: "block",
+                  overflow: "hidden",
+                }}
+              ></iframe>
+            </Box>
+          </Grid>
         </Grid>
 
-        <Grid
+        {/* Footer Main Section */}
+        <Box
           sx={{
-            width: { xs: "100%", md: "50%" },
-            display: "flex",
-            justifyContent: { xs: "center", md: "flex-end" },
+            borderTop: `0.5px solid ${theme.palette.primary.dark}`,
+            mt: 6,
+            pt: 6,
           }}
         >
-          {location.pathname !== "/privacy" && (
-            <Link
-              style={{ textDecoration: "none", color: "white" }}
-              to="/privacy"
-            >
+          <Grid container justifyContent="space-between">
+            {/* Logo */}
+            <Grid item xs={12} sm={6} md={3} component="div" {...({} as any)}>
+              <Box display="flex" alignItems="center" mb={1}>
+                <img
+                  src={footerImage}
+                  alt="Thinkio Logo"
+                  style={{ height: 80, marginRight: 8 }}
+                />
+              </Box>
+            </Grid>
+
+            {/* Follow Us */}
+            <Grid item xs={12} sm={6} md={3} component="div" {...({} as any)}>
               <Typography
+                fontWeight={600}
+                mb={2}
                 sx={{
-                  fontSize: "13px",
-                  cursor: "pointer",
-                  "&:hover": { color: (theme) => theme.palette.primary.hover },
+                  fontSize: {
+                    xs: 20,
+                    sm: 22,
+                    md: 25,
+                    color: theme.palette.primary.main,
+                  },
                 }}
               >
-                Privacy Policy
+                Follow Us
               </Typography>
-            </Link>
-          )}
-
-          {location.pathname !== "/privacy" &&
-            location.pathname !== "/cookies" && (
-              <Typography sx={{ fontSize: "13px" }}>&nbsp;-&nbsp;</Typography>
-            )}
-
-          {location.pathname !== "/cookies" && (
-            <Link
-              style={{ textDecoration: "none", color: "white" }}
-              to="/cookies"
-            >
-              <Typography
-                sx={{
-                  fontSize: "13px",
-                  cursor: "pointer",
-                  "&:hover": { color: (theme) => theme.palette.primary.hover },
-                }}
-              >
-                Cookie Policy
-              </Typography>
-            </Link>
-          )}
-
-          {location.pathname !== "/terms" && (
-            <>
-              <Typography sx={{ fontSize: "13px" }}>-</Typography>&nbsp;
-              <Link
-                style={{ textDecoration: "none", color: "white" }}
-                to="/terms"
-              >
-                <Typography
-                  sx={{
-                    fontSize: "13px",
-                    cursor: "pointer",
-                    "&:hover": {
-                      color: (theme) => theme.palette.primary.hover,
-                    },
-                  }}
+              {[
+                { label: "Discord", icon: <DiscordIcon />, url: "#" },
+                { label: "Instagram", icon: <Instagram />, url: "#" },
+                { label: "LinkedIn", icon: <LinkedIn />, url: "#" },
+                { label: "GitHub", icon: <GitHub />, url: "#" },
+                { label: "Facebook", icon: <Facebook />, url: "#" },
+              ].map(({ label, icon, url }) => (
+                <Box
+                  key={label}
+                  display="flex"
+                  alignItems="center"
+                  sx={{ cursor: "pointer" }}
+                  onClick={() => window.open(url, "_blank")}
                 >
-                  Terms and Conditions
-                </Typography>
-              </Link>
-            </>
-          )}
-        </Grid>
-      </Grid>
-    </Box>
+                  <IconButton
+                    sx={{ color: "primary.focus", pl: 0, fontWeight: 300 }}
+                  >
+                    {React.cloneElement(icon, { fontSize: "small" })}
+                  </IconButton>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      color: "primary.main",
+                      "&:hover": { color: "primary.focus" },
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: { xs: 14, sm: 16 },
+                    }}
+                  >
+                    {label}
+                  </Typography>
+                </Box>
+              ))}
+            </Grid>
+
+            {/* Quick Links */}
+            <Grid item xs={12} sm={6} md={3} component="div" {...({} as any)}>
+              <Typography
+                fontWeight={600}
+                mb={2}
+                sx={{
+                  fontSize: {
+                    xs: 20,
+                    sm: 22,
+                    md: 25,
+                    color: theme.palette.primary.main,
+                  },
+                }}
+              >
+                Quick Link
+              </Typography>
+              <Grid container spacing={0}>
+                {[firstHalf, secondHalf].map((columnLinks, index) => (
+                  <Grid
+                    item
+                    xs={6}
+                    key={index}
+                    component="div"
+                    {...({} as any)}
+                  >
+                    {columnLinks.map(([label, path]) => (
+                      <Typography
+                        key={label}
+                        variant="body1"
+                        mb={2}
+                        mr={3}
+                        sx={{
+                          cursor: "pointer",
+                          "&:hover": { color: "primary.focus" },
+                          transition: "color 0.2s",
+                          color: "primary.main",
+                          fontSize: { xs: 14, sm: 16 },
+                        }}
+                        onClick={() => navigate(path)}
+                      >
+                        {label}
+                      </Typography>
+                    ))}
+                  </Grid>
+                ))}
+              </Grid>
+            </Grid>
+
+            {/* Contact Info */}
+            <Grid item xs={12} sm={6} md={3} component="div" {...({} as any)}>
+              <Typography
+                fontWeight={600}
+                mb={3}
+                sx={{
+                  fontSize: {
+                    xs: 20,
+                    sm: 22,
+                    md: 25,
+                    color: theme.palette.primary.main,
+                  },
+                }}
+              >
+                Contact Us
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: { xs: 14, sm: 16, md: 18 },
+                  color: "primary.main",
+                }}
+                mb={1}
+              >
+                support@spiritualdata.org
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: { xs: 14, sm: 16, md: 18 },
+                  color: "primary.main",
+                }}
+                mb={1}
+              >
+                +1 (234) 567-8910
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: { xs: 14, sm: 16, md: 18 },
+                  color: "primary.main",
+                }}
+                mb={1}
+              >
+                456 SD Lane, Spiritual Square, USA 98765
+              </Typography>
+            </Grid>
+          </Grid>
+        </Box>
+
+        {/* Bottom Footer */}
+        <Box
+          mt={6}
+          display="flex"
+          flexDirection={{ xs: "column", sm: "row" }}
+          justifyContent="space-between"
+          alignItems="center"
+          borderTop={`0.5px solid ${theme.palette.primary.dark}`}
+          pt={3}
+        >
+          <Box>
+            {[
+              ["Privacy Policy", "/privacy"],
+              ["Term of Service", "/terms"],
+              ["Cookie Policy", "/cookies"],
+            ].map(([label, path]) => (
+              <Button
+                key={label}
+                onClick={() => navigate(path)}
+                sx={{
+                  color: "text.secondary",
+                  textTransform: "none",
+                  minWidth: "unset",
+                  mr: 2,
+                  p: 0,
+                  fontSize: { xs: 13, sm: 14 },
+                }}
+              >
+                {label}
+              </Button>
+            ))}
+          </Box>
+          <Typography
+            variant="body1"
+            color="text.secondary"
+            mt={{ xs: 2, sm: 0 }}
+            sx={{ fontSize: { xs: 13, sm: 14 } }}
+          >
+            © Copyright 2025 Spiritual Data. All Rights Reserved.
+          </Typography>
+        </Box>
+      </Box>
+    </>
   );
 };
 

@@ -8,17 +8,25 @@ import DataDiscovery from "../pages/DataDiscovery";
 import Contact from "../pages/Contact";
 import NotFound from "../pages/NotFound";
 import Chat from "../pages/Chat";
-import LogIn from "../pages/Login";
-import Signup from "../pages/Signup";
 import Donations from "../pages/Donations";
 import Policies from "../pages/Policies";
 import OutcomeChat from "../pages/OutcomeChat";
 import RequireAuthentication from "../auth/RequireAuthentication";
-import Products from "../pages/Products";
 import ProductsOutcomeChat from "../pages/ProductsOutcomeChat";
 import ResearchChat from "../pages/ResearchChat";
 import GeneralChat from "../pages/GeneralChat";
 import MentalHealth from "../pages/MentalHealth";
+import Quest from "../pages/Products/Quest";
+import AuthPage from "../pages/AuthPage";
+import Careers from "../pages/Careers";
+import Products from "../pages/Products";
+import ConceptAi from "../pages/Products/ConceptAi";
+import Initiatives from "../pages/Initiatives";
+import EstimatingTruth from "../pages/Initiatives/EstimatingTruth";
+import WikipediaAdvocacy from "../pages/Initiatives/WikipediaAdvocacy";
+import PsychicAbilityCertification from "../pages/Initiatives/PsychicAbilityCertification";
+import Crisis from "../pages/Crisis";
+import Change from "../pages/Change";
 
 interface HotjarConfig {
   id: string;
@@ -43,9 +51,25 @@ const useClerkRoutes = (): ReactElement => {
         <Route path="data-discovery" element={<DataDiscovery />} />
         <Route path="contact" element={<Contact />} />
         <Route path="about" element={<About />} />
+        <Route path="crisis" element={<Crisis />} />
+        <Route path="change" element={<Change />} />
+        <Route path="careers" element={<Careers />} />
+        <Route path="/initiatives" element={<Initiatives />} />
+        <Route
+          path="/initiatives/estimating-truth"
+          element={<EstimatingTruth />}
+        />
+        <Route
+          path="/initiatives/wikipedia-advocacy"
+          element={<WikipediaAdvocacy />}
+        />
+        <Route
+          path="/initiatives/psychic-ability-certification"
+          element={<PsychicAbilityCertification />}
+        />
         <Route path="*" element={<NotFound />} />
-        <Route path="/sign-in/*" element={<LogIn />} />
-        <Route path="/sign-up/*" element={<Signup />} />
+        <Route path="/sign-in/*" element={<AuthPage />} />
+        <Route path="/sign-up/*" element={<AuthPage />} />
         <Route
           path="/cookies"
           element={<Policies fileName="/cookies.html" />}
@@ -71,9 +95,7 @@ const useClerkRoutes = (): ReactElement => {
             </RequireAuthentication>
           }
         />
-        {/* PlaceHolder Pages Routes */}
         <Route path="/products" element={<Products />} />
-        {/* To be replaced later with dynamic routing*/}
         <Route
           path="/products/outcome-chat"
           element={<ProductsOutcomeChat />}
@@ -81,6 +103,8 @@ const useClerkRoutes = (): ReactElement => {
         <Route path="/products/research-chat" element={<ResearchChat />} />
         <Route path="/products/general-chat" element={<GeneralChat />} />
         <Route path="/products/mental-health-chat" element={<MentalHealth />} />
+        <Route path="/products/quest" element={<Quest />} />
+        <Route path="/products/concept-ai" element={<ConceptAi />} />
         {/*  */}
       </Routes>
     </ClerkProvider>

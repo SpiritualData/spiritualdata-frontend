@@ -1,17 +1,19 @@
 import React from "react";
-import image from "../assets/testpng1.png";
+import { Grid } from "@mui/material";
 import PageHeader from "../components/PageHeader";
-import AvailableProducts from "../components/Products/AvailableProducts";
-import WhyChooseSpiritualData from "../components/Products/WhyChooseSpiritualData";
-import { Typography } from "@mui/material";
+import image from "../assets/conciusness.webp";
+import PageDef from "../components/PageDef";
 
 const Products: React.FC = () => {
   return (
-    <>
+    <Grid container>
       <PageHeader image={image} page={"Products"} sx={{ mb: 4 }} />
-      <AvailableProducts />
-      <WhyChooseSpiritualData />
-    </>
+      <PageDef
+        title={"Products"}
+        heading={"Products Page Data Goes Here"}
+        details={""}
+      />
+    </Grid>
   );
 };
 
