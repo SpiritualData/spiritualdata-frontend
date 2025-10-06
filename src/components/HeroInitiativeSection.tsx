@@ -1,11 +1,11 @@
 import React from "react";
 import { Box, Typography, Grid, useTheme } from "@mui/material";
-import initiativeImage1 from "../assets/images/Initiatives/initiatives1.webp";
-import initiativeImage2 from "../assets/images/Initiatives/initiatives2.webp";
-import initiativeImage3 from "../assets/images/Initiatives/initiatives3.webp";
-import initiativeImage4 from "../assets/images/Initiatives/initiatives4.webp";
-import initiativeImage5 from "../assets/images/Initiatives/initiatives5.webp";
-import initiativeImage6 from "../assets/images/Initiatives/initiatives6.webp";
+import initiativeImage1 from "../assets/images/initiatives/initiatives1.webp";
+import initiativeImage2 from "../assets/images/initiatives/initiatives2.webp";
+import initiativeImage3 from "../assets/images/initiatives/initiatives3.webp";
+import initiativeImage4 from "../assets/images/initiatives/initiatives4.webp";
+import initiativeImage5 from "../assets/images/initiatives/initiatives5.webp";
+import initiativeImage6 from "../assets/images/initiatives/initiatives6.webp";
 import InitiativeCard from "./Initiatives/HeroInitiativeCard";
 
 const Initiatives = [

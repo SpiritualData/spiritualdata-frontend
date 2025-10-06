@@ -11,8 +11,8 @@ import React from "react";
 import { useInView } from "../hooks/useInView";
 import ImageSlider from "./ImageSlider";
 import { useNavigate } from "react-router-dom";
-import mainImage from "../assets/images/About/about1.webp";
-import playImage from "../assets/images/About/about2.webp";
+import mainImage from "../assets/images/about/about1.webp";
+import playImage from "../assets/images/about/about2.webp";
 import PlayableImage from "./heroSection/PlayableImage";
 
 const AboutSection: React.FC = () => {

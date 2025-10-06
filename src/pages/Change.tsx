@@ -1,11 +1,11 @@
 import React from "react";
 import { Box, Button, Grid, Slide, Typography } from "@mui/material";
 import PageHeader from "../components/PageHeader";
-import image from "../assets/Images/Change/banner.webp";
+import image from "../assets/images/change/banner.webp";
 import PageDef from "../components/PageDef";
 import theme from "../styles/theme";
 import ChangeCard from "../components/change/ChangeCard";
-import mainImage from "../assets/images/Change/change.webp";
+import mainImage from "../assets/images/change/change.webp";
 import { useInView } from "../hooks/useInView";
 
 const data = [

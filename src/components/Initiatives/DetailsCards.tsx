@@ -1,12 +1,12 @@
 import React from "react";
 import { Box, Container, Typography, Paper, useTheme } from "@mui/material";
 import { styled } from "@mui/system";
-import bgi1 from "../../assets/Images/Initiatives/initiatives1.webp";
-import bgi2 from "../../assets/Images/Initiatives/initiatives2.webp";
-import bgi3 from "../../assets/Images/Initiatives/initiatives3.webp";
-import bgi4 from "../../assets/Images/Initiatives/initiatives4.webp";
-import bgi5 from "../../assets/Images/Initiatives/initiatives5.webp";
-import bgi6 from "../../assets/Images/Initiatives/initiatives6.webp";
+import bgi1 from "../../assets/images/initiatives/initiatives1.webp";
+import bgi2 from "../../assets/images/initiatives/initiatives2.webp";
+import bgi3 from "../../assets/images/initiatives/initiatives3.webp";
+import bgi4 from "../../assets/images/initiatives/initiatives4.webp";
+import bgi5 from "../../assets/images/initiatives/initiatives5.webp";
+import bgi6 from "../../assets/images/initiatives/initiatives6.webp";
 
 interface DetailsCard {
   id: number;

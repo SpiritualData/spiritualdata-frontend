@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Grid } from "@mui/material";
 import PageHeader from "../components/PageHeader";
-import image from "../assets/Images/Initiatives/banner.webp";
+import image from "../assets/images/initiatives/banner.webp";
 import PageDef from "../components/PageDef";
 import InitiativeSection from "../components/HeroInitiativeSection";
 import InitiativesSection from "../components/InitiativesCardSection";

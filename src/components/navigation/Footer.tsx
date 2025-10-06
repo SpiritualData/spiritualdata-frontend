@@ -15,7 +15,7 @@ import {
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import DiscordIcon from "@mui/icons-material/ChatBubbleOutline";
-import footerImage from "../../assets/images/Footer/footerLogo.webp";
+import footerImage from "../../assets/images/footer/footerLogo.webp";
 
 const Footer = () => {
   const navigate = useNavigate();

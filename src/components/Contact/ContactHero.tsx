@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import emailjs from "@emailjs/browser";
 import { Alert, TransitionUp } from "../../components/SnackbarAlert";
-import image from "../../assets/Images/Contact/banner.webp";
+import image from "../../assets/images/contact/banner.webp";
 import theme from "../../styles/theme";
 import { keyframes } from "@emotion/react";
 

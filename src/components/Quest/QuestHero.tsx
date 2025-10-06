@@ -1,5 +1,5 @@
 import { Box, Button, Typography, useTheme } from "@mui/material";
-import image from "../../assets/Images/Products/questSideImage.webp";
+import image from "../../assets/images/products/questSideImage.webp";
 import { fadeInBottom } from "../../styles/animations/FadeInBottom";
 
 type QuestHeroProps = {

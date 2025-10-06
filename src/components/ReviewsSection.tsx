@@ -10,12 +10,12 @@ import {
 } from "@mui/material";
 import { useInView } from "../hooks/useInView";
 import ReviewCard from "./reviewSection/ReviewCard";
-import reviewImage1 from "../assets/images/Reviews/review1.webp";
-import reviewImage2 from "../assets/images/Reviews/review2.webp";
-import reviewImage3 from "../assets/images/Reviews/review3.webp";
-import reviewImage4 from "../assets/images/Reviews/review4.webp";
-import reviewImage5 from "../assets/images/Reviews/review5.webp";
-import reviewImage6 from "../assets/images/Reviews/review6.webp";
+import reviewImage1 from "../assets/images/reviews/review1.webp";
+import reviewImage2 from "../assets/images/reviews/review2.webp";
+import reviewImage3 from "../assets/images/reviews/review3.webp";
+import reviewImage4 from "../assets/images/reviews/review4.webp";
+import reviewImage5 from "../assets/images/reviews/review5.webp";
+import reviewImage6 from "../assets/images/reviews/review6.webp";
 
 interface ReviewCardProps {
   name: string;

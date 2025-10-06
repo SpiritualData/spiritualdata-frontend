@@ -13,9 +13,9 @@ import {
 import { Facebook, Instagram, LinkedIn, Twitter } from "@mui/icons-material";
 import { useInView } from "../hooks/useInView";
 import { useNavigate } from "react-router-dom";
-import contactImage1 from "../assets/images/Contact/contactbg.gif";
-import contactImage2 from "../assets/images/Contact/contact1-al.webp";
-import contactImage3 from "../assets/images/Contact/contact2-al.webp";
+import contactImage1 from "../assets/images/contact/contactbg.gif";
+import contactImage2 from "../assets/images/contact/contact1-al.webp";
+import contactImage3 from "../assets/images/contact/contact2-al.webp";
 
 const socialIcons = [
   { icon: <Facebook />, link: "#" },

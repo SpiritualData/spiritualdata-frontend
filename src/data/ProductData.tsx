@@ -1,9 +1,9 @@
-import image1 from "../assets/Images/About/sliderImage1.webp";
-import image2 from "../assets/Images/About/sliderImage2.webp";
-import image3 from "../assets/Images/About/sliderImage3.webp";
-import image4 from "../assets/Images/About/sliderImage4.webp";
-import image5 from "../assets/Images/Products/questId.webp";
-import image6 from "../assets/Images/Products/conceptAiId.webp";
+import image1 from "../assets/images/about/sliderImage1.webp";
+import image2 from "../assets/images/about/sliderImage2.webp";
+import image3 from "../assets/images/about/sliderImage3.webp";
+import image4 from "../assets/images/about/sliderImage4.webp";
+import image5 from "../assets/images/products/questId.webp";
+import image6 from "../assets/images/products/conceptAiId.webp";
 
 export const experimentalProductData = [
   {

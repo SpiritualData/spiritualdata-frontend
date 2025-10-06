@@ -8,7 +8,7 @@ import {
   useTheme,
 } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import faqImage from "../../assets/Images/Contact/oldcontactRequest.webp";
+import faqImage from "../../assets/images/contact/oldcontactRequest.webp";
 import { useNavigate } from "react-router-dom";
 import { useInView } from "../../hooks/useInView";
 

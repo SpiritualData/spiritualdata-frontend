@@ -1,12 +1,12 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Box, Typography, Button, Fade, Slide } from "@mui/material";
 import { useTheme } from "@mui/material";
-import image1 from "../../assets/Images/Careers/careers1.webp";
-import image2 from "../../assets/Images/Careers/careers2.webp";
-import image3 from "../../assets/Images/Careers/careers3.webp";
-import image4 from "../../assets/Images/Careers/careers4.webp";
-import image5 from "../../assets/Images/Careers/careers5.webp";
-import image6 from "../../assets/Images/Careers/careers6.webp";
+import image1 from "../../assets/images/careers/careers1.webp";
+import image2 from "../../assets/images/careers/careers2.webp";
+import image3 from "../../assets/images/careers/careers3.webp";
+import image4 from "../../assets/images/careers/careers4.webp";
+import image5 from "../../assets/images/careers/careers5.webp";
+import image6 from "../../assets/images/careers/careers6.webp";
 import { useInView } from "../../hooks/useInView";
 
 const HeroWithFloatingImages: React.FC = () => {

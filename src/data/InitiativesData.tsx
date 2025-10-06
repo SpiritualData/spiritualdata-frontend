@@ -1,6 +1,6 @@
-import image1 from "../assets/Images/initiatives/initiativeCard1.webp";
-import image2 from "../assets/Images/initiatives/initiativeCard2.webp";
-import image3 from "../assets/Images/initiatives/initiativeCard3.webp";
+import image1 from "../assets/images/initiatives/initiativeCard1.webp";
+import image2 from "../assets/images/initiatives/initiativeCard2.webp";
+import image3 from "../assets/images/initiatives/initiativeCard3.webp";
 
 export const initiativeCardData = [
   {

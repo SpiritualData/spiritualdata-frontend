@@ -14,7 +14,7 @@ import PublicIcon from "@mui/icons-material/Public";
 import PsychologyIcon from "@mui/icons-material/Psychology";
 import StorageIcon from "@mui/icons-material/Storage";
 import FloatingLabel from "./heroSection/FloatingLabel";
-import heroImage from "../assets/Images/hero/heroImage.webp";
+import heroImage from "../assets/images/hero/heroImage.webp";
 import { useNavigate } from "react-router-dom";
 import { floatersData } from "../data/homeData";
 

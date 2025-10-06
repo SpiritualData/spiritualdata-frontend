@@ -1,7 +1,7 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { useInView } from "../hooks/useInView";
-import whyChooseUsImage from "../assets/images/WhyChooseUs/whyChooseUs.webp";
+import whyChooseUsImage from "../assets/images/whychooseus/whyChooseUs.webp";
 
 const reasons = [
   {

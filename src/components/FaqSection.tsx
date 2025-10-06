@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import EmailIcon from "@mui/icons-material/Email";
 import { useInView } from "../hooks/useInView";
-import faqImage from "../assets/images/Faq/faq.webp";
+import faqImage from "../assets/images/faq/faq.webp";
 
 const faqs = [
   {

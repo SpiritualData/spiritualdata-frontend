@@ -1,7 +1,7 @@
-import bannerImage from "../assets/Images/Initiatives/pacheader.webp";
-import scrollimage1 from "../assets/Images/Products/app1.webp";
-import scrollimage2 from "../assets/Images/Products/app2.webp";
-import scrollimage3 from "../assets/Images/Products/app3.webp";
+import bannerImage from "../assets/images/initiatives/pacheader.webp";
+import scrollimage1 from "../assets/images/products/app1.webp";
+import scrollimage2 from "../assets/images/products/app2.webp";
+import scrollimage3 from "../assets/images/products/app3.webp";
 
 export const headerData = {
   image: bannerImage,

@@ -1,10 +1,10 @@
 import React from "react";
 import PageHeader from "../components/PageHeader";
-import banner from "../assets/images/About/banner.webp";
+import banner from "../assets/images/about/banner.webp";
 import AboutHero from "../components/About/AboutHero";
 import WhyWeStarted from "../components/About/WhyWeStarted";
 import GuidingPrinciples from "../components/About/GuidingPrinciples";
-import gpbg from "../assets/Images/About/gpbg.webp";
+import gpbg from "../assets/images/about/gpbg.webp";
 import SocialImpact from "../components/About/SocialImpact";
 import BoardMembers from "../components/About/BoardMembers";
 

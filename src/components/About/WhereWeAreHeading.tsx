@@ -3,8 +3,8 @@ import { East } from "@mui/icons-material";
 import { Box, Button, Grid, Slide, Typography, useTheme } from "@mui/material";
 import React from "react";
 import { alpha } from "@mui/material/styles";
-import bgimg from "../../assets/Images/About/bg.gif";
-import sideImg from "../../assets/Images/About/image3456.webp";
+import bgimg from "../../assets/images/about/bg.gif";
+import sideImg from "../../assets/images/about/image3456.webp";
 
 const WhereWeAreHeading: React.FC = () => {
   const { ref: sectionRef, inView: sectionInView } = useInView({

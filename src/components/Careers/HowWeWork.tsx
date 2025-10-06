@@ -11,7 +11,7 @@ import {
   Slide,
 } from "@mui/material";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import image from "../../assets/Images/Careers/careers7.webp";
+import image from "../../assets/images/careers/careers7.webp";
 import theme from "@/styles/theme";
 import { useInView } from "@/hooks/useInView";
 

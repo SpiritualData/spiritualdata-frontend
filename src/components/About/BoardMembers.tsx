@@ -2,11 +2,11 @@ import { useInView } from "@/hooks/useInView";
 import { Box, Slide, Typography, useTheme } from "@mui/material";
 import React from "react";
 import ContentSection from "../Home/ContentSection";
-import bm1 from "../../assets/Images/About/bm1.webp";
-import bm2 from "../../assets/Images/About/bm2.webp";
-import bm3 from "../../assets/Images/About/bm3.webp";
-import bm4 from "../../assets/Images/About/bm4.webp";
-import bm5 from "../../assets/Images/About/bm5.webp";
+import bm1 from "../../assets/images/about/bm1.webp";
+import bm2 from "../../assets/images/about/bm2.webp";
+import bm3 from "../../assets/images/about/bm3.webp";
+import bm4 from "../../assets/images/about/bm4.webp";
+import bm5 from "../../assets/images/about/bm5.webp";
 
 const BoardMembers: React.FC = () => {
   const { ref: sectionRef, inView: sectionInView } = useInView({

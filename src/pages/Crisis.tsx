@@ -1,9 +1,9 @@
 import React from "react";
 import { Button, Grid, Typography } from "@mui/material";
-import initiativeImage1 from "../assets/images/Initiatives/initiatives1.webp";
-import initiativeImage2 from "../assets/images/Initiatives/initiatives2.webp";
-import initiativeImage3 from "../assets/images/Initiatives/initiatives3.webp";
-import image from "../assets/Images/Crisis/banner.webp";
+import initiativeImage1 from "../assets/images/initiatives/initiatives1.webp";
+import initiativeImage2 from "../assets/images/initiatives/initiatives2.webp";
+import initiativeImage3 from "../assets/images/initiatives/initiatives3.webp";
+import image from "../assets/images/crisis/banner.webp";
 import PageHeader from "../components/PageHeader";
 import PageDef from "../components/PageDef";
 import InitiativeCard from "../components/Initiatives/HeroInitiativeCard";
