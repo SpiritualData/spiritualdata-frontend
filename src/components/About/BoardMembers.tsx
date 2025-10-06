@@ -65,7 +65,7 @@ const BoardMembers: React.FC = () => {
     },
     {
       heading: "Yugen Korat",
-      subText: "Dr. Yugen Korat serves as Director of Science at Spiritual Data and CTO at MarvinLabs, bringing expertise at the intersection of linguistics and technology. He holds a PhD in Linguistics with specialized research in semantics, applying rigorous linguistic analysis to understand meaning and communication. At Spiritual Data, Yugen leads scientific methodology and research design, ensuring that spiritual and consciousness studies are approached with academic rigor. His unique combination of linguistic theory and technical leadership enables innovative approaches to analyzing and structuring spiritual data, bridging the gap between human meaning-making and computational analysis.",
+      subText: "Dr. Yugen Korat is CTO at MarvinLabs, bringing expertise at the intersection of linguistics and technology. He holds a PhD in Linguistics with specialized research in semantics, applying rigorous linguistic analysis to understand meaning and communication. His work has focused on scientific methodology and research design, ensuring that spiritual and consciousness studies are approached with academic rigor. His unique combination of linguistic theory and technical leadership enables innovative approaches to analyzing and structuring spiritual data, bridging the gap between human meaning-making and computational analysis.",
       buttonText: "Get In Touch →",
       imageSrc: yugen,
     },
