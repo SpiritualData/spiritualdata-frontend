@@ -29,13 +29,6 @@ const BoardMembers: React.FC = () => {
       imageSrc: bm1,
     },
     {
-      heading: "Patrizio Tressoldi",
-      subText:
-        "Patrizio Tressoldi is an Italian psychologist and consciousness researcher leading the Science of Consciousness Research Group and affiliated with the Studium Patavinum of University of Padova, Italy. He has a long-term interest in psi phenomena, and began experimentation in the early 2000s, starting exploring the presentiment response and making notable progress in developing new methodologies. More recently he has designed novel experiments to investigate psychokinetic influences. He has also contributed several meta-analyses of the evidence for various forms of psi.",
-      buttonText: "Get In Touch →",
-      imageSrc: bm2,
-    },
-    {
       heading: "Jason Bramble",
       subText:
         "Jason is the CEO & Co-founder of a Revcarto, a revenue operations and enablement agency. Jason is a true visionary and entrepreneur from the inner city of Philadelphia. Jason has been apart of growing (and starting) startups across multiple industries including SAAS, marketing, real estate, web3, entertainment, non-profits, etc. Most recently, Jason created an apprenticeship program with his education non-profit We Love Philly.",
@@ -45,7 +38,7 @@ const BoardMembers: React.FC = () => {
     {
       heading: "Petra Frese",
       subText:
-        "Dr. Petra Frese, a scientist and engineer turned spiritual healer, is an expert in brain health science and peak mental performance. After her multiple Near-Death Experiences, which dramatically widened her horizon and views on life, she integrated her spiritual insights into her science-based coaching practice. Petra is the founder of Peak Mind Academy, serving clients around the globe. She is the award-winning author of two bestselling books and earned the Excellence in Hypnosis Award. Petra holds two PhDs in Psychology. Her motto: “Science plus Wisdom is LOVE.”",
+        "Dr. Petra Frese, a scientist and engineer turned spiritual healer, is an expert in brain health science and peak mental performance. After her multiple Near-Death Experiences, which dramatically widened her horizon and views on life, she integrated her spiritual insights into her science-based coaching practice. Petra is the founder of Peak Mind Academy, serving clients around the globe. She is the award-winning author of two bestselling books and earned the Excellence in Hypnosis Award. Petra holds two PhDs in Psychology. Her motto: "Science plus Wisdom is LOVE."",
       buttonText: "Reach Out",
       imageSrc: bm4,
     },
@@ -55,6 +48,17 @@ const BoardMembers: React.FC = () => {
         "Sanjay Rout seamlessly navigates the worlds of psychiatry, technology, journalism, law, coaching, authorship, innovation, and research, bringing together disparate disciplines for the common goal of finding solutions to pressing global issues. Sanjay is a visionary leader with a passion for advancing humanity through his groundbreaking work as CEO of Innovation Solution Lab. He holds a PhD in Human Resource Management and demonstrates his continuing passion for education through a wide variety of online degress.",
       buttonText: "Say Hello",
       imageSrc: bm5,
+    },
+  ];
+
+  // Array of scientific council member data
+  const scientificCouncil = [
+    {
+      heading: "Patrizio Tressoldi",
+      subText:
+        "Patrizio Tressoldi is an Italian psychologist and consciousness researcher leading the Science of Consciousness Research Group and affiliated with the Studium Patavinum of University of Padova, Italy. He has a long-term interest in psi phenomena, and began experimentation in the early 2000s, starting exploring the presentiment response and making notable progress in developing new methodologies. More recently he has designed novel experiments to investigate psychokinetic influences. He has also contributed several meta-analyses of the evidence for various forms of psi.",
+      buttonText: "Get In Touch →",
+      imageSrc: bm2,
     },
   ];
 
@@ -94,6 +98,49 @@ const BoardMembers: React.FC = () => {
           direction="up"
           in={sectionInView}
           timeout={600 + index * 200}
+        >
+          <div>
+            <Box borderBottom={1} borderColor="divider" sx={{ pb: 5 }}>
+              <ContentSection
+                heading={member.heading}
+                subText={member.subText}
+                buttonText={member.buttonText}
+                boardMember={true}
+                imageSrc={index % 2 === 0 ? member.imageSrc : undefined}
+                imageSrc2={index % 2 === 1 ? member.imageSrc : undefined}
+              />
+            </Box>
+          </div>
+        </Slide>
+      ))}
+
+      {/* Scientific Council Title */}
+      <Slide direction="up" in={sectionInView} timeout={800}>
+        <Typography
+          variant="h2"
+          fontWeight={600}
+          sx={{
+            color: isDark ? contrastText : theme.palette.primary.hero,
+            textShadow: `0 0 10px ${theme.palette.primary.focus}`,
+            letterSpacing: 2,
+            textAlign: "center",
+            fontSize: { xs: "26px", md: "50px" },
+            mt: 10,
+            mb: 8,
+            fontFamily: "Sansation, sans-serif",
+          }}
+        >
+          Scientific Council
+        </Typography>
+      </Slide>
+
+      {/* Scientific Council List */}
+      {scientificCouncil.map((member, index) => (
+        <Slide
+          key={index}
+          direction="up"
+          in={sectionInView}
+          timeout={1000 + index * 200}
         >
           <div>
             <Box borderBottom={1} borderColor="divider" sx={{ pb: 5 }}>
