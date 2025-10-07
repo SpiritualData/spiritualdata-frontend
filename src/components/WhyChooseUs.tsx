@@ -168,7 +168,7 @@ const WhyChooseUs = () => {
             <Typography
               variant="subtitle1"
               sx={{
-                color: theme.palette.primary.dark,
+                color: theme.palette.text.secondary,
                 lineHeight: 1.6,
                 fontSize: { xs: 14, md: 16 },
               }}

@@ -18,21 +18,18 @@ const ctaSections = [
       "Support our mission and help us grow. To contribute, please visit our Donate page.",
     button: "Donate",
     path: "/donate",
-    type: "navigate",
   },
   {
     title:
       "Interested in joining our mission-driven team? Explore open roles and apply on our Careers page.",
     button: "Careers",
     path: "/careers",
-    type: "navigate",
   },
   {
     title:
-      "Have ideas for collaboration or partnership? Reach out via email at support@spiritualdata.org",
-    button: "Copy Email",
-    path: "support@spiritualdata.org",
-    type: "copy",
+      "Have ideas for collaboration or partnership? Reach out using our contact form.",
+    button: "Contact Form",
+    path: "#contact-form",
   },
 ];
 
@@ -41,19 +38,15 @@ const ContactRequest = () => {
   const navigate = useNavigate();
   const { ref: cardRef, inView: cardInView } = useInView();
   const { ref: imageRef, inView: imageInView } = useInView();
-  const [copiedEmail, setCopiedEmail] = React.useState(false);
 
-  const handleButtonClick = async (section: typeof ctaSections[0]) => {
-    if (section.type === "copy") {
-      try {
-        await navigator.clipboard.writeText(section.path);
-        setCopiedEmail(true);
-        setTimeout(() => setCopiedEmail(false), 2000);
-      } catch (err) {
-        console.error("Failed to copy email:", err);
+  const handleButtonClick = (path: string) => {
+    if (path.startsWith('#')) {
+      const element = document.querySelector(path);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
       }
     } else {
-      navigate(section.path);
+      navigate(path);
     }
   };
 
@@ -195,7 +188,7 @@ const ContactRequest = () => {
                         }}
                       >
                         <Button
-                          onClick={() => handleButtonClick(section)}
+                          onClick={() => handleButtonClick(section.path)}
                           sx={{
                             backgroundColor: theme.palette.primary.focus,
                             color: theme.palette.primary.hero,
@@ -217,7 +210,7 @@ const ContactRequest = () => {
                             },
                           }}
                         >
-                          {section.type === "copy" && copiedEmail ? "Copied!" : section.button}
+                          {section.button}
                         </Button>
                       </Box>
                     </Box>

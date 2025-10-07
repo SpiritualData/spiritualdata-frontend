@@ -3,7 +3,7 @@ import React from "react";
 import HeroSection from "../components/HeroSection";
 import AboutSection from "../components/AboutSection";
 import AchievementsSection from "../components/AchievementsSection";
-import WhyChooseUs from "../components/WhyShooseUs";
+import WhyChooseUs from "../components/WhyChooseUs";
 import InitiativeSection from "../components/HeroInitiativeSection";
 import ContactSection from "../components/ContactSection";
 import ReviewsSection from "../components/ReviewsSection";

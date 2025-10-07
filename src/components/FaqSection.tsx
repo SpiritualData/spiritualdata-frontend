@@ -50,11 +50,18 @@ const faqs = [
 const FaqSection = () => {
   const theme = useTheme();
   const [expanded, setExpanded] = useState<number | false>(false);
+  const [copied, setCopied] = useState(false);
 
   const handleChange =
     (panel: number) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
       setExpanded(isExpanded ? panel : false);
     };
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText("support@spiritualdata.org");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const CustomExpandIcon = ({ isOpen }: { isOpen: boolean }) => (
     <Typography
@@ -102,8 +109,7 @@ const FaqSection = () => {
               }}
             />
             <Box
-              component={"a"}
-              href="mailto:support@spiritualdata.org"
+              onClick={handleCopyEmail}
               sx={{
                 position: "absolute",
                 bottom: 20,
@@ -116,7 +122,17 @@ const FaqSection = () => {
                 px: 3,
                 py: 2,
                 boxShadow: theme.shadows[3],
-                textDecoration: "none",
+                cursor: "pointer",
+                transition: "all 0.3s ease",
+                "&:hover": {
+                  backgroundColor: theme.palette.primary.focus,
+                  "& .MuiAvatar-root": {
+                    bgcolor: theme.palette.common.white,
+                  },
+                  "& .MuiTypography-root": {
+                    color: theme.palette.common.white,
+                  },
+                },
               }}
             >
               <Avatar
@@ -136,7 +152,7 @@ const FaqSection = () => {
                   color: theme.palette.text.primary,
                 }}
               >
-                support@spiritualdata.org
+                {copied ? "Copied!" : "support@spiritualdata.org"}
               </Typography>
             </Box>
           </Box>
