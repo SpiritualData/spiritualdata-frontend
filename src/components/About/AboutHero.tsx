@@ -94,7 +94,8 @@ const AboutHero: React.FC = () => {
                     fontFamily: theme.typography.fontFamily,
                   }}
                 >
-                  We Exist to Restore What's Been Hidden From You
+                  Restoring Clarity
+                  <br /> Building Tools for Truth
                 </Typography>
               </Box>
 
