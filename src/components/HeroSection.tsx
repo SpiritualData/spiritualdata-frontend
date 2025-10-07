@@ -52,12 +52,15 @@ const HeroSection: React.FC = () => {
                   fontWeight: 600,
                   fontSize: { xs: "2rem", sm: "3rem", md: "5rem" },
                   color: theme.palette.primary.hover,
-                  lineHeight: 1,
+                  lineHeight: 1.2,
                   mt: 16,
                 }}
               >
-                Liberating Truth. Empowering Spiritual and Intellectual
-                Autonomy. <br /> Restoring Mental Health.
+                Liberating Truth.
+                <br />
+                Empowering Spiritual and Intellectual Autonomy.
+                <br />
+                Restoring Mental Health.
               </Typography>
             </Slide>
           </Fade>
