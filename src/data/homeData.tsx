@@ -19,7 +19,7 @@ export const floatersData: floatersData[] = [
   {
     text: "Truth Estimation AI",
     icon: <PublicIcon fontSize="inherit" />,
-    link: "/change",
+    link: "/initiatives/estimating-truth",
   },
   {
     text: "Change We Are Bringing",

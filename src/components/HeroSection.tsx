@@ -95,6 +95,7 @@ const HeroSection: React.FC = () => {
               >
                 <Button
                   variant="contained"
+                  onClick={() => window.open("https://discord.com/invite/thQNvPGcJF", "_blank")}
                   sx={{
                     backgroundColor: theme.palette.primary.focus,
                     color: theme.palette.primary.hover,
@@ -110,10 +111,31 @@ const HeroSection: React.FC = () => {
                     },
                   }}
                 >
-                  Join our Community
+                  Discord
+                </Button>
+                <Button
+                  variant="contained"
+                  onClick={() => window.open("https://spiritualdata.beehiiv.com/", "_blank")}
+                  sx={{
+                    backgroundColor: theme.palette.primary.focus,
+                    color: theme.palette.primary.hover,
+                    px: 4.5,
+                    py: 1,
+                    fontWeight: 600,
+                    fontSize: "0.875rem",
+                    borderRadius: "999px",
+                    boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                    "&:hover": {
+                      backgroundColor: theme.palette.primary.hero,
+                      color: theme.palette.primary.focus,
+                    },
+                  }}
+                >
+                  Newsletter
                 </Button>
                 <Button
                   variant="outlined"
+                  onClick={() => navigate("/about")}
                   sx={{
                     borderColor: theme.palette.primary.hover,
                     color: theme.palette.primary.hover,

@@ -183,7 +183,8 @@ const Footer = () => {
                 Follow Us
               </Typography>
               {[
-                { label: "Discord", icon: <DiscordIcon />, url: "#" },
+                { label: "Discord", icon: <DiscordIcon />, url: "https://discord.com/invite/thQNvPGcJF" },
+                { label: "Newsletter", icon: <Instagram />, url: "https://spiritualdata.beehiiv.com/" },
                 { label: "Instagram", icon: <Instagram />, url: "#" },
                 { label: "LinkedIn", icon: <LinkedIn />, url: "#" },
                 { label: "GitHub", icon: <GitHub />, url: "#" },
@@ -288,24 +289,6 @@ const Footer = () => {
                 mb={1}
               >
                 support@spiritualdata.org
-              </Typography>
-              <Typography
-                sx={{
-                  fontSize: { xs: 14, sm: 16, md: 18 },
-                  color: "primary.main",
-                }}
-                mb={1}
-              >
-                +1 (234) 567-8910
-              </Typography>
-              <Typography
-                sx={{
-                  fontSize: { xs: 14, sm: 16, md: 18 },
-                  color: "primary.main",
-                }}
-                mb={1}
-              >
-                456 SD Lane, Spiritual Square, USA 98765
               </Typography>
             </Grid>
           </Grid>
