@@ -70,8 +70,7 @@ const AboutSection: React.FC = () => {
               flex: 1,
             }}
           >
-            The Most Important Truths Were Hidden. At Spiritual Data, We Let AI
-            and Evidence Work Together to Help You See Clearly.
+            We Exist to Restore What's Been Hidden From You
           </Typography>
 
           <Button
@@ -129,12 +128,12 @@ const AboutSection: React.FC = () => {
                     founder, despite higher education. Most people don't realize
                     that parapsychology researchers have already uncovered
                     evidence that could radically reshape the world's spiritual
-                    beliefs, but if understood.
+                    beliefs, if understood.
                     <br />
                     <br />
                     In 2014, scientists openly called for moving past the limits
-                    of the materialist paradigm, which leaves spirituality out
-                    of science and punishes dissent. But at Spiritual Data, we
+                    of the materialist paradigm, because of scientific authorities leaving spirituality out
+                    of science and punishing dissent. But at Spiritual Data, we
                     don't claim to have the answers, but we let the evidence
                     speak. Our AI algorithm is built to be unbiased,
                     data-driven, and open. So you can explore what's most likely
