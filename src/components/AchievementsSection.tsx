@@ -97,10 +97,10 @@ const AchievementsSection = () => {
 
   const data = [
     {
-      title: "Hypotheses",
+      title: "Hypotheses Processed",
       description:
         "We calculate probability scores for spiritual hypotheses using AI and diverse evidence models.",
-      value: 100,
+      value: "Coming soon",
     },
     {
       title: "Experiences Logged",
@@ -178,7 +178,8 @@ const AchievementsSection = () => {
         {...({} as any)}
       >
         {data.map((item, index) => {
-          const count = useCountUp(item.value, inView);
+          const isNumber = typeof item.value === 'number';
+          const count = isNumber ? useCountUp(item.value, inView) : item.value;
           const col = index % 4;
           const row = Math.floor(index / 4);
           const bgX = `-${col * 250}px`;
@@ -216,7 +217,7 @@ const AchievementsSection = () => {
                       }}
                     >
                       {count}
-                      {item.suffix ?? "+"}
+                      {isNumber && (item.suffix ?? "+")}
                     </Typography>
                   </CardContainer>
                 </Fade>
