@@ -132,12 +132,11 @@ const AboutSection: React.FC = () => {
                     <br />
                     <br />
                     In 2014, scientists openly called for moving past the limits
-                    of the materialist paradigm, because of scientific authorities leaving spirituality out
-                    of science and punishing dissent. But at Spiritual Data, we
-                    don't claim to have the answers, but we let the evidence
+                    of the materialist paradigm, because of scientific authorities ignoring spiritual and paranormal experiences and punishing dissent. At Spiritual Data, we
+                    don't choose the answers, but we let the evidence
                     speak. Our AI algorithm is built to be unbiased,
                     data-driven, and open. So you can explore what's most likely
-                    true.
+                    true according to the algorithm, and argue if you disagree.
                   </Typography>
                 </Fade>
               )}
@@ -218,9 +217,9 @@ const AboutSection: React.FC = () => {
                               },
                             }}
                           >
-                            Join the Movement
+                            Explore the data
                             <br />
-                            With Spiritual Data
+                            with our AI chat
                           </Typography>
 
                           <Button
@@ -290,7 +289,8 @@ const AboutSection: React.FC = () => {
         </Grid>
       </Box>
 
-      <ImageSlider />
+      {/* Temporarily hidden - keeping for later use */}
+      {/* <ImageSlider /> */}
     </>
   );
 };
