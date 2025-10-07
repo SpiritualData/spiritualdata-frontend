@@ -147,34 +147,58 @@ const ContactSection = ({
                 insights.
               </Typography>
 
-              <Button
-                onClick={() =>
-                  isContactPage && onClickFunc
-                    ? onClickFunc()
-                    : Navigate("/contact")
-                }
-                variant="contained"
-                sx={{
-                  backgroundColor: theme.palette.primary.focus,
-                  color: "#1F2540",
-                  px: 3,
-                  py: 1,
-                  fontWeight: 600,
-                  borderRadius: 8,
-                  textTransform: "none",
-                  fontSize: "0.9rem",
-                  whiteSpace: "nowrap",
-                  letterSpacing: "0.09rem",
-                  mb: { xs: 3, md: 4 },
-                  transition: "all 0.4s ease-in-out",
-                  "&:hover": {
-                    backgroundColor: theme.palette.primary.hover,
-                    color: "#fff",
-                  },
-                }}
-              >
-                CONTACT US
-              </Button>
+              <Box display="flex" gap={2} justifyContent="center" mb={{ xs: 3, md: 4 }}>
+                <Button
+                  onClick={() =>
+                    isContactPage && onClickFunc
+                      ? onClickFunc()
+                      : Navigate("/contact")
+                  }
+                  variant="contained"
+                  sx={{
+                    backgroundColor: theme.palette.primary.focus,
+                    color: "#1F2540",
+                    px: 3,
+                    py: 1,
+                    fontWeight: 600,
+                    borderRadius: 8,
+                    textTransform: "none",
+                    fontSize: "0.9rem",
+                    whiteSpace: "nowrap",
+                    letterSpacing: "0.09rem",
+                    transition: "all 0.4s ease-in-out",
+                    "&:hover": {
+                      backgroundColor: theme.palette.primary.hover,
+                      color: "#fff",
+                    },
+                  }}
+                >
+                  CONTACT US
+                </Button>
+                <Button
+                  onClick={() => Navigate("/donate")}
+                  variant="contained"
+                  sx={{
+                    backgroundColor: theme.palette.primary.focus,
+                    color: "#1F2540",
+                    px: 3,
+                    py: 1,
+                    fontWeight: 600,
+                    borderRadius: 8,
+                    textTransform: "none",
+                    fontSize: "0.9rem",
+                    whiteSpace: "nowrap",
+                    letterSpacing: "0.09rem",
+                    transition: "all 0.4s ease-in-out",
+                    "&:hover": {
+                      backgroundColor: theme.palette.primary.hover,
+                      color: "#fff",
+                    },
+                  }}
+                >
+                  DONATE
+                </Button>
+              </Box>
 
               {/* Social Icons */}
               <Box
