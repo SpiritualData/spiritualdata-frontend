@@ -35,7 +35,7 @@ export const scrollCardsData = [
     desc: "Spiritual Data's AI Platform team is responsible for implementing this framework. Their mission: Develop a foundation for AI systems to uphold scientific rigor through automating diverse perspectives, statistically comparing alternative explanations, and justifying all assumptions.",
     btn: "Contribute to the Mission",
     img: scrollimage3,
-    link: "/donations",
+    link: "/donate",
   },
 ];
 

@@ -17,7 +17,7 @@ const ctaSections = [
     title:
       "Support our mission and help us grow. To contribute, please visit our Donate page.",
     button: "Donate",
-    path: "/donations",
+    path: "/donate",
   },
   {
     title:

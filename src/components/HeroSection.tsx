@@ -259,10 +259,10 @@ const HeroSection: React.FC = () => {
               link="/change"
             />
             <FloatingLabel
-              text="Spiritual Crisis Support"
+              text="Quest Product"
               icon={<StorageIcon fontSize="inherit" />}
               sx={{ bottom: "33%", right: { lg: "12.5%", md: "-5%" } }}
-              link="/crisis"
+              link="/products/quest"
             />
             <Box
               component="img"

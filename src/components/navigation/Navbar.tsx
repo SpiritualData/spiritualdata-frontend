@@ -137,7 +137,7 @@ const Navbar = () => {
 
   const staticLinks = [
     { label: "Research", path: "/data-discovery", icon: researchIcon },
-    { label: "Donate", path: "/donations", icon: donateIcon },
+    { label: "Donate", path: "/donate", icon: donateIcon },
     { label: "About", path: "/about", icon: aboutIcon },
     { label: "Contact", path: "/contact", icon: contactIcon },
   ];

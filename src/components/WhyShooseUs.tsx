@@ -7,22 +7,22 @@ const reasons = [
   {
     title: "Unbiased Truth Estimation",
     description:
-      "Our AI evaluates claims based on weighted evidence—not belief, authority, or popularity—giving you clarity without dogma.",
+      "Our AI evaluates claims based on weighted evidence—not belief, authority, or popularity—giving you clarity without dogma. We tackle bias by automating diverse expert perspectives on every data point.",
   },
   {
     title: "Data from All Perspectives",
     description:
-      "We aggregate human experiences, scientific studies, and overlooked data sources to ensure no valuable insight is left behind.",
+      "We aggregate human experiences, scientific studies, and overlooked data sources to ensure no valuable insight is left behind, while critically evaluating reliability.",
   },
   {
     title: "Transparency at Every Step",
     description:
-      "All data, logic, and AI models are shared openly so you can see exactly how conclusions are reached—and decide for yourself.",
+      "The algorithms and data used to reach conclusions are shared openly so you can review—and decide for yourself.",
   },
   {
     title: "Mission-Driven, Not Institution-Funded",
     description:
-      "We,re a nonprofit powered by people—not corporations—committed to truth, mental clarity, and spiritual autonomy.",
+      "We're a nonprofit powered by people—not corporations—committed to truth and spiritual autonomy.",
   },
 ];
 

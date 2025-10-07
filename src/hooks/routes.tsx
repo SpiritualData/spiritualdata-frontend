@@ -47,7 +47,7 @@ const useClerkRoutes = (): ReactElement => {
     <ClerkProvider publishableKey={clerkPubKey}>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="donations" element={<Donations />} />
+        <Route path="donate" element={<Donations />} />
         <Route path="data-discovery" element={<DataDiscovery />} />
         <Route path="contact" element={<Contact />} />
         <Route path="about" element={<About />} />

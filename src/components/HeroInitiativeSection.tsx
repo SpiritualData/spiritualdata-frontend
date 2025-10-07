@@ -70,7 +70,7 @@ const HeroInitiativeSection: React.FC = () => {
             color: theme.palette.primary.hero,
           }}
         >
-          OUR INITIATIVES
+          WHAT WE'RE DOING
         </Typography>
         <Typography
           variant="h3"

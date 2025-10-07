@@ -99,27 +99,27 @@ const AchievementsSection = () => {
     {
       title: "Hypotheses Processed",
       description:
-        "We calculate probability scores for spiritual hypotheses using AI and diverse evidence models.",
+        "We calculate probability scores for scientific hypotheses using statistics to aggregate all evidence.",
       value: "Coming soon",
     },
     {
-      title: "Experiences Logged",
+      title: "Experiences Imported",
       description:
-        "Thousands of personal spiritual experiences have been collected, cleaned, and categorized.",
+        "Thousands of personal experiences have been collected.",
       value: 5998,
     },
     {
       title: "Scientific Studies",
       description:
-        "Peer-reviewed research on psi, consciousness, and spiritual phenomena - stored and analyzed.",
-      value: 26,
+        "Our knowledge graph includes research from biology, medicine, physics, psychology, religious studies, metaphysics, and many more fields.",
+      value: "Coming soon",
     },
     {
       title: "AI Accuracy Score",
       description:
         "Our AI truth-estimation engine achieves highly transparent and evidence-weighted conclusions.",
-      value: 98,
-      suffix: "%",
+      value: "Coming soon",
+      // suffix: "%",
     },
   ];
 

@@ -202,7 +202,7 @@ const DataDiscovery = () => {
             height: "40px",
           }}
         >
-          <a href="/donations" style={{ textDecoration: "none" }}>
+          <a href="/donate" style={{ textDecoration: "none" }}>
             <Button
               variant="text"
               sx={{

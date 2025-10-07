@@ -25,7 +25,7 @@ const DiscoverMore = () => {
       image: donation,
       description:
         "Spiritual Data is a US-based nonprofit. Your donations fund refining our methods for calculating truth, gathering more data, and the free use of our chatbot.",
-      path: "/donations",
+      path: "/donate",
     },
     {
       label: "Review the Data",

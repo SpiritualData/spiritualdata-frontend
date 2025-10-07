@@ -38,7 +38,7 @@ const faqs = [
   {
     question: "How can I donate to Spiritual Data?",
     answer:
-      "To donate, please visit the Donations page located in the Discover section above. The direct link is spiritualdata.org/donations. We welcome and appreciate your support in sustaining this mission.",
+      "To donate, please visit the Donations page located in the Discover section above. The direct link is spiritualdata.org/donate. We welcome and appreciate your support in sustaining this mission.",
   },
   {
     question: "Are you religious?",
