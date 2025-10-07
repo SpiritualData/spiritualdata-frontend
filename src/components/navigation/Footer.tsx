@@ -213,7 +213,7 @@ const Footer = () => {
                   <IconButton
                     sx={{ color: "primary.focus", pl: 0, fontWeight: 300 }}
                   >
-                    {label === "Discord" ? icon : React.cloneElement(icon, { fontSize: "small" })}
+                    {React.cloneElement(icon, { fontSize: "small" })}
                   </IconButton>
                   <Typography
                     variant="body1"
