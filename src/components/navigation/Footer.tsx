@@ -35,7 +35,7 @@ const Footer = () => {
     ["Careers", "/careers"],
     ["Donate", "/donate"],
     ["Contribute", "/contribute"],
-    ["Newsletter", "/newsletter"],
+    ["Newsletter", "https://spiritualdata.beehiiv.com/"],
     ["Initiatives", "/initiatives"],
     ["Product", "/products"],
     ["Research", "/research"],
@@ -255,7 +255,13 @@ const Footer = () => {
                           color: "primary.main",
                           fontSize: { xs: 14, sm: 16 },
                         }}
-                        onClick={() => navigate(path)}
+                        onClick={() => {
+                          if (path.startsWith('http')) {
+                            window.open(path, '_blank');
+                          } else {
+                            navigate(path);
+                          }
+                        }}
                       >
                         {label}
                       </Typography>

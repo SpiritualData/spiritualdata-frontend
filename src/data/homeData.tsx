@@ -27,8 +27,8 @@ export const floatersData: floatersData[] = [
     link: "/change",
   },
   {
-    text: "Spiritual Crisis Support",
+    text: "Quest Product",
     icon: <StorageIcon fontSize="inherit" />,
-    link: "/contact",
+    link: "/products/quest",
   },
 ];
