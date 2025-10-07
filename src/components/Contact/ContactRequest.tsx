@@ -27,9 +27,9 @@ const ctaSections = [
   },
   {
     title:
-      "Have ideas for collaboration or partnership? Reach out using our contact form.",
-    button: "Contact Form",
-    path: "/contact",
+      "Have ideas for collaboration or partnership? Reach out via email at support@spiritualdata.org",
+    button: "Email Us",
+    path: "mailto:support@spiritualdata.org",
   },
 ];
 
@@ -177,7 +177,13 @@ const ContactRequest = () => {
                         }}
                       >
                         <Button
-                          onClick={() => navigate(section.path)}
+                          onClick={() => {
+                            if (section.path.startsWith('mailto:')) {
+                              window.location.href = section.path;
+                            } else {
+                              navigate(section.path);
+                            }
+                          }}
                           sx={{
                             backgroundColor: theme.palette.primary.focus,
                             color: theme.palette.primary.hero,
