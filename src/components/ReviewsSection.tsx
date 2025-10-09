@@ -5,7 +5,6 @@ import {
   Typography,
   Avatar,
   useTheme,
-  Button,
   Slide,
 } from "@mui/material";
 import { useInView } from "../hooks/useInView";
@@ -80,14 +79,14 @@ const ClientReviewsSection: React.FC = () => {
         spacing={1}
         mb={10}
       >
-        <Grid item xs={12} md={6} component="div" {...({} as any)}>
+        <Grid item xs={12} component="div" {...({} as any)}>
           <Typography
             variant="subtitle2"
             fontWeight={600}
             color="text.secondary"
             sx={{ letterSpacing: 2, mb: 2, display: "block" }}
           >
-            CLIENT REVIEWS
+            WHAT THE PEOPLE SAY
           </Typography>
           <Typography
             variant="h2"
@@ -98,36 +97,8 @@ const ClientReviewsSection: React.FC = () => {
               lineHeight: 0.9,
             }}
           >
-            Client Feedback That <br /> Speaks for Itself
+            Here's How We're Impacting Individuals
           </Typography>
-        </Grid>
-
-        <Grid
-          item
-          xs={12}
-          md="auto"
-          display="flex"
-          justifyContent={{ xs: "flex-start", md: "flex-end" }}
-          component="div"
-          {...({} as any)}
-        >
-          <Button
-            variant="contained"
-            sx={{
-              bgcolor: theme.palette.primary.focus,
-              color: theme.palette.primary.hero,
-              fontWeight: "bold",
-              px: 4,
-              py: 1.5,
-              borderRadius: 8,
-              "&:hover": {
-                bgcolor: theme.palette.primary.hover,
-                color: theme.palette.primary.main,
-              },
-            }}
-          >
-            ALL REVIEWS
-          </Button>
         </Grid>
       </Grid>
 
