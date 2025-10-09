@@ -9,18 +9,12 @@ import {
 } from "@mui/material";
 import { useInView } from "../hooks/useInView";
 import ReviewCard from "./reviewSection/ReviewCard";
-import reviewImage1 from "../assets/images/reviews/review1.webp";
-import reviewImage2 from "../assets/images/reviews/review2.webp";
-import reviewImage3 from "../assets/images/reviews/review3.webp";
-import reviewImage4 from "../assets/images/reviews/review4.webp";
-import reviewImage5 from "../assets/images/reviews/review5.webp";
-import reviewImage6 from "../assets/images/reviews/review6.webp";
 
 interface ReviewCardProps {
   name: string;
   title: string;
   text: string;
-  img: string;
+  img?: string;
   dark?: boolean;
   highlight?: boolean;
 }
@@ -30,42 +24,36 @@ const ClientReviewsSection: React.FC = () => {
 
   const reviews = [
     {
-      name: "Prashant Zoro",
-      title: "Spiritual Technologist",
-      text: "Spiritual Data means building a space where people can find more evidence-based perspectives for questions that lack clear answers.",
-      img: reviewImage3,
+      name: "Evadisay",
+      title: "Community Member",
+      text: "I have been studying psychology for several years ... For a long time I denied the benefits and in general anything “esoteric and spiritual” in terms of science. But your team's idea allowed me to look at it from a different perspective, as influences and possible causes and patterns, without agreeing or denying benefit/harm. Just as the idea itself.",
     },
     {
-      name: "Evadisay",
-      title: "Therapy Advocate",
-      text: "Your team's idea let me see spiritual influences and patterns—without needing to agree or deny benefit. Just observe the idea.",
-      img: reviewImage5,
+      name: "Prashant Zoro",
+      title: "Community Member",
+      text: 'When I think about the mission to create a "reliable source of truth for spiritual questions," it means building a space where people can find more evidence-based perspectives or data-driven insights for questions that often lack clear, easily referenced answers or established sources. Looking forward to seeing how this all evolves!',
     },
     {
       name: "Aiad 44798",
-      title: "Consciousness Researcher",
-      text: "Spiritual Data targets the bias in science by leveraging AI and data to elevate spiritual understanding. A crucial initiative.",
-      img: reviewImage1,
+      title: "Community Member",
+      text: "At its heart, Spiritual Data isn’t just about spirituality. It’s about truth—real, evolving, evidence-backed truth that both humans and AI can understand and build upon.",
       dark: true,
     },
     {
-      name: "Anas Tasius",
-      title: "Non-Profit Contributor",
-      text: "It's about real, evolving, evidence-backed truth that both humans and AI can understand and build upon—together.",
-      img: reviewImage6,
+      name: "mohammadh56",
+      title: "Community Member",
+      text: "They are combining spirituality, science and engineering to help other people. I'm a person of faith and have always had spiritual questions, but there's never a place where I can find unbiased answers for anything. ... The use of everything to support their cause means I can learn while also help others.",
       highlight: true,
     },
     {
-      name: "Ashxthetic",
-      title: "AI Enthusiast",
-      text: "I find it inspiring there's a space where truth-seeking, intuition, and data come together through AI and science.",
-      img: reviewImage2,
+      name: "Shrihari Shetty",
+      title: "Community Member",
+      text: "I believe we can create a positive effect on people’s lives by harnessing the fast changing world of AI. ... We need to combine spirituality with science and back it up with strong evidence ... For me personally, this represents an opportunity to help ordinary people, like myself, access tools that enable them to grow, heal and live up to their potential.",
     },
     {
       name: "Suraksha 5771",
-      title: "Spiritual Seeker",
-      text: "Spiritual Data isn't just about information—it's about Truth. Combining science and AI to help people make sense of life.",
-      img: reviewImage4,
+      title: "Community Member",
+      text: "Faith and belief should be examined with both logic and scientific validation, while still respecting the paths faith provides. I have worked to bridge these perspectives, and Spiritual Data feels like the perfect place where my technical skills and personal mission meet. That is why I am excited and fully committed to contribute to this vision.",
     },
   ];
 

@@ -10,7 +10,7 @@ interface ReviewCardProps {
   name: string;
   title: string;
   text: string;
-  img: string;
+  img?: string;
   dark?: boolean;
   highlight?: boolean;
 }
@@ -78,15 +78,17 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
             {title}
           </Typography>
         </Box>
-        <Avatar
-          src={img}
-          alt={name}
-          sx={{
-            width: 70,
-            height: 70,
-            bgcolor: theme.palette.primary.hero,
-          }}
-        />
+        {img && (
+          <Avatar
+            src={img}
+            alt={name}
+            sx={{
+              width: 70,
+              height: 70,
+              bgcolor: theme.palette.primary.hero,
+            }}
+          />
+        )}
       </Box>
 
       {/* Bottom Row */}
