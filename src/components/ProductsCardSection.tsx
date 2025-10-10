@@ -9,11 +9,11 @@ const ProductsCardSection = () => {
     <Container sx={{ py: 2 }}>
       <Grid
         container
-        spacing={4}
+        spacing={6}
         sx={{
           display: "flex",
           flexDirection: "row",
-          justifyContent: "space-between",
+          justifyContent: "center",
           mb: 10,
         }}
       >
@@ -25,7 +25,7 @@ const ProductsCardSection = () => {
               item
               xs={12}
               sm={6}
-              md={6}
+              md={5}
               key={item.title}
               component="div"
               maxWidth={"385px"}
