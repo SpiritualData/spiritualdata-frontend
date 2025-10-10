@@ -127,7 +127,7 @@ export const productCardData = [
     id: 1,
     title: "Quest for personal transformation",
     description:
-      "An AI-powered tool that helps you explore spiritual, philosophical, and existential questions with multi-perspective insights and deeper understanding.",
+      "Turn your aspirations into achievements through AI-guided accountability, personalized roadmaps, and intelligent support for spiritual growth, wellness, and life goals.",
     image: questCardImage,
     link: "/products/quest",
     author: "Spiritual Data",
@@ -137,7 +137,7 @@ export const productCardData = [
     id: 2,
     title: "Concept AI for Researchers",
     description:
-      "Simplifies complex ideas using advanced AI models, turning abstract concepts into clear, structured representations for thinkers and educators.",
+      "Navigate complex research domains with bias-resistant AI that integrates diverse evidence, evaluates hypotheses probabilistically, and reveals scientific consensus across disciplines.",
     image: conceptAiCardImage,
     link: "/products/concept-ai",
     author: "Spiritual Data",
