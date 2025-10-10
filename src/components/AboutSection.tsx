@@ -139,18 +139,12 @@ const AboutSection: React.FC = () => {
               )}
 
               {/* Cards */}
-              <Grid container spacing={3} flexDirection="row">
+              <Grid container spacing={2} flexDirection="row">
                 {/* Card 1: Explore the data */}
                 <Grid
                   item
                   xs={12}
                   md={4}
-                  sx={{
-                    backgroundColor: theme.palette.darkcard.main,
-                    color: theme.palette.darkcard.contrastText,
-                    borderRadius: "16px",
-                    boxShadow: `0 6px 24px ${theme.palette.cardshadow.main}`,
-                  }}
                   component="div"
                   {...({} as any)}
                 >
@@ -159,13 +153,16 @@ const AboutSection: React.FC = () => {
                       <Slide direction="up" in={loaded} timeout={3000}>
                         <Box
                           sx={{
-                            px: { xs: 2.5, sm: 3, md: 4 },
-                            py: { xs: 3, sm: 5 },
+                            backgroundColor: theme.palette.darkcard.main,
+                            color: theme.palette.darkcard.contrastText,
+                            borderRadius: "16px",
+                            boxShadow: `0 6px 24px ${theme.palette.cardshadow.main}`,
+                            px: { xs: 2.5, sm: 3, md: 3.5 },
+                            py: { xs: 2.5, sm: 3, md: 3 },
                             display: "flex",
                             flexDirection: "column",
                             justifyContent: "space-between",
                             height: "100%",
-                            minHeight: { xs: "200px", md: "250px" },
                           }}
                         >
                           <Typography
@@ -176,14 +173,12 @@ const AboutSection: React.FC = () => {
                               fontSize: {
                                 xs: "1rem",
                                 sm: "1.2rem",
-                                lg: "1.5rem",
+                                lg: "1.4rem",
                               },
-                              mb: 3,
+                              mb: 2,
                             }}
                           >
-                            Explore the data
-                            <br />
-                            with our AI chat
+                            Explore the data with our AI chat
                           </Typography>
 
                           <Button
@@ -193,11 +188,11 @@ const AboutSection: React.FC = () => {
                               backgroundColor: theme.palette.primary.focus,
                               color: "#1F2540",
                               px: { xs: 2.5, sm: 3 },
-                              py: { xs: 0.8, sm: 1.5 },
+                              py: { xs: 0.8, sm: 1 },
                               fontWeight: 600,
                               borderRadius: "30px",
                               textTransform: "uppercase",
-                              fontSize: { xs: "0.75rem", md: "0.85rem" },
+                              fontSize: { xs: "0.7rem", md: "0.75rem" },
                               letterSpacing: "0.1rem",
                               transition: "all 0.3s ease",
                               alignSelf: "flex-start",
@@ -221,12 +216,6 @@ const AboutSection: React.FC = () => {
                   item
                   xs={12}
                   md={4}
-                  sx={{
-                    backgroundColor: theme.palette.darkcard.main,
-                    color: theme.palette.darkcard.contrastText,
-                    borderRadius: "16px",
-                    boxShadow: `0 6px 24px ${theme.palette.cardshadow.main}`,
-                  }}
                   component="div"
                   {...({} as any)}
                 >
@@ -235,13 +224,16 @@ const AboutSection: React.FC = () => {
                       <Slide direction="up" in={loaded} timeout={3200}>
                         <Box
                           sx={{
-                            px: { xs: 2.5, sm: 3, md: 4 },
-                            py: { xs: 3, sm: 5 },
+                            backgroundColor: theme.palette.darkcard.main,
+                            color: theme.palette.darkcard.contrastText,
+                            borderRadius: "16px",
+                            boxShadow: `0 6px 24px ${theme.palette.cardshadow.main}`,
+                            px: { xs: 2.5, sm: 3, md: 3.5 },
+                            py: { xs: 2.5, sm: 3, md: 3 },
                             display: "flex",
                             flexDirection: "column",
                             justifyContent: "space-between",
                             height: "100%",
-                            minHeight: { xs: "200px", md: "250px" },
                           }}
                         >
                           <Typography
@@ -252,14 +244,12 @@ const AboutSection: React.FC = () => {
                               fontSize: {
                                 xs: "1rem",
                                 sm: "1.2rem",
-                                lg: "1.5rem",
+                                lg: "1.4rem",
                               },
-                              mb: 3,
+                              mb: 2,
                             }}
                           >
-                            Apply our data to
-                            <br />
-                            your personal goals
+                            Apply our data to your personal goals
                           </Typography>
 
                           <Button
@@ -269,11 +259,11 @@ const AboutSection: React.FC = () => {
                               backgroundColor: theme.palette.primary.focus,
                               color: "#1F2540",
                               px: { xs: 2.5, sm: 3 },
-                              py: { xs: 0.8, sm: 1.5 },
+                              py: { xs: 0.8, sm: 1 },
                               fontWeight: 600,
                               borderRadius: "30px",
                               textTransform: "uppercase",
-                              fontSize: { xs: "0.75rem", md: "0.85rem" },
+                              fontSize: { xs: "0.7rem", md: "0.75rem" },
                               letterSpacing: "0.1rem",
                               transition: "all 0.3s ease",
                               alignSelf: "flex-start",
@@ -297,12 +287,6 @@ const AboutSection: React.FC = () => {
                   item
                   xs={12}
                   md={4}
-                  sx={{
-                    backgroundColor: theme.palette.darkcard.main,
-                    color: theme.palette.darkcard.contrastText,
-                    borderRadius: "16px",
-                    boxShadow: `0 6px 24px ${theme.palette.cardshadow.main}`,
-                  }}
                   component="div"
                   {...({} as any)}
                 >
@@ -311,13 +295,16 @@ const AboutSection: React.FC = () => {
                       <Slide direction="up" in={loaded} timeout={3400}>
                         <Box
                           sx={{
-                            px: { xs: 2.5, sm: 3, md: 4 },
-                            py: { xs: 3, sm: 5 },
+                            backgroundColor: theme.palette.darkcard.main,
+                            color: theme.palette.darkcard.contrastText,
+                            borderRadius: "16px",
+                            boxShadow: `0 6px 24px ${theme.palette.cardshadow.main}`,
+                            px: { xs: 2.5, sm: 3, md: 3.5 },
+                            py: { xs: 2.5, sm: 3, md: 3 },
                             display: "flex",
                             flexDirection: "column",
                             justifyContent: "space-between",
                             height: "100%",
-                            minHeight: { xs: "200px", md: "250px" },
                           }}
                         >
                           <Typography
@@ -328,9 +315,9 @@ const AboutSection: React.FC = () => {
                               fontSize: {
                                 xs: "1rem",
                                 sm: "1.2rem",
-                                lg: "1.5rem",
+                                lg: "1.4rem",
                               },
-                              mb: 3,
+                              mb: 2,
                             }}
                           >
                             See our initiatives
@@ -343,11 +330,11 @@ const AboutSection: React.FC = () => {
                               backgroundColor: theme.palette.primary.focus,
                               color: "#1F2540",
                               px: { xs: 2.5, sm: 3 },
-                              py: { xs: 0.8, sm: 1.5 },
+                              py: { xs: 0.8, sm: 1 },
                               fontWeight: 600,
                               borderRadius: "30px",
                               textTransform: "uppercase",
-                              fontSize: { xs: "0.75rem", md: "0.85rem" },
+                              fontSize: { xs: "0.7rem", md: "0.75rem" },
                               letterSpacing: "0.1rem",
                               transition: "all 0.3s ease",
                               alignSelf: "flex-start",
