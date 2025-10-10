@@ -138,11 +138,13 @@ const AboutSection: React.FC = () => {
                 </Fade>
               )}
 
-              {/* Card */}
+              {/* Cards */}
               <Grid container spacing={3} flexDirection="row">
+                {/* Card 1: Explore the data */}
                 <Grid
                   item
                   xs={12}
+                  md={4}
                   sx={{
                     backgroundColor: theme.palette.darkcard.main,
                     color: theme.palette.darkcard.contrastText,
@@ -157,13 +159,13 @@ const AboutSection: React.FC = () => {
                       <Slide direction="up" in={loaded} timeout={3000}>
                         <Box
                           sx={{
-                            px: { xs: 2.5, sm: 3, md: 5 },
-                            py: { xs: 2, sm: 5 },
+                            px: { xs: 2.5, sm: 3, md: 4 },
+                            py: { xs: 3, sm: 5 },
                             display: "flex",
                             flexDirection: "column",
                             justifyContent: "space-between",
-                            height: "73%",
-                            width: "80%",
+                            height: "100%",
+                            minHeight: { xs: "200px", md: "250px" },
                           }}
                         >
                           <Typography
@@ -174,8 +176,9 @@ const AboutSection: React.FC = () => {
                               fontSize: {
                                 xs: "1rem",
                                 sm: "1.2rem",
-                                lg: "1.8rem",
+                                lg: "1.5rem",
                               },
+                              mb: 3,
                             }}
                           >
                             Explore the data
@@ -196,9 +199,8 @@ const AboutSection: React.FC = () => {
                               textTransform: "uppercase",
                               fontSize: { xs: "0.75rem", md: "0.85rem" },
                               letterSpacing: "0.1rem",
-                              mt: { xs: 2, sm: 0 },
                               transition: "all 0.3s ease",
-                              maxWidth: "50%",
+                              alignSelf: "flex-start",
                               "&:hover": {
                                 backgroundColor: theme.palette.primary.light,
                                 color: theme.palette.primary.hero,
@@ -207,6 +209,156 @@ const AboutSection: React.FC = () => {
                             }}
                           >
                             Sign Up
+                          </Button>
+                        </Box>
+                      </Slide>
+                    </Fade>
+                  )}
+                </Grid>
+
+                {/* Card 2: Apply to your goals */}
+                <Grid
+                  item
+                  xs={12}
+                  md={4}
+                  sx={{
+                    backgroundColor: theme.palette.darkcard.main,
+                    color: theme.palette.darkcard.contrastText,
+                    borderRadius: "16px",
+                    boxShadow: `0 6px 24px ${theme.palette.cardshadow.main}`,
+                  }}
+                  component="div"
+                  {...({} as any)}
+                >
+                  {inView && (
+                    <Fade in timeout={3000}>
+                      <Slide direction="up" in={loaded} timeout={3200}>
+                        <Box
+                          sx={{
+                            px: { xs: 2.5, sm: 3, md: 4 },
+                            py: { xs: 3, sm: 5 },
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "space-between",
+                            height: "100%",
+                            minHeight: { xs: "200px", md: "250px" },
+                          }}
+                        >
+                          <Typography
+                            variant="h5"
+                            sx={{
+                              fontWeight: 500,
+                              lineHeight: 1.3,
+                              fontSize: {
+                                xs: "1rem",
+                                sm: "1.2rem",
+                                lg: "1.5rem",
+                              },
+                              mb: 3,
+                            }}
+                          >
+                            Apply our data to
+                            <br />
+                            your personal goals
+                          </Typography>
+
+                          <Button
+                            onClick={() => navigate("/products/quest")}
+                            variant="contained"
+                            sx={{
+                              backgroundColor: theme.palette.primary.focus,
+                              color: "#1F2540",
+                              px: { xs: 2.5, sm: 3 },
+                              py: { xs: 0.8, sm: 1.5 },
+                              fontWeight: 600,
+                              borderRadius: "30px",
+                              textTransform: "uppercase",
+                              fontSize: { xs: "0.75rem", md: "0.85rem" },
+                              letterSpacing: "0.1rem",
+                              transition: "all 0.3s ease",
+                              alignSelf: "flex-start",
+                              "&:hover": {
+                                backgroundColor: theme.palette.primary.light,
+                                color: theme.palette.primary.hero,
+                                scale: 1.05,
+                              },
+                            }}
+                          >
+                            Learn about Quest
+                          </Button>
+                        </Box>
+                      </Slide>
+                    </Fade>
+                  )}
+                </Grid>
+
+                {/* Card 3: See our initiatives */}
+                <Grid
+                  item
+                  xs={12}
+                  md={4}
+                  sx={{
+                    backgroundColor: theme.palette.darkcard.main,
+                    color: theme.palette.darkcard.contrastText,
+                    borderRadius: "16px",
+                    boxShadow: `0 6px 24px ${theme.palette.cardshadow.main}`,
+                  }}
+                  component="div"
+                  {...({} as any)}
+                >
+                  {inView && (
+                    <Fade in timeout={3000}>
+                      <Slide direction="up" in={loaded} timeout={3400}>
+                        <Box
+                          sx={{
+                            px: { xs: 2.5, sm: 3, md: 4 },
+                            py: { xs: 3, sm: 5 },
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "space-between",
+                            height: "100%",
+                            minHeight: { xs: "200px", md: "250px" },
+                          }}
+                        >
+                          <Typography
+                            variant="h5"
+                            sx={{
+                              fontWeight: 500,
+                              lineHeight: 1.3,
+                              fontSize: {
+                                xs: "1rem",
+                                sm: "1.2rem",
+                                lg: "1.5rem",
+                              },
+                              mb: 3,
+                            }}
+                          >
+                            See our initiatives
+                          </Typography>
+
+                          <Button
+                            onClick={() => navigate("/initiatives")}
+                            variant="contained"
+                            sx={{
+                              backgroundColor: theme.palette.primary.focus,
+                              color: "#1F2540",
+                              px: { xs: 2.5, sm: 3 },
+                              py: { xs: 0.8, sm: 1.5 },
+                              fontWeight: 600,
+                              borderRadius: "30px",
+                              textTransform: "uppercase",
+                              fontSize: { xs: "0.75rem", md: "0.85rem" },
+                              letterSpacing: "0.1rem",
+                              transition: "all 0.3s ease",
+                              alignSelf: "flex-start",
+                              "&:hover": {
+                                backgroundColor: theme.palette.primary.light,
+                                color: theme.palette.primary.hero,
+                                scale: 1.05,
+                              },
+                            }}
+                          >
+                            Learn more
                           </Button>
                         </Box>
                       </Slide>
