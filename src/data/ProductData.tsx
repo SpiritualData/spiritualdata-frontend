@@ -125,7 +125,7 @@ export const availableProductData = [
 export const productCardData = [
   {
     id: 1,
-    title: "Quest",
+    title: "Quest for personal transformation",
     description:
       "An AI-powered tool that helps you explore spiritual, philosophical, and existential questions with multi-perspective insights and deeper understanding.",
     image: questCardImage,
@@ -135,7 +135,7 @@ export const productCardData = [
   },
   {
     id: 2,
-    title: "Concept AI",
+    title: "Concept AI for Researchers",
     description:
       "Simplifies complex ideas using advanced AI models, turning abstract concepts into clear, structured representations for thinkers and educators.",
     image: conceptAiCardImage,
