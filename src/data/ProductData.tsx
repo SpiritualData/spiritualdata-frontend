@@ -4,6 +4,8 @@ import image3 from "../assets/images/about/sliderImage3.webp";
 import image4 from "../assets/images/about/sliderImage4.webp";
 import image5 from "../assets/images/products/questId.webp";
 import image6 from "../assets/images/products/conceptAiId.webp";
+import questCardImage from "../assets/images/products/questId.webp";
+import conceptAiCardImage from "../assets/images/products/conceptAiId.webp";
 
 export const experimentalProductData = [
   {
@@ -117,5 +119,28 @@ export const availableProductData = [
     logo3: "/assets/ProductCardImages/mui.webp",
     tags: ["Innovation & Research", "Cognitive Sciences", "Data Science & AI"],
     expert: ["AI & NLP", "Data Processing", "Knowledge Structuring"],
+  },
+];
+
+export const productCardData = [
+  {
+    id: 1,
+    title: "Quest",
+    description:
+      "An AI-powered tool that helps you explore spiritual, philosophical, and existential questions with multi-perspective insights and deeper understanding.",
+    image: questCardImage,
+    link: "/products/quest",
+    author: "Spiritual Data",
+    buttonText: "Learn about Quest",
+  },
+  {
+    id: 2,
+    title: "Concept AI",
+    description:
+      "Simplifies complex ideas using advanced AI models, turning abstract concepts into clear, structured representations for thinkers and educators.",
+    image: conceptAiCardImage,
+    link: "/products/concept-ai",
+    author: "Spiritual Data",
+    buttonText: "Learn about Concept AI",
   },
 ];
