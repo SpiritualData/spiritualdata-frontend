@@ -122,26 +122,45 @@ const Research = () => {
         details={""}
       />
 
-      <Typography
-        sx={{
-          mt: { xs: -3, md: -6 },
-          mb: 6,
-          fontSize: { xs: "13px", sm: "16px" },
-          color: "black",
-          px: { xs: 4, md: "17%" },
-          textAlign: "center",
-        }}
-      >
-        At Spiritual Data, we're developing and rigorously evaluating AI systems designed to advance scientific understanding across diverse research domains. Our flagship project, Concept AI, represents a novel approach to bias-resistant knowledge integration and hypothesis evaluation.
-        <br />
-        <br />
-        We're currently evaluating our AI algorithm's performance on standardized tests designed for humans, including AP educational exams and medical licensing tests, comparing results against state-of-the-art large language models. This benchmarking helps us understand how our specialized, bias-resistant approach performs relative to general-purpose AI systems on complex reasoning tasks.
-        <br />
-        <br />
-        Our research methodology emphasizes transparency, probabilistic reasoning, and multi-disciplinary evidence integration. By combining diverse data sources—from quantitative research to qualitative experiences—we aim to create AI systems that can navigate complex scientific questions while maintaining methodological rigor.
-        <br />
-        <br />
-        <b>
+      <Box sx={{ px: { xs: 4, md: "17%" }, mb: 6, mt: { xs: -3, md: -6 } }}>
+        <Typography
+          sx={{
+            fontSize: { xs: "13px", sm: "16px" },
+            color: "black",
+            textAlign: "left",
+            mb: 2,
+          }}
+        >
+          At Spiritual Data, we're developing and rigorously evaluating AI systems designed to advance scientific understanding across diverse research domains. Our flagship project, Concept AI, represents a novel approach to bias-resistant knowledge integration and hypothesis evaluation.
+        </Typography>
+        <Typography
+          sx={{
+            fontSize: { xs: "13px", sm: "16px" },
+            color: "black",
+            textAlign: "left",
+            mb: 2,
+          }}
+        >
+          We're currently evaluating our AI algorithm's performance on standardized tests designed for humans, including AP educational exams and medical licensing tests, comparing results against state-of-the-art large language models. This benchmarking helps us understand how our specialized, bias-resistant approach performs relative to general-purpose AI systems on complex reasoning tasks.
+        </Typography>
+        <Typography
+          sx={{
+            fontSize: { xs: "13px", sm: "16px" },
+            color: "black",
+            textAlign: "left",
+            mb: 2,
+          }}
+        >
+          Our research methodology emphasizes transparency, probabilistic reasoning, and multi-disciplinary evidence integration. By combining diverse data sources—from quantitative research to qualitative experiences—we aim to create AI systems that can navigate complex scientific questions while maintaining methodological rigor.
+        </Typography>
+        <Typography
+          sx={{
+            fontSize: { xs: "13px", sm: "16px" },
+            color: "black",
+            textAlign: "center",
+            fontWeight: 600,
+          }}
+        >
           Learn more about our{" "}
           <a
             href="https://spiritualdata.notion.site/Concept-AI-Scientific-Explanation-660a512bc1e14d969afa82b47ec01188"
@@ -152,8 +171,8 @@ const Research = () => {
             research methodology and scientific approach
           </a>
           .
-        </b>
-      </Typography>
+        </Typography>
+      </Box>
 
       <Box
         sx={{
@@ -174,7 +193,7 @@ const Research = () => {
             fontSize: { xs: "13px", sm: "16px" },
             color: "black",
             px: { xs: 0, md: "17%" },
-            textAlign: "center",
+            textAlign: "left",
           }}
         >
           Our research infrastructure is built on a comprehensive knowledge base that integrates diverse evidence types. We're continuously expanding our database to support more sophisticated AI-driven research and hypothesis evaluation across multiple scientific domains.
