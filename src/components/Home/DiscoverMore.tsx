@@ -32,7 +32,7 @@ const DiscoverMore = () => {
       image: dataDiscovery,
       description:
         "Click here to see the data for yourself at our Notion databases. You'll find experiences, research papers, hypotheses, and current and future data sources.",
-      path: "/data-discovery",
+      path: "/research",
     },
     {
       label: "Follow our Newsletter",

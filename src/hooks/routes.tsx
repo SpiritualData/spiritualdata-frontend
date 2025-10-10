@@ -4,7 +4,7 @@ import { hotjar } from "react-hotjar";
 import { ReactElement } from "react";
 import Home from "../pages/Home";
 import About from "../pages/About";
-import DataDiscovery from "../pages/DataDiscovery";
+import Research from "../pages/Research";
 import Contact from "../pages/Contact";
 import NotFound from "../pages/NotFound";
 import Chat from "../pages/Chat";
@@ -49,7 +49,7 @@ const useClerkRoutes = (): ReactElement => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="donate" element={<Donations />} />
-        <Route path="data-discovery" element={<DataDiscovery />} />
+        <Route path="research" element={<Research />} />
         <Route path="contact" element={<Contact />} />
         <Route path="about" element={<About />} />
         <Route path="origin-story" element={<OriginStory />} />

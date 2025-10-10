@@ -90,7 +90,7 @@ const DataItem: React.FC<DataItemProps> = ({ val }) => {
   );
 };
 
-const DataDiscovery = () => {
+const Research = () => {
   const data = [
     {
       name: "Hypotheses",
@@ -114,11 +114,11 @@ const DataDiscovery = () => {
 
   return (
     <Grid container>
-      <PageHeader image={image} page={"Data Discovery"} sx={{ mb: 4 }} />
+      <PageHeader image={image} page={"Research"} sx={{ mb: 4 }} />
 
       <PageDef
-        title={"Data Discovery"}
-        heading={"Navigate the Realm of Data Discovery"}
+        title={"Research"}
+        heading={"Advancing AI for Scientific Understanding"}
         details={""}
       />
 
@@ -132,28 +132,26 @@ const DataDiscovery = () => {
           textAlign: "center",
         }}
       >
-        Data discovery is a pivotal feature of our Spiritual Data platform. This
-        vast, user-curated database is a rich tapestry interweaving diverse
-        spiritual hypothesis, comprehensive research, and deeply personal
-        experiences. What sets Spiritual Data apart is its organic,
-        user-generated growth—every piece of information, every insight, every
-        revelation has been contributed by real individuals traversing their
-        unique spiritual journeys. This continual influx of fresh perspectives
-        keeps the database evolving, making it a dynamic, ever-expanding
-        repository of spiritual wisdom. As more and more users share their
-        experiences, research, and insights, the database becomes richer,
-        offering deeper insights and a broader spectrum of perspectives. With
-        each passing day, our collective understanding grows, opening up
-        exciting new pathways for exploration and discovery in the realm of
-        spirituality. <br />
-        <br />{" "}
+        At Spiritual Data, we're developing and rigorously evaluating AI systems designed to advance scientific understanding across diverse research domains. Our flagship project, Concept AI, represents a novel approach to bias-resistant knowledge integration and hypothesis evaluation.
+        <br />
+        <br />
+        We're currently evaluating our AI algorithm's performance on standardized tests designed for humans, including AP educational exams and medical licensing tests, comparing results against state-of-the-art large language models. This benchmarking helps us understand how our specialized, bias-resistant approach performs relative to general-purpose AI systems on complex reasoning tasks.
+        <br />
+        <br />
+        Our research methodology emphasizes transparency, probabilistic reasoning, and multi-disciplinary evidence integration. By combining diverse data sources—from quantitative research to qualitative experiences—we aim to create AI systems that can navigate complex scientific questions while maintaining methodological rigor.
+        <br />
+        <br />
         <b>
-          If you're interested, check out
-          <Link to={"https://spiritualdata.org"} style={{ color: "#4691B8" }}>
-            {" "}
-            https://spiritualdata.org
-          </Link>{" "}
-          and add your perspective!
+          Learn more about our{" "}
+          <a
+            href="https://spiritualdata.notion.site/Concept-AI-Scientific-Explanation-660a512bc1e14d969afa82b47ec01188"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "#4691B8" }}
+          >
+            research methodology and scientific approach
+          </a>
+          .
         </b>
       </Typography>
 
@@ -166,7 +164,7 @@ const DataDiscovery = () => {
         }}
       >
         <Typography sx={{ fontWeight: "bold", mb: 4 }} variant="h4">
-          Our Database Stats
+          Database Status
         </Typography>
 
         <Typography
@@ -179,12 +177,7 @@ const DataDiscovery = () => {
             textAlign: "center",
           }}
         >
-          Years of research and data collection have provided insights into
-          profound spiritual experiences. Analyzing patterns and commonalities,
-          we continue to develop hypotheses, deepening our understanding of
-          spirituality's impact on individuals and communities. Embracing the
-          mysteries, we aim to enrich the human spiritual journey with our
-          rapidly increasing numbers of database statistics.
+          Our research infrastructure is built on a comprehensive knowledge base that integrates diverse evidence types. We're continuously expanding our database to support more sophisticated AI-driven research and hypothesis evaluation across multiple scientific domains.
         </Typography>
 
         <Grid container px={{ xs: 0, sm: "8%" }}>
@@ -202,36 +195,32 @@ const DataDiscovery = () => {
             height: "40px",
           }}
         >
-          <a href="/donate" style={{ textDecoration: "none" }}>
+          <Link to="/contact" style={{ textDecoration: "none" }}>
             <Button
-              variant="text"
+              variant="contained"
               sx={{
                 my: 3,
+                backgroundColor: (theme) => theme.palette.primary.focus,
+                color: "#1F2540",
+                px: 4,
+                py: 1.5,
+                fontWeight: 600,
+                borderRadius: 8,
+                textTransform: "none",
+                fontSize: "1rem",
                 "&:hover": {
-                  backgroundColor: "transparent",
-                  color: "inherit",
+                  backgroundColor: (theme) => theme.palette.primary.hover,
+                  color: "#fff",
                 },
               }}
             >
-              <Typography
-                sx={{
-                  color: (theme) => theme.palette.primary.focus,
-                  fontSize: "16px",
-                  textDecoration: "none",
-                  "&:hover": { textDecoration: "underline" },
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                Make a contribution{" "}
-                <East sx={{ marginLeft: "4px", fontSize: "16px" }} />
-              </Typography>
+              Contact Us About Research Collaboration
             </Button>
-          </a>
+          </Link>
         </Grid>
       </Box>
     </Grid>
   );
 };
 
-export default DataDiscovery;
+export default Research;
