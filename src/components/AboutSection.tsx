@@ -11,9 +11,6 @@ import React from "react";
 import { useInView } from "../hooks/useInView";
 import ImageSlider from "./ImageSlider";
 import { useNavigate } from "react-router-dom";
-import mainImage from "../assets/images/about/about1.webp";
-import playImage from "../assets/images/about/about2.webp";
-import PlayableImage from "./heroSection/PlayableImage";
 
 const AboutSection: React.FC = () => {
   const theme = useTheme();
@@ -100,8 +97,8 @@ const AboutSection: React.FC = () => {
 
         {/* Bottom Row */}
         <Grid container spacing={2} alignItems="stretch" flexDirection="row">
-          {/* Left Column */}
-          <Grid item xs={12} md={7} flex={2} component="div" {...({} as any)}>
+          {/* Main Column */}
+          <Grid item xs={12} component="div" {...({} as any)}>
             <Box
               sx={{
                 display: "flex",
@@ -141,47 +138,11 @@ const AboutSection: React.FC = () => {
                 </Fade>
               )}
 
-              {/* Cards */}
+              {/* Card */}
               <Grid container spacing={3} flexDirection="row">
-                {/* Left Card */}
                 <Grid
                   item
                   xs={12}
-                  sm={6}
-                  flex={1}
-                  component="div"
-                  {...({} as any)}
-                >
-                  {inView && (
-                    <Fade in timeout={2000}>
-                      <Slide direction="up" in={loaded} timeout={2000}>
-                        <Box
-                          sx={{
-                            height: "100%",
-                            width: "100%",
-                            backgroundColor: theme.palette.darkcard.main,
-                            borderRadius: "16px",
-                            overflow: "hidden",
-                            boxShadow: `0 6px 24px ${theme.palette.cardshadow.main}`,
-                          }}
-                        >
-                          <PlayableImage
-                            imageSrc={playImage}
-                            alt="Play Video"
-                            videoLink="https://drive.google.com/..."
-                          />
-                        </Box>
-                      </Slide>
-                    </Fade>
-                  )}
-                </Grid>
-
-                {/* Right Card */}
-                <Grid
-                  item
-                  xs={12}
-                  sm={6}
-                  flex={1}
                   sx={{
                     backgroundColor: theme.palette.darkcard.main,
                     color: theme.palette.darkcard.contrastText,
@@ -254,37 +215,6 @@ const AboutSection: React.FC = () => {
                 </Grid>
               </Grid>
             </Box>
-          </Grid>
-
-          {/* Right Column Image */}
-          <Grid
-            item
-            xs={12}
-            md={5}
-            sx={{
-              display: { xs: "none", md: "flex" },
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-            component="div"
-            {...({} as any)}
-          >
-            {inView && (
-              <Fade in timeout={2000}>
-                <Box
-                  component="img"
-                  src={mainImage}
-                  alt="Main Visual"
-                  sx={{
-                    width: "100%",
-                    maxWidth: 450,
-                    height: "auto",
-                    borderRadius: "16px",
-                    boxShadow: `0 0 24px ${theme.palette.primary.hero}44`,
-                  }}
-                />
-              </Fade>
-            )}
           </Grid>
         </Grid>
       </Box>
