@@ -118,7 +118,7 @@ const Research = () => {
 
       <PageDef
         title={"Research"}
-        heading={"Advancing AI for Scientific Understanding"}
+        heading={"Building a Scientific AGI"}
         details={""}
       />
 
