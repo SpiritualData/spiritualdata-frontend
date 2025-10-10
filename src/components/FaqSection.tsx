@@ -9,12 +9,17 @@ import {
   useTheme,
   Avatar,
   Collapse,
+  Link as MuiLink,
 } from "@mui/material";
 import EmailIcon from "@mui/icons-material/Email";
 import { useInView } from "../hooks/useInView";
 import faqImage from "../assets/images/faq/faq.webp";
+import { Link } from "react-router-dom";
 
-const faqs = [
+const faqs: Array<{
+  question: string;
+  answer: string | React.ReactNode;
+}> = [
   {
     question: "What is Spiritual Data?",
     answer:
@@ -32,13 +37,52 @@ const faqs = [
   },
   {
     question: "How do I join the Spiritual Data community?",
-    answer:
-      "You can join by subscribing to our newsletter, entering our official Discord server, or filling out the following team interest form: https://forms.gle/E6A9p3GgvUDoy2q18 to get directly involved.",
+    answer: (
+      <>
+        You can join by subscribing to our newsletter, entering our official
+        Discord server, or filling out the following team interest form:{" "}
+        <MuiLink
+          href="https://forms.gle/E6A9p3GgvUDoy2q18"
+          target="_blank"
+          rel="noopener noreferrer"
+          sx={{
+            color: "primary.focus",
+            textDecoration: "underline",
+            fontWeight: 500,
+            "&:hover": {
+              color: "primary.dark",
+            },
+          }}
+        >
+          https://forms.gle/E6A9p3GgvUDoy2q18
+        </MuiLink>{" "}
+        to get directly involved.
+      </>
+    ),
   },
   {
     question: "How can I donate to Spiritual Data?",
-    answer:
-      "To donate, please visit the Donations page located in the Discover section above. The direct link is spiritualdata.org/donate. We welcome and appreciate your support in sustaining this mission.",
+    answer: (
+      <>
+        To donate, please visit the Donations page located in the Discover
+        section above. The direct link is{" "}
+        <MuiLink
+          component={Link}
+          to="/donate"
+          sx={{
+            color: "primary.focus",
+            textDecoration: "underline",
+            fontWeight: 500,
+            "&:hover": {
+              color: "primary.dark",
+            },
+          }}
+        >
+          spiritualdata.org/donate
+        </MuiLink>
+        . We welcome and appreciate your support in sustaining this mission.
+      </>
+    ),
   },
   {
     question: "Are you religious?",
