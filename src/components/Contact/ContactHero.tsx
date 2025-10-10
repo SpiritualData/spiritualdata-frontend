@@ -163,6 +163,17 @@ const Contact = () => {
                       onSubmit={sendEmail}
                       sx={{ display: "flex", flexDirection: "column", gap: 3 }}
                     >
+                      <Typography
+                        variant="h4"
+                        sx={{
+                          fontWeight: 600,
+                          mb: 2,
+                          color: theme.palette.text.primary,
+                          textAlign: "center",
+                        }}
+                      >
+                        Contact Form
+                      </Typography>
                       <StyledTextField
                         name="name"
                         label="Your Name"
