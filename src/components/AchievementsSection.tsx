@@ -163,7 +163,7 @@ const AchievementsSection = () => {
             }}
           >
             Smart AI Solutions That <br />
-            Delivered Real Results
+            Deliver Real Results
           </Typography>
         </Grid>
       </Grid>
