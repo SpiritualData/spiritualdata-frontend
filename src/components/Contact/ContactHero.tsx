@@ -140,6 +140,7 @@ const Contact = () => {
                 {...({} as any)}
               >
                 <Box
+                  id="contact-form"
                   sx={{
                     backgroundColor: theme.palette.primary.main,
                     p: { xs: 4, md: 6 },
@@ -149,6 +150,7 @@ const Contact = () => {
                     transition:
                       "box-shadow 0.5s ease, border-color 0.5s ease, transform 0.3s ease",
                     boxShadow: "0px 0px 10px rgba(0,0,0,0.2)",
+                    scrollMarginTop: "100px",
                     "&:hover": {
                       boxShadow: "0px 0px 20px rgba(0,0,0,0.6)",
                       borderColor: theme.palette.primary.focus,
@@ -157,7 +159,6 @@ const Contact = () => {
                 >
                   <Fade in={true} timeout={4000}>
                     <Box
-                      id="contact-form"
                       component="form"
                       ref={form}
                       onSubmit={sendEmail}
@@ -167,7 +168,7 @@ const Contact = () => {
                         variant="h4"
                         sx={{
                           fontWeight: 600,
-                          mb: 2,
+                          mb: 1,
                           color: theme.palette.text.primary,
                           textAlign: "center",
                         }}
