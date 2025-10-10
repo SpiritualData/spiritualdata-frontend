@@ -117,7 +117,7 @@ const Contact = () => {
             maxWidth: "1200px",
             height: { xs: "auto", md: 700 },
             borderRadius: 4,
-            overflow: { xs: "visible", lg: "hidden" },
+            overflow: "visible",
             pt: { xs: 4, md: 12 },
             gap: 6,
           }}
