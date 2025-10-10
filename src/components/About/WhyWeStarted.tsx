@@ -7,11 +7,14 @@ import {
   useTheme,
   Slide,
   Fade,
+  Button,
 } from "@mui/material";
 import { useInView } from "../../hooks/useInView";
+import { useNavigate } from "react-router-dom";
 
 const WhyWeStarted = () => {
   const theme = useTheme();
+  const navigate = useNavigate();
 
   const heading = useInView();
   const intro = useInView();
@@ -201,6 +204,31 @@ const WhyWeStarted = () => {
               shift toward a world united by loving understanding, guided by
               truth we can all see together.
             </Typography>
+            <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
+              <Button
+                onClick={() => navigate("/origin-story")}
+                variant="contained"
+                sx={{
+                  backgroundColor: theme.palette.primary.focus,
+                  color: theme.palette.primary.hover,
+                  px: 4,
+                  py: 1.5,
+                  fontWeight: 600,
+                  borderRadius: 8,
+                  textTransform: "none",
+                  fontSize: "1rem",
+                  letterSpacing: "0.08rem",
+                  "&:hover": {
+                    backgroundColor: theme.palette.primary.hover,
+                    color: theme.palette.primary.focus,
+                    transform: "scale(1.05)",
+                  },
+                  transition: "all 0.3s ease",
+                }}
+              >
+                Read the Full Origin Story
+              </Button>
+            </Box>
           </Box>
         </Fade>
       </div>

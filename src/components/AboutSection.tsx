@@ -75,7 +75,7 @@ const AboutSection: React.FC = () => {
 
           <Button
             variant="contained"
-            onClick={() => navigate("/about")}
+            onClick={() => navigate("/origin-story")}
             sx={{
               backgroundColor: theme.palette.primary.focus,
               color: "#1F2540",
