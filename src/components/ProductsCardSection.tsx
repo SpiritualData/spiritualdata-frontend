@@ -28,17 +28,21 @@ const ProductsCardSection = () => {
               md={5}
               key={item.title}
               component="div"
-              maxWidth={"385px"}
-              height={"50vh"}
               ref={ref}
+              sx={{
+                maxWidth: "385px",
+                minHeight: "450px",
+                display: "flex",
+              }}
               {...({} as any)}
             >
               <Slide
                 direction="up"
                 in={inView}
                 timeout={{ enter: 500 + index * 500 }}
+                style={{ width: "100%", display: "flex" }}
               >
-                <div>
+                <div style={{ width: "100%", display: "flex" }}>
                   <InitiativeCard data={item} />
                 </div>
               </Slide>
