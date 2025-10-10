@@ -23,7 +23,7 @@ const Products: React.FC = () => {
           <PageDef
             title={"Our Products"}
             heading={
-              "AI-powered tools for spiritual exploration and concept understanding."
+              "AI-powered tools for transformative goals and review of scientific consensus."
             }
             details={""}
           />
