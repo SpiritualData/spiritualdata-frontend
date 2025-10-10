@@ -408,7 +408,7 @@ const OriginStory: React.FC = () => {
               >
                 His religious background taught him the power of beliefs and a
                 principled approach to life. His faith crisis cracked him open to
-                new truths. His technical and linguistic skills enabled him to
+                new truths. His technical, linguistic, and entrepreneurship skills enabled him to
                 pioneer a new approach to age-old questions. With intellectual
                 humility, transparent data, and harnessing AI, Joshua believes
                 this is how humanity will transcend divisions of belief to
