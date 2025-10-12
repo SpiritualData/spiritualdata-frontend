@@ -329,8 +329,7 @@ const OriginStory: React.FC = () => {
                 bubbles as he had been, unaware of information that could change
                 everything? To empower people with the knowledge to critically
                 examine their beliefs and make informed spiritual choices, Joshua
-                founded Spiritual Data, starting as a simple Discord server and a
-                database for spiritual hypotheses.
+                founded Spiritual Data, starting as a Notion database to test hypotheses on spiritual experiences and research, and a Discord community.
               </Typography>
               <Typography
                 variant="body1"
