@@ -43,7 +43,7 @@ export const psychicAbilityDetailsData = [
   {
     id: 1,
     title: "Scientific Testing",
-    desc: "All demonstrations are conducted under strict conditions, including ethics approval, unbiased witnesses, and video documentation.",
+    desc: "All demonstrations are conducted under strict conditions, including comparison with controls, unbiased witnesses, and video documentation.",
     secHead: "DETAILS",
     secSubHead1: "PSYCHIC",
     secSubHead2: "CERTIFICATION",
@@ -51,7 +51,7 @@ export const psychicAbilityDetailsData = [
   {
     id: 2,
     title: "Standardized Abilities",
-    desc: "Testing procedures focus on abilities such as telekinesis, ESP, and levitation, with flexibility for unique skills.",
+    desc: "Testing procedures focus on common abilities such as telekinesis, ESP, and levitation, with flexibility for unique skills.",
     secHead: "DETAILS",
     secSubHead1: "PSYCHIC",
     secSubHead2: "CERTIFICATION",
