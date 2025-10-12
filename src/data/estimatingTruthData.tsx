@@ -18,7 +18,7 @@ export const tiltHeadData = {
 export const scrollCardsData = [
   {
     title: "Background",
-    desc: "The truth estimation framework is called Concept AI. It is also referred to as a decision automation framework. Truth estimation requires automation based on evidential data, such as research papers and written human experiences. In the future, other sources of data may be supported.",
+    desc: "The truth estimation framework is called Concept AI. It is also referred to as a decision automation framework. Truth estimation requires automation based on evidential data, such as research papers and written human experiences. In the future, other types of data may be supported.",
     btn: "Learn the Science Behind It",
     img: scrollimage1,
     link: "/products/concept-ai",

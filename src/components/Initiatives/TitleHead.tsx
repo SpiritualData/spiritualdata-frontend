@@ -85,6 +85,10 @@ const TitleHead = ({ data }: TiltHeadProps) => {
               mx: "auto",
               fontFamily: "Sansation, sans-serif",
               letterSpacing: 1,
+              backgroundColor: "rgba(255, 255, 255, 0.7)",
+              padding: 3,
+              borderRadius: 2,
+              backdropFilter: "blur(5px)",
             }}
           >
             {data.desc}
