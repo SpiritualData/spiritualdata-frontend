@@ -59,7 +59,7 @@ export const estimatingTruthDetailsData = [
   {
     id: 3,
     title: "Decision Automation",
-    desc: "Decision-automation occurs within each domain. Science is a top-level domain, while product applications are configured as their own domains.",
+    desc: "Decision-automation occurs within each domain. Domains represent the types of questions asked, ideas considered, and concepts used. They are populated by relevant literature.",
     secHead: "DETAILS",
     secSubHead1: "TRUTH",
     secSubHead2: "ESTIMATION",
