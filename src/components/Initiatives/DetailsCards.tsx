@@ -310,7 +310,7 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
           {/* Instructional Text */}
           <Box
             sx={{
-              textAlign: "center",
+              textAlign: { xs: "center", md: "right" },
               mt: { xs: -2, md: -8 },
               mb: { xs: 2, md: 3 },
             }}
