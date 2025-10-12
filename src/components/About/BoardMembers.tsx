@@ -13,7 +13,7 @@ import sander from "../../assets/images/about/sander_stepanov.jpg";
 
 const BoardMembers: React.FC = () => {
   const { ref: sectionRef, inView: sectionInView } = useInView({
-    threshold: 0.2,
+    threshold: 0.05,
   });
 
   const theme = useTheme();
