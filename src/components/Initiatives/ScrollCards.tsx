@@ -111,7 +111,13 @@ export default function ScrollStackCards({ data }: ScrollStackCardsProps) {
 
               <Button
                 variant="contained"
-                onClick={() => navigate(`${card.link}`)}
+                onClick={() => {
+                  if (card.link.startsWith('http')) {
+                    window.open(card.link, '_blank');
+                  } else {
+                    navigate(card.link);
+                  }
+                }}
                 sx={{
                   backgroundColor: theme.palette.primary.focus,
                   color: theme.palette.primary.hero,
