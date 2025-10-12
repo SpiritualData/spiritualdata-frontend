@@ -147,8 +147,7 @@ const Crisis = () => {
             >
               <strong>Spiritual Data.</strong>
               <br />
-              To cut through distortion with evidence-based tools and AI-powered
-              clarity.
+              We're cutting through distortion with evidence-based prioritization of information.
               <br />
               So you can decide for yourself.
             </Typography>
