@@ -51,7 +51,7 @@ export const estimatingTruthDetailsData = [
   {
     id: 2,
     title: "Domains of Knowledge",
-    desc: "Concepts live within domains, which are hierarchical and editable by humans.",
+    desc: "Concepts live within domains, which are hierarchical and editable by humans. They are populated by relevant literature.",
     secHead: "DETAILS",
     secSubHead1: "TRUTH",
     secSubHead2: "ESTIMATION",
@@ -59,7 +59,7 @@ export const estimatingTruthDetailsData = [
   {
     id: 3,
     title: "Decision Automation",
-    desc: "Decision-automation occurs within each domain. Domains represent the types of questions asked, ideas considered, and concepts used. They are populated by relevant literature.",
+    desc: "Decision-automation occurs within each domain. Domains represent the types of questions asked, ideas considered, and concepts used.",
     secHead: "DETAILS",
     secSubHead1: "TRUTH",
     secSubHead2: "ESTIMATION",
