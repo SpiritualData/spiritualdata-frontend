@@ -21,21 +21,21 @@ export const scrollCardsData = [
     desc: "Wikipedia has a history of labeling whole areas of study as pseudoscience, regardless of research quality. Our initiative was created to advocate for balanced representation and open dialogue. Add your voice by clicking the button.",
     btn: "Join the Advocacy",
     img: scrollimage1,
-    link: "http://bit.ly/3JLeXWn",
+    link: "https://docs.google.com/forms/d/e/1FAIpQLSf0WTmE0RXZb5XWzRMKSNIUGX2kjqpMSY3aNLsvwH_UZqQJ6A/viewform",
   },
   {
     title: "Purpose",
     desc: "Our purpose is to make Wikipedia a more accurate, less biased source by ensuring that alternative scientific research is represented fairly. This benefits the public, researchers, and the credibility of knowledge as a whole.",
     btn: "Join the Advocacy",
     img: scrollimage2,
-    link: "http://bit.ly/3JLeXWn",
+    link: "https://docs.google.com/forms/d/e/1FAIpQLSf0WTmE0RXZb5XWzRMKSNIUGX2kjqpMSY3aNLsvwH_UZqQJ6A/viewform",
   },
   {
     title: "Approach",
     desc: "We mobilize volunteers to advocate for policy changes such as reforming the False Balance rule. We prepare scientific information, collaborate with Wikipedia editors, and persistently monitor pages to maintain accurate representation.",
     btn: "Join the Advocacy",
     img: scrollimage3,
-    link: "http://bit.ly/3JLeXWn",
+    link: "https://docs.google.com/forms/d/e/1FAIpQLSf0WTmE0RXZb5XWzRMKSNIUGX2kjqpMSY3aNLsvwH_UZqQJ6A/viewform",
   },
 ];
 
