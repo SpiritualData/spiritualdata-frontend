@@ -80,8 +80,8 @@ const ContentSection = ({
 
           {boardMember ? (
             <Box
-              onClick={() => setExpanded((prev) => !prev)}
-              sx={{ cursor: "pointer", position: "relative" }}
+              onClick={() => subText.length > 700 ? setExpanded((prev) => !prev) : null}
+              sx={{ cursor: subText.length > 700 ? "pointer" : "default", position: "relative" }}
             >
               <Typography
                 sx={{
@@ -94,7 +94,7 @@ const ContentSection = ({
                   textOverflow: "ellipsis",
                   display: "-webkit-box",
                   WebkitBoxOrient: "vertical",
-                  WebkitLineClamp: expanded ? "unset" : "5",
+                  WebkitLineClamp: (subText.length > 700 && !expanded) ? "5" : "unset",
                   px: { xs: 5, md: 0 },
                   mb: 2,
                   transition: "all 0.3s ease",
@@ -104,7 +104,7 @@ const ContentSection = ({
               </Typography>
 
               {/* "..." indicator at the end when collapsed */}
-              {!expanded && (
+              {!expanded && subText.length > 700 && (
                 <Box
                   sx={{
                     position: "absolute",

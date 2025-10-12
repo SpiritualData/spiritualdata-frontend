@@ -1,6 +1,7 @@
 import { useInView } from "@/hooks/useInView";
-import { Box, Slide, Typography, useTheme } from "@mui/material";
+import { Box, Button, Slide, Typography, useTheme } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import ContentSection from "../Home/ContentSection";
 import bm1 from "../../assets/images/about/bm1.webp";
 import bm2 from "../../assets/images/about/bm2.webp";
@@ -17,6 +18,7 @@ const BoardMembers: React.FC = () => {
   });
 
   const theme = useTheme();
+  const navigate = useNavigate();
   const isDark = theme.palette.mode === "dark";
   const contrastText = theme.palette.getContrastText(
     theme.palette.primary.main
@@ -30,6 +32,7 @@ const BoardMembers: React.FC = () => {
         "Joshua was originally a tech entrepreneur, computational linguist, project manager, and machine learning architect for AI projects. He was also extremely passionate about religion his entire life. In 2022, Joshua realized that subjective feelings wasn't the best way to determine what is true or what authority to listen to, and what's more, he found reliable evidence of spiritual or paranormal concepts that he hadn't heard about or taken seriously before. Joshua became concerned that he and others hadn't learned these things earlier and is determined to find unbiased answers to spiritual questions by letting the data speak for itself. Joshua is now leveraging his experience in computational linguistics and generative AI to analyze firsthand accounts of experiences and research papers to aggregate evidence on both sides of the argument for scientific hypotheses. In 2023, he started a PhD in Integral and Transpersonal Psychology at the California Institute of Integral Studies to further this work. He also enjoys barefoot long distance running and helping individuals as a certified hypnotherapist.",
       buttonText: "Get In Touch →",
       imageSrc: bm1,
+      showOriginStory: true,
     },
     {
       heading: "Jason Bramble",
@@ -130,6 +133,33 @@ const BoardMembers: React.FC = () => {
                 imageSrc={index % 2 === 0 ? member.imageSrc : undefined}
                 imageSrc2={index % 2 === 1 ? member.imageSrc : undefined}
               />
+              {member.showOriginStory && (
+                <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
+                  <Button
+                    onClick={() => navigate("/origin-story")}
+                    variant="contained"
+                    sx={{
+                      backgroundColor: theme.palette.primary.focus,
+                      color: theme.palette.primary.hover,
+                      px: 4,
+                      py: 1.5,
+                      fontWeight: 600,
+                      borderRadius: 8,
+                      textTransform: "none",
+                      fontSize: "1rem",
+                      letterSpacing: "0.08rem",
+                      "&:hover": {
+                        backgroundColor: theme.palette.primary.hover,
+                        color: theme.palette.primary.focus,
+                        transform: "scale(1.05)",
+                      },
+                      transition: "all 0.3s ease",
+                    }}
+                  >
+                    Read the Full Origin Story
+                  </Button>
+                </Box>
+              )}
             </Box>
           </div>
         </Slide>
