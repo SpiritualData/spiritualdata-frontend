@@ -187,14 +187,14 @@ export const sellingPointsData: SellingPoint[] = [
   {
     title: "Context-Aware Outputs",
     description:
-      "Delivering results that specify applicability boundaries for precise use.",
+      "Connects the large body of scientific evidence to the individual scenarios you specify in real-time, bringing science to the real world.",
     icon: <TrackChangesIcon sx={{ fontSize: 48, color: "#fff" }} />,
     gradient: "linear-gradient(135deg, #4FC3F7, #00B0FF)",
   },
   {
     title: "Collaborative & Adaptive Framework",
     description:
-      "Customisable structure with continuous updates and evolving hypotheses.",
+      "Work with other users on the same concept definitions, hypotheses, and theories.",
     icon: <GroupWorkIcon sx={{ fontSize: 48, color: "#fff" }} />,
     gradient: "linear-gradient(135deg, #FF6FD8, #FF3CAC)",
   },
