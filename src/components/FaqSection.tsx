@@ -242,7 +242,7 @@ const FaqSection = () => {
                 textAlign: { xs: "center", md: "left" },
               }}
             >
-              Everything You Want to <br /> Know About AI
+              What do you want to know about Spiritual Data?
             </Typography>
           </Box>
 
