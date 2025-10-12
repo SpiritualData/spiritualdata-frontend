@@ -118,7 +118,7 @@ export const applicationsData = [
   {
     id: 1,
     image: image1,
-    title: "Application Parapsychology",
+    title: "Parapsychology",
     description:
       "Identifies complex replication factors, refines theories, operationally defines psi, and predicts replication success rates.",
   },
