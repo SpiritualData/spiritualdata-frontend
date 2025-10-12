@@ -26,7 +26,7 @@ const ConceptAi = () => {
     <>
       <ProductHero
         content={heroData}
-        onScrollClick={scrollToUseCases}
+        onScrollClick={() => window.open(callToAction.buttonLink || '', '_blank')}
         product="concept-ai"
       />
       <CoreCapabilities data={capabilitiesData} />
