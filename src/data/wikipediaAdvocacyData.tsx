@@ -32,7 +32,7 @@ export const scrollCardsData = [
   },
   {
     title: "Approach",
-    desc: "We mobilize volunteers to advocate for policy changes such as reforming the False Balance rule. We prepare scientific information, collaborate with Wikipedia editors, and persistently monitor pages to maintain accurate representation.",
+    desc: "We mobilize volunteers to advocate for policy changes such as reforming the False Balance rule which is used as an excuse to exclude expert perspectives that don't denigrate parapsychology. We prepare scientific information, collaborate with Wikipedia editors, and persistently monitor pages to maintain accurate representation.",
     btn: "Join the Advocacy",
     img: scrollimage3,
     link: "https://docs.google.com/forms/d/e/1FAIpQLSf0WTmE0RXZb5XWzRMKSNIUGX2kjqpMSY3aNLsvwH_UZqQJ6A/viewform",
