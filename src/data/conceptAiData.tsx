@@ -209,7 +209,7 @@ export const callToAction: callToAction = {
   additionalSubtitle:
     "in building the next generation of scientific knowledge integration.",
   buttonText: "Join the Waitlist",
-  buttonLink: "/sign-up",
+  buttonLink: "https://docs.google.com/forms/d/e/1FAIpQLSdfoza-eMBzM6JysihA8lyPN2GEtT5C-2TWz7B7O56K1u1fEw/viewform?usp=header",
   footerNote: "",
   additionalFooterNote1: "",
   additionalFooterNote2: "Your data stays private",
