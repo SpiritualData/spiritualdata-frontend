@@ -198,30 +198,37 @@ const HowWeWork = () => {
             </Fade>
 
             <Fade in={inView} timeout={2400}>
-              <Button
-                variant="outlined"
-                sx={{
-                  backgroundColor: theme.palette.primary.focus,
-                  color: theme.palette.primary.hero,
-                  borderRadius: 8,
-                  height: 42,
-                  px: 4,
-                  py: 3.5,
-                  fontWeight: 700,
-                  fontSize: "18px",
-                  textTransform: "uppercase",
-                  fontFamily: "Poppins, sans-serif",
-                  letterSpacing: "1px",
-                  transition: "all 0.3s ease",
-                  alignSelf: "flex-start",
-                  "&:hover": {
-                    backgroundColor: theme.palette.primary.hero,
-                    color: theme.palette.primary.focus,
-                  },
-                }}
+              <Link
+                href="https://forms.gle/E6A9p3GgvUDoy2q18"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
               >
-                Apply Now
-              </Button>
+                <Button
+                  variant="outlined"
+                  sx={{
+                    backgroundColor: theme.palette.primary.focus,
+                    color: theme.palette.primary.hero,
+                    borderRadius: 8,
+                    height: 42,
+                    px: 4,
+                    py: 3.5,
+                    fontWeight: 700,
+                    fontSize: "18px",
+                    textTransform: "uppercase",
+                    fontFamily: "Poppins, sans-serif",
+                    letterSpacing: "1px",
+                    transition: "all 0.3s ease",
+                    alignSelf: "flex-start",
+                    "&:hover": {
+                      backgroundColor: theme.palette.primary.hero,
+                      color: theme.palette.primary.focus,
+                    },
+                  }}
+                >
+                  Apply Now
+                </Button>
+              </Link>
             </Fade>
           </Stack>
         </Grid>
