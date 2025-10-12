@@ -19,23 +19,23 @@ export const scrollCardsData = [
   {
     title: "Background",
     desc: "Despite decades of peer reviewed research showing statistical evidence, systematic testing of advanced psychic ability with credible witnesses has been limited due to lack of resources and motivation. Spiritual Data intends to change this by creating a transparent and scientific program for testing telekinesis, ESP, levitation, and more.",
-    btn: "Explore Background",
+    btn: "Apply to be tested",
     img: scrollimage1,
-    link: "/initiatives/psychic/background",
+    link: "https://docs.google.com/forms/d/e/1FAIpQLSdi7zXNri8uXouwlOMV64WcYNXeQOlVX7nS7Su6YM9V4AyJCg/viewform?usp=sf_link",
   },
   {
     title: "Purpose",
     desc: "The purpose of this initiative is to provide more credible evidence of advanced psychic ability, create a regulated certification system, motivate scientific research, and guide individuals to authentic practitioners who demonstrate real, verifiable skills.",
-    btn: "See Why It Matters",
+    btn: "Apply to be tested",
     img: scrollimage2,
-    link: "/initiatives/psychic/purpose",
+    link: "https://docs.google.com/forms/d/e/1FAIpQLSdi7zXNri8uXouwlOMV64WcYNXeQOlVX7nS7Su6YM9V4AyJCg/viewform?usp=sf_link",
   },
   {
     title: "Approach",
     desc: "Our certification process includes ethics review, standardized and customizable tests, unbiased witnesses, video recording, and independent researcher validation. Participants are classified by reliability, from Demonstrably Psychic to Super Psychic.",
-    btn: "Learn About the Process",
+    btn: "Apply to be tested",
     img: scrollimage3,
-    link: "/initiatives/psychic/approach",
+    link: "https://docs.google.com/forms/d/e/1FAIpQLSdi7zXNri8uXouwlOMV64WcYNXeQOlVX7nS7Su6YM9V4AyJCg/viewform?usp=sf_link",
   },
 ];
 
