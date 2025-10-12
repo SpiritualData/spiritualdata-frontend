@@ -120,7 +120,7 @@ const Crisis = () => {
                     data={item}
                     idx={idx}
                     headSx={{ fontSize: "25px" }}
-                    bodySx={{ fontSize: "13px" }}
+                    bodySx={{ fontSize: { xs: "16px", md: "18px" } }}
                   />
                 </Grid>
               ))}
