@@ -311,8 +311,9 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
           <Box
             sx={{
               textAlign: { xs: "center", md: "right" },
-              mt: { xs: -2, md: -8 },
-              mb: { xs: 2, md: 3 },
+              mt: { xs: 2, md: 4 },
+              mb: { xs: 2, md: 4 },
+              px: { xs: 2, md: 0 },
             }}
           >
             <Typography
