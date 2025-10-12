@@ -200,7 +200,8 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
             <Box
               flex={1}
               display="flex"
-              alignItems="center"
+              flexDirection="column"
+              alignItems={{ xs: "center", md: "flex-start" }}
               justifyContent="center"
               sx={{
                 minHeight: 125,
@@ -229,6 +230,31 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
                 }}
               >
                 {data[0]?.secHead}
+              </Typography>
+
+              {/* Instructional Text */}
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "text.secondary",
+                  fontFamily: "Sansation, sans-serif",
+                  fontStyle: "italic",
+                  backgroundColor: "rgba(255, 255, 255, 0.9)",
+                  padding: 1,
+                  borderRadius: 2,
+                  mt: 2,
+                  position: "relative",
+                  zIndex: 1,
+                  textAlign: { xs: "center", md: "left" },
+                }}
+              >
+                {/* Show different text for mobile vs desktop */}
+                <Box component="span" sx={{ display: { xs: "inline", md: "none" } }}>
+                  Tap each card to learn more
+                </Box>
+                <Box component="span" sx={{ display: { xs: "none", md: "inline" } }}>
+                  Hover over each card to learn more
+                </Box>
               </Typography>
             </Box>
 
@@ -305,37 +331,6 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
                 </Box>
               ))}
             </Box>
-          </Box>
-
-          {/* Instructional Text */}
-          <Box
-            sx={{
-              textAlign: { xs: "center", md: "right" },
-              mt: { xs: 2, md: 4 },
-              mb: { xs: 2, md: 4 },
-              px: { xs: 2, md: 0 },
-            }}
-          >
-            <Typography
-              variant="body1"
-              sx={{
-                color: "text.secondary",
-                fontFamily: "Sansation, sans-serif",
-                fontStyle: "italic",
-                backgroundColor: "rgba(255, 255, 255, 0.9)",
-                padding: 1.5,
-                borderRadius: 2,
-                display: "inline-block",
-              }}
-            >
-              {/* Show different text for mobile vs desktop */}
-              <Box component="span" sx={{ display: { xs: "inline", md: "none" } }}>
-                Tap each card to learn more
-              </Box>
-              <Box component="span" sx={{ display: { xs: "none", md: "inline" } }}>
-                Hover over each card to learn more
-              </Box>
-            </Typography>
           </Box>
 
           {/* Bottom Row */}
