@@ -200,14 +200,13 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
             <Box
               flex={1}
               display="flex"
-              flexDirection="column"
-              alignItems={{ xs: "center", md: "flex-start" }}
+              alignItems="center"
               justifyContent="center"
               sx={{
                 minHeight: 125,
                 bgcolor: "transparent",
                 position: "relative",
-                overflow: "hidden",
+                overflow: "visible",
               }}
             >
               <BackgroundText>
@@ -232,29 +231,24 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
                 {data[0]?.secHead}
               </Typography>
 
-              {/* Instructional Text */}
+              {/* Instructional Text - Absolutely positioned below */}
               <Typography
                 variant="body2"
                 sx={{
+                  display: { xs: "none", md: "block" },
+                  position: "absolute",
+                  bottom: -40,
+                  left: 0,
                   color: "text.secondary",
                   fontFamily: "Sansation, sans-serif",
                   fontStyle: "italic",
                   backgroundColor: "rgba(255, 255, 255, 0.9)",
                   padding: 1,
                   borderRadius: 2,
-                  mt: 2,
-                  position: "relative",
                   zIndex: 1,
-                  textAlign: { xs: "center", md: "left" },
                 }}
               >
-                {/* Show different text for mobile vs desktop */}
-                <Box component="span" sx={{ display: { xs: "inline", md: "none" } }}>
-                  Tap each card to learn more
-                </Box>
-                <Box component="span" sx={{ display: { xs: "none", md: "inline" } }}>
-                  Hover over each card to learn more
-                </Box>
+                Hover over each card to learn more
               </Typography>
             </Box>
 
