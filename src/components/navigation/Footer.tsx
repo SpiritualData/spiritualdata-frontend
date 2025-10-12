@@ -61,10 +61,10 @@ const Footer = () => {
     ["Contact", "/contact"],
     ["Careers", "/careers"],
     ["Donate", "/donate"],
-    ["Contribute", "/contribute"],
+    ["Quest", "/products/quest"],
     ["Newsletter", "https://spiritualdata.beehiiv.com/"],
     ["Initiatives", "/initiatives"],
-    ["Product", "/products"],
+    ["Products", "/products"],
     ["Research", "/research"],
   ];
 
