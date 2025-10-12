@@ -18,7 +18,7 @@ export const tiltHeadData = {
 export const scrollCardsData = [
   {
     title: "Background",
-    desc: "Despite decades of claims and anecdotal evidence, systematic testing of psychic abilities has been limited due to lack of resources and motivation. Spiritual Data intends to change this by creating a transparent and scientific program for testing telekinesis, ESP, levitation, and more.",
+    desc: "Despite decades of peer reviewed research showing statistical evidence, systematic testing of advanced psychic ability with credible witnesses has been limited due to lack of resources and motivation. Spiritual Data intends to change this by creating a transparent and scientific program for testing telekinesis, ESP, levitation, and more.",
     btn: "Explore Background",
     img: scrollimage1,
     link: "/initiatives/psychic/background",
