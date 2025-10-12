@@ -12,7 +12,7 @@ export const headerData = {
 export const tiltHeadData = {
   bgText: "Psychic Initiative",
   title: "Psychic Ability Certification Initiative",
-  desc: "The Psychic Ability Certification program aims to provide undeniable evidence of psychic abilities through transparent and ethical testing. By applying scientific standards—witness verification, control experiments, and independent PhD-level review—Spiritual Data offers the world's first structured certification system for psychics, helping regulate the industry and motivating further research.",
+  desc: "The Psychic Ability Certification program aims to provide practically undeniable evidence of psychic abilities through transparent and ethical testing. By applying scientific standards—witness verification, control experiments, and independent PhD-level review—Spiritual Data offers the world's first structured certification system for all psychic abilities, helping regulate the industry and motivating further research.",
 };
 
 export const scrollCardsData = [
@@ -25,7 +25,7 @@ export const scrollCardsData = [
   },
   {
     title: "Purpose",
-    desc: "The purpose of this initiative is to provide undeniable evidence of psychic abilities, create a regulated certification system, motivate scientific research, and guide individuals to authentic practitioners who demonstrate real, verifiable skills.",
+    desc: "The purpose of this initiative is to provide more credible evidence of advanced psychic ability, create a regulated certification system, motivate scientific research, and guide individuals to authentic practitioners who demonstrate real, verifiable skills.",
     btn: "See Why It Matters",
     img: scrollimage2,
     link: "/initiatives/psychic/purpose",
