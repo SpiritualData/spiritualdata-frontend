@@ -119,8 +119,8 @@ const Change: React.FC = () => {
                     }}
                   >
                     <li>
-                      Draws conclusions from evidence, not personal beliefs or
-                      cultural norms.
+                      Draws conclusions from evidence, not web search or
+                      user preferences.
                     </li>
                     <li>
                       Estimates truth probabilistically, using statistical and
@@ -131,8 +131,8 @@ const Change: React.FC = () => {
                       peer-reviewed and improved over time.
                     </li>
                     <li>
-                      Combats institutional bias, surfacing insights that might
-                      otherwise be excluded or suppressed.
+                      Combats institutional bias, including often-ignored data and
+                      judging from a diverse set of perspectives.
                     </li>
                   </ul>
                 </Box>
