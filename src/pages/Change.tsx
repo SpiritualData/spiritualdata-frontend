@@ -114,7 +114,7 @@ const Change: React.FC = () => {
                   </Typography>
                   <ul
                     style={{
-                      color: theme.palette.text.primary,
+                      color: theme.palette.text.secondary,
                       lineHeight: 1.8,
                     }}
                   >
