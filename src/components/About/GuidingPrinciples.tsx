@@ -51,7 +51,7 @@ const GuidingPrinciples: React.FC<GuidingPrinciplesProps> = ({
   const rightCards = [
     {
       title: "Truth Estimation Engine",
-      body: "AI that evaluates research and calculates what's most likely true - free from human bias.",
+      body: "AI that evaluates research and calculates what's most likely true - overcoming human bias by including all perspectives.",
       link: "/initiatives/estimating-truth",
     },
     {
