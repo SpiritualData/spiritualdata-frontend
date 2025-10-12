@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Container, Typography, Paper, useTheme } from "@mui/material";
 import { styled } from "@mui/system";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import bgi1 from "../../assets/images/initiatives/initiatives1.webp";
 import bgi2 from "../../assets/images/initiatives/initiatives2.webp";
 import bgi3 from "../../assets/images/initiatives/initiatives3.webp";
@@ -68,6 +69,12 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
       color: theme.palette.primary.hover,
       textShadow: `0 0 15px ${theme.palette.text.secondary}`,
       fontFamily: "Sansation, sans-serif",
+      transition: "transform 0.3s ease, box-shadow 0.3s ease",
+
+      "&:hover": {
+        transform: "scale(1.02)",
+        boxShadow: `0 8px 20px rgba(0,0,0,0.15)`,
+      },
 
       "&::before": {
         content: '""',
@@ -207,22 +214,45 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
                 {data[0]?.secSubHead2}
               </BackgroundText>
 
-              <Typography
-                variant="h1"
-                sx={{
-                  fontSize: { xs: "4rem", sm: "6rem" },
-                  fontWeight: "bold",
-                  letterSpacing: 8,
-                  color: "primary.hero",
-                  fontFamily: "Sansation, sans-serif",
-                  position: "relative",
-                  zIndex: 1,
-                  textShadow: `-1px -1px 0 ${theme.palette.primary.focus}, 1px -1px 0 ${theme.palette.primary.focus}, -1px 1px 0 ${theme.palette.primary.focus}, 1px 1px 0 ${theme.palette.primary.focus}`,
-                  textAlign: { xs: "center", md: "left" },
-                }}
-              >
-                {data[0]?.secHead}
-              </Typography>
+              <Box>
+                <Typography
+                  variant="h1"
+                  sx={{
+                    fontSize: { xs: "4rem", sm: "6rem" },
+                    fontWeight: "bold",
+                    letterSpacing: 8,
+                    color: "primary.hero",
+                    fontFamily: "Sansation, sans-serif",
+                    position: "relative",
+                    zIndex: 1,
+                    textShadow: `-1px -1px 0 ${theme.palette.primary.focus}, 1px -1px 0 ${theme.palette.primary.focus}, -1px 1px 0 ${theme.palette.primary.focus}, 1px 1px 0 ${theme.palette.primary.focus}`,
+                    textAlign: { xs: "center", md: "left" },
+                  }}
+                >
+                  {data[0]?.secHead}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: "text.secondary",
+                    fontFamily: "Sansation, sans-serif",
+                    textAlign: { xs: "center", md: "left" },
+                    mt: 1,
+                    position: "relative",
+                    zIndex: 1,
+                    fontStyle: "italic",
+                    display: { xs: "block", md: "block" },
+                  }}
+                >
+                  {/* Show different text for mobile vs desktop */}
+                  <Box component="span" sx={{ display: { xs: "inline", md: "none" } }}>
+                    Tap each card to learn more
+                  </Box>
+                  <Box component="span" sx={{ display: { xs: "none", md: "inline" } }}>
+                    Hover over each card to learn more
+                  </Box>
+                </Typography>
+              </Box>
             </Box>
 
             {/* Right Column */}
@@ -240,6 +270,34 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
                     onMouseLeave={handleMouseLeave}
                     sx={{ ...boxStyle, minHeight: 125 }}
                   >
+                    {/* Info Icon Badge */}
+                    <Box
+                      sx={{
+                        position: "absolute",
+                        top: 12,
+                        right: 12,
+                        zIndex: 3,
+                        backgroundColor: theme.palette.primary.focus,
+                        borderRadius: "50%",
+                        width: 28,
+                        height: 28,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        opacity: { xs: 1, md: 0.7 },
+                        transition: "opacity 0.3s ease",
+                        "&:hover": {
+                          opacity: 1,
+                        },
+                      }}
+                    >
+                      <InfoOutlinedIcon
+                        sx={{
+                          fontSize: 18,
+                          color: theme.palette.primary.hero,
+                        }}
+                      />
+                    </Box>
                     <Box
                       className="card-content"
                       sx={{
@@ -287,6 +345,34 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
                   onMouseLeave={handleMouseLeave}
                   sx={{ ...boxStyle, minHeight: 125 }}
                 >
+                  {/* Info Icon Badge */}
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      top: 12,
+                      right: 12,
+                      zIndex: 3,
+                      backgroundColor: theme.palette.primary.focus,
+                      borderRadius: "50%",
+                      width: 28,
+                      height: 28,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      opacity: { xs: 1, md: 0.7 },
+                      transition: "opacity 0.3s ease",
+                      "&:hover": {
+                        opacity: 1,
+                      },
+                    }}
+                  >
+                    <InfoOutlinedIcon
+                      sx={{
+                        fontSize: 18,
+                        color: theme.palette.primary.hero,
+                      }}
+                    />
+                  </Box>
                   <Box
                     className="card-content"
                     sx={{
