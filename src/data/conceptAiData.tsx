@@ -106,9 +106,9 @@ export const capabilitiesData: capabilitiesData[] = [
     icon: <LanIcon fontSize="large" />,
   },
   {
-    title: "Specialised Domain Support",
+    title: "Paradigm Ranking",
     description:
-      "Provides advanced analytical tools tailored to specific research areas, such as parapsychology replication studies, theory development for psi phenomena, and mapping of exceptional human experiences like NDEs, STEs, and OBEs — all within the same rigorous, bias-resistant framework.",
+      "Statistically evaluates and scores competing paradigms by measuring how well they explain the available evidence. The system operates across three hierarchical levels: hypotheses are validated directly against evidence, theories are scored based on supporting hypotheses that align with their explanations, and paradigms are ranked according to theories that match their foundational assumptions — revealing which worldviews explain the most data.",
     image: cors6,
     icon: <PsychologyIcon fontSize="large" />,
   },
