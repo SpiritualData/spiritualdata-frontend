@@ -436,7 +436,7 @@ const OriginStory: React.FC = () => {
               Yet, as he tries to change the world, Joshua's internal hope is
               that one day he'll be able to help his loved ones to break free
               from the same limiting beliefs that held him for so long. A future
-              where learning stories like his is not a sin. A future where
+              where learning faith-opposing stories like his is not a sin. A future where
               everyone can speak openly and embrace uncertainty, together.
             </Typography>
           </Fade>
