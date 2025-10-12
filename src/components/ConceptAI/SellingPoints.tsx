@@ -79,7 +79,7 @@ backgroundAttachment: "fixed",
         }}
         gutterBottom
       >
-        Unique Selling Points
+        What's Different about Concept AI?
       </Typography>
 
       {/* Cards */}
