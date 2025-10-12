@@ -214,45 +214,22 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
                 {data[0]?.secSubHead2}
               </BackgroundText>
 
-              <Box>
-                <Typography
-                  variant="h1"
-                  sx={{
-                    fontSize: { xs: "4rem", sm: "6rem" },
-                    fontWeight: "bold",
-                    letterSpacing: 8,
-                    color: "primary.hero",
-                    fontFamily: "Sansation, sans-serif",
-                    position: "relative",
-                    zIndex: 1,
-                    textShadow: `-1px -1px 0 ${theme.palette.primary.focus}, 1px -1px 0 ${theme.palette.primary.focus}, -1px 1px 0 ${theme.palette.primary.focus}, 1px 1px 0 ${theme.palette.primary.focus}`,
-                    textAlign: { xs: "center", md: "left" },
-                  }}
-                >
-                  {data[0]?.secHead}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    color: "text.secondary",
-                    fontFamily: "Sansation, sans-serif",
-                    textAlign: { xs: "center", md: "left" },
-                    mt: 1,
-                    position: "relative",
-                    zIndex: 1,
-                    fontStyle: "italic",
-                    display: { xs: "block", md: "block" },
-                  }}
-                >
-                  {/* Show different text for mobile vs desktop */}
-                  <Box component="span" sx={{ display: { xs: "inline", md: "none" } }}>
-                    Tap each card to learn more
-                  </Box>
-                  <Box component="span" sx={{ display: { xs: "none", md: "inline" } }}>
-                    Hover over each card to learn more
-                  </Box>
-                </Typography>
-              </Box>
+              <Typography
+                variant="h1"
+                sx={{
+                  fontSize: { xs: "4rem", sm: "6rem" },
+                  fontWeight: "bold",
+                  letterSpacing: 8,
+                  color: "primary.hero",
+                  fontFamily: "Sansation, sans-serif",
+                  position: "relative",
+                  zIndex: 1,
+                  textShadow: `-1px -1px 0 ${theme.palette.primary.focus}, 1px -1px 0 ${theme.palette.primary.focus}, -1px 1px 0 ${theme.palette.primary.focus}, 1px 1px 0 ${theme.palette.primary.focus}`,
+                  textAlign: { xs: "center", md: "left" },
+                }}
+              >
+                {data[0]?.secHead}
+              </Typography>
             </Box>
 
             {/* Right Column */}
@@ -273,9 +250,9 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
                     {/* Info Icon Badge */}
                     <Box
                       sx={{
-                        position: "absolute",
-                        top: 12,
-                        right: 12,
+                        position: "absolute !important",
+                        top: "16px !important",
+                        right: "16px !important",
                         zIndex: 3,
                         backgroundColor: theme.palette.primary.focus,
                         borderRadius: "50%",
@@ -329,6 +306,37 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
               ))}
             </Box>
           </Box>
+
+          {/* Instructional Text */}
+          <Box
+            sx={{
+              textAlign: "center",
+              mt: { xs: -2, md: -8 },
+              mb: { xs: 2, md: 3 },
+            }}
+          >
+            <Typography
+              variant="body1"
+              sx={{
+                color: "text.secondary",
+                fontFamily: "Sansation, sans-serif",
+                fontStyle: "italic",
+                backgroundColor: "rgba(255, 255, 255, 0.9)",
+                padding: 1.5,
+                borderRadius: 2,
+                display: "inline-block",
+              }}
+            >
+              {/* Show different text for mobile vs desktop */}
+              <Box component="span" sx={{ display: { xs: "inline", md: "none" } }}>
+                Tap each card to learn more
+              </Box>
+              <Box component="span" sx={{ display: { xs: "none", md: "inline" } }}>
+                Hover over each card to learn more
+              </Box>
+            </Typography>
+          </Box>
+
           {/* Bottom Row */}
           <Box
             display="flex"
@@ -348,9 +356,9 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
                   {/* Info Icon Badge */}
                   <Box
                     sx={{
-                      position: "absolute",
-                      top: 12,
-                      right: 12,
+                      position: "absolute !important",
+                      top: "16px !important",
+                      right: "16px !important",
                       zIndex: 3,
                       backgroundColor: theme.palette.primary.focus,
                       borderRadius: "50%",
