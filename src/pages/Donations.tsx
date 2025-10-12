@@ -68,13 +68,38 @@ const Donate = () => {
           <Box>
             <PageDef
               title="Donate"
-              heading="Help us Illuminate the Spiritual Path with Data-Driven Clarity"
+              heading="Help us Bring Data-Driven Critical Thinking to Spirituality"
             />
           </Box>
         )}
       </Box>
 
       <Container disableGutters>
+        <Box sx={{ px: { xs: 4, md: "17%" }, mb: 6, mt: { xs: 0, md: 2 } }}>
+          <Typography
+            variant="h5"
+            sx={{
+              fontWeight: 600,
+              color: "text.primary",
+              mb: 2,
+              textAlign: "center",
+            }}
+          >
+            Our Mission
+          </Typography>
+          <Typography
+            sx={{
+              fontSize: { xs: "14px", sm: "16px" },
+              color: "text.secondary",
+              textAlign: "center",
+              letterSpacing: 0.8,
+              lineHeight: 1.6,
+            }}
+          >
+            Spiritual Data's mission is to provide a neutral source of truth for spiritual beliefs and the nature of reality. We provide a system for undeniable evidence to emerge which persuades change in beliefs and scientific consensus.
+          </Typography>
+        </Box>
+
         <Box ref={section1.ref}>
           {section1.inView && (
             <Box borderBottom={1} borderColor="divider" sx={{ mb: 4, pb: 5 }}>
@@ -95,7 +120,7 @@ const Donate = () => {
               <ContentSection
                 imageSrc={skill}
                 heading="Donate Your Skills"
-                subText="Help us grow by becoming part of Spiritual Data's non-profit mission to calculate truth with AI and move society beyond limiting biases. You can choose how you'd like to contribute and what skills you'd like to use."
+                subText="Help us grow by becoming part of Spiritual Data's non-profit mission to provide a neutral source of truth with AI and move society beyond limiting biases. You can choose how you'd like to contribute and what skills you'd like to use."
                 buttonText="Join Now"
                 path="https://docs.google.com/forms/u/1/d/e/1FAIpQLSdy6G90oR1lgRv1BqPd3jkbVG11xOlWptQ88IXfKtb2R3lmyg/viewform?usp=send_form"
               />
