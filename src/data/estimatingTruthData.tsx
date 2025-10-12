@@ -12,7 +12,7 @@ export const headerData = {
 export const tiltHeadData = {
   bgText: "Truth Estimation",
   title: "Truth Estimation Framework Initiative",
-  desc: "The Truth Estimation Framework, also called Concept AI, is the core foundation of Spiritual Data's mission. It provides a transparent, evidence-based system for determining what is true by combining research papers, written experiences, and AI-driven decision automation. Unlike biased alternatives, this framework enables open collaboration with researchers worldwide, ensures every conclusion is backed by clear methodology, and serves as the scientific backbone for all Spiritual Data products.",
+  desc: "The Truth Estimation Framework, also called Concept AI, is the core foundation of Spiritual Data's mission. It provides a transparent, evidence-based system for estimating what is true by combining research papers, written experiences, and AI-driven decision automation of diverse perspectives. Unlike biased alternatives, this framework enables open collaboration with researchers worldwide, ensures every conclusion is backed by clear methodology, and serves as the scientific backbone for all Spiritual Data products.",
 };
 
 export const scrollCardsData = [
