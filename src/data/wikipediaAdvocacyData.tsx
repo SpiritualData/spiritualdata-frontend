@@ -18,24 +18,24 @@ export const tiltHeadData = {
 export const scrollCardsData = [
   {
     title: "Background",
-    desc: "Wikipedia has a history of labeling whole areas of study as pseudoscience, regardless of research quality. Our initiative was created to advocate for balanced representation and open dialogue. Sign up here: http://bit.ly/3JLeXWn",
-    btn: "Learn More",
+    desc: "Wikipedia has a history of labeling whole areas of study as pseudoscience, regardless of research quality. Our initiative was created to advocate for balanced representation and open dialogue. Add your voice by clicking the button.",
+    btn: "Join the Advocacy",
     img: scrollimage1,
-    link: "/initiatives/wikipedia/background",
+    link: "http://bit.ly/3JLeXWn",
   },
   {
     title: "Purpose",
     desc: "Our purpose is to make Wikipedia a more accurate, less biased source by ensuring that alternative scientific research is represented fairly. This benefits the public, researchers, and the credibility of knowledge as a whole.",
-    btn: "Why This Matters",
+    btn: "Join the Advocacy",
     img: scrollimage2,
-    link: "/initiatives/wikipedia/purpose",
+    link: "http://bit.ly/3JLeXWn",
   },
   {
     title: "Approach",
     desc: "We mobilize volunteers to advocate for policy changes such as reforming the False Balance rule. We prepare scientific information, collaborate with Wikipedia editors, and persistently monitor pages to maintain accurate representation.",
     btn: "Join the Advocacy",
     img: scrollimage3,
-    link: "/initiatives/wikipedia/approach",
+    link: "http://bit.ly/3JLeXWn",
   },
 ];
 
