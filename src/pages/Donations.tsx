@@ -18,25 +18,25 @@ const data = [
   {
     tier: "Light Contributor",
     amount: "$10/month",
-    impact: "Supports one spiritual dataset being cleaned and made public",
+    impact: "Bring light to spiritual truth—every contribution helps illuminate the path toward evidence-based understanding",
     image: image1,
   },
   {
     tier: "Insight Giver",
     amount: "$25/month",
-    impact: "Powers visualization tools for one new research area",
+    impact: "Your insights matter—support meaningful discoveries that help others find clarity in spiritual questions",
     image: image2,
   },
   {
     tier: "Pattern Illuminator",
     amount: "$50/month",
-    impact: "Funds deep-dive analysis and community reports",
+    impact: "Reveal the bigger picture—help illuminate the patterns connecting spiritual evidence and truth",
     image: image3,
   },
   {
-    tier: "Sacred Data Guardian",
+    tier: "Data Guardian",
     amount: "Custom",
-    impact: "Enables larger initiatives (e.g. spiritual census, platform dev)",
+    impact: "Protect and advance the mission—be a steward of truth and champion breakthrough discoveries",
     image: image4,
   },
 ];
