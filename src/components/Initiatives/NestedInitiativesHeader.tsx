@@ -65,6 +65,20 @@ const HeaderSection = ({ data }: headerDataProps) => {
         }}
       />
 
+      {/* Top gradient for menu visibility */}
+      <Box
+        sx={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "200px",
+          background: "linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%)",
+          zIndex: 2,
+          pointerEvents: "none",
+        }}
+      />
+
       {/* Main white overlay on left side */}
       <Box
         sx={{
