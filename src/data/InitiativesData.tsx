@@ -29,7 +29,7 @@ export const initiativeCardData = [
     description:
       "Through real-world experiments, we're scientifically testing and certifying psychic abilities witnessed, recorded, and peer-reviewed.",
     image: image3,
-    link: "/initiatives/psychic-certification",
+    link: "/initiatives/psychic-ability-certification",
     author: "Spiritual Data",
     buttonText: "See the Research in Action",
   },
