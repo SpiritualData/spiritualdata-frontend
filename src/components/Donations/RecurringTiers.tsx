@@ -131,9 +131,7 @@ const RecurringTiers = ({ data }: recurringTiersProps) => {
                 mb={2}
                 sx={{ whiteSpace: "pre-line" }}
               >
-                {impact && impact.length > 110
-                  ? impact.slice(0, 110) + "..."
-                  : impact || ""}
+                {impact || ""}
               </Typography>
 
               <Divider
