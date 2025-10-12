@@ -91,7 +91,7 @@ export const stepsData: stepsData[] = [
 export const featuresData: featuresData[] = [
   {
     icon: <SettingsIcon />,
-    title: "Quest-Driven Conversations",
+    title: "Goal-Driven Conversations",
     subHead: "Turn Conversations Into Progress ",
     desc: "Your journey begins with purposeful conversations. Quest guides you through focused dialogues, asking insightful questions to uncover your true objectives and craft a path toward meaningful outcomes.",
   },
