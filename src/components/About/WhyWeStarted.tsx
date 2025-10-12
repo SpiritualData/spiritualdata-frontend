@@ -72,27 +72,55 @@ const WhyWeStarted = () => {
         </Slide>
       </div>
 
-      {/* Intro paragraph */}
+      {/* Mission and Vision */}
       <div ref={intro.ref}>
         <Fade in={intro.inView} timeout={1000}>
-          <Typography
-            variant="subtitle1"
-            color="text.secondary"
-            sx={{
-              maxWidth: "1200px",
-              mb: 6,
-              letterSpacing: 0.8,
-              textAlign: "center",
-            }}
-          >
-            Spiritual truth hasn't disappeared - it's been buried. At Spiritual
-            Data, our vision is simple but transformative: to change the world
-            by changing the source of people's beliefs. For too long, spiritual
-            questions have been shaped by authority, taboo, or personal opinion.
-            We believe that when people are shown undeniable, unbiased evidence,
-            a global shift becomes possible - a move toward clarity,
-            intellectual humility, and a deeper sense of shared truth.
-          </Typography>
+          <Box sx={{ maxWidth: "1200px", mb: 6 }}>
+            <Typography
+              variant="h5"
+              sx={{
+                fontWeight: 600,
+                color: "text.primary",
+                mb: 2,
+                textAlign: "center",
+              }}
+            >
+              Our Mission
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              color="text.secondary"
+              sx={{
+                letterSpacing: 0.8,
+                textAlign: "center",
+                mb: 4,
+              }}
+            >
+              Spiritual Data's mission is to provide a neutral source of truth for spiritual beliefs and the nature of reality. We provide a system for undeniable evidence to emerge which persuades change in beliefs and scientific consensus.
+            </Typography>
+
+            <Typography
+              variant="h5"
+              sx={{
+                fontWeight: 600,
+                color: "text.primary",
+                mb: 2,
+                textAlign: "center",
+              }}
+            >
+              Our Vision
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              color="text.secondary"
+              sx={{
+                letterSpacing: 0.8,
+                textAlign: "center",
+              }}
+            >
+              Change the world through changing the source of people's beliefs. Undeniable evidence will foster a global shift towards evidence-based understanding of spiritual questions. Then widespread intellectual humility will naturally unify the world in loving understanding.
+            </Typography>
+          </Box>
         </Fade>
       </div>
 
