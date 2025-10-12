@@ -159,6 +159,7 @@ const Research = () => {
             color: "black",
             textAlign: "center",
             fontWeight: 600,
+            mb: 3,
           }}
         >
           Learn more about our{" "}
@@ -172,6 +173,31 @@ const Research = () => {
           </a>
           .
         </Typography>
+
+        <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
+          <Link to="/products/concept-ai" style={{ textDecoration: "none" }}>
+            <Button
+              variant="contained"
+              endIcon={<East />}
+              sx={{
+                backgroundColor: (theme) => theme.palette.primary.focus,
+                color: "#1F2540",
+                px: 4,
+                py: 1.5,
+                fontWeight: 600,
+                borderRadius: 8,
+                textTransform: "none",
+                fontSize: "1rem",
+                "&:hover": {
+                  backgroundColor: (theme) => theme.palette.primary.hover,
+                  color: "#fff",
+                },
+              }}
+            >
+              Learn How Concept AI Can Support Your Research
+            </Button>
+          </Link>
+        </Box>
       </Box>
 
       <Box
