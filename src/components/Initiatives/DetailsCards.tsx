@@ -262,12 +262,6 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
                       <Typography
                         variant="body1"
                         textAlign="center"
-                        sx={{
-                          display: "-webkit-box",
-                          WebkitLineClamp: 3,
-                          WebkitBoxOrient: "vertical",
-                          overflow: "hidden",
-                        }}
                       >
                         {item.desc}
                       </Typography>
@@ -315,12 +309,6 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
                     <Typography
                       variant="body1"
                       textAlign="center"
-                      sx={{
-                        display: "-webkit-box",
-                        WebkitLineClamp: 3,
-                        WebkitBoxOrient: "vertical",
-                        overflow: "hidden",
-                      }}
                     >
                       {item.desc}
                     </Typography>
