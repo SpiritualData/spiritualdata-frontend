@@ -134,7 +134,7 @@ export const applicationsData = [
     image: image3,
     title: "Multidisciplinary Science",
     description:
-      "Integrates data across psychology, neuroscience, physics, mathematics, law, and environmental sciences.",
+      "Integrates data across psychology, neuroscience, physics, medicine, other natural sciences, and philosophy.",
   },
 ];
 
