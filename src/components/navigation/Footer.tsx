@@ -205,11 +205,12 @@ const Footer = () => {
                     md: 25,
                     color: theme.palette.primary.main,
                   },
+                  textAlign: "center",
                 }}
               >
                 Follow Us
               </Typography>
-              <Grid container spacing={0}>
+              <Grid container spacing={2}>
                 {[
                   [
                     { label: "Discord", icon: <DiscordIcon />, url: "https://discord.com/invite/thQNvPGcJF" },
