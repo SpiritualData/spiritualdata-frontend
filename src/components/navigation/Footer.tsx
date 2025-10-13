@@ -209,41 +209,58 @@ const Footer = () => {
               >
                 Follow Us
               </Typography>
-              {[
-                { label: "Discord", icon: <DiscordIcon />, url: "https://discord.com/invite/thQNvPGcJF" },
-                { label: "Newsletter", icon: <Email />, url: "https://spiritualdata.beehiiv.com/" },
-                { label: "TikTok", icon: <TikTokIcon />, url: "https://www.tiktok.com/@spiritual_data" },
-                { label: "YouTube", icon: <YouTube />, url: "https://www.youtube.com/@spiritualdata" },
-                { label: "Instagram", icon: <Instagram />, url: "https://www.instagram.com/spiritualdata/" },
-                { label: "Twitter", icon: <Twitter />, url: "https://twitter.com/spiritual_data" },
-                { label: "Facebook", icon: <Facebook />, url: "https://www.facebook.com/profile.php?id=100088266313464" },
-                { label: "LinkedIn", icon: <LinkedIn />, url: "https://www.linkedin.com/company/spiritual-data" },
-              ].map(({ label, icon, url }) => (
-                <Box
-                  key={label}
-                  display="flex"
-                  alignItems="center"
-                  sx={{ cursor: "pointer" }}
-                  onClick={() => window.open(url, "_blank")}
-                >
-                  <IconButton
-                    sx={{ color: "primary.focus", pl: 0, fontWeight: 300 }}
+              <Grid container spacing={0}>
+                {[
+                  [
+                    { label: "Discord", icon: <DiscordIcon />, url: "https://discord.com/invite/thQNvPGcJF" },
+                    { label: "Newsletter", icon: <Email />, url: "https://spiritualdata.beehiiv.com/" },
+                    { label: "TikTok", icon: <TikTokIcon />, url: "https://www.tiktok.com/@spiritual_data" },
+                    { label: "YouTube", icon: <YouTube />, url: "https://www.youtube.com/@spiritualdata" },
+                  ],
+                  [
+                    { label: "Instagram", icon: <Instagram />, url: "https://www.instagram.com/spiritualdata/" },
+                    { label: "Twitter", icon: <Twitter />, url: "https://twitter.com/spiritual_data" },
+                    { label: "Facebook", icon: <Facebook />, url: "https://www.facebook.com/profile.php?id=100088266313464" },
+                    { label: "LinkedIn", icon: <LinkedIn />, url: "https://www.linkedin.com/company/spiritual-data" },
+                  ],
+                ].map((columnLinks, colIndex) => (
+                  <Grid
+                    item
+                    xs={6}
+                    key={colIndex}
+                    component="div"
+                    {...({} as any)}
                   >
-                    {React.cloneElement(icon, { fontSize: "small" })}
-                  </IconButton>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      color: "primary.main",
-                      "&:hover": { color: "primary.focus" },
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: { xs: 14, sm: 16 },
-                    }}
-                  >
-                    {label}
-                  </Typography>
-                </Box>
-              ))}
+                    {columnLinks.map(({ label, icon, url }) => (
+                      <Box
+                        key={label}
+                        display="flex"
+                        alignItems="center"
+                        mb={2}
+                        sx={{ cursor: "pointer" }}
+                        onClick={() => window.open(url, "_blank")}
+                      >
+                        <IconButton
+                          sx={{ color: "primary.focus", pl: 0, fontWeight: 300 }}
+                        >
+                          {React.cloneElement(icon, { fontSize: "small" })}
+                        </IconButton>
+                        <Typography
+                          variant="body1"
+                          sx={{
+                            color: "primary.main",
+                            "&:hover": { color: "primary.focus" },
+                            fontFamily: "'Inter', sans-serif",
+                            fontSize: { xs: 14, sm: 16 },
+                          }}
+                        >
+                          {label}
+                        </Typography>
+                      </Box>
+                    ))}
+                  </Grid>
+                ))}
+              </Grid>
             </Grid>
 
             {/* Quick Links */}
