@@ -18,7 +18,7 @@ const data = [
   {
     title: "Fixing the Record",
     desc: "Many important spiritual discoveries—especially in consciousness and psi research—have been distorted, downplayed, or outright removed from public platforms like Wikipedia. We're advocating for fair, evidence-based representation of this knowledge, correcting the record and ensuring people have access to credible information. It's not about promoting belief—it's about restoring balance and transparency to the public conversation.",
-    link: "/initiatives/wikipedia-parapsychology",
+    link: "/initiatives/wikipedia-advocacy",
     linkText: "Explore The Wikipedia Advocacy",
   },
   {
