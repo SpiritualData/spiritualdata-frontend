@@ -9,10 +9,12 @@ import {
 } from "@mui/material";
 import React from "react";
 import { useInView } from "../../hooks/useInView";
+import { useNavigate } from "react-router-dom";
 
 type ChangeCardItem = {
   title: string;
   desc: string;
+  link: string;
   linkText: string;
 };
 
@@ -23,6 +25,7 @@ type ChangeCardProps = {
 
 const ChangeCard: React.FC<ChangeCardProps> = ({ item, index }) => {
   const { ref, inView } = useInView();
+  const navigate = useNavigate();
 
   return (
     <Grid
@@ -57,6 +60,7 @@ const ChangeCard: React.FC<ChangeCardProps> = ({ item, index }) => {
               {item.desc}
             </Typography>
             <Button
+              onClick={() => navigate(item.link)}
               sx={{
                 backgroundColor: theme.palette.primary.hero,
                 color: theme.palette.primary.focus,

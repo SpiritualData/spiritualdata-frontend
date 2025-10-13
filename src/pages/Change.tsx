@@ -45,7 +45,7 @@ const Change: React.FC = () => {
       <PageHeader image={image} page={"Change"} sx={{ mb: 4 }} />
 
       <PageDef
-        title={"MISSION AND CLAIM"}
+        title={"OUR APPROACH"}
         heading={
           "We are providing undeniable evidence to encourage an open mind"
         }
@@ -190,7 +190,7 @@ const Change: React.FC = () => {
                 variant="contained"
                 color="primary"
                 size="large"
-                href="/join"
+                href="/initiatives"
                 sx={{
                   backgroundColor: theme.palette.primary.focus,
                   color: theme.palette.primary.hero,
@@ -216,7 +216,7 @@ const Change: React.FC = () => {
                 variant="contained"
                 color="primary"
                 size="large"
-                href="/join"
+                href="/careers"
                 sx={{
                   backgroundColor: theme.palette.primary.hero,
                   border: `1px solid ${theme.palette.primary.focus}`,
