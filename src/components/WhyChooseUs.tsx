@@ -1,28 +1,28 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { useInView } from "../hooks/useInView";
-import whyChooseUsImage from "../assets/images/WhyChooseUs/whyChooseUs.webp";
+import whyChooseUsImage from "../assets/images/whychooseus/whyChooseUs.webp";
 
 const reasons = [
   {
     title: "Unbiased Truth Estimation",
     description:
-      "Our AI evaluates claims based on weighted evidence—not belief, authority, or popularity—giving you clarity without dogma.",
+      "Our AI evaluates claims based on weighted evidence—not belief, authority, or popularity—giving you clarity without dogma. We tackle bias by automating diverse expert perspectives on every data point.",
   },
   {
     title: "Data from All Perspectives",
     description:
-      "We aggregate human experiences, scientific studies, and overlooked data sources to ensure no valuable insight is left behind.",
+      "We aggregate human experiences, scientific studies, and overlooked data sources to ensure no valuable insight is left behind, while critically evaluating reliability.",
   },
   {
     title: "Transparency at Every Step",
     description:
-      "All data, logic, and AI models are shared openly so you can see exactly how conclusions are reached—and decide for yourself.",
+      "The algorithms and data used to reach conclusions are shared openly so you can review—and decide for yourself.",
   },
   {
     title: "Mission-Driven, Not Institution-Funded",
     description:
-      "We,re a nonprofit powered by people—not corporations—committed to truth, mental clarity, and spiritual autonomy.",
+      "We're a nonprofit powered by people—not corporations—committed to truth and spiritual autonomy.",
   },
 ];
 
@@ -168,7 +168,7 @@ const WhyChooseUs = () => {
             <Typography
               variant="subtitle1"
               sx={{
-                color: theme.palette.primary.dark,
+                color: theme.palette.text.secondary,
                 lineHeight: 1.6,
                 fontSize: { xs: 14, md: 16 },
               }}

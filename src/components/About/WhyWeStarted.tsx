@@ -7,11 +7,14 @@ import {
   useTheme,
   Slide,
   Fade,
+  Button,
 } from "@mui/material";
 import { useInView } from "../../hooks/useInView";
+import { useNavigate } from "react-router-dom";
 
 const WhyWeStarted = () => {
   const theme = useTheme();
+  const navigate = useNavigate();
 
   const heading = useInView();
   const intro = useInView();
@@ -19,19 +22,19 @@ const WhyWeStarted = () => {
 
   const cardData = [
     {
-      id: "100%",
-      title: "People stop arguing",
+      id: "Autonomy",
+      title: "Intellectual freedom",
       description:
-        "Instead, they start listening  -  because truth becomes visible.",
+        "Access to reliable, unbiased information empowers people to think for themselves.",
     },
     {
-      id: "100%",
+      id: "Unity",
       title: "Divisions shrink",
       description:
         "A shared sense of reality helps humanity unify across lines of difference.",
     },
     {
-      id: "10x",
+      id: "Growth",
       title: "Curiosity replaces fear",
       description:
         "When evidence leads the way, exploration becomes safer than dogma.",
@@ -69,27 +72,55 @@ const WhyWeStarted = () => {
         </Slide>
       </div>
 
-      {/* Intro paragraph */}
+      {/* Mission and Vision */}
       <div ref={intro.ref}>
         <Fade in={intro.inView} timeout={1000}>
-          <Typography
-            variant="subtitle1"
-            color="text.secondary"
-            sx={{
-              maxWidth: "1200px",
-              mb: 6,
-              letterSpacing: 0.8,
-              textAlign: "center",
-            }}
-          >
-            Spiritual truth hasn't disappeared - it's been buried. At Spiritual
-            Data, our vision is simple but transformative: to change the world
-            by changing the source of people's beliefs. For too long, spiritual
-            questions have been shaped by authority, taboo, or personal opinion.
-            We believe that when people are shown undeniable, unbiased evidence,
-            a global shift becomes possible - a move toward clarity,
-            intellectual humility, and a deeper sense of shared truth.
-          </Typography>
+          <Box sx={{ maxWidth: "1200px", mb: 6 }}>
+            <Typography
+              variant="h5"
+              sx={{
+                fontWeight: 600,
+                color: "text.primary",
+                mb: 2,
+                textAlign: "center",
+              }}
+            >
+              Our Mission
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              color="text.secondary"
+              sx={{
+                letterSpacing: 0.8,
+                textAlign: "center",
+                mb: 4,
+              }}
+            >
+              Spiritual Data's mission is to provide a neutral source of truth for spiritual beliefs and the nature of reality. We provide a system for undeniable evidence to emerge which persuades change in beliefs and scientific consensus.
+            </Typography>
+
+            <Typography
+              variant="h5"
+              sx={{
+                fontWeight: 600,
+                color: "text.primary",
+                mb: 2,
+                textAlign: "center",
+              }}
+            >
+              Our Vision
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              color="text.secondary"
+              sx={{
+                letterSpacing: 0.8,
+                textAlign: "center",
+              }}
+            >
+              Change the world through changing the source of people's beliefs. Undeniable evidence will foster a global shift towards evidence-based understanding of spiritual questions. Then widespread intellectual humility will naturally unify the world in loving understanding.
+            </Typography>
+          </Box>
         </Fade>
       </div>
 
@@ -201,6 +232,31 @@ const WhyWeStarted = () => {
               shift toward a world united by loving understanding, guided by
               truth we can all see together.
             </Typography>
+            <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
+              <Button
+                onClick={() => navigate("/origin-story")}
+                variant="contained"
+                sx={{
+                  backgroundColor: theme.palette.primary.focus,
+                  color: theme.palette.primary.hover,
+                  px: 4,
+                  py: 1.5,
+                  fontWeight: 600,
+                  borderRadius: 8,
+                  textTransform: "none",
+                  fontSize: "1rem",
+                  letterSpacing: "0.08rem",
+                  "&:hover": {
+                    backgroundColor: theme.palette.primary.hover,
+                    color: theme.palette.primary.focus,
+                    transform: "scale(1.05)",
+                  },
+                  transition: "all 0.3s ease",
+                }}
+              >
+                Read the Full Origin Story
+              </Button>
+            </Box>
           </Box>
         </Fade>
       </div>

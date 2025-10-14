@@ -4,7 +4,7 @@ import { hotjar } from "react-hotjar";
 import { ReactElement } from "react";
 import Home from "../pages/Home";
 import About from "../pages/About";
-import DataDiscovery from "../pages/DataDiscovery";
+import Research from "../pages/Research";
 import Contact from "../pages/Contact";
 import NotFound from "../pages/NotFound";
 import Chat from "../pages/Chat";
@@ -27,6 +27,7 @@ import WikipediaAdvocacy from "../pages/Initiatives/WikipediaAdvocacy";
 import PsychicAbilityCertification from "../pages/Initiatives/PsychicAbilityCertification";
 import Crisis from "../pages/Crisis";
 import Change from "../pages/Change";
+import OriginStory from "../pages/OriginStory";
 
 interface HotjarConfig {
   id: string;
@@ -47,10 +48,11 @@ const useClerkRoutes = (): ReactElement => {
     <ClerkProvider publishableKey={clerkPubKey}>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="donations" element={<Donations />} />
-        <Route path="data-discovery" element={<DataDiscovery />} />
+        <Route path="donate" element={<Donations />} />
+        <Route path="research" element={<Research />} />
         <Route path="contact" element={<Contact />} />
         <Route path="about" element={<About />} />
+        <Route path="origin-story" element={<OriginStory />} />
         <Route path="crisis" element={<Crisis />} />
         <Route path="change" element={<Change />} />
         <Route path="careers" element={<Careers />} />

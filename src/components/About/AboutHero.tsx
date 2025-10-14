@@ -9,7 +9,7 @@ import {
   useTheme,
 } from "@mui/material";
 import { useInView } from "../../hooks/useInView";
-import coreImage from "../../assets/images/About/about3.webp";
+import coreImage from "../../assets/images/about/about3.webp";
 import { useNavigate } from "react-router-dom";
 
 const AboutHero: React.FC = () => {

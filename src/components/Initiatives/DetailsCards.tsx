@@ -1,12 +1,13 @@
 import React from "react";
 import { Box, Container, Typography, Paper, useTheme } from "@mui/material";
 import { styled } from "@mui/system";
-import bgi1 from "../../assets/Images/Initiatives/initiatives1.webp";
-import bgi2 from "../../assets/Images/Initiatives/initiatives2.webp";
-import bgi3 from "../../assets/Images/Initiatives/initiatives3.webp";
-import bgi4 from "../../assets/Images/Initiatives/initiatives4.webp";
-import bgi5 from "../../assets/Images/Initiatives/initiatives5.webp";
-import bgi6 from "../../assets/Images/Initiatives/initiatives6.webp";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import bgi1 from "../../assets/images/initiatives/initiatives1.webp";
+import bgi2 from "../../assets/images/initiatives/initiatives2.webp";
+import bgi3 from "../../assets/images/initiatives/initiatives3.webp";
+import bgi4 from "../../assets/images/initiatives/initiatives4.webp";
+import bgi5 from "../../assets/images/initiatives/initiatives5.webp";
+import bgi6 from "../../assets/images/initiatives/initiatives6.webp";
 
 interface DetailsCard {
   id: number;
@@ -68,6 +69,12 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
       color: theme.palette.primary.hover,
       textShadow: `0 0 15px ${theme.palette.text.secondary}`,
       fontFamily: "Sansation, sans-serif",
+      transition: "transform 0.3s ease, box-shadow 0.3s ease",
+
+      "&:hover": {
+        transform: "scale(1.02)",
+        boxShadow: `0 8px 20px rgba(0,0,0,0.15)`,
+      },
 
       "&::before": {
         content: '""',
@@ -199,7 +206,7 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
                 minHeight: 125,
                 bgcolor: "transparent",
                 position: "relative",
-                overflow: "hidden",
+                overflow: "visible",
               }}
             >
               <BackgroundText>
@@ -223,6 +230,26 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
               >
                 {data[0]?.secHead}
               </Typography>
+
+              {/* Instructional Text - Absolutely positioned below */}
+              <Typography
+                variant="body2"
+                sx={{
+                  display: { xs: "none", md: "block" },
+                  position: "absolute",
+                  bottom: -40,
+                  left: 0,
+                  color: "text.secondary",
+                  fontFamily: "Sansation, sans-serif",
+                  fontStyle: "italic",
+                  backgroundColor: "rgba(255, 255, 255, 0.9)",
+                  padding: 1,
+                  borderRadius: 2,
+                  zIndex: 1,
+                }}
+              >
+                Hover over each card to learn more
+              </Typography>
             </Box>
 
             {/* Right Column */}
@@ -240,6 +267,34 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
                     onMouseLeave={handleMouseLeave}
                     sx={{ ...boxStyle, minHeight: 125 }}
                   >
+                    {/* Info Icon Badge */}
+                    <Box
+                      sx={{
+                        position: "absolute !important",
+                        top: "16px !important",
+                        right: "16px !important",
+                        zIndex: 3,
+                        backgroundColor: theme.palette.primary.focus,
+                        borderRadius: "50%",
+                        width: 28,
+                        height: 28,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        opacity: { xs: 1, md: 0.7 },
+                        transition: "opacity 0.3s ease",
+                        "&:hover": {
+                          opacity: 1,
+                        },
+                      }}
+                    >
+                      <InfoOutlinedIcon
+                        sx={{
+                          fontSize: 18,
+                          color: theme.palette.primary.hero,
+                        }}
+                      />
+                    </Box>
                     <Box
                       className="card-content"
                       sx={{
@@ -262,12 +317,6 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
                       <Typography
                         variant="body1"
                         textAlign="center"
-                        sx={{
-                          display: "-webkit-box",
-                          WebkitLineClamp: 3,
-                          WebkitBoxOrient: "vertical",
-                          overflow: "hidden",
-                        }}
                       >
                         {item.desc}
                       </Typography>
@@ -277,6 +326,7 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
               ))}
             </Box>
           </Box>
+
           {/* Bottom Row */}
           <Box
             display="flex"
@@ -293,6 +343,34 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
                   onMouseLeave={handleMouseLeave}
                   sx={{ ...boxStyle, minHeight: 125 }}
                 >
+                  {/* Info Icon Badge */}
+                  <Box
+                    sx={{
+                      position: "absolute !important",
+                      top: "16px !important",
+                      right: "16px !important",
+                      zIndex: 3,
+                      backgroundColor: theme.palette.primary.focus,
+                      borderRadius: "50%",
+                      width: 28,
+                      height: 28,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      opacity: { xs: 1, md: 0.7 },
+                      transition: "opacity 0.3s ease",
+                      "&:hover": {
+                        opacity: 1,
+                      },
+                    }}
+                  >
+                    <InfoOutlinedIcon
+                      sx={{
+                        fontSize: 18,
+                        color: theme.palette.primary.hero,
+                      }}
+                    />
+                  </Box>
                   <Box
                     className="card-content"
                     sx={{
@@ -315,12 +393,6 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
                     <Typography
                       variant="body1"
                       textAlign="center"
-                      sx={{
-                        display: "-webkit-box",
-                        WebkitLineClamp: 3,
-                        WebkitBoxOrient: "vertical",
-                        overflow: "hidden",
-                      }}
                     >
                       {item.desc}
                     </Typography>

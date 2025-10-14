@@ -1,9 +1,11 @@
-import image1 from "../assets/Images/About/sliderImage1.webp";
-import image2 from "../assets/Images/About/sliderImage2.webp";
-import image3 from "../assets/Images/About/sliderImage3.webp";
-import image4 from "../assets/Images/About/sliderImage4.webp";
-import image5 from "../assets/Images/Products/questId.webp";
-import image6 from "../assets/Images/Products/conceptAiId.webp";
+import image1 from "../assets/images/about/sliderImage1.webp";
+import image2 from "../assets/images/about/sliderImage2.webp";
+import image3 from "../assets/images/about/sliderImage3.webp";
+import image4 from "../assets/images/about/sliderImage4.webp";
+import image5 from "../assets/images/products/questId.webp";
+import image6 from "../assets/images/products/conceptAiId.webp";
+import questCardImage from "../assets/images/products/questId.webp";
+import conceptAiCardImage from "../assets/images/products/conceptAiId.webp";
 
 export const experimentalProductData = [
   {
@@ -117,5 +119,28 @@ export const availableProductData = [
     logo3: "/assets/ProductCardImages/mui.webp",
     tags: ["Innovation & Research", "Cognitive Sciences", "Data Science & AI"],
     expert: ["AI & NLP", "Data Processing", "Knowledge Structuring"],
+  },
+];
+
+export const productCardData = [
+  {
+    id: 1,
+    title: "Quest for personal transformation",
+    description:
+      "Turn your aspirations into achievements through AI-guided accountability, personalized roadmaps, and intelligent support for spiritual growth, wellness, and life goals.",
+    image: questCardImage,
+    link: "/products/quest",
+    author: "Spiritual Data",
+    buttonText: "Learn about Quest",
+  },
+  {
+    id: 2,
+    title: "Concept AI for Researchers",
+    description:
+      "Navigate complex research domains with bias-resistant AI that integrates diverse evidence, evaluates hypotheses probabilistically, and reveals scientific consensus across disciplines.",
+    image: conceptAiCardImage,
+    link: "/products/concept-ai",
+    author: "Spiritual Data",
+    buttonText: "Learn about Concept AI",
   },
 ];

@@ -22,20 +22,20 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import MenuIcon from "@mui/icons-material/Menu";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import navbarLogo from "../../assets/images/Navbar/navbarLogo.webp";
-import productIcon from "../../assets/Images/Navbar/icons-product.gif";
-import initiativesIcon from "../../assets/Images/Navbar/icons-initiatives.gif";
-import aboutIcon from "../../assets/Images/Navbar/icons-about.gif";
-import researchIcon from "../../assets/Images/Navbar/icons-research.gif";
-import donateIcon from "../../assets/Images/Navbar/icons-donate.gif";
-import contactIcon from "../../assets/Images/Navbar/icons-contact.gif";
-import questIcon from "../../assets/Images/Navbar/icons-quest.gif";
-import conceptAiIcon from "../../assets/Images/Navbar/icons-concept-ai.gif";
-import estimatingTruthIcon from "../../assets/Images/Navbar/icons-estimating.gif";
-import wikipediaIcon from "../../assets/Images/Navbar/icons-wikipedia.gif";
-import psychicIcon from "../../assets/Images/Navbar/icons-psychic.gif";
-import closeIcon from "../../assets/Images/Navbar/icons-close.gif";
-import loginIcon from "../../assets/Images/Navbar/icons-loginout.gif";
+import navbarLogo from "../../assets/images/navbar/navbarLogo.webp";
+import productIcon from "../../assets/images/navbar/icons-product.gif";
+import initiativesIcon from "../../assets/images/navbar/icons-initiatives.gif";
+import aboutIcon from "../../assets/images/navbar/icons-about.gif";
+import researchIcon from "../../assets/images/navbar/icons-research.gif";
+import donateIcon from "../../assets/images/navbar/icons-donate.gif";
+import contactIcon from "../../assets/images/navbar/icons-contact.gif";
+import questIcon from "../../assets/images/navbar/icons-quest.gif";
+import conceptAiIcon from "../../assets/images/navbar/icons-concept-ai.gif";
+import estimatingTruthIcon from "../../assets/images/navbar/icons-estimating.gif";
+import wikipediaIcon from "../../assets/images/navbar/icons-wikipedia.gif";
+import psychicIcon from "../../assets/images/navbar/icons-psychic.gif";
+import closeIcon from "../../assets/images/navbar/icons-close.gif";
+import loginIcon from "../../assets/images/navbar/icons-loginout.gif";
 
 interface DropdownItem {
   name: string;
@@ -136,8 +136,8 @@ const Navbar = () => {
   ];
 
   const staticLinks = [
-    { label: "Research", path: "/data-discovery", icon: researchIcon },
-    { label: "Donate", path: "/donations", icon: donateIcon },
+    { label: "Research", path: "/research", icon: researchIcon },
+    { label: "Donate", path: "/donate", icon: donateIcon },
     { label: "About", path: "/about", icon: aboutIcon },
     { label: "Contact", path: "/contact", icon: contactIcon },
   ];

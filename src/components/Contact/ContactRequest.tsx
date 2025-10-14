@@ -8,7 +8,7 @@ import {
   useTheme,
 } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import faqImage from "../../assets/Images/Contact/oldcontactRequest.webp";
+import faqImage from "../../assets/images/contact/oldcontactRequest.webp";
 import { useNavigate } from "react-router-dom";
 import { useInView } from "../../hooks/useInView";
 
@@ -17,7 +17,7 @@ const ctaSections = [
     title:
       "Support our mission and help us grow. To contribute, please visit our Donate page.",
     button: "Donate",
-    path: "/donations",
+    path: "/donate",
   },
   {
     title:
@@ -29,7 +29,7 @@ const ctaSections = [
     title:
       "Have ideas for collaboration or partnership? Reach out using our contact form.",
     button: "Contact Form",
-    path: "/contact",
+    path: "#contact-form",
   },
 ];
 
@@ -38,6 +38,17 @@ const ContactRequest = () => {
   const navigate = useNavigate();
   const { ref: cardRef, inView: cardInView } = useInView();
   const { ref: imageRef, inView: imageInView } = useInView();
+
+  const handleButtonClick = (path: string) => {
+    if (path.startsWith('#')) {
+      const element = document.querySelector(path);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      navigate(path);
+    }
+  };
 
   return (
     <Box
@@ -177,7 +188,7 @@ const ContactRequest = () => {
                         }}
                       >
                         <Button
-                          onClick={() => navigate(section.path)}
+                          onClick={() => handleButtonClick(section.path)}
                           sx={{
                             backgroundColor: theme.palette.primary.focus,
                             color: theme.palette.primary.hero,

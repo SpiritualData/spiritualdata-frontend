@@ -12,8 +12,8 @@ import {
   IconButton,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import stripe from "../../assets/Images/Donate/stripe.webp";
-import paypal from "../../assets/Images/Donate/paypal.webp";
+import stripe from "../../assets/images/donate/stripe.webp";
+import paypal from "../../assets/images/donate/paypal.webp";
 
 interface DonationMethodProps {
   amount?: number;

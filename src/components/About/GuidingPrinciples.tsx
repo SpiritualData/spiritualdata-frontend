@@ -12,6 +12,7 @@ import {
 import { useTheme } from "@mui/material/styles";
 import CheckRounded from "@mui/icons-material/CheckRounded";
 import { useInView } from "../../hooks/useInView";
+import { useNavigate } from "react-router-dom";
 
 interface GuidingPrinciplesProps {
   backgroundImage: string;
@@ -22,6 +23,7 @@ const GuidingPrinciples: React.FC<GuidingPrinciplesProps> = ({
 }) => {
   const theme = useTheme();
   const { ref, inView } = useInView({ threshold: 0.2 });
+  const navigate = useNavigate();
 
   const leftItems = [
     {
@@ -42,22 +44,25 @@ const GuidingPrinciples: React.FC<GuidingPrinciplesProps> = ({
     },
     {
       title: "Science with Soul",
-      body: "The mind is more than matter - and science should reflect that.",
+      body: "We allow science to address spiritual questions through statistical metaphysics and ranking of alternative explanations.",
     },
   ];
 
   const rightCards = [
     {
       title: "Truth Estimation Engine",
-      body: "AI that evaluates research and calculates what's most likely true - free from human bias.",
+      body: "AI that evaluates research and calculates what's most likely true - overcoming human bias by including all perspectives.",
+      link: "/initiatives/estimating-truth",
     },
     {
       title: "Education & Advocacy",
       body: "Bringing parapsychology and consciousness studies into the mainstream, one platform at a time.",
+      link: "/initiatives/wikipedia-advocacy",
     },
     {
       title: "Scientific Certification of Phenomena",
       body: "Running real experiments to validate spiritual abilities with open, peer-reviewable results.",
+      link: "/initiatives/psychic-ability-certification",
     },
   ];
 
@@ -259,6 +264,7 @@ const GuidingPrinciples: React.FC<GuidingPrinciplesProps> = ({
                         key={card.title}
                       >
                         <Box
+                          onClick={() => navigate(card.link)}
                           sx={{
                             py: { xs: 2, sm: 3 },
                             px: { xs: 3, sm: 4, md: 5 },
@@ -274,6 +280,7 @@ const GuidingPrinciples: React.FC<GuidingPrinciplesProps> = ({
                             transition:
                               "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
                             transform: "translateY(0)",
+                            cursor: "pointer",
                             ":hover": {
                               transform: "translateY(-5px) scale(1.015)",
                               boxShadow: `0 16px 32px ${theme.palette.primary.focus}`,

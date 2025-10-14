@@ -1,11 +1,12 @@
 import React from "react";
-import { Box, Typography, Grid, useTheme } from "@mui/material";
-import initiativeImage1 from "../assets/images/Initiatives/initiatives1.webp";
-import initiativeImage2 from "../assets/images/Initiatives/initiatives2.webp";
-import initiativeImage3 from "../assets/images/Initiatives/initiatives3.webp";
-import initiativeImage4 from "../assets/images/Initiatives/initiatives4.webp";
-import initiativeImage5 from "../assets/images/Initiatives/initiatives5.webp";
-import initiativeImage6 from "../assets/images/Initiatives/initiatives6.webp";
+import { Box, Typography, Grid, useTheme, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import initiativeImage1 from "../assets/images/initiatives/initiatives1.webp";
+import initiativeImage2 from "../assets/images/initiatives/initiatives2.webp";
+import initiativeImage3 from "../assets/images/initiatives/initiatives3.webp";
+import initiativeImage4 from "../assets/images/initiatives/initiatives4.webp";
+import initiativeImage5 from "../assets/images/initiatives/initiatives5.webp";
+import initiativeImage6 from "../assets/images/initiatives/initiatives6.webp";
 import InitiativeCard from "./Initiatives/HeroInitiativeCard";
 
 const Initiatives = [
@@ -19,7 +20,7 @@ const Initiatives = [
     title: "Experience Archive",
     icon: initiativeImage2,
     description:
-      "A structured database of firsthand spiritual, mystical, and peak experiences from across traditions.",
+      "A structured database of firsthand spiritual, mystical, mental health, and transformative experiences from across traditions.",
   },
   {
     title: "Hypothesis Tracker",
@@ -49,6 +50,7 @@ const Initiatives = [
 
 const HeroInitiativeSection: React.FC = () => {
   const theme = useTheme();
+  const navigate = useNavigate();
 
   return (
     <Box
@@ -68,7 +70,7 @@ const HeroInitiativeSection: React.FC = () => {
             color: theme.palette.primary.hero,
           }}
         >
-          OUR INITIATIVES
+          WHAT WE'RE DOING
         </Typography>
         <Typography
           variant="h3"
@@ -88,6 +90,31 @@ const HeroInitiativeSection: React.FC = () => {
           <InitiativeCard key={idx} data={service} idx={idx} />
         ))}
       </Grid>
+
+      {/* Button */}
+      <Box textAlign="center" mt={6}>
+        <Button
+          variant="contained"
+          onClick={() => navigate("/initiatives")}
+          sx={{
+            backgroundColor: theme.palette.primary.focus,
+            color: "#1F2540",
+            px: 3.5,
+            py: 1.2,
+            fontWeight: 600,
+            borderRadius: 8,
+            textTransform: "none",
+            fontSize: "0.9rem",
+            letterSpacing: "0.08rem",
+            "&:hover": {
+              backgroundColor: theme.palette.primary.hover,
+              color: theme.palette.common.white,
+            },
+          }}
+        >
+          See Our Initiatives
+        </Button>
+      </Box>
     </Box>
   );
 };

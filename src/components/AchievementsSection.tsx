@@ -9,7 +9,7 @@ import {
   Fade,
 } from "@mui/material";
 import { useInView } from "../hooks/useInView";
-import image from "../assets/images/Achievments/ag.webp";
+import image from "../assets/images/achievments/ag.webp";
 
 const CardContainer = styled(Box, {
   shouldForwardProp: (prop) => prop !== "bgX" && prop !== "bgY",
@@ -97,29 +97,29 @@ const AchievementsSection = () => {
 
   const data = [
     {
-      title: "Hypotheses",
+      title: "Hypotheses Processed",
       description:
-        "We calculate probability scores for spiritual hypotheses using AI and diverse evidence models.",
-      value: 100,
+        "We calculate probability scores for scientific hypotheses using statistics to aggregate all evidence.",
+      value: "Coming soon",
     },
     {
-      title: "Experiences Logged",
+      title: "Experiences Imported",
       description:
-        "Thousands of personal spiritual experiences have been collected, cleaned, and categorized.",
+        "Thousands of personal experiences have been collected.",
       value: 5998,
     },
     {
       title: "Scientific Studies",
       description:
-        "Peer-reviewed research on psi, consciousness, and spiritual phenomena - stored and analyzed.",
-      value: 26,
+        "Our knowledge graph includes research from biology, medicine, physics, psychology, religious studies, metaphysics, and many more fields.",
+      value: "Coming soon",
     },
     {
       title: "AI Accuracy Score",
       description:
         "Our AI truth-estimation engine achieves highly transparent and evidence-weighted conclusions.",
-      value: 98,
-      suffix: "%",
+      value: "Coming soon",
+      // suffix: "%",
     },
   ];
 
@@ -163,7 +163,7 @@ const AchievementsSection = () => {
             }}
           >
             Smart AI Solutions That <br />
-            Delivered Real Results
+            Deliver Real Results
           </Typography>
         </Grid>
       </Grid>
@@ -178,7 +178,8 @@ const AchievementsSection = () => {
         {...({} as any)}
       >
         {data.map((item, index) => {
-          const count = useCountUp(item.value, inView);
+          const isNumber = typeof item.value === 'number';
+          const count = isNumber ? useCountUp(item.value, inView) : item.value;
           const col = index % 4;
           const row = Math.floor(index / 4);
           const bgX = `-${col * 250}px`;
@@ -216,7 +217,7 @@ const AchievementsSection = () => {
                       }}
                     >
                       {count}
-                      {item.suffix ?? "+"}
+                      {isNumber && (item.suffix ?? "+")}
                     </Typography>
                   </CardContainer>
                 </Fade>

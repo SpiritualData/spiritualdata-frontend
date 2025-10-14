@@ -1,7 +1,7 @@
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import { fadeInBottom } from "../../styles/animations/FadeInBottom";
-import questBanner from "../../assets/Images/Products/questSideImage.webp";
-import cAiBanner from "../../assets/Images/Products/conceptAiBanner.webp";
+import questBanner from "../../assets/images/products/questSideImage.webp";
+import cAiBanner from "../../assets/images/products/conceptAiBanner.webp";
 
 type QuestHeroProps = {
   onScrollClick: () => void;

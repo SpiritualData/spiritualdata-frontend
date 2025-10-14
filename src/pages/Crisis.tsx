@@ -1,16 +1,17 @@
 import React from "react";
 import { Button, Grid, Typography } from "@mui/material";
-import initiativeImage1 from "../assets/images/Initiatives/initiatives1.webp";
-import initiativeImage2 from "../assets/images/Initiatives/initiatives2.webp";
-import initiativeImage3 from "../assets/images/Initiatives/initiatives3.webp";
-import image from "../assets/Images/Crisis/banner.webp";
+import { useNavigate } from "react-router-dom";
+import initiativeImage1 from "../assets/images/initiatives/initiatives1.webp";
+import initiativeImage2 from "../assets/images/initiatives/initiatives2.webp";
+import initiativeImage3 from "../assets/images/initiatives/initiatives3.webp";
+import image from "../assets/images/crisis/banner.webp";
 import PageHeader from "../components/PageHeader";
 import PageDef from "../components/PageDef";
 import InitiativeCard from "../components/Initiatives/HeroInitiativeCard";
 import theme from "../styles/theme";
-import AchievementsSection from "../components/AchievementsSection";
 
 const Crisis = () => {
+  const navigate = useNavigate();
   const data = [
     {
       title: "Scientific Consensus Isn't Neutral",
@@ -120,7 +121,7 @@ const Crisis = () => {
                     data={item}
                     idx={idx}
                     headSx={{ fontSize: "25px" }}
-                    bodySx={{ fontSize: "13px" }}
+                    bodySx={{ fontSize: { xs: "16px", md: "18px" } }}
                   />
                 </Grid>
               ))}
@@ -144,10 +145,9 @@ const Crisis = () => {
                 px: { xs: 4, md: "17%" },
               }}
             >
-              That's why we created <strong>Spiritual Data</strong>
+              <strong>Spiritual Data.</strong>
               <br />
-              To cut through distortion with evidence-based tools and AI-powered
-              clarity.
+              We're cutting through distortion with evidence-based prioritization of information.
               <br />
               So you can decide for yourself.
             </Typography>
@@ -163,6 +163,7 @@ const Crisis = () => {
           >
             <Button
               variant="contained"
+              onClick={() => navigate("/change")}
               sx={{
                 backgroundColor: theme.palette.primary.hover,
                 color: theme.palette.primary.focus,
@@ -183,7 +184,6 @@ const Crisis = () => {
           </Grid>
         </Grid>
       </Grid>
-      <AchievementsSection />
     </>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography, Grid, styled, useTheme } from "@mui/material";
 import theme from "@/styles/theme";
-import image from "../../assets/Images/Achievments/ag.webp";
+import image from "../../assets/images/achievments/ag.webp";
 
 interface Step {
   title: string;
@@ -79,7 +79,7 @@ backgroundAttachment: "fixed",
         }}
         gutterBottom
       >
-        Unique Selling Points
+        What's Different about Concept AI?
       </Typography>
 
       {/* Cards */}

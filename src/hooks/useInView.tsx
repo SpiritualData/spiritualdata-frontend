@@ -11,12 +11,23 @@ export function useInView(options = { threshold: 0.3 }) {
       if (entry.isIntersecting) setInView(true);
     }, options);
 
-    observer.observe(ref.current);
+    const element = ref.current;
+    observer.observe(element);
+
+    // Check if element is already in view on mount
+    const rect = element.getBoundingClientRect();
+    const isInView = (
+      rect.top < window.innerHeight &&
+      rect.bottom > 0
+    );
+    if (isInView) {
+      setInView(true);
+    }
 
     return () => {
-      if (ref.current) observer.unobserve(ref.current);
+      if (element) observer.unobserve(element);
     };
-  }, [ref]);
+  }, []);
 
   return { ref, inView };
 }

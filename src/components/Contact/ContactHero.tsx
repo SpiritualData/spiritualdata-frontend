@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import emailjs from "@emailjs/browser";
 import { Alert, TransitionUp } from "../../components/SnackbarAlert";
-import image from "../../assets/Images/Contact/banner.webp";
+import image from "../../assets/images/contact/banner.webp";
 import theme from "../../styles/theme";
 import { keyframes } from "@emotion/react";
 
@@ -115,10 +115,10 @@ const Contact = () => {
           sx={{
             width: "100%",
             maxWidth: "1200px",
-            height: { xs: "auto", md: 650 },
+            height: { xs: "auto", md: 700 },
             borderRadius: 4,
-            overflow: { xs: "visible", lg: "hidden" },
-            pt: { xs: 4, md: 20 },
+            overflow: "visible",
+            pt: { xs: 4, md: 12 },
             gap: 6,
           }}
         >
@@ -129,151 +129,6 @@ const Contact = () => {
             alignItems="center"
             spacing={14}
           >
-            {/* === LEFT COLUMN === */}
-            <Grid
-              item
-              xs={12}
-              md={6}
-              sx={{ maxWidth: { xs: "100%", md: "100%", lg: "50%" } }}
-              component="div"
-              {...({} as any)}
-            >
-              <Stack
-                spacing={4}
-                alignItems={{ xs: "center", lg: "flex-start" }}
-                textAlign={{ xs: "center", lg: "left" }}
-              >
-                <Fade in={true} timeout={2000}>
-                  <Box
-                    sx={{
-                      width: "100%",
-                      height: { xs: "auto", md: 310 },
-                      position: "relative",
-                      overflow: "visible",
-                    }}
-                  >
-                    <Box
-                      component="img"
-                      src={image}
-                      sx={{
-                        position: { xs: "relative", md: "absolute" },
-                        top: { md: "-60%" },
-                        left: { md: "10%" },
-                        transform: {
-                          xs: "none",
-                          md: "translate(-50%, -50%)",
-                        },
-                        display: "block",
-                        mx: { xs: "auto", md: "initial" },
-                        width: { xs: "50vw", sm: "40vw", md: "auto" },
-                        height: { xs: "auto", md: 400, lg: 500 },
-                        maxWidth: "100%",
-                        zIndex: 2,
-                        mt: { xs: 8, sm: 10, md: 15, lg: 3 },
-                        pointerEvents: "none",
-                        animation: `${float} 5s ease-in-out infinite`,
-                      }}
-                    />
-                  </Box>
-                </Fade>
-
-                <Slide direction="up" in={true} timeout={2000}>
-                  <Box>
-                    <Typography
-                      variant="overline"
-                      sx={{
-                        color: theme.palette.text.primary,
-                        letterSpacing: 1,
-                      }}
-                    >
-                      Contact Us
-                    </Typography>
-                    <Typography
-                      variant="h4"
-                      sx={{
-                        fontWeight: 700,
-                        color: theme.palette.text.primary,
-                      }}
-                    >
-                      Get in Touch With Our AI Experts
-                    </Typography>
-                  </Box>
-                </Slide>
-
-                <Slide direction="up" in={true} timeout={3000}>
-                  <Box
-                    sx={{
-                      backgroundColor: "#3D4050",
-                      color: "#fff",
-                      px: { xs: 2, sm: 3 },
-                      py: { xs: 1, sm: 1.2 },
-                      borderRadius: "12px",
-                      fontWeight: 500,
-                      fontSize: { xs: "0.75rem", sm: "0.85rem" },
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      gap: { xs: 0.5, sm: 1 },
-                      boxShadow: "0 6px 20px rgba(0, 0, 0, 0.15)",
-                      fontFamily: theme.typography.fontFamily,
-                      zIndex: 2,
-                      transition: "all 0.3s ease, box-shadow 0.3s ease",
-                      height: { xs: 55, sm: 65 },
-                      width: { xs: "100%", sm: 300 },
-                      maxWidth: 320,
-                      "&:hover": {
-                        transform: "scale(1.03)",
-                        boxShadow: "0 10px 24px rgba(0, 0, 0, 0.2)",
-                        cursor: "pointer",
-                      },
-                    }}
-                    onClick={() =>
-                      faqRef.current &&
-                      (faqRef.current as HTMLElement).scrollIntoView({
-                        behavior: "smooth",
-                      })
-                    }
-                  >
-                    <Box
-                      sx={{
-                        backgroundColor: theme.palette.primary.focus,
-                        color: theme.palette.primary.hover,
-                        width: { xs: 38, sm: 45 },
-                        height: { xs: 38, sm: 45 },
-                        borderRadius: 3,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        fontWeight: "bold",
-                        fontSize: { xs: "1.4rem", sm: "1.8rem" },
-                        px: 0.75,
-                        flexShrink: 1,
-                      }}
-                    >
-                      A
-                    </Box>
-                    <Box sx={{ flexGrow: 1, padding: { xs: 0.5, sm: 1 } }}>
-                      <Typography
-                        variant="body1"
-                        sx={{
-                          color: "white",
-                          fontWeight: 500,
-                          fontSize: { xs: "1rem", sm: "1.4rem" },
-                          wordWrap: "break-word",
-                          lineHeight: 1.2,
-                          textAlign: "left",
-                          letterSpacing: { xs: 1, sm: 2 },
-                          width: "auto",
-                        }}
-                      >
-                        Frequently Asked Questions
-                      </Typography>
-                    </Box>
-                  </Box>
-                </Slide>
-              </Stack>
-            </Grid>
-
             {/* === RIGHT COLUMN === */}
             <Slide direction="up" in={true} timeout={2000}>
               <Grid
@@ -285,6 +140,7 @@ const Contact = () => {
                 {...({} as any)}
               >
                 <Box
+                  id="contact-form"
                   sx={{
                     backgroundColor: theme.palette.primary.main,
                     p: { xs: 4, md: 6 },
@@ -294,6 +150,7 @@ const Contact = () => {
                     transition:
                       "box-shadow 0.5s ease, border-color 0.5s ease, transform 0.3s ease",
                     boxShadow: "0px 0px 10px rgba(0,0,0,0.2)",
+                    scrollMarginTop: "100px",
                     "&:hover": {
                       boxShadow: "0px 0px 20px rgba(0,0,0,0.6)",
                       borderColor: theme.palette.primary.focus,
@@ -307,6 +164,17 @@ const Contact = () => {
                       onSubmit={sendEmail}
                       sx={{ display: "flex", flexDirection: "column", gap: 3 }}
                     >
+                      <Typography
+                        variant="h4"
+                        sx={{
+                          fontWeight: 600,
+                          mb: 1,
+                          color: theme.palette.text.primary,
+                          textAlign: "center",
+                        }}
+                      >
+                        Contact Form
+                      </Typography>
                       <StyledTextField
                         name="name"
                         label="Your Name"

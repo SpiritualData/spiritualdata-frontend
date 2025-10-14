@@ -1,14 +1,14 @@
-import cors1 from "../assets/Images/Products/conceptAiCor1.webp"
-import cors2 from "../assets/Images/Products/conceptAiCor2.webp"
-import cors3 from "../assets/Images/Products/conceptAiCor3.webp"
-import cors4 from "../assets/Images/Products/conceptAiCor4.webp"
-import cors5 from "../assets/Images/Products/conceptAiCor5.webp"
-import cors6 from "../assets/Images/Products/conceptAiCor6.webp"
-import image1 from "../assets/Images/Products/app1.webp";
-import image2 from "../assets/Images/Products/app2.webp";
+import cors1 from "../assets/images/products/conceptAiCor1.webp"
+import cors2 from "../assets/images/products/conceptAiCor2.webp"
+import cors3 from "../assets/images/products/conceptAiCor3.webp"
+import cors4 from "../assets/images/products/conceptAiCor4.webp"
+import cors5 from "../assets/images/products/conceptAiCor5.webp"
+import cors6 from "../assets/images/products/conceptAiCor6.webp"
+import image1 from "../assets/images/products/app1.webp";
+import image2 from "../assets/images/products/app2.webp";
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
 import SecurityIcon from "@mui/icons-material/Security";
-import image3 from "../assets/Images/Products/app3.webp";
+import image3 from "../assets/images/products/app3.webp";
 import AutoGraphIcon from "@mui/icons-material/AutoGraph";
 import FunctionsIcon from "@mui/icons-material/Functions";
 import HubIcon from "@mui/icons-material/Hub";
@@ -106,9 +106,9 @@ export const capabilitiesData: capabilitiesData[] = [
     icon: <LanIcon fontSize="large" />,
   },
   {
-    title: "Specialised Domain Support",
+    title: "Paradigm Ranking",
     description:
-      "Provides advanced analytical tools tailored to specific research areas, such as parapsychology replication studies, theory development for psi phenomena, and mapping of exceptional human experiences like NDEs, STEs, and OBEs — all within the same rigorous, bias-resistant framework.",
+      "Statistically evaluates and scores competing paradigms by measuring how well they explain the available evidence. The system operates across three hierarchical levels: hypotheses are validated directly against evidence, theories are scored based on supporting hypotheses that align with their explanations, and paradigms are ranked according to theories that match their foundational assumptions — revealing which worldviews explain the most data.",
     image: cors6,
     icon: <PsychologyIcon fontSize="large" />,
   },
@@ -118,7 +118,7 @@ export const applicationsData = [
   {
     id: 1,
     image: image1,
-    title: "Application Parapsychology",
+    title: "Parapsychology",
     description:
       "Identifies complex replication factors, refines theories, operationally defines psi, and predicts replication success rates.",
   },
@@ -134,7 +134,7 @@ export const applicationsData = [
     image: image3,
     title: "Multidisciplinary Science",
     description:
-      "Integrates data across psychology, neuroscience, physics, mathematics, law, and environmental sciences.",
+      "Integrates data across psychology, neuroscience, physics, medicine, other natural sciences, and philosophy.",
   },
 ];
 
@@ -187,14 +187,14 @@ export const sellingPointsData: SellingPoint[] = [
   {
     title: "Context-Aware Outputs",
     description:
-      "Delivering results that specify applicability boundaries for precise use.",
+      "Connects the large body of scientific evidence to the individual scenarios you specify in real-time, bringing science to the real world.",
     icon: <TrackChangesIcon sx={{ fontSize: 48, color: "#fff" }} />,
     gradient: "linear-gradient(135deg, #4FC3F7, #00B0FF)",
   },
   {
     title: "Collaborative & Adaptive Framework",
     description:
-      "Customisable structure with continuous updates and evolving hypotheses.",
+      "Work with other users on the same concept definitions, hypotheses, and theories.",
     icon: <GroupWorkIcon sx={{ fontSize: 48, color: "#fff" }} />,
     gradient: "linear-gradient(135deg, #FF6FD8, #FF3CAC)",
   },
@@ -209,7 +209,7 @@ export const callToAction: callToAction = {
   additionalSubtitle:
     "in building the next generation of scientific knowledge integration.",
   buttonText: "Join the Waitlist",
-  buttonLink: "/sign-up",
+  buttonLink: "https://docs.google.com/forms/d/e/1FAIpQLSdfoza-eMBzM6JysihA8lyPN2GEtT5C-2TWz7B7O56K1u1fEw/viewform?usp=header",
   footerNote: "",
   additionalFooterNote1: "",
   additionalFooterNote2: "Your data stays private",

@@ -2,13 +2,13 @@ import { Box, Container, Grid, Typography } from "@mui/material";
 import PageHeader from "../components/PageHeader";
 import PageDef from "../components/PageDef";
 import ContentSection from "../components/Home/ContentSection";
-import skill from "../assets/Images/Donate/skill.webp";
-import mission from "../assets/Images/Donate/mission.webp";
-import image from "../assets/Images/Donate/nj.webp";
-import image1 from "../assets/Images/Donate/tier1.webp";
-import image2 from "../assets/Images/Donate/tier2.webp";
-import image3 from "../assets/Images/Donate/tier3.webp";
-import image4 from "../assets/Images/Donate/tier4.webp";
+import skill from "../assets/images/donate/skill.webp";
+import mission from "../assets/images/donate/mission.webp";
+import image from "../assets/images/donate/nj.webp";
+import image1 from "../assets/images/donate/tier1.webp";
+import image2 from "../assets/images/donate/tier2.webp";
+import image3 from "../assets/images/donate/tier3.webp";
+import image4 from "../assets/images/donate/tier4.webp";
 import RecurringTiers from "../components/Donations/RecurringTiers";
 import ContactSection from "../components/ContactSection";
 import { useRef } from "react";
@@ -18,25 +18,25 @@ const data = [
   {
     tier: "Light Contributor",
     amount: "$10/month",
-    impact: "Supports one spiritual dataset being cleaned and made public",
+    impact: "Bring light to spiritual truth—every contribution helps illuminate the path toward evidence-based understanding",
     image: image1,
   },
   {
     tier: "Insight Giver",
     amount: "$25/month",
-    impact: "Powers visualization tools for one new research area",
+    impact: "Your insights matter—support meaningful discoveries that help others find clarity in spiritual questions",
     image: image2,
   },
   {
     tier: "Pattern Illuminator",
     amount: "$50/month",
-    impact: "Funds deep-dive analysis and community reports",
+    impact: "Reveal the bigger picture—help illuminate the patterns connecting spiritual evidence and truth",
     image: image3,
   },
   {
-    tier: "Sacred Data Guardian",
+    tier: "Data Guardian",
     amount: "Custom",
-    impact: "Enables larger initiatives (e.g. spiritual census, platform dev)",
+    impact: "Protect and advance the mission—be a steward of truth and champion breakthrough discoveries",
     image: image4,
   },
 ];
@@ -68,13 +68,38 @@ const Donate = () => {
           <Box>
             <PageDef
               title="Donate"
-              heading="Help us Illuminate the Spiritual Path with Data-Driven Clarity"
+              heading="Help us Bring Data-Driven Critical Thinking to Spirituality"
             />
           </Box>
         )}
       </Box>
 
       <Container disableGutters>
+        <Box sx={{ px: { xs: 4, md: "17%" }, mb: 6, mt: { xs: 0, md: 2 } }}>
+          <Typography
+            variant="h5"
+            sx={{
+              fontWeight: 600,
+              color: "text.primary",
+              mb: 2,
+              textAlign: "center",
+            }}
+          >
+            Our Mission
+          </Typography>
+          <Typography
+            sx={{
+              fontSize: { xs: "14px", sm: "16px" },
+              color: "text.secondary",
+              textAlign: "center",
+              letterSpacing: 0.8,
+              lineHeight: 1.6,
+            }}
+          >
+            Spiritual Data's mission is to provide a neutral source of truth for spiritual beliefs and the nature of reality. We provide a system for undeniable evidence to emerge which persuades change in beliefs and scientific consensus.
+          </Typography>
+        </Box>
+
         <Box ref={section1.ref}>
           {section1.inView && (
             <Box borderBottom={1} borderColor="divider" sx={{ mb: 4, pb: 5 }}>
@@ -95,7 +120,7 @@ const Donate = () => {
               <ContentSection
                 imageSrc={skill}
                 heading="Donate Your Skills"
-                subText="Help us grow by becoming part of Spiritual Data's non-profit mission to calculate truth with AI and move society beyond limiting biases. You can choose how you'd like to contribute and what skills you'd like to use."
+                subText="Help us grow by becoming part of Spiritual Data's non-profit mission to provide a neutral source of truth with AI and move society beyond limiting biases. You can choose how you'd like to contribute and what skills you'd like to use."
                 buttonText="Join Now"
                 path="https://docs.google.com/forms/u/1/d/e/1FAIpQLSdy6G90oR1lgRv1BqPd3jkbVG11xOlWptQ88IXfKtb2R3lmyg/viewform?usp=send_form"
               />

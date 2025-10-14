@@ -14,7 +14,7 @@ import PublicIcon from "@mui/icons-material/Public";
 import PsychologyIcon from "@mui/icons-material/Psychology";
 import StorageIcon from "@mui/icons-material/Storage";
 import FloatingLabel from "./heroSection/FloatingLabel";
-import heroImage from "../assets/Images/hero/heroImage.webp";
+import heroImage from "../assets/images/hero/heroImage.webp";
 import { useNavigate } from "react-router-dom";
 import { floatersData } from "../data/homeData";
 
@@ -56,8 +56,7 @@ const HeroSection: React.FC = () => {
                   mt: 16,
                 }}
               >
-                Liberating Truth. Empowering Spiritual and Intellectual
-                Autonomy. <br /> Restoring Mental Health.
+                Spiritual Data = Intellectual Autonomy
               </Typography>
             </Slide>
           </Fade>
@@ -96,6 +95,7 @@ const HeroSection: React.FC = () => {
               >
                 <Button
                   variant="contained"
+                  onClick={() => window.open("https://discord.com/invite/thQNvPGcJF", "_blank")}
                   sx={{
                     backgroundColor: theme.palette.primary.focus,
                     color: theme.palette.primary.hover,
@@ -111,10 +111,31 @@ const HeroSection: React.FC = () => {
                     },
                   }}
                 >
-                  Join our Community
+                  Discord
+                </Button>
+                <Button
+                  variant="contained"
+                  onClick={() => window.open("https://spiritualdata.beehiiv.com/", "_blank")}
+                  sx={{
+                    backgroundColor: theme.palette.primary.focus,
+                    color: theme.palette.primary.hover,
+                    px: 4.5,
+                    py: 1,
+                    fontWeight: 600,
+                    fontSize: "0.875rem",
+                    borderRadius: "999px",
+                    boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                    "&:hover": {
+                      backgroundColor: theme.palette.primary.hero,
+                      color: theme.palette.primary.focus,
+                    },
+                  }}
+                >
+                  Newsletter
                 </Button>
                 <Button
                   variant="outlined"
+                  onClick={() => navigate("/about")}
                   sx={{
                     borderColor: theme.palette.primary.hover,
                     color: theme.palette.primary.hover,
@@ -238,10 +259,10 @@ const HeroSection: React.FC = () => {
               link="/change"
             />
             <FloatingLabel
-              text="Spiritual Crisis Support"
+              text="Quest Product"
               icon={<StorageIcon fontSize="inherit" />}
               sx={{ bottom: "33%", right: { lg: "12.5%", md: "-5%" } }}
-              link="/crisis"
+              link="/products/quest"
             />
             <Box
               component="img"

@@ -1,30 +1,30 @@
 import React from "react";
 import { Box, Button, Grid, Slide, Typography } from "@mui/material";
 import PageHeader from "../components/PageHeader";
-import image from "../assets/Images/Change/banner.webp";
+import image from "../assets/images/change/banner.webp";
 import PageDef from "../components/PageDef";
 import theme from "../styles/theme";
 import ChangeCard from "../components/change/ChangeCard";
-import mainImage from "../assets/images/Change/change.webp";
+import mainImage from "../assets/images/change/change.webp";
 import { useInView } from "../hooks/useInView";
 
 const data = [
   {
     title: "Finding Answers",
-    desc: "Our AI engine is designed to analyze spiritual and scientific data across multiple domains—parapsychology, neuroscience, philosophy, and more. It estimates which claims are most likely true using transparent logic and evidence synthesis. Users can follow the data trail, explore multiple perspectives, and make up their own minds with confidence. We believe AI should empower independent thinking—not dictate answers.",
+    desc: "Our AI engine is designed to analyze spiritual and scientific data across multiple domains—parapsychology, neuroscience, philosophy, and more. It estimates which claims are most likely true using transparent logic and evidence synthesis. Users can follow the data trail, explore multiple perspectives, and make up their own minds with confidence. We believe that statistics enabled by AI should empower independent thinking, while also serving as a more reliable authority than any human to represent scientific consensus. Humans can provide data and suggest corrections as needed to improve results over time.",
     link: "/initiatives/estimating-truth",
     linkText: "Learn about Truth Estimation",
   },
   {
     title: "Fixing the Record",
     desc: "Many important spiritual discoveries—especially in consciousness and psi research—have been distorted, downplayed, or outright removed from public platforms like Wikipedia. We're advocating for fair, evidence-based representation of this knowledge, correcting the record and ensuring people have access to credible information. It's not about promoting belief—it's about restoring balance and transparency to the public conversation.",
-    link: "/initiatives/wikipedia-parapsychology",
+    link: "/initiatives/wikipedia-advocacy",
     linkText: "Explore The Wikipedia Advocacy",
   },
   {
     title: "Proving What's Possible",
-    desc: "We're conducting real-world experiments to rigorously test psychic and spiritual phenomena. These experiments are recorded, statistically analyzed, and peer-reviewed by professionals in both science and spirituality. Our goal is not to sensationalize, but to certify phenomena that mainstream science often ignores—under conditions that even skeptics can respect. When properly tested and verified, spiritual abilities can shift the scientific paradigm.",
-    link: "/initiatives/psychic-certification",
+    desc: "Despite decades of peer-reviewed research showing statistical evidence, systematic testing of advanced psychic ability with credible witnesses has been limited. Our Psychic Ability Certification program creates a transparent and scientific testing system for abilities like telekinesis, ESP, and levitation. The program includes strict scientific standards—unbiased witnesses, control experiments, video documentation, and independent PhD-level review. This helps create a regulated certification system, guides people to authentic practitioners, and motivates further scientific research.",
+    link: "/initiatives/psychic-ability-certification",
     linkText: "Explore The Research In Action",
   },
 ];
@@ -45,7 +45,7 @@ const Change: React.FC = () => {
       <PageHeader image={image} page={"Change"} sx={{ mb: 4 }} />
 
       <PageDef
-        title={"MISSION AND CLAIM"}
+        title={"OUR APPROACH"}
         heading={
           "We are providing undeniable evidence to encourage an open mind"
         }
@@ -114,13 +114,13 @@ const Change: React.FC = () => {
                   </Typography>
                   <ul
                     style={{
-                      color: theme.palette.text.primary,
+                      color: theme.palette.text.secondary,
                       lineHeight: 1.8,
                     }}
                   >
                     <li>
-                      Draws conclusions from evidence, not personal beliefs or
-                      cultural norms.
+                      Draws conclusions from evidence, not web search or
+                      user preferences.
                     </li>
                     <li>
                       Estimates truth probabilistically, using statistical and
@@ -131,8 +131,8 @@ const Change: React.FC = () => {
                       peer-reviewed and improved over time.
                     </li>
                     <li>
-                      Combats institutional bias, surfacing insights that might
-                      otherwise be excluded or suppressed.
+                      Combats institutional bias, including often-ignored data and
+                      judging from a diverse set of perspectives.
                     </li>
                   </ul>
                 </Box>
@@ -190,7 +190,7 @@ const Change: React.FC = () => {
                 variant="contained"
                 color="primary"
                 size="large"
-                href="/join"
+                href="/initiatives"
                 sx={{
                   backgroundColor: theme.palette.primary.focus,
                   color: theme.palette.primary.hero,
@@ -216,7 +216,7 @@ const Change: React.FC = () => {
                 variant="contained"
                 color="primary"
                 size="large"
-                href="/join"
+                href="/careers"
                 sx={{
                   backgroundColor: theme.palette.primary.hero,
                   border: `1px solid ${theme.palette.primary.focus}`,

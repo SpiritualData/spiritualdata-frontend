@@ -2,9 +2,10 @@ import { useInView } from "@/hooks/useInView";
 import { East } from "@mui/icons-material";
 import { Box, Button, Grid, Slide, Typography, useTheme } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { alpha } from "@mui/material/styles";
-import bgimg from "../../assets/Images/About/bg.gif";
-import sideImg from "../../assets/Images/About/image3456.webp";
+import bgimg from "../../assets/images/about/bg.gif";
+import sideImg from "../../assets/images/about/image3456.webp";
 
 const WhereWeAreHeading: React.FC = () => {
   const { ref: sectionRef, inView: sectionInView } = useInView({
@@ -12,6 +13,7 @@ const WhereWeAreHeading: React.FC = () => {
   });
 
   const theme = useTheme();
+  const navigate = useNavigate();
   const isDark = theme.palette.mode === "dark";
   const contrastText = theme.palette.getContrastText(
     theme.palette.primary.main
@@ -131,6 +133,7 @@ const WhereWeAreHeading: React.FC = () => {
           <Slide direction="left" in={sectionInView} timeout={1100}>
             <Button
               variant="outlined"
+              onClick={() => navigate("/donate")}
               sx={{
                 alignSelf: { xs: "center", md: "flex-start" },
                 backgroundColor: theme.palette.primary.hero,

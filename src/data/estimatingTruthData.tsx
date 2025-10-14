@@ -1,7 +1,7 @@
-import bannerImage from "../assets/Images/Initiatives/etheader.webp";
-import scrollimage1 from "../assets/Images/Products/app1.webp";
-import scrollimage2 from "../assets/Images/Products/app2.webp";
-import scrollimage3 from "../assets/Images/Products/app3.webp";
+import bannerImage from "../assets/images/initiatives/etheader.webp";
+import scrollimage1 from "../assets/images/products/app1.webp";
+import scrollimage2 from "../assets/images/products/app2.webp";
+import scrollimage3 from "../assets/images/products/app3.webp";
 
 export const headerData = {
   image: bannerImage,
@@ -12,13 +12,13 @@ export const headerData = {
 export const tiltHeadData = {
   bgText: "Truth Estimation",
   title: "Truth Estimation Framework Initiative",
-  desc: "The Truth Estimation Framework, also called Concept AI, is the core foundation of Spiritual Data's mission. It provides a transparent, evidence-based system for determining what is true by combining research papers, written experiences, and AI-driven decision automation. Unlike biased alternatives, this framework enables open collaboration with researchers worldwide, ensures every conclusion is backed by clear methodology, and serves as the scientific backbone for all Spiritual Data products.",
+  desc: "The Truth Estimation Framework, also called Concept AI, is the core foundation of Spiritual Data's mission. It provides a transparent, evidence-based system for estimating what is true by combining research papers, written experiences, and AI-driven decision automation representing diverse perspectives. Unlike biased alternatives, this framework enables open collaboration with researchers worldwide, ensures every conclusion is backed by clear methodology, and serves as the scientific backbone for all Spiritual Data products.",
 };
 
 export const scrollCardsData = [
   {
     title: "Background",
-    desc: "The truth estimation framework is called Concept AI. It is also referred to as a decision automation framework. Truth estimation requires automation based on evidential data, such as research papers and written human experiences. In the future, other sources of data may be supported.",
+    desc: "The truth estimation framework is called Concept AI. It is also referred to as a decision automation framework. Truth estimation requires automation based on evidential data, such as research papers and written human experiences. In the future, other types of data may be supported.",
     btn: "Learn the Science Behind It",
     img: scrollimage1,
     link: "/products/concept-ai",
@@ -35,7 +35,7 @@ export const scrollCardsData = [
     desc: "Spiritual Data's AI Platform team is responsible for implementing this framework. Their mission: Develop a foundation for AI systems to uphold scientific rigor through automating diverse perspectives, statistically comparing alternative explanations, and justifying all assumptions.",
     btn: "Contribute to the Mission",
     img: scrollimage3,
-    link: "/donations",
+    link: "/donate",
   },
 ];
 
@@ -51,7 +51,7 @@ export const estimatingTruthDetailsData = [
   {
     id: 2,
     title: "Domains of Knowledge",
-    desc: "Concepts live within domains, which are hierarchical and editable by humans.",
+    desc: "Concepts live within domains, which are hierarchical and editable by humans. They are populated by relevant literature.",
     secHead: "DETAILS",
     secSubHead1: "TRUTH",
     secSubHead2: "ESTIMATION",
@@ -59,7 +59,7 @@ export const estimatingTruthDetailsData = [
   {
     id: 3,
     title: "Decision Automation",
-    desc: "Decision-automation occurs within each domain. Science is a top-level domain, while product applications are configured as their own domains.",
+    desc: "Decision-automation occurs within each domain. Domains represent the types of questions asked, ideas considered, and concepts used.",
     secHead: "DETAILS",
     secSubHead1: "TRUTH",
     secSubHead2: "ESTIMATION",

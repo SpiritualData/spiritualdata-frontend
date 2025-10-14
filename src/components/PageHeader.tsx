@@ -21,6 +21,17 @@ const StyledHeader = styled(Grid)(({ theme }) => ({
   alignItems: "center",
   justifyContent: "center",
   animation: `${fadeInBottom} 3s ease`,
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    height: "200px",
+    background: "linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%)",
+    zIndex: 1,
+    pointerEvents: "none",
+  },
   "&::after": {
     content: '""',
     position: "absolute",
@@ -36,7 +47,7 @@ const StyledHeader = styled(Grid)(({ theme }) => ({
 }));
 
 const StyledHeaderItem = styled(Grid)(() => ({
-  zIndex: 1,
+  zIndex: 2,
   color: theme.palette.primary.focus,
 }));
 

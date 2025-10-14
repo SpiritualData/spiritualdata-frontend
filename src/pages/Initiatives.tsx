@@ -1,9 +1,8 @@
 import React from "react";
 import { Box, Grid } from "@mui/material";
 import PageHeader from "../components/PageHeader";
-import image from "../assets/Images/Initiatives/banner.webp";
+import image from "../assets/images/initiatives/banner.webp";
 import PageDef from "../components/PageDef";
-import InitiativeSection from "../components/HeroInitiativeSection";
 import InitiativesSection from "../components/InitiativesCardSection";
 import WhereWeAreHeading from "../components/About/WhereWeAreHeading";
 
@@ -22,7 +21,7 @@ const Initiatives: React.FC = () => {
           }}
         >
           <PageHeader image={image} page={"Initiatives"} sx={{ mb: 4 }} />
-  
+
           <PageDef
             title={"Our Key Initiatives"}
             heading={
@@ -34,7 +33,6 @@ const Initiatives: React.FC = () => {
         </Box>
       </Grid>
       <WhereWeAreHeading />
-      <InitiativeSection />
     </>
   );
 };

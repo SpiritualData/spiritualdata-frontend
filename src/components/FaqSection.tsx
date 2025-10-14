@@ -9,12 +9,17 @@ import {
   useTheme,
   Avatar,
   Collapse,
+  Link as MuiLink,
 } from "@mui/material";
 import EmailIcon from "@mui/icons-material/Email";
 import { useInView } from "../hooks/useInView";
-import faqImage from "../assets/images/Faq/faq.webp";
+import faqImage from "../assets/images/faq/faq.webp";
+import { Link } from "react-router-dom";
 
-const faqs = [
+const faqs: Array<{
+  question: string;
+  answer: string | React.ReactNode;
+}> = [
   {
     question: "What is Spiritual Data?",
     answer:
@@ -32,13 +37,52 @@ const faqs = [
   },
   {
     question: "How do I join the Spiritual Data community?",
-    answer:
-      "You can join by subscribing to our newsletter, entering our official Discord server, or filling out the following team interest form: https://forms.gle/E6A9p3GgvUDoy2q18 to get directly involved.",
+    answer: (
+      <>
+        You can join by subscribing to our newsletter, entering our official
+        Discord server, or filling out the following team interest form:{" "}
+        <MuiLink
+          href="https://forms.gle/E6A9p3GgvUDoy2q18"
+          target="_blank"
+          rel="noopener noreferrer"
+          sx={{
+            color: "primary.focus",
+            textDecoration: "underline",
+            fontWeight: 500,
+            "&:hover": {
+              color: "primary.dark",
+            },
+          }}
+        >
+          https://forms.gle/E6A9p3GgvUDoy2q18
+        </MuiLink>{" "}
+        to get directly involved.
+      </>
+    ),
   },
   {
     question: "How can I donate to Spiritual Data?",
-    answer:
-      "To donate, please visit the Donations page located in the Discover section above. The direct link is spiritualdata.org/donations. We welcome and appreciate your support in sustaining this mission.",
+    answer: (
+      <>
+        To donate, please visit the Donations page located in the Discover
+        section above. The direct link is{" "}
+        <MuiLink
+          component={Link}
+          to="/donate"
+          sx={{
+            color: "primary.focus",
+            textDecoration: "underline",
+            fontWeight: 500,
+            "&:hover": {
+              color: "primary.dark",
+            },
+          }}
+        >
+          spiritualdata.org/donate
+        </MuiLink>
+        . We welcome and appreciate your support in sustaining this mission.
+      </>
+    ),
   },
   {
     question: "Are you religious?",
@@ -50,11 +94,18 @@ const faqs = [
 const FaqSection = () => {
   const theme = useTheme();
   const [expanded, setExpanded] = useState<number | false>(false);
+  const [copied, setCopied] = useState(false);
 
   const handleChange =
     (panel: number) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
       setExpanded(isExpanded ? panel : false);
     };
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText("support@spiritualdata.org");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const CustomExpandIcon = ({ isOpen }: { isOpen: boolean }) => (
     <Typography
@@ -102,8 +153,7 @@ const FaqSection = () => {
               }}
             />
             <Box
-              component={"a"}
-              href="mailto:support@spiritualdata.org"
+              onClick={handleCopyEmail}
               sx={{
                 position: "absolute",
                 bottom: 20,
@@ -116,7 +166,17 @@ const FaqSection = () => {
                 px: 3,
                 py: 2,
                 boxShadow: theme.shadows[3],
-                textDecoration: "none",
+                cursor: "pointer",
+                transition: "all 0.3s ease",
+                "&:hover": {
+                  backgroundColor: theme.palette.primary.focus,
+                  "& .MuiAvatar-root": {
+                    bgcolor: theme.palette.common.white,
+                  },
+                  "& .MuiTypography-root": {
+                    color: theme.palette.common.white,
+                  },
+                },
               }}
             >
               <Avatar
@@ -136,7 +196,7 @@ const FaqSection = () => {
                   color: theme.palette.text.primary,
                 }}
               >
-                support@spiritualdata.org
+                {copied ? "Copied!" : "support@spiritualdata.org"}
               </Typography>
             </Box>
           </Box>
@@ -182,7 +242,7 @@ const FaqSection = () => {
                 textAlign: { xs: "center", md: "left" },
               }}
             >
-              Everything You Want to <br /> Know About AI
+              What do you want to know about Spiritual Data?
             </Typography>
           </Box>
 

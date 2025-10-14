@@ -1,6 +1,6 @@
-import image1 from "../assets/Images/initiatives/initiativeCard1.webp";
-import image2 from "../assets/Images/initiatives/initiativeCard2.webp";
-import image3 from "../assets/Images/initiatives/initiativeCard3.webp";
+import image1 from "../assets/images/initiatives/initiativeCard1.webp";
+import image2 from "../assets/images/initiatives/initiativeCard2.webp";
+import image3 from "../assets/images/initiatives/initiativeCard3.webp";
 
 export const initiativeCardData = [
   {
@@ -29,7 +29,7 @@ export const initiativeCardData = [
     description:
       "Through real-world experiments, we're scientifically testing and certifying psychic abilities witnessed, recorded, and peer-reviewed.",
     image: image3,
-    link: "/initiatives/psychic-certification",
+    link: "/initiatives/psychic-ability-certification",
     author: "Spiritual Data",
     buttonText: "See the Research in Action",
   },

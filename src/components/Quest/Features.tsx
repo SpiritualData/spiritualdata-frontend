@@ -50,9 +50,9 @@ const FeaturesSection: React.FC<{
             lineHeight: 1.6,
           }}
         >
-          There are many variations of passages of Lorem Ipsum available, but
-          the majority have suffered alteration, by injected humour, or new
-          randomised words.
+          Quest combines intelligent AI guidance with proven accountability
+          strategies to help you achieve meaningful transformation. Every
+          feature is designed to keep you moving forward on your journey.
         </Typography>
       </Box>
 

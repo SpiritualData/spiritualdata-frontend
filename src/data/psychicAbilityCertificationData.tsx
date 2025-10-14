@@ -1,7 +1,7 @@
-import bannerImage from "../assets/Images/Initiatives/pacheader.webp";
-import scrollimage1 from "../assets/Images/Products/app1.webp";
-import scrollimage2 from "../assets/Images/Products/app2.webp";
-import scrollimage3 from "../assets/Images/Products/app3.webp";
+import bannerImage from "../assets/images/initiatives/pacheader.webp";
+import scrollimage1 from "../assets/images/products/app1.webp";
+import scrollimage2 from "../assets/images/products/app2.webp";
+import scrollimage3 from "../assets/images/products/app3.webp";
 
 export const headerData = {
   image: bannerImage,
@@ -12,30 +12,30 @@ export const headerData = {
 export const tiltHeadData = {
   bgText: "Psychic Initiative",
   title: "Psychic Ability Certification Initiative",
-  desc: "The Psychic Ability Certification program aims to provide undeniable evidence of psychic abilities through transparent and ethical testing. By applying scientific standards—witness verification, control experiments, and independent PhD-level review—Spiritual Data offers the world's first structured certification system for psychics, helping regulate the industry and motivating further research.",
+  desc: "The Psychic Ability Certification program aims to provide practically undeniable evidence of psychic abilities through transparent and ethical testing. By applying scientific standards—witness verification, control experiments, and independent PhD-level review—Spiritual Data offers the world's first structured certification system for all psychic abilities, helping regulate the industry and motivating further research.",
 };
 
 export const scrollCardsData = [
   {
     title: "Background",
-    desc: "Despite decades of claims and anecdotal evidence, systematic testing of psychic abilities has been limited due to lack of resources and motivation. Spiritual Data intends to change this by creating a transparent and scientific program for testing telekinesis, ESP, levitation, and more.",
-    btn: "Explore Background",
+    desc: "Despite decades of peer reviewed research showing statistical evidence, systematic testing of advanced psychic ability with credible witnesses has been limited due to lack of resources and motivation. Spiritual Data intends to change this by creating a transparent and scientific program for testing telekinesis, ESP, levitation, and more.",
+    btn: "Apply to be tested",
     img: scrollimage1,
-    link: "/initiatives/psychic/background",
+    link: "https://docs.google.com/forms/d/e/1FAIpQLSdi7zXNri8uXouwlOMV64WcYNXeQOlVX7nS7Su6YM9V4AyJCg/viewform?usp=sf_link",
   },
   {
     title: "Purpose",
-    desc: "The purpose of this initiative is to provide undeniable evidence of psychic abilities, create a regulated certification system, motivate scientific research, and guide individuals to authentic practitioners who demonstrate real, verifiable skills.",
-    btn: "See Why It Matters",
+    desc: "The purpose of this initiative is to provide more credible evidence of advanced psychic ability, create a regulated certification system, motivate scientific research, and guide individuals to authentic practitioners who demonstrate real, verifiable skills.",
+    btn: "Apply to be tested",
     img: scrollimage2,
-    link: "/initiatives/psychic/purpose",
+    link: "https://docs.google.com/forms/d/e/1FAIpQLSdi7zXNri8uXouwlOMV64WcYNXeQOlVX7nS7Su6YM9V4AyJCg/viewform?usp=sf_link",
   },
   {
     title: "Approach",
     desc: "Our certification process includes ethics review, standardized and customizable tests, unbiased witnesses, video recording, and independent researcher validation. Participants are classified by reliability, from Demonstrably Psychic to Super Psychic.",
-    btn: "Learn About the Process",
+    btn: "Apply to be tested",
     img: scrollimage3,
-    link: "/initiatives/psychic/approach",
+    link: "https://docs.google.com/forms/d/e/1FAIpQLSdi7zXNri8uXouwlOMV64WcYNXeQOlVX7nS7Su6YM9V4AyJCg/viewform?usp=sf_link",
   },
 ];
 
@@ -43,7 +43,7 @@ export const psychicAbilityDetailsData = [
   {
     id: 1,
     title: "Scientific Testing",
-    desc: "All demonstrations are conducted under strict conditions, including ethics approval, unbiased witnesses, and video documentation.",
+    desc: "All demonstrations are conducted under strict conditions, including comparison with controls, unbiased witnesses, and video documentation.",
     secHead: "DETAILS",
     secSubHead1: "PSYCHIC",
     secSubHead2: "CERTIFICATION",
@@ -51,7 +51,7 @@ export const psychicAbilityDetailsData = [
   {
     id: 2,
     title: "Standardized Abilities",
-    desc: "Testing procedures focus on abilities such as telekinesis, ESP, and levitation, with flexibility for unique skills.",
+    desc: "Testing procedures focus on common abilities such as telekinesis, ESP, and levitation, with flexibility for unique skills.",
     secHead: "DETAILS",
     secSubHead1: "PSYCHIC",
     secSubHead2: "CERTIFICATION",

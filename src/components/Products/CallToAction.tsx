@@ -86,7 +86,17 @@ const CallToAction: React.FC<{
 
         <Button
           variant="contained"
-          onClick={() => navigate("/sign-up")}
+          onClick={() => {
+            if (data.buttonLink) {
+              if (data.buttonLink.startsWith('http')) {
+                window.open(data.buttonLink, '_blank');
+              } else {
+                navigate(data.buttonLink);
+              }
+            } else {
+              navigate("/sign-up");
+            }
+          }}
           sx={{
             backgroundColor: theme.palette.primary.focus,
             color: theme.palette.primary.hero,

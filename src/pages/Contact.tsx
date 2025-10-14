@@ -5,9 +5,9 @@ import ContactHero from "../components/Contact/ContactHero";
 const Contact = () => {
   return (
     <>
-      <ContactHero />
       <ContactRequest />
       <FaqSection />
+      <ContactHero />
     </>
   );
 };

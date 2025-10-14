@@ -64,7 +64,7 @@ const theme = createTheme({
     },
     text: {
       primary: "#1F2540",
-      secondary: "#6A6F78",
+      secondary: "#4A4F58",
     },
     chatbot: {
       sidebar: "#171717",
