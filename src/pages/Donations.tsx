@@ -10,7 +10,6 @@ import image2 from "../assets/images/donate/tier2.webp";
 import image3 from "../assets/images/donate/tier3.webp";
 import image4 from "../assets/images/donate/tier4.webp";
 import RecurringTiers from "../components/Donations/RecurringTiers";
-import ContactSection from "../components/ContactSection";
 import { useRef } from "react";
 import { useInView } from "../hooks/useInView";
 
@@ -160,8 +159,6 @@ const Donate = () => {
           )}
         </Box>
       </Container>
-
-      <ContactSection />
     </>
   );
 };
