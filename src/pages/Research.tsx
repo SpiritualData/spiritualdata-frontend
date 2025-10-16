@@ -8,7 +8,7 @@ import PageDef from "../components/PageDef";
 import { East } from "@mui/icons-material";
 
 export const StyledGridItem = styled(Grid)(({ theme }) => ({
-  backgroundColor: theme.palette.text.secondary,
+  backgroundColor: "#FFFFFF",
   color: "#384146",
   borderLeft: `2px solid ${theme.palette.primary.focus}`,
   boxShadow: `0px 6px 10px #00000029`,
@@ -64,26 +64,25 @@ const DataItem: React.FC<DataItemProps> = ({ val }) => {
 
       <Link to={val.path} style={{ textDecoration: "none" }} target={"_blank"}>
         <Button
-          variant="text"
+          variant="contained"
           sx={{
+            backgroundColor: (theme) => theme.palette.primary.focus,
+            color: "#1F2540",
+            px: 3,
+            py: 1,
+            mt: 2,
+            fontWeight: 600,
+            borderRadius: "30px",
+            textTransform: "uppercase",
+            fontSize: "0.75rem",
+            letterSpacing: "0.08rem",
             "&:hover": {
-              backgroundColor: "transparent",
-              color: "inherit",
+              backgroundColor: (theme) => theme.palette.primary.hover,
+              color: "#fff",
             },
           }}
         >
-          <Typography
-            sx={{
-              color: (theme) => theme.palette.primary.focus,
-              fontSize: "14px",
-              textDecoration: "none",
-              "&:hover": { textDecoration: "underline" },
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            {val.buttonText}{" "}
-          </Typography>
+          {val.buttonText}
         </Button>
       </Link>
     </StyledGridItem>
