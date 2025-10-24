@@ -20,12 +20,12 @@ const Galaxy: React.FC<GalaxyProps> = ({ id, name, position, color = "#ffffff", 
   const scale = useRef(0.7);
   const opacity = useRef(0);
 
-  // Particle field for halo
+  // Particle field for halo (larger for visual prominence)
   const particles = useMemo(() => {
-    const count = 300;
+    const count = 420;
     const arr = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
-      const r = 1.2 + Math.random() * 0.8;
+      const r = 1.8 + Math.random() * 1.4; // larger halo
       const theta = Math.random() * Math.PI * 2;
       const phi = (Math.random() - 0.5) * Math.PI;
       arr[i * 3 + 0] = Math.cos(theta) * Math.cos(phi) * r;
@@ -67,6 +67,12 @@ const Galaxy: React.FC<GalaxyProps> = ({ id, name, position, color = "#ffffff", 
         mat.transparent = true;
         mat.needsUpdate = true;
       }
+      // core scale lerp for hover feedback
+      if (coreRef.current) {
+        const targetCore = hovered ? 1.12 : 1;
+        const s = (coreRef.current.scale.x || 1) + (targetCore - (coreRef.current.scale.x || 1)) * Math.min(delta * 10, 1);
+        coreRef.current.scale.setScalar(s);
+      }
     }
   });
 
@@ -83,7 +89,7 @@ const Galaxy: React.FC<GalaxyProps> = ({ id, name, position, color = "#ffffff", 
 
       {/* Glowing core */}
       <mesh ref={coreRef}>
-        <sphereGeometry args={[0.6, 32, 32]} />
+        <sphereGeometry args={[0.9, 48, 48]} />
         <meshStandardMaterial emissive={new THREE.Color(color)} emissiveIntensity={0.9} metalness={0.2} roughness={0.3} transparent opacity={0} />
       </mesh>
 
