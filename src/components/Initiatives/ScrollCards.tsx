@@ -53,15 +53,15 @@ export default function ScrollStackCards({ data }: ScrollStackCardsProps) {
               color: "white",
               borderRadius: "50px 0 50px 0",
               boxShadow: {
-                xs: `1.5rem 1.5rem 0px -0.5rem ${theme.palette.primary.focus},
-                     -1.5rem -1.5rem 0px -0.5rem ${theme.palette.primary.focus},
-                     0px 4px 15px ${theme.palette.primary.focus}`,
-                sm: `3rem 3rem 0px -1rem ${theme.palette.primary.focus},
-                     -3rem -3rem 0px -1rem ${theme.palette.primary.focus},
-                     0px 5px 18px ${theme.palette.primary.focus}`,
-                md: `6rem 6rem 0px -1.875rem ${theme.palette.primary.focus},
-                     -6rem -6rem 0px -1.875rem ${theme.palette.primary.focus},
-                     0px 6px 25px ${theme.palette.primary.focus}`,
+                xs: `1.5rem 1.5rem 0px -0.5rem #FFEAA7,
+                     -1.5rem -1.5rem 0px -0.5rem #FFEAA7,
+                     0px 4px 15px #FFEAA7`,
+                sm: `3rem 3rem 0px -1rem #FFEAA7,
+                     -3rem -3rem 0px -1rem #FFEAA7,
+                     0px 5px 18px #FFEAA7`,
+                md: `6rem 6rem 0px -1.875rem #FFEAA7,
+                     -6rem -6rem 0px -1.875rem #FFEAA7,
+                     0px 6px 25px #FFEAA7`,
               },
               p: { xs: 3, sm: 4, md: 8 },
               display: "flex",
@@ -90,7 +90,7 @@ export default function ScrollStackCards({ data }: ScrollStackCardsProps) {
                   mb: { xs: 3, md: 5 },
                   fontSize: { xs: "1.3rem", sm: "1.5rem", md: "2rem" },
                   display: "inline-block",
-                  borderBottom: `4px solid ${theme.palette.primary.focus}`,
+                  borderBottom: `4px solid #FFEAA7`,
                   paddingBottom: "8px",
                 }}
               >
@@ -119,7 +119,7 @@ export default function ScrollStackCards({ data }: ScrollStackCardsProps) {
                   }
                 }}
                 sx={{
-                  backgroundColor: theme.palette.primary.focus,
+                  backgroundColor: "#FFEAA7",
                   color: theme.palette.primary.hero,
                   borderRadius: 8,
                   height: 42,
