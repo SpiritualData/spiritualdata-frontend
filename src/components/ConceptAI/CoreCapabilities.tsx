@@ -28,12 +28,11 @@ const CoreCapabilities = ({ data }: { data: CapabilitiesData[] }) => {
       spacing={0}
       sx={{
         height: { xs: "auto", md: "90vh" },
-        width: "100vw",
+        width: "100%",
         px: { xs: 2, sm: 6, md: 12, lg: 24 },
         py: 10,
         pt: { xs: 4, md: 7 },
         pb: { xs: 6, md: 25 },
-        m: 0,
         backgroundColor: "white",
       }}
     >
@@ -54,7 +53,7 @@ const CoreCapabilities = ({ data }: { data: CapabilitiesData[] }) => {
 
       <Box
         sx={{
-          height: "100%",
+          height: { xs: "100%", lg: "550px" },
           width: "100%",
           display: "flex",
           flexDirection: { xs: "column", md: "row" },
@@ -275,6 +274,33 @@ const CoreCapabilities = ({ data }: { data: CapabilitiesData[] }) => {
                         mt: { xs: 2, md: 8 },
                         fontSize: { xs: "0.9rem", md: "1rem" },
                         textAlign: { xs: "center", md: "left" },
+                        lineHeight: 1.6,
+
+                        overflowY: "auto",
+                        maxHeight: {
+                          xs: "120px",
+                          md: "350px",
+                          lg: "500px",
+                        },
+                        pr: 2,
+
+                        // ✅ HOVER PE SCROLLBAR SHOW
+                        scrollbarWidth: "thin",
+                        scrollbarColor: "transparent transparent",
+                        "&::-webkit-scrollbar": {
+                          width: "0px",
+                          backgroundColor: "transparent",
+                        },
+                        "&::-webkit-scrollbar-thumb": {
+                          backgroundColor: "transparent",
+                          borderRadius: "3px",
+                        },
+                        "&:hover::-webkit-scrollbar-thumb": {
+                          backgroundColor: "transparent",
+                        },
+                        "&:hover": {
+                          scrollbarColor: "transparent",
+                        },
                       }}
                     >
                       {data[selectedIndex]?.description}
@@ -290,12 +316,14 @@ const CoreCapabilities = ({ data }: { data: CapabilitiesData[] }) => {
                     mt: { xs: 3, md: 0 },
                   }}
                 >
-                  <img
+                  <Box
+                    component="img"
                     src={data[selectedIndex]?.image}
                     alt={data[selectedIndex]?.title}
-                    style={{
-                      maxWidth: "80%",
+                    sx={{
+                      maxWidth: { xs: "45%", md: "80%" },
                       height: "auto",
+                      display: "block",
                     }}
                   />
                 </Box>

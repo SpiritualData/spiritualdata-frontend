@@ -11,7 +11,7 @@ import BoardMembers from "../components/About/BoardMembers";
 const About: React.FC = () => {
   return (
     <>
-      <PageHeader image={banner} page={"ABOUT"} sx={{ mb: 4 }} />
+      <PageHeader image={banner} page={"ABOUT US"} sx={{ mb: 4 }} />
       <AboutHero />
       <WhyWeStarted />
       <GuidingPrinciples backgroundImage={gpbg} />

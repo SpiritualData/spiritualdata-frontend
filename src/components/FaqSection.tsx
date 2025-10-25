@@ -9,6 +9,7 @@ import {
   useTheme,
   Avatar,
   Collapse,
+  Container,
   Link as MuiLink,
 } from "@mui/material";
 import EmailIcon from "@mui/icons-material/Email";
@@ -124,208 +125,212 @@ const FaqSection = () => {
     <Box
       component="section"
       sx={{
-        px: { xs: 2, md: 24 },
+        // px: { xs: 2, md: 24 },
         py: { xs: 6, md: 10 },
         backgroundColor: theme.palette.primary.main,
       }}
     >
-      <Grid container sx={{ justifyContent: "space-around" }}>
-        {/* Left: Image and Contact */}
-        <Grid item xs={12} md={6} component="div" {...({} as any)}>
-          <Box
-            sx={{
-              position: "relative",
-              height: "100%",
-              minHeight: { xs: 300, md: "100%" },
-              width: "100%",
-              overflow: "hidden",
-              borderRadius: 3,
-            }}
-          >
+      <Container maxWidth="lg" disableGutters sx={{ px: { xs: 2, md: 2 } }}>
+        <Grid container sx={{ justifyContent: "space-around" }}>
+          {/* Left: Image and Contact */}
+          <Grid item xs={12} md={6} component="div" {...({} as any)}>
             <Box
-              component="img"
-              src={faqImage}
-              alt="FAQ"
               sx={{
-                width: "100%",
+                position: "relative",
                 height: "100%",
-                objectFit: "cover",
-              }}
-            />
-            <Box
-              onClick={handleCopyEmail}
-              sx={{
-                position: "absolute",
-                bottom: 20,
-                left: 20,
-                backgroundColor: theme.palette.common.white,
-                borderRadius: 2,
-                display: "flex",
-                alignItems: "center",
-                gap: 1.5,
-                px: 3,
-                py: 2,
-                boxShadow: theme.shadows[3],
-                cursor: "pointer",
-                transition: "all 0.3s ease",
-                "&:hover": {
-                  backgroundColor: theme.palette.primary.focus,
-                  "& .MuiAvatar-root": {
-                    bgcolor: theme.palette.common.white,
-                  },
-                  "& .MuiTypography-root": {
-                    color: theme.palette.common.white,
-                  },
-                },
+                minHeight: { xs: 300, md: "100%" },
+                width: "100%",
+                overflow: "hidden",
+                borderRadius: 3,
               }}
             >
-              <Avatar
+              <Box
+                component="img"
+                src={faqImage}
+                alt="FAQ"
                 sx={{
-                  bgcolor: theme.palette.primary.focus,
-                  width: 32,
-                  height: 32,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                }}
+              />
+              <Box
+                onClick={handleCopyEmail}
+                sx={{
+                  position: "absolute",
+                  bottom: 20,
+                  left: 20,
+                  backgroundColor: theme.palette.common.white,
+                  borderRadius: 2,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1.5,
+                  px: 3,
+                  py: 2,
+                  boxShadow: theme.shadows[3],
+                  cursor: "pointer",
+                  transition: "all 0.3s ease",
+                  "&:hover": {
+                    backgroundColor: theme.palette.primary.focus,
+                    "& .MuiAvatar-root": {
+                      bgcolor: theme.palette.common.white,
+                    },
+                    "& .MuiTypography-root": {
+                      color: theme.palette.common.white,
+                    },
+                  },
                 }}
               >
-                <EmailIcon sx={{ color: theme.palette.text.primary }} />
-              </Avatar>
-              <Typography
-                variant="h6"
-                sx={{
-                  fontSize: { xs: "0.8rem", sm: "1rem", md: "1.2rem" },
-                  fontWeight: 500,
-                  color: theme.palette.text.primary,
-                }}
-              >
-                {copied ? "Copied!" : "support@spiritualdata.org"}
-              </Typography>
-            </Box>
-          </Box>
-        </Grid>
-
-        {/* Right: FAQs */}
-        <Grid
-          item
-          xs={12}
-          md={6}
-          sx={{
-            ml: { xs: 2, md: 8 },
-            py: { xs: 4, md: 0 },
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "end",
-            width: { xs: "100%", md: "50%" },
-          }}
-          height={"100%"}
-          width="50%"
-          component="div"
-          {...({} as any)}
-        >
-          <Box mt={5}>
-            <Typography
-              variant="subtitle1"
-              sx={{
-                color: theme.palette.text.secondary,
-                fontWeight: 600,
-                letterSpacing: "3px",
-                textAlign: { xs: "center", md: "left" },
-              }}
-            >
-              FAQS
-            </Typography>
-            <Typography
-              variant="h2"
-              sx={{
-                fontWeight: 500,
-                fontSize: "3rem",
-                mb: 4,
-                color: theme.palette.text.primary,
-                textAlign: { xs: "center", md: "left" },
-              }}
-            >
-              What do you want to know about Spiritual Data?
-            </Typography>
-          </Box>
-
-          <Box>
-            {faqs.map((faq, index) => {
-              const { ref, inView } = useInView();
-
-              return (
-                <Box
-                  key={index}
-                  ref={ref}
+                <Avatar
                   sx={{
-                    borderRadius: "16px",
-                    overflow: "hidden",
-                    mb: 1.5,
-                    boxShadow: "none",
-                    opacity: inView ? 1 : 0,
-                    transform: inView ? "translateY(0px)" : "translateY(40px)",
-                    transition: "all 0.6s ease-out",
+                    bgcolor: theme.palette.primary.focus,
+                    width: 32,
+                    height: 32,
                   }}
                 >
-                  <Accordion
-                    expanded={expanded === index}
-                    onChange={handleChange(index)}
-                    disableGutters
-                    elevation={0}
-                    square
+                  <EmailIcon sx={{ color: theme.palette.text.primary }} />
+                </Avatar>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontSize: { xs: "0.8rem", sm: "1rem", md: "1.2rem" },
+                    fontWeight: 500,
+                    color: theme.palette.text.primary,
+                  }}
+                >
+                  {copied ? "Copied!" : "support@spiritualdata.org"}
+                </Typography>
+              </Box>
+            </Box>
+          </Grid>
+
+          {/* Right: FAQs */}
+          <Grid
+            item
+            xs={12}
+            md={6}
+            sx={{
+              pl: { xs: 2, md: 8 },
+              py: { xs: 4, md: 0 },
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "end",
+              width: { xs: "100%", md: "50%" },
+            }}
+            height={"100%"}
+            width="50%"
+            component="div"
+            {...({} as any)}
+          >
+            <Box mt={5}>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  color: theme.palette.text.secondary,
+                  fontWeight: 600,
+                  letterSpacing: "3px",
+                  textAlign: { xs: "center", md: "left" },
+                }}
+              >
+                FAQS
+              </Typography>
+              <Typography
+                variant="h2"
+                sx={{
+                  fontWeight: 500,
+                  fontSize: "3rem",
+                  mb: 4,
+                  color: theme.palette.text.primary,
+                  textAlign: { xs: "center", md: "left" },
+                }}
+              >
+                What do you want to know about Spiritual Data?
+              </Typography>
+            </Box>
+
+            <Box>
+              {faqs.map((faq, index) => {
+                const { ref, inView } = useInView();
+
+                return (
+                  <Box
+                    key={index}
+                    ref={ref}
                     sx={{
-                      backgroundColor: theme.palette.darkcard.main,
-                      color: theme.palette.darkcard.contrastText,
-                      "&:before": { display: "none" },
+                      borderRadius: "16px",
+                      overflow: "hidden",
+                      mb: 1.5,
+                      boxShadow: "none",
+                      opacity: inView ? 1 : 0,
+                      transform: inView
+                        ? "translateY(0px)"
+                        : "translateY(40px)",
+                      transition: "all 0.6s ease-out",
                     }}
                   >
-                    <AccordionSummary
-                      expandIcon={
-                        <CustomExpandIcon isOpen={expanded === index} />
-                      }
+                    <Accordion
+                      expanded={expanded === index}
+                      onChange={handleChange(index)}
+                      disableGutters
+                      elevation={0}
+                      square
                       sx={{
-                        px: 3,
-                        py: 1.5,
-                        minHeight: "auto",
-                        "& .MuiAccordionSummary-content": {
-                          margin: 0,
-                        },
+                        backgroundColor: theme.palette.darkcard.main,
+                        color: theme.palette.darkcard.contrastText,
+                        "&:before": { display: "none" },
                       }}
                     >
-                      <Typography fontWeight={600} fontSize={"1.1rem"}>
-                        {faq.question}
-                      </Typography>
-                    </AccordionSummary>
-
-                    <Collapse
-                      in={expanded === index}
-                      timeout="auto"
-                      unmountOnExit
-                    >
-                      <AccordionDetails
+                      <AccordionSummary
+                        expandIcon={
+                          <CustomExpandIcon isOpen={expanded === index} />
+                        }
                         sx={{
-                          backgroundColor: theme.palette.common.white,
-                          px: 4,
-                          py: 3,
+                          px: 3,
+                          py: 1.5,
+                          minHeight: "auto",
+                          "& .MuiAccordionSummary-content": {
+                            margin: 0,
+                          },
                         }}
                       >
-                        <Typography
+                        <Typography fontWeight={600} fontSize={"1.1rem"}>
+                          {faq.question}
+                        </Typography>
+                      </AccordionSummary>
+
+                      <Collapse
+                        in={expanded === index}
+                        timeout="auto"
+                        unmountOnExit
+                      >
+                        <AccordionDetails
                           sx={{
-                            color: theme.palette.text.secondary,
-                            fontWeight: 400,
-                            lineHeight: 1.6,
-                            fontSize: "1.09rem",
-                            letterSpacing: 0.4,
+                            backgroundColor: theme.palette.common.white,
+                            px: 4,
+                            py: 3,
                           }}
                         >
-                          {faq.answer}
-                        </Typography>
-                      </AccordionDetails>
-                    </Collapse>
-                  </Accordion>
-                </Box>
-              );
-            })}
-          </Box>
+                          <Typography
+                            sx={{
+                              color: theme.palette.text.secondary,
+                              fontWeight: 400,
+                              lineHeight: 1.6,
+                              fontSize: "1.09rem",
+                              letterSpacing: 0.4,
+                            }}
+                          >
+                            {faq.answer}
+                          </Typography>
+                        </AccordionDetails>
+                      </Collapse>
+                    </Accordion>
+                  </Box>
+                );
+              })}
+            </Box>
+          </Grid>
         </Grid>
-      </Grid>
+      </Container>
     </Box>
   );
 };

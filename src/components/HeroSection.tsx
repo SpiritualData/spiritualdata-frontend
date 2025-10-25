@@ -14,7 +14,7 @@ import PublicIcon from "@mui/icons-material/Public";
 import PsychologyIcon from "@mui/icons-material/Psychology";
 import StorageIcon from "@mui/icons-material/Storage";
 import FloatingLabel from "./heroSection/FloatingLabel";
-import heroImage from "../assets/images/hero/heroImage.webp";
+import heroImage from "../assets/images/hero/astrounot16.webp";
 import { useNavigate } from "react-router-dom";
 import { floatersData } from "../data/homeData";
 
@@ -33,9 +33,13 @@ const HeroSection: React.FC = () => {
       sx={{
         backgroundColor: theme.palette.primary.main,
         scrollSnapAlign: "start",
-        minHeight: { sm: "75%", lg: "100%" },
-        px: { xs: 2, sm: 6, md: 12 },
-        pt: { xs: 8, md: 12 },
+        // minHeight: { sm: "75%", lg: "100%" },
+        minHeight: { xs: "90vh", sm: "85vh", md: "90vh" },
+
+        // px: { xs: 2, sm: 6, md: 12 },
+        // pt: { xs: 8, md: 12 },
+        px: { xs: 2.5, sm: 5, md: 10, lg: 16, xl: 22 },
+        pt: { xs: 8, sm: 10, md: 12, lg: 14 },
         position: "relative",
         overflow: "hidden",
         fontFamily: theme.typography.fontFamily,
@@ -50,10 +54,18 @@ const HeroSection: React.FC = () => {
                 variant="h2"
                 sx={{
                   fontWeight: 600,
-                  fontSize: { xs: "2rem", sm: "3rem", md: "5rem" },
+                  // fontSize: { xs: "2rem", sm: "3rem", md: "5rem" },
+                  fontSize: {
+                    xs: "1.8rem",
+                    sm: "2.6rem",
+                    md: "3.8rem",
+                    lg: "4.5rem",
+                    xl: "5rem",
+                  },
                   color: theme.palette.primary.hover,
-                  lineHeight: 1,
-                  mt: 16,
+                  lineHeight: 1.2,
+                  // mt: 16,
+                  mt: { xs: 6, sm: 8, md: 10, lg: 12 },
                 }}
               >
                 Spiritual Data = Intellectual Autonomy
@@ -69,9 +81,16 @@ const HeroSection: React.FC = () => {
                 sx={{
                   mt: 2.5,
                   color: theme.palette.primary.hover,
-                  maxWidth: 730,
                   mx: "auto",
-                  fontSize: { xs: "0.95rem", sm: "1.1rem" },
+                  // maxWidth: 730,
+                  // fontSize: { xs: "0.95rem", sm: "1.1rem" },
+                  maxWidth: { xs: "90%", sm: "85%", md: "700px", lg: "780px" },
+                  fontSize: {
+                    xs: "0.9rem",
+                    sm: "1rem",
+                    md: "1.1rem",
+                    lg: "1.2rem",
+                  },
                 }}
               >
                 Discover a new paradigm for scientific consensus, far beyond
@@ -89,20 +108,31 @@ const HeroSection: React.FC = () => {
             <Slide direction="up" in={loaded} timeout={1200}>
               <Stack
                 direction={{ xs: "column", sm: "row" }}
-                spacing={2}
-                mt={5}
+                // spacing={2}
+                // mt={5}
+                spacing={{ xs: 2, sm: 3 }}
+                mt={{ xs: 4, sm: 5, md: 6 }}
                 justifyContent="center"
               >
                 <Button
                   variant="contained"
-                  onClick={() => window.open("https://discord.com/invite/thQNvPGcJF", "_blank")}
+                  onClick={() =>
+                    window.open(
+                      "https://discord.com/invite/thQNvPGcJF",
+                      "_blank"
+                    )
+                  }
                   sx={{
                     backgroundColor: theme.palette.primary.focus,
                     color: theme.palette.primary.hover,
-                    px: 4.5,
-                    py: 1,
+                    // px: 4.5,
+                    // py: 1,
+                    fontSize: { xs: "0.8rem", sm: "0.9rem", md: "1rem" },
+                    px: { xs: 3, sm: 4.5 },
+                    py: { xs: 0.8, sm: 1 },
+
                     fontWeight: 600,
-                    fontSize: "0.875rem",
+                    // fontSize: "0.875rem",
                     borderRadius: "999px",
                     boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
                     "&:hover": {
@@ -115,7 +145,9 @@ const HeroSection: React.FC = () => {
                 </Button>
                 <Button
                   variant="contained"
-                  onClick={() => window.open("https://spiritualdata.beehiiv.com/", "_blank")}
+                  onClick={() =>
+                    window.open("https://spiritualdata.beehiiv.com/", "_blank")
+                  }
                   sx={{
                     backgroundColor: theme.palette.primary.focus,
                     color: theme.palette.primary.hover,
@@ -135,7 +167,7 @@ const HeroSection: React.FC = () => {
                 </Button>
                 <Button
                   variant="outlined"
-                  onClick={() => navigate("/about")}
+                  onClick={() => navigate("/about-us")}
                   sx={{
                     borderColor: theme.palette.primary.hover,
                     color: theme.palette.primary.hover,
@@ -161,8 +193,9 @@ const HeroSection: React.FC = () => {
             <Slide direction="up" in={loaded} timeout={1400}>
               <Stack
                 spacing={2.5}
-                mt={6}
-                display={{ xs: "flex", md: "none" }}
+                my={6}
+                // display={{ xs: "flex", md: "none" }}
+                display={{ xs: "flex", sm: "flex", md: "none" }}
                 alignItems="center"
               >
                 {floatersData.map((item, index) => (
@@ -229,17 +262,19 @@ const HeroSection: React.FC = () => {
             sx={{
               display: { xs: "none", md: "flex" },
               position: "relative",
-              mt: 6,
+              mt: { md: 6, lg: 8 },
               justifyContent: "center",
               alignItems: "center",
+              flexWrap: "wrap",
+              gap: { md: 2, lg: 4 },
             }}
           >
             <FloatingLabel
               text="Crisis We Are Dealing With"
               icon={<InsightsIcon fontSize="inherit" />}
               sx={{
-                top: { lg: "20%", md: "10%" },
-                left: { lg: "6%", md: "-3%" },
+                top: { lg: "0%", md: "10%" },
+                left: { lg: "0%", md: "-9%" },
               }}
               link="/crisis"
             />
@@ -253,8 +288,8 @@ const HeroSection: React.FC = () => {
               text="Change We Are Bringing"
               icon={<PsychologyIcon fontSize="inherit" />}
               sx={{
-                top: { lg: "20%", md: "10%" },
-                right: { lg: "6%", md: "-3%" },
+                top: { lg: "0%", md: "10%" },
+                right: { lg: "0%", md: "-9%" },
               }}
               link="/change"
             />
@@ -269,10 +304,10 @@ const HeroSection: React.FC = () => {
               src={heroImage}
               alt="AI Hero"
               sx={{
-                maxWidth: { xs: "90%", sm: "420px", md: "40%" },
+                maxWidth: { xs: "90%", sm: "420px", md: "100%" },
                 height: "auto",
                 zIndex: 1,
-                mt: 4,
+                my: 5,
               }}
             />
           </Box>

@@ -1,7 +1,7 @@
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import { fadeInBottom } from "../../styles/animations/FadeInBottom";
 import questBanner from "../../assets/images/products/questSideImage.webp";
-import cAiBanner from "../../assets/images/products/conceptAiBanner.webp";
+import cAiBanner from "../../assets/images/products/conceptAiBanners.webp";
 
 type QuestHeroProps = {
   onScrollClick: () => void;
@@ -24,7 +24,7 @@ const ProductHero = ({ onScrollClick, product, content }: QuestHeroProps) => {
       sx={{
         display: "flex",
         flexDirection: {
-          xs: "column",
+          xs: "column-reverse",
           md: product === "concept-ai" ? "row-reverse" : "row",
         },
         width: "100%",
@@ -32,41 +32,60 @@ const ProductHero = ({ onScrollClick, product, content }: QuestHeroProps) => {
         overflow: "hidden",
         backgroundColor: theme.palette.primary.main,
         animation: `${fadeInBottom} 3s ease`,
+        justifyContent: "center",
       }}
     >
-      {/* Left-side Image */}
+      {/* Image Section */}
       <Box
         sx={{
-          width: { xs: "100%", md: "45%" },
-          height: { xs: 300, sm: 400, md: "100%" },
-          flexShrink: 0,
+          flex: { xs: "0 0 100%", md: "0 0 50%" },
+          width: { xs: "100%", md: "50%" },
+          height: { xs: 300, sm: 400, md: "100vh" },
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          overflow: "hidden",
         }}
       >
         <Box
           sx={{
             width: "100%",
             height: "100%",
+            minHeight: { xs: 300, sm: 400 },
             backgroundImage: `url(${
               product === "concept-ai" ? cAiBanner : questBanner
             })`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
+            backgroundColor: "transparent",
+            transition: "all 0.4s ease",
+
+            backgroundSize: "cover",
+            backgroundPosition:
+              product === "concept-ai" ? "top right" : "center left",
+
+            [theme.breakpoints.down("md")]: {
+              backgroundSize: "contain",
+              backgroundPosition: "center",
+              mb: 2,
+            },
           }}
         />
       </Box>
 
-      {/* Right-side Content */}
+      {/* Content Section */}
       <Box
         sx={{
+          flex: { xs: "0 0 100%", md: "0 0 50%" },
+          width: { xs: "100%", md: "50%" },
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           minHeight: { xs: "auto", md: "100vh" },
-          // pr: product === "concept-ai" ? { xs: 2, sm: 4, md: 10 } : {},
-          // pl: product === "quest" ? { xs: 2, sm: 4, md: 12 } : { xs: 5 },
-          px: product === "concept-ai" ? { xs: 2, sm: 4, md: 15 } : { xs: 10 },
-          py: { xs: 6, md: 0 },
+          px:
+            product === "concept-ai"
+              ? { xs: 0, sm: 0, md: 0 }
+              : { xs: 0, sm: 0, md: 0 },
+          py: { xs: 10, sm: 10, md: 0 },
         }}
       >
         <Box
@@ -107,7 +126,11 @@ const ProductHero = ({ onScrollClick, product, content }: QuestHeroProps) => {
               variant="h6"
               color="text.secondary"
               mt={2}
-              sx={{ maxWidth: 600, textAlign: "justify" }}
+              sx={{
+                maxWidth: 600,
+                textAlign: "justify",
+                px: { xs: 3, sm: 0, md: 0 },
+              }}
             >
               {content.description}
             </Typography>
@@ -156,6 +179,7 @@ const ProductHero = ({ onScrollClick, product, content }: QuestHeroProps) => {
                 letterSpacing: 0.5,
                 maxWidth: { sm: "100%", md: 520 },
                 textAlign: "justify",
+                px: { xs: 3, sm: 0, md: 0 },
               }}
             >
               {content.subDesc}

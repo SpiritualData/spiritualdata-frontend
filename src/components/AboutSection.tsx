@@ -129,22 +129,34 @@ const AboutSection: React.FC = () => {
                     <br />
                     <br />
                     In 2014, scientists openly called for moving past the limits
-                    of the materialist paradigm, because of scientific authorities ignoring spiritual and paranormal experiences and punishing dissent. At Spiritual Data, we
-                    don't choose the answers, but we let the evidence
-                    speak. Our AI algorithm is built to be unbiased,
-                    data-driven, and open. So you can explore what's most likely
-                    true according to the algorithm, and argue if you disagree.
+                    of the materialist paradigm, because of scientific
+                    authorities ignoring spiritual and paranormal experiences
+                    and punishing dissent. At Spiritual Data, we don't choose
+                    the answers, but we let the evidence speak. Our AI algorithm
+                    is built to be unbiased, data-driven, and open. So you can
+                    explore what's most likely true according to the algorithm,
+                    and argue if you disagree.
                   </Typography>
                 </Fade>
               )}
 
               {/* Cards */}
-              <Grid container spacing={2} flexDirection="row">
-                {/* Card 1: Explore the data */}
+              <Grid
+                container
+                spacing={3}
+                justifyContent="flex-start"
+                alignItems="stretch"
+                sx={{
+                  flexWrap: { xs: "wrap", sm: "wrap", md: "nowrap" },
+                }}
+              >
+                {/* Card 1 */}
                 <Grid
                   item
                   xs={12}
+                  sm={6}
                   md={4}
+                  sx={{ display: "flex", justifyContent: "center" }}
                   component="div"
                   {...({} as any)}
                 >
@@ -153,6 +165,7 @@ const AboutSection: React.FC = () => {
                       <Slide direction="up" in={loaded} timeout={3000}>
                         <Box
                           sx={{
+                            width: 320, // ✅ consistent width for all cards
                             backgroundColor: theme.palette.darkcard.main,
                             color: theme.palette.darkcard.contrastText,
                             borderRadius: "16px",
@@ -163,6 +176,7 @@ const AboutSection: React.FC = () => {
                             flexDirection: "column",
                             justifyContent: "space-between",
                             height: "100%",
+                            boxSizing: "border-box",
                           }}
                         >
                           <Typography
@@ -211,11 +225,13 @@ const AboutSection: React.FC = () => {
                   )}
                 </Grid>
 
-                {/* Card 2: Apply to your goals */}
+                {/* Card 2 */}
                 <Grid
                   item
                   xs={12}
+                  sm={6}
                   md={4}
+                  sx={{ display: "flex", justifyContent: "center" }}
                   component="div"
                   {...({} as any)}
                 >
@@ -224,6 +240,7 @@ const AboutSection: React.FC = () => {
                       <Slide direction="up" in={loaded} timeout={3200}>
                         <Box
                           sx={{
+                            width: 320, // ✅ consistent width for all cards
                             backgroundColor: theme.palette.darkcard.main,
                             color: theme.palette.darkcard.contrastText,
                             borderRadius: "16px",
@@ -234,6 +251,7 @@ const AboutSection: React.FC = () => {
                             flexDirection: "column",
                             justifyContent: "space-between",
                             height: "100%",
+                            boxSizing: "border-box",
                           }}
                         >
                           <Typography
@@ -282,11 +300,13 @@ const AboutSection: React.FC = () => {
                   )}
                 </Grid>
 
-                {/* Card 3: See our initiatives */}
+                {/* Card 3 */}
                 <Grid
                   item
                   xs={12}
+                  sm={6}
                   md={4}
+                  sx={{ display: "flex", justifyContent: "center" }}
                   component="div"
                   {...({} as any)}
                 >
@@ -295,6 +315,7 @@ const AboutSection: React.FC = () => {
                       <Slide direction="up" in={loaded} timeout={3400}>
                         <Box
                           sx={{
+                            width: 320, // ✅ consistent width for all cards
                             backgroundColor: theme.palette.darkcard.main,
                             color: theme.palette.darkcard.contrastText,
                             borderRadius: "16px",
@@ -305,6 +326,7 @@ const AboutSection: React.FC = () => {
                             flexDirection: "column",
                             justifyContent: "space-between",
                             height: "100%",
+                            boxSizing: "border-box",
                           }}
                         >
                           <Typography
@@ -345,7 +367,7 @@ const AboutSection: React.FC = () => {
                               },
                             }}
                           >
-                            Learn more
+                            Learn More
                           </Button>
                         </Box>
                       </Slide>

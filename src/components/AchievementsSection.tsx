@@ -101,11 +101,11 @@ const AchievementsSection = () => {
       description:
         "We calculate probability scores for scientific hypotheses using statistics to aggregate all evidence.",
       value: "Coming soon",
+      suffix: "",
     },
     {
       title: "Experiences Imported",
-      description:
-        "Thousands of personal experiences have been collected.",
+      description: "Thousands of personal experiences have been collected.",
       value: 5998,
     },
     {
@@ -178,8 +178,10 @@ const AchievementsSection = () => {
         {...({} as any)}
       >
         {data.map((item, index) => {
-          const isNumber = typeof item.value === 'number';
-          const count = isNumber ? useCountUp(item.value, inView) : item.value;
+          const isNumber = typeof item.value === "number";
+          const count = isNumber
+            ? useCountUp(item.value as number, inView)
+            : item.value;
           const col = index % 4;
           const row = Math.floor(index / 4);
           const bgX = `-${col * 250}px`;

@@ -51,7 +51,7 @@ const useClerkRoutes = (): ReactElement => {
         <Route path="donate" element={<Donations />} />
         <Route path="research" element={<Research />} />
         <Route path="contact" element={<Contact />} />
-        <Route path="about" element={<About />} />
+        <Route path="about-us" element={<About />} />
         <Route path="origin-story" element={<OriginStory />} />
         <Route path="crisis" element={<Crisis />} />
         <Route path="change" element={<Change />} />

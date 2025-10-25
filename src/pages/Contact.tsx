@@ -7,7 +7,7 @@ const Contact = () => {
     <>
       <ContactRequest />
       <FaqSection />
-      <ContactHero />
+      {/* <ContactHero /> */}
     </>
   );
 };
