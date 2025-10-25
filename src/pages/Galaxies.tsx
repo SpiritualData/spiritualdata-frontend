@@ -36,7 +36,6 @@ const GalaxiesPage: React.FC = () => {
         
       </aside>
 
-      {/* decorative red bubbles moved to page edges (not centered) */}
       <div style={{ position: "absolute", left: -120, top: -80, width: 360, height: 360, pointerEvents: "none", zIndex: 5 }}>
         <div style={{ width: "100%", height: "100%", borderRadius: "50%", background: "radial-gradient(circle at 30% 30%, rgba(255,80,80,0.14), rgba(255,40,40,0.06) 40%, transparent)", filter: "blur(28px)", opacity: 0.9 }} />
       </div>
