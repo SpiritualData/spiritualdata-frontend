@@ -15,7 +15,7 @@ interface PlanetProps {
   onRequestInfo?: (payload: { index: number; name?: string }) => void;
 }
 
-const Planet: React.FC<PlanetProps> = ({ index, distance, size = 0.26, color = "#ffd54f", name, active = true, paused = false, onRequestInfo }) => {
+const Planet: React.FC<PlanetProps> = ({ index, distance, size = 0.32, color = "#ffd54f", name, active = true, paused = false, onRequestInfo }) => {
   const ref = useRef<THREE.Mesh | null>(null);
   const [hovered, setHovered] = useState(false);
   const localScale = useRef(1);

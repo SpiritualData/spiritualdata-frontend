@@ -13,7 +13,7 @@ import Pulse from "./Pulse";
 import PlanetInfoCard from "./PlanetInfoCard";
 
   // helper: convert hex color (#rrggbb) -> rgba string with alpha
-  const hexToRgba = (hex: string, alpha = 0.36) => {
+  const hexToRgba = (hex: string, alpha = 0.28) => {
     try {
       const h = hex.replace("#", "");
       const r = parseInt(h.substring(0, 2), 16);
@@ -219,7 +219,7 @@ const GalaxyScene: React.FC = () => {
                   const key = `${selectedGalaxy.id}-${i}`;
                   const isPaused = Boolean(pausedPlanets[key]);
                   return (
-                    <Planet key={p} index={i} distance={1.1 + i * 0.45} size={0.26} color={selectedGalaxy.color} name={p} active={planetsActive} paused={isPaused} onRequestInfo={handlePlanetRequest} />
+                    <Planet key={p} index={i} distance={1.1 + i * 0.45} size={0.32} color={selectedGalaxy.color} name={p} active={planetsActive} paused={isPaused} onRequestInfo={handlePlanetRequest} />
                   );
                 })}
             </group>
@@ -234,7 +234,8 @@ const GalaxyScene: React.FC = () => {
         <>
           {/* dark backdrop (click to close) */}
           <div onClick={closePlanetInfo} style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.48)", zIndex: 1999 }} />
-          <PlanetInfoCard title={planetInfo.title} onClose={closePlanetInfo} bgColor={hexToRgba(glowColor, 0.42)} />
+          {/* make the card more translucent so it doesn't fully obscure the visualization */}
+          <PlanetInfoCard title={planetInfo.title} onClose={closePlanetInfo} bgColor={hexToRgba(glowColor, 0.28)} />
         </>
       )}
 

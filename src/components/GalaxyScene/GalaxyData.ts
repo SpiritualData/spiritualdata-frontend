@@ -16,7 +16,8 @@ export const GALAXIES: GalaxyEntry[] = [
   {
     id: "personal",
     name: "Personal Growth & Inner Conflicts",
-    position: [-4, 0, -6],
+    // moved slightly further left to increase spacing between galaxies
+    position: [-6, 0, -6],
     color: "#ff8a65",
     scale: 1.4,
     theme: { bg: "#1e0b06", glow: "#ffab91", mood: "introspective" },
@@ -32,7 +33,8 @@ export const GALAXIES: GalaxyEntry[] = [
   {
     id: "relationships",
     name: "Relationships & Connection",
-    position: [0, 1.5, -8],
+    // center galaxy pushed a little deeper so it sits nicely between the two sides
+    position: [0, 1.5, -8.5],
     color: "#90caf9",
     scale: 1.6,
     theme: { bg: "#071428", glow: "#90caf9", mood: "connected" },
@@ -47,7 +49,8 @@ export const GALAXIES: GalaxyEntry[] = [
   {
     id: "transitions",
     name: "Life Events & Transitions",
-    position: [5, -1, -7],
+    // moved further right
+    position: [6, -1, -7],
     color: "#b39ddb",
     scale: 1.5,
     theme: { bg: "#140418", glow: "#b39ddb", mood: "transformative" },
