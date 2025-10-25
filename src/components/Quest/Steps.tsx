@@ -38,7 +38,7 @@ const Steps = ({
       sx={{
         py: { xs: 6, sm: 10, md: 16 },
         px: { xs: 2, sm: 4 },
-        background: `linear-gradient(to bottom, ${theme.palette.primary.main} 0%, white 100%)`,
+        background: `linear-gradient(to bottom, ${theme.palette.primary.main} 0%, ${theme.palette.cosmic.primary} 100%)`,
         position: "relative",
         overflow: "hidden",
       }}
@@ -118,7 +118,7 @@ const Steps = ({
                     mx: "auto",
                     mb: 2,
                     borderRadius: "50%",
-                    backgroundColor: "#f8f8f8",
+                    backgroundColor: theme.palette.cosmic.secondary,
                     position: "relative",
                     display: "flex",
                     alignItems: "center",

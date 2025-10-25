@@ -33,7 +33,7 @@ const RecurringTiers = ({ data }: recurringTiersProps) => {
               flexDirection: "column",
               height: "100%",
               width: "300px",
-              backgroundColor: isDark ? "#1e1e1e" : "#f7f8f3",
+              backgroundColor: isDark ? "#1e1e1e" : theme.palette.cosmic.secondary,
               transition: "all 0.3s ease",
               "&:hover .initiative-image": {
                 transform: "scale(1.5) rotateZ(5deg)",

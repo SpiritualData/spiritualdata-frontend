@@ -27,7 +27,7 @@ const InitiativeCard = ({ data }: InitiativeProps) => {
         flexDirection: "column",
         height: "100%",
         maxWidth: "390px",
-        backgroundColor: isDark ? "#1e1e1e" : "#f7f8f3",
+        backgroundColor: isDark ? "#1e1e1e" : theme.palette.cosmic.secondary,
         transition: "all 0.3s ease",
         "&:hover .initiative-image": {
           transform: "scale(1.06) rotateZ(1.2deg)",

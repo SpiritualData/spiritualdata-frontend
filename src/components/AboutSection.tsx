@@ -28,7 +28,7 @@ const AboutSection: React.FC = () => {
           color: theme.palette.text.primary,
           py: { xs: 8, md: 10 },
           px: { xs: 3, md: 12, lg: 24 },
-          backgroundColor: "white",
+          backgroundColor: theme.palette.cosmic.secondary,
         }}
       >
         {/* Top Row: ABOUT US label */}

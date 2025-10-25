@@ -57,7 +57,7 @@ const HeroInitiativeSection: React.FC = () => {
       sx={{
         px: { xs: 2, md: 10 },
         py: { xs: 6, md: 10 },
-        backgroundColor: "white",
+        backgroundColor: theme.palette.cosmic.primary,
       }}
     >
       {/* Top Heading */}

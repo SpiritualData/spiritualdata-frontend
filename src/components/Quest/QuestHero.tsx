@@ -18,7 +18,7 @@ const QuestHero = ({ onScrollClick }: QuestHeroProps) => {
         width: "100%",
         height: { xs: "auto", md: "100vh" },
         overflow: "hidden",
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.cosmic.primary,
         animation: `${fadeInBottom} 3s ease`,
       }}
     >

@@ -181,7 +181,7 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
     <Box
       sx={{
         width: "100%",
-        bgcolor: theme.palette.primary.main,
+        bgcolor: theme.palette.cosmic.primary,
         pt: 15,
         pb: 25,
       }}

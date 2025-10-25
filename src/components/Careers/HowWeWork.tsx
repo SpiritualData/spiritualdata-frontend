@@ -23,7 +23,7 @@ const HowWeWork = () => {
       component="section"
       ref={ref}
       sx={{
-        bgcolor: "background.default",
+        bgcolor: "cosmic.primary",
         py: { xs: 6, md: 10 },
       }}
     >

@@ -22,7 +22,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import MenuIcon from "@mui/icons-material/Menu";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import navbarLogo from "../../assets/images/navbar/navbarLogo.webp";
+import navbarLogo from "../../assets/images/navbar/SD-Logo.png";
 import productIcon from "../../assets/images/navbar/icons-product.gif";
 import initiativesIcon from "../../assets/images/navbar/icons-initiatives.gif";
 import aboutIcon from "../../assets/images/navbar/icons-about.gif";
@@ -152,8 +152,8 @@ const Navbar = () => {
     px: 1.5,
     py: 1,
     transition: "all 0.3s ease",
-    color: theme.palette.primary.hero ?? "#000",
-    "&:hover": { color: theme.palette.primary.focus ?? "#333" },
+    color: "#F2F3EB",
+    "&:hover": { color: theme.palette.primary.focus },
   };
 
   return (
@@ -162,12 +162,8 @@ const Navbar = () => {
         position="fixed"
         elevation={0}
         sx={{
-          backgroundColor: scrolled
-            ? theme.palette.primary.main
-            : "transparent",
-          boxShadow: scrolled
-            ? `0px 0.05px 7px ${theme.palette.primary.hero}`
-            : "none",
+          backgroundColor: theme.palette.primary.hover,
+          boxShadow: `0px 2px 12px rgba(0,0,0,0.2)`,
           transition: "all 0.3s ease",
           px: { xs: 2, md: 20 },
           py: 1.5,
@@ -184,7 +180,7 @@ const Navbar = () => {
               <IconButton
                 onClick={() => setDrawerOpen(true)}
                 edge="start"
-                sx={{ color: theme.palette.primary.hero }}
+                sx={{ color: "#F2F3EB" }}
               >
                 <MenuIcon />
               </IconButton>
@@ -206,8 +202,8 @@ const Navbar = () => {
               <Button
                 onClick={() => handleNav(userExists ? "/chat" : "/sign-in")}
                 sx={{
-                  backgroundColor: theme.palette.primary.hero,
-                  color: theme.palette.primary.focus,
+                  backgroundColor: theme.palette.primary.focus,
+                  color: theme.palette.primary.hover,
                   borderRadius: 8,
                   height: 42,
                   px: 3,
@@ -218,8 +214,8 @@ const Navbar = () => {
                   letterSpacing: "0.5px",
                   transition: "all 0.3s ease",
                   "&:hover": {
-                    backgroundColor: theme.palette.primary.focus,
-                    color: theme.palette.primary.hero,
+                    backgroundColor: "#F2F3EB",
+                    color: theme.palette.primary.hover,
                   },
                 }}
               >
@@ -278,7 +274,7 @@ const Navbar = () => {
                           sx={{
                             mt: 1,
                             borderRadius: 1.5,
-                            backgroundColor: theme.palette.primary.main,
+                            backgroundColor: "#F2F3EB",
                             py: 1,
                             minWidth: 220,
                           }}
@@ -294,7 +290,7 @@ const Navbar = () => {
                                 fontWeight: 500,
                                 fontFamily: "Poppins, sans-serif",
                                 cursor: "pointer",
-                                color: theme.palette.primary.hero,
+                                color: theme.palette.text.primary,
                                 letterSpacing: "0.5px",
                                 transition: "all 0.3s ease",
                                 "&:hover": {
@@ -323,8 +319,8 @@ const Navbar = () => {
                 <Button
                   onClick={() => handleNav(userExists ? "/chat" : "/sign-in")}
                   sx={{
-                    backgroundColor: theme.palette.primary.hero,
-                    color: theme.palette.primary.focus,
+                    backgroundColor: theme.palette.primary.focus,
+                    color: theme.palette.primary.hover,
                     borderRadius: 8,
                     height: 42,
                     px: 4,
@@ -336,8 +332,8 @@ const Navbar = () => {
                     ml: 2,
                     transition: "all 0.3s ease",
                     "&:hover": {
-                      backgroundColor: theme.palette.primary.focus,
-                      color: theme.palette.primary.hero,
+                      backgroundColor: "#F2F3EB",
+                      color: theme.palette.primary.hover,
                     },
                   }}
                 >

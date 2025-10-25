@@ -14,6 +14,11 @@ declare module "@mui/material/styles" {
     cardshadow: {
       main: string;
     };
+    cosmic: {
+      primary: string;
+      secondary: string;
+      elevated: string;
+    };
   }
   interface PaletteOptions {
     chatbot?: {
@@ -26,6 +31,11 @@ declare module "@mui/material/styles" {
     };
     cardshadow?: {
       main: string;
+    };
+    cosmic?: {
+      primary: string;
+      secondary: string;
+      elevated: string;
     };
   }
 
@@ -57,14 +67,14 @@ const theme = createTheme({
   },
   palette: {
     primary: {
-      main: "#F2F3EB",
-      focus: "#D3EB63",
-      hover: "#1F2540",
+      main: "#F4F6FA",
+      focus: "#FFBF00",
+      hover: "#000d2c",
       hero: "#2D3239",
     },
     text: {
       primary: "#1F2540",
-      secondary: "#4A4F58",
+      secondary: "#2D3443",
     },
     chatbot: {
       sidebar: "#171717",
@@ -76,6 +86,11 @@ const theme = createTheme({
     },
     cardshadow: {
       main: "rgba(0,0,0,0.2)",
+    },
+    cosmic: {
+      primary: "#F4F6FA",
+      secondary: "#D6DBE8",
+      elevated: "#FFFFFF",
     },
   },
 });

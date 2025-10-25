@@ -46,7 +46,7 @@ const WhyWeStarted = () => {
   return (
     <Box
       sx={{
-        background: `linear-gradient(180deg, ${theme.palette.primary.main} 0%, transparent 100%)`,
+        background: `linear-gradient(180deg, ${theme.palette.cosmic.primary} 0%, transparent 100%)`,
         px: { xs: 6, sm: 15, md: 30 },
         py: { xs: 8, md: 12 },
         display: "flex",

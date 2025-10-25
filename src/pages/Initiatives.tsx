@@ -14,7 +14,7 @@ const Initiatives: React.FC = () => {
         <Box
           sx={{
             color: "primary.contrastText",
-            backgroundColor: "primary.main",
+            backgroundColor: "cosmic.primary",
             width: "100%",
             px: 0,
             pt: 3,
