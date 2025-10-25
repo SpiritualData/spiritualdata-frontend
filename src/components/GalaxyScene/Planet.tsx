@@ -3,7 +3,6 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import Tooltip from "./Tooltip";
 
-
 interface PlanetProps {
   index: number;
   distance: number;
@@ -13,19 +12,37 @@ interface PlanetProps {
   active?: boolean;
   paused?: boolean;
   onRequestInfo?: (payload: { index: number; name?: string }) => void;
+  // vertical offset to stagger orbits and avoid visual overlap
+  heightOffset?: number;
+  // phase offset so each planet starts at a different angular phase (reduces overlaps)
+  phaseOffset?: number;
 }
 
-const Planet: React.FC<PlanetProps> = ({ index, distance, size = 0.32, color = "#ffd54f", name, active = true, paused = false, onRequestInfo }) => {
+const Planet: React.FC<PlanetProps> = ({
+  index,
+  distance,
+  size = 0.32,
+  color = "#ffd54f",
+  name,
+  active = true,
+  paused = false,
+  onRequestInfo,
+  heightOffset = 0,
+  phaseOffset = 0,
+}) => {
   const ref = useRef<THREE.Mesh | null>(null);
   const [hovered, setHovered] = useState(false);
   const localScale = useRef(1);
   const emerge = useRef(0); // 0..1 progress for emergence
 
-
   useFrame(({ clock }, delta) => {
     const t = clock.getElapsedTime();
-    const speed = 0.2 + (index % 3) * 0.05;
-    const angle = t * speed + index;
+  // Use a constant angular speed so relative phase offsets stay consistent and
+  // planets remain evenly spaced over time (removes index-based speed variance).
+  const speed = 0.26;
+  // include the per-planet phaseOffset so planets are at different positions relative to one another
+  // we use the phaseOffset provided by the parent to ensure even distribution; remove the extra `index` term
+  const angle = t * speed + phaseOffset;
 
     // emergence progress when becoming active
     if (active && !paused) {
@@ -43,9 +60,13 @@ const Planet: React.FC<PlanetProps> = ({ index, distance, size = 0.32, color = "
     const x = Math.cos(angle) * currentDistance;
     const z = Math.sin(angle) * currentDistance;
     if (ref.current) {
-      ref.current.position.set(x, Math.sin(angle * 0.3) * 0.1 * Math.max(emerge.current, 0.3), z);
+      // base vertical offset (per-planet) to prevent overlaps, plus gentle bobbing
+      const baseY = heightOffset;
+      const bob = Math.sin(angle * 0.3) * 0.08 * Math.max(emerge.current, 0.3);
+      ref.current.position.set(x, baseY + bob, z);
       if (!paused) {
-        ref.current.rotation.y += 0.02 + 0.01 * emerge.current;
+        // increase spin a bit so planets feel more dynamic
+        ref.current.rotation.y += 0.03 + 0.015 * emerge.current;
       }
       // smooth scale interpolation for hover
       const targetScale = hovered ? 1.15 : 1;
@@ -85,3 +106,4 @@ const Planet: React.FC<PlanetProps> = ({ index, distance, size = 0.32, color = "
 };
 
 export default Planet;
+

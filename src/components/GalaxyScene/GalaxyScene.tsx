@@ -12,7 +12,6 @@ import TwinklingStars from "./TwinklingStars";
 import Pulse from "./Pulse";
 import PlanetInfoCard from "./PlanetInfoCard";
 
-  // helper: convert hex color (#rrggbb) -> rgba string with alpha
   const hexToRgba = (hex: string, alpha = 0.28) => {
     try {
       const h = hex.replace("#", "");
@@ -163,7 +162,8 @@ const GalaxyScene: React.FC = () => {
           const isOther = selected !== null && !isSelected;
           const baseScale = g.scale || 1;
           // make selected galaxy noticeably larger; non-selected slightly smaller but still larger than planets
-          const finalScale = selected ? (isSelected ? baseScale * 3.0 : baseScale * 0.92) : baseScale;
+          // increase selected scale to make active galaxy feel more prominent
+          const finalScale = selected ? (isSelected ? baseScale * 3.6 : baseScale * 0.92) : baseScale;
 
           // compute offset for non-selected galaxies to push them toward the edges
           let offset: [number, number, number] = [0, 0, 0];
@@ -173,7 +173,8 @@ const GalaxyScene: React.FC = () => {
             const dz = g.position[2] - selectedGalaxy.position[2];
             const len = Math.hypot(dx, dy, dz) || 1;
             // push outward more strongly so non-selected galaxies remain visible and clickable
-            const push = 4.2;
+            // increased push when one is selected so neighbors move further away without creating huge empty space
+            const push = 5.0;
             offset = [(dx / len) * push, (dy / len) * (push * 0.35), (dz / len) * (push * 0.9)];
           }
 
@@ -216,17 +217,45 @@ const GalaxyScene: React.FC = () => {
           return (
             <group position={finalPos as any}>
               {selectedGalaxy.planets.map((p, i) => {
-                  const key = `${selectedGalaxy.id}-${i}`;
-                  const isPaused = Boolean(pausedPlanets[key]);
-                  return (
-                    <Planet key={p} index={i} distance={1.1 + i * 0.45} size={0.32} color={selectedGalaxy.color} name={p} active={planetsActive} paused={isPaused} onRequestInfo={handlePlanetRequest} />
-                  );
-                })}
+                    const key = `${selectedGalaxy.id}-${i}`;
+                    const isPaused = Boolean(pausedPlanets[key]);
+
+                    // default orbit radii - bumped so inner planets don't sit inside the galaxy core
+                    const baseDistance = 1.6;
+                    const distanceStep = 0.55;
+
+                    // compute base distance
+                    let distance = baseDistance + i * distanceStep;
+
+                    // If this is one of the problematic planets, push it outward a bit so it doesn't embed in the core
+                    // Planet names in data: "Self-Awareness & Mindfulness" and "Ego, Identity, and Detachment"
+                    if (selectedGalaxy.id === "personal") {
+                      if (p === "Self-Awareness & Mindfulness") distance += 0.6;
+                      if (p === "Ego, Identity, and Detachment") distance += 0.5;
+                    }
+
+                    // Specific nudge for the relationships galaxy so Love & Compassion sits outside the core
+                    if (selectedGalaxy.id === "relationships") {
+                      if (p === "Love & Compassion") distance += 0.6;
+                      if (p === "Boundaries & Energy Exchange") distance += 0.5;
+                    }
+
+                    // per-planet vertical offset and phase so each planet follows its own path and avoids overlaps
+                    const mid = (selectedGalaxy.planets.length - 1) / 2;
+                    const heightOffset = (i - mid) * 0.12; // small stagger up/down
+                    // Distribute planets evenly around the orbit circle
+                    const phaseOffset = (i / selectedGalaxy.planets.length) * Math.PI * 2;
+
+                    return (
+                      // slightly larger planets for the active galaxy
+                      <Planet key={p} index={i} distance={distance} size={0.36} color={selectedGalaxy.color} name={p} active={planetsActive} paused={isPaused} onRequestInfo={handlePlanetRequest} heightOffset={heightOffset} phaseOffset={phaseOffset} />
+                    );
+                  })}
             </group>
           );
         })()}
 
-  <CameraController target={selected ? sceneCenter : null} centerOnTarget={Boolean(selected)} zoom={selected ? 1.15 : 1} scale={selectedGalaxy?.scale ?? 1} sceneCenter={sceneCenter} awaken={true} />
+  <CameraController target={selected ? sceneCenter : null} centerOnTarget={Boolean(selected)} zoom={selected ? 1.35 : 1} scale={selectedGalaxy?.scale ?? 1} sceneCenter={sceneCenter} awaken={true} />
         <OrbitControls enablePan={false} enableZoom={false} enableRotate={false} />
       </Canvas>
       {/* Planet info modal (2D overlay) - render outside the Canvas to avoid R3F DOM errors */}
