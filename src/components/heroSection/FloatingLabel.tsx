@@ -22,7 +22,7 @@ const FloatingLabel = ({
     <Box
       sx={{
         position: "absolute",
-        backgroundColor: "#3D4050",
+        backgroundColor: theme.palette.primary.hero,
         color: "#fff",
         px: 3,
         py: 1.2,
