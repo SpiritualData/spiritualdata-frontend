@@ -90,7 +90,7 @@ export default function ScrollStackCards({ data }: ScrollStackCardsProps) {
                   mb: { xs: 3, md: 5 },
                   fontSize: { xs: "1.3rem", sm: "1.5rem", md: "2rem" },
                   display: "inline-block",
-                  borderBottom: `4px solid #FFEAA7`,
+                  borderBottom: `4px solid ${theme.palette.primary.focus}`,
                   paddingBottom: "8px",
                 }}
               >
@@ -119,7 +119,7 @@ export default function ScrollStackCards({ data }: ScrollStackCardsProps) {
                   }
                 }}
                 sx={{
-                  backgroundColor: "#FFEAA7",
+                  backgroundColor: theme.palette.primary.focus,
                   color: theme.palette.primary.hero,
                   borderRadius: 8,
                   height: 42,

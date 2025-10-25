@@ -68,7 +68,7 @@ const UseCases: React.FC<UseCasesProps> = ({ data }) => {
             fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" },
             fontWeight: 600,
             mb: 4,
-            color: theme.palette.primary.focus,
+            color: theme.palette.primary.hover,
             textShadow: "1px 1px 5px rgba(0,0,0,0.5)",
           }}
         >
