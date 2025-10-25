@@ -81,7 +81,7 @@ const theme = createTheme({
       chatBox: "#212121",
     },
     darkcard: {
-      main: "#2D3239",
+      main: "#000d2c", // Dark blue to match navbar/footer and cosmic theme
       contrastText: "#F2F3EB",
     },
     cardshadow: {
