@@ -70,7 +70,7 @@ const theme = createTheme({
       main: "#F4F6FA",
       focus: "#FFBF00",
       hover: "#000d2c",
-      hero: "#2D3239",
+      hero: "#000d2c", // Dark blue to match cosmic theme
     },
     text: {
       primary: "#1F2540",
