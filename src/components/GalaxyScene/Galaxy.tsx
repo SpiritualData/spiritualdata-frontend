@@ -10,109 +10,109 @@ interface GalaxyProps {
   color?: string;
   onClick?: (id: string, pos: [number, number, number]) => void;
   show?: boolean;
+  isSelected?: boolean;
+  isOther?: boolean;
+  targetScale?: number;
+  offset?: [number, number, number];
 }
 
-const Galaxy: React.FC<GalaxyProps> = ({ id, name, position, color = "#ffffff", onClick, show = true }) => {
+const Galaxy: React.FC<GalaxyProps> = ({
+  id,
+  name,
+  position,
+  color = "#ffffff",
+  onClick,
+  show = true,
+  isSelected = false,
+  isOther = false,
+  targetScale = 1,
+  offset = [0, 0, 0],
+}) => {
   const groupRef = useRef<THREE.Group | null>(null);
   const pointsRef = useRef<THREE.Points | null>(null);
-  const coreRef = useRef<THREE.Mesh | null>(null);
   const [hovered, setHovered] = useState(false);
-  const scale = useRef(0.7);
-  const opacity = useRef(0);
 
-  // Particle field for halo (larger for visual prominence)
-  const particles = useMemo(() => {
-    const count = 420;
-    const arr = new Float32Array(count * 3);
+  // Base target scale depending on selection state
+  const desiredScale = isSelected ? targetScale : isOther ? targetScale * 0.6 : targetScale;
+
+  // Precompute particle positions for the halo
+  const points = useMemo(() => {
+    const count = 300;
+    const positions = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
-      const r = 1.8 + Math.random() * 1.4; // larger halo
-      const theta = Math.random() * Math.PI * 2;
-      const phi = (Math.random() - 0.5) * Math.PI;
-      arr[i * 3 + 0] = Math.cos(theta) * Math.cos(phi) * r;
-      arr[i * 3 + 1] = Math.sin(phi) * r * 0.6;
-      arr[i * 3 + 2] = Math.sin(theta) * Math.cos(phi) * r;
+      // spread in a flattened disc with some depth
+      const r = Math.random() * 1.6;
+      const a = Math.random() * Math.PI * 2;
+      const x = Math.cos(a) * r;
+      const y = (Math.random() - 0.5) * 0.2;
+      const z = Math.sin(a) * r;
+      positions[i * 3] = x;
+      positions[i * 3 + 1] = y;
+      positions[i * 3 + 2] = z;
     }
-    return arr;
+    return positions;
   }, []);
 
+  // Smoothly animate position, rotation and scale
+  const targetPos = useMemo(() => new THREE.Vector3(position[0] + offset[0], position[1] + offset[1], position[2] + offset[2]), [position, offset]);
+  const tmpVec = useRef(new THREE.Vector3());
   useFrame((state, delta) => {
-    // Entry scale/opacity lerp
-    const targetScale = show ? 1 : 0.7;
-    scale.current += (targetScale - scale.current) * Math.min(delta * 6, 1);
-    if (groupRef.current) groupRef.current.scale.setScalar(scale.current);
+    const g = groupRef.current;
+    if (!g) return;
 
-    const targetOpacity = show ? 1 : 0;
-    opacity.current += (targetOpacity - opacity.current) * Math.min(delta * 6, 1);
+    // Lerp position toward target (keeps neighbors slightly visible by not centering fully)
+    tmpVec.current.lerp(targetPos, 0.08);
+    g.position.lerp(tmpVec.current, 0.12);
 
-    // Slight rotation of halo and hover effects
-    if (pointsRef.current) {
-      pointsRef.current.rotation.y += 0.02 * delta;
-      const ptsMat = pointsRef.current.material as THREE.PointsMaterial;
-      if (ptsMat) {
-        const targetSize = hovered ? 0.1 : 0.06;
-        ptsMat.size += (targetSize - ptsMat.size) * Math.min(delta * 8, 1);
-        ptsMat.opacity = opacity.current * 0.85;
-        ptsMat.needsUpdate = true;
-      }
-    }
+    // Gentle rotation
+    g.rotation.y += 0.01 * (isSelected ? 1.5 : 1);
 
-    if (coreRef.current) {
-      coreRef.current.rotation.y += 0.1 * delta;
-      const mat = coreRef.current.material as THREE.MeshStandardMaterial;
-      if (mat) {
-        const targetEmissive = hovered ? 1.6 : 0.9;
-        // @ts-ignore
-        mat.emissiveIntensity = (mat.emissiveIntensity || 0) + (targetEmissive - (mat.emissiveIntensity || 0)) * Math.min(delta * 6, 1);
-        mat.opacity = opacity.current;
-        mat.transparent = true;
-        mat.needsUpdate = true;
-      }
-      // core scale lerp for hover feedback
-      if (coreRef.current) {
-        const targetCore = hovered ? 1.12 : 1;
-        const s = (coreRef.current.scale.x || 1) + (targetCore - (coreRef.current.scale.x || 1)) * Math.min(delta * 10, 1);
-        coreRef.current.scale.setScalar(s);
-      }
-    }
+    // Scale lerp
+    const s = THREE.MathUtils.lerp(g.scale.x, desiredScale, 0.06);
+    g.scale.setScalar(s);
   });
 
-  return (
-    <group ref={groupRef} position={position as any} visible={show}>
-      {/* Halo particles */}
-      <points ref={pointsRef} rotation={[0, Math.random() * Math.PI, 0]}>
-        <bufferGeometry>
-          <bufferAttribute attach="attributes-position" args={[particles, 3]} />
-        </bufferGeometry>
+  const handlePointerOver = (e: any) => {
+    e.stopPropagation();
+    setHovered(true);
+  };
 
-        <pointsMaterial size={0.06} color={color} transparent depthWrite={false} opacity={0.85} />
+  const handlePointerOut = (e: any) => {
+    e.stopPropagation();
+    setHovered(false);
+  };
+
+  const handleClick = (e: any) => {
+    e.stopPropagation();
+    if (onClick) onClick(id, position);
+  };
+
+  if (!show) return null;
+
+  return (
+    <group ref={groupRef} position={position as any}>
+      {/* Points halo (no pointer handlers so halo doesn't block other galaxies) */}
+      <points ref={pointsRef}>
+        <bufferGeometry>
+          <bufferAttribute attach="attributes-position" args={[points, 3]} />
+        </bufferGeometry>
+        <pointsMaterial size={0.012} sizeAttenuation color={color} depthWrite={false} transparent opacity={0.9} />
       </points>
 
-      {/* Glowing core */}
-      <mesh ref={coreRef}>
-        <sphereGeometry args={[0.9, 48, 48]} />
-        <meshStandardMaterial emissive={new THREE.Color(color)} emissiveIntensity={0.9} metalness={0.2} roughness={0.3} transparent opacity={0} />
+      {/* Core sphere */}
+      <mesh onPointerOver={handlePointerOver} onPointerOut={handlePointerOut} onClick={handleClick}>
+        <sphereGeometry args={[0.36, 24, 24]} />
+        <meshStandardMaterial emissive={new THREE.Color(color)} emissiveIntensity={0.6} color="#000000" metalness={0.2} roughness={0.6} />
       </mesh>
 
-      {/* Invisible hit area larger than core for easier clicking */}
-      <mesh
-        scale={[2, 2, 2]}
-        onClick={() => onClick && onClick(id, position)}
-        onPointerOver={(e) => {
-          e.stopPropagation();
-          setHovered(true);
-          document.body.style.cursor = "pointer";
-        }}
-        onPointerOut={() => {
-          setHovered(false);
-          document.body.style.cursor = "default";
-        }}
-      >
-        <sphereGeometry args={[0.8, 16, 16]} />
-        <meshBasicMaterial transparent opacity={0} />
+      {/* Optional subtle glow - cheap approach */}
+      <mesh scale={[1.6, 0.9, 1.6]} position={[0, 0, 0]}>
+        <ringGeometry args={[0.35, 0.8, 64]} />
+        <meshBasicMaterial color={color} transparent opacity={0.06} side={THREE.DoubleSide} depthWrite={false} />
       </mesh>
 
       {/* Tooltip above core */}
-      {hovered && <Tooltip position={[0, 0.9, 0]} title={name} visible={hovered} />}
+      {hovered && <Tooltip position={[0, 0.55, 0]} title={name} visible={hovered} />}
     </group>
   );
 };
