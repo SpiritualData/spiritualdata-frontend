@@ -162,7 +162,7 @@ const WhyWeStarted = () => {
                     sx={{
                       backgroundColor:
                         index === cardData.length - 1
-                          ? theme.palette.primary.focus
+                          ? "#FFEAA7"
                           : "white",
                       borderRadius: 3,
                       py: 4,
