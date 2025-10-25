@@ -101,7 +101,7 @@ const GuidingPrinciples: React.FC<GuidingPrinciplesProps> = ({
               sx={{
                 position: "absolute",
                 inset: 0,
-                backgroundColor: theme.palette.primary.focus,
+                backgroundColor: "#FFEAA7",
                 opacity: 0.925,
                 zIndex: 1,
               }}

@@ -77,7 +77,7 @@ const WhyChooseUs = () => {
       <Box
         sx={{
           width: { xs: "100%", md: "50%" },
-          backgroundColor: theme.palette.cosmic.secondary,
+          backgroundColor: "#FFEAA7",
           px: { xs: 3, md: 10, lg: 20 },
           py: { xs: 6, md: 12 },
           zIndex: 1,
