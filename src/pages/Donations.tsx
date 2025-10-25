@@ -53,7 +53,7 @@ const Donate = () => {
   const recurring = useInView();
 
   return (
-    <Box sx={{ bgcolor: "cosmic.primary" }}>
+    <Box sx={{ bgcolor: "cosmic.primary", pb: 10 }}>
       <Box ref={header.ref}>
         {header.inView && (
           <Box>
