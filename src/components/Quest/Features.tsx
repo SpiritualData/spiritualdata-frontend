@@ -69,7 +69,7 @@ const FeaturesSection: React.FC<{
               display: "flex",
               justifyContent: "center",
               boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
-              backgroundColor: theme.palette.primary.main,
+              backgroundColor: theme.palette.cosmic.primary,
               transition: "all 0.5s ease",
               borderRadius: 5,
               ":hover": {

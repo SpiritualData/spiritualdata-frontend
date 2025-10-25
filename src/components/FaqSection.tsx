@@ -126,7 +126,7 @@ const FaqSection = () => {
       sx={{
         px: { xs: 2, md: 24 },
         py: { xs: 6, md: 10 },
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.cosmic.primary,
       }}
     >
       <Grid container sx={{ justifyContent: "space-around" }}>

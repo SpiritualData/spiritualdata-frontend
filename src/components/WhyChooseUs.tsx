@@ -57,7 +57,7 @@ const WhyChooseUs = () => {
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
-            backgroundColor: theme.palette.primary.main,
+            backgroundColor: theme.palette.cosmic.primary,
             zIndex: -1,
           }}
         />
@@ -77,7 +77,7 @@ const WhyChooseUs = () => {
       <Box
         sx={{
           width: { xs: "100%", md: "50%" },
-          backgroundColor: theme.palette.primary.main,
+          backgroundColor: theme.palette.cosmic.secondary,
           px: { xs: 3, md: 10, lg: 20 },
           py: { xs: 6, md: 12 },
           zIndex: 1,

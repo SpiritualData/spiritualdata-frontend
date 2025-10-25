@@ -155,7 +155,7 @@ const GuidingPrinciples: React.FC<GuidingPrinciplesProps> = ({
                                 display: "grid",
                                 placeItems: "center",
                                 boxShadow: `inset 0 0 0 2px ${theme.palette.primary.hover}`,
-                                backgroundColor: theme.palette.primary.main,
+                                backgroundColor: theme.palette.cosmic.primary,
                                 flexShrink: 0,
                               }}
                             >
@@ -222,7 +222,7 @@ const GuidingPrinciples: React.FC<GuidingPrinciplesProps> = ({
               sx={{
                 position: "absolute",
                 inset: 0,
-                backgroundColor: theme.palette.primary.main,
+                backgroundColor: theme.palette.cosmic.primary,
                 opacity: 0.8,
                 zIndex: 1,
               }}

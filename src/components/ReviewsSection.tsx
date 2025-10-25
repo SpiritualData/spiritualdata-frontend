@@ -58,7 +58,7 @@ const ClientReviewsSection: React.FC = () => {
   ];
 
   return (
-    <Box sx={{ py: 13, px: { xs: 2, md: 24 }, bgcolor: "white" }}>
+    <Box sx={{ py: 13, px: { xs: 2, md: 24 }, bgcolor: theme.palette.cosmic.secondary }}>
       {/* Top Section */}
       <Grid
         container

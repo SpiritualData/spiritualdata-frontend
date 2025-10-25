@@ -61,10 +61,7 @@ const containerSx = {
   pb: { xs: 8, sm: 12, md: 15 },
   px: { xs: 2, sm: 3, md: 4 },
   width: "100%",
-  backgroundColor: "#F2F3EB",
-  backgroundImage: BACKGROUND_SVG,
-  backgroundAttachment: "fixed",
-  backgroundSize: "cover",
+  backgroundColor: theme.palette.cosmic.secondary,
 } as const;
 
 const gridSx = {

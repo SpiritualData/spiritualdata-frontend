@@ -31,7 +31,7 @@ const HeroSection: React.FC = () => {
   return (
     <Box
       sx={{
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.cosmic.primary,
         scrollSnapAlign: "start",
         minHeight: { sm: "75%", lg: "100%" },
         px: { xs: 2, sm: 6, md: 12 },

@@ -142,7 +142,7 @@ const Contact = () => {
                 <Box
                   id="contact-form"
                   sx={{
-                    backgroundColor: theme.palette.primary.main,
+                    backgroundColor: theme.palette.cosmic.primary,
                     p: { xs: 4, md: 6 },
                     mb: { xs: 0, md: 10 },
                     borderRadius: 2,

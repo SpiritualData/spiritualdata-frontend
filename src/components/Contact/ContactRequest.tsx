@@ -75,7 +75,7 @@ const ContactRequest = () => {
           <Box
             ref={cardRef}
             sx={{
-              background: "#fafaf5",
+              background: theme.palette.cosmic.elevated,
               borderRadius: 4,
               boxShadow: "0 1px 6px 0 #0001",
               px: { xs: 3, sm: 4, md: 6 },

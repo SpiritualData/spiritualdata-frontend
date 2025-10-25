@@ -75,7 +75,7 @@ const Footer = () => {
     <>
       <Box
         sx={{
-          bgcolor: "primary.hero",
+          bgcolor: "primary.hover",
           color: "text.primary",
           px: { xs: 4, sm: 10, md: 25 },
           py: { xs: 6, sm: 10 },
@@ -110,15 +110,15 @@ const Footer = () => {
               onClick={() => navigate("/contact")}
               sx={{
                 backgroundColor: "primary.focus",
-                color: "primary.hero",
+                color: "primary.hover",
                 textTransform: "none",
                 fontWeight: "bold",
                 borderRadius: "999px",
                 px: 3,
                 letterSpacing: 1,
                 "&:hover": {
-                  backgroundColor: "primary.hover",
-                  color: "primary.main",
+                  backgroundColor: "#F2F3EB",
+                  color: "primary.hover",
                 },
               }}
             >
@@ -367,12 +367,13 @@ const Footer = () => {
                 key={label}
                 onClick={() => navigate(path)}
                 sx={{
-                  color: "text.secondary",
+                  color: "primary.main",
                   textTransform: "none",
                   minWidth: "unset",
                   mr: 2,
                   p: 0,
                   fontSize: { xs: 13, sm: 14 },
+                  "&:hover": { color: "primary.focus" },
                 }}
               >
                 {label}
@@ -381,9 +382,8 @@ const Footer = () => {
           </Box>
           <Typography
             variant="body1"
-            color="text.secondary"
             mt={{ xs: 2, sm: 0 }}
-            sx={{ fontSize: { xs: 13, sm: 14 } }}
+            sx={{ fontSize: { xs: 13, sm: 14 }, color: "primary.main" }}
           >
             © Copyright 2025 Spiritual Data. All Rights Reserved.
           </Typography>
