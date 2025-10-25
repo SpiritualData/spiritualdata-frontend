@@ -132,7 +132,7 @@ const DonationMethod: React.FC<DonationMethodProps> = ({ amount }) => {
               justifyContent: "center",
               gap: { xs: 6, sm: 4 },
               p: { xs: 3, sm: 5 },
-              backgroundColor: theme.palette.cosmic.secondary,
+              backgroundColor: theme.palette.cosmic.primary,
               position: "relative",
               overflow: "hidden",
               color: theme.palette.text.primary,
