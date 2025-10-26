@@ -28,6 +28,7 @@ import PsychicAbilityCertification from "../pages/Initiatives/PsychicAbilityCert
 import Crisis from "../pages/Crisis";
 import Change from "../pages/Change";
 import OriginStory from "../pages/OriginStory";
+import GalaxiesPage from "../pages/Galaxies";// added for GalaxyScene route
 
 interface HotjarConfig {
   id: string;
@@ -42,17 +43,26 @@ const hotjarConfig: HotjarConfig = {
 hotjar.initialize({ id: Number(hotjarConfig.id), sv: hotjarConfig.sv });
 
 const useClerkRoutes = (): ReactElement => {
-  const clerkPubKey: string = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+  const clerkPubKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY as string | undefined;
 
-  return (
-    <ClerkProvider publishableKey={clerkPubKey}>
-      <Routes>
+  const isValidClerkKey = (key?: string) => {
+    if (!key) return false;
+    const trimmed = key.trim();
+    // Common placeholder checks: 'your_clerk_publishable_key' or empty/undefined
+    if (trimmed.length === 0) return false;
+    if (/your[_-]?clerk|your_clerk_publishable_key/i.test(trimmed)) return false;
+    return true;
+  };
+
+  const routes = (
+    <Routes>
         <Route path="/" element={<Home />} />
         <Route path="donate" element={<Donations />} />
         <Route path="research" element={<Research />} />
         <Route path="contact" element={<Contact />} />
         <Route path="about" element={<About />} />
         <Route path="origin-story" element={<OriginStory />} />
+      <Route path="galaxies" element={<GalaxiesPage />} /> {/* added for GalaxyScene route */}
         <Route path="crisis" element={<Crisis />} />
         <Route path="change" element={<Change />} />
         <Route path="careers" element={<Careers />} />
@@ -109,8 +119,24 @@ const useClerkRoutes = (): ReactElement => {
         <Route path="/products/concept-ai" element={<ConceptAi />} />
         {/*  */}
       </Routes>
-    </ClerkProvider>
   );
+
+  if (isValidClerkKey(clerkPubKey)) {
+return (
+  <ClerkProvider publishableKey={clerkPubKey!}>
+    {routes}
+  </ClerkProvider>
+);
+  }
+
+  // If Clerk key is missing or invalid, warn and render routes without ClerkProvider
+  // This prevents the app from crashing during development when environment variables are not set.
+  // NOTE: Authentication-dependent pages will not work until a valid key is provided.
+  // Check your `.env` and set VITE_CLERK_PUBLISHABLE_KEY to your actual publishable key.
+  // See: https://dashboard.clerk.com/last-active?path=api-keys
+  // eslint-disable-next-line no-console
+  console.warn("Clerk publishable key missing or invalid. Rendering without ClerkProvider.");
+  return routes;
 };
 
 export default useClerkRoutes;

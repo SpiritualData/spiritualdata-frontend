@@ -21,7 +21,7 @@ import {
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import MenuIcon from "@mui/icons-material/Menu";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import navbarLogo from "../../assets/images/navbar/navbarLogo.webp";
 import productIcon from "../../assets/images/navbar/icons-product.gif";
 import initiativesIcon from "../../assets/images/navbar/icons-initiatives.gif";
@@ -137,10 +137,14 @@ const Navbar = () => {
 
   const staticLinks = [
     { label: "Research", path: "/research", icon: researchIcon },
+    { label: "Visualisation", path: "/galaxies", icon: researchIcon },
     { label: "Donate", path: "/donate", icon: donateIcon },
     { label: "About", path: "/about", icon: aboutIcon },
     { label: "Contact", path: "/contact", icon: contactIcon },
   ];
+
+  const location = useLocation();
+  const isVisualisationRoute = location.pathname.startsWith("/galaxies");
 
   const navLinkStyles = {
     fontSize: "14px",
@@ -152,8 +156,8 @@ const Navbar = () => {
     px: 1.5,
     py: 1,
     transition: "all 0.3s ease",
-    color: theme.palette.primary.hero ?? "#000",
-    "&:hover": { color: theme.palette.primary.focus ?? "#333" },
+    color: isVisualisationRoute ? "#fff" : theme.palette.primary.hero ?? "#000",
+    "&:hover": { color: isVisualisationRoute ? "rgba(255,255,255,0.9)" : theme.palette.primary.focus ?? "#333" },
   };
 
   return (
@@ -162,12 +166,8 @@ const Navbar = () => {
         position="fixed"
         elevation={0}
         sx={{
-          backgroundColor: scrolled
-            ? theme.palette.primary.main
-            : "transparent",
-          boxShadow: scrolled
-            ? `0px 0.05px 7px ${theme.palette.primary.hero}`
-            : "none",
+          backgroundColor: isVisualisationRoute ? "#000" : scrolled ? theme.palette.primary.main : "transparent",
+          boxShadow: isVisualisationRoute ? `0px 0.05px 7px rgba(0,0,0,0.35)` : scrolled ? `0px 0.05px 7px ${theme.palette.primary.hero}` : "none",
           transition: "all 0.3s ease",
           px: { xs: 2, md: 20 },
           py: 1.5,
@@ -278,7 +278,7 @@ const Navbar = () => {
                           sx={{
                             mt: 1,
                             borderRadius: 1.5,
-                            backgroundColor: theme.palette.primary.main,
+                            backgroundColor: isVisualisationRoute ? "#000" : theme.palette.primary.main,
                             py: 1,
                             minWidth: 220,
                           }}
@@ -294,11 +294,11 @@ const Navbar = () => {
                                 fontWeight: 500,
                                 fontFamily: "Poppins, sans-serif",
                                 cursor: "pointer",
-                                color: theme.palette.primary.hero,
+                                color: isVisualisationRoute ? "#fff" : theme.palette.primary.hero,
                                 letterSpacing: "0.5px",
                                 transition: "all 0.3s ease",
                                 "&:hover": {
-                                  color: theme.palette.primary.focus,
+                                  color: "rgba(255,255,255,0.9)",
                                   backgroundColor: "transparent",
                                 },
                               }}
@@ -455,7 +455,7 @@ const Navbar = () => {
 
             {/* Static Links */}
             {staticLinks.map(({ label, path, icon }) => (
-              <ListItemButton key={label} onClick={() => handleNav(path)}>
+                <ListItemButton key={label} onClick={() => handleNav(path)}>
                 <ListItemIcon sx={{ minWidth: "40px" }}>
                   <Box
                     component="img"
@@ -464,7 +464,7 @@ const Navbar = () => {
                     sx={{ height: 25, objectFit: "contain" }}
                   />
                 </ListItemIcon>
-                <ListItemText primary={label} sx={{ color: "black" }} />
+                <ListItemText primary={label} sx={{ color: isVisualisationRoute ? "#fff" : "black" }} />
               </ListItemButton>
             ))}
           </List>
