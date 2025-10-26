@@ -38,9 +38,8 @@ const Planet: React.FC<PlanetProps> = ({
   useFrame(({ clock }, delta) => {
     const t = clock.getElapsedTime();
   // Use a constant angular speed so relative phase offsets stay consistent and
-  // planets remain evenly spaced over time (removes index-based speed variance).
-  const speed = 0.26;
-  // include the per-planet phaseOffset so planets are at different positions relative to one another
+  //make it 0 to stop the motion of planets
+  const speed = 0.3;
   // we use the phaseOffset provided by the parent to ensure even distribution; remove the extra `index` term
   const angle = t * speed + phaseOffset;
 
@@ -60,7 +59,6 @@ const Planet: React.FC<PlanetProps> = ({
     const x = Math.cos(angle) * currentDistance;
     const z = Math.sin(angle) * currentDistance;
     if (ref.current) {
-      // base vertical offset (per-planet) to prevent overlaps, plus gentle bobbing
       const baseY = heightOffset;
       const bob = Math.sin(angle * 0.3) * 0.08 * Math.max(emerge.current, 0.3);
       ref.current.position.set(x, baseY + bob, z);

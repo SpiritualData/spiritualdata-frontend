@@ -50,7 +50,7 @@ const PlanetInfoCard: React.FC<Props> = ({ title, onClose, bgColor = "rgba(0,0,0
       </div>
 
       <h3 style={{ margin: "6px 0 8px 0" }}>{title}</h3>
-      <p style={{ color: "rgba(255,255,255,0.9)", margin: 0 }}>Info: text..........</p>
+      <p style={{ color: "rgba(255,255,255,0.9)", margin: 0 }}>Something about it..........</p>
     </M>
   );
 };

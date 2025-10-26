@@ -234,10 +234,14 @@ const GalaxyScene: React.FC = () => {
                       if (p === "Ego, Identity, and Detachment") distance += 0.5;
                     }
 
-                    // Specific nudge for the relationships galaxy so Love & Compassion sits outside the core
                     if (selectedGalaxy.id === "relationships") {
                       if (p === "Love & Compassion") distance += 0.6;
                       if (p === "Boundaries & Energy Exchange") distance += 0.5;
+                    }
+
+                    if (selectedGalaxy.id === "transitions") {
+                      if (p === "Birth, Death & Grief") distance += 0.5;
+                      if (p === "Midlife Awakening / Dark Night of the Soul") distance -= 0.5;
                     }
 
                     // per-planet vertical offset and phase so each planet follows its own path and avoids overlaps
