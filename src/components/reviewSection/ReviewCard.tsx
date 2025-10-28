@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Box,
-  Typography,
-  Avatar,
-  useTheme,
-} from "@mui/material";
+import { Box, Typography, Avatar, useTheme } from "@mui/material";
 
 interface ReviewCardProps {
   name: string;
@@ -37,7 +32,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
         bgcolor: dark
           ? theme.palette.darkcard.main
           : highlight
-          ? theme.palette.primary.focus
+          ? "#FFEAA7"
           : "#F9FAF4",
         color: dark
           ? theme.palette.darkcard.contrastText
@@ -69,7 +64,9 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
           <Typography
             variant="body2"
             sx={{
-              color: highlight
+              color: dark
+                ? theme.palette.darkcard.contrastText
+                : highlight
                 ? theme.palette.primary.hero
                 : theme.palette.text.secondary,
               fontSize: "1rem",

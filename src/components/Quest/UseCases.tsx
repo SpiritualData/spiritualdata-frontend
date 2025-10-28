@@ -43,7 +43,7 @@ const UseCases: React.FC<UseCasesProps> = ({ data }) => {
         height: { xs: "auto", md: "800px" },
         width: "100%",
         overflowY: "hidden",
-        background: `linear-gradient(to bottom, ${theme.palette.primary.main} 0%, white 100%)`,
+        background: `linear-gradient(to bottom, ${theme.palette.cosmic.primary} 0%, ${theme.palette.cosmic.primary} 100%)`,
         position: "relative",
         // mb: 8,
         pt: { xs: 6, md: 0 },
@@ -68,7 +68,7 @@ const UseCases: React.FC<UseCasesProps> = ({ data }) => {
             fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" },
             fontWeight: 600,
             mb: 4,
-            color: theme.palette.primary.focus,
+            color: theme.palette.primary.hover,
             textShadow: "1px 1px 5px rgba(0,0,0,0.5)",
           }}
         >

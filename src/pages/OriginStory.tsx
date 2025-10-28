@@ -73,7 +73,7 @@ const OriginStory: React.FC = () => {
               sx={{
                 p: { xs: 3, md: 5 },
                 borderLeft: `4px solid ${theme.palette.primary.focus}`,
-                backgroundColor: "white",
+                backgroundColor: theme.palette.cosmic.elevated,
                 borderRadius: 2,
                 boxShadow: `0 4px 20px ${theme.palette.cardshadow.main}`,
               }}
@@ -175,7 +175,7 @@ const OriginStory: React.FC = () => {
               sx={{
                 p: { xs: 3, md: 5 },
                 borderLeft: `4px solid ${theme.palette.primary.focus}`,
-                backgroundColor: "white",
+                backgroundColor: theme.palette.cosmic.elevated,
                 borderRadius: 2,
                 boxShadow: `0 4px 20px ${theme.palette.cardshadow.main}`,
               }}
@@ -239,7 +239,7 @@ const OriginStory: React.FC = () => {
             <Box
               sx={{
                 p: { xs: 3, md: 5 },
-                backgroundColor: theme.palette.primary.main,
+                backgroundColor: theme.palette.cosmic.primary,
                 borderRadius: 2,
                 boxShadow: `0 4px 20px ${theme.palette.cardshadow.main}`,
               }}
@@ -379,7 +379,7 @@ const OriginStory: React.FC = () => {
                 p: { xs: 3, md: 5 },
                 borderTop: `4px solid ${theme.palette.primary.focus}`,
                 borderBottom: `4px solid ${theme.palette.primary.focus}`,
-                backgroundColor: "white",
+                backgroundColor: theme.palette.cosmic.elevated,
                 textAlign: "center",
               }}
             >

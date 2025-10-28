@@ -19,7 +19,7 @@ const OurMission: React.FC = () => {
       ref={ref}
       component="section"
       sx={{
-        bgcolor: "primary.main",
+        bgcolor: "cosmic.primary",
         py: { xs: 8, sm: 10, md: 12 },
         px: { xs: 3, sm: 6, md: 12 },
         textAlign: "center",

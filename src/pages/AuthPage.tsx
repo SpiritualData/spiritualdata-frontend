@@ -153,7 +153,7 @@ const AuthPage: React.FC = () => {
 
   const overlayBg = useMemo(
     () => ({
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: theme.palette.cosmic.primary,
       backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg %3E%3Cpolygon fill='%23ebeddc' points='800 100 0 200 0 800 1600 800 1600 200'/%3E%3Cpolygon fill='%23e5e9cc' points='800 200 0 400 0 800 1600 800 1600 400'/%3E%3Cpolygon fill='%23e0e6ba' points='800 300 0 600 0 800 1600 800 1600 600'/%3E%3Cpolygon fill='%23dce5a7' points='1600 800 800 400 0 800'/%3E%3Cpolygon fill='%23d8e692' points='1280 800 800 500 320 800'/%3E%3Cpolygon fill='%23d5e87b' points='533.3 800 1066.7 800 800 600'/%3E%3Cpolygon fill='%23D3EB63' points='684.1 800 914.3 800 800 700'/%3E%3C/g%3E%3C/svg%3E")`,
       backgroundAttachment: "fixed",
       backgroundSize: "cover",
@@ -338,7 +338,7 @@ const AuthPage: React.FC = () => {
                             formFieldInput: {
                               width: "90%",
                               maxWidth: "320px",
-                              backgroundColor: theme.palette.primary.main,
+                              backgroundColor: theme.palette.cosmic.primary,
                               padding: "12px 16px",
                               borderRadius: "6px",
                               fontSize: "14px",
@@ -455,7 +455,7 @@ const AuthPage: React.FC = () => {
                             formFieldInput: {
                               width: "90%",
                               maxWidth: "320px",
-                              backgroundColor: theme.palette.primary.main,
+                              backgroundColor: theme.palette.cosmic.primary,
                               padding: "12px 16px",
                               borderRadius: "6px",
                               fontSize: "14px",

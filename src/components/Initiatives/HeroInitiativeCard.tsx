@@ -20,7 +20,7 @@ function HeroInitiativeCard({ data, idx, headSx, bodySx }: InitiativeCardProps) 
       <Box
         sx={{
           border: "1px solid #e6e8e6",
-          backgroundColor: idx % 2 === 0 ? "#f4f6ee" : "#ffffff",
+          backgroundColor: idx % 2 === 0 ? theme.palette.cosmic.secondary : theme.palette.cosmic.elevated,
           p: 6,
           minHeight: 260,
           maxWidth: 340,
@@ -79,7 +79,7 @@ function HeroInitiativeCard({ data, idx, headSx, bodySx }: InitiativeCardProps) 
         <Typography
           variant="body1"
           sx={{
-            color: "#555",
+            color: theme.palette.text.secondary,
             lineHeight: 1.7,
             mt: "auto",
             ...(bodySx || {})

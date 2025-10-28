@@ -8,7 +8,7 @@ import PageDef from "../components/PageDef";
 import { East } from "@mui/icons-material";
 
 export const StyledGridItem = styled(Grid)(({ theme }) => ({
-  backgroundColor: "#FFFFFF",
+  backgroundColor: theme.palette.cosmic.elevated,
   color: "#384146",
   borderLeft: `2px solid ${theme.palette.primary.focus}`,
   boxShadow: `0px 6px 10px #00000029`,
@@ -201,7 +201,7 @@ const Research = () => {
 
       <Box
         sx={{
-          background: "#F3F6F8",
+          background: (theme) => theme.palette.cosmic.secondary,
           width: "100%",
           p: 6,
           textAlign: "center",

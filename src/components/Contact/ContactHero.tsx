@@ -101,7 +101,7 @@ const Contact = () => {
       <div ref={contactTopRef} />
       <Box
         sx={{
-          background: `linear-gradient(180deg, ${theme.palette.darkcard.contrastText} 0%, ${theme.palette.primary.focus} 100%)`,
+          background: `linear-gradient(180deg, ${theme.palette.darkcard.contrastText} 0%, #FFEAA7 100%)`,
           display: "flex",
           justifyContent: "center",
           flexDirection: { md: "row", xs: "column" },
@@ -142,7 +142,7 @@ const Contact = () => {
                 <Box
                   id="contact-form"
                   sx={{
-                    backgroundColor: theme.palette.primary.main,
+                    backgroundColor: theme.palette.cosmic.elevated,
                     p: { xs: 4, md: 6 },
                     mb: { xs: 0, md: 10 },
                     borderRadius: 2,

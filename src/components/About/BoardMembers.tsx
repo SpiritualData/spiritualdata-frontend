@@ -93,7 +93,7 @@ const BoardMembers: React.FC = () => {
         pt: 15,
         pb: 0,
         px: { xs: 0, md: 10, lg: 30 },
-        background: `linear-gradient(180deg, ${theme.palette.primary.main} 0%, transparent 100%)`,
+        background: `linear-gradient(180deg, ${theme.palette.cosmic.primary} 0%, transparent 100%)`,
       }}
     >
       {/* Title */}
