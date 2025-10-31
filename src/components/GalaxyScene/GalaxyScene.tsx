@@ -7,7 +7,6 @@ import Galaxy from "./Galaxy";
 import Planet from "./Planet";
 import Tooltip from "./Tooltip";
 import { GALAXIES } from "./GalaxyData";
-import { useRef } from "react";
 import TwinklingStars from "./TwinklingStars";
 import Pulse from "./Pulse";
 import PlanetInfoCard from "./PlanetInfoCard";
