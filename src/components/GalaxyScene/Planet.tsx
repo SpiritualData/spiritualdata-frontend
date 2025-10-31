@@ -12,7 +12,6 @@ interface PlanetProps {
   active?: boolean;
   paused?: boolean;
   onRequestInfo?: (payload: { index: number; name?: string }) => void;
-  // vertical offset to stagger orbits and avoid visual overlap
   heightOffset?: number;
   // phase offset so each planet starts at a different angular phase (reduces overlaps)
   phaseOffset?: number;
