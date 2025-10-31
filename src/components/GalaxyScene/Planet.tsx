@@ -39,8 +39,7 @@ const Planet: React.FC<PlanetProps> = ({
     const t = clock.getElapsedTime();
   // Use a constant angular speed so relative phase offsets stay consistent and
   //make it 0 to stop the motion of planets
-  const speed = 0.3;
-  // we use the phaseOffset provided by the parent to ensure even distribution; remove the extra `index` term
+  const speed = 0.27;
   const angle = t * speed + phaseOffset;
 
     // emergence progress when becoming active
