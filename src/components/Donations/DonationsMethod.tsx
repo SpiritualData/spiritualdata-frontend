@@ -17,7 +17,7 @@ import paypal from "../../assets/images/donate/paypal.webp";
 
 interface DonationMethodProps {
   amount?: number;
-  title:string
+  title?:string
 }
 
 const DonationMethod: React.FC<DonationMethodProps> = ({ amount ,title = "Donate Now — Make Science Serve the Soul"}) => {

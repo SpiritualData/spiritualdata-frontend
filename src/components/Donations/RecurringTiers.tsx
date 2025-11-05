@@ -140,7 +140,7 @@ const RecurringTiers = ({ data }: recurringTiersProps) => {
                 sx={{ my: 2, borderColor: theme.palette.primary.focus }}
               />
 
-              <DonationMethod amount={numericAmount} title={""} />
+              <DonationMethod amount={numericAmount} />
             </Box>
           </Card>
         );
