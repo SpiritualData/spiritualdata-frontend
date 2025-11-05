@@ -68,7 +68,7 @@ const ChangeCard: React.FC<ChangeCardProps> = ({ item, index }) => {
                 height: 42,
                 px: 4,
                 fontWeight: 700,
-                fontSize: "14px",
+                fontSize: {xs:"9px",md:"14px"},
                 textTransform: "uppercase",
                 fontFamily: "Poppins, sans-serif",
                 letterSpacing: "0.5px",

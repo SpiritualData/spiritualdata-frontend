@@ -33,7 +33,9 @@ const RecurringTiers = ({ data }: recurringTiersProps) => {
               flexDirection: "column",
               height: "100%",
               width: "300px",
-              backgroundColor: isDark ? "#1e1e1e" : theme.palette.cosmic.secondary,
+              backgroundColor: isDark
+                ? "#1e1e1e"
+                : theme.palette.cosmic.secondary,
               transition: "all 0.3s ease",
               "&:hover .initiative-image": {
                 transform: "scale(1.5) rotateZ(5deg)",
@@ -138,7 +140,7 @@ const RecurringTiers = ({ data }: recurringTiersProps) => {
                 sx={{ my: 2, borderColor: theme.palette.primary.focus }}
               />
 
-              <DonationMethod amount={numericAmount} />
+              <DonationMethod amount={numericAmount} title={""} />
             </Box>
           </Card>
         );

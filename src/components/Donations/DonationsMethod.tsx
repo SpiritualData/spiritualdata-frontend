@@ -17,9 +17,10 @@ import paypal from "../../assets/images/donate/paypal.webp";
 
 interface DonationMethodProps {
   amount?: number;
+  title:string
 }
 
-const DonationMethod: React.FC<DonationMethodProps> = ({ amount }) => {
+const DonationMethod: React.FC<DonationMethodProps> = ({ amount ,title = "Donate Now — Make Science Serve the Soul"}) => {
   const [open, setOpen] = useState(false);
   const theme = useTheme();
 
@@ -84,7 +85,7 @@ const DonationMethod: React.FC<DonationMethodProps> = ({ amount }) => {
           },
         }}
       >
-        Donate Now
+     {title}
       </Button>
 
       <Modal open={open} onClose={handleClose}>
