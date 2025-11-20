@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 // PWA register helper (virtual module provided by vite-plugin-pwa)
+// @ts-ignore: virtual module provided by vite-plugin-pwa (vite-plugin-pwa)
+// This import is provided at build time by Vite plugin.
 import { registerSW } from 'virtual:pwa-register';
 import "./index.css";
 import App from "./App";
