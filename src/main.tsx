@@ -1,8 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
+// PWA register helper (virtual module provided by vite-plugin-pwa)
+import { registerSW } from 'virtual:pwa-register';
 import "./index.css";
 import App from "./App";
+
+// Register the service worker with basic update handling
+const updateSW = registerSW({
+  onNeedRefresh() {
+    // dispatch an event or prompt the user to refresh
+    console.log('New content available — please refresh.');
+  },
+  onOfflineReady() {
+    console.log('App is ready to work offline');
+  }
+});
 
 const rootElement = document.getElementById("root");
 
