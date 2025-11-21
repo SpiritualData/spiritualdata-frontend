@@ -58,20 +58,27 @@ const Change: React.FC = () => {
           py: 8,
           color: "primary.contrastText",
           width: "100%",
-          px: { xs: 2, sm: 8, md: 35 },
+          px: { xs: 2, sm: 8, lg: 35 },
           pt: 5,
         }}
       >
         <Box
           mb={6}
           sx={{
-            flexDirection: "row",
             display: "flex",
-            alignItems: "center",
+            flexDirection: { xs: "column", md: "row" }, // ✅ column on small, row on large
+            alignItems: { xs: "flex-start", md: "center" },
             justifyContent: "space-between",
+            gap: { xs: 6, md: 0 }, // ✅ small spacing between text & image
           }}
         >
-          <Box sx={{ width: "70%", height: 700, p: 0 }}>
+          <Box sx={{
+    width: { xs: "100%", md: "70%" },
+    p: 0,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+  }}>
             <Box ref={changeRef}>
               <Slide direction="up" in={changeInView} timeout={700}>
                 <Box mb={6}>
@@ -156,7 +163,7 @@ const Change: React.FC = () => {
             </Box>
           </Box>
 
-          <Box ref={imgRef} width={"25%"}>
+          <Box ref={imgRef} width={{xs:"100%",md:"25%"}} display={{xs:"flex",md:"block"}} justifyContent={{xs:"center",md:"flex-start"}}>
             <Slide direction="up" in={imgInView} timeout={700}>
               <Box
                 component="img"
@@ -164,7 +171,7 @@ const Change: React.FC = () => {
                 alt="AI Hero"
                 sx={{
                   maxWidth: { xs: "90%", sm: "420px", md: "100%" },
-                  height: 700,
+                  height: {xs:550,md:700},
                   zIndex: 1,
                   objectFit: "cover",
                   borderRadius: 5,
@@ -175,13 +182,22 @@ const Change: React.FC = () => {
           </Box>
         </Box>
 
-        <Box mb={6}>
-          <Grid container spacing={4}>
-            {data.map((item, index) => (
-              <ChangeCard item={item} index={index} key={index} />
-            ))}
-          </Grid>
-        </Box>
+       <Box
+  mb={6}
+  sx={{
+    position: "relative",
+    zIndex: 0,
+    mt: { xs: 12, sm: 14, md: 2, lg: 0 }, // ensures spacing under image/text
+    clear: "both",
+  }}
+>
+  <Grid container spacing={4}>
+    {data.map((item, index) => (
+      <ChangeCard item={item} index={index} key={index} />
+    ))}
+  </Grid>
+</Box>
+
 
         <Box ref={btnRef}>
           <Slide direction="up" in={btnInView} timeout={900}>
