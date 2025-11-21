@@ -13,7 +13,6 @@ import PsychologyIcon from "@mui/icons-material/Psychology";
 import SchoolIcon from "@mui/icons-material/School";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import DonationIllustration from "../../assets/Images/Donate//background/donation_space.png"
 
 interface ImpactItem {
   icon: React.ReactNode;
