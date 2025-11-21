@@ -9,7 +9,7 @@ import {
   Stack,
 } from "@mui/material";
 import DonationMethod from "./DonationsMethod";
-import backgroundImage from "../../assets/images/donate/background/bg-shape-career.png"
+import backgroundImage from "../../assets/images/donate/bg-shape-career.png"
 const DonationHero: React.FC = () => {
   const theme = useTheme();
   const [loaded, setLoaded] = useState(false);
