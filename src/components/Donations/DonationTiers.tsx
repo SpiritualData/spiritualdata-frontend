@@ -27,7 +27,7 @@ const DonationTiers: React.FC = () => {
       amount: 25,
       title: "You Light a Mind",
       description:
-        "You help us to reach a curious mind, a student or researcher rediscover purpose through knowledge and compassion.",
+        "You help us to reach a curious mind, a student or researcher rediscovering purpose through awareness and growth.",
       impact: "One spark. One awakening.",
     },
     {
@@ -35,7 +35,7 @@ const DonationTiers: React.FC = () => {
       amount: 100,
       title: "You Uncover Truth",
       description:
-        "You fund breakthroughs that turn unseen questions about faith, emotion, and consciousness into real discoveries.",
+        "You fund breakthroughs that turn controversial questions about faith, emotion, and consciousness into real discoveries.",
       impact: "You bring light to what others overlook.",
     },
     {
