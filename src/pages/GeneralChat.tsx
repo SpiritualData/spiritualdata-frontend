@@ -1,8 +1,7 @@
 import React from "react";
 import { Grid } from "@mui/material";
-
 import PageHeader from "../components/PageHeader";
-import image from "../assets/about.webp";
+import image from "../assets/general-chat.png";
 import PageDef from "../components/PageDef";
 
 const Products: React.FC = () => {

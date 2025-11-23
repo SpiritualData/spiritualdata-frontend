@@ -26,8 +26,8 @@ export const menuItems: MenuItem[] = [
     ],
   },
   {
-    title: "About",
-    links: [{ name: "About Us", path: "/about" }],
+    title: "About Us",
+    links: [{ name: "About Us", path: "/about-us" }],
   },
   {
     title: "Contact",

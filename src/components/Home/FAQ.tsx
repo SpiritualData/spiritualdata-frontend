@@ -43,7 +43,7 @@ const FAQ = () => {
     {
       question: "How can I donate to Spiritual Data?",
       answer:
-        "You can donate by visiting the Donations page from the Discover section above (spiritualdata.org/donations).",
+        "You can donate by visiting the Donations page from the Discover section above (spiritualdata.org/donate).",
     },
     {
       question: "Are you religious?",

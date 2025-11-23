@@ -1,44 +1,86 @@
-import { Grid } from "@mui/material";
-import React from "react";
-
-import image from "../assets/donation.png";
-import skill from "../assets/skill.jpeg";
+import { Box } from "@mui/material";
 import PageHeader from "../components/PageHeader";
-import PageDef from "../components/PageDef";
-import DonationMethod from "../components/Donations/DonationsMethod";
-import Questions from "../components/Donations/Questions";
-import ContentSection from "../components/Home/ContentSection";
+import image from "../assets/images/donate/nj.webp";
+import DonationHero from "../components/Donations/DonationHero";
+import WhyItMatters from "../components/Donations/WhyItMatters";
+import DonationTiers from "../components/Donations/DonationTiers";
+import RealStories from "../components/Donations/RealStories";
+import WhySupportMatters from "../components/Donations/WhySupportMatters";
+import TheInvitation from "../components/Donations/TheInvitation";
+import TransparencyTrust from "../components/Donations/TransparencyTrust";
+import AfterYouDonate from "../components/Donations/AfterYouDonate";
+import ClosingCTA from "../components/Donations/ClosingCTA";
+import { useInView } from "../hooks/useInView";
 
-const Donations: React.FC = () => {
+const Donate = () => {
+  const header = useInView();
+  const hero = useInView();
+  const whyItMatters = useInView();
+  const donationTiers = useInView();
+  const realStories = useInView();
+  const whySupportMatters = useInView();
+  const theInvitation = useInView();
+  const transparencyTrust = useInView();
+  const afterYouDonate = useInView();
+  const closingCTA = useInView();
+
   return (
-    <Grid container>
-          <PageHeader image={image} page={"Donations"} sx={{ mb: 4 }} />
-    
-          <PageDef
-            title={"Donations"}
-            heading={"Why choose us?"}
-            details={
-              "We're fundamentally changing science in general. Spiritual Data's approach is to focus on methods for calculating truth and unbiased ways to analyze evidence, because we know that the solution can scale once it's done right and once we demonstrate the value to people like you. Because of this approach, your donations are well used because once our solution is solid, it can change the world."
-            }
-          />
-    
-          <DonationMethod />
-    
-          <ContentSection
-            imageSrc={skill}
-            heading={"Donate Your Skills"}
-            subText={
-              "Help us grow by becoming part of Spiritual Data's non-profit mission to calculate truth with AI and move society beyond limiting biases. You can choose how you'd like to contribute and what skills you'd like to use."
-            }
-            buttonText={"Join Now"}
-            path={
-              "https://docs.google.com/forms/u/1/d/e/1FAIpQLSdy6G90oR1lgRv1BqPd3jkbVG11xOlWptQ88IXfKtb2R3lmyg/viewform?usp=send_form"
-            }
-          />
-    
-          <Questions />
-        </Grid>
+    <Box sx={{ bgcolor: "cosmic.primary" }}>
+      {/* Keep the original header image */}
+      {/* <Box ref={header.ref}>
+        {header.inView && (
+          <Box>
+            <PageHeader image={image} page={"Donate"} sx={{ mb: 0 }} />
+          </Box>
+        )}
+      </Box> */}
+
+      {/* New Hero Section */}
+      <Box ref={hero.ref}>
+        {hero.inView && <DonationHero />}
+      </Box>
+
+      {/* Why It Matters Section */}
+      <Box ref={whyItMatters.ref}>
+        {whyItMatters.inView && <WhyItMatters />}
+      </Box>
+
+      {/* Donation Tiers Section */}
+      <Box ref={donationTiers.ref}>
+        {donationTiers.inView && <DonationTiers />}
+      </Box>
+
+      {/* Real Stories Section */}
+      <Box ref={realStories.ref}>
+        {realStories.inView && <RealStories />}
+      </Box>
+
+      {/* Why Support Matters Section */}
+      <Box ref={whySupportMatters.ref}>
+        {whySupportMatters.inView && <WhySupportMatters />}
+      </Box>
+
+      {/* The Invitation Section */}
+      <Box ref={theInvitation.ref}>
+        {theInvitation.inView && <TheInvitation />}
+      </Box>
+
+      {/* Transparency & Trust Section */}
+      <Box ref={transparencyTrust.ref}>
+        {transparencyTrust.inView && <TransparencyTrust />}
+      </Box>
+
+      {/* After You Donate Section */}
+      <Box ref={afterYouDonate.ref}>
+        {afterYouDonate.inView && <AfterYouDonate />}
+      </Box>
+
+      {/* Closing CTA Section */}
+      <Box ref={closingCTA.ref}>
+        {closingCTA.inView && <ClosingCTA />}
+      </Box>
+    </Box>
   );
 };
 
-export default Donations;
+export default Donate;

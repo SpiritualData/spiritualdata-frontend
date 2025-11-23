@@ -1,278 +1,516 @@
-import { useEffect, useState } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import {
   AppBar,
-  Box,
-  Button,
-  Drawer,
-  IconButton,
-  Stack,
-  styled,
-  Tabs,
   Toolbar,
-  Tab as MuiTab,
+  Button,
+  Popper,
+  Paper,
+  Box,
+  useTheme,
+  ClickAwayListener,
+  useMediaQuery,
+  IconButton,
+  Drawer,
+  List,
+  ListItemText,
+  Divider,
+  Collapse,
+  ListItemButton,
+  ListItemIcon,
 } from "@mui/material";
-import { Book, Call, DataObject, Home, Info, Menu } from "@mui/icons-material";
-import { Link, useLocation } from "react-router-dom";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import MenuIcon from "@mui/icons-material/Menu";
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import navbarLogo from "../../assets/images/navbar/SD-Logo.png";
+import productIcon from "../../assets/images/navbar/icons-product.gif";
+import initiativesIcon from "../../assets/images/navbar/icons-initiatives.gif";
+import aboutIcon from "../../assets/images/navbar/icons-about.gif";
+import researchIcon from "../../assets/images/navbar/icons-research.gif";
+import donateIcon from "../../assets/images/navbar/icons-donate.gif";
+import contactIcon from "../../assets/images/navbar/icons-contact.gif";
+import questIcon from "../../assets/images/navbar/icons-quest.gif";
+import conceptAiIcon from "../../assets/images/navbar/icons-concept-ai.gif";
+import estimatingTruthIcon from "../../assets/images/navbar/icons-estimating.gif";
+import wikipediaIcon from "../../assets/images/navbar/icons-wikipedia.gif";
+import psychicIcon from "../../assets/images/navbar/icons-psychic.gif";
+import closeIcon from "../../assets/images/navbar/icons-close.gif";
+import loginIcon from "../../assets/images/navbar/icons-loginout.gif";
 
-import DrawerItems from "./Drawer";
-import header from "../../assets/header.png";
-import header_scrolled from "../../assets/header_scrolled.png";
-
-export const drawerWidth = 280;
-
-const StyledTab = styled((props: any) => <MuiTab {...props} />)(({ theme }) => ({
-  textTransform: "none",
-  display: "none",
-  "&:hover": {
-    color: theme.palette.primary.hover,
-  },
-  "&.Mui-selected": {
-    color: theme.palette.primary.focus,
-  },
-  [theme.breakpoints.up("sm")]: {
-    display: "block",
-  },
-}));
-
-const StyledToolbar = styled(Toolbar)({
-  display: "flex",
-  justifyContent: "space-between",
-});
-
-interface TabItem {
-  label: string;
+interface DropdownItem {
+  name: string;
   path: string;
-  icon: React.ReactElement;
+  icon: string;
 }
 
-const tab: TabItem[] = [
-  {
-    label: "Home",
-    path: "/",
-    icon: <Home />,
-  },
-  {
-    label: "Donate",
-    path: "/donations",
-    icon: <Info />,
-  },
-  {
-    label: "Data Discovery",
-    path: "/data-discovery",
-    icon: <DataObject />,
-  },
-  {
-    label: "Newsletter",
-    path: "https://spiritualdata.beehiiv.com/",
-    icon: <Book />,
-  },
-  {
-    label: "Contact",
-    path: "/contact",
-    icon: <Call />,
-  },
-  {
-    label: "About",
-    path: "/about",
-    icon: <Info />,
-  },
-];
+interface DropdownMenu {
+  label: string;
+  link: string;
+  icon: string;
+  items: DropdownItem[];
+}
 
-function Navbar() {
-  const location = useLocation();
-  const [value, setValue] = useState<string | false>(location.pathname || "/");
-  const [mobileOpen, setMobileOpen] = useState<boolean>(false);
-  const [scrolled, setScrolled] = useState<boolean>(false);
-  const [userExists, setUserExists] = useState<boolean>(false);
+const Navbar = () => {
+  const theme = useTheme();
+  const navigate = useNavigate();
+  const isMobile = useMediaQuery("(max-width:1330px)");
+  const productsRef = useRef<HTMLDivElement>(null!);
+  const initiativesRef = useRef<HTMLDivElement>(null!);
+
+  const [openMenu, setOpenMenu] = useState<"products" | "initiatives" | null>(
+    null
+  );
+  const [userExists, setUserExists] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [expanded, setExpanded] = useState<string | null>(null);
+
+  const refMap: Record<string, React.RefObject<HTMLDivElement>> = {
+    Products: productsRef,
+    Initiatives: initiativesRef,
+  };
 
   useEffect(() => {
-    const user = localStorage.getItem("user");
-    if (user) {
-      setUserExists(true);
-    } else {
-      setUserExists(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    const match = tab.some((item) => item.path === location.pathname);
-    setValue(match ? location.pathname : false);
-  }, [location.pathname]);
-
-  useEffect(() => {
-    if (window.innerWidth < 900) {
-      setScrolled(true);
-    }
-
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else if (window.innerWidth > 900) {
-        setScrolled(false);
-      }
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
+  useEffect(() => {
+    const checkUser = () => {
+      const user = localStorage.getItem("user");
+      setUserExists(!!user && user !== "null" && user !== "undefined");
+    };
+
+    checkUser();
+    window.addEventListener("storage", checkUser);
+    return () => window.removeEventListener("storage", checkUser);
+  }, []);
+
+  const handleNav = useCallback(
+    (path: string) => {
+      navigate(path);
+      setOpenMenu(null);
+      setDrawerOpen(false);
+    },
+    [navigate]
+  );
+
+  const dropdownMenus: DropdownMenu[] = [
+    {
+      label: "Products",
+      link: "/products",
+      icon: productIcon,
+      items: [
+        { name: "Quest", path: "/products/quest", icon: questIcon },
+        {
+          name: "Concept AI",
+          path: "/products/concept-ai",
+          icon: conceptAiIcon,
+        },
+      ],
+    },
+    {
+      label: "Initiatives",
+      link: "/initiatives",
+      icon: initiativesIcon,
+      items: [
+        {
+          name: "Estimating Truth",
+          path: "/initiatives/estimating-truth",
+          icon: estimatingTruthIcon,
+        },
+        {
+          name: "Wikipedia Advocacy",
+          path: "/initiatives/wikipedia-advocacy",
+          icon: wikipediaIcon,
+        },
+        {
+          name: "Psychic Ability Certification",
+          path: "/initiatives/psychic-ability-certification",
+          icon: psychicIcon,
+        },
+      ],
+    },
+  ];
+
+  const staticLinks = [
+    { label: "Research", path: "/research", icon: researchIcon },
+    { label: "Donate", path: "/donate", icon: donateIcon },
+    { label: "About Us", path: "/about-us", icon: aboutIcon },
+    { label: "Contact", path: "/contact", icon: contactIcon },
+  ];
+
+  const navLinkStyles = {
+    fontSize: "14px",
+    fontWeight: 600,
+    textTransform: "uppercase",
+    fontFamily: "Poppins, sans-serif",
+    letterSpacing: "0.5px",
+    cursor: "pointer",
+    px: 1.5,
+    py: 1,
+    transition: "all 0.3s ease",
+    color: "#F2F3EB",
+    "&:hover": { color: theme.palette.primary.focus },
   };
 
   return (
     <>
-      <Box>
-        <Drawer
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true,
-          }}
-          sx={{
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-              color: "textPrimary",
-            },
-          }}
-        >
-          <DrawerItems tab={tab} handleDrawerToggle={handleDrawerToggle} />
-        </Drawer>
-      </Box>
-
       <AppBar
+        position="fixed"
+        elevation={0}
         sx={{
-          background: scrolled
-            ? (theme) => theme.palette.text.secondary
-            : "none",
-          color: scrolled ? (theme) => theme.palette.text.primary : "none",
-          position: "fixed",
-          zIndex: 4,
-          py: 0.6,
-          transition: "0.32s ease-in-out",
-          boxShadow: { md: scrolled ? undefined : "none" },
+          backgroundColor: theme.palette.primary.hover,
+          boxShadow: `0px 2px 12px rgba(0,0,0,0.2)`,
+          transition: "all 0.3s ease",
+          px: { xs: 2, md: 20 },
+          py: 1.5,
+          fontFamily: "Poppins, sans-serif",
         }}
-        position="static"
       >
-        <StyledToolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            aria-label="open drawer"
-            sx={{
-              mr: 2,
-              color: (theme) => theme.palette.text.primary,
-              display: { md: "none" },
-            }}
-            onClick={handleDrawerToggle}
-          >
-            <Menu />
-          </IconButton>
-
-          <Stack
-            direction="row"
-            display={{ xs: "flex", md: "none" }}
-            justifyContent="center"
-            pr={2}
-            width="100%"
-          >
-            <Link style={{ textDecoration: "none" }} to="/">
-              <IconButton size="large">
-                <img
-                  src={scrolled ? header_scrolled : header}
-                  alt=""
-                  style={{ width: "200px" }}
-                />
-              </IconButton>
-            </Link>
-          </Stack>
-
-          <Stack
-            direction="row"
-            display={{ xs: "none", sm: "none", md: "flex" }}
-            alignItems="center"
-            justifyContent="space-between"
-            width="100%"
-          >
-            <Link style={{ textDecoration: "none" }} to="/">
-              <IconButton size="large">
-                <img
-                  src={scrolled ? header_scrolled : header}
-                  alt=""
-                  style={{ width: "200px" }}
-                />
-              </IconButton>
-            </Link>
-
-            <Stack direction="row" spacing={1} alignItems="center">
-              <Tabs
-                value={value}
-                TabIndicatorProps={{
-                  sx: {
-                    backgroundColor: "transparent",
-                  },
-                }}
-                sx={{ paddingTop: 1 }}
+        <Toolbar
+          disableGutters
+          sx={{ justifyContent: "space-between", flexWrap: "wrap" }}
+        >
+          {isMobile ? (
+            <>
+              {/* Mobile: Left = Hamburger */}
+              <IconButton
+                onClick={() => setDrawerOpen(true)}
+                edge="start"
+                sx={{ color: "#F2F3EB" }}
               >
-                {tab.map(({ label, path }, index) => (
-                  <StyledTab
-                    sx={{ color: scrolled ? "#222222" : "#fff" }}
-                    key={index}
-                    label={label}
-                    value={path.startsWith("http") ? undefined : path}
-                    component={path.startsWith("http") ? "a" : Link}
-                    to={path.startsWith("http") ? undefined : path}
-                    href={path.startsWith("http") ? path : undefined}
-                    target={
-                      path.startsWith("http") && label !== "Newsletter"
-                        ? "_blank"
-                        : undefined
-                    }
-                    rel={
-                      path.startsWith("http") && label !== "Newsletter"
-                        ? "noopener noreferrer"
-                        : undefined
-                    }
-                    disableRipple
-                  />
-                ))}
-              </Tabs>
+                <MenuIcon />
+              </IconButton>
 
+              {/* Mobile: Center = Logo */}
+              <Box
+                onClick={() => handleNav("/")}
+                sx={{ cursor: "pointer", mx: "auto" }}
+              >
+                <Box
+                  component="img"
+                  src={navbarLogo}
+                  alt="Logo"
+                  sx={{ height: { xs: 40, md: 50 }, objectFit: "contain" }}
+                />
+              </Box>
+
+              {/* Mobile: Right = Sign In */}
               <Button
+                onClick={() => handleNav(userExists ? "/chat" : "/sign-in")}
                 sx={{
-                  background: scrolled
-                    ? (theme) => theme.palette.primary.focus
-                    : "#fff",
-                  color: scrolled
-                    ? "white"
-                    : (theme) => theme.palette.primary.focus,
-                  textTransform: "none",
-                  height: "42px",
-                  minWidth: "150px",
-                  px: 6,
-                  borderRadius: 20,
+                  backgroundColor: theme.palette.primary.focus,
+                  color: theme.palette.primary.hover,
+                  borderRadius: 8,
+                  height: 42,
+                  px: 3,
+                  fontWeight: 700,
+                  fontSize: "14px",
+                  textTransform: "uppercase",
+                  fontFamily: "Poppins, sans-serif",
+                  letterSpacing: "0.5px",
+                  transition: "all 0.3s ease",
                   "&:hover": {
-                    background: (theme) => theme.palette.primary.hover,
-                    color: "white",
-                    opacity: 0.9,
+                    backgroundColor: "#F2F3EB",
+                    color: theme.palette.primary.hover,
                   },
                 }}
-                component={Link}
-                to={userExists ? "/chat" : "/sign-in"}
               >
                 {userExists ? "Chat" : "Sign In"}
               </Button>
-            </Stack>
-          </Stack>
-        </StyledToolbar>
+            </>
+          ) : (
+            <>
+              {/* Desktop Navbar */}
+              <Box onClick={() => handleNav("/")} sx={{ cursor: "pointer" }}>
+                <Box
+                  component="img"
+                  src={navbarLogo}
+                  alt="Logo"
+                  sx={{ height: 40, objectFit: "contain" }}
+                />
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: { xs: 1.2, md: 1.8 },
+                }}
+              >
+                {dropdownMenus.map((menu) => (
+                  <Box
+                    key={menu.label}
+                    ref={refMap[menu.label]}
+                    onMouseEnter={() =>
+                      setOpenMenu(menu.label.toLowerCase() as any)
+                    }
+                    onMouseLeave={() => setOpenMenu(null)}
+                    sx={{ position: "relative" }}
+                  >
+                    <Box
+                      onClick={() => handleNav(menu.link)}
+                      sx={{
+                        ...navLinkStyles,
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                      aria-haspopup="true"
+                    >
+                      {menu.label}
+                      <ArrowDropDownIcon sx={{ ml: 0.5, fontSize: "20px" }} />
+                    </Box>
+                    <Popper
+                      open={openMenu === menu.label.toLowerCase()}
+                      anchorEl={refMap[menu.label].current}
+                      placement="bottom-start"
+                      style={{ zIndex: 1200 }}
+                    >
+                      <ClickAwayListener onClickAway={() => setOpenMenu(null)}>
+                        <Paper
+                          elevation={2}
+                          sx={{
+                            mt: 1,
+                            borderRadius: 1.5,
+                            backgroundColor: "#F2F3EB",
+                            py: 1,
+                            minWidth: 220,
+                          }}
+                        >
+                          {menu.items.map((item) => (
+                            <Box
+                              key={item.name}
+                              onClick={() => handleNav(item.path)}
+                              sx={{
+                                px: 3,
+                                py: 1.2,
+                                fontSize: "13px",
+                                fontWeight: 500,
+                                fontFamily: "Poppins, sans-serif",
+                                cursor: "pointer",
+                                color: theme.palette.text.primary,
+                                letterSpacing: "0.5px",
+                                transition: "all 0.3s ease",
+                                "&:hover": {
+                                  color: theme.palette.primary.focus,
+                                  backgroundColor: "transparent",
+                                },
+                              }}
+                            >
+                              {item.name}
+                            </Box>
+                          ))}
+                        </Paper>
+                      </ClickAwayListener>
+                    </Popper>
+                  </Box>
+                ))}
+                {staticLinks.map(({ label, path }) => (
+                  <Box
+                    key={label}
+                    onClick={() => handleNav(path)}
+                    sx={navLinkStyles}
+                  >
+                    {label}
+                  </Box>
+                ))}
+                <Button
+                  onClick={() => handleNav(userExists ? "/chat" : "/sign-in")}
+                  sx={{
+                    backgroundColor: theme.palette.primary.focus,
+                    color: theme.palette.primary.hover,
+                    borderRadius: 8,
+                    height: 42,
+                    px: 4,
+                    fontWeight: 700,
+                    fontSize: "14px",
+                    textTransform: "uppercase",
+                    fontFamily: "Poppins, sans-serif",
+                    letterSpacing: "0.5px",
+                    ml: 2,
+                    transition: "all 0.3s ease",
+                    "&:hover": {
+                      backgroundColor: "#F2F3EB",
+                      color: theme.palette.primary.hover,
+                    },
+                  }}
+                >
+                  {userExists ? "Chat" : "Sign In"}
+                </Button>
+              </Box>
+            </>
+          )}
+        </Toolbar>
       </AppBar>
+
+      {/* Drawer for Mobile */}
+      <Drawer
+        anchor="left"
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        PaperProps={{
+          sx: {
+            background: `linear-gradient(135deg,  ${theme.palette.primary.focus} 0%,${theme.palette.primary.main} 29%,${theme.palette.primary.main} 87%,${theme.palette.primary.focus} 100%)`,
+          },
+        }}
+      >
+        <Box
+          onClick={() => handleNav("/")}
+          sx={{ cursor: "pointer", mx: "auto", mt: 4 }}
+        >
+          <Box
+            onClick={() => setDrawerOpen(false)}
+            component="img"
+            src={closeIcon}
+            alt="close"
+            sx={{
+              height: 20,
+              objectFit: "contain",
+              position: "absolute",
+              top: 10,
+              right: 10,
+            }}
+          />
+          <Box
+            component="img"
+            src={navbarLogo}
+            alt="Logo"
+            sx={{ height: { xs: 40, md: 50 }, objectFit: "contain" }}
+          />
+        </Box>
+
+        <Box
+          width={300}
+          role="presentation"
+          sx={{
+            mt: 2,
+            fontFamily: "Sansation, sans-serif",
+            px: { xs: 2, sm: 2 },
+          }}
+        >
+          <List>
+            {/* Dropdown Menus */}
+            {dropdownMenus.map((menu) => (
+              <>
+                <Box key={menu.label}>
+                  <ListItemButton
+                    onClick={() =>
+                      setExpanded(expanded === menu.label ? null : menu.label)
+                    }
+                  >
+                    <ListItemIcon sx={{ minWidth: "40px" }}>
+                      <Box
+                        component="img"
+                        src={menu.icon}
+                        alt={menu.label}
+                        sx={{ height: 25, objectFit: "contain" }}
+                      />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={menu.label}
+                      sx={{ color: "black" }}
+                    />
+                    {expanded === menu.label ? <ExpandLess /> : <ExpandMore />}
+                  </ListItemButton>
+
+                  {/* Submenus */}
+                  <Collapse
+                    in={expanded === menu.label}
+                    timeout="auto"
+                    unmountOnExit
+                  >
+                    <List component="div" disablePadding>
+                      {menu.items.map((item) => (
+                        <ListItemButton
+                          key={item.name}
+                          sx={{ pl: 6 }}
+                          onClick={() => handleNav(item.path)}
+                        >
+                          <ListItemIcon sx={{ minWidth: "40px" }}>
+                            <Box
+                              component="img"
+                              src={item.icon}
+                              alt={item.name}
+                              sx={{ height: 25, objectFit: "contain" }}
+                            />
+                          </ListItemIcon>
+                          <ListItemText
+                            primary={item.name}
+                            sx={{ color: "black" }}
+                          />
+                        </ListItemButton>
+                      ))}
+                    </List>
+                  </Collapse>
+                </Box>
+                <Divider />
+              </>
+            ))}
+
+            {/* Static Links */}
+            {staticLinks.map(({ label, path, icon }) => (
+              <ListItemButton key={label} onClick={() => handleNav(path)}>
+                <ListItemIcon sx={{ minWidth: "40px" }}>
+                  <Box
+                    component="img"
+                    src={icon}
+                    alt={label}
+                    sx={{ height: 25, objectFit: "contain" }}
+                  />
+                </ListItemIcon>
+                <ListItemText primary={label} sx={{ color: "black" }} />
+              </ListItemButton>
+            ))}
+          </List>
+        </Box>
+
+        <Box
+          sx={{
+            mx: "auto",
+            my: 4,
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "flex-end",
+          }}
+        >
+          <Divider sx={{ width: "100%", mb: 2 }} />
+          <Button
+            onClick={() => handleNav(userExists ? "/sign-out" : "/sign-in")}
+            sx={{
+              background: theme.palette.primary.focus,
+              color: theme.palette.primary.hero,
+              borderRadius: 3,
+              width: 280,
+              height: 50,
+              px: 3,
+              fontWeight: 900,
+              border: "1px solid rgba(0, 0, 0, 0.14)",
+              fontSize: "14px",
+              fontFamily: "sansation-bold, sans-serif",
+              letterSpacing: "1px",
+              transition: "all 0.3s ease",
+              "&:hover": {
+                backgroundColor: theme.palette.primary.hero,
+                color: theme.palette.primary.focus,
+              },
+            }}
+          >
+            <Box
+              component="img"
+              src={loginIcon}
+              alt={userExists ? "Sign Out" : "Sign In"}
+              sx={{ height: 25, objectFit: "contain", mr: 1 }}
+            />
+            {userExists ? "Sign Out" : "Sign In"}
+          </Button>
+        </Box>
+      </Drawer>
     </>
   );
-}
+};
 
 export default Navbar;

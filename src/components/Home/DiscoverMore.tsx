@@ -25,14 +25,14 @@ const DiscoverMore = () => {
       image: donation,
       description:
         "Spiritual Data is a US-based nonprofit. Your donations fund refining our methods for calculating truth, gathering more data, and the free use of our chatbot.",
-      path: "/donations",
+      path: "/donate",
     },
     {
       label: "Review the Data",
       image: dataDiscovery,
       description:
         "Click here to see the data for yourself at our Notion databases. You'll find experiences, research papers, hypotheses, and current and future data sources.",
-      path: "/data-discovery",
+      path: "/research",
     },
     {
       label: "Follow our Newsletter",

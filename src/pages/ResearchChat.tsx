@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid } from "@mui/material";
 import PageHeader from "../components/PageHeader";
-import image from "../assets/conciusness.webp";
+import image from "../assets/research-chat1.webp";
 import PageDef from "../components/PageDef";
 
 const ResearchChat: React.FC = () => {

@@ -7,11 +7,18 @@ import Navbar from "./components/navigation/Navbar";
 import Footer from "./components/navigation/Footer";
 import useClerkRoutes from "./hooks/routes";
 import ScrollToTop from "./components/ScrollToTop";
+import { GlobalStyles } from "@mui/material";
 
 const App: React.FC = () => {
   const location = useLocation();
 
-  const hiddenRoutes = ["/outcome-chat", "/chat", "/sign-in", "/sign-up"];
+  const hiddenRoutes = [
+    "/outcome-chat",
+    "/chat",
+    "/sign-in",
+    "/sign-up",
+    "/dual-auth",
+  ];
 
   const shouldHideElements = (routes: string[], pathname: string): boolean => {
     return routes.some((route) => pathname.startsWith(route));
@@ -23,6 +30,12 @@ const App: React.FC = () => {
 
   return (
     <ThemeProvider theme={theme as Theme}>
+      <GlobalStyles
+        styles={{
+          html: { overscrollBehavior: "none" },
+          body: { overscrollBehavior: "none" },
+        }}
+      />
       {!shouldHideElements(hiddenRoutes, location.pathname) && <Navbar />}
       <div id="back-to-top-anchor"></div>
       <main>{useClerkRoutes()}</main>
