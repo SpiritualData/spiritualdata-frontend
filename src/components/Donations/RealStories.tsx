@@ -24,7 +24,7 @@ const RealStories: React.FC = () => {
   const testimonials: Testimonial[] = [
     {
       quote:
-        "For a long time I denied the benefits of anything 'esoteric and spiritual' in terms of science. But Spiritual Data's approach allowed me to look at it from a different perspective, as influences and possible causes and patterns. It changed how I think.",
+        "For a long time I denied the benefits and in general anything 'esoteric and spiritual' in terms of science. But your team's idea allowed me to look at it from a different perspective, as influences and possible causes and patterns, without agreeing or denying benefit/harm.",
       author: "Evadisay",
       title: "Community Member",
       location: "",
