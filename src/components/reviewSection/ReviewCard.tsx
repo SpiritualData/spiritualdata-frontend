@@ -44,7 +44,9 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
         flexDirection: "column",
         justifyContent: "space-between",
         maxWidth: 350,
-        height: 330,
+        minHeight: 330,
+        height: "auto",
+        overflow: "hidden",
         transition: "transform 0.3s ease, box-shadow 0.3s ease",
         ":hover": {
           transform: `scale(1.04) rotate(${rotationAngle}deg)`,
@@ -93,12 +95,14 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
         variant="body1"
         sx={{
           fontWeight: 500,
-          fontSize: "1.2rem",
+          fontSize: { xs: "1rem", md: "1.2rem" },
           lineHeight: 1.4,
           letterSpacing: 0.8,
+          wordBreak: "break-word",
+          overflowWrap: "break-word",
         }}
       >
-        “{text}”
+        "{text}"
       </Typography>
     </Box>
   );

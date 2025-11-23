@@ -24,8 +24,8 @@ const RealStories: React.FC = () => {
   const testimonials: Testimonial[] = [
     {
       quote:
-        "They are combining spirituality, science and engineering to help other people. I'm a person of faith and have always had spiritual questions, but there's never a place where I can find unbiased answers for anything. The use of everything to support their cause means I can learn while also help others.",
-      author: "Moh",
+        "For a long time I denied the benefits of anything 'esoteric and spiritual' in terms of science. But Spiritual Data's approach allowed me to look at it from a different perspective, as influences and possible causes and patterns. It changed how I think.",
+      author: "Evadisay",
       title: "Community Member",
       location: "",
     },
