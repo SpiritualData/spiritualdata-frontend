@@ -79,10 +79,12 @@ const TransparencyTrust: React.FC = () => {
         <Box
           sx={{
             p: { xs: 3, md: 5 },
+            pb: { xs: 4, md: 6 },
             borderRadius: 4,
             bgcolor: theme.palette.cosmic.elevated,
             boxShadow: `0px 4px 16px ${theme.palette.cardshadow.main}`,
             mb: 5,
+            overflow: "hidden",
           }}
         >
           <Typography
@@ -98,7 +100,7 @@ const TransparencyTrust: React.FC = () => {
             Here's how your contribution is used:
           </Typography>
 
-          <Grid container spacing={3} justifyContent="center">
+          <Grid container spacing={2} justifyContent="center">
             {budgetItems.map((item, index) => (
               <Grid size={{xs:6, sm:6, md:3}} key={index}>
                 <Box
@@ -107,21 +109,22 @@ const TransparencyTrust: React.FC = () => {
                     flexDirection: "column",
                     alignItems: "center",
                     textAlign: "center",
-                    p: 2,
-                    borderRadius: 3,
+                    p: { xs: 1.5, md: 2 },
+                    borderRadius: 2,
                     bgcolor: theme.palette.cosmic.secondary,
-                    height: "100%",
+                    minHeight: { xs: 100, md: 120 },
                   }}
                 >
-                  <Box sx={{ color: item.color, mb: 2 }}>
+                  <Box sx={{ color: item.color, mb: 1.5 }}>
                     {item.icon}
                   </Box>
                   <Typography
-                    variant="body1"
+                    variant="body2"
                     sx={{
                       fontWeight: 600,
                       color: theme.palette.text.primary,
-                      fontSize: { xs: "0.85rem", md: "0.95rem" },
+                      fontSize: { xs: "0.75rem", sm: "0.8rem", md: "0.9rem" },
+                      lineHeight: 1.3,
                     }}
                   >
                     {item.category}
