@@ -15,7 +15,7 @@ const AfterYouDonate: React.FC = () => {
   const benefits: Benefit[] = [
     {
       icon: <EmailIcon sx={{ fontSize: 32 }} />,
-      text: "A personal thank-you message from our research team",
+      text: "A personal thank-you message from our team",
     },
     {
       icon: <InsightsIcon sx={{ fontSize: 32 }} />,

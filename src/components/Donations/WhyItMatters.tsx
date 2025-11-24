@@ -29,10 +29,10 @@ const WhyItMatters: React.FC = () => {
   };
 
   const impactItems: ImpactItem[] = [
-    { icon: <ScienceIcon sx={{ fontSize: 40 }} />, title: "Groundbreaking Research", description: "Research on the neuroscience of faith and consciousness", },
-    { icon: <FavoriteIcon sx={{ fontSize: 40 }} />, title: "Product Innovation", description: "Product innovation that enables individuals to transform their lives through personalized science and community connectionsbrings emotional resilience tools to real communities", },
-    { icon: <PsychologyIcon sx={{ fontSize: 40 }} />, title: "Ethical AI & Data", description: "Ethical AI & Data initiatives that respects diverse perspectives and scales wisdom's impact through technology  preserve human dignity and moral insight in tech", },
-    { icon: <SchoolIcon sx={{ fontSize: 40 }} />, title: "Public Education", description: "Public education programs translating science into spiritual growth", },];
+    { icon: <ScienceIcon sx={{ fontSize: 40 }} />, title: "Groundbreaking Research", description: "Research comparing foundational theory, addressing the most controversial questions of reality", },
+    { icon: <FavoriteIcon sx={{ fontSize: 40 }} />, title: "Product Innovation", description: "Product innovation that enables individuals to transform their lives through personalized science and community connections", },
+    { icon: <PsychologyIcon sx={{ fontSize: 40 }} />, title: "Ethical AI & Data", description: "Ethical AI & Data initiatives that respects diverse perspectives and scales wisdom's impact through technology", },
+    { icon: <SchoolIcon sx={{ fontSize: 40 }} />, title: "Public Education", description: "Public education programs removing stigma and encouraging worldviews that are the most validated by data", },];
 
   return (
     <Box

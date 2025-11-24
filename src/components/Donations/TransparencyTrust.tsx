@@ -1,11 +1,14 @@
 import React from "react";
-import { Box, Typography, useTheme, Grid, LinearProgress } from "@mui/material";
-import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
+import { Box, Typography, useTheme, Grid } from "@mui/material";
 import AssessmentIcon from "@mui/icons-material/Assessment";
+import ScienceIcon from "@mui/icons-material/Science";
+import GroupsIcon from "@mui/icons-material/Groups";
+import StorageIcon from "@mui/icons-material/Storage";
+import CampaignIcon from "@mui/icons-material/Campaign";
 
 interface BudgetItem {
   category: string;
-  percentage: number;
+  icon: React.ReactNode;
   color: string;
 }
 
@@ -15,22 +18,22 @@ const TransparencyTrust: React.FC = () => {
   const budgetItems: BudgetItem[] = [
     {
       category: "Research & Product Development",
-      percentage: 65,
+      icon: <ScienceIcon sx={{ fontSize: 32 }} />,
       color: theme.palette.primary.focus as string,
     },
     {
       category: "Community Impact Programs",
-      percentage: 20,
+      icon: <GroupsIcon sx={{ fontSize: 32 }} />,
       color: theme.palette.primary.hover as string,
     },
     {
       category: "Data Infrastructure & AI Ethics Oversight",
-      percentage: 10,
+      icon: <StorageIcon sx={{ fontSize: 32 }} />,
       color: "#4A90E2",
     },
     {
       category: "Operations & Outreach",
-      percentage: 5,
+      icon: <CampaignIcon sx={{ fontSize: 32 }} />,
       color: "#7B68EE",
     },
   ];
@@ -76,10 +79,12 @@ const TransparencyTrust: React.FC = () => {
         <Box
           sx={{
             p: { xs: 3, md: 5 },
+            pb: { xs: 4, md: 6 },
             borderRadius: 4,
             bgcolor: theme.palette.cosmic.elevated,
             boxShadow: `0px 4px 16px ${theme.palette.cardshadow.main}`,
             mb: 5,
+            overflow: "hidden",
           }}
         >
           <Typography
@@ -95,52 +100,35 @@ const TransparencyTrust: React.FC = () => {
             Here's how your contribution is used:
           </Typography>
 
-          <Grid container spacing={3}>
+          <Grid container spacing={2} justifyContent="center">
             {budgetItems.map((item, index) => (
-              <Grid size={{xs:12}} key={index}>
-                <Box>
-                  <Box
+              <Grid size={{xs:6, sm:6, md:3}} key={index}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    textAlign: "center",
+                    p: { xs: 1.5, md: 2 },
+                    borderRadius: 2,
+                    bgcolor: theme.palette.cosmic.secondary,
+                    minHeight: { xs: 100, md: 120 },
+                  }}
+                >
+                  <Box sx={{ color: item.color, mb: 1.5 }}>
+                    {item.icon}
+                  </Box>
+                  <Typography
+                    variant="body2"
                     sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      mb: 1,
+                      fontWeight: 600,
+                      color: theme.palette.text.primary,
+                      fontSize: { xs: "0.75rem", sm: "0.8rem", md: "0.9rem" },
+                      lineHeight: 1.3,
                     }}
                   >
-                    <Typography
-                      variant="body1"
-                      sx={{
-                        fontWeight: 600,
-                        color: theme.palette.text.primary,
-                        fontSize: { xs: "0.95rem", md: "1rem" },
-                      }}
-                    >
-                      {item.category}
-                    </Typography>
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        fontWeight: 700,
-                        color: item.color,
-                        fontSize: { xs: "1.1rem", md: "1.2rem" },
-                      }}
-                    >
-                      {item.percentage}%
-                    </Typography>
-                  </Box>
-                  <LinearProgress
-                    variant="determinate"
-                    value={item.percentage}
-                    sx={{
-                      height: 10,
-                      borderRadius: 5,
-                      bgcolor: theme.palette.cosmic.secondary,
-                      "& .MuiLinearProgress-bar": {
-                        bgcolor: item.color,
-                        borderRadius: 5,
-                      },
-                    }}
-                  />
+                    {item.category}
+                  </Typography>
                 </Box>
               </Grid>
             ))}
@@ -148,53 +136,7 @@ const TransparencyTrust: React.FC = () => {
         </Box>
 
         {/* Verification Icons and Text */}
-        <Grid container spacing={4}>
-          <Grid  size={{xs:12,md:6}}>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 2,
-                p: 2,
-                borderRadius: 3,
-                bgcolor: theme.palette.cosmic.elevated,
-                height: "100%",
-              }}
-            >
-              <VerifiedUserIcon
-                sx={{
-                  fontSize: 40,
-                  color: theme.palette.primary.focus,
-                  flexShrink: 0,
-                }}
-              />
-              <Box>
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontWeight: 600,
-                    color: theme.palette.primary.hover,
-                    mb: 1,
-                    fontSize: { xs: "1.1rem", md: "1.2rem" },
-                  }}
-                >
-                  Independent Audits
-                </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    color: theme.palette.text.secondary,
-                    lineHeight: 1.6,
-                    fontSize: { xs: "0.95rem", md: "1rem" },
-                  }}
-                >
-                  Our accounts are independently audited to ensure complete
-                  financial accountability and integrity.
-                </Typography>
-              </Box>
-            </Box>
-          </Grid>
-
+        <Grid container spacing={4} justifyContent="center">
           <Grid size={{xs:12,md:6}}>
             <Box
               sx={{

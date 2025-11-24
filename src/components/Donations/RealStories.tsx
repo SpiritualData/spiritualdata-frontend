@@ -24,17 +24,17 @@ const RealStories: React.FC = () => {
   const testimonials: Testimonial[] = [
     {
       quote:
-        "I've seen how Spiritual Data's research helps people reconnect with purpose — not through belief alone, but through measurable, verifiable change.",
-      author: "Dr. Amelia Cross",
-      title: "Cognitive Scientist",
-      location: "California",
+        "For a long time I denied the benefits and in general anything 'esoteric and spiritual' in terms of science. But your team's idea allowed me to look at it from a different perspective, as influences and possible causes and patterns, without agreeing or denying benefit/harm.",
+      author: "Evadisay",
+      title: "Community Member",
+      location: "",
     },
     {
       quote:
-        "When I first learned how their data models measure emotional well-being, I realized — this is what modern spirituality should look like.",
-      author: "Michael Reed",
-      title: "Donor & Volunteer",
-      location: "New York",
+        "At its heart, Spiritual Data isn't just about spirituality. It's about truth—real, evolving, evidence-backed truth that both humans and AI can understand and build upon.",
+      author: "Aiad",
+      title: "Community Member",
+      location: "",
     },
   ];
 
@@ -156,7 +156,7 @@ const RealStories: React.FC = () => {
                           fontSize: { xs: "0.9rem", md: "0.95rem" },
                         }}
                       >
-                        {testimonial.title}, {testimonial.location}
+                        {testimonial.title}{testimonial.location && `, ${testimonial.location}`}
                       </Typography>
                     </Box>
                   </CardContent>

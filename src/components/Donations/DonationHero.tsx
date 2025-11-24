@@ -80,7 +80,7 @@ const DonationHero: React.FC = () => {
                 mx: "auto",
               }}
             >
-              We're building the world's first global research movement that uses data science to study and strengthen human faith,
+              We're building the world's first global research movement that uses data science to study and strengthen human spirituality,
               empathy, and well-being. Your donation funds the products & research that will help future generations live with purpose,
               peace, and truth.
             </Typography>
