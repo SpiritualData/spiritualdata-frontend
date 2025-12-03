@@ -18,7 +18,7 @@ import {
   YouTube,
   Email,
 } from "@mui/icons-material";
-import footerImage from "../../assets/images/footer/footerLogo.webp";
+import footerImage from "../../assets/images/Footer/footer-logo.png";
 
 // Discord Icon Component
 const DiscordIcon = () => (
@@ -255,15 +255,15 @@ const Footer = () => {
               <Box
                 display="flex"
                 alignItems="center"
-                mb={2}
-                sx={{ cursor: "pointer", mx: "auto" }}
+                mb={1}
+                sx={{ cursor: "pointer", ml: -3 }}
                 onClick={() => navigate("/")}
               >
                 <img
                   src={footerImage}
                   alt="Spiritual Data"
                   style={{
-                    height: 70,
+                    height: 65,
                     objectFit: "contain",
                   }}
                 />
