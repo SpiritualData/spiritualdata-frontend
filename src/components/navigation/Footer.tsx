@@ -18,7 +18,7 @@ import {
   YouTube,
   Email,
 } from "@mui/icons-material";
-import footerImage from "../../assets/images/footer/footerLogo.png";
+import footerImage from "../../assets/images/footer/footer-logo.png";
 
 // Discord Icon Component
 const DiscordIcon = () => (
