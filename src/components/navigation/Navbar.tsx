@@ -21,8 +21,8 @@ import {
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import MenuIcon from "@mui/icons-material/Menu";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
-import navbarLogo from "../../assets/images/navbar/SD-Logo.png";
+import { useNavigate, useLocation } from "react-router-dom";
+import navbarLogo from "../../assets/images/navbar/Navbar.png";
 import productIcon from "../../assets/images/navbar/icons-product.gif";
 import initiativesIcon from "../../assets/images/navbar/icons-initiatives.gif";
 import aboutIcon from "../../assets/images/navbar/icons-about.gif";
@@ -53,6 +53,7 @@ interface DropdownMenu {
 const Navbar = () => {
   const theme = useTheme();
   const navigate = useNavigate();
+  const location = useLocation();
   const isMobile = useMediaQuery("(max-width:1330px)");
   const productsRef = useRef<HTMLDivElement>(null!);
   const initiativesRef = useRef<HTMLDivElement>(null!);
@@ -142,19 +143,25 @@ const Navbar = () => {
     { label: "Contact", path: "/contact", icon: contactIcon },
   ];
 
-  const navLinkStyles = {
+  // Helper function to check if a path is active
+  const isActivePath = (path: string) => {
+    return location.pathname === path || location.pathname.startsWith(path + "/");
+  };
+
+  // Function to get nav link styles based on active state
+  const getNavLinkStyles = (isActive: boolean) => ({
     fontSize: "14px",
     fontWeight: 600,
-    textTransform: "uppercase",
+    textTransform: "uppercase" as const,
     fontFamily: "Poppins, sans-serif",
     letterSpacing: "0.5px",
     cursor: "pointer",
     px: 1.5,
     py: 1,
     transition: "all 0.3s ease",
-    color: "#F2F3EB",
-    "&:hover": { color: theme.palette.primary.focus },
-  };
+    color: isActive ? (theme.palette.primary.focus || "#FFBF00") : "#F2F3EB",
+    "&:hover": { color: theme.palette.primary.focus || "#FFBF00" },
+  });
 
   return (
     <>
@@ -188,7 +195,7 @@ const Navbar = () => {
               {/* Mobile: Center = Logo */}
               <Box
                 onClick={() => handleNav("/")}
-                sx={{ cursor: "pointer", mx: "auto" }}
+                sx={{ cursor: "pointer", mx: "auto", pt:1 }}
               >
                 <Box
                   component="img"
@@ -225,12 +232,12 @@ const Navbar = () => {
           ) : (
             <>
               {/* Desktop Navbar */}
-              <Box onClick={() => handleNav("/")} sx={{ cursor: "pointer" }}>
+              <Box onClick={() => handleNav("/")} sx={{ cursor: "pointer", pt:0.8 }}>
                 <Box
                   component="img"
                   src={navbarLogo}
                   alt="Logo"
-                  sx={{ height: 40, objectFit: "contain" }}
+                  sx={{ height: 54, objectFit: "contain" }}
                 />
               </Box>
               <Box
@@ -252,11 +259,13 @@ const Navbar = () => {
                   >
                     <Box
                       onClick={() => handleNav(menu.link)}
-                      sx={{
-                        ...navLinkStyles,
-                        display: "flex",
-                        alignItems: "center",
-                      }}
+                      sx={[
+                        getNavLinkStyles(isActivePath(menu.link)),
+                        {
+                          display: "flex",
+                          alignItems: "center",
+                        },
+                      ]}
                       aria-haspopup="true"
                     >
                       {menu.label}
@@ -311,7 +320,7 @@ const Navbar = () => {
                   <Box
                     key={label}
                     onClick={() => handleNav(path)}
-                    sx={navLinkStyles}
+                    sx={getNavLinkStyles(isActivePath(path))}
                   >
                     {label}
                   </Box>
@@ -392,28 +401,48 @@ const Navbar = () => {
         >
           <List>
             {/* Dropdown Menus */}
-            {dropdownMenus.map((menu) => (
-              <>
-                <Box key={menu.label}>
-                  <ListItemButton
-                    onClick={() =>
-                      setExpanded(expanded === menu.label ? null : menu.label)
-                    }
-                  >
-                    <ListItemIcon sx={{ minWidth: "40px" }}>
-                      <Box
-                        component="img"
-                        src={menu.icon}
-                        alt={menu.label}
-                        sx={{ height: 25, objectFit: "contain" }}
+            {dropdownMenus.map((menu) => {
+              const isParentActive =
+                isActivePath(menu.link) ||
+                menu.items.some((item) => isActivePath(item.path));
+              return (
+                <>
+                  <Box key={menu.label}>
+                    <ListItemButton
+                      onClick={() =>
+                        setExpanded(expanded === menu.label ? null : menu.label)
+                      }
+                      sx={{
+                        backgroundColor: isParentActive
+                          ? theme.palette.primary.focus + "40"
+                          : "transparent",
+                        borderLeft: isParentActive
+                          ? `4px solid ${theme.palette.primary.focus}`
+                          : "4px solid transparent",
+                        "&:hover": {
+                          backgroundColor: theme.palette.primary.focus + "20",
+                        },
+                      }}
+                    >
+                      <ListItemIcon sx={{ minWidth: "40px" }}>
+                        <Box
+                          component="img"
+                          src={menu.icon}
+                          alt={menu.label}
+                          sx={{ height: 25, objectFit: "contain" }}
+                        />
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={menu.label}
+                        sx={{
+                          color: isParentActive
+                            ? theme.palette.primary.hover
+                            : "black",
+                          fontWeight: isParentActive ? 700 : 400,
+                        }}
                       />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={menu.label}
-                      sx={{ color: "black" }}
-                    />
-                    {expanded === menu.label ? <ExpandLess /> : <ExpandMore />}
-                  </ListItemButton>
+                      {expanded === menu.label ? <ExpandLess /> : <ExpandMore />}
+                    </ListItemButton>
 
                   {/* Submenus */}
                   <Collapse
@@ -425,7 +454,18 @@ const Navbar = () => {
                       {menu.items.map((item) => (
                         <ListItemButton
                           key={item.name}
-                          sx={{ pl: 6 }}
+                          sx={{
+                            pl: 6,
+                            backgroundColor: isActivePath(item.path)
+                              ? theme.palette.primary.focus + "40"
+                              : "transparent",
+                            borderLeft: isActivePath(item.path)
+                              ? `4px solid ${theme.palette.primary.focus}`
+                              : "4px solid transparent",
+                            "&:hover": {
+                              backgroundColor: theme.palette.primary.focus + "20",
+                            },
+                          }}
                           onClick={() => handleNav(item.path)}
                         >
                           <ListItemIcon sx={{ minWidth: "40px" }}>
@@ -438,7 +478,12 @@ const Navbar = () => {
                           </ListItemIcon>
                           <ListItemText
                             primary={item.name}
-                            sx={{ color: "black" }}
+                            sx={{
+                              color: isActivePath(item.path)
+                                ? theme.palette.primary.hover
+                                : "black",
+                              fontWeight: isActivePath(item.path) ? 700 : 400,
+                            }}
                           />
                         </ListItemButton>
                       ))}
@@ -447,11 +492,26 @@ const Navbar = () => {
                 </Box>
                 <Divider />
               </>
-            ))}
+            );
+            })}
 
             {/* Static Links */}
             {staticLinks.map(({ label, path, icon }) => (
-              <ListItemButton key={label} onClick={() => handleNav(path)}>
+              <ListItemButton
+                key={label}
+                onClick={() => handleNav(path)}
+                sx={{
+                  backgroundColor: isActivePath(path)
+                    ? theme.palette.primary.focus + "40"
+                    : "transparent",
+                  borderLeft: isActivePath(path)
+                    ? `4px solid ${theme.palette.primary.focus}`
+                    : "4px solid transparent",
+                  "&:hover": {
+                    backgroundColor: theme.palette.primary.focus + "20",
+                  },
+                }}
+              >
                 <ListItemIcon sx={{ minWidth: "40px" }}>
                   <Box
                     component="img"
@@ -460,7 +520,13 @@ const Navbar = () => {
                     sx={{ height: 25, objectFit: "contain" }}
                   />
                 </ListItemIcon>
-                <ListItemText primary={label} sx={{ color: "black" }} />
+                <ListItemText
+                  primary={label}
+                  sx={{
+                    color: isActivePath(path) ? theme.palette.primary.hover : "black",
+                    fontWeight: isActivePath(path) ? 700 : 400,
+                  }}
+                />
               </ListItemButton>
             ))}
           </List>
