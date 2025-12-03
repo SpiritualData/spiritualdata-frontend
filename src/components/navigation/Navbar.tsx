@@ -22,7 +22,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import MenuIcon from "@mui/icons-material/Menu";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { useNavigate, useLocation } from "react-router-dom";
-import navbarLogo from "../../assets/images/navbar/SD-Logo.png";
+import navbarLogo from "../../assets/images/navbar/Navbar.png";
 import productIcon from "../../assets/images/navbar/icons-product.gif";
 import initiativesIcon from "../../assets/images/navbar/icons-initiatives.gif";
 import aboutIcon from "../../assets/images/navbar/icons-about.gif";
@@ -195,7 +195,7 @@ const Navbar = () => {
               {/* Mobile: Center = Logo */}
               <Box
                 onClick={() => handleNav("/")}
-                sx={{ cursor: "pointer", mx: "auto" }}
+                sx={{ cursor: "pointer", mx: "auto", pt:1 }}
               >
                 <Box
                   component="img"
@@ -232,12 +232,12 @@ const Navbar = () => {
           ) : (
             <>
               {/* Desktop Navbar */}
-              <Box onClick={() => handleNav("/")} sx={{ cursor: "pointer" }}>
+              <Box onClick={() => handleNav("/")} sx={{ cursor: "pointer", pt:0.8 }}>
                 <Box
                   component="img"
                   src={navbarLogo}
                   alt="Logo"
-                  sx={{ height: 40, objectFit: "contain" }}
+                  sx={{ height: 54, objectFit: "contain" }}
                 />
               </Box>
               <Box
