@@ -203,7 +203,7 @@ export const callToAction: callToAction = {
   additionalSubtitle: "Your journey starts now.",
   buttonText: "Start Your First Quest",
   buttonLink: "/sign-up",
-  footerNote: "Free to try - $10 a month",
-  additionalFooterNote1: "$10 a month",
+  footerNote: "Free to try - $5/month (single quest), $10/month (almost no limits)",
+  additionalFooterNote1: "",
   additionalFooterNote2: "Your data stays private",
 };
