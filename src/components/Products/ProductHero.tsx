@@ -10,6 +10,7 @@ type QuestHeroProps = {
     title: string;
     description: string;
     buttonText: string;
+    buttonLink?: string;
     subHead: string;
     subDesc: string;
   };
@@ -139,7 +140,13 @@ const ProductHero = ({ onScrollClick, product, content }: QuestHeroProps) => {
           {/* Button */}
           <Button
             variant="contained"
-            onClick={() => onScrollClick()}
+            onClick={() => {
+              if (content.buttonLink) {
+                window.open(content.buttonLink, '_blank');
+              } else {
+                onScrollClick();
+              }
+            }}
             sx={{
               backgroundColor: theme.palette.primary.focus,
               color: theme.palette.primary.hero,

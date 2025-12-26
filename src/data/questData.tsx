@@ -56,6 +56,7 @@ export const heroData = {
   description:
     "Your AI companion for meaningful transformation. Turn aspirations into achievements through guided conversations, intelligent accountability, and progress tracking.",
   buttonText: "Begin Your Quest",
+  buttonLink: "https://quest.spiritualdata.org/auth/signup",
   subHead: "Every Journey Deserves a Guide",
   subDesc:
     "Whether you're pursuing spiritual growth, personal transformation, or practical goals, Quest provides the structure and support you need to succeed.",
@@ -202,7 +203,7 @@ export const callToAction: callToAction = {
     "Add meaning to your life through clear direction and smart strategies.",
   additionalSubtitle: "Your journey starts now.",
   buttonText: "Start Your First Quest",
-  buttonLink: "/sign-up",
+  buttonLink: "https://quest.spiritualdata.org/auth/signup",
   footerNote: "Free to try - $5/month (single quest), $10/month (almost no limits)",
   additionalFooterNote1: "",
   additionalFooterNote2: "Your data stays private",
