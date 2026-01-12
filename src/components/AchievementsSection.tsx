@@ -104,15 +104,15 @@ const AchievementsSection = () => {
       suffix: "",
     },
     {
-      title: "Experiences Imported",
-      description: "Thousands of personal experiences have been collected.",
-      value: 5998,
+      title: "Human Experiences",
+      description: "Unique personal experiences have been collected.",
+      value: 137544,
     },
     {
-      title: "Scientific Studies",
+      title: "Research Papers",
       description:
         "Our knowledge graph includes research from biology, medicine, physics, psychology, religious studies, metaphysics, and many more fields.",
-      value: "Coming soon",
+      value: 26399175,
     },
     {
       title: "AI Accuracy Score",
@@ -218,7 +218,7 @@ const AchievementsSection = () => {
                         fontFamily: theme.typography.fontFamily,
                       }}
                     >
-                      {count}
+                      {isNumber ? count.toLocaleString() : count}
                       {isNumber && (item.suffix ?? "+")}
                     </Typography>
                   </CardContainer>
