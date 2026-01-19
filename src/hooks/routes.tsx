@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 import { ClerkProvider } from "@clerk/clerk-react";
-import { hotjar } from "react-hotjar";
 import { ReactElement } from "react";
 import Home from "../pages/Home";
 import About from "../pages/About";
@@ -10,6 +9,7 @@ import NotFound from "../pages/NotFound";
 import Chat from "../pages/Chat";
 import Donations from "../pages/Donations";
 import Policies from "../pages/Policies";
+import CookiePolicyPage from "../pages/CookiePolicyPage";
 import OutcomeChat from "../pages/OutcomeChat";
 import RequireAuthentication from "../auth/RequireAuthentication";
 import ProductsOutcomeChat from "../pages/ProductsOutcomeChat";
@@ -28,18 +28,6 @@ import PsychicAbilityCertification from "../pages/Initiatives/PsychicAbilityCert
 import Crisis from "../pages/Crisis";
 import Change from "../pages/Change";
 import OriginStory from "../pages/OriginStory";
-
-interface HotjarConfig {
-  id: string;
-  sv: number;
-}
-
-const hotjarConfig: HotjarConfig = {
-  id: import.meta.env.VITE_HOTJAR_ID,
-  sv: Number(import.meta.env.VITE_HOTJAR_VERSION) || 6,
-};
-
-hotjar.initialize({ id: Number(hotjarConfig.id), sv: hotjarConfig.sv });
 
 const useClerkRoutes = (): ReactElement => {
   const clerkPubKey: string = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -72,10 +60,7 @@ const useClerkRoutes = (): ReactElement => {
         <Route path="*" element={<NotFound />} />
         <Route path="/sign-in/*" element={<AuthPage />} />
         <Route path="/sign-up/*" element={<AuthPage />} />
-        <Route
-          path="/cookies"
-          element={<Policies fileName="/cookies.html" />}
-        />
+        <Route path="/cookies" element={<CookiePolicyPage />} />
         <Route
           path="/privacy"
           element={<Policies fileName="/privacy.html" />}

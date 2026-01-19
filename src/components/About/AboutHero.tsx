@@ -150,7 +150,7 @@ const AboutHero: React.FC = () => {
                     authority, taboo, or personal opinion."
                   </Typography>
                   <Button
-                    onClick={() => navigate("/sign-up")}
+                    onClick={() => window.open("https://quest.spiritualdata.org/sign-up", "_blank")}
                     variant="outlined"
                     sx={{
                       borderColor: theme.palette.primary.hover,
