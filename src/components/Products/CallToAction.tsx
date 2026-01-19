@@ -94,7 +94,7 @@ const CallToAction: React.FC<{
                 navigate(data.buttonLink);
               }
             } else {
-              navigate("/sign-up");
+              window.open("https://quest.spiritualdata.org/sign-up", "_blank");
             }
           }}
           sx={{
