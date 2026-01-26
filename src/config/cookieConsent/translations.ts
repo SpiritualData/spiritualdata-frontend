@@ -38,6 +38,47 @@ export const translations: Record<string, Translation> = {
           description:
             "Required for the website to function properly. These cookies enable core functionality such as security, authentication, and accessibility. They cannot be disabled.",
           linkedCategory: "necessary",
+          cookieTable: {
+            headers: {
+              name: "Name",
+              domain: "Domain",
+              description: "Description",
+              expiration: "Expiration",
+            },
+            body: [
+              {
+                name: "sd_cc",
+                domain: "spiritualdata.org",
+                description: "Stores cookie consent preferences",
+                expiration: "1 year",
+              },
+              {
+                name: "__session, *clerk*",
+                domain: ".spiritualdata.org",
+                description:
+                  "Clerk - user authentication and session management",
+                expiration: "Session to 1 month",
+              },
+              {
+                name: "__cf_bm, _cfuvid, cf_clearance",
+                domain: ".spiritualdata.org",
+                description: "Cloudflare - security and bot protection",
+                expiration: "Session to 1 year",
+              },
+              {
+                name: "__stripe_mid, __stripe_sid",
+                domain: "js.stripe.com",
+                description: "Stripe - fraud prevention and session state",
+                expiration: "1 year",
+              },
+              {
+                name: "ts_c, paypal_storage, nsid",
+                domain: ".paypal.com",
+                description: "PayPal - security and donation processing",
+                expiration: "Session to 20 years",
+              },
+            ],
+          },
         },
         {
           title: "Analytics Cookies",
@@ -53,16 +94,23 @@ export const translations: Record<string, Translation> = {
             },
             body: [
               {
-                name: "_ga, _ga_*",
+                name: "_ga, _ga_*, _gid, _gcl_au, _gat",
                 domain: "spiritualdata.org",
-                description: "Google Analytics - distinguishes unique users",
+                description:
+                  "Google Analytics - distinguishes users and throttles requests",
                 expiration: "2 years",
               },
               {
-                name: "_hj*",
+                name: "_hjSession*, _hjAbsoluteSessionInProgress, _hjIncludedInSessionSample_*",
                 domain: "spiritualdata.org",
-                description: "Hotjar - session analytics and heatmaps",
-                expiration: "1 year",
+                description: "Hotjar - session analytics and settings",
+                expiration: "Up to 1 year",
+              },
+              {
+                name: "_beehiiv_session, _beehiiv_attribution",
+                domain: ".beehiiv.com",
+                description: "Beehiiv - newsletter management and attribution",
+                expiration: "30 days",
               },
             ],
           },
@@ -81,9 +129,10 @@ export const translations: Record<string, Translation> = {
             },
             body: [
               {
-                name: "_fbp",
-                domain: ".spiritualdata.org",
-                description: "Meta Pixel - ad targeting and conversion tracking",
+                name: "_fbp, fr",
+                domain: ".spiritualdata.org / .facebook.com",
+                description:
+                  "Meta Pixel - ad targeting and conversion tracking",
                 expiration: "3 months",
               },
             ],
