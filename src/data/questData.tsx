@@ -13,11 +13,11 @@ import MicIcon from "@mui/icons-material/Mic";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 
 interface heroData {
-  title: string,
-  description: string,
-  buttonText: string,
-  subHead: string,
-  subDesc: string
+  title: string;
+  description: string;
+  buttonText: string;
+  subHead: string;
+  subDesc: string;
 }
 interface stepsData {
   step: string;
@@ -27,15 +27,15 @@ interface stepsData {
 }
 
 interface featuresData {
-  icon: JSX.Element,
-  title: string,
-  subHead: string,
-  desc: string
+  icon: JSX.Element;
+  title: string;
+  subHead: string;
+  desc: string;
 }
 
 interface useCasesData {
-  id: number,
-  title: string
+  id: number;
+  title: string;
 }
 
 interface callToAction {
@@ -43,7 +43,7 @@ interface callToAction {
   highlight?: string;
   suffix?: string;
   subtitle: string;
-  additionalSubtitle?: string
+  additionalSubtitle?: string;
   buttonText: string;
   buttonLink?: string;
   footerNote: string;
@@ -199,11 +199,13 @@ export const callToAction: callToAction = {
   title: "Ready to Begin Your",
   highlight: "Quest",
   suffix: "...?",
-  subtitle: "AI-driven goal planning, for power users, half the pricing of ChatGPT.",
-  additionalSubtitle: "Cheaper than Pro ChatGPT",
+  subtitle:
+    "Add meaning to your life through clear direction and smart strategies.",
+  additionalSubtitle: "Your journey starts now.",
   buttonText: "Start Your First Quest",
   buttonLink: "https://quest.spiritualdata.org/sign-up",
-  footerNote: "Free community access - $5 single quest only $10/month (Compared to ChatGPT $20).",
+  footerNote:
+    "Free community access - $5/month (single quest), $10/month (almost no limits)",
   additionalFooterNote1: "",
   additionalFooterNote2: "Your data stays private",
 };
