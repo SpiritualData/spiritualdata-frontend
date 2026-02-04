@@ -1,11 +1,11 @@
 import { JSX } from "react";
 import {
-    Settings as SettingsIcon,
-    Extension as ExtensionIcon,
-    Notifications as NotificationsIcon,
-    Security as SecurityIcon,
-    VpnKey as VpnKeyIcon,
-    Help as HelpIcon,
+  Settings as SettingsIcon,
+  Extension as ExtensionIcon,
+  Notifications as NotificationsIcon,
+  Security as SecurityIcon,
+  VpnKey as VpnKeyIcon,
+  Help as HelpIcon,
 } from "@mui/icons-material";
 import ImageIcon from "@mui/icons-material/Image";
 import CloudQueueIcon from "@mui/icons-material/CloudQueue";
@@ -13,11 +13,11 @@ import MicIcon from "@mui/icons-material/Mic";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 
 interface heroData {
-    title: string,
-    description: string,
-    buttonText: string,
-    subHead: string,
-    subDesc: string
+  title: string,
+  description: string,
+  buttonText: string,
+  subHead: string,
+  subDesc: string
 }
 interface stepsData {
   step: string;
@@ -27,15 +27,15 @@ interface stepsData {
 }
 
 interface featuresData {
-    icon: JSX.Element,
-    title: string,
-    subHead: string,
-    desc: string
+  icon: JSX.Element,
+  title: string,
+  subHead: string,
+  desc: string
 }
 
 interface useCasesData {
-    id: number,
-    title: string
+  id: number,
+  title: string
 }
 
 interface callToAction {
@@ -54,144 +54,144 @@ interface callToAction {
 export const heroData = {
   title: "Quest",
   description:
-    "Your AI companion for meaningful transformation. Turn aspirations into achievements through guided conversations, intelligent accountability, and progress tracking.",
+    "Quest means Qualitative Understanding Enables Self Transformation, built for power-users, achieving transformative goals with AI planning, research, accountability.",
   buttonText: "Begin Your Quest",
   buttonLink: "https://quest.spiritualdata.org/sign-up",
-  subHead: "Every Journey Deserves a Guide",
+  subHead: "Power Users Need True Guidance",
   subDesc:
-    "Whether you're pursuing spiritual growth, personal transformation, or practical goals, Quest provides the structure and support you need to succeed.",
+    "Quest backs powerusers for mental health, body health, psychic ability, relationships, and career wins with science, AI context, and accountability.",
 };
 
 export const stepsData: stepsData[] = [
   {
-    step: "1. Define Your Quest",
+    step: "1. Design Your Quest",
     icon: <ImageIcon fontSize="large" />,
-    title: "Clarify your vision.",
-    desc: "Share your desired outcome—whether it's spiritual growth, improved well-being, or personal development. Quest asks thoughtful questions to understand where you are and where you want to go.",
+    title: "Clarify your mission",
+    desc: "Share your transformative goal-plan, from mental health to psychic ability or career success. Quest asks ultra-precise questions to capture contextual values, and the outcome you most want.",
   },
   {
-    step: "2. Receive Your Roadmap",
+    step: "2. Create Your Roadmap.",
     icon: <CloudQueueIcon fontSize="large" />,
-    title: "Get your personalized plan.",
-    desc: "Based on your goals and circumstances, Quest creates a step-by-step action plan with milestone dates, recommended practices, and strategies rooted in evidence and insight.",
+    title: "Get your science-based plan",
+    desc: "Quest analyzes your context with AI and Deep Inquiry, mapping a timeline with milestones, practices, and research-backed verified strategies drawn from millions of papers.",
   },
   {
-    step: "3. Take Action & Update",
+    step: "3. Act, Track and Adapt",
     icon: <MicIcon fontSize="large" />,
-    title: "Stay supported as you move forward.",
-    desc: "Begin your journey with confidence. Quest offers reminders, encouragement, and space to reflect as you take steps toward your goal. Log progress and get help when you face challenges.",
+    title: "Stay accountable as habits guide us",
+    desc: "Quest sends habit reminders, tracks logs like dreams or practice logs, and checks in proactive. Record progress, adjust habits, and get support when blocks appear on timeline for you.",
   },
   {
-    step: "4. Achieve & Evolve",
+    step: "4. Achieve & Refine",
     icon: <AccessTimeIcon fontSize="large" />,
-    title: "Celebrate and expand your transformation.",
-    desc: "Reflect on your growth, celebrate milestones, and let Quest recommend new directions based on everything you've accomplished. Your evolution becomes the foundation for future quests.",
+    title: "Celebrate and refine your transformation.",
+    desc: "Review your outcomes, celebrate milestones, and let Quest recommend future quests, mentors, or communities. Your combined goals become one timetable with data-guided habits for life.",
   },
 ];
 
 export const featuresData: featuresData[] = [
   {
     icon: <SettingsIcon />,
-    title: "Goal-Driven Conversations",
-    subHead: "Turn Conversations Into Progress ",
-    desc: "Your journey begins with purposeful conversations. Quest guides you through focused dialogues, asking insightful questions to uncover your true objectives and craft a path toward meaningful outcomes.",
+    title: "Deep-Inquiry Conversation",
+    subHead: "Deep-Inquiry Guides Goal Roadmaps",
+    desc: "Start with high-context interviews. Quest uses Qualitative Understanding, Deep Inquiry, and your history to surface priorities, define outcomes, and align habits with your most important goals today.",
   },
   {
     icon: <ExtensionIcon />,
-    title: "Intelligent Accountability",
-    subHead: "Gentle Reminders, Thoughtful Support",
-    desc: "Quest follows up at the right moments—offering timely nudges, motivation, and helpful insights when you need them most. It's like having a wise mentor who never forgets your goals.",
+    title: "Intelligent FollowThroughs",
+    subHead: "Habit Reminders, Proactive Followups",
+    desc: "Quest checks in when habits slip, sends pings, and offers mentor nudges. It tracks your promises, notices trends, and keeps you accountable without stress or guilt for power users.",
   },
   {
     icon: <NotificationsIcon />,
-    title: "Visual Progress Tracking",
-    subHead: "See Your Growth Unfold",
-    desc: "Track your progress through intuitive charts and dynamic visuals. From small wins to major milestones, Quest helps you reflect on how far you've come and where you're headed next.",
+    title: "Goal Timeline Monitoring",
+    subHead: "See Your Data Flowing!",
+    desc: "Track habits, goals, and collections in crystal charts. Weekly insights show what works, what stalls, and how your roadmap evolves as data grows for each quest and timeline cycle.",
   },
   {
     icon: <SecurityIcon />,
-    title: "Spiritual Data Integration",
-    subHead: "Beyond Productivity—Into Purpose",
-    desc: "Quest uniquely understands spiritual data—the thoughts, experiences, and decisions that shape your higher self. Perfect for journeys involving metaphysical growth, intuition, and deep personal insight.",
+    title: "Spiritual Data Collections",
+    subHead: "Beyond-Metrics Metamorphosis Way",
+    desc: "Build customized collections for dreams, habits, reflections, goalpractice attempts, or spirituality experiences. Quest uses this dataset to hyper-personalize weekly insights and refine your goal plan.",
   },
   {
     icon: <VpnKeyIcon />,
-    title: "Research-Backed Guidance",
-    subHead: "Science Meets Wisdom",
-    desc: "Quest blends evidence-based strategies with intuitive reasoning. By drawing from scientific studies, real-world methodologies, and lived human experiences, your path forward is always grounded and personalized.",
+    title: "Scientific Knowledgebase",
+    subHead: "Science Fuels Wisdom",
+    desc: "Search 26-million+ papers, and 100k-plus life-experiences, from near-death case-studies to Reddit posts-online. Deep Inquiry analyzes evidence and your context to recommend strategies for goal planning success.",
   },
   {
     icon: <HelpIcon />,
-    title: "Adaptive Learning",
-    subHead: "Grows With You",
-    desc: "The more you interact, the more Quest understands you. It continuously learns from your responses, preferences, and behavior to offer smarter suggestions, refined strategies, and deeper alignment with your goals.",
+    title: "Community Mentors",
+    subHead: "Hire A Mentor!",
+    desc: "Mentorships are coming soon: Quest will matchmake specialists and mentees for paid-tier check-ins, plus communitywide worlds with planets, towns, chat and shared goal scoreboard you create inside a 3D spaceworld.",
   },
 ];
 
 export const useCasesData: useCasesData[] = [
   {
     id: 1,
-    title: "Spiritual Growth",
+    title: "Emotional Health",
   },
   {
     id: 2,
-    title: "Personal Development",
+    title: "Psychic Capabilities",
   },
   {
     id: 3,
-    title: "Health & Wellness",
+    title: "Mind And Wellness",
   },
   {
     id: 4,
-    title: "Productivity",
+    title: "GoalTimeline",
   },
   {
     id: 5,
-    title: "Relationships",
+    title: "Connectedness",
   },
   {
     id: 6,
-    title: "Creative Expression",
+    title: "Near-Death Research",
   },
   {
     id: 7,
-    title: "Life Transitions",
+    title: "Human Capability",
   },
   {
     id: 8,
-    title: "Push Boundaries",
+    title: "Psychic Ability",
   },
   {
     id: 9,
-    title: "Spiritual Growth",
+    title: "Emotional Health",
   },
   {
     id: 10,
-    title: "Personal Development",
+    title: "Psychic Capabilities",
   },
   {
     id: 11,
-    title: "Health & Wellness",
+    title: "Mind And Wellness",
   },
   {
     id: 12,
-    title: "Productivity",
+    title: "GoalTimeline",
   },
   {
     id: 13,
-    title: "Relationships",
+    title: "Connectedness",
   },
   {
     id: 14,
-    title: "Creative Expression",
+    title: "Near-Death Research",
   },
   {
     id: 15,
-    title: "Life Transitions",
+    title: "Human Capability",
   },
   {
     id: 16,
-    title: "Push Boundaries",
+    title: "Psychic Ability",
   },
 ];
 
@@ -199,12 +199,11 @@ export const callToAction: callToAction = {
   title: "Ready to Begin Your",
   highlight: "Quest",
   suffix: "...?",
-  subtitle:
-    "Add meaning to your life through clear direction and smart strategies.",
-  additionalSubtitle: "Your journey starts now.",
+  subtitle: "AI-driven goal planning, for power users, half the pricing of ChatGPT.",
+  additionalSubtitle: "Cheaper than Pro ChatGPT",
   buttonText: "Start Your First Quest",
   buttonLink: "https://quest.spiritualdata.org/sign-up",
-  footerNote: "Free to try - $5/month (single quest), $10/month (almost no limits)",
+  footerNote: "Free community access - $5 single quest only $10/month (Compared to ChatGPT $20).",
   additionalFooterNote1: "",
   additionalFooterNote2: "Your data stays private",
 };
