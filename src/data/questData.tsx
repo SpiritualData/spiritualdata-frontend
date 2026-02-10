@@ -51,6 +51,28 @@ interface callToAction {
   additionalFooterNote2?: string;
 }
 
+interface whatItLooksLikeItem {
+  title: string;
+  description: string;
+  top: number;
+  left?: number;
+  right?: number;
+}
+
+interface whatItLooksLikeData {
+  eyebrow: string;
+  title: string;
+  description: string;
+  leftItems: whatItLooksLikeItem[];
+  rightItems: whatItLooksLikeItem[];
+}
+
+interface questMissionData {
+  badge: string;
+  title: string;
+  description: string;
+}
+
 export const heroData = {
   title: "Quest",
   description:
@@ -208,4 +230,70 @@ export const callToAction: callToAction = {
     "Free community access - $5/month (single quest), $10/month (almost no limits)",
   additionalFooterNote1: "",
   additionalFooterNote2: "Your data stays private",
+};
+
+export const whatItLooksLikeData: whatItLooksLikeData = {
+  eyebrow: "Our Specialties",
+  title: "What A Real Quest Looks Like",
+  description:
+    "Quest empowers advanced users to improve mental wellbeing, physical health, intuition, relationships, and career growth through science, AI insight, and structured accountability.",
+  leftItems: [
+    {
+      title: "Welcome",
+      description: "Clarify purposeful vision with guidance",
+      left: 15,
+      top: 12,
+    },
+    {
+      title: "Category",
+      description: "Set lasting goals and map fresh actions",
+      left: 0,
+      top: 38,
+    },
+    {
+      title: "Goal",
+      description: "Review insights to track your progress",
+      left: 0,
+      top: 64,
+    },
+    {
+      title: "Context",
+      description: "Review your gains and absorb lessons",
+      left: 15,
+      top: 90,
+    },
+  ],
+  rightItems: [
+    {
+      title: "Preferences",
+      description: "Clarify purposeful vision with guidance",
+      right: 15,
+      top: 12,
+    },
+    {
+      title: "Deep Inquiry",
+      description: "Build steady habits and keep slow pace",
+      right: 0,
+      top: 38,
+    },
+    {
+      title: "Strategies",
+      description: "Review insights to track your progress",
+      right: 0,
+      top: 64,
+    },
+    {
+      title: "Plan",
+      description: "Review your gains and absorb lessons",
+      right: 15,
+      top: 90,
+    },
+  ],
+};
+
+export const questMissionData: questMissionData = {
+  badge: "Our Vision",
+  title: "Build the clearest path from intention to transformation",
+  description:
+    "Quest exists to help power users turn ambitious goals into measurable progress. We combine deep inquiry, scientific evidence, and AI-guided accountability so every step is grounded, trackable, and aligned with the life you want to build.",
 };
