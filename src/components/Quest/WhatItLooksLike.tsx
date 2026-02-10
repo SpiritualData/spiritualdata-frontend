@@ -42,7 +42,11 @@ const WhatItLooksLike = ({ data }: { data: WhatItLooksLikeData }) => {
   const leftRange = getTopRange(data.leftItems);
   const rightRange = getTopRange(data.rightItems);
 
-  const renderItem = (item: WhatItLooksLikeItem, align: "left" | "right") => {
+  const renderItem = (
+    item: WhatItLooksLikeItem,
+    align: "left" | "right",
+    number: number,
+  ) => {
     const isLeft = align === "left";
     const leftOffset = item.left === undefined ? "auto" : `${item.left}%`;
     const rightOffset = item.right === undefined ? "auto" : `${item.right}%`;
@@ -101,7 +105,7 @@ const WhatItLooksLike = ({ data }: { data: WhatItLooksLikeData }) => {
               mb: 0.5,
             }}
           >
-            {item.title}
+            {`${number}. ${item.title}`}
           </Typography>
           <Typography
             variant="body2"
@@ -220,7 +224,9 @@ const WhatItLooksLike = ({ data }: { data: WhatItLooksLikeData }) => {
                 />
               </Box>
             </Box>
-            {data.leftItems.map((item) => renderItem(item, "left"))}
+            {data.leftItems.map((item, index) =>
+              renderItem(item, "left", index + 1),
+            )}
           </Box>
 
           <Box
@@ -336,7 +342,9 @@ const WhatItLooksLike = ({ data }: { data: WhatItLooksLikeData }) => {
                 />
               </Box>
             </Box>
-            {data.rightItems.map((item) => renderItem(item, "right"))}
+            {data.rightItems.map((item, index) =>
+              renderItem(item, "right", data.leftItems.length + index + 1),
+            )}
           </Box>
         </Box>
       </Container>
