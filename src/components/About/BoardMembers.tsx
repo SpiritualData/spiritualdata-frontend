@@ -11,6 +11,7 @@ import bm5 from "../../assets/images/about/bm5.webp";
 import yugen from "../../assets/images/about/yugen_korat.webp";
 import armin from "../../assets/images/about/armin_masoumian.jpg";
 import sander from "../../assets/images/about/sander_stepanov.jpg";
+import stephen from "../../assets/images/about/stephen_schwartz.jpeg";
 
 const BoardMembers: React.FC = () => {
   const { ref: sectionRef, inView: sectionInView } = useInView({
@@ -83,6 +84,12 @@ const BoardMembers: React.FC = () => {
       subText: "Dr. Sander Stepanov is an independent industry expert combining expertise in artificial intelligence, electronics engineering, and consciousness studies. He holds a PhD in Electronics Engineering from Saint Petersburg State Technological University of Communication Systems and has worked as an AI Developer at Jesta I.S. in Toronto. Sander's research bridges theoretical and applied AI, with published work in MIMO signal detection, optical communication systems, and signal processing algorithms. His unique interdisciplinary approach integrates AI and data science with consciousness research, exploring how computational methods can illuminate questions about awareness and subjective experience. Sander is passionate about solving complex problems at the intersection of technology and human consciousness.",
       buttonText: "Get In Touch →",
       imageSrc: sander,
+    },
+    {
+      heading: "Stephan Schwartz",
+      subText: "Dr. Stephan A. Schwartz is a consciousness researcher and futurist with over 40 years of experimental research studying the nature of consciousness. He is co-founder of the Society for the Anthropology of Consciousness and the Association of Post-materialist Science, a Distinguished Associated Scholar at California Institute for Human Science, and a BIAL Foundation Fellow. Schwartz pioneered the use of remote viewing in archaeology, leading discoveries including Cleopatra's Palace and Marc Antony's Timonium. He has authored over 130 technical reports and papers, written for Smithsonian and The New York Times, and received the Parapsychological Association's Outstanding Contribution Award. Schwartz hosts a weekly podcast and edits the daily web publication Schwartzreport.net.",
+      buttonText: "Get In Touch →",
+      imageSrc: stephen,
     },
   ];
 

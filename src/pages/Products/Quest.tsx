@@ -8,9 +8,13 @@ import {
   useCasesData,
   callToAction,
   heroData,
+  whatItLooksLikeData,
+  questMissionData,
 } from "../../data/questData";
 import ProductHero from "@/components/Products/ProductHero";
 import CalltoAction from "../../components/Products/CallToAction";
+import WhatItLooksLike from "@/components/Quest/WhatItLooksLike";
+import QuestMission from "@/components/Quest/QuestMission";
 
 const Quest = () => {
   const useCasesRef = useRef<HTMLDivElement | null>(null);
@@ -25,6 +29,8 @@ const Quest = () => {
         product="quest"
         onScrollClick={scrollToUseCases}
       />
+      <WhatItLooksLike data={whatItLooksLikeData} />
+      <QuestMission data={questMissionData} />
       <Features data={featuresData} />
       <Steps data={stepsData} />
       <UseCases data={useCasesData} />
