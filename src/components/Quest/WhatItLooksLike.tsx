@@ -1,7 +1,7 @@
 import { Box, Container, Typography, useTheme } from "@mui/material";
 import { alpha } from "@mui/material/styles";
 import CheckIcon from "@mui/icons-material/Check";
-import whatItLooksLikeImg from "../../assets/images/Products/WhatItLooksLikeImg.webp";
+import whatItLooksLikeImg from "../../assets/images/products/WhatItLooksLikeImg.webp";
 
 type WhatItLooksLikeItem = {
   title: string;

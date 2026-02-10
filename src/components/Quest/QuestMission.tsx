@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Container, Typography, useTheme } from "@mui/material";
 import { alpha } from "@mui/material/styles";
-import videoBg from "../../assets/images/Products/video-bg-1.webp";
+import videoBg from "../../assets/images/products/video-bg-1.webp";
 import { useInView } from "../../hooks/useInView";
 
 type QuestMissionData = {
