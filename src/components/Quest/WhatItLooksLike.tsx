@@ -1,6 +1,5 @@
 import { Box, Container, Typography, useTheme } from "@mui/material";
 import { alpha } from "@mui/material/styles";
-import CheckIcon from "@mui/icons-material/Check";
 import whatItLooksLikeImg from "../../assets/images/products/WhatItLooksLikeImg.webp";
 
 type WhatItLooksLikeItem = {
@@ -64,7 +63,9 @@ const WhatItLooksLike = ({ data }: { data: WhatItLooksLikeData }) => {
           flexShrink: 0,
         }}
       >
-        <CheckIcon sx={{ color: theme.palette.common.white, fontSize: 22 }} />
+        <Typography variant="h6" sx={{ color: theme.palette.common.white }}>
+          {number}
+        </Typography>
       </Box>
     );
     const mobileIcon = (
@@ -105,7 +106,7 @@ const WhatItLooksLike = ({ data }: { data: WhatItLooksLikeData }) => {
               mb: 0.5,
             }}
           >
-            {`${number}. ${item.title}`}
+            {item.title}
           </Typography>
           <Typography
             variant="body2"
