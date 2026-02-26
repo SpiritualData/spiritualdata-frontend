@@ -114,9 +114,9 @@ export const stepsData: stepsData[] = [
 export const featuresData: featuresData[] = [
   {
     icon: <SettingsIcon />,
-    title: "Deep-Inquiry Conversation",
-    subHead: "Deep-Inquiry Guides Goal Roadmaps",
-    desc: "Start with thoughtful, high-context conversations. Quest uses Qualitative Understanding, Deep Inquiry, and your history to surface priorities, define outcomes, and align habits with what matters most right now.",
+    title: "Personal Context",
+    subHead: "Detail Your Goal With Clarity",
+    desc: "Quest helps you clearly describe your goal, situation, constraints, and priorities. That personal context is then used to generate smarter recommendations, timelines, and habit plans tailored specifically to you.",
   },
   {
     icon: <ExtensionIcon />,
