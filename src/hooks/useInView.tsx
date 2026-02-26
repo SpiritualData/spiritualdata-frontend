@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 
 export function useInView(options = { threshold: 0.3 }) {
-  const ref = useRef(null);
+  const ref = useRef<HTMLElement>(null);
   const [inView, setInView] = useState(false);
 
   useEffect(() => {
@@ -16,10 +16,7 @@ export function useInView(options = { threshold: 0.3 }) {
 
     // Check if element is already in view on mount
     const rect = element.getBoundingClientRect();
-    const isInView = (
-      rect.top < window.innerHeight &&
-      rect.bottom > 0
-    );
+    const isInView = rect.top < window.innerHeight && rect.bottom > 0;
     if (isInView) {
       setInView(true);
     }

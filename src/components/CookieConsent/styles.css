@@ -1,0 +1,325 @@
+/**
+ * Cookie Consent Custom Theme
+ *
+ * Matches Spiritual Data's Material-UI theme:
+ * - Primary: #F4F6FA (light background)
+ * - Accent: #FFBF00 (golden)
+ * - Dark: #000d2c (dark blue)
+ * - Text: #1F2540 (dark text)
+ * - Font: Outfit, sans-serif
+ */
+
+/* ===========================================
+   CSS Custom Properties Override
+   =========================================== */
+
+#cc-main {
+  /* Typography */
+  --cc-font-family: "Outfit", sans-serif;
+
+  /* Colors - Background */
+  --cc-bg: #f4f6fa;
+  --cc-overlay-bg: rgba(0, 13, 44, 0.65);
+
+  /* Colors - Text */
+  --cc-primary-color: #1f2540;
+  --cc-secondary-color: #5e6266;
+
+  /* Colors - Primary Button (Accept All) */
+  --cc-btn-primary-bg: #ffbf00;
+  --cc-btn-primary-color: #000d2c;
+  --cc-btn-primary-border-color: #ffbf00;
+  --cc-btn-primary-hover-bg: #000d2c;
+  --cc-btn-primary-hover-color: #ffbf00;
+  --cc-btn-primary-hover-border-color: #000d2c;
+
+  /* Colors - Secondary Button (Reject/Manage) */
+  --cc-btn-secondary-bg: transparent;
+  --cc-btn-secondary-color: #000d2c;
+  --cc-btn-secondary-border-color: #000d2c;
+  --cc-btn-secondary-hover-bg: #000d2c;
+  --cc-btn-secondary-hover-color: #f4f6fa;
+  --cc-btn-secondary-hover-border-color: #000d2c;
+
+  /* Colors - Toggle Switch */
+  --cc-toggle-on-bg: #ffbf00;
+  --cc-toggle-off-bg: #d6dbe8;
+  --cc-toggle-on-knob-bg: #fff;
+  --cc-toggle-off-knob-bg: #fff;
+  --cc-toggle-readonly-bg: #9ca3af;
+  --cc-toggle-readonly-knob-bg: #fff;
+
+  /* Colors - Links */
+  --cc-link-color: #ffbf00;
+
+  /* Colors - Separators & Borders */
+  --cc-separator-border-color: rgba(31, 37, 64, 0.1);
+  --cc-section-category-border: rgba(31, 37, 64, 0.1);
+
+  /* Colors - Category Blocks */
+  --cc-cookie-category-block-bg: rgba(0, 13, 44, 0.03);
+  --cc-cookie-category-block-border: rgba(31, 37, 64, 0.08);
+  --cc-cookie-category-block-hover-bg: rgba(0, 13, 44, 0.06);
+  --cc-cookie-category-block-hover-border: rgba(31, 37, 64, 0.12);
+  --cc-cookie-category-expanded-block-bg: rgba(0, 13, 44, 0.02);
+  --cc-cookie-category-expanded-block-hover-bg: rgba(0, 13, 44, 0.04);
+
+  /* Colors - Footer */
+  --cc-footer-bg: rgba(0, 13, 44, 0.03);
+  --cc-footer-color: #5e6266;
+  --cc-footer-border-color: rgba(31, 37, 64, 0.1);
+
+  /* Colors - Scrollbar */
+  --cc-webkit-scrollbar-bg: #d6dbe8;
+  --cc-webkit-scrollbar-hover-bg: #b8c0d0;
+
+  /* Border Radius */
+  --cc-modal-border-radius: 1rem;
+  --cc-btn-border-radius: 999px;
+  --cc-pm-toggle-border-radius: 999px;
+
+  /* Spacing */
+  --cc-modal-margin: 1rem;
+
+  /* Transitions */
+  --cc-modal-transition-duration: 0.25s;
+}
+
+/* ===========================================
+   Consent Modal Customizations
+   =========================================== */
+
+/* Modal container */
+#cc-main .cm {
+  box-shadow: 0 8px 32px rgba(0, 13, 44, 0.15);
+}
+
+/* Modal title */
+#cc-main .cm__title {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #000d2c;
+}
+
+/* Modal description */
+#cc-main .cm__desc {
+  line-height: 1.6;
+}
+
+/* All buttons */
+#cc-main .cm__btn {
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.2s ease;
+  border-width: 2px;
+  border-style: solid;
+}
+
+#cc-main .cm__btn:hover {
+  transform: translateY(-1px);
+}
+
+#cc-main .cm__btn:active {
+  transform: translateY(0);
+}
+
+/* Footer links */
+#cc-main .cm__footer {
+  font-size: 0.875rem;
+}
+
+#cc-main .cm__footer a {
+  color: #5e6266;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+#cc-main .cm__footer a:hover {
+  color: #ffbf00;
+  text-decoration: underline;
+}
+
+/* ===========================================
+   Preferences Modal Customizations
+   =========================================== */
+
+/* Modal container */
+#cc-main .pm {
+  box-shadow: 0 8px 32px rgba(0, 13, 44, 0.2);
+}
+
+/* Modal title */
+#cc-main .pm__title {
+  font-weight: 700;
+  color: #000d2c;
+}
+
+/* Section titles */
+#cc-main .pm__section-title {
+  font-weight: 600;
+  color: #000d2c;
+}
+
+/* Section descriptions */
+#cc-main .pm__section-desc {
+  line-height: 1.6;
+}
+
+/* Section description links */
+#cc-main .pm__section-desc a {
+  color: #ffbf00;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+#cc-main .pm__section-desc a:hover {
+  text-decoration: underline;
+}
+
+/* Buttons in preferences modal */
+#cc-main .pm__btn {
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.2s ease;
+  border-width: 2px;
+  border-style: solid;
+}
+
+#cc-main .pm__btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Close button */
+#cc-main .pm__close-btn {
+  transition: opacity 0.2s ease;
+}
+
+#cc-main .pm__close-btn:hover {
+  opacity: 0.7;
+}
+
+/* ===========================================
+   Cookie Table Customizations
+   =========================================== */
+
+#cc-main .pm__table {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  font-size: 0.875rem;
+}
+
+#cc-main .pm__table-head {
+  background: #000d2c;
+  color: #f4f6fa;
+  font-weight: 600;
+}
+
+#cc-main .pm__table-tr:nth-child(even) {
+  background: rgba(214, 219, 232, 0.3);
+}
+
+#cc-main .pm__table-td {
+  padding: 0.75rem 1rem;
+}
+
+/* ===========================================
+   Toggle Switch Customizations
+   =========================================== */
+
+#cc-main .section__toggle {
+  transition: background-color 0.2s ease;
+}
+
+#cc-main .section__toggle-knob {
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+/* ===========================================
+   Responsive Adjustments
+   =========================================== */
+
+@media (max-width: 600px) {
+  #cc-main {
+    --cc-modal-margin: 0.75rem;
+  }
+
+  #cc-main .cm {
+    border-radius: 0.75rem;
+  }
+
+  #cc-main .cm__title {
+    font-size: 1.125rem;
+  }
+
+  #cc-main .cm__btn {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    justify-content: center;
+  }
+
+  #cc-main .cm__btn:last-child {
+    margin-bottom: 0;
+  }
+
+  #cc-main .pm {
+    border-radius: 0;
+  }
+
+  #cc-main .pm__btn {
+    padding: 0.625rem 1rem;
+  }
+}
+
+/* ===========================================
+   Focus States (Accessibility)
+   =========================================== */
+
+#cc-main .cm__btn:focus-visible,
+#cc-main .pm__btn:focus-visible {
+  outline: 2px solid #ffbf00;
+  outline-offset: 2px;
+}
+
+#cc-main .section__toggle:focus-visible {
+  outline: 2px solid #ffbf00;
+  outline-offset: 2px;
+}
+
+#cc-main a:focus-visible {
+  outline: 2px solid #ffbf00;
+  outline-offset: 2px;
+}
+
+/* ===========================================
+   Animation Refinements
+   =========================================== */
+
+#cc-main .cm--show {
+  animation: cc-fadeIn 0.25s ease-out;
+}
+
+#cc-main .pm--show {
+  animation: cc-slideIn 0.25s ease-out;
+}
+
+@keyframes cc-fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cc-slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

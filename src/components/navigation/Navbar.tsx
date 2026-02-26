@@ -208,11 +208,7 @@ const Navbar = () => {
               {/* Mobile: Right = Sign In */}
               <Button
                 onClick={() => {
-                  if (userExists) {
-                    handleNav("/chat");
-                  } else {
-                    window.open("https://quest.spiritualdata.org", "_blank");
-                  }
+                  window.open("https://quest.spiritualdata.org/sign-in", "_blank");
                 }}
                 sx={{
                   backgroundColor: theme.palette.primary.focus,
@@ -232,7 +228,7 @@ const Navbar = () => {
                   },
                 }}
               >
-                {userExists ? "Chat" : "Sign In"}
+                Sign In
               </Button>
             </>
           ) : (
@@ -333,11 +329,7 @@ const Navbar = () => {
                 ))}
                 <Button
                   onClick={() => {
-                    if (userExists) {
-                      handleNav("/chat");
-                    } else {
-                      window.open("https://quest.spiritualdata.org", "_blank");
-                    }
+                    window.open("https://quest.spiritualdata.org/sign-in", "_blank");
                   }}
                   sx={{
                     backgroundColor: theme.palette.primary.focus,
@@ -358,7 +350,7 @@ const Navbar = () => {
                     },
                   }}
                 >
-                  {userExists ? "Chat" : "Sign In"}
+                  Sign In
                 </Button>
               </Box>
             </>
