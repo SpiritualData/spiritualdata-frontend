@@ -91,15 +91,18 @@ const WhyChooseUs = ({ data }: WhyChooseUsProps) => {
               playsInline
               sx={{
                 position: { xs: "relative", md: "fixed" },
-                display: { xs: "none", md: "block" },
+                display: "block",
                 top: 0,
                 left: 0,
-                mt: 12,
+                mt: { xs: 5, md: 12 },
                 width: { xs: "100%", md: isVideo ? "40vw" : "50vw" },
-                height: { xs: "40vh", md: "90vh" },
+                height: { xs: "60vh", md: "90vh" },
                 objectFit: "contain",
-                objectPosition: isVideo ? "right" : "center",
-                zIndex: -1,
+                objectPosition: {
+                  xs: "center",
+                  md: isVideo ? "right" : "center",
+                },
+                zIndex: { xs: 0, md: -1 },
                 bgcolor: theme.palette.primary.main,
               }}
             />
@@ -138,7 +141,7 @@ const WhyChooseUs = ({ data }: WhyChooseUsProps) => {
           width: { xs: "100%", md: "50%" },
           backgroundColor: isVideo ? theme.palette.primary.main : null,
           pr: isVideo ? { xs: 3, md: 10, lg: 30 } : { xs: 3, md: 10, lg: 20 },
-          pl: isVideo ? { xs: 0, md: 0, lg: 10 } : { xs: 3, md: 10, lg: 20 },
+          pl: isVideo ? { xs: 3, md: 0, lg: 10 } : { xs: 3, md: 10, lg: 20 },
           py: { xs: 6, md: 12 },
           zIndex: 1,
         }}
@@ -230,6 +233,7 @@ const WhyChooseUs = ({ data }: WhyChooseUsProps) => {
                 color: theme.palette.text.secondary,
                 lineHeight: 1.6,
                 fontSize: { xs: 14, md: 16 },
+                mr: { xs: 5, md: 0 },
               }}
             >
               {item.description}
