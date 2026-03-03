@@ -11,6 +11,7 @@ import ImageIcon from "@mui/icons-material/Image";
 import CloudQueueIcon from "@mui/icons-material/CloudQueue";
 import MicIcon from "@mui/icons-material/Mic";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import processbgvideo from "../assets/images/Products/process.mp4";
 
 interface heroData {
   title: string;
@@ -71,6 +72,18 @@ interface questMissionData {
   badge: string;
   title: string;
   description: string;
+}
+
+export interface questProcessItem {
+  title: string;
+  description: string;
+}
+
+export interface questProcessItems {
+  overline: string;
+  heading: string;
+  media: string;
+  reasons: questProcessItem[];
 }
 
 export const heroData = {
@@ -296,4 +309,33 @@ export const questMissionData: questMissionData = {
   title: "Build the clearest path from intention to transformation",
   description:
     "Quest exists to help people turn ambitious goals into measurable progress. We combine deep inquiry, scientific evidence, and guided accountability so every step feels intentional, trackable, and aligned with the life you want to build.",
+};
+
+export const questProcessItems: questProcessItems = {
+  overline: "Clarity Is a System.",
+  heading:
+    "Start your Quest in minutes. Turn any goal into a personalized, step-by-step execution system powered by intelligent guidance.",
+  media: processbgvideo,
+  reasons: [
+    {
+      title: "Enter Your Goal",
+      description:
+        "Define what you want to achieve and how success will feel in real life. Quest captures your intention, scope, and time horizon, then begins structuring it into a clear, actionable outcome you can commit to with confidence.",
+    },
+    {
+      title: "Answer Context Questions",
+      description:
+        "Share your current situation, challenges, resources, and preferences. This grounding detail lets Quest tailor your plan to your real schedule and constraints, not generic advice or one-size-fits-all routines, so it feels doable from day one.",
+    },
+    {
+      title: "Select Expert Perspectives",
+      description:
+        "Choose the lenses and methodologies you trust, from evidence-based frameworks to spiritual traditions or coaching styles. Quest blends those aligned perspectives into a roadmap that fits how you learn, decide, and act without diluting your values.",
+    },
+    {
+      title: "Get Personalized Strategies",
+      description:
+        "Receive a fully structured plan with timelines, milestones, goals, and daily habits, ready to execute immediately. Each step is prioritized and paced so you can make steady progress, track momentum, and adjust as your life changes.",
+    },
+  ],
 };
