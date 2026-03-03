@@ -1,38 +1,70 @@
+import { useEffect, useRef, useState } from "react";
 import { Box, Typography, useTheme } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { useInView } from "../hooks/useInView";
-import whyChooseUsImage from "../assets/images/whychooseus/choose.webp";
+import type { WhyChooseUsData } from "../data/homeData";
 
-const reasons = [
-  {
-    title: "Unbiased Truth Estimation",
-    description:
-      "Our AI evaluates claims based on weighted evidence—not belief, authority, or popularity—giving you clarity without dogma. We tackle bias by automating diverse expert perspectives on every data point.",
-  },
-  {
-    title: "Data from All Perspectives",
-    description:
-      "We aggregate human experiences, scientific studies, and overlooked data sources to ensure no valuable insight is left behind, while critically evaluating reliability.",
-  },
-  {
-    title: "Transparency at Every Step",
-    description:
-      "The algorithms and data used to reach conclusions are shared openly so you can review—and decide for yourself.",
-  },
-  {
-    title: "Mission-Driven, Not Institution-Funded",
-    description:
-      "We're a nonprofit powered by people—not corporations—committed to truth and spiritual autonomy.",
-  },
-];
+type WhyChooseUsProps = {
+  data: WhyChooseUsData;
+};
 
-const WhyChooseUs = () => {
+const WhyChooseUs = ({ data }: WhyChooseUsProps) => {
   const theme = useTheme();
-  const { ref, inView } = useInView({ threshold: 0 });
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const element = sectionRef.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.001 },
+    );
+
+    observer.observe(element);
+
+    // Handle initial visibility on mount.
+    const rect = element.getBoundingClientRect();
+    const initiallyVisible = rect.top < window.innerHeight && rect.bottom > 0;
+    if (initiallyVisible) {
+      setIsInView(true);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (isInView) {
+      const playAttempt = video.play();
+      if (playAttempt && typeof playAttempt.catch === "function") {
+        playAttempt.catch(() => undefined);
+      }
+    } else {
+      video.pause();
+    }
+  }, [isInView]);
+
+  const { media, overline, heading, reasons } = data;
+  const normalizedMedia =
+    typeof media === "string"
+      ? {
+          src: media,
+          type: /\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(media) ? "video" : "image",
+        }
+      : media;
+  const isVideo = normalizedMedia.type === "video";
 
   return (
     <Box
-      ref={ref}
+      ref={sectionRef}
       id="why-choose-us-section"
       sx={{
         display: "flex",
@@ -41,28 +73,55 @@ const WhyChooseUs = () => {
         width: "100%",
         minHeight: "100vh",
         overflow: "hidden",
+        backgroundColor: theme.palette.cosmic.primary,
+        zIndex: -2,
       }}
     >
-      {/* Conditionally render fixed image only while in view */}
-      {inView && (
-        <Box
-          sx={{
-            position: { xs: "relative", md: "fixed" }, // ✅ fixed only on md+, relative on mobile
-            display: { xs: "none", md: "block" },
-            top: 0,
-            left: 0,
-            width: { xs: "100%", md: "50vw" },
-            height: { xs: "40vh", md: "100vh" },
-            backgroundImage: `url(${whyChooseUsImage})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            backgroundColor: theme.palette.cosmic.primary,
-            zIndex: -1,
-          }}
-        />
+      {/* Conditionally render fixed media only while in view */}
+      {isInView && (
+        <>
+          {isVideo ? (
+            <Box
+              component="video"
+              ref={videoRef}
+              src={normalizedMedia.src}
+              autoPlay
+              muted
+              loop
+              playsInline
+              sx={{
+                position: { xs: "relative", md: "fixed" },
+                display: { xs: "none", md: "block" },
+                top: 0,
+                left: 0,
+                mt: 12,
+                width: { xs: "100%", md: isVideo ? "40vw" : "50vw" },
+                height: { xs: "40vh", md: "90vh" },
+                objectFit: "contain",
+                objectPosition: isVideo ? "right" : "center",
+                zIndex: -1,
+                bgcolor: theme.palette.primary.main,
+              }}
+            />
+          ) : (
+            <Box
+              sx={{
+                position: { xs: "relative", md: "fixed" }, // ✅ fixed only on md+, relative on mobile
+                display: { xs: "none", md: "block" },
+                top: 0,
+                left: 0,
+                width: { xs: "100%", md: "50vw" },
+                height: { xs: "40vh", md: "100vh" },
+                backgroundImage: `url(${normalizedMedia.src})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                zIndex: -1,
+              }}
+            />
+          )}
+        </>
       )}
-
       {/* Left spacer to balance the layout (only needed on md+) */}
       <Box
         sx={{
@@ -77,8 +136,9 @@ const WhyChooseUs = () => {
       <Box
         sx={{
           width: { xs: "100%", md: "50%" },
-          backgroundColor: theme.palette.cosmic.secondary,
-          px: { xs: 3, md: 10, lg: 20 },
+          backgroundColor: isVideo ? theme.palette.primary.main : null,
+          pr: isVideo ? { xs: 3, md: 10, lg: 30 } : { xs: 3, md: 10, lg: 20 },
+          pl: isVideo ? { xs: 0, md: 0, lg: 10 } : { xs: 3, md: 10, lg: 20 },
           py: { xs: 6, md: 12 },
           zIndex: 1,
         }}
@@ -93,7 +153,7 @@ const WhyChooseUs = () => {
             textTransform: "uppercase",
           }}
         >
-          Why Choose Us
+          {overline}
         </Typography>
 
         <Typography
@@ -104,11 +164,10 @@ const WhyChooseUs = () => {
             color: theme.palette.primary.hover,
             lineHeight: 1.2,
             fontSize: { xs: "1.8rem", md: "2.5rem" },
+            whiteSpace: "pre-line",
           }}
         >
-          Powered by Evidence
-          <br />
-          Built for Spiritual Clarity
+          {heading}
         </Typography>
 
         {reasons.map((item, index) => (
