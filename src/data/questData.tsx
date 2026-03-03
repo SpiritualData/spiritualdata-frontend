@@ -11,7 +11,7 @@ import ImageIcon from "@mui/icons-material/Image";
 import CloudQueueIcon from "@mui/icons-material/CloudQueue";
 import MicIcon from "@mui/icons-material/Mic";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import processbgvideo from "../assets/images/Products/process.mp4";
+import processbgvideo from "../assets/images/products/process.mp4";
 
 interface heroData {
   title: string;
