@@ -8,10 +8,13 @@ import video1 from "../assets/images/products/ProcessClips/1.mp4";
 import video2 from "../assets/images/products/ProcessClips/2.mp4";
 import video3 from "../assets/images/products/ProcessClips/3.mp4";
 import video4 from "../assets/images/products/ProcessClips/4.mp4";
+import firstClipPoster from "../assets/images/products/video-placeholder-img.webp";
 
 type WhyChooseUsProps = {
   data: WhyChooseUsData;
 };
+
+type ResolvedWhyChooseUsMedia = Exclude<WhyChooseUsData["media"], string>;
 
 const WhyChooseUs = ({ data }: WhyChooseUsProps) => {
   const theme = useTheme();
@@ -61,7 +64,7 @@ const WhyChooseUs = ({ data }: WhyChooseUsProps) => {
   }, [isInView, videoClipIndex]);
 
   const { media, overline, heading, reasons } = data;
-  const normalizedMedia =
+  const normalizedMedia: ResolvedWhyChooseUsMedia =
     typeof media === "string"
       ? {
           src: media,
@@ -69,6 +72,7 @@ const WhyChooseUs = ({ data }: WhyChooseUsProps) => {
         }
       : media;
   const isVideo = normalizedMedia.type === "video";
+  const [hasInitialVideoLoaded, setHasInitialVideoLoaded] = useState(!isVideo);
 
   const [titleLine, ...supportLines] = heading
     .split("\n")
@@ -83,6 +87,10 @@ const WhyChooseUs = ({ data }: WhyChooseUsProps) => {
     isQuestStyle && questVideoPlaylist.length > 0
       ? questVideoPlaylist[videoClipIndex]
       : normalizedMedia.src;
+  const placeholderPoster = isQuestStyle
+    ? firstClipPoster
+    : normalizedMedia.poster;
+  const isVideoLoading = isVideo && !hasInitialVideoLoaded;
   const eyebrowText = isQuestStyle ? "HOW IT WORKS" : overline;
   const titleText = isQuestStyle ? overline : titleLine || heading;
   const descriptionText = isQuestStyle ? heading : supportText;
@@ -101,6 +109,15 @@ const WhyChooseUs = ({ data }: WhyChooseUsProps) => {
   useEffect(() => {
     setVideoClipIndex(0);
   }, [isQuestStyle, normalizedMedia.src]);
+
+  useEffect(() => {
+    if (!isVideo) {
+      setHasInitialVideoLoaded(true);
+      return;
+    }
+
+    setHasInitialVideoLoaded(false);
+  }, [isVideo, normalizedMedia.src]);
 
   useEffect(() => {
     if (reasons.length === 0 || isAccordionHovering) return;
@@ -153,15 +170,27 @@ const WhyChooseUs = ({ data }: WhyChooseUsProps) => {
                 borderRadius: 11,
                 overflow: "hidden",
               }}
+              aria-busy={isVideo ? isVideoLoading : undefined}
             >
               {isVideo ? (
                 <Box
                   component="video"
                   ref={videoRef}
                   src={currentVideoSrc}
+                  poster={isVideoLoading ? placeholderPoster : undefined}
                   muted
                   loop={!isQuestStyle}
                   playsInline
+                  preload="auto"
+                  onLoadedData={() => {
+                    setHasInitialVideoLoaded(true);
+                  }}
+                  onCanPlay={() => {
+                    setHasInitialVideoLoaded(true);
+                  }}
+                  onError={() => {
+                    setHasInitialVideoLoaded(true);
+                  }}
                   onEnded={() => {
                     if (!isQuestStyle || questVideoPlaylist.length === 0)
                       return;
@@ -172,6 +201,7 @@ const WhyChooseUs = ({ data }: WhyChooseUsProps) => {
                   sx={{
                     position: "absolute",
                     inset: 0,
+                    zIndex: 0,
                     width: "100%",
                     height: "100%",
                     objectFit: "cover",
@@ -182,12 +212,35 @@ const WhyChooseUs = ({ data }: WhyChooseUsProps) => {
                   sx={{
                     position: "absolute",
                     inset: 0,
+                    zIndex: 0,
                     backgroundImage: `url(${normalizedMedia.src})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                   }}
                 />
               )}
+
+              {isVideo ? (
+                <Box
+                  sx={{
+                    position: "absolute",
+                    inset: 0,
+                    zIndex: 1,
+                    display: "grid",
+                    placeItems: "center",
+                    backgroundColor: theme.palette.darkcard.main,
+                    backgroundImage: placeholderPoster
+                      ? `linear-gradient(0deg, ${alpha(theme.palette.darkcard.main, 0.35)}, ${alpha(theme.palette.darkcard.main, 0.35)}), url(${placeholderPoster})`
+                      : `linear-gradient(140deg, ${alpha(theme.palette.darkcard.main, 0.96)} 0%, ${alpha(theme.palette.cosmic.primary, 0.86)} 100%)`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    opacity: isVideoLoading ? 1 : 0,
+                    visibility: isVideoLoading ? "visible" : "hidden",
+                    transition: "opacity 260ms ease, visibility 260ms ease",
+                    pointerEvents: "none",
+                  }}
+                />
+              ) : null}
             </Box>
 
             <Box
