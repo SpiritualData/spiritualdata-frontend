@@ -11,6 +11,7 @@ import ImageIcon from "@mui/icons-material/Image";
 import CloudQueueIcon from "@mui/icons-material/CloudQueue";
 import MicIcon from "@mui/icons-material/Mic";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import processbgvideo from "../assets/images/products/process.mp4";
 
 interface heroData {
   title: string;
@@ -71,6 +72,18 @@ interface questMissionData {
   badge: string;
   title: string;
   description: string;
+}
+
+export interface questProcessItem {
+  title: string;
+  description: string;
+}
+
+export interface questProcessItems {
+  overline: string;
+  heading: string;
+  media: string;
+  reasons: questProcessItem[];
 }
 
 export const heroData = {
@@ -223,11 +236,11 @@ export const callToAction: callToAction = {
   suffix: "...?",
   subtitle:
     "AI-guided goal planning with structured accountability at a fraction of traditional coaching costs.",
-  additionalSubtitle: "More accessible than Pro ChatGPT",
+  additionalSubtitle: "Guided goal planning with tracking",
   buttonText: "Start Your First Quest",
   buttonLink: "https://quest.spiritualdata.org/sign-up",
   footerNote:
-    "Free community access - $5 single quest or $10/month (Compared to ChatGPT $20)",
+    "Free community access - $5 single quest or $10/month with structured followups",
   additionalFooterNote1: "",
   additionalFooterNote2: "Your data stays private",
 };
@@ -240,52 +253,52 @@ export const whatItLooksLikeData: whatItLooksLikeData = {
   leftItems: [
     {
       title: "Welcome",
-      description: "Clarify purposeful vision with guidance",
+      description: "Define your goal and preview quest flow",
       left: 15,
       top: 12,
     },
     {
       title: "Category",
-      description: "Set lasting goals and map fresh actions",
+      description: "Choose the category that fits your goal",
       left: 0,
       top: 38,
     },
     {
       title: "Goal",
-      description: "Review insights to track your progress",
+      description: "Define one clear, measurable end state",
       left: 0,
       top: 64,
     },
     {
       title: "Context",
-      description: "Review your gains and absorb lessons",
-      left: 15,
+      description: "Describe your state and key barriers",
+      left: 18,
       top: 90,
     },
   ],
   rightItems: [
     {
       title: "Preferences",
-      description: "Clarify purposeful vision with guidance",
+      description: "Share your values, methods, constraints",
       right: 15,
       top: 12,
     },
     {
-      title: "Deep Inquiry",
-      description: "Build steady habits and keep steady pace",
-      right: 0,
+      title: "Perspectives",
+      description: "Choose expert perspectives for your goal",
+      right: -2,
       top: 38,
     },
     {
       title: "Strategies",
-      description: "Review insights to track your progress",
-      right: 0,
+      description: "Review and select appropriate strategies",
+      right: -2,
       top: 64,
     },
     {
       title: "Plan",
-      description: "Review your gains and absorb lessons",
-      right: 15,
+      description: "Generate timeline, goals, and habits",
+      right: 18,
       top: 90,
     },
   ],
@@ -296,4 +309,33 @@ export const questMissionData: questMissionData = {
   title: "Build the clearest path from intention to transformation",
   description:
     "Quest exists to help people turn ambitious goals into measurable progress. We combine deep inquiry, scientific evidence, and guided accountability so every step feels intentional, trackable, and aligned with the life you want to build.",
+};
+
+export const questProcessItems: questProcessItems = {
+  overline: "Clarity Is a System.",
+  heading:
+    "Start your Quest in minutes. Turn any goal into a personalized, step-by-step execution system powered by intelligent guidance.",
+  media: processbgvideo,
+  reasons: [
+    {
+      title: "Enter Your Goal",
+      description:
+        "Define what you want to achieve and how success will feel in real life. Quest captures your intention, scope, and time horizon, then begins structuring it into a clear, actionable outcome you can commit to with confidence.",
+    },
+    {
+      title: "Answer Context Questions",
+      description:
+        "Share your current situation, challenges, resources, and preferences. This grounding detail lets Quest tailor your plan to your real schedule and constraints, not generic advice or one-size-fits-all routines, so it feels doable from day one.",
+    },
+    {
+      title: "Select Expert Perspectives",
+      description:
+        "Choose the lenses and methodologies you trust, from evidence-based frameworks to spiritual traditions or coaching styles. Quest blends those aligned perspectives into a roadmap that fits how you learn, decide, and act without diluting your values.",
+    },
+    {
+      title: "Get Personalized Strategies",
+      description:
+        "Receive a fully structured plan with timelines, milestones, goals, and daily habits, ready to execute immediately. Each step is prioritized and paced so you can make steady progress, track momentum, and adjust as your life changes.",
+    },
+  ],
 };
