@@ -125,7 +125,20 @@ const AboutHero: React.FC = () => {
                       color: theme.palette.text.secondary,
                       fontSize: "1rem",
                       fontFamily: theme.typography.fontFamily,
-                      mt: 2,
+                      textAlign: "justify",
+                      letterSpacing: 1,
+                      lineHeight: 1.4,
+                    }}
+                  >
+                    We're a nonprofit organization building AI-powered tools to help humanity discover spiritual truth through unbiased evidence, not belief.
+                  </Typography>
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      color: theme.palette.text.secondary,
+                      fontSize: "1rem",
+                      fontFamily: theme.typography.fontFamily,
+                      mt: 1,
                       textAlign: "justify",
                       letterSpacing: 1,
                       lineHeight: 1.4,
@@ -265,7 +278,7 @@ const AboutHero: React.FC = () => {
                       },
                     }}
                   >
-                    Explore Our Mission
+                    Learn More
                   </Button>
                 </Grid>
               </Grid>
