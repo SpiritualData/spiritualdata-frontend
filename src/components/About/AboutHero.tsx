@@ -143,14 +143,14 @@ const AboutHero: React.FC = () => {
                       lineHeight: 1.4,
                     }}
                   >
-                    "Spiritual truth hasn't disappeared - it's been buried. At
+                    Spiritual truth hasn't disappeared - it's been buried. At
                     Spiritual Data, our vision is simple but transformative: To
                     change the world by changing the source of people's beliefs.
                     For too long, spiritual questions have been shaped by
-                    authority, taboo, or personal opinion."
+                    authority, taboo, or personal opinion.
                   </Typography>
                   <Button
-                    onClick={() => navigate("/sign-up")}
+                    onClick={() => window.open("https://spiritualdata.notion.site/Learn-more-about-Spiritual-Data-1b40ed83d417801ebe34f6ffa015c0c0", "_blank")}
                     variant="outlined"
                     sx={{
                       borderColor: theme.palette.primary.hover,
