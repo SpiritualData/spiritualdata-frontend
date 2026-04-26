@@ -115,7 +115,7 @@ const AboutHero: React.FC = () => {
                     flex: 1,
                     minWidth: { xs: "100%", sm: "250px" },
                     mr: { md: 4 },
-                    mt: 5,
+                    mt: 2,
                     justifyContent: "flex-end",
                   }}
                 >
@@ -138,7 +138,7 @@ const AboutHero: React.FC = () => {
                       color: theme.palette.text.secondary,
                       fontSize: "1rem",
                       fontFamily: theme.typography.fontFamily,
-                      mt: 1,
+                      mt: 2,
                       textAlign: "justify",
                       letterSpacing: 1,
                       lineHeight: 1.4,
@@ -150,7 +150,7 @@ const AboutHero: React.FC = () => {
                     For too long, spiritual questions have been shaped by
                     authority, taboo, or personal opinion.
                   </Typography>
-                  <Box sx={{ display: "flex", flexDirection: "row", gap: 2, mt: 3, mb: 3, flexWrap: "wrap" }}>
+                  <Box sx={{ display: "flex", flexDirection: "row", gap: 2, mt: 3, mb: 0, flexWrap: "wrap" }}>
                     <Button
                       onClick={() => window.open("https://spiritualdata.notion.site/Learn-more-about-Spiritual-Data-1b40ed83d417801ebe34f6ffa015c0c0", "_blank")}
                       variant="contained"
