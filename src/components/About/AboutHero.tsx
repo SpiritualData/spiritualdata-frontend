@@ -57,7 +57,6 @@ const AboutHero: React.FC = () => {
           component="div"
           {...({} as any)}
         >
-          {" "}
           <Fade in={inView} timeout={1000}>
             <Box
               sx={{
