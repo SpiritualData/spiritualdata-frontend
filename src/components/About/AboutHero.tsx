@@ -120,17 +120,6 @@ const AboutHero: React.FC = () => {
                   }}
                 >
                   <Typography
-                    variant="h4"
-                    sx={{
-                      fontSize: { xs: "1.5rem", md: "2rem" },
-                      fontWeight: 600,
-                      textAlign: "justify",
-                    }}
-                    gutterBottom
-                  >
-                    Driven by Purpose, <br /> Guided by Innovation
-                  </Typography>
-                  <Typography
                     variant="subtitle1"
                     sx={{
                       color: theme.palette.text.secondary,
@@ -150,23 +139,23 @@ const AboutHero: React.FC = () => {
                   </Typography>
                   <Button
                     onClick={() => window.open("https://spiritualdata.notion.site/Learn-more-about-Spiritual-Data-1b40ed83d417801ebe34f6ffa015c0c0", "_blank")}
-                    variant="outlined"
+                    variant="contained"
                     sx={{
-                      borderColor: theme.palette.primary.hover,
+                      backgroundColor: theme.palette.primary.focus,
                       color: theme.palette.primary.hover,
-                      px: 4.5,
+                      px: 3.5,
                       py: 1,
-                      mt: 5,
-                      letterSpacing: 1,
-                      fontWeight: 700,
-                      fontSize: "0.875rem",
+                      mt: 3,
+                      mb: 3,
+                      fontWeight: 600,
+                      letterSpacing: 0.7,
+                      fontSize: "0.8rem",
                       borderRadius: "999px",
-                      transition: "all 0.3s ease",
+                      boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                      fontFamily: theme.typography.fontFamily,
                       "&:hover": {
-                        backgroundColor: theme.palette.primary.focus,
-                        color: theme.palette.primary.hero,
-                        border: "none",
-                        transform: "scale(1.05)",
+                        backgroundColor: theme.palette.primary.hero,
+                        color: theme.palette.primary.focus,
                       },
                     }}
                   >
