@@ -23,7 +23,8 @@ const AboutHero: React.FC = () => {
       component="section"
       sx={{
         px: { xs: 2, sm: 4, md: 8, lg: 16, xl: 23 },
-        py: { xs: 6, md: 10 },
+        pt: { xs: 6, md: 10 },
+        pb: { xs: 3, md: 4 },
         color: theme.palette.text.primary,
         minHeight: { xs: "auto", md: 650 },
         display: "flex",
