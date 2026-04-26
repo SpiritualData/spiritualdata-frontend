@@ -8,6 +8,7 @@ import InitiativeSection from "../components/HeroInitiativeSection";
 import ContactSection from "../components/ContactSection";
 import ReviewsSection from "../components/ReviewsSection";
 import FaqSection from "../components/FaqSection";
+import { whyChooseUsData } from "../data/homeData";
 
 const Home: React.FC = () => {
   return (
@@ -15,7 +16,7 @@ const Home: React.FC = () => {
       <HeroSection />
       <AboutSection />
       <AchievementsSection />
-      <WhyChooseUs />
+      <WhyChooseUs data={whyChooseUsData} />
       <InitiativeSection />
       <ContactSection />
       <ReviewsSection />

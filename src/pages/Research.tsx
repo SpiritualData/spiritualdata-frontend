@@ -59,7 +59,7 @@ const DataItem: React.FC<DataItemProps> = ({ val }) => {
         {val.name}
       </Typography>
       <Typography sx={{ color: "black", fontSize: "32px", fontWeight: 500 }}>
-        {count}
+        {count.toLocaleString()}
       </Typography>
 
       <Link to={val.path} style={{ textDecoration: "none" }} target={"_blank"}>
@@ -98,15 +98,15 @@ const Research = () => {
       path: "https://forms.gle/GmCTXs8V6ZCpFs8z5",
     },
     {
-      name: "Experiences",
+      name: "Human Experiences",
       buttonText: "SUBMIT AN EXPERIENCE",
-      maxNumber: 5998,
+      maxNumber: 137544,
       path: "https://forms.gle/oF6HvwPoc2Ndf9bT9",
     },
     {
-      name: "Research",
+      name: "Research Papers",
       buttonText: "SUBMIT EVIDENCE OR RESEARCH STUDY",
-      maxNumber: 26,
+      maxNumber: 26399175,
       path: "https://docs.google.com/forms/u/1/d/e/1FAIpQLSfsRYQBweDGRGrFsu52UbwZx4px5h9G-7XWRHMtMywtN7jelw/viewform?usp=send_form",
     },
   ];

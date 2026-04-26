@@ -9,16 +9,15 @@ import {
   Link,
 } from "@mui/material";
 import Grid from "@mui/material/Grid";
-
 import {
   Instagram,
   LinkedIn,
   Facebook,
   X as Twitter,
   YouTube,
-  Email,
 } from "@mui/icons-material";
 import footerImage from "../../assets/images/Footer/footer-logo.png";
+import { useCookieConsent } from "../CookieConsent";
 
 // Discord Icon Component
 const DiscordIcon = () => (
@@ -50,6 +49,7 @@ const Footer = () => {
   const navigate = useNavigate();
   const theme = useTheme();
   const [showScroll, setShowScroll] = useState(false);
+  const { showPreferences } = useCookieConsent();
 
   useEffect(() => {
     const handleScroll = () => setShowScroll(window.scrollY > 300);
@@ -573,6 +573,20 @@ const Footer = () => {
                 {label}
               </Button>
             ))}
+            <Button
+              onClick={showPreferences}
+              sx={{
+                color: "primary.main",
+                textTransform: "none",
+                minWidth: "unset",
+                mr: 2,
+                p: 0,
+                fontSize: { xs: 13, sm: 14 },
+                "&:hover": { color: "primary.focus" },
+              }}
+            >
+              Cookie Preferences
+            </Button>
           </Box>
           <Typography
             variant="body1"

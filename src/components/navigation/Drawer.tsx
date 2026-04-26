@@ -1,4 +1,4 @@
-import { Login, Input, Menu, Message } from "@mui/icons-material";
+import { Login, Menu, /* Message */ } from "@mui/icons-material";
 import {
   Divider,
   IconButton,
@@ -10,7 +10,7 @@ import {
   Stack,
   Toolbar,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { /* useEffect, useState */ } from "react";
 import { Link } from "react-router-dom";
 
 import header_scrolled from "../../assets/header_scrolled.png";
@@ -30,29 +30,24 @@ const DrawerItems: React.FC<DrawerItemsProps> = ({
   tab,
   handleDrawerToggle,
 }) => {
-  const [userExists, setUserExists] = useState<boolean>(false);
+  // const [userExists, setUserExists] = useState<boolean>(false);
 
-  useEffect(() => {
-    const user = localStorage.getItem("user");
-    setUserExists(!!user);
-  }, []);
+  // useEffect(() => {
+  //   const user = localStorage.getItem("user");
+  //   setUserExists(!!user);
+  // }, []);
 
   const drawerTab: DrawerItem[] = [
     {
-      label: userExists ? "Chat" : "Sign In",
-      path: userExists ? "/chat" : "/sign-in",
-      icon: userExists ? <Message /> : <Login />,
-    },
-    {
-      label: "Sign Up",
-      path: "/sign-up",
-      icon: <Input />,
+      label: "Sign In",
+      path: "https://quest.spiritualdata.org/sign-in",
+      icon: <Login />,
     },
   ];
 
-  if (userExists) {
-    drawerTab.pop();
-  }
+  // if (userExists) {
+  //   drawerTab.pop();
+  // }
 
   return (
     <>

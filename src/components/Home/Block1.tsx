@@ -76,15 +76,15 @@ const Block1 = () => {
       info: "We calculate the probability of hypotheses given all experiences and research as evidence for or against.",
     },
     {
-      name: "Experiences",
+      name: "Human Experiences",
       icon: <PsychologyAlt sx={{ fontSize: 70 }} />,
-      count: 5998,
+      count: 137544,
       info: "Experiences are firsthand accounts of phenomena. Our strategy is to differentiate between one's interpretation of the experience and the implications of the experience itself.",
     },
     {
-      name: "Research",
+      name: "Research Papers",
       icon: <Psychology sx={{ fontSize: 70 }} />,
-      count: 26,
+      count: 26399175,
       info: "Research, experiments, or other scientific evidence.",
     },
   ];
@@ -102,7 +102,7 @@ const Block1 = () => {
           <Stack direction="row">
             <Typography variant="h5">{val.name}:&nbsp;</Typography>
             <Typography variant="h5" sx={{ color: "black", mt: 0.2 }}>
-              {val.count}
+              {val.count.toLocaleString()}
             </Typography>
           </Stack>
           <Typography sx={{ color: "black", fontSize: "14px" }}>
