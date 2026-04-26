@@ -150,30 +150,52 @@ const AboutHero: React.FC = () => {
                     For too long, spiritual questions have been shaped by
                     authority, taboo, or personal opinion.
                   </Typography>
-                  <Button
-                    onClick={() => window.open("https://spiritualdata.notion.site/Learn-more-about-Spiritual-Data-1b40ed83d417801ebe34f6ffa015c0c0", "_blank")}
-                    variant="contained"
-                    sx={{
-                      backgroundColor: theme.palette.primary.focus,
-                      color: theme.palette.primary.hover,
-                      px: 3.5,
-                      py: 1,
-                      mt: 3,
-                      mb: 3,
-                      fontWeight: 600,
-                      letterSpacing: 0.7,
-                      fontSize: "0.8rem",
-                      borderRadius: "999px",
-                      boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-                      fontFamily: theme.typography.fontFamily,
-                      "&:hover": {
-                        backgroundColor: theme.palette.primary.hero,
-                        color: theme.palette.primary.focus,
-                      },
-                    }}
-                  >
-                    Join Our Team
-                  </Button>
+                  <Box sx={{ display: "flex", flexDirection: "row", gap: 2, mt: 3, mb: 3, flexWrap: "wrap" }}>
+                    <Button
+                      onClick={() => window.open("https://spiritualdata.notion.site/Learn-more-about-Spiritual-Data-1b40ed83d417801ebe34f6ffa015c0c0", "_blank")}
+                      variant="contained"
+                      sx={{
+                        backgroundColor: theme.palette.primary.focus,
+                        color: theme.palette.primary.hover,
+                        px: 3.5,
+                        py: 1,
+                        fontWeight: 600,
+                        letterSpacing: 0.7,
+                        fontSize: "0.8rem",
+                        borderRadius: "999px",
+                        boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                        fontFamily: theme.typography.fontFamily,
+                        "&:hover": {
+                          backgroundColor: theme.palette.primary.hero,
+                          color: theme.palette.primary.focus,
+                        },
+                      }}
+                    >
+                      Join Our Team
+                    </Button>
+                    <Button
+                      onClick={() => navigate("/change")}
+                      variant="contained"
+                      sx={{
+                        backgroundColor: theme.palette.primary.focus,
+                        color: theme.palette.primary.hover,
+                        px: 3.5,
+                        py: 1,
+                        fontWeight: 600,
+                        letterSpacing: 0.7,
+                        fontSize: "0.8rem",
+                        borderRadius: "999px",
+                        boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                        fontFamily: theme.typography.fontFamily,
+                        "&:hover": {
+                          backgroundColor: theme.palette.primary.hero,
+                          color: theme.palette.primary.focus,
+                        },
+                      }}
+                    >
+                      Learn More
+                    </Button>
+                  </Box>
                 </Box>
 
                 {/* Right Column (Image) */}
@@ -234,54 +256,6 @@ const AboutHero: React.FC = () => {
                 mt: { xs: 4, md: 1 },
               }}
             >
-              {/* Top Row: Text + CTA */}
-              <Grid container spacing={2}>
-                <Grid item xs={12} component="div" {...({} as any)}>
-                  <Typography
-                    variant="subtitle1"
-                    sx={{
-                      color: theme.palette.text.secondary,
-                      fontSize: 16,
-                      fontFamily: theme.typography.fontFamily,
-                      textAlign: "justify",
-                      letterSpacing: 1,
-                      lineHeight: 1.4,
-                    }}
-                    component="div"
-                    {...({} as any)}
-                  >
-                    We're a nonprofit organization building AI-powered tools to
-                    help humanity discover spiritual truth through unbiased
-                    evidence, not belief.
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} component="div" {...({} as any)}>
-                  <Button
-                    onClick={() => navigate("/change")}
-                    variant="contained"
-                    sx={{
-                      backgroundColor: theme.palette.primary.focus,
-                      color: theme.palette.primary.hover,
-                      px: 3.5,
-                      py: 1,
-                      mt: 3,
-                      mb: 3,
-                      fontWeight: 600,
-                      letterSpacing: 0.7,
-                      fontSize: "0.8rem",
-                      borderRadius: "999px",
-                      boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-                      fontFamily: theme.typography.fontFamily,
-                      "&:hover": {
-                        backgroundColor: theme.palette.primary.hero,
-                        color: theme.palette.primary.focus,
-                      },
-                    }}
-                  >
-                    Learn More
-                  </Button>
-                </Grid>
-              </Grid>
 
               {/* Bottom Row */}
               <Grid container spacing={5} sx={{ mt: { xs: 4, md: 0 } }}>
