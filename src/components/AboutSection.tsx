@@ -196,7 +196,7 @@ const AboutSection: React.FC = () => {
                           </Typography>
 
                           <Button
-                            onClick={() => navigate("/sign-up")}
+                            onClick={() => window.open("https://quest.spiritualdata.org/sign-up", "_blank")}
                             variant="contained"
                             sx={{
                               backgroundColor: theme.palette.primary.focus,

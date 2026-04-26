@@ -8,9 +8,15 @@ import {
   useCasesData,
   callToAction,
   heroData,
+  whatItLooksLikeData,
+  questMissionData,
+  questProcessItems,
 } from "../../data/questData";
 import ProductHero from "@/components/Products/ProductHero";
 import CalltoAction from "../../components/Products/CallToAction";
+import WhatItLooksLike from "@/components/Quest/WhatItLooksLike";
+import QuestMission from "@/components/Quest/QuestMission";
+import WhyChooseUs from "@/components/WhyChooseUs";
 
 const Quest = () => {
   const useCasesRef = useRef<HTMLDivElement | null>(null);
@@ -25,8 +31,11 @@ const Quest = () => {
         product="quest"
         onScrollClick={scrollToUseCases}
       />
-      <Features data={featuresData} />
+      <WhatItLooksLike data={whatItLooksLikeData} />
       <Steps data={stepsData} />
+      <WhyChooseUs data={questProcessItems} />
+      <Features data={featuresData} />
+      <QuestMission data={questMissionData} />
       <UseCases data={useCasesData} />
 
       {/* Scroll Target */}

@@ -1,6 +1,5 @@
 import type React from "react";
 import {
-  Container,
   Typography,
   Grid,
   Card,
@@ -20,11 +19,14 @@ const FeaturesSection: React.FC<{
   const theme = useTheme();
 
   return (
-    <Container
-      maxWidth="lg"
+    <Box
       sx={{
+        width: "100%",
         py: { xs: 6, sm: 10, md: 16 },
-        px: { xs: 2, sm: 3, md: 0 },
+        px: { xs: 2, sm: 3, md: 10 },
+        boxSizing: "border-box",
+        mx: "auto",
+        backgroundColor: theme.palette.cosmic.elevated,
       }}
     >
       {/* Section Heading */}
@@ -110,7 +112,7 @@ const FeaturesSection: React.FC<{
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
-                    minHeight: "50px", 
+                    minHeight: "50px",
                   }}
                 >
                   <Box
@@ -167,7 +169,7 @@ const FeaturesSection: React.FC<{
           </Grid>
         ))}
       </Grid>
-    </Container>
+    </Box>
   );
 };
 
