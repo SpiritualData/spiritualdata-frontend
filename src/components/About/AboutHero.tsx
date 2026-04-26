@@ -94,8 +94,7 @@ const AboutHero: React.FC = () => {
                     fontFamily: theme.typography.fontFamily,
                   }}
                 >
-                  Restoring Clarity
-                  <br /> Building Tools for Truth
+                  Letting the data speak for itself
                 </Typography>
               </Box>
 
