@@ -19,6 +19,8 @@ import MentalHealth from "../pages/MentalHealth";
 import Quest from "../pages/Products/Quest";
 import AuthPage from "../pages/AuthPage";
 import Careers from "../pages/Careers";
+import RevenueChallenge from "../pages/Challenges/RevenueChallenge";
+import BuildersChallenge from "../pages/Challenges/BuildersChallenge";
 import Products from "../pages/Products";
 import ConceptAi from "../pages/Products/ConceptAi";
 import Initiatives from "../pages/Initiatives";
@@ -44,6 +46,8 @@ const useClerkRoutes = (): ReactElement => {
         <Route path="crisis" element={<Crisis />} />
         <Route path="change" element={<Change />} />
         <Route path="careers" element={<Careers />} />
+        <Route path="/revenue-challenge" element={<RevenueChallenge />} />
+        <Route path="/builders-challenge" element={<BuildersChallenge />} />
         <Route path="/initiatives" element={<Initiatives />} />
         <Route
           path="/initiatives/estimating-truth"
