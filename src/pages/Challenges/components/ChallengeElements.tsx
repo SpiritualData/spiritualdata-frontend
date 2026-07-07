@@ -11,6 +11,7 @@ export const Section: React.FC<{
   <Box
     sx={{
       width: "100%",
+      boxSizing: "border-box",
       backgroundColor: background || "transparent",
       px: { xs: 2, sm: 6, md: 12, lg: 20 },
       py: { xs: 6, md: 10 },

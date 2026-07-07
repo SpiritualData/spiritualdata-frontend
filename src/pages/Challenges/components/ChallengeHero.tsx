@@ -17,6 +17,7 @@ export const ChallengeHero: React.FC<{
     <Box
       sx={{
         width: "100%",
+        boxSizing: "border-box",
         minHeight: { xs: "60vh", md: "75vh" },
         backgroundColor: theme.palette.cosmic.primary,
         display: "flex",
@@ -84,6 +85,7 @@ export const ChallengeBottomCta: React.FC<{
     <Box
       sx={{
         width: "100%",
+        boxSizing: "border-box",
         backgroundColor: theme.palette.primary.hero,
         color: theme.palette.darkcard.contrastText,
         textAlign: "center",
