@@ -264,10 +264,14 @@ const RevenueChallenge: React.FC = () => {
             Life with Quest course, Concept AI (the app and its API), and
             quest-ai-runner. They already work. The innovation we're after is
             in how to apply them and sell them: find the audiences, offers, and
-            channels that bring Spiritual Data paying customers. You can also
-            build something new on our technology if that's your path, but most
-            winning approaches will likely start from what already exists. If
-            the revenue flows to Spiritual Data and it's real, it qualifies.
+            channels that bring Spiritual Data paying customers. You only have
+            to sell one: pick the product that fits your audience, and selling
+            it well is a complete entry. You can also create new offerings
+            that leverage what exists (a coaching offer around Quest, a
+            research service on Concept AI), or build something new on our
+            technology if that's your path, but most winning approaches will
+            likely start from what already exists. If the revenue flows to
+            Spiritual Data and it's real, it qualifies.
           </Typography>
         </Box>
       </Section>
@@ -286,7 +290,9 @@ const RevenueChallenge: React.FC = () => {
 
       {/* Products */}
       <Section background={theme.palette.cosmic.primary}>
-        <SectionTitle>The Products You'll Be Selling</SectionTitle>
+        <SectionTitle subtitle="You only have to sell one. Pick the product that fits your audience; new offerings that package what exists count too.">
+          The Products You'll Be Selling
+        </SectionTitle>
         <TechnologyCards cards={products} />
         <Callout sx={{ mt: 5, maxWidth: 820, mx: "auto" }}>
           Not sure your idea fits? One test: does it sell our products (or
