@@ -116,7 +116,7 @@ const RevenueChallenge: React.FC = () => {
       icon: <TrackChangesIcon sx={{ fontSize: 32 }} />,
       name: "Quest",
       description:
-        "Our AI goal-planning app: define a quest, plan it with AI, build the habits and milestones to get there, and share quests with friends or a mentor. Free tier to start; Quest AI is $10/month or $100/year; Quest Guided, with human guidance on top of the AI, is $50/month or $500/year. A built-in referral system pays out through Stripe, and a mentor marketplace launching this quarter brings coaches and therapists on as paid mentors. Selling angles: subscriptions, and recruiting mentors who bring their own clients with them.",
+        "Our AI goal-planning app: define a quest, plan it with AI, build the habits and milestones to get there, and share quests with friends or a mentor. Free to start, with paid plans from $10/month. A built-in referral system pays out through Stripe, and a mentor marketplace launching this quarter brings coaches and therapists on as paid mentors. Selling angles: subscriptions, and recruiting mentors who bring their own clients with them.",
       links: [
         { label: "Open Quest", href: "https://quest.spiritualdata.org" },
         { label: "Product page", href: "/products/quest" },
@@ -132,7 +132,7 @@ const RevenueChallenge: React.FC = () => {
       icon: <PsychologyIcon sx={{ fontSize: 32 }} />,
       name: "Concept AI",
       description:
-        "Our research workspace: it turns evidence, from research papers to firsthand human experiences, into structured concepts and statistical conclusions, with a Knowledge Graph Explorer for mapping how ideas connect across domains. Free tier; the Researcher plan is $29/month or $290/year (per seat for teams); credit packs are $15 for 1,000 credits, $60 for 5,000, and $200 for 25,000. Audiences: researchers, students, and anyone who wants real rigor on spiritual questions.",
+        "Our research workspace: it turns evidence, from research papers to firsthand human experiences, into structured concepts and statistical conclusions, with a Knowledge Graph Explorer for mapping how ideas connect across domains. Free to start, with a Researcher subscription ($29/month) and credit packs for heavier use. Audiences: researchers, students, and anyone who wants real rigor on spiritual questions.",
       links: [
         { label: "Open Concept AI", href: "https://conceptai.spiritualdata.org" },
         { label: "Product page", href: "/products/concept-ai" },
