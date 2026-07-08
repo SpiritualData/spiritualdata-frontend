@@ -197,7 +197,7 @@ const BuildersChallenge: React.FC = () => {
 
       {/* Intro */}
       <Section background="white">
-        <Box sx={{ maxWidth: 850, mx: "auto", textAlign: "center" }}>
+        <Box sx={{ maxWidth: 850, mx: "auto" }}>
           <Typography
             variant="body1"
             sx={{ fontSize: "1.1rem", lineHeight: 1.8, letterSpacing: 0.5 }}
@@ -267,7 +267,6 @@ const BuildersChallenge: React.FC = () => {
               fontSize: "1.1rem",
               lineHeight: 1.8,
               letterSpacing: 0.5,
-              textAlign: "center",
             }}
           >
             After pitch day, Joshua will personally invest in two to four
@@ -288,7 +287,6 @@ const BuildersChallenge: React.FC = () => {
               mt: 4,
               lineHeight: 1.8,
               letterSpacing: 0.5,
-              textAlign: "center",
               color: "text.secondary",
             }}
           >
@@ -311,7 +309,6 @@ const BuildersChallenge: React.FC = () => {
             letterSpacing: 0.5,
             maxWidth: 850,
             mx: "auto",
-            textAlign: "center",
           }}
         >
           Spiritual Data is a nonprofit and exists to make an impact. We want

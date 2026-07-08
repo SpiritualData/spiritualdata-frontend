@@ -239,7 +239,7 @@ const RevenueChallenge: React.FC = () => {
 
       {/* Intro */}
       <Section background="white">
-        <Box sx={{ maxWidth: 850, mx: "auto", textAlign: "center" }}>
+        <Box sx={{ maxWidth: 850, mx: "auto" }}>
           <Typography
             variant="body1"
             sx={{ fontSize: "1.1rem", lineHeight: 1.8, letterSpacing: 0.5 }}
@@ -366,7 +366,6 @@ const RevenueChallenge: React.FC = () => {
             letterSpacing: 0.5,
             maxWidth: 850,
             mx: "auto",
-            textAlign: "center",
           }}
         >
           Spiritual Data is a nonprofit and exists to make an impact. We want
