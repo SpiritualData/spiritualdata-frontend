@@ -68,7 +68,7 @@ const rewards: RewardCard[] = [
   {
     stat: "$1,000",
     title: "in prize money.",
-    body: "Pass the bar at demo day and your team earns $50 and our endorsement for the final stretch. From there, your team earns $10 for every $100 of revenue it brings Spiritual Data, paid from what's left of the pool. If teams collectively bring in more revenue than the pool covers at that rate, what's left splits in proportion to revenue instead. Each team divides its share among its members however it chooses. Only real revenue counts: paying customers you didn't know before the challenge started.",
+    body: "Pass the bar at demo day and your team earns $50 and our endorsement for the final stretch. From there, your team earns $100 from the pool for every $10 of revenue it brings Spiritual Data. This is a reward for opening a new revenue path, not a commission. If teams collectively bring in more revenue than the pool covers at that rate, what's left splits in proportion to revenue instead. Each team divides its share among its members however it chooses. Only real revenue counts: paying customers you didn't know before the challenge started.",
   },
   {
     title: "You own what you build.",
@@ -245,7 +245,7 @@ const RevenueChallenge: React.FC = () => {
       icon: <EmojiEventsIcon sx={{ fontSize: 28 }} />,
       title: "Final stretch through Friday, October 2",
       description:
-        "Keep selling. Results are announced Friday, October 9: each team earns $10 for every $100 of qualifying revenue it brought Spiritual Data since registration, paid from what's left of the $1,000 after endorsements. If teams collectively earn more than that pool covers, it splits in proportion to revenue instead.",
+        "Keep selling. Results are announced Friday, October 9: each team earns $100 from the pool for every $10 of qualifying revenue it brought Spiritual Data since registration, paid from what's left of the $1,000 after endorsements. If teams collectively earn more than that pool covers, it splits in proportion to revenue instead.",
     },
   ];
 
