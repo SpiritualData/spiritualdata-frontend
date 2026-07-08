@@ -81,11 +81,34 @@ const rewards: RewardCard[] = [
 ];
 
 const judgingCriteria = [
-  "Does it provide unique value to its users?",
-  "Does it genuinely apply Spiritual Data's products or technology to provide value?",
-  "How strong and credible is the approach to earning Spiritual Data revenue?",
-  "Does it advance Spiritual Data's mission?",
-  "Does the team responsible have the skills and commitment necessary to scale the project successfully?",
+  {
+    title: "Does it provide unique value to its users?",
+    detail:
+      "Winning approaches serve someone specific. The judges look at who the customer is, what they get from the offer, and why they'd choose it over doing nothing or buying elsewhere. A narrow audience served well beats a broad audience served vaguely.",
+  },
+  {
+    title:
+      "Does it genuinely apply Spiritual Data's products or technology to provide value?",
+    detail:
+      "The product has to be the substance of the offer, not a logo on it. The judges check that customers actually use Quest, the course, Concept AI, or Quest AI Runner as part of what they're paying for, and that the approach shows real understanding of the product it sells.",
+  },
+  {
+    title:
+      "How strong and credible is the approach to earning Spiritual Data revenue?",
+    detail:
+      "Evidence beats projections. Real signals come first: paying customers so far, responses from the target audience, conversion through the funnel. Then the plan for the final stretch: the channel, the offer, and whether the numbers hold up.",
+  },
+  {
+    title: "Does it advance Spiritual Data's mission?",
+    detail:
+      "Spiritual Data exists to answer spiritual questions with scientific rigor. An approach scores here when the customers it brings also grow the mission: researchers working in Concept AI, people pursuing real goals on Quest, new audiences meeting rigorous spiritual research for the first time.",
+  },
+  {
+    title:
+      "Does the team responsible have the skills and commitment necessary to scale the project successfully?",
+    detail:
+      "A revenue path matters most if it keeps working after the challenge. The judges look at whether the team knows its audience, has the skills its channel demands, showed up consistently through the challenge, and could keep the path running or hand it off cleanly after October.",
+  },
 ];
 
 const teamBullets = [

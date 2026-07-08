@@ -73,11 +73,32 @@ const rewards: RewardCard[] = [
 ];
 
 const judgingCriteria = [
-  "Does it provide unique value to its users?",
-  "Does it genuinely use Spiritual Data's technology to provide value?",
-  "What evidence is there that it will earn revenue?",
-  "Does it advance Spiritual Data's mission?",
-  "Does the team responsible have the skills and commitment necessary to scale the project successfully?",
+  {
+    title: "Does it provide unique value to its users?",
+    detail:
+      "Ventures win markets by being someone's best option. The judges look at who the user is, what the project does for them that nothing else does, and whether anyone outside your team would genuinely miss it if it disappeared.",
+  },
+  {
+    title: "Does it genuinely use Spiritual Data's technology to provide value?",
+    detail:
+      "The technology has to be load-bearing. The judges ask what breaks if Concept AI, Quest, or Quest AI Runner were removed from your project: if the answer is nothing, it doesn't qualify. Deep, real integration scores; a thin wrapper doesn't.",
+  },
+  {
+    title: "What evidence is there that it will earn revenue?",
+    detail:
+      "This is investment judging: a working demo with real usage beats any plan. Signals in order: paying customers, active users, a concrete audience you can reach, then credible pricing and a believable path to first revenue within three months.",
+  },
+  {
+    title: "Does it advance Spiritual Data's mission?",
+    detail:
+      "Spiritual Data exists to answer spiritual questions with scientific rigor. Projects score here when their success also advances that mission: more evidence explored, more people asking better questions, more rigor applied to spiritual claims.",
+  },
+  {
+    title:
+      "Does the team responsible have the skills and commitment necessary to scale the project successfully?",
+    detail:
+      "Investment follows people. The judges look for a committed founder, the skills to keep building after pitch day, honest accounting of what's still hard, and the follow-through the six-week build window already put on display.",
+  },
 ];
 
 const BuildersChallenge: React.FC = () => {
