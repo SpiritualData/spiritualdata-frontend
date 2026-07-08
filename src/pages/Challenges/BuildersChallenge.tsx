@@ -209,7 +209,11 @@ const BuildersChallenge: React.FC = () => {
           <Link
             component={RouterLink}
             to="/revenue-challenge"
-            sx={{ fontWeight: 600 }}
+            sx={{
+              fontWeight: 600,
+              color: "primary.hero",
+              textDecorationColor: "inherit",
+            }}
           >
             Revenue Challenge
           </Link>{" "}
