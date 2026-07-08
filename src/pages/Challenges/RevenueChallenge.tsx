@@ -127,6 +127,12 @@ const RevenueChallenge: React.FC = () => {
       name: "Transform Your Life with Quest",
       description:
         "Four weeks, live, taught through Quest itself: weekly sessions, personal feedback, daily practice. How it earns: course seats on sliding-scale pricing; a full cohort is ready to run again.",
+      links: [
+        {
+          label: "Event page",
+          href: "https://quest.spiritualdata.org/events/transform-your-life-with-quest",
+        },
+      ],
     },
     {
       icon: <PsychologyIcon sx={{ fontSize: 32 }} />,
