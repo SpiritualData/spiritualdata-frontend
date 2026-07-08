@@ -208,7 +208,7 @@ const BuildersChallenge: React.FC = () => {
           Already applied to work or volunteer at Spiritual Data? The{" "}
           <Link
             component={RouterLink}
-            to="/revenue-challenge"
+            to="/challenges/revenue-challenge"
             sx={{
               fontWeight: 600,
               color: "primary.hero",
