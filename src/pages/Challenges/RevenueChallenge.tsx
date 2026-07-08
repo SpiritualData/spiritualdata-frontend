@@ -116,7 +116,7 @@ const RevenueChallenge: React.FC = () => {
       icon: <TrackChangesIcon sx={{ fontSize: 32 }} />,
       name: "Quest",
       description:
-        "Our AI goal-planning app: define a quest, plan it with AI, build the habits and milestones to get there, and share quests with friends or a mentor. Free tier to start; Quest AI is $10/month or $100/year; Quest Guided, with human guidance on top of the AI, is $50/month or $500/year; credit packs start at $4.99. A built-in referral system pays out through Stripe, and a mentor marketplace launching this quarter brings coaches and therapists on as paid mentors. Selling angles: subscriptions, and recruiting mentors who bring their own clients with them.",
+        "Our AI goal-planning app: define a quest, plan it with AI, build the habits and milestones to get there, and share quests with friends or a mentor. Free tier to start; Quest AI is $10/month or $100/year; Quest Guided, with human guidance on top of the AI, is $50/month or $500/year. A built-in referral system pays out through Stripe, and a mentor marketplace launching this quarter brings coaches and therapists on as paid mentors. Selling angles: subscriptions, and recruiting mentors who bring their own clients with them.",
       links: [
         { label: "Open Quest", href: "https://quest.spiritualdata.org" },
         { label: "Product page", href: "/products/quest" },
