@@ -159,7 +159,7 @@ const RevenueChallenge: React.FC = () => {
     },
     {
       icon: <MemoryIcon sx={{ fontSize: 32 }} />,
-      name: "quest-ai-runner",
+      name: "Quest AI Runner",
       description:
         "Our open-source (Apache 2.0) AI task orchestrator and context engine, the executor behind Quest's AI tasks. Free by design; it counts here when a paid service built on it bills through Spiritual Data.",
       links: [
@@ -167,6 +167,7 @@ const RevenueChallenge: React.FC = () => {
           label: "GitHub: SpiritualData/quest-ai-runner",
           href: "https://github.com/SpiritualData/quest-ai-runner",
         },
+        { label: "Product page", href: "/products/quest-ai-runner" },
       ],
     },
   ];
@@ -262,7 +263,7 @@ const RevenueChallenge: React.FC = () => {
           >
             The challenge is about our products: Quest, the Transform Your
             Life with Quest course, Concept AI (the app and its API), and
-            quest-ai-runner. They already work. The innovation we're after is
+            Quest AI Runner. They already work. The innovation we're after is
             in how to apply them and sell them: find the audiences, offers, and
             channels that bring Spiritual Data paying customers. You only have
             to sell one: pick the product that fits your audience, and selling

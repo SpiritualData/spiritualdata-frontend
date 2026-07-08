@@ -125,7 +125,7 @@ const BuildersChallenge: React.FC = () => {
     },
     {
       icon: <MemoryIcon sx={{ fontSize: 32 }} />,
-      name: "quest-ai-runner",
+      name: "Quest AI Runner",
       description:
         "Our open-source (Apache 2.0) AI task orchestrator and context engine: the brain that grounds, reasons, works to a written standard, and knows when to ask a human. It's domain-free by design. Build your own AI workers on it.",
       links: [
@@ -133,6 +133,7 @@ const BuildersChallenge: React.FC = () => {
           label: "GitHub: SpiritualData/quest-ai-runner",
           href: "https://github.com/SpiritualData/quest-ai-runner",
         },
+        { label: "Product page", href: "/products/quest-ai-runner" },
       ],
     },
   ];
