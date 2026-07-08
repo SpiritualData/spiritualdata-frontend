@@ -203,7 +203,7 @@ const RevenueChallenge: React.FC = () => {
           idea before you start. If you've never applied, the{" "}
           <Link
             component={RouterLink}
-            to="/builders-challenge"
+            to="/challenges/builders-challenge"
             sx={{
               fontWeight: 600,
               color: "primary.hero",
