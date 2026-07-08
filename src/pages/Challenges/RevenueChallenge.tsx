@@ -116,7 +116,7 @@ const RevenueChallenge: React.FC = () => {
       icon: <TrackChangesIcon sx={{ fontSize: 32 }} />,
       name: "Quest",
       description:
-        "Our AI goal-planning app: define a quest, plan it with AI, build the habits and milestones to get there, and share quests with friends or a mentor. Free to start, with paid plans from $10/month. A built-in referral system pays out through Stripe, and a mentor marketplace launching this quarter brings coaches and therapists on as paid mentors. Selling angles: subscriptions, and recruiting mentors who bring their own clients with them.",
+        "Define a quest, plan it with AI, build the habits and milestones to get there, and share it with friends or a mentor. How it earns: subscriptions from $10/month, plus a mentor marketplace launching this quarter where coaches and therapists take paid sessions.",
       links: [
         { label: "Open Quest", href: "https://quest.spiritualdata.org" },
         { label: "Product page", href: "/products/quest" },
@@ -126,13 +126,13 @@ const RevenueChallenge: React.FC = () => {
       icon: <SchoolIcon sx={{ fontSize: 32 }} />,
       name: "Transform Your Life with Quest",
       description:
-        "Our four-week live course, taught through Quest itself: weekly live sessions, personal feedback, and daily practice between sessions. Sliding-scale pricing so anyone can join. The full curriculum and landing page exist, and a cohort is ready to run again; filling one is a revenue path in itself.",
+        "Four weeks, live, taught through Quest itself: weekly sessions, personal feedback, daily practice. How it earns: course seats on sliding-scale pricing; a full cohort is ready to run again.",
     },
     {
       icon: <PsychologyIcon sx={{ fontSize: 32 }} />,
       name: "Concept AI",
       description:
-        "Our research workspace: it turns evidence, from research papers to firsthand human experiences, into structured concepts and statistical conclusions, with a Knowledge Graph Explorer for mapping how ideas connect across domains. Free to start, with a Researcher subscription ($29/month) and credit packs for heavier use. Audiences: researchers, students, and anyone who wants real rigor on spiritual questions.",
+        "Ask a spiritual question, get a statistical answer: evidence from research papers and firsthand experiences becomes structured concepts, conclusions, and an explorable knowledge graph. How it earns: Researcher subscriptions ($29/month) and credit packs.",
       links: [
         { label: "Open Concept AI", href: "https://conceptai.spiritualdata.org" },
         { label: "Product page", href: "/products/concept-ai" },
@@ -141,27 +141,14 @@ const RevenueChallenge: React.FC = () => {
     {
       icon: <ApiIcon sx={{ fontSize: 32 }} />,
       name: "Concept AI API",
-      description: (
-        <>
-          The same engine, programmatic: statistical truth-estimation over
-          evidence, for developers and research teams building their own tools.
-          Access currently runs through a waitlist, so the serious customers
-          you bring get in early and shape it. Ask about API access at{" "}
-          <Link
-            href={`mailto:${CHALLENGE_CONTACT_EMAIL}`}
-            sx={{ color: theme.palette.primary.focus, fontWeight: 600 }}
-          >
-            {CHALLENGE_CONTACT_EMAIL}
-          </Link>
-          .
-        </>
-      ),
+      description:
+        "The same truth-estimation engine, programmatic, for building your own research tools. How it earns: API access, currently through a waitlist; the customers you bring get in early.",
     },
     {
       icon: <MemoryIcon sx={{ fontSize: 32 }} />,
       name: "Quest AI Runner",
       description:
-        "Our open-source (Apache 2.0) AI task orchestrator and context engine, the executor behind Quest's AI tasks. Free by design; it counts here when a paid service built on it bills through Spiritual Data.",
+        "Our open-source AI task orchestrator, the executor behind Quest's AI tasks in production. How it earns: free itself; paid services built on it that bill through Spiritual Data count.",
       links: [
         {
           label: "GitHub: SpiritualData/quest-ai-runner",
