@@ -73,11 +73,32 @@ const rewards: RewardCard[] = [
 ];
 
 const judgingCriteria = [
-  "Does it provide unique value to its users?",
-  "Does it genuinely use Spiritual Data's technology to provide value?",
-  "What evidence is there that it will earn revenue?",
-  "Does it advance Spiritual Data's mission?",
-  "Does the team responsible have the skills and commitment necessary to scale the project successfully?",
+  {
+    title: "Does it provide unique value to its users?",
+    detail:
+      "Ventures win markets by being someone's best option. The judges look at who the user is, what the project does for them that nothing else does, and whether anyone outside your team would genuinely miss it if it disappeared.",
+  },
+  {
+    title: "Does it genuinely use Spiritual Data's technology to provide value?",
+    detail:
+      "The technology has to be load-bearing. The judges ask what breaks if Concept AI, Quest, or Quest AI Runner were removed from your project: if the answer is nothing, it doesn't qualify. Deep, real integration scores; a thin wrapper doesn't.",
+  },
+  {
+    title: "What evidence is there that it will earn revenue?",
+    detail:
+      "This is investment judging: a working demo with real usage beats any plan. Signals in order: paying customers, active users, a concrete audience you can reach, then credible pricing and a believable path to first revenue within three months.",
+  },
+  {
+    title: "Does it advance Spiritual Data's mission?",
+    detail:
+      "Spiritual Data exists to answer spiritual questions with scientific rigor. Projects score here when their success also advances that mission: more evidence explored, more people asking better questions, more rigor applied to spiritual claims.",
+  },
+  {
+    title:
+      "Does the team responsible have the skills and commitment necessary to scale the project successfully?",
+    detail:
+      "Investment follows people. The judges look for a committed founder, the skills to keep building after pitch day, honest accounting of what's still hard, and the follow-through the six-week build window already put on display.",
+  },
 ];
 
 const BuildersChallenge: React.FC = () => {
@@ -94,8 +115,8 @@ const BuildersChallenge: React.FC = () => {
           human experiences, into structured concepts and statistical
           conclusions you can explore and build against. It offers API access,
           datasets, and a Knowledge Graph Explorer for mapping how ideas
-          connect across domains. The engine itself isn't public; you build
-          through the API. Ask for access at{" "}
+          connect across domains. The engine itself isn't open source; you build
+          through the API: create a key from your account. Questions:{" "}
           <Link
             href={`mailto:${CHALLENGE_CONTACT_EMAIL}`}
             sx={{ color: theme.palette.primary.focus, fontWeight: 600 }}
@@ -105,26 +126,36 @@ const BuildersChallenge: React.FC = () => {
           .
         </>
       ),
+      links: [
+        {
+          label: "Open Concept AI",
+          href: "https://conceptai.spiritualdata.org",
+        },
+        { label: "Product page", href: "/products/concept-ai" },
+      ],
     },
     {
       icon: <TrackChangesIcon sx={{ fontSize: 32 }} />,
       name: "Quest",
       description:
         "Our AI goal-planning product. People use it to define what they want, break it into goals, and work with AI toward them. Integrations, coaching tools, and companion apps are all fair game.",
-      link: {
-        label: "quest.spiritualdata.org",
-        href: "https://quest.spiritualdata.org",
-      },
+      links: [
+        { label: "Open Quest", href: "https://quest.spiritualdata.org" },
+        { label: "Product page", href: "/products/quest" },
+      ],
     },
     {
       icon: <MemoryIcon sx={{ fontSize: 32 }} />,
-      name: "quest-ai-runner",
+      name: "Quest AI Runner",
       description:
         "Our open-source (Apache 2.0) AI task orchestrator and context engine: the brain that grounds, reasons, works to a written standard, and knows when to ask a human. It's domain-free by design. Build your own AI workers on it.",
-      link: {
-        label: "GitHub: SpiritualData/quest-ai-runner",
-        href: "https://github.com/SpiritualData/quest-ai-runner",
-      },
+      links: [
+        {
+          label: "GitHub: SpiritualData/quest-ai-runner",
+          href: "https://github.com/SpiritualData/quest-ai-runner",
+        },
+        { label: "Product page", href: "/products/quest-ai-runner" },
+      ],
     },
   ];
 
@@ -178,7 +209,11 @@ const BuildersChallenge: React.FC = () => {
           <Link
             component={RouterLink}
             to="/revenue-challenge"
-            sx={{ fontWeight: 600 }}
+            sx={{
+              fontWeight: 600,
+              color: "primary.hero",
+              textDecorationColor: "inherit",
+            }}
           >
             Revenue Challenge
           </Link>{" "}
@@ -188,7 +223,7 @@ const BuildersChallenge: React.FC = () => {
 
       {/* Intro */}
       <Section background="white">
-        <Box sx={{ maxWidth: 850, mx: "auto", textAlign: "center" }}>
+        <Box sx={{ maxWidth: 850, mx: "auto" }}>
           <Typography
             variant="body1"
             sx={{ fontSize: "1.1rem", lineHeight: 1.8, letterSpacing: 0.5 }}
@@ -258,7 +293,6 @@ const BuildersChallenge: React.FC = () => {
               fontSize: "1.1rem",
               lineHeight: 1.8,
               letterSpacing: 0.5,
-              textAlign: "center",
             }}
           >
             After pitch day, Joshua will personally invest in two to four
@@ -279,7 +313,6 @@ const BuildersChallenge: React.FC = () => {
               mt: 4,
               lineHeight: 1.8,
               letterSpacing: 0.5,
-              textAlign: "center",
               color: "text.secondary",
             }}
           >
@@ -302,7 +335,6 @@ const BuildersChallenge: React.FC = () => {
             letterSpacing: 0.5,
             maxWidth: 850,
             mx: "auto",
-            textAlign: "center",
           }}
         >
           Spiritual Data is a nonprofit and exists to make an impact. We want
