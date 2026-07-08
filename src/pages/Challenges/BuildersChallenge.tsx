@@ -94,8 +94,8 @@ const BuildersChallenge: React.FC = () => {
           human experiences, into structured concepts and statistical
           conclusions you can explore and build against. It offers API access,
           datasets, and a Knowledge Graph Explorer for mapping how ideas
-          connect across domains. The engine itself isn't public; you build
-          through the API. Ask for access at{" "}
+          connect across domains. The engine itself isn't open source; you build
+          through the API: create a key from your account. Questions:{" "}
           <Link
             href={`mailto:${CHALLENGE_CONTACT_EMAIL}`}
             sx={{ color: theme.palette.primary.focus, fontWeight: 600 }}

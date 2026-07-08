@@ -109,7 +109,7 @@ export const capabilitiesData: capabilitiesData[] = [
   {
     title: "Dataset Exports & API",
     description:
-      "Subscribers can export datasets from the concept graph for their own analysis, publications, and pipelines. A programmatic API is on the way and is currently accessible through a waitlist, so you can plan integrations before general availability.",
+      "Subscribers can export datasets from the concept graph for their own analysis, publications, and pipelines. The programmatic API is live: create an API key from your account and build against the same engine that powers the app.",
     image: cors6,
     icon: <DownloadIcon fontSize="large" />,
   },
@@ -195,7 +195,7 @@ export const sellingPointsData: SellingPoint[] = [
   {
     title: "Built for Working Researchers",
     description:
-      "Start free, upgrade for dataset exports, and join the waitlist for the coming programmatic API.",
+      "Start free, upgrade for dataset exports, and create an API key from your account when you're ready to build.",
     icon: <GroupWorkIcon sx={{ fontSize: 48, color: "#fff" }} />,
     gradient: "linear-gradient(135deg, #FF6FD8, #FF3CAC)",
   },
@@ -212,6 +212,6 @@ export const callToAction: callToAction = {
   buttonText: "Open Concept AI",
   buttonLink: "https://conceptai.spiritualdata.org",
   footerNote: "Free tier to start",
-  additionalFooterNote1: "API access coming soon, join the waitlist",
+  additionalFooterNote1: "API access included: create a key from your account",
   additionalFooterNote2: "Your data stays private",
 };

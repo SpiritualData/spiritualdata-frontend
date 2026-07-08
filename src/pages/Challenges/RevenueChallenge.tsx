@@ -148,7 +148,7 @@ const RevenueChallenge: React.FC = () => {
       icon: <ApiIcon sx={{ fontSize: 32 }} />,
       name: "Concept AI API",
       description:
-        "The same truth-estimation engine, programmatic, for building your own research tools. How it earns: API access, currently through a waitlist; the customers you bring get in early.",
+        "The same truth-estimation engine, programmatic, for building your own research tools: create an API key from your account and go. How it earns: the same subscriptions and credits, spent through the API.",
     },
     {
       icon: <MemoryIcon sx={{ fontSize: 32 }} />,
