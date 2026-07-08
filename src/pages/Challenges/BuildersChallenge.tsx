@@ -105,26 +105,35 @@ const BuildersChallenge: React.FC = () => {
           .
         </>
       ),
+      links: [
+        {
+          label: "Open Concept AI",
+          href: "https://conceptai.spiritualdata.org",
+        },
+        { label: "Product page", href: "/products/concept-ai" },
+      ],
     },
     {
       icon: <TrackChangesIcon sx={{ fontSize: 32 }} />,
       name: "Quest",
       description:
         "Our AI goal-planning product. People use it to define what they want, break it into goals, and work with AI toward them. Integrations, coaching tools, and companion apps are all fair game.",
-      link: {
-        label: "quest.spiritualdata.org",
-        href: "https://quest.spiritualdata.org",
-      },
+      links: [
+        { label: "Open Quest", href: "https://quest.spiritualdata.org" },
+        { label: "Product page", href: "/products/quest" },
+      ],
     },
     {
       icon: <MemoryIcon sx={{ fontSize: 32 }} />,
       name: "quest-ai-runner",
       description:
         "Our open-source (Apache 2.0) AI task orchestrator and context engine: the brain that grounds, reasons, works to a written standard, and knows when to ask a human. It's domain-free by design. Build your own AI workers on it.",
-      link: {
-        label: "GitHub: SpiritualData/quest-ai-runner",
-        href: "https://github.com/SpiritualData/quest-ai-runner",
-      },
+      links: [
+        {
+          label: "GitHub: SpiritualData/quest-ai-runner",
+          href: "https://github.com/SpiritualData/quest-ai-runner",
+        },
+      ],
     },
   ];
 

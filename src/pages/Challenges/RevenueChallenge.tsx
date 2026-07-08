@@ -9,6 +9,8 @@ import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import PsychologyIcon from "@mui/icons-material/Psychology";
 import TrackChangesIcon from "@mui/icons-material/TrackChanges";
 import MemoryIcon from "@mui/icons-material/Memory";
+import SchoolIcon from "@mui/icons-material/School";
+import ApiIcon from "@mui/icons-material/Api";
 import {
   REVENUE_CHALLENGE_FORM_URL,
   CHALLENGE_CONTACT_EMAIL,
@@ -80,7 +82,7 @@ const rewards: RewardCard[] = [
 
 const judgingCriteria = [
   "Does it provide unique value to its users?",
-  "Does it genuinely use Spiritual Data's technology to provide value?",
+  "Does it genuinely apply Spiritual Data's products or technology to provide value?",
   "How strong and credible is the approach to earning Spiritual Data revenue?",
   "Does it advance Spiritual Data's mission?",
   "Does the team responsible have the skills and commitment necessary to scale the project successfully?",
@@ -109,17 +111,42 @@ const RevenueChallenge: React.FC = () => {
   const theme = useTheme();
   useNoIndex();
 
-  const technology: TechnologyCard[] = [
+  const products: TechnologyCard[] = [
+    {
+      icon: <TrackChangesIcon sx={{ fontSize: 32 }} />,
+      name: "Quest",
+      description:
+        "Our AI goal-planning app: define a quest, plan it with AI, build the habits and milestones to get there, and share quests with friends or a mentor. Free tier to start; Quest AI is $10/month or $100/year; Quest Guided, with human guidance on top of the AI, is $50/month or $500/year; credit packs start at $4.99. A built-in referral system pays out through Stripe, and a mentor marketplace launching this quarter brings coaches and therapists on as paid mentors. Selling angles: subscriptions, and recruiting mentors who bring their own clients with them.",
+      links: [
+        { label: "Open Quest", href: "https://quest.spiritualdata.org" },
+        { label: "Product page", href: "/products/quest" },
+      ],
+    },
+    {
+      icon: <SchoolIcon sx={{ fontSize: 32 }} />,
+      name: "Transform Your Life with Quest",
+      description:
+        "Our four-week live course, taught through Quest itself: weekly live sessions, personal feedback, and daily practice between sessions. Sliding-scale pricing so anyone can join. The full curriculum and landing page exist, and a cohort is ready to run again; filling one is a revenue path in itself.",
+    },
     {
       icon: <PsychologyIcon sx={{ fontSize: 32 }} />,
       name: "Concept AI",
+      description:
+        "Our research workspace: it turns evidence, from research papers to firsthand human experiences, into structured concepts and statistical conclusions, with a Knowledge Graph Explorer for mapping how ideas connect across domains. Free tier; the Researcher plan is $29/month or $290/year (per seat for teams); credit packs are $15 for 1,000 credits, $60 for 5,000, and $200 for 25,000. Audiences: researchers, students, and anyone who wants real rigor on spiritual questions.",
+      links: [
+        { label: "Open Concept AI", href: "https://conceptai.spiritualdata.org" },
+        { label: "Product page", href: "/products/concept-ai" },
+      ],
+    },
+    {
+      icon: <ApiIcon sx={{ fontSize: 32 }} />,
+      name: "Concept AI API",
       description: (
         <>
-          Our research engine turns evidence, from research papers to firsthand
-          human experiences, into structured concepts and statistical
-          conclusions. It offers API access, datasets, and a Knowledge Graph
-          Explorer, with subscriptions and credit packs as its revenue. Ask for
-          API access at{" "}
+          The same engine, programmatic: statistical truth-estimation over
+          evidence, for developers and research teams building their own tools.
+          Access currently runs through a waitlist, so the serious customers
+          you bring get in early and shape it. Ask about API access at{" "}
           <Link
             href={`mailto:${CHALLENGE_CONTACT_EMAIL}`}
             sx={{ color: theme.palette.primary.focus, fontWeight: 600 }}
@@ -131,24 +158,16 @@ const RevenueChallenge: React.FC = () => {
       ),
     },
     {
-      icon: <TrackChangesIcon sx={{ fontSize: 32 }} />,
-      name: "Quest",
-      description:
-        "Our AI goal-planning product, with subscriptions and a mentor marketplace bringing coaches and therapists on as paid mentors. Funnels, coaching offers, and mentor recruitment all count.",
-      link: {
-        label: "quest.spiritualdata.org",
-        href: "https://quest.spiritualdata.org",
-      },
-    },
-    {
       icon: <MemoryIcon sx={{ fontSize: 32 }} />,
       name: "quest-ai-runner",
       description:
-        "Our open-source (Apache 2.0) AI task orchestrator and context engine. Paid services built on it that bill through Spiritual Data count too.",
-      link: {
-        label: "GitHub: SpiritualData/quest-ai-runner",
-        href: "https://github.com/SpiritualData/quest-ai-runner",
-      },
+        "Our open-source (Apache 2.0) AI task orchestrator and context engine, the executor behind Quest's AI tasks. Free by design; it counts here when a paid service built on it bills through Spiritual Data.",
+      links: [
+        {
+          label: "GitHub: SpiritualData/quest-ai-runner",
+          href: "https://github.com/SpiritualData/quest-ai-runner",
+        },
+      ],
     },
   ];
 
@@ -241,11 +260,14 @@ const RevenueChallenge: React.FC = () => {
               mt: 3,
             }}
           >
-            Build something with our technology that brings Spiritual Data
-            paying customers: subscribers and credit purchases on Concept AI,
-            paying subscribers and paid mentors on Quest, or a paid service or
-            channel where Spiritual Data does the billing. If the revenue flows
-            to Spiritual Data and it's real, it qualifies.
+            The challenge is about our products: Quest, the Transform Your
+            Life with Quest course, Concept AI (the app and its API), and
+            quest-ai-runner. They already work. The innovation we're after is
+            in how to apply them and sell them: find the audiences, offers, and
+            channels that bring Spiritual Data paying customers. You can also
+            build something new on our technology if that's your path, but most
+            winning approaches will likely start from what already exists. If
+            the revenue flows to Spiritual Data and it's real, it qualifies.
           </Typography>
         </Box>
       </Section>
@@ -262,13 +284,14 @@ const RevenueChallenge: React.FC = () => {
         <RewardCards rewards={rewards} />
       </Section>
 
-      {/* Technology */}
+      {/* Products */}
       <Section background={theme.palette.cosmic.primary}>
-        <SectionTitle>The Technology</SectionTitle>
-        <TechnologyCards cards={technology} />
+        <SectionTitle>The Products You'll Be Selling</SectionTitle>
+        <TechnologyCards cards={products} />
         <Callout sx={{ mt: 5, maxWidth: 820, mx: "auto" }}>
-          Not sure your idea fits? One test: does it use our technology, and
-          does the revenue reach Spiritual Data? If yes, it fits.
+          Not sure your idea fits? One test: does it sell our products (or
+          something new built on our technology), and does the revenue reach
+          Spiritual Data? If yes, it fits.
         </Callout>
       </Section>
 
