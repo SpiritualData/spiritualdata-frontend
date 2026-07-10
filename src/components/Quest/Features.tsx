@@ -15,7 +15,13 @@ const FeaturesSection: React.FC<{
     desc: string;
     subHead?: string;
   }>;
-}> = ({ data }) => {
+  heading?: string;
+  subheading?: string;
+}> = ({
+  data,
+  heading = "What Makes Quest Powerful",
+  subheading = "Quest combines intelligent AI guidance with proven accountability strategies to help you achieve meaningful transformation. Every feature is designed to keep you moving forward on your journey.",
+}) => {
   const theme = useTheme();
 
   return (
@@ -41,7 +47,7 @@ const FeaturesSection: React.FC<{
             color: "#333",
           }}
         >
-          What Makes Quest Powerful
+          {heading}
         </Typography>
         <Typography
           variant="body1"
@@ -52,9 +58,7 @@ const FeaturesSection: React.FC<{
             lineHeight: 1.6,
           }}
         >
-          Quest combines intelligent AI guidance with proven accountability
-          strategies to help you achieve meaningful transformation. Every
-          feature is designed to keep you moving forward on your journey.
+          {subheading}
         </Typography>
       </Box>
 

@@ -110,6 +110,11 @@ const Navbar = () => {
           path: "/products/concept-ai",
           icon: conceptAiIcon,
         },
+        {
+          name: "Quest AI Runner",
+          path: "/products/quest-ai-runner",
+          icon: productIcon,
+        },
       ],
     },
     {

@@ -137,10 +137,20 @@ export const productCardData = [
     id: 2,
     title: "Concept AI for Researchers",
     description:
-      "Navigate complex research domains with bias-resistant AI that integrates diverse evidence, evaluates hypotheses probabilistically, and reveals scientific consensus across disciplines.",
+      "Turn evidence, from research papers to firsthand human experiences, into structured concepts and statistical conclusions on an explorable knowledge graph.",
     image: conceptAiCardImage,
     link: "/products/concept-ai",
     author: "Spiritual Data",
     buttonText: "Learn about Concept AI",
+  },
+  {
+    id: 3,
+    title: "Quest AI Runner for AI task execution",
+    description:
+      "Spiritual Data's open source AI task orchestrator and executor: the brain that runs Quest's queued AI tasks in production, released under Apache 2.0 for any team.",
+    image: questCardImage,
+    link: "/products/quest-ai-runner",
+    author: "Spiritual Data",
+    buttonText: "Learn about Quest AI Runner",
   },
 ];

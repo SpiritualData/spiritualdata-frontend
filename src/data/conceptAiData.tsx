@@ -6,7 +6,6 @@ import cors5 from "../assets/images/products/conceptAiCor5.webp"
 import cors6 from "../assets/images/products/conceptAiCor6.webp"
 import image1 from "../assets/images/products/app1.webp";
 import image2 from "../assets/images/products/app2.webp";
-import LightbulbIcon from "@mui/icons-material/Lightbulb";
 import SecurityIcon from "@mui/icons-material/Security";
 import image3 from "../assets/images/products/app3.webp";
 import AutoGraphIcon from "@mui/icons-material/AutoGraph";
@@ -14,7 +13,7 @@ import FunctionsIcon from "@mui/icons-material/Functions";
 import HubIcon from "@mui/icons-material/Hub";
 import FactCheckIcon from "@mui/icons-material/FactCheck";
 import LanIcon from "@mui/icons-material/Lan";
-import PsychologyIcon from "@mui/icons-material/Psychology";
+import DownloadIcon from "@mui/icons-material/Download";
 import TrackChangesIcon from "@mui/icons-material/TrackChanges";
 import GroupWorkIcon from "@mui/icons-material/GroupWork";
 
@@ -22,6 +21,7 @@ interface heroData {
   title: string;
   description: string;
   buttonText: string;
+  buttonLink?: string;
   subHead: string;
   subDesc: string;
 }
@@ -62,55 +62,56 @@ interface callToAction {
 export const heroData: heroData = {
   title: "Concept AI",
   description:
-    "Multidisciplinary, bias-resistant AI for hypothesis testing, knowledge integration, and research collaboration.",
-  buttonText: "JOIN THE WAITLIST",
+    "Spiritual Data's AI research workspace. It turns evidence, from research papers to firsthand human experiences, into structured concepts and statistical conclusions.",
+  buttonText: "Open Concept AI",
+  buttonLink: "https://conceptai.spiritualdata.org",
   subHead: "What is Concept AI?",
   subDesc:
-    "Concept AI is an advanced research framework that unites empirical data, human experiences, and philosophical ideas into a single, bias-resistant knowledge system. Researchers can define concepts, ask questions, and receive context-aware, probabilistic answers - empowering deeper insights across diverse domains.",
+    "Concept AI organizes evidence on a concept graph database that spans multiple domains. You define concepts, add evidence, and ask questions. The system estimates the statistical truth of each conclusion and records every step it took, so you can audit exactly how each answer was reached.",
 };
 
 export const capabilitiesData: capabilitiesData[] = [
   {
-    title: "Knowledge Graph Representation",
+    title: "Knowledge Graph Explorer",
     description:
-      "Integrates research papers, datasets, experiential reports, and qualitative accounts into a richly connected network of concepts, relationships, and evidence. This structure enables cross-referencing between disciplines, linking abstract ideas to concrete data, and revealing patterns that would be difficult to detect in isolated studies.",
+      "An interactive force-directed map of domains and concepts. Explore how ideas connect across domains, follow the relationships between concepts, and see where the evidence clusters. The graph makes cross-domain links visible instead of leaving them buried in separate literatures.",
     image: cors1,
     icon: <HubIcon fontSize="large" />,
   },
   {
-    title: "Statistical & Probabilistic Reasoning",
+    title: "Statistical Truth Estimation",
     description:
-      "Uses Bayesian inference and graph-based probability modeling to evaluate hypotheses with transparent confidence scoring. Incorporates prior knowledge, updates dynamically as new evidence is added, and accounts for uncertainty, ensuring that conclusions remain accurate and relevant over time.",
+      "Concept AI weighs the evidence behind each concept and produces statistical conclusions rather than opinions. As new evidence is added, conclusions update, so the numbers reflect the current state of the evidence instead of a snapshot from the past.",
     image: cors2,
     icon: <FunctionsIcon fontSize="large" />,
   },
   {
-    title: "Multidisciplinary Integration",
+    title: "Multi-Domain Support",
     description:
-      "Seamlessly merges insights from sciences, humanities, and metaphysics into a unified framework. Enables researchers to find meaningful connections between fields, such as parallels between cognitive neuroscience and philosophy of mind, or between ecological modeling and network theory.",
+      "Work across many domains on a single concept graph database. Concepts link across domain boundaries, so findings in one field can inform questions in another, and the same evidence base serves researchers coming from different disciplines.",
     image: cors3,
     icon: <AutoGraphIcon fontSize="large" />,
   },
   {
-    title: "Bias Reduction",
+    title: "Full Transparency",
     description:
-      "Mitigates publication bias, researcher bias, and systemic methodological bias by incorporating unpublished and grey literature, generating objective hypotheses, simulating blind analyses, and applying automated peer review checks — resulting in a more reliable evidence base.",
+      "Every conclusion surfaces its complete action trace. Open any answer and audit each step the system took to reach it: the evidence it read, the concepts it consulted, and the reasoning it applied. Nothing is hidden behind a black box.",
     image: cors4,
     icon: <FactCheckIcon fontSize="large" />,
   },
   {
-    title: "Diverse Evidence Integration",
+    title: "Evidence of Every Kind",
     description:
-      "Combines quantitative results, qualitative narratives, theoretical arguments, historical records, simulations, and big data analytics into a single evaluative model. Applies contextual weighting so that each evidence type is considered appropriately for the domain and research question.",
+      "Bring in research papers, datasets, and firsthand human experiences. Concept AI structures all of it into concepts and relationships, so quantitative results and qualitative accounts can be weighed together within the same statistical framework.",
     image: cors5,
     icon: <LanIcon fontSize="large" />,
   },
   {
-    title: "Paradigm Ranking",
+    title: "Dataset Exports & API",
     description:
-      "Statistically evaluates and scores competing paradigms by measuring how well they explain the available evidence. The system operates across three hierarchical levels: hypotheses are validated directly against evidence, theories are scored based on supporting hypotheses that align with their explanations, and paradigms are ranked according to theories that match their foundational assumptions — revealing which worldviews explain the most data.",
+      "Subscribers can export datasets from the concept graph for their own analysis, publications, and pipelines. The programmatic API is live: create an API key from your account and build against the same engine that powers the app.",
     image: cors6,
-    icon: <PsychologyIcon fontSize="large" />,
+    icon: <DownloadIcon fontSize="large" />,
   },
 ];
 
@@ -139,78 +140,78 @@ export const applicationsData = [
 ];
 
 export const researchData: researchData[] = [
-  { type: "single", content: "Add new domains and concepts" },
+  { type: "single", content: "Create domains and define concepts" },
   {
     type: "double",
     content: [
-      "Upload datasets with metadata",
-      "Ask research questions with domain-specific filters",
+      "Add evidence, from papers to firsthand experiences",
+      "Ask questions, get statistical conclusions",
     ],
   },
   {
     type: "title",
-    title: "RESEARCH INTERFACE",
-    subtitle: "The Spiritual Data Research Interface enables researchers to:",
+    title: "RESEARCH WORKSPACE",
+    subtitle: "Concept AI gives researchers one place to:",
   },
   {
     type: "double",
     content: [
-      "Generate automated hypotheses",
-      "Review results via semantic maps and statistical dashboards",
+      "Audit any conclusion through its action trace",
+      "Explore the knowledge graph across domains",
     ],
   },
-  { type: "single", content: "Export data, visualisations, and reports" },
+  { type: "single", content: "Export datasets (for subscribers)" },
 ];
 
 export const sellingPointsData: SellingPoint[] = [
   {
-    title: "Holistic Knowledge Graph",
+    title: "Statistical Truth Estimation",
     description:
-      "Uniting diverse evidence and human experience into a comprehensive, interconnected framework.",
-    icon: <HubIcon sx={{ fontSize: 48, color: "#fff" }} />,
+      "Evidence, from research papers to firsthand human experiences, becomes structured concepts and statistical conclusions.",
+    icon: <FunctionsIcon sx={{ fontSize: 48, color: "#fff" }} />,
     gradient: "linear-gradient(135deg, #7B5CFF, #6A4DFF)",
   },
   {
-    title: "Bias-Resistant Methodology",
+    title: "Full Transparency",
     description:
-      "Ensuring objectivity and integrity across every stage of the research lifecycle.",
+      "Every conclusion carries its complete action trace, so you can audit how the answer was reached.",
     icon: <SecurityIcon sx={{ fontSize: 48, color: "#fff" }} />,
     gradient: "linear-gradient(135deg, #FFB347, #FF9A00)",
   },
   {
-    title: "Multi-Perspective Integration",
+    title: "Knowledge Graph Explorer",
     description:
-      "Blending scientific, philosophical, and cultural insights for richer understanding.",
-    icon: <LightbulbIcon sx={{ fontSize: 48, color: "#fff" }} />,
+      "An interactive force-directed map of domains and concepts, showing how ideas connect across fields.",
+    icon: <HubIcon sx={{ fontSize: 48, color: "#fff" }} />,
     gradient: "linear-gradient(135deg, #FF6B6B, #FF4C4C)",
   },
   {
-    title: "Context-Aware Outputs",
+    title: "Multi-Domain by Design",
     description:
-      "Connects the large body of scientific evidence to the individual scenarios you specify in real-time, bringing science to the real world.",
+      "One concept graph database spans many domains, linking evidence and ideas across field boundaries.",
     icon: <TrackChangesIcon sx={{ fontSize: 48, color: "#fff" }} />,
     gradient: "linear-gradient(135deg, #4FC3F7, #00B0FF)",
   },
   {
-    title: "Collaborative & Adaptive Framework",
+    title: "Built for Working Researchers",
     description:
-      "Work with other users on the same concept definitions, hypotheses, and theories.",
+      "Start free, upgrade for dataset exports, and create an API key from your account when you're ready to build.",
     icon: <GroupWorkIcon sx={{ fontSize: 48, color: "#fff" }} />,
     gradient: "linear-gradient(135deg, #FF6FD8, #FF3CAC)",
   },
 ];
 
 export const callToAction: callToAction = {
-  title: "Join the Waitlist for ",
+  title: "Ready to Research with ",
   highlight: "Concept AI",
   suffix: "...?",
   subtitle:
-    "Be the first to access Concept AI and collaborate with leading researchers",
+    "Start free. The Researcher plan is $29/month or $290/year, per seat for teams.",
   additionalSubtitle:
-    "in building the next generation of scientific knowledge integration.",
-  buttonText: "Join the Waitlist",
-  buttonLink: "https://docs.google.com/forms/d/e/1FAIpQLSdfoza-eMBzM6JysihA8lyPN2GEtT5C-2TWz7B7O56K1u1fEw/viewform?usp=header",
-  footerNote: "",
-  additionalFooterNote1: "",
+    "Credit packs: $15 for 1,000 credits, $60 for 5,000, or $200 for 25,000.",
+  buttonText: "Open Concept AI",
+  buttonLink: "https://conceptai.spiritualdata.org",
+  footerNote: "Free tier to start",
+  additionalFooterNote1: "API access included: create a key from your account",
   additionalFooterNote2: "Your data stays private",
 };

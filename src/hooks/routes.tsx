@@ -19,8 +19,11 @@ import MentalHealth from "../pages/MentalHealth";
 import Quest from "../pages/Products/Quest";
 import AuthPage from "../pages/AuthPage";
 import Careers from "../pages/Careers";
+import RevenueChallenge from "../pages/Challenges/RevenueChallenge";
+import BuildersChallenge from "../pages/Challenges/BuildersChallenge";
 import Products from "../pages/Products";
 import ConceptAi from "../pages/Products/ConceptAi";
+import QuestAiRunner from "../pages/Products/QuestAiRunner";
 import Initiatives from "../pages/Initiatives";
 import EstimatingTruth from "../pages/Initiatives/EstimatingTruth";
 import WikipediaAdvocacy from "../pages/Initiatives/WikipediaAdvocacy";
@@ -44,6 +47,8 @@ const useClerkRoutes = (): ReactElement => {
         <Route path="crisis" element={<Crisis />} />
         <Route path="change" element={<Change />} />
         <Route path="careers" element={<Careers />} />
+        <Route path="/challenges/revenue-challenge" element={<RevenueChallenge />} />
+        <Route path="/challenges/builders-challenge" element={<BuildersChallenge />} />
         <Route path="/initiatives" element={<Initiatives />} />
         <Route
           path="/initiatives/estimating-truth"
@@ -92,6 +97,7 @@ const useClerkRoutes = (): ReactElement => {
         <Route path="/products/mental-health-chat" element={<MentalHealth />} />
         <Route path="/products/quest" element={<Quest />} />
         <Route path="/products/concept-ai" element={<ConceptAi />} />
+        <Route path="/products/quest-ai-runner" element={<QuestAiRunner />} />
         {/*  */}
       </Routes>
     </ClerkProvider>
