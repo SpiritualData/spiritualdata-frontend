@@ -17,7 +17,6 @@ import {
   Section,
   SectionTitle,
   CtaButton,
-  Callout,
 } from "./components/ChallengeElements";
 import {
   ChallengeHero,
@@ -32,6 +31,7 @@ import TechnologyCards, {
 } from "./components/TechnologyCards";
 import RewardCards, { RewardCard } from "./components/RewardCards";
 import JudgingList from "./components/JudgingList";
+import FaqList, { FaqItem } from "./components/FaqList";
 
 const milestones: TimelineMilestone[] = [
   {
@@ -109,23 +109,8 @@ const BuildersChallenge: React.FC = () => {
     {
       icon: <PsychologyIcon sx={{ fontSize: 32 }} />,
       name: "Concept AI",
-      description: (
-        <>
-          Our research engine turns evidence, from research papers to firsthand
-          human experiences, into structured concepts and statistical
-          conclusions you can explore and build against. It offers API access,
-          datasets, and a Knowledge Graph Explorer for mapping how ideas
-          connect across domains. The engine itself isn't open source; you build
-          through the API: create a key from your account. Questions:{" "}
-          <Link
-            href={`mailto:${CHALLENGE_CONTACT_EMAIL}`}
-            sx={{ color: theme.palette.primary.focus, fontWeight: 600 }}
-          >
-            {CHALLENGE_CONTACT_EMAIL}
-          </Link>
-          .
-        </>
-      ),
+      description:
+        "Evidence from research papers and firsthand experiences becomes structured concepts and statistical conclusions you can build against. Create an API key from your account and go.",
       links: [
         {
           label: "Open Concept AI",
@@ -138,7 +123,7 @@ const BuildersChallenge: React.FC = () => {
       icon: <TrackChangesIcon sx={{ fontSize: 32 }} />,
       name: "Quest",
       description:
-        "Our AI goal-planning product. People use it to define what they want, break it into goals, and work with AI toward them. Integrations, coaching tools, and companion apps are all fair game.",
+        "Our AI goal-planning product: people define what they want and work with AI toward it. Integrations, coaching tools, and companion apps are all fair game.",
       links: [
         { label: "Open Quest", href: "https://quest.spiritualdata.org" },
         { label: "Product page", href: "/products/quest" },
@@ -148,7 +133,7 @@ const BuildersChallenge: React.FC = () => {
       icon: <MemoryIcon sx={{ fontSize: 32 }} />,
       name: "Quest AI Runner",
       description:
-        "Our open-source (Apache 2.0) AI task orchestrator and context engine: the brain that grounds, reasons, works to a written standard, and knows when to ask a human. It's domain-free by design. Build your own AI workers on it.",
+        "Our open-source (Apache 2.0) AI task orchestrator: domain-free by design. Build your own AI workers on it.",
       links: [
         {
           label: "GitHub: SpiritualData/quest-ai-runner",
@@ -192,6 +177,24 @@ const BuildersChallenge: React.FC = () => {
     },
   ];
 
+  const finePrint: FaqItem[] = [
+    {
+      title: "The structure",
+      detail:
+        "Two to four ventures at $2,500 to $5,000 each, up to $10,000 total, through a standard SAFE or a simple revenue-share agreement. Investment can arrive in stages tied to milestones, like first revenue or first paying customers.",
+    },
+    {
+      title: "What qualifies",
+      detail:
+        "A committed founder, a working product or credible prototype, genuine use of Spiritual Data technology or clear alignment with its mission, and a plausible path to first revenue within three months. Anyone can apply; challenge winners are fast-tracked.",
+    },
+    {
+      title: "Stated plainly",
+      detail:
+        "Joshua serves on Spiritual Data's board and takes no personal return from Spiritual Data itself. These investments go to independent ventures owned by their builders, on arm's-length terms.",
+    },
+  ];
+
   return (
     <>
       <ChallengeHero
@@ -229,22 +232,9 @@ const BuildersChallenge: React.FC = () => {
             sx={{ fontSize: "1.1rem", lineHeight: 1.8, letterSpacing: 0.5 }}
           >
             Spiritual Data exists to answer spiritual questions with scientific
-            rigor. We built real technology to do it. Now we want to see what
-            you build with it.
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{
-              fontSize: "1.1rem",
-              lineHeight: 1.8,
-              letterSpacing: 0.5,
-              mt: 3,
-            }}
-          >
-            This fall we're running a six-week open build challenge, with
-            entries opening October 9. Make something that uses Spiritual
-            Data's technology in any way: a product, an integration, a research
-            tool, a content engine. If it works and it's real, it qualifies.
+            rigor. We built real technology to do it; this fall, build
+            something with it: a product, an integration, a research tool. If
+            it works and it's real, it qualifies.
           </Typography>
         </Box>
       </Section>
@@ -263,12 +253,10 @@ const BuildersChallenge: React.FC = () => {
 
       {/* Technology */}
       <Section background={theme.palette.cosmic.primary}>
-        <SectionTitle>The Technology</SectionTitle>
+        <SectionTitle subtitle='Not sure your idea fits? It probably does. "Uses the technology in any way" is the whole rule.'>
+          The Technology
+        </SectionTitle>
         <TechnologyCards cards={technology} />
-        <Callout sx={{ mt: 5, maxWidth: 820, mx: "auto" }}>
-          Not sure your idea fits? It probably does. &quot;Uses the technology
-          in any way&quot; is the whole rule.
-        </Callout>
       </Section>
 
       {/* How it works */}
@@ -279,69 +267,18 @@ const BuildersChallenge: React.FC = () => {
 
       {/* Judging */}
       <Section background={theme.palette.cosmic.primary}>
-        <SectionTitle>Judging Is Across 5 Areas</SectionTitle>
+        <SectionTitle subtitle="Tap any area for what the judges look for.">
+          Judging Is Across 5 Areas
+        </SectionTitle>
         <JudgingList criteria={judgingCriteria} />
       </Section>
 
       {/* Investment offer */}
       <Section background="white">
-        <SectionTitle>The Investment Offer</SectionTitle>
-        <Box sx={{ maxWidth: 850, mx: "auto" }}>
-          <Typography
-            variant="body1"
-            sx={{
-              fontSize: "1.1rem",
-              lineHeight: 1.8,
-              letterSpacing: 0.5,
-            }}
-          >
-            After pitch day, Joshua will personally invest in two to four
-            ventures at $2,500 to $5,000 each, up to $10,000 total, through a
-            standard SAFE or a simple revenue-share agreement. Investment can
-            arrive in stages tied to milestones, like first revenue or first
-            paying customers.
-          </Typography>
-          <Callout title="What qualifies" sx={{ mt: 4 }}>
-            A committed founder, a working product or credible prototype,
-            genuine use of Spiritual Data technology or clear alignment with
-            its mission, and a plausible path to first revenue within three
-            months. Anyone can apply; challenge winners are fast-tracked.
-          </Callout>
-          <Typography
-            variant="body1"
-            sx={{
-              mt: 4,
-              lineHeight: 1.8,
-              letterSpacing: 0.5,
-              color: "text.secondary",
-            }}
-          >
-            One thing stated plainly: Joshua serves on Spiritual Data's board
-            and takes no personal return from Spiritual Data itself. These
-            investments go to independent ventures owned by their builders, on
-            arm's-length terms.
-          </Typography>
-        </Box>
-      </Section>
-
-      {/* Why */}
-      <Section background={theme.palette.cosmic.primary}>
-        <SectionTitle>Why We're Doing This</SectionTitle>
-        <Typography
-          variant="body1"
-          sx={{
-            fontSize: "1.1rem",
-            lineHeight: 1.8,
-            letterSpacing: 0.5,
-            maxWidth: 850,
-            mx: "auto",
-          }}
-        >
-          Spiritual Data is a nonprofit and exists to make an impact. We want
-          to see our technology put to good use, while finding opportunities
-          for sustainable revenue. Finding sustainable revenue paths will allow
-          us to scale our ambitious mission to overcome bias in science.
-        </Typography>
+        <SectionTitle subtitle="After pitch day, Spiritual Data's founder personally backs the best ventures.">
+          The Investment Offer
+        </SectionTitle>
+        <FaqList items={finePrint} />
       </Section>
 
       <ChallengeBottomCta
