@@ -109,7 +109,7 @@ const rewards: RewardCard[] = [
   {
     stat: "$1,000",
     title: "in prize money.",
-    body: "$50 for passing demo day. What's left of the $1,000 is shared out in proportion to the revenue each team brings in, up to 10 times your team's own revenue. It's a reward for opening a new revenue path, not a commission.",
+    body: "$50 for passing demo day. What's left of the $1,000 goes to the teams that bring in the most revenue, capped at 10 times your own. It's a reward for opening a new revenue path, not a commission.",
   },
   {
     title: "Real backing.",
@@ -264,22 +264,22 @@ const RevenueChallenge: React.FC = () => {
     {
       title: "Who can enter",
       detail:
-        "Everyone who has applied to work or volunteer at Spiritual Data, plus the Spiritual Data team. Register with the email address from your application so we can match you to it. Not eligible this time? We expect to run more challenges, so write to us and we'll keep you posted.",
+        "Everyone who has applied to work or volunteer at Spiritual Data, plus the Spiritual Data team. Register with the email address from your application so we can match you. Not eligible this time? Write to us, we expect to run more challenges.",
     },
     {
       title: "What counts as revenue",
       detail:
-        "Revenue counts when Spiritual Data actually received the payment, it came from your team's work after registration, and the customer is someone you didn't know before the challenge. Friends, family, and your own purchases don't count. Strangers do. The revenue itself stays with Spiritual Data: we bill the customer, we receive the payment, and your team earns its share of the pool for bringing it in.",
+        "Revenue counts when Spiritual Data received the payment, it came from your team's work after registration, and the customer is someone you didn't know before the challenge. Friends, family, and your own purchases don't count. Strangers do.",
     },
     {
       title: "How the pool pays out",
       detail:
-        "Every team that passes demo day earns $50. What's left of the $1,000 is shared out in proportion to the revenue each team brought in, so the team that brings in the most earns the most. Your share is capped at 10 times your own qualifying revenue, so a team that brings in $30 earns at most $300, however the rest of the field does. Payouts follow verification against our payment records.",
+        "Every team that passes demo day earns $50. What's left of the $1,000 is shared out in proportion to the revenue each team brought in, capped at 10 times your own: bring in $30 and you earn at most $300. Payouts follow verification against our payment records.",
     },
     {
       title: "Team size and finding teammates",
       detail:
-        "Teams can have up to five members, and entering solo is fine. One team per person. Every entrant joins the challenge space on Quest to find teammates, and we host a kickoff call in week one. Registration and rosters both close on August 14, so have your team settled by then.",
+        "Teams can have up to five members, and entering solo is fine. One team per person. Every entrant joins the challenge space on Quest to find teammates, and we host a kickoff call in week one. Registration and rosters both close on August 14.",
     },
     {
       title: "Captains and splits",
@@ -396,8 +396,7 @@ const RevenueChallenge: React.FC = () => {
           <MoreInfoLink href="https://quest-docs.spiritualdata.org/guide/mentors">
             mentors guide
           </MoreInfoLink>{" "}
-          for the marketplace. Unsure whether your idea qualifies, or how you'd
-          bill through us? Email{" "}
+          for the marketplace. Unsure whether your idea qualifies? Email{" "}
           <MoreInfoLink href={`mailto:${CHALLENGE_CONTACT_EMAIL}`}>
             {CHALLENGE_CONTACT_EMAIL}
           </MoreInfoLink>{" "}
@@ -413,7 +412,7 @@ const RevenueChallenge: React.FC = () => {
 
       {/* Judging */}
       <Section background={theme.palette.cosmic.primary}>
-        <SectionTitle subtitle="Judged by Joshua Mathias, Spiritual Data's founder, and our Director of Product. Open any area for what they look for.">
+        <SectionTitle subtitle="Judged by founder Joshua Mathias and our Director of Product. Open any area for what they look for.">
           Demo Day Is Judged Across 5 Areas
         </SectionTitle>
         <JudgingList criteria={judgingCriteria} />
