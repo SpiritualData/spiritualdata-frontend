@@ -109,7 +109,7 @@ const rewards: RewardCard[] = [
   {
     stat: "$1,000",
     title: "in prize money.",
-    body: "$50 for passing demo day, then $10 for every $100 of revenue your team brings in, from what's left of the pool. Your team divides its share however it likes.",
+    body: "$50 for passing demo day. What's left of the $1,000 is shared out in proportion to the revenue each team brings in, up to 10 times your team's own revenue. It's a reward for opening a new revenue path, not a commission.",
   },
   {
     title: "Real backing.",
@@ -274,7 +274,7 @@ const RevenueChallenge: React.FC = () => {
     {
       title: "How the pool pays out",
       detail:
-        "Every team that passes demo day earns $50. What's left of the $1,000 pays $10 for every $100 of qualifying revenue, so a team that brings in $2,000 earns $200. If the teams together earn more than the remaining pool covers at that rate, the pool splits in proportion to revenue instead. Payouts follow verification against our payment records.",
+        "Every team that passes demo day earns $50. What's left of the $1,000 is shared out in proportion to the revenue each team brought in, so the team that brings in the most earns the most. Your share is capped at 10 times your own qualifying revenue, so a team that brings in $30 earns at most $300, however the rest of the field does. Payouts follow verification against our payment records.",
     },
     {
       title: "Team size and finding teammates",
@@ -320,8 +320,7 @@ const RevenueChallenge: React.FC = () => {
           >
             Pick one of our products, find the people who will pay for it, and
             sell it. Spiritual Data bills the customer and receives the revenue,
-            and your team earns a share of the $1,000 pool for every $100 it
-            brings in.
+            and the $1,000 pool goes to the teams that bring in the most.
           </Typography>
           <Typography
             variant="body1"
