@@ -593,7 +593,7 @@ const Footer = () => {
             mt={{ xs: 2, sm: 0 }}
             sx={{ fontSize: { xs: 13, sm: 14 }, color: "primary.main" }}
           >
-            © Copyright 2025 Spiritual Data. All Rights Reserved.
+            © Copyright 2026 Spiritual Data. All Rights Reserved.
           </Typography>
         </Box>
       </Box>
