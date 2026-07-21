@@ -279,7 +279,7 @@ const RevenueChallenge: React.FC = () => {
     {
       title: "Team size and finding teammates",
       detail:
-        "Teams can have up to five members, and entering solo is fine. One team per person. Every entrant joins the challenge space on Quest to find teammates, and we host a kickoff call in week one. Registration closes and rosters lock on August 14, so register before then even if your team isn't final.",
+        "Teams can have up to five members, and entering solo is fine. One team per person. Every entrant joins the challenge space on Quest to find teammates, and we host a kickoff call in week one. Registration and rosters both close on August 14, so have your team settled by then.",
     },
     {
       title: "Captains and splits",
