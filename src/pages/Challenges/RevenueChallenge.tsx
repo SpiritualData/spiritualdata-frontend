@@ -37,6 +37,35 @@ import RewardCards, { RewardCard } from "./components/RewardCards";
 import JudgingList from "./components/JudgingList";
 import FaqList, { FaqItem } from "./components/FaqList";
 
+/** Inline link used in the "want to know more" pointers. */
+const MoreInfoLink: React.FC<{
+  href: string;
+  internal?: boolean;
+  children: React.ReactNode;
+}> = ({ href, internal, children }) => {
+  const linkSx = { fontWeight: 600, color: "primary.hero" };
+
+  if (internal) {
+    return (
+      <Link component={RouterLink} to={href} sx={linkSx}>
+        {children}
+      </Link>
+    );
+  }
+
+  const isEmail = href.startsWith("mailto:");
+  return (
+    <Link
+      href={href}
+      target={isEmail ? undefined : "_blank"}
+      rel={isEmail ? undefined : "noopener"}
+      sx={linkSx}
+    >
+      {children}
+    </Link>
+  );
+};
+
 const milestones: TimelineMilestone[] = [
   {
     date: "Mid-July",
@@ -125,6 +154,10 @@ const RevenueChallenge: React.FC = () => {
       links: [
         { label: "Open Quest", href: "https://quest.spiritualdata.org" },
         { label: "Product page", href: "/products/quest" },
+        {
+          label: "Plans and pricing",
+          href: "https://quest-docs.spiritualdata.org/reference/plans",
+        },
       ],
     },
     {
@@ -136,6 +169,10 @@ const RevenueChallenge: React.FC = () => {
         {
           label: "Event page",
           href: "https://quest.spiritualdata.org/events/transform-your-life-with-quest",
+        },
+        {
+          label: "Course guide",
+          href: "https://quest-docs.spiritualdata.org/course/",
         },
       ],
     },
@@ -169,6 +206,7 @@ const RevenueChallenge: React.FC = () => {
           label: "GitHub: SpiritualData/quest-ai-runner",
           href: "https://github.com/SpiritualData/quest-ai-runner",
         },
+        { label: "Product page", href: "/products/quest-ai-runner" },
       ],
     },
   ];
@@ -230,27 +268,13 @@ const RevenueChallenge: React.FC = () => {
     },
     {
       title: "Where the revenue goes",
-      detail: (
-        <>
-          To Spiritual Data. That is what makes an entry qualify: we bill the
-          customer, we receive the payment, and your team earns its share of the
-          prize pool for bringing it in. Want to build something you own and
-          keep the revenue yourself? That's the{" "}
-          <Link
-            component={RouterLink}
-            to="/challenges/builders-challenge"
-            sx={{ fontWeight: 600, color: "primary.hero" }}
-          >
-            Builders Challenge
-          </Link>
-          , which runs after this one.
-        </>
-      ),
+      detail:
+        "To Spiritual Data. That is what makes an entry qualify: we bill the customer, we receive the payment, and your team earns its share of the prize pool for bringing it in. This challenge is about revenue for Spiritual Data. We may run challenges with a different shape in the future.",
     },
     {
       title: "Teams, captains, and splits",
       detail:
-        "Enter solo or with up to four teammates, one team per person. Every entrant joins the challenge space on Quest to find teammates, and we host a kickoff call in week one. Each team names a captain, who registers the team, holds the referral link, and receives the team's share. Tell us your split at registration or it's equal shares. Rosters lock August 14.",
+        "Teams are one to five team members, and you can enter solo. One team per person. Every entrant joins the challenge space on Quest to find teammates, and we host a kickoff call in week one. Each team names a captain, who registers the team, holds the referral link, and receives the team's share. Tell us your split at registration or it's equal shares. Rosters lock August 14.",
     },
     {
       title: "Access and resources",
@@ -273,19 +297,8 @@ const RevenueChallenge: React.FC = () => {
           sx={{ mt: 4, color: "text.secondary", letterSpacing: 0.5 }}
         >
           Open to everyone who has applied to work or volunteer at Spiritual
-          Data, plus the current team. Never applied? The{" "}
-          <Link
-            component={RouterLink}
-            to="/challenges/builders-challenge"
-            sx={{
-              fontWeight: 600,
-              color: "primary.hero",
-              textDecorationColor: "inherit",
-            }}
-          >
-            Builders Challenge
-          </Link>{" "}
-          is open to everyone.
+          Data, plus the current team. Not eligible this time? We expect to run
+          more challenges, so write to us and we'll keep you posted.
         </Typography>
       </ChallengeHero>
 
@@ -364,6 +377,57 @@ const RevenueChallenge: React.FC = () => {
           The Products You'll Be Selling
         </SectionTitle>
         <TechnologyCards cards={products} />
+        <Callout
+          title="Want to know more before you register?"
+          sx={{ mt: { xs: 4, md: 5 }, maxWidth: 850, mx: "auto" }}
+        >
+          <Box
+            component="ul"
+            sx={{
+              pl: 3,
+              m: 0,
+              "& li": { mb: 1.5 },
+              "& li:last-of-type": { mb: 0 },
+            }}
+          >
+            <li>
+              <MoreInfoLink href="https://quest-docs.spiritualdata.org">
+                Quest documentation
+              </MoreInfoLink>{" "}
+              covers what the product does, feature by feature, and{" "}
+              <MoreInfoLink href="https://quest-docs.spiritualdata.org/reference/plans">
+                plans and pricing
+              </MoreInfoLink>{" "}
+              shows exactly what a customer pays.
+            </li>
+            <li>
+              Selling into the mentor marketplace? Start with the{" "}
+              <MoreInfoLink href="https://quest-docs.spiritualdata.org/guide/mentors">
+                mentors guide
+              </MoreInfoLink>
+              .
+            </li>
+            <li>
+              Concept AI is easiest to understand by using it:{" "}
+              <MoreInfoLink href="https://conceptai.spiritualdata.org">
+                ask it a question
+              </MoreInfoLink>{" "}
+              and read the{" "}
+              <MoreInfoLink href="/products/concept-ai" internal>
+                product page
+              </MoreInfoLink>
+              .
+            </li>
+            <li>
+              Anything this page doesn't answer, including whether your idea
+              qualifies: email{" "}
+              <MoreInfoLink href={`mailto:${CHALLENGE_CONTACT_EMAIL}`}>
+                {CHALLENGE_CONTACT_EMAIL}
+              </MoreInfoLink>
+              . We read everything, and we'd rather answer before you build.
+            </li>
+          </Box>
+        </Callout>
       </Section>
 
       {/* How it works */}
