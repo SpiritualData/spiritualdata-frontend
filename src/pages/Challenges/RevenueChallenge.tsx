@@ -85,8 +85,8 @@ const milestones: TimelineMilestone[] = [
   },
   {
     date: "August 14",
-    title: "Rosters lock",
-    description: "Teams are fixed from here.",
+    title: "Registration closes",
+    description: "Rosters lock the same day.",
   },
   {
     date: "September 4",
@@ -227,7 +227,7 @@ const RevenueChallenge: React.FC = () => {
       icon: <HowToRegIcon sx={{ fontSize: 28 }} />,
       title: "Register",
       description:
-        "Tell us your approach and what access you'd like. We confirm every registration before you start.",
+        "Tell us your approach and what access you'd like, by August 14. We confirm every registration before you start.",
       action: (
         <CtaButton
           label="Register your team"
@@ -279,7 +279,7 @@ const RevenueChallenge: React.FC = () => {
     {
       title: "Team size and finding teammates",
       detail:
-        "Teams can have up to five members, and entering solo is fine. One team per person. Every entrant joins the challenge space on Quest to find teammates, and we host a kickoff call in week one. Rosters lock August 14.",
+        "Teams can have up to five members, and entering solo is fine. One team per person. Every entrant joins the challenge space on Quest to find teammates, and we host a kickoff call in week one. Registration closes and rosters lock on August 14, so register before then even if your team isn't final.",
     },
     {
       title: "Captains and splits",
@@ -413,7 +413,7 @@ const RevenueChallenge: React.FC = () => {
 
       {/* Judging */}
       <Section background={theme.palette.cosmic.primary}>
-        <SectionTitle subtitle="Open any area for what the judges look for.">
+        <SectionTitle subtitle="Judged by Joshua Mathias, Spiritual Data's founder, and our Director of Product. Open any area for what they look for.">
           Demo Day Is Judged Across 5 Areas
         </SectionTitle>
         <JudgingList criteria={judgingCriteria} />
