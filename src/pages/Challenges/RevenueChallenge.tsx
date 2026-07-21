@@ -43,7 +43,18 @@ const MoreInfoLink: React.FC<{
   internal?: boolean;
   children: React.ReactNode;
 }> = ({ href, internal, children }) => {
-  const linkSx = { fontWeight: 600, color: "primary.hero" };
+  const linkSx = {
+    fontWeight: 600,
+    color: "primary.hero",
+    textDecoration: "underline",
+    textDecorationColor: "currentColor",
+    textDecorationThickness: "2px",
+    textUnderlineOffset: "3px",
+    "&:hover": {
+      textDecorationColor: "primary.focus",
+      textDecorationThickness: "3px",
+    },
+  };
 
   if (internal) {
     return (
