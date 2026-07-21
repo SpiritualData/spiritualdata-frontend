@@ -20,6 +20,7 @@ import {
   Section,
   SectionTitle,
   CtaButton,
+  Callout,
 } from "./components/ChallengeElements";
 import {
   ChallengeHero,
@@ -36,21 +37,61 @@ import RewardCards, { RewardCard } from "./components/RewardCards";
 import JudgingList from "./components/JudgingList";
 import FaqList, { FaqItem } from "./components/FaqList";
 
+/** Inline link used in the "want to know more" pointers. */
+const MoreInfoLink: React.FC<{
+  href: string;
+  internal?: boolean;
+  children: React.ReactNode;
+}> = ({ href, internal, children }) => {
+  const linkSx = {
+    fontWeight: 600,
+    color: "primary.hero",
+    textDecoration: "underline",
+    textDecorationColor: "currentColor",
+    textDecorationThickness: "2px",
+    textUnderlineOffset: "3px",
+    "&:hover": {
+      textDecorationColor: "primary.focus",
+      textDecorationThickness: "3px",
+    },
+  };
+
+  if (internal) {
+    return (
+      <Link component={RouterLink} to={href} sx={linkSx}>
+        {children}
+      </Link>
+    );
+  }
+
+  const isEmail = href.startsWith("mailto:");
+  return (
+    <Link
+      href={href}
+      target={isEmail ? undefined : "_blank"}
+      rel={isEmail ? undefined : "noopener"}
+      sx={linkSx}
+    >
+      {children}
+    </Link>
+  );
+};
+
 const milestones: TimelineMilestone[] = [
   {
-    date: "Mid-July",
-    title: "Registration opens",
-    description: "Kickoff and team matching.",
+    date: "Open now",
+    title: "Registration is open",
+    description: "Register, then start selling.",
   },
   {
     date: "August 14",
-    title: "Rosters lock",
-    description: "Teams are fixed from here.",
+    title: "Registration closes",
+    description: "Rosters lock the same day.",
   },
   {
     date: "September 4",
     title: "Demo day",
-    description: "Pass the bar, earn $50.",
+    description: "Show your work live. Pass, and earn $50.",
   },
   {
     date: "October 2",
@@ -68,15 +109,15 @@ const rewards: RewardCard[] = [
   {
     stat: "$1,000",
     title: "in prize money.",
-    body: "Earn $50 at demo day for passing the bar, then $10 for every $100 of revenue your team brings Spiritual Data. Your team splits its share however it chooses.",
+    body: "$50 for passing demo day. What's left of the $1,000 goes to the teams that bring in the most revenue, capped at 10 times your own. It's a reward for opening a new revenue path, not a commission.",
   },
   {
-    title: "You own what you build.",
-    body: "Your code, funnels, and tooling stay yours. The revenue goes to Spiritual Data; that's the whole game.",
+    title: "Real backing.",
+    body: "Ask for what you need when you register: access to our code, an ad account with a set budget, whatever else your approach takes. We confirm what we can give you before you start.",
   },
   {
     title: "An audience.",
-    body: "The best approaches get promoted through Spiritual Data's channels, and every team presents at a live, public demo day.",
+    body: "The best approaches get promoted through Spiritual Data's channels, and every team presents at a live, public, recorded demo day.",
   },
 ];
 
@@ -124,17 +165,25 @@ const RevenueChallenge: React.FC = () => {
       links: [
         { label: "Open Quest", href: "https://quest.spiritualdata.org" },
         { label: "Product page", href: "/products/quest" },
+        {
+          label: "Plans and pricing",
+          href: "https://quest-docs.spiritualdata.org/reference/plans",
+        },
       ],
     },
     {
       icon: <SchoolIcon sx={{ fontSize: 32 }} />,
       name: "Transform Your Life with Quest",
       description:
-        "Four weeks, live, taught through Quest: weekly sessions, personal feedback, daily practice. Earns through course seats; a cohort is ready to run.",
+        "Four weeks, live, taught through Quest: weekly sessions, personal feedback, daily practice. Earns through course seats on sliding-scale pricing; a cohort is ready to run.",
       links: [
         {
           label: "Event page",
           href: "https://quest.spiritualdata.org/events/transform-your-life-with-quest",
+        },
+        {
+          label: "Course guide",
+          href: "https://quest-docs.spiritualdata.org/course/",
         },
       ],
     },
@@ -142,7 +191,7 @@ const RevenueChallenge: React.FC = () => {
       icon: <PsychologyIcon sx={{ fontSize: 32 }} />,
       name: "Concept AI",
       description:
-        "Ask a spiritual question, get a statistical answer backed by an explorable knowledge graph. Earns through Researcher subscriptions and credit packs.",
+        "Ask a spiritual question, get a statistical answer backed by an explorable knowledge graph. Earns through Researcher subscriptions ($29/month) and credit packs.",
       links: [
         {
           label: "Open Concept AI",
@@ -155,19 +204,20 @@ const RevenueChallenge: React.FC = () => {
       icon: <ApiIcon sx={{ fontSize: 32 }} />,
       name: "Concept AI API",
       description:
-        "The same engine for your own tools: create an API key from your account and go. Earns through the same subscriptions and credits.",
+        "The same engine for your own tools: create an API key from your account and go. Earns through those same Researcher subscriptions and credits, spent through the API.",
       links: [{ label: "Product page", href: "/products/concept-ai" }],
     },
     {
       icon: <MemoryIcon sx={{ fontSize: 32 }} />,
       name: "Quest AI Runner",
       description:
-        "Our open-source AI task orchestrator. Free itself; paid services built on it that bill through Spiritual Data count.",
+        "Our open-source AI task orchestrator. The tool is free, but paid services built on it that bill through Spiritual Data count.",
       links: [
         {
           label: "GitHub: SpiritualData/quest-ai-runner",
           href: "https://github.com/SpiritualData/quest-ai-runner",
         },
+        { label: "Product page", href: "/products/quest-ai-runner" },
       ],
     },
   ];
@@ -177,7 +227,7 @@ const RevenueChallenge: React.FC = () => {
       icon: <HowToRegIcon sx={{ fontSize: 28 }} />,
       title: "Register",
       description:
-        "Tell us your approach and what access you'd like. We confirm every registration before you start.",
+        "Tell us your approach and what access you'd like, by August 14. We confirm every registration before you start.",
       action: (
         <CtaButton
           label="Register your team"
@@ -187,68 +237,59 @@ const RevenueChallenge: React.FC = () => {
       ),
     },
     {
-      icon: <StorefrontIcon sx={{ fontSize: 28 }} />,
-      title: "Sell from day one",
-      description:
-        "Revenue counts from confirmation, tracked to your team by referral link.",
-    },
-    {
       icon: <VpnKeyIcon sx={{ fontSize: 28 }} />,
       title: "Get real access",
       description:
-        "Code access, a capped ad budget: whatever we approved from your request.",
+        "We set up whatever we approved from your request, so you're not selling empty-handed.",
+    },
+    {
+      icon: <StorefrontIcon sx={{ fontSize: 28 }} />,
+      title: "Sell from day one",
+      description:
+        "Revenue counts the moment we confirm you. You get a referral link, so every sale is tracked to your team.",
     },
     {
       icon: <CoPresentIcon sx={{ fontSize: 28 }} />,
       title: "Demo day: September 4",
-      description:
-        "Show your approach live. Pass the judges' bar to earn $50 and advance.",
+      description: "Show your approach live and public.",
     },
     {
       icon: <EmojiEventsIcon sx={{ fontSize: 28 }} />,
       title: "Final stretch to October 2",
-      description: "Keep selling. Results and payouts announced October 9.",
+      description: "Keep selling. Results October 9.",
     },
   ];
 
   const finePrint: FaqItem[] = [
     {
       title: "Who can enter",
-      detail: (
-        <>
-          Everyone who has applied to work or volunteer at Spiritual Data, plus
-          current team members. Register with the email from your application
-          so we can match you. Never applied? The{" "}
-          <Link
-            component={RouterLink}
-            to="/challenges/builders-challenge"
-            sx={{ fontWeight: 600, color: "primary.hero" }}
-          >
-            Builders Challenge
-          </Link>{" "}
-          is open to everyone.
-        </>
-      ),
+      detail:
+        "Everyone who has applied to work or volunteer at Spiritual Data, plus the Spiritual Data team. Register with the email address from your application so we can match you. Not eligible this time? Write to us, we expect to run more challenges.",
     },
     {
       title: "What counts as revenue",
       detail:
-        "Payments Spiritual Data actually received, resulting from your team's work after registration, from real customers you didn't know before the challenge. Friends, family, and your own purchases don't count; strangers do.",
+        "Revenue counts when Spiritual Data received the payment, it came from your team's work after registration, and the customer is someone you didn't know before the challenge. Friends, family, and your own purchases don't count. Strangers do.",
     },
     {
       title: "How the pool pays out",
       detail:
-        "Every team that passes the bar at demo day earns $50. The rest of the $1,000 pays $10 per $100 of qualifying revenue; if teams collectively earn more than the pool covers at that rate, it splits in proportion to revenue instead. Payouts follow verification against payment records.",
+        "Every team that passes demo day earns $50, plus our backing for the final stretch, like ad spend. Not passing doesn't cut you out: your revenue still earns its share, you just carry the final stretch with less support. What's left of the $1,000 is shared out in proportion to the revenue each team brought in, capped at 10 times your own: bring in $30 and you earn at most $300. Payouts follow verification against our payment records.",
     },
     {
-      title: "Teams, captains, and splits",
+      title: "Team size and finding teammates",
       detail:
-        "Solo or up to five people, one team per person. Every entrant joins the challenge space on Quest to find teammates, plus a kickoff call in week one. Each team names a captain who registers the team, holds the referral link, and receives the team's share. Declare your split at registration or it's equal shares. Rosters lock August 14.",
+        "Teams can have up to five members, and entering solo is fine. One team per person. Every entrant joins the challenge space on Quest to find teammates, and we host a kickoff call in week one. Registration and rosters both close on August 14.",
+    },
+    {
+      title: "Captains and splits",
+      detail:
+        "Each team names a captain, who registers the team, holds the referral link, and receives the team's share. Tell us your split at registration, or it's equal shares.",
     },
     {
       title: "Access and resources",
       detail:
-        "Request what you need at registration: code access, an ad account with a limited budget, and more. If you're not already a team member, you'll sign our standard agreement first.",
+        "Request what you need at registration: code access, an ad account with a set budget, and more. We approve requests case by case. If you don't already work with Spiritual Data, you'll sign our standard agreement first.",
     },
   ];
 
@@ -257,10 +298,18 @@ const RevenueChallenge: React.FC = () => {
       <ChallengeHero
         titleLead="The Spiritual Data"
         titleAccent="Revenue Challenge"
-        tagline="$1,000 for whoever builds Spiritual Data a real path to revenue."
+        tagline="Sell our products to real customers. Earn a cut of a $1,000 pool for the revenue you bring in."
         ctaLabel="Register your team"
         ctaHref={REVENUE_CHALLENGE_FORM_URL}
-      />
+      >
+        <Typography
+          variant="body2"
+          sx={{ mt: 4, color: "text.secondary", letterSpacing: 0.5 }}
+        >
+          Open to everyone who has applied to work or volunteer at Spiritual
+          Data, plus the Spiritual Data team.
+        </Typography>
+      </ChallengeHero>
 
       {/* Intro */}
       <Section background="white">
@@ -269,12 +318,51 @@ const RevenueChallenge: React.FC = () => {
             variant="body1"
             sx={{ fontSize: "1.1rem", lineHeight: 1.8, letterSpacing: 0.5 }}
           >
-            Spiritual Data is a nonprofit answering spiritual questions with
-            scientific rigor. Scaling that mission takes revenue, so we're
-            inviting past applicants and our current team to find it: pick one
-            of our products, find the people who'll pay for it, and earn from
-            what you bring in.
+            Pick one of our products, find the people who will pay for it, and
+            sell it. Spiritual Data bills the customer and receives the revenue,
+            and the $1,000 pool goes to the teams that bring in the most.
           </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              mt: 3,
+              fontSize: "1.1rem",
+              lineHeight: 1.8,
+              letterSpacing: 0.5,
+            }}
+          >
+            We're a nonprofit answering spiritual questions with scientific
+            rigor. Scaling that takes revenue, so we're asking the people who
+            already raised their hand to help find it.
+          </Typography>
+          <Callout title="What that looks like in practice" sx={{ mt: 4 }}>
+            <Box
+              component="ul"
+              sx={{
+                pl: 3,
+                m: 0,
+                "& li": { mb: 1.5 },
+                "& li:last-of-type": { mb: 0 },
+              }}
+            >
+              <li>
+                <strong>Quest subscribers:</strong> a landing page and funnel
+                aimed at one specific audience.
+              </li>
+              <li>
+                <strong>Course seats:</strong> an outreach campaign that fills
+                the next cohort.
+              </li>
+              <li>
+                <strong>Mentors:</strong> a pipeline that recruits coaches and
+                therapists onto the marketplace.
+              </li>
+              <li>
+                <strong>Concept AI:</strong> a research service built on the
+                API, billed through Spiritual Data.
+              </li>
+            </Box>
+          </Callout>
         </Box>
       </Section>
 
@@ -292,10 +380,28 @@ const RevenueChallenge: React.FC = () => {
 
       {/* Products */}
       <Section background={theme.palette.cosmic.primary}>
-        <SectionTitle subtitle="Pick one. Selling a single product well is a complete entry; new offerings that package what exists count too.">
+        <SectionTitle subtitle="Pick one. Selling a single product well is a complete entry. New offerings that package what already exists count too.">
           The Products You'll Be Selling
         </SectionTitle>
         <TechnologyCards cards={products} />
+        <Callout
+          title="Want to know more first?"
+          sx={{ mt: { xs: 4, md: 5 }, maxWidth: 850, mx: "auto" }}
+        >
+          The{" "}
+          <MoreInfoLink href="https://quest-docs.spiritualdata.org">
+            Quest documentation
+          </MoreInfoLink>{" "}
+          covers the product feature by feature, including the{" "}
+          <MoreInfoLink href="https://quest-docs.spiritualdata.org/guide/mentors">
+            mentors guide
+          </MoreInfoLink>{" "}
+          for the marketplace. Unsure whether your idea qualifies? Email{" "}
+          <MoreInfoLink href={`mailto:${CHALLENGE_CONTACT_EMAIL}`}>
+            {CHALLENGE_CONTACT_EMAIL}
+          </MoreInfoLink>{" "}
+          before you build.
+        </Callout>
       </Section>
 
       {/* How it works */}
@@ -306,7 +412,7 @@ const RevenueChallenge: React.FC = () => {
 
       {/* Judging */}
       <Section background={theme.palette.cosmic.primary}>
-        <SectionTitle subtitle="Tap any area for what the judges look for.">
+        <SectionTitle subtitle="Judged by founder Joshua Mathias and our Director of Product. Open any area for what they look for.">
           Demo Day Is Judged Across 5 Areas
         </SectionTitle>
         <JudgingList criteria={judgingCriteria} />
