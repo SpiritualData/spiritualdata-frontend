@@ -274,7 +274,7 @@ const RevenueChallenge: React.FC = () => {
     {
       title: "How the pool pays out",
       detail:
-        "Every team that passes demo day earns $50. What's left of the $1,000 is shared out in proportion to the revenue each team brought in, capped at 10 times your own: bring in $30 and you earn at most $300. Payouts follow verification against our payment records.",
+        "Every team that passes demo day earns $50, plus our backing for the final stretch, like ad spend. Not passing doesn't cut you out: your revenue still earns its share, you just carry the final stretch with less support. What's left of the $1,000 is shared out in proportion to the revenue each team brought in, capped at 10 times your own: bring in $30 and you earn at most $300. Payouts follow verification against our payment records.",
     },
     {
       title: "Team size and finding teammates",
