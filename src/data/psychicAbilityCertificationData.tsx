@@ -32,7 +32,7 @@ export const scrollCardsData = [
   },
   {
     title: "Approach",
-    desc: "Our certification process follows a published ethics and testing protocol: standardized and customizable tests, unbiased witnesses, video recording, and independent PhD-level validation. Participants are classified by reliability, from Demonstrably Psychic to Super Psychic.",
+    desc: "Our certification process follows a published ethics and testing protocol: standardized and customizable tests, independent witnesses, video recording, and independent PhD-level validation. Participants are classified by reliability, from Demonstrably Psychic to Super Psychic.",
     btn: "Apply to be tested",
     img: scrollimage3,
     link: "https://docs.google.com/forms/d/e/1FAIpQLSdi7zXNri8uXouwlOMV64WcYNXeQOlVX7nS7Su6YM9V4AyJCg/viewform?usp=sf_link",
