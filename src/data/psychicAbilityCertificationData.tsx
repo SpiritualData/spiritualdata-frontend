@@ -127,6 +127,12 @@ export const certifiedHeaderData = {
   desc: "Every completed assessment, published in full — including the assessments that demonstrate nothing.",
 };
 
+export const ethicsHeaderData = {
+  image: bannerImage,
+  heading: "Ethics and Testing Protocol",
+  desc: "The program's ethical standard and its testing protocol, published in full so participants know what they are agreeing to.",
+};
+
 export const applyHeaderData = {
   image: bannerImage,
   heading: "Apply to be Tested",
