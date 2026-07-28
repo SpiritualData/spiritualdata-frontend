@@ -115,7 +115,7 @@ export const certificationSubPagesData = [
     id: 3,
     eyebrow: "Take part",
     title: "Apply to be Tested",
-    desc: "What applying actually involves, step by step, from the first screening conversation to your follow-up session. Participation is free, voluntary, and revocable at any point.",
+    desc: "What applying actually involves, step by step, from the first screening conversation to your follow-up session. Participation is free, and nothing is measured until you have read the consent documentation and signed.",
     btn: "How to apply",
     link: "/initiatives/psychic-ability-certification/apply",
   },
@@ -188,9 +188,10 @@ export const applyStepsData = [
 /** Drawn from section 2 of the published protocol — participant protections. */
 export const applyProtectionsData = [
   "Participation is free. There is no fee, and we do not currently offer compensation.",
-  "You may withdraw at any point — before, during, or after a session — without giving a reason, and withdraw your data with you.",
-  "Nothing about you is published without your consent, and that includes null results.",
-  "Being publicly identified is a separate permission from being published, granted individually and revocable.",
+  "You may decline, ask anything, or withdraw at any point before your testing session, without giving a reason and without consequence.",
+  "Publication is part of participating. Every completed assessment is published, whatever the result, and you agree to that before you are tested rather than after you have seen how it went.",
+  "Your name is optional. You can be published anonymously, with the same protocol, statistics, witness statements, and reviewer sign-off, minus identifying information.",
+  "Every session is recorded, with no exceptions. Because a video shows who you are, it is not published if you are anonymous.",
   "A null result carries no stigma here. A session that demonstrates nothing is a normal outcome of honest testing.",
   "You may bring a support person to the consent conversation, and to a testing session where it does not compromise the controlled conditions.",
   "Participants are 18 or older.",

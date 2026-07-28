@@ -179,9 +179,9 @@ const Certified: React.FC = () => {
           >
             Every completed assessment is published here in full, with accuracy
             rates, conditions, and methodology — including the assessments that
-            demonstrate nothing. Publication is subject to participant consent,
-            and being publicly identified is a separate permission, so some
-            records appear without identifying information.{" "}
+            demonstrate nothing. Publication is a condition of participating.
+            Being named is not, so some records appear without identifying
+            information.{" "}
             <Typography
               component={RouterLink}
               to="/initiatives/psychic-ability-certification/ethics"
@@ -434,10 +434,10 @@ const Certified: React.FC = () => {
                 <Typography
                   sx={{ color: theme.palette.text.secondary, lineHeight: 1.9 }}
                 >
-                  Where a participant has not consented to being identified,
-                  their assessment is published without identifying information.
-                  Consent to publication and consent to identification are
-                  separate permissions, and both can be withdrawn.
+                  Publication itself is a condition of participating, agreed in
+                  writing before testing rather than after a result is known.
+                  What stays optional is the participant's name, so an
+                  assessment may appear here without identifying information.
                 </Typography>
               </Box>
 
