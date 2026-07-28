@@ -28,6 +28,9 @@ import Initiatives from "../pages/Initiatives";
 import EstimatingTruth from "../pages/Initiatives/EstimatingTruth";
 import WikipediaAdvocacy from "../pages/Initiatives/WikipediaAdvocacy";
 import PsychicAbilityCertification from "../pages/Initiatives/PsychicAbilityCertification";
+import Certified from "../pages/Initiatives/PsychicCertification/Certified";
+import AssessmentDetail from "../pages/Initiatives/PsychicCertification/AssessmentDetail";
+import Apply from "../pages/Initiatives/PsychicCertification/Apply";
 import Crisis from "../pages/Crisis";
 import Change from "../pages/Change";
 import OriginStory from "../pages/OriginStory";
@@ -61,6 +64,22 @@ const useClerkRoutes = (): ReactElement => {
         <Route
           path="/initiatives/psychic-ability-certification"
           element={<PsychicAbilityCertification />}
+        />
+        <Route
+          path="/initiatives/psychic-ability-certification/ethics"
+          element={<Policies fileName="/certification-ethics.html" />}
+        />
+        <Route
+          path="/initiatives/psychic-ability-certification/certified"
+          element={<Certified />}
+        />
+        <Route
+          path="/initiatives/psychic-ability-certification/certified/:id"
+          element={<AssessmentDetail />}
+        />
+        <Route
+          path="/initiatives/psychic-ability-certification/apply"
+          element={<Apply />}
         />
         <Route path="*" element={<NotFound />} />
         <Route path="/sign-in/*" element={<AuthPage />} />
