@@ -215,7 +215,7 @@ export const certificationProtocolSections: ProtocolSection[] = [
       },
       {
         kind: "paragraph",
-        text: "Spiritual Data exists to find out what the evidence supports, not to argue a position. It has no stake in the answer, and this program is built so that it can return nothing and publish that. What a reader should weigh anyway is structural: the organization researches consciousness, and the program is led by someone who practices. The safeguards against either of those shaping a result are the ones a critic would ask for, and they are the reason this document specifies them: independent witnesses with no ties to us, controls in every session, independent PhD-level sign-off, pre-registration, and publication of failures.",
+        text: "Rather than ask anyone to trust our motives, the program is built so that it can return nothing, and so that a result demonstrating nothing is published exactly like any other. Two facts a reader should weigh: the organization researches consciousness, and the program is led by someone who practices. The safeguards against either of those shaping a result are the ones a critic would ask for, and they are the reason this document specifies them: independent witnesses with no ties to us, controls in every session, independent PhD-level sign-off, pre-registration, and publication of failures.",
       },
       {
         kind: "paragraph",
