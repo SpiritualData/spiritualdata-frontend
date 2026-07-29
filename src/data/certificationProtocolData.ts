@@ -109,7 +109,7 @@ export const certificationProtocolSections: ProtocolSection[] = [
       },
       {
         kind: "paragraph",
-        text: "**Participants are 18 or older.** We do not test minors.",
+        text: "**Participants are 18 or older** or have agreement from their parent or guardian. Where a participant is under 18, the guardian reviews and signs the same consent documentation the participant does, and is welcome at the session.",
       },
       {
         kind: "paragraph",
