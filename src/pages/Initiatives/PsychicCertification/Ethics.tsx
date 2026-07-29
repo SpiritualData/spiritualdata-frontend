@@ -104,7 +104,8 @@ const Ethics: React.FC = () => {
             component={RouterLink}
             to="/initiatives/psychic-ability-certification"
             sx={{
-              display: "inline-block",
+              display: "block",
+              width: "fit-content",
               mb: 3,
               fontSize: "13px",
               fontWeight: 700,
@@ -220,7 +221,7 @@ const Ethics: React.FC = () => {
             </Box>
           </Paper>
 
-          {/* The document body — normal page scroll, no inner scroll region. */}
+          {/* The document body: normal page scroll, no inner scroll region. */}
           <Box component="article" sx={{ maxWidth: DOC_MAX_WIDTH }}>
             {certificationProtocolSections.map((section, sectionIndex) => (
               <Box

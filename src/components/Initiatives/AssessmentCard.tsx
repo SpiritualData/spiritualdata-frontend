@@ -91,7 +91,7 @@ const AssessmentCard = ({ assessment }: AssessmentCardProps) => {
       <Typography sx={{ fontSize: "14px", fontWeight: 600 }}>
         {participantLabel(assessment)}
         {participant.identified && participant.location
-          ? ` — ${participant.location}`
+          ? `, ${participant.location}`
           : ""}
       </Typography>
 

@@ -141,7 +141,8 @@ const Certified: React.FC = () => {
             component={RouterLink}
             to="/initiatives/psychic-ability-certification"
             sx={{
-              display: "inline-block",
+              display: "block",
+              width: "fit-content",
               mb: 3,
               fontSize: "13px",
               fontWeight: 700,
@@ -178,7 +179,7 @@ const Certified: React.FC = () => {
             }}
           >
             Every completed assessment is published here in full, with accuracy
-            rates, conditions, and methodology — including the assessments that
+            rates, conditions, and methodology, including the assessments that
             demonstrate nothing. Publication is a condition of participating.
             Being named is not, so some records appear without identifying
             information.{" "}
@@ -383,7 +384,7 @@ const Certified: React.FC = () => {
                   mb: 1.5,
                 }}
               >
-                The record so far
+                What appears on this page
               </Typography>
 
               <Typography
@@ -395,34 +396,36 @@ const Certified: React.FC = () => {
                   mb: 3,
                 }}
               >
-                No assessments have been published yet.
+                An assessment is published once it has been earned, not once
+                it has been claimed.
               </Typography>
 
               <Box sx={{ maxWidth: 780, display: "grid", gap: 2.5 }}>
                 <Typography
                   sx={{ color: theme.palette.text.secondary, lineHeight: 1.9 }}
                 >
-                  The counts above are not placeholders. They are computed from
-                  the published record, and the record is currently empty. This
-                  page is blank because nothing has been published, not because
-                  anything is being held back.
+                  The counts above are computed directly from the published
+                  record rather than entered by hand, so they can only ever
+                  reflect assessments that actually took place. Nothing on this
+                  page is curated, summarised, or selected.
                 </Typography>
 
                 <Typography
                   sx={{ color: theme.palette.text.secondary, lineHeight: 1.9 }}
                 >
-                  Applications are open and the first cohort is being assembled.
-                  Nothing appears here until a session has been completed under
-                  the published protocol, independently reviewed by PhD-level
-                  researchers, reviewed with the participant, and consented to
-                  for publication.
+                  An assessment reaches this page only after a session has been
+                  completed under the published protocol, witnessed and
+                  controlled as the protocol requires, independently reviewed by
+                  PhD-level researchers, and reviewed with the participant. That
+                  sequence takes time, and it is the reason the record can be
+                  trusted.
                 </Typography>
 
                 <Typography
                   sx={{ color: theme.palette.text.secondary, lineHeight: 1.9 }}
                 >
-                  When that happens, every completed assessment appears here —
-                  with its accuracy rates, conditions, and methodology —{" "}
+                  Every completed assessment appears here,
+                  with its accuracy rates, conditions, and methodology,{" "}
                   <Box component="span" sx={{ fontWeight: 700, color: theme.palette.text.primary }}>
                     including the assessments that demonstrate nothing
                   </Box>

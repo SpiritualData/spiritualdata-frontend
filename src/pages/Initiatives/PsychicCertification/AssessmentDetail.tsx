@@ -141,7 +141,8 @@ const AssessmentDetail: React.FC = () => {
       component={RouterLink}
       to={RECORD_PATH}
       sx={{
-        display: "inline-block",
+        display: "block",
+        width: "fit-content",
         mb: 3,
         fontSize: "13px",
         fontWeight: 700,
@@ -197,8 +198,8 @@ const AssessmentDetail: React.FC = () => {
                 }}
               >
                 {assessments.length === 0
-                  ? "No assessments have been published yet, so there is no record to show here. Every completed assessment will be published in the record, including the assessments that demonstrate nothing."
-                  : "The reference in this link does not match any published assessment. It may have been mistyped, or the record may have been withdrawn at the participant's request — consent to publication can be withdrawn at any time."}
+                  ? "This link does not point to an assessment in the published record. Every completed assessment is published there, including the assessments that demonstrate nothing."
+                  : "The reference in this link does not match any published assessment. It may have been mistyped, or the reference may be out of date."}
               </Typography>
               <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, mt: 4 }}>
                 <Button
@@ -391,8 +392,8 @@ const AssessmentDetail: React.FC = () => {
                   label="Meets the published threshold"
                   value={
                     results.meetsThreshold
-                      ? "Yes — better than one in one quadrillion"
-                      : "No — the published threshold is better than one in one quadrillion"
+                      ? "Yes, better than one in one quadrillion"
+                      : "No, the published threshold is better than one in one quadrillion"
                   }
                 />
               )}

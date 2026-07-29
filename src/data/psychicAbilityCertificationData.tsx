@@ -12,7 +12,7 @@ export const headerData = {
 export const tiltHeadData = {
   bgText: "Psychic Initiative",
   title: "Psychic Ability Certification Initiative",
-  desc: "The Psychic Ability Certification program aims to provide practically undeniable evidence of psychic abilities through transparent and ethical testing. By applying scientific standards—witness verification, control experiments, and independent PhD-level review—Spiritual Data offers the world's first structured certification system for all psychic abilities, helping regulate the industry and motivating further research.",
+  desc: "The Psychic Ability Certification program aims to provide practically undeniable evidence of psychic abilities through transparent and ethical testing. By applying scientific standards (witness verification, control experiments, and independent PhD-level review), Spiritual Data offers the world's first structured certification system for all psychic abilities, helping regulate the industry and motivating further research.",
 };
 
 export const scrollCardsData = [
@@ -124,7 +124,7 @@ export const certificationSubPagesData = [
 export const certifiedHeaderData = {
   image: bannerImage,
   heading: "Published Assessments",
-  desc: "Every completed assessment, published in full — including the assessments that demonstrate nothing.",
+  desc: "Every completed assessment, published in full, including the assessments that demonstrate nothing.",
 };
 
 export const ethicsHeaderData = {
@@ -185,7 +185,7 @@ export const applyStepsData = [
   },
 ];
 
-/** Drawn from section 2 of the published protocol — participant protections. */
+/** Drawn from section 2 of the published protocol: participant protections. */
 export const applyProtectionsData = [
   "Participation is free. There is no fee, and we do not currently offer compensation.",
   "You may decline, ask anything, or withdraw at any point before your testing session, without giving a reason and without consequence.",

@@ -15,14 +15,14 @@ const PsychicAbilityCertification: React.FC = () => {
   return (
     <>
       <HeaderSection data={headerData} />
-      <TitleHead data={tiltHeadData} />
-      <ScrollStackCards data={scrollCardsData} />
-      <DetailsCards data={psychicAbilityDetailsData} />
       <SubPageCards
         data={certificationSubPagesData}
         heading="Check the program yourself"
         subheading="The standard we hold ourselves to, the public record of completed assessments, and how to take part are all published. None of it requires taking our word for anything."
       />
+      <TitleHead data={tiltHeadData} />
+      <ScrollStackCards data={scrollCardsData} />
+      <DetailsCards data={psychicAbilityDetailsData} />
     </>
   );
 };
