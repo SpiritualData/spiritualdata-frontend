@@ -211,7 +211,7 @@ export const certificationProtocolSections: ProtocolSection[] = [
     blocks: [
       {
         kind: "paragraph",
-        text: "The program is led by **Joshua Mathias**, founder of Spiritual Data and a PhD researcher in Integral and Transpersonal Psychology at CIIS. Parapsychologist **Patrizio Tressoldi** advises the initiative.",
+        text: "The program is led by **Joshua Mathias**, founder of Spiritual Data and a PhD researcher in Integral and Transpersonal Psychology at CIIS. It is advised by [Spiritual Data's Scientific Council](/about-us).",
       },
       {
         kind: "paragraph",
