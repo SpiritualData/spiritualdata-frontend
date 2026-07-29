@@ -400,49 +400,23 @@ const Certified: React.FC = () => {
                 it has been claimed.
               </Typography>
 
-              <Box sx={{ maxWidth: 780, display: "grid", gap: 2.5 }}>
-                <Typography
-                  sx={{ color: theme.palette.text.secondary, lineHeight: 1.9 }}
+              <Typography
+                sx={{
+                  color: theme.palette.text.secondary,
+                  lineHeight: 1.9,
+                  maxWidth: 780,
+                }}
+              >
+                Every completed assessment appears here with its accuracy rates,
+                conditions, and methodology,{" "}
+                <Box
+                  component="span"
+                  sx={{ fontWeight: 700, color: theme.palette.text.primary }}
                 >
-                  The counts above are computed directly from the published
-                  record rather than entered by hand, so they can only ever
-                  reflect assessments that actually took place. Nothing on this
-                  page is curated, summarised, or selected.
-                </Typography>
-
-                <Typography
-                  sx={{ color: theme.palette.text.secondary, lineHeight: 1.9 }}
-                >
-                  An assessment reaches this page only after a session has been
-                  completed under the published protocol, witnessed and
-                  controlled as the protocol requires, independently reviewed by
-                  PhD-level researchers, and reviewed with the participant. That
-                  sequence takes time, and it is the reason the record can be
-                  trusted.
-                </Typography>
-
-                <Typography
-                  sx={{ color: theme.palette.text.secondary, lineHeight: 1.9 }}
-                >
-                  Every completed assessment appears here,
-                  with its accuracy rates, conditions, and methodology,{" "}
-                  <Box component="span" sx={{ fontWeight: 700, color: theme.palette.text.primary }}>
-                    including the assessments that demonstrate nothing
-                  </Box>
-                  . A program that reports only its successes is not evidence of
-                  anything, which is why the null-result count above is given the
-                  same prominence as the certifications.
-                </Typography>
-
-                <Typography
-                  sx={{ color: theme.palette.text.secondary, lineHeight: 1.9 }}
-                >
-                  Publication itself is a condition of participating, agreed in
-                  writing before testing rather than after a result is known.
-                  What stays optional is the participant's name, so an
-                  assessment may appear here without identifying information.
-                </Typography>
-              </Box>
+                  including the ones that demonstrate nothing
+                </Box>
+                . Publication is a condition of taking part. Being named is not.
+              </Typography>
 
               <Box
                 sx={{
