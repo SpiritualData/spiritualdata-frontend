@@ -23,7 +23,7 @@ const data = [
   },
   {
     title: "Proving What's Possible",
-    desc: "Despite decades of peer-reviewed research showing statistical evidence, systematic testing of advanced psychic ability with credible witnesses has been limited. Our Psychic Ability Certification program creates a transparent and scientific testing system for abilities like telekinesis, ESP, and levitation. The program includes strict scientific standards—unbiased witnesses, control experiments, video documentation, and independent PhD-level review. This helps create a regulated certification system, guides people to authentic practitioners, and motivates further scientific research.",
+    desc: "Despite decades of peer-reviewed research showing statistical evidence, systematic testing of advanced psychic ability with credible witnesses has been limited. Our Psychic Ability Certification program creates a transparent and scientific testing system for abilities like telekinesis, ESP, and levitation. The program includes strict scientific standards—independent witnesses, control experiments, video documentation, and independent PhD-level review. This helps create a regulated certification system, guides people to authentic practitioners, and motivates further scientific research.",
     link: "/initiatives/psychic-ability-certification",
     linkText: "Explore The Research In Action",
   },

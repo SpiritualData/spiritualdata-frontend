@@ -103,6 +103,24 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://spiritualdata.org/initiatives/psychic-ability-certification/ethics</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://spiritualdata.org/initiatives/psychic-ability-certification/certified</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://spiritualdata.org/initiatives/psychic-ability-certification/apply</loc>
+    <lastmod>2026-07-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://spiritualdata.org/privacy</loc>
     <lastmod>2024-10-26</lastmod>
     <changefreq>monthly</changefreq>

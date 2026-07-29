@@ -119,8 +119,10 @@ const HeaderSection = ({ data }: headerDataProps) => {
           display: "flex",
           alignItems: "center",
           pl: { xs: 3, md: 15 },
+          pr: { xs: 3, md: 4 },
           pt: { xs: 4, md: 6 },
           width: { xs: "100%", md: "35%" },
+          boxSizing: "border-box",
         }}
       >
         <Box>
@@ -131,6 +133,9 @@ const HeaderSection = ({ data }: headerDataProps) => {
               fontWeight: 700,
               fontStyle: "normal",
               textShadow: `0px 0px 5px ${theme.palette.primary.focus}`,
+              fontSize: { xs: "2rem", sm: "2.75rem", md: "3.75rem" },
+              overflowWrap: "break-word",
+              wordBreak: "break-word",
             }}
             gutterBottom
           >

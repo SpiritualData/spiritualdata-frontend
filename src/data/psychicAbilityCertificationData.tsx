@@ -12,7 +12,7 @@ export const headerData = {
 export const tiltHeadData = {
   bgText: "Psychic Initiative",
   title: "Psychic Ability Certification Initiative",
-  desc: "The Psychic Ability Certification program aims to provide practically undeniable evidence of psychic abilities through transparent and ethical testing. By applying scientific standards—witness verification, control experiments, and independent PhD-level review—Spiritual Data offers the world's first structured certification system for all psychic abilities, helping regulate the industry and motivating further research.",
+  desc: "The Psychic Ability Certification program aims to provide practically undeniable evidence of psychic abilities through transparent and ethical testing. By applying scientific standards (witness verification, control experiments, and independent PhD-level review), Spiritual Data offers the world's first structured certification system for all psychic abilities, helping regulate the industry and motivating further research.",
 };
 
 export const scrollCardsData = [
@@ -32,7 +32,7 @@ export const scrollCardsData = [
   },
   {
     title: "Approach",
-    desc: "Our certification process includes ethics review, standardized and customizable tests, unbiased witnesses, video recording, and independent researcher validation. Participants are classified by reliability, from Demonstrably Psychic to Super Psychic.",
+    desc: "Our certification process follows a published ethics and testing protocol: standardized and customizable tests, independent witnesses, video recording, and independent PhD-level validation. Participants are classified by reliability, from Demonstrably Psychic to Super Psychic.",
     btn: "Apply to be tested",
     img: scrollimage3,
     link: "https://docs.google.com/forms/d/e/1FAIpQLSdi7zXNri8uXouwlOMV64WcYNXeQOlVX7nS7Su6YM9V4AyJCg/viewform?usp=sf_link",
@@ -43,7 +43,7 @@ export const psychicAbilityDetailsData = [
   {
     id: 1,
     title: "Scientific Testing",
-    desc: "All demonstrations are conducted under strict conditions, including comparison with controls, unbiased witnesses, and video documentation.",
+    desc: "All demonstrations are conducted under strict conditions, including comparison with controls, independent witnesses, and video documentation.",
     secHead: "DETAILS",
     secSubHead1: "PSYCHIC",
     secSubHead2: "CERTIFICATION",
@@ -67,7 +67,7 @@ export const psychicAbilityDetailsData = [
   {
     id: 4,
     title: "Verification Standards",
-    desc: "Tests require multiple unbiased witnesses, at least one PhD researcher, control experiments, and statistical significance where possible.",
+    desc: "Tests require multiple independent witnesses, at least one PhD researcher, control experiments, and statistical significance where possible.",
     secHead: "DETAILS",
     secSubHead1: "PSYCHIC",
     secSubHead2: "CERTIFICATION",
@@ -88,4 +88,111 @@ export const psychicAbilityDetailsData = [
     secSubHead1: "PSYCHIC",
     secSubHead2: "CERTIFICATION",
   },
+];
+
+export const certificationApplyFormUrl =
+  "https://docs.google.com/forms/d/e/1FAIpQLSdi7zXNri8uXouwlOMV64WcYNXeQOlVX7nS7Su6YM9V4AyJCg/viewform?usp=sf_link";
+
+/** Sub-pages of the certification initiative, surfaced from the overview page. */
+export const certificationSubPagesData = [
+  {
+    id: 1,
+    eyebrow: "The standard",
+    title: "Ethics and Testing Protocol",
+    desc: "The full published protocol: the participant protections, the witness and control standards every demonstration must meet, the statistical threshold, pre-registration, and the commitment to publish every completed assessment.",
+    btn: "Read the protocol",
+    link: "/initiatives/psychic-ability-certification/ethics",
+  },
+  {
+    id: 2,
+    eyebrow: "The record",
+    title: "Published Assessments",
+    desc: "The public record of every completed assessment, including the ones that demonstrate nothing. Each entry carries its protocol, controls, witnesses, statistics, and independent reviewer sign-off.",
+    btn: "See the record",
+    link: "/initiatives/psychic-ability-certification/certified",
+  },
+  {
+    id: 3,
+    eyebrow: "Take part",
+    title: "Apply to be Tested",
+    desc: "What applying actually involves, step by step, from the first screening conversation to your follow-up session. Participation is free, and nothing is measured until you have read the consent documentation and signed.",
+    btn: "How to apply",
+    link: "/initiatives/psychic-ability-certification/apply",
+  },
+];
+
+export const certifiedHeaderData = {
+  image: bannerImage,
+  heading: "Published Assessments",
+  desc: "Every completed assessment, published in full, including the assessments that demonstrate nothing.",
+};
+
+export const ethicsHeaderData = {
+  image: bannerImage,
+  heading: "Ethics and Testing Protocol",
+  desc: "The program's ethical standard and its testing protocol, published in full so participants know what they are agreeing to.",
+};
+
+export const applyHeaderData = {
+  image: bannerImage,
+  heading: "Apply to be Tested",
+  desc: "What applying involves, from first conversation to results, and what you are agreeing to at each step.",
+};
+
+export const assessmentDetailHeaderData = {
+  image: bannerImage,
+  heading: "Assessment Record",
+  desc: "One assessment in full: the protocol, the controls, the witnesses, the statistics, and the independent review.",
+};
+
+/** The sequence in section 3.3 of the published Ethics and Testing Protocol. */
+export const applyStepsData = [
+  {
+    id: 1,
+    title: "Application",
+    duration: "A form",
+    desc: "You tell us what you can do and what you are willing to demonstrate.",
+  },
+  {
+    id: 2,
+    title: "Screening conversation",
+    duration: "About 30 minutes",
+    desc: "A two-way conversation, not an examination: what your ability is, what conditions it needs, what a fair test of it would look like, and whether we can currently provide one.",
+  },
+  {
+    id: 3,
+    title: "Consent review",
+    duration: "As long as you need",
+    desc: "Written documentation, your questions answered, your signature. No session is scheduled until this is complete.",
+  },
+  {
+    id: 4,
+    title: "Testing session",
+    duration: "Typically 60 to 90 minutes",
+    desc: "Run to the published standards: three or more in-person witnesses including a trained researcher and an independent witness, at least one meaningful control experiment, signed witness statements, and video recording.",
+  },
+  {
+    id: 5,
+    title: "Independent review",
+    duration: "After the session",
+    desc: "One or two PhD-level researchers assess the session record and sign off on what it shows.",
+  },
+  {
+    id: 6,
+    title: "Follow-up session",
+    duration: "About 30 minutes",
+    desc: "Your results, what they mean, what classification if any they support, and what you would like done with them. You see your results before anyone else does.",
+  },
+];
+
+/** Drawn from section 2 of the published protocol: participant protections. */
+export const applyProtectionsData = [
+  "Participation is free. There is no fee, and we do not currently offer compensation.",
+  "You may decline, ask anything, or withdraw at any point before your testing session, without giving a reason and without consequence.",
+  "Publication is part of participating. Every completed assessment is published, whatever the result, and you agree to that before you are tested rather than after you have seen how it went. This doesn't apply to the informal preliminary demonstration.",
+  "Your name is optional. You can be published anonymously, with the same protocol, statistics, witness statements, and reviewer sign-off, minus identifying information.",
+  "Every session is recorded, with no exceptions. Because a video shows who you are, it is not published if you are anonymous.",
+  "A null result carries no stigma here. A session that demonstrates nothing is a normal outcome of honest testing.",
+  "You may bring a support person to the consent conversation, and to a testing session where it does not compromise the controlled conditions.",
+  "Participants are 18 or older or have agreement from their parent or guardian.",
 ];
