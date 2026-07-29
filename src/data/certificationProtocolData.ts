@@ -34,35 +34,21 @@ export const certificationProtocolMeta = {
 
 export const certificationProtocolSections: ProtocolSection[] = [
   {
-    id: "why-this-document",
+    id: "how-this-works",
     number: 1,
-    title: "Why this document exists instead of an ethics-board approval",
+    title: "How this protocol works",
     blocks: [
       {
         kind: "paragraph",
-        text: "Independent ethics review exists to protect people from harm in **specific research studies**: a defined protocol, a defined population, defined aims, a defined end. Review boards evaluate a study. They do not, as a rule, review and approve a standing service.",
+        text: "This protocol is the standard every assessment is run under. It is binding rather than aspirational: a demonstration that does not meet it is not certified, and is not published as though it had been.",
       },
       {
         kind: "paragraph",
-        text: "The certification program is a service. We test individuals against a published standard and issue them a classification, in the way a laboratory certifies a measurement or a professional body credentials a practitioner. That activity carries real obligations to the people who go through it, which is what the rest of this document sets out. It is not a research study, and asking a review board to approve it as one is a category error that cost this program most of a year.",
+        text: "It applies from the first conversation through to publication, and it applies the same way to everyone. The same witnesses, the same controls, the same independent review, whatever the ability being tested and whoever is being tested.",
       },
       {
         kind: "paragraph",
-        text: "Our position, stated plainly so it can be held against us:",
-      },
-      {
-        kind: "list",
-        ordered: false,
-        items: [
-          "**The certification service operates under this published protocol.** We hold ourselves to it, and we publish it so participants and critics can both check.",
-          "**Specific research studies get reviewed as research studies.** When we analyze the certification record and write it up for a journal, that is a defined project with defined aims, and it goes through the appropriate ethics process at that point, including through the institutional route available to our researchers.",
-          "**We will seek an independent determination in writing** on whether the certification service constitutes human-subjects research, and publish whatever we are told, whether or not it favors us.",
-          "**Participation is voluntary and fully informed before anyone is tested.** That protection does not depend on any board, and it applies from the first conversation.",
-        ],
-      },
-      {
-        kind: "paragraph",
-        text: "We would rather be judged on the protections we actually provide and publish than on a stamp that no participant will ever read.",
+        text: "It is published in full for two reasons. A participant should be able to read exactly what they are agreeing to before they agree to it. And anyone weighing a published result should be able to see the conditions that produced it, without having to ask us for them.",
       },
     ],
   },
