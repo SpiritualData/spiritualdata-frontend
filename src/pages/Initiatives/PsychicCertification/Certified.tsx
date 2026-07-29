@@ -141,7 +141,8 @@ const Certified: React.FC = () => {
             component={RouterLink}
             to="/initiatives/psychic-ability-certification"
             sx={{
-              display: "inline-block",
+              display: "block",
+              width: "fit-content",
               mb: 3,
               fontSize: "13px",
               fontWeight: 700,
@@ -178,7 +179,7 @@ const Certified: React.FC = () => {
             }}
           >
             Every completed assessment is published here in full, with accuracy
-            rates, conditions, and methodology — including the assessments that
+            rates, conditions, and methodology, including the assessments that
             demonstrate nothing. Publication is a condition of participating.
             Being named is not, so some records appear without identifying
             information.{" "}
@@ -383,7 +384,7 @@ const Certified: React.FC = () => {
                   mb: 1.5,
                 }}
               >
-                The record so far
+                What appears on this page
               </Typography>
 
               <Typography
@@ -395,51 +396,27 @@ const Certified: React.FC = () => {
                   mb: 3,
                 }}
               >
-                No assessments have been published yet.
+                An assessment is published once it has been earned, not once
+                it has been claimed.
               </Typography>
 
-              <Box sx={{ maxWidth: 780, display: "grid", gap: 2.5 }}>
-                <Typography
-                  sx={{ color: theme.palette.text.secondary, lineHeight: 1.9 }}
+              <Typography
+                sx={{
+                  color: theme.palette.text.secondary,
+                  lineHeight: 1.9,
+                  maxWidth: 780,
+                }}
+              >
+                Every completed assessment appears here with its accuracy rates,
+                conditions, and methodology,{" "}
+                <Box
+                  component="span"
+                  sx={{ fontWeight: 700, color: theme.palette.text.primary }}
                 >
-                  The counts above are not placeholders. They are computed from
-                  the published record, and the record is currently empty. This
-                  page is blank because nothing has been published, not because
-                  anything is being held back.
-                </Typography>
-
-                <Typography
-                  sx={{ color: theme.palette.text.secondary, lineHeight: 1.9 }}
-                >
-                  Applications are open and the first cohort is being assembled.
-                  Nothing appears here until a session has been completed under
-                  the published protocol, independently reviewed by PhD-level
-                  researchers, reviewed with the participant, and consented to
-                  for publication.
-                </Typography>
-
-                <Typography
-                  sx={{ color: theme.palette.text.secondary, lineHeight: 1.9 }}
-                >
-                  When that happens, every completed assessment appears here —
-                  with its accuracy rates, conditions, and methodology —{" "}
-                  <Box component="span" sx={{ fontWeight: 700, color: theme.palette.text.primary }}>
-                    including the assessments that demonstrate nothing
-                  </Box>
-                  . A program that reports only its successes is not evidence of
-                  anything, which is why the null-result count above is given the
-                  same prominence as the certifications.
-                </Typography>
-
-                <Typography
-                  sx={{ color: theme.palette.text.secondary, lineHeight: 1.9 }}
-                >
-                  Publication itself is a condition of participating, agreed in
-                  writing before testing rather than after a result is known.
-                  What stays optional is the participant's name, so an
-                  assessment may appear here without identifying information.
-                </Typography>
-              </Box>
+                  including the ones that demonstrate nothing
+                </Box>
+                . Publication is a condition of taking part. Being named is not.
+              </Typography>
 
               <Box
                 sx={{

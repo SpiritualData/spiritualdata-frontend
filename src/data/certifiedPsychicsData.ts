@@ -1,5 +1,5 @@
 /**
- * Psychic Ability Certification — the public assessment record.
+ * Psychic Ability Certification: the public assessment record.
  *
  * The unit of this record is an ASSESSMENT, not a person. A session that
  * demonstrates nothing is a record here in exactly the same way a certified
@@ -103,7 +103,7 @@ export interface Assessment {
 export const assessments: Assessment[] = [];
 
 /**
- * EXAMPLE ONLY — NOT A REAL ASSESSMENT AND NOT PART OF THE PUBLISHED RECORD.
+ * EXAMPLE ONLY. NOT A REAL ASSESSMENT AND NOT PART OF THE PUBLISHED RECORD.
  *
  * Kept as a shape reference for whoever adds the first real record. It is
  * deliberately not included in `assessments` and must never be rendered on a
@@ -223,7 +223,7 @@ export const formatAssessmentDate = (isoDate: string): string => {
 
 /** Renders 1e-16 as "1 in 10,000,000,000,000,000" style text without losing precision. */
 export const formatChanceProbability = (probability: number): string => {
-  if (!Number.isFinite(probability) || probability <= 0) return "—";
+  if (!Number.isFinite(probability) || probability <= 0) return "n/a";
   const oneIn = Math.round(1 / probability);
   if (oneIn < 1_000_000) return `1 in ${oneIn.toLocaleString("en-US")}`;
   return `${probability.toExponential(2)} (about 1 in ${oneIn.toExponential(2)})`;

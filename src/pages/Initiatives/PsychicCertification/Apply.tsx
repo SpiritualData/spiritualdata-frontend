@@ -66,7 +66,8 @@ const Apply: React.FC = () => {
             component={RouterLink}
             to="/initiatives/psychic-ability-certification"
             sx={{
-              display: "inline-block",
+              display: "block",
+              width: "fit-content",
               mb: 3,
               fontSize: "13px",
               fontWeight: 700,

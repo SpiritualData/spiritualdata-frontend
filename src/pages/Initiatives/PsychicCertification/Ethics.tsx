@@ -16,17 +16,45 @@ const DOC_MAX_WIDTH = 760;
 const ANCHOR_OFFSET = 100;
 
 /**
- * Renders the **bold** runs used in the protocol data. Anything outside a pair
- * of double asterisks is plain text; nothing else is interpreted.
+ * Renders the inline markers used in the protocol data: **bold** runs and
+ * [label](/path) internal links. Nothing else is interpreted.
  */
+const LINK_PATTERN = /\[([^\]]+)\]\(([^)]+)\)/g;
+
+const withLinks = (text: string, keyPrefix: string): React.ReactNode[] => {
+  const nodes: React.ReactNode[] = [];
+  let cursor = 0;
+  for (const match of text.matchAll(LINK_PATTERN)) {
+    const start = match.index ?? 0;
+    if (start > cursor) nodes.push(text.slice(cursor, start));
+    nodes.push(
+      <Typography
+        key={`${keyPrefix}-link-${start}`}
+        component={RouterLink}
+        to={match[2]}
+        sx={{
+          color: "inherit",
+          fontWeight: 700,
+          textDecoration: "underline",
+        }}
+      >
+        {match[1]}
+      </Typography>
+    );
+    cursor = start + match[0].length;
+  }
+  if (cursor < text.length) nodes.push(text.slice(cursor));
+  return nodes;
+};
+
 const richText = (text: string): React.ReactNode =>
   text.split("**").map((part, index) =>
     index % 2 === 1 ? (
       <Box key={index} component="strong" sx={{ fontWeight: 700 }}>
-        {part}
+        {withLinks(part, `b${index}`)}
       </Box>
     ) : (
-      <React.Fragment key={index}>{part}</React.Fragment>
+      <React.Fragment key={index}>{withLinks(part, `t${index}`)}</React.Fragment>
     )
   );
 
@@ -104,7 +132,8 @@ const Ethics: React.FC = () => {
             component={RouterLink}
             to="/initiatives/psychic-ability-certification"
             sx={{
-              display: "inline-block",
+              display: "block",
+              width: "fit-content",
               mb: 3,
               fontSize: "13px",
               fontWeight: 700,
@@ -220,7 +249,7 @@ const Ethics: React.FC = () => {
             </Box>
           </Paper>
 
-          {/* The document body — normal page scroll, no inner scroll region. */}
+          {/* The document body: normal page scroll, no inner scroll region. */}
           <Box component="article" sx={{ maxWidth: DOC_MAX_WIDTH }}>
             {certificationProtocolSections.map((section, sectionIndex) => (
               <Box
