@@ -215,11 +215,11 @@ export const certificationProtocolSections: ProtocolSection[] = [
       },
       {
         kind: "paragraph",
-        text: "The obvious conflict is stated rather than hidden: Spiritual Data has an institutional interest in psychic abilities being demonstrable. The safeguards against that interest distorting results are the ones a critic would ask for anyway, and they are the reason this document specifies them: independent witnesses with no ties to us, controls in every session, independent PhD-level sign-off, pre-registration, and publication of failures.",
+        text: "Spiritual Data exists to find out what the evidence supports, not to argue a position. It has no stake in the answer, and this program is built so that it can return nothing and publish that. What a reader should weigh anyway is structural: the organization researches consciousness, and the program is led by someone who practices. The safeguards against either of those shaping a result are the ones a critic would ask for, and they are the reason this document specifies them: independent witnesses with no ties to us, controls in every session, independent PhD-level sign-off, pre-registration, and publication of failures.",
       },
       {
         kind: "paragraph",
-        text: "We welcome volunteers and researchers who want to assist with the work and help lead it, including as witnesses, methodologists, and reviewers. Independent participation strengthens the result.",
+        text: "We welcome volunteers and researchers who want to assist with the work and help lead it, including as witnesses, methodologists, and reviewers. Independent participation strengthens the result. Contact support@spiritualdata.org.",
       },
     ],
   },
