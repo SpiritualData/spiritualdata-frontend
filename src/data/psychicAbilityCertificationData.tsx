@@ -96,14 +96,6 @@ export const certificationApplyFormUrl =
 /** Sub-pages of the certification initiative, surfaced from the overview page. */
 export const certificationSubPagesData = [
   {
-    id: 1,
-    eyebrow: "The standard",
-    title: "Ethics and Testing Protocol",
-    desc: "The full published protocol: the participant protections, the witness and control standards every demonstration must meet, the statistical threshold, pre-registration, and the commitment to publish every completed assessment.",
-    btn: "Read the protocol",
-    link: "/initiatives/psychic-ability-certification/ethics",
-  },
-  {
     id: 2,
     eyebrow: "The record",
     title: "Published Assessments",
@@ -118,6 +110,14 @@ export const certificationSubPagesData = [
     desc: "What applying actually involves, step by step, from the first screening conversation to your follow-up session. Participation is free, and nothing is measured until you have read the consent documentation and signed.",
     btn: "How to apply",
     link: "/initiatives/psychic-ability-certification/apply",
+  },
+  {
+    id: 1,
+    eyebrow: "The standard",
+    title: "Ethics and Testing Protocol",
+    desc: "The full published protocol: the participant protections, the witness and control standards every demonstration must meet, the statistical threshold, pre-registration, and the commitment to publish every completed assessment.",
+    btn: "Read the protocol",
+    link: "/initiatives/psychic-ability-certification/ethics",
   },
 ];
 
