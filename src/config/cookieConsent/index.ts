@@ -115,7 +115,10 @@ export const cookieConsentConfig: CookieConsentConfig = {
         cookies: [
           { name: /^_ga/ }, // Google Analytics cookies
           { name: /^_gid/ }, // Google Analytics session cookie
+          { name: /^_gat/ }, // Google Analytics throttle cookie
+          { name: /^_gcl_au/ }, // Google Tag conversion linker
           { name: /^_hj/ }, // Hotjar cookies
+          { name: /^_beehiiv/ }, // Beehiiv newsletter cookies
         ],
         reloadPage: false,
       },

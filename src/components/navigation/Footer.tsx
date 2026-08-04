@@ -204,20 +204,42 @@ const Footer = () => {
                 "&:hover": {
                   borderColor: "primary.focus",
                 },
+                position: "relative",
+                minHeight: "52px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
-              <iframe
-                title="Newsletter"
-                src="https://embeds.beehiiv.com/51f0c52b-4966-4cde-8f8d-e761d1b07095?slim=true"
-                data-test-id="beehiiv-embed"
-                height="52"
-                width="100%"
-                style={{
-                  border: "none",
-                  display: "block",
-                  overflow: "hidden",
-                }}
-              ></iframe>
+              {useCookieConsent().acceptedCategories.analytics ? (
+                <iframe
+                  title="Newsletter"
+                  src="https://embeds.beehiiv.com/51f0c52b-4966-4cde-8f8d-e761d1b07095?slim=true"
+                  data-test-id="beehiiv-embed"
+                  height="52"
+                  width="100%"
+                  style={{
+                    border: "none",
+                    display: "block",
+                    overflow: "hidden",
+                  }}
+                ></iframe>
+              ) : (
+                <Typography
+                  variant="body2"
+                  sx={{
+                    fontSize: "0.75rem",
+                    color: "text.secondary",
+                    px: 2,
+                    textAlign: "center",
+                    cursor: "pointer",
+                  }}
+                  onClick={showPreferences}
+                >
+                  Enable <strong>Analytics Cookies</strong> to subscribe to our
+                  newsletter
+                </Typography>
+              )}
             </Box>
           </Grid>
         </Grid>
