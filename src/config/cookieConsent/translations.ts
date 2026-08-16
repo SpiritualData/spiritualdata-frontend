@@ -55,13 +55,13 @@ export const translations: Record<string, Translation> = {
               {
                 name: "_ga, _ga_*",
                 domain: "spiritualdata.org",
-                description: "Google Analytics - distinguishes unique users",
+                description: "Google Analytics: distinguishes unique users",
                 expiration: "2 years",
               },
               {
                 name: "_hj*",
                 domain: "spiritualdata.org",
-                description: "Hotjar - session analytics and heatmaps",
+                description: "Hotjar: session analytics and heatmaps",
                 expiration: "1 year",
               },
             ],
@@ -83,7 +83,7 @@ export const translations: Record<string, Translation> = {
               {
                 name: "_fbp",
                 domain: ".spiritualdata.org",
-                description: "Meta Pixel - ad targeting and conversion tracking",
+                description: "Meta Pixel: ad targeting and conversion tracking",
                 expiration: "3 months",
               },
             ],

@@ -56,7 +56,7 @@ const DonationMethod: React.FC<DonationMethodProps> = ({ amount ,title = "Donate
         image: {
           src: "https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif",
           alt: "Donate with PayPal button",
-          title: "PayPal - The safer, easier way to pay online!",
+          title: "PayPal: The safer, easier way to pay online!",
         },
       }).render("#paypal-button-container");
     }
