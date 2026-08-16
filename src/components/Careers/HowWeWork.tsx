@@ -97,9 +97,9 @@ const HowWeWork = () => {
             <Slide in={inView} direction="up" timeout={900}>
               <Typography variant="h6" color="text.secondary">
                 We're builders with <strong>intellectual humility</strong> and a
-                deep commitment to <strong>truth - seeking</strong>. You'll have
+                deep commitment to <strong>truth-seeking</strong>. You'll have
                 real <strong>autonomy</strong> and clear{" "}
-                <strong>ownership</strong> - no required hours, no required
+                <strong>ownership</strong>: no required hours, no required
                 location, and rewards based on impact. We strive to operate from
                 a place of <strong>unconditional love</strong> in how we
                 collaborate and support each other.

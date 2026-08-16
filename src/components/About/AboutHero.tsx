@@ -144,7 +144,7 @@ const AboutHero: React.FC = () => {
                       lineHeight: 1.4,
                     }}
                   >
-                    Spiritual truth hasn't disappeared - it's been buried. At
+                    Spiritual truth hasn't disappeared. It's been buried. At
                     Spiritual Data, our vision is simple but transformative: To
                     change the world by changing the source of people's beliefs.
                     For too long, spiritual questions have been shaped by
@@ -293,7 +293,7 @@ const AboutHero: React.FC = () => {
                     }}
                   >
                     We believe that when people are shown undeniable, unbiased
-                    evidence, a global shift becomes possible - a move toward
+                    evidence, a global shift becomes possible: a move toward
                     clarity, intellectual humility, and a deeper sense of shared
                     truth.
                   </Typography>
@@ -331,8 +331,8 @@ const AboutHero: React.FC = () => {
                       lineHeight: 1.4,
                     }}
                   >
-                    When spiritual understanding is grounded in data - not dogma
-                    - something powerful happens: People stop arguing, and start
+                    When spiritual understanding is grounded in data, not dogma,
+                    something powerful happens: People stop arguing, and start
                     listening. Divisions shrink. Curiosity replaces fear.
                   </Typography>
                 </Grid>

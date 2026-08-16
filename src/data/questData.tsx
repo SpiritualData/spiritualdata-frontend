@@ -240,7 +240,7 @@ export const callToAction: callToAction = {
   buttonText: "Start Your First Quest",
   buttonLink: "https://quest.spiritualdata.org/sign-up",
   footerNote:
-    "Free community access - $5 single quest or $10/month with structured followups",
+    "Free community access: $5 single quest or $10/month with structured followups",
   additionalFooterNote1: "",
   additionalFooterNote2: "Your data stays private",
 };

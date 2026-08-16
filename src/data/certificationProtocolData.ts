@@ -99,7 +99,7 @@ export const certificationProtocolSections: ProtocolSection[] = [
       },
       {
         kind: "paragraph",
-        text: "**No fee, and no payment.** Participation costs you nothing. We do not currently offer compensation, and we say so up front rather than implying a reward.",
+        text: "**No fee.** Participation costs you nothing.",
       },
       {
         kind: "paragraph",

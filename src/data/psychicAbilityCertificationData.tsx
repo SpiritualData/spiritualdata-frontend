@@ -187,7 +187,7 @@ export const applyStepsData = [
 
 /** Drawn from section 2 of the published protocol: participant protections. */
 export const applyProtectionsData = [
-  "Participation is free. There is no fee, and we do not currently offer compensation.",
+  "Participation is free. There is no fee.",
   "You may decline, ask anything, or withdraw at any point before your testing session, without giving a reason and without consequence.",
   "Publication is part of participating. Every completed assessment is published, whatever the result, and you agree to that before you are tested rather than after you have seen how it went. This doesn't apply to the informal preliminary demonstration.",
   "Your name is optional. You can be published anonymously, with the same protocol, statistics, witness statements, and reviewer sign-off, minus identifying information.",
