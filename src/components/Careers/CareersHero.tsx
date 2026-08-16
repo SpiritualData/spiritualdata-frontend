@@ -166,7 +166,7 @@ const HeroWithFloatingImages: React.FC = () => {
               >
                 Join Spiritual Data to enable intellectual autonomy and
                 scientific collaboration at global scale. If you're excited to
-                own meaningful problems - and see your work change lives - this
+                own meaningful problems and see your work change lives, this
                 is your place.
               </Typography>
             </Fade>

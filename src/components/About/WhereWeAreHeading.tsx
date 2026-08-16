@@ -76,9 +76,9 @@ const WhereWeAreHeading: React.FC = () => {
             color: theme.palette.primary.main,
           }}
         >
-          We envision a world where spiritual science is not fringe - it's
+          We envision a world where spiritual science is not fringe. It's
           foundational. A world where reliable evidence guides our biggest
-          questions - and where consciousness, compassion, wisdom, and
+          questions, and where consciousness, compassion, wisdom, and
           connection are at the center of progress.
         </Typography>
       </Slide>
@@ -122,10 +122,10 @@ const WhereWeAreHeading: React.FC = () => {
                 color: theme.palette.primary.main,
               }}
             >
-              We're not just building tools - we are building a movement. One
+              We're not just building tools. We are building a movement. One
               that replaces division with clarity, isolation with connection,
               and confusion with understanding. As technology evolves, so will
-              our capacity to reveal deeper truths - together.
+              our capacity to reveal deeper truths, together.
             </Typography>
           </Slide>
 

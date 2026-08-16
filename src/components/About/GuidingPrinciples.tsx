@@ -32,7 +32,7 @@ const GuidingPrinciples: React.FC<GuidingPrinciplesProps> = ({
     },
     {
       title: "Data Before Dogma",
-      body: "Belief systems don't dictate conclusions - evidence does.",
+      body: "Belief systems don't dictate conclusions. Evidence does.",
     },
     {
       title: "Intellectual Autonomy",
@@ -51,7 +51,7 @@ const GuidingPrinciples: React.FC<GuidingPrinciplesProps> = ({
   const rightCards = [
     {
       title: "Truth Estimation Engine",
-      body: "AI that evaluates research and calculates what's most likely true - overcoming human bias by including all perspectives.",
+      body: "AI that evaluates research and calculates what's most likely true, overcoming human bias by including all perspectives.",
       link: "/initiatives/estimating-truth",
     },
     {

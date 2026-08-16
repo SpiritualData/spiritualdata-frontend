@@ -60,7 +60,7 @@ export const whyChooseUsData: WhyChooseUsData = {
     {
       title: "Unbiased Truth Estimation",
       description:
-        "Our AI evaluates claims based on weighted evidence - not belief, authority, or popularity - giving you clarity without dogma. We tackle bias by automating diverse expert perspectives on every data point.",
+        "Our AI evaluates claims based on weighted evidence (not belief, authority, or popularity), giving you clarity without dogma. We tackle bias by automating diverse expert perspectives on every data point.",
     },
     {
       title: "Data from All Perspectives",
@@ -70,12 +70,12 @@ export const whyChooseUsData: WhyChooseUsData = {
     {
       title: "Transparency at Every Step",
       description:
-        "The algorithms and data used to reach conclusions are shared openly so you can review - and decide for yourself.",
+        "The algorithms and data used to reach conclusions are shared openly so you can review and decide for yourself.",
     },
     {
       title: "Mission-Driven, Not Institution-Funded",
       description:
-        "We\u2019re a nonprofit powered by people - not corporations - committed to truth and spiritual autonomy.",
+        "We\u2019re a nonprofit powered by people, not corporations, committed to truth and spiritual autonomy.",
     },
   ],
 };
