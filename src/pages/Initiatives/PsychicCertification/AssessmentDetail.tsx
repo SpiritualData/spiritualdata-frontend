@@ -22,6 +22,31 @@ import {
 
 const RECORD_PATH = "/initiatives/psychic-ability-certification/certified";
 
+/**
+ * Session videos are hosted on YouTube (decided 2026-09-03), so a record that
+ * carries one plays it in place rather than sending the reader away. Returns
+ * the video id for the URL forms YouTube actually hands out, and undefined for
+ * anything else, which keeps a non-YouTube video a plain link.
+ */
+const youTubeVideoId = (url?: string): string | undefined => {
+  if (!url) return undefined;
+  let parsed: URL;
+  try {
+    parsed = new URL(url);
+  } catch {
+    return undefined;
+  }
+  const host = parsed.hostname.replace(/^www\./, "");
+  const id =
+    host === "youtu.be"
+      ? parsed.pathname.slice(1)
+      : host === "youtube.com" || host === "m.youtube.com"
+      ? parsed.searchParams.get("v") ??
+        parsed.pathname.match(/^\/(?:embed|shorts|live)\/([^/]+)/)?.[1]
+      : undefined;
+  return id && /^[\w-]{6,}$/.test(id) ? id : undefined;
+};
+
 interface DetailSectionProps {
   title: string;
   children: React.ReactNode;
@@ -240,6 +265,8 @@ const AssessmentDetail: React.FC = () => {
       typeof document.url === "string" && document.url.length > 0
   );
 
+  const sessionVideoId = youTubeVideoId(protocol.videoUrl);
+
   const accuracy =
     results.trials && results.trials > 0 && typeof results.hits === "number"
       ? `${results.hits} of ${results.trials} (${(
@@ -421,6 +448,48 @@ const AssessmentDetail: React.FC = () => {
                 {review.verdict}
               </Typography>
             </DetailSection>
+
+            {sessionVideoId && (
+              <DetailSection title="Session recording">
+                <Box
+                  sx={{
+                    position: "relative",
+                    width: "100%",
+                    pt: "56.25%",
+                    borderRadius: 2,
+                    overflow: "hidden",
+                    border: `1px solid ${theme.palette.cosmic.secondary}`,
+                  }}
+                >
+                  <Box
+                    component="iframe"
+                    src={`https://www.youtube-nocookie.com/embed/${sessionVideoId}`}
+                    title="Recording of the testing session"
+                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    loading="lazy"
+                    sx={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "100%",
+                      border: 0,
+                    }}
+                  />
+                </Box>
+                <Typography
+                  sx={{
+                    mt: 2,
+                    color: theme.palette.text.secondary,
+                    lineHeight: 1.9,
+                  }}
+                >
+                  The whole session, unedited. It is published here because the
+                  witnesses and the reviewers worked from it, and so should you.
+                </Typography>
+              </DetailSection>
+            )}
 
             <DetailSection title="Documents">
               {availableDocuments.length > 0 ? (

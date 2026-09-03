@@ -93,6 +93,33 @@ export const psychicAbilityDetailsData = [
 export const certificationApplyFormUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSdi7zXNri8uXouwlOMV64WcYNXeQOlVX7nS7Su6YM9V4AyJCg/viewform?usp=sf_link";
 
+/**
+ * The contact route section 6 of the published protocol already gives for
+ * volunteers and researchers. Surfaced on the apply page because the protocol
+ * cannot staff a single session without these people.
+ */
+export const certificationVolunteerEmail = "support@spiritualdata.org";
+
+/** The roles named in section 3.1 and section 6 of the published protocol. */
+export const certificationVolunteerRolesData = [
+  {
+    title: "Witnesses",
+    desc: "Present in the room at a session, signing a statement describing what you observed. At least one witness has to be independent of both the researcher and the participant.",
+  },
+  {
+    title: "Methodologists",
+    desc: "Helping design a fair test of an ability our standard procedures do not cover, without weakening the standards every session is held to.",
+  },
+  {
+    title: "Reviewers holding a PhD",
+    desc: "Assessing the record of a completed session and signing off on what it does and does not show.",
+  },
+  {
+    title: "Coordination",
+    desc: "Scheduling sessions, keeping the published record current, and making sure applicants hear back.",
+  },
+];
+
 /** Sub-pages of the certification initiative, surfaced from the overview page. */
 export const certificationSubPagesData = [
   {
