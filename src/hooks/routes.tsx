@@ -32,6 +32,7 @@ import Certified from "../pages/Initiatives/PsychicCertification/Certified";
 import AssessmentDetail from "../pages/Initiatives/PsychicCertification/AssessmentDetail";
 import Apply from "../pages/Initiatives/PsychicCertification/Apply";
 import Ethics from "../pages/Initiatives/PsychicCertification/Ethics";
+import Prize from "../pages/Initiatives/PsychicCertification/Prize";
 import Crisis from "../pages/Crisis";
 import Change from "../pages/Change";
 import OriginStory from "../pages/OriginStory";
@@ -81,6 +82,10 @@ const useClerkRoutes = (): ReactElement => {
         <Route
           path="/initiatives/psychic-ability-certification/apply"
           element={<Apply />}
+        />
+        <Route
+          path="/initiatives/psychic-ability-certification/prize"
+          element={<Prize />}
         />
         <Route path="*" element={<NotFound />} />
         <Route path="/sign-in/*" element={<AuthPage />} />

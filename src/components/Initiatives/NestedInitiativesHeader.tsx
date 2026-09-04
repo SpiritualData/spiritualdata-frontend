@@ -40,6 +40,15 @@ interface headerDataProps {
 }
 const HeaderSection = ({ data }: headerDataProps) => {
   const theme = useTheme();
+
+  /**
+   * The heading column is only 35% of the viewport on desktop, so a long
+   * heading wraps past the fixed 500px header and gets clipped at the top.
+   * Step the desktop size down once a heading passes the length that fits.
+   */
+  const headingLength = data.heading.length;
+  const desktopHeadingSize =
+    headingLength > 34 ? "2.5rem" : headingLength > 26 ? "3rem" : "3.75rem";
   return (
     <Box
       sx={{
@@ -133,7 +142,7 @@ const HeaderSection = ({ data }: headerDataProps) => {
               fontWeight: 700,
               fontStyle: "normal",
               textShadow: `0px 0px 5px ${theme.palette.primary.focus}`,
-              fontSize: { xs: "2rem", sm: "2.75rem", md: "3.75rem" },
+              fontSize: { xs: "2rem", sm: "2.75rem", md: desktopHeadingSize },
               overflowWrap: "break-word",
               wordBreak: "break-word",
             }}

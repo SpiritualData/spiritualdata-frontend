@@ -12,7 +12,7 @@ export const headerData = {
 export const tiltHeadData = {
   bgText: "Psychic Initiative",
   title: "Psychic Ability Certification Initiative",
-  desc: "The Psychic Ability Certification program aims to provide practically undeniable evidence of psychic abilities through transparent and ethical testing. By applying scientific standards (witness verification, control experiments, and independent PhD-level review), Spiritual Data offers the world's first structured certification system for all psychic abilities, helping regulate the industry and motivating further research.",
+  desc: "The Psychic Ability Certification program tests claims of psychic ability under scientific conditions and publishes the full record of every assessment, whatever it shows. It is the world's first structured certification system covering every psychic ability rather than a single one: telekinesis, levitation, extrasensory perception, mediumship, and abilities that have no standard test yet, all held to one published protocol. Every assessment is witnessed, video recorded, pre-registered in public, run against a control, scored against a stated statistical threshold, and reviewed by PhD-level reviewers independent of Spiritual Data.",
 };
 
 export const scrollCardsData = [
@@ -93,6 +93,33 @@ export const psychicAbilityDetailsData = [
 export const certificationApplyFormUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSdi7zXNri8uXouwlOMV64WcYNXeQOlVX7nS7Su6YM9V4AyJCg/viewform?usp=sf_link";
 
+/**
+ * The contact route section 6 of the published protocol already gives for
+ * volunteers and researchers. Surfaced on the apply page because the protocol
+ * cannot staff a single session without these people.
+ */
+export const certificationVolunteerEmail = "support@spiritualdata.org";
+
+/** The roles named in section 3.1 and section 6 of the published protocol. */
+export const certificationVolunteerRolesData = [
+  {
+    title: "Witnesses",
+    desc: "Present in the room at a session, signing a statement describing what you observed. At least one witness has to be independent of both the researcher and the participant.",
+  },
+  {
+    title: "Methodologists",
+    desc: "Helping design a fair test of an ability our standard procedures do not cover, without weakening the standards every session is held to.",
+  },
+  {
+    title: "Reviewers holding a PhD",
+    desc: "Assessing the record of a completed session and signing off on what it does and does not show.",
+  },
+  {
+    title: "Coordination",
+    desc: "Scheduling sessions, keeping the published record current, and making sure applicants hear back.",
+  },
+];
+
 /** Sub-pages of the certification initiative, surfaced from the overview page. */
 export const certificationSubPagesData = [
   {
@@ -110,6 +137,14 @@ export const certificationSubPagesData = [
     desc: "What applying actually involves, step by step, from the first screening conversation to your follow-up session. Participation is free, and nothing is measured until you have read the consent documentation and signed.",
     btn: "How to apply",
     link: "/initiatives/psychic-ability-certification/apply",
+  },
+  {
+    id: 4,
+    eyebrow: "The prize",
+    title: "Spiritual Data Prize for Proof of the Paranormal",
+    desc: "A standing $1,000 prize plus travel costs for the first demonstration to reach the Super Psychic level of the published protocol. Open to anyone, anywhere, no entry fee, decided by reviewers holding a PhD who do not work for Spiritual Data. Currently unclaimed.",
+    btn: "About the prize",
+    link: "/initiatives/psychic-ability-certification/prize",
   },
   {
     id: 1,
