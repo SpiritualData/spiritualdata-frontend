@@ -130,7 +130,7 @@ export const paranormalPrizeSections: PrizeSection[] = [
     blocks: [
       {
         kind: "paragraph",
-        text: "The obvious objection to an prize offered by an organisation that believes in the phenomenon is that the organisation is marking its own homework. It is a fair objection and the design answers it directly.",
+        text: "The obvious objection to a prize offered by an organisation that believes in the phenomenon is that the organisation is marking its own homework. It is a fair objection and the design answers it directly.",
       },
       {
         kind: "list",
