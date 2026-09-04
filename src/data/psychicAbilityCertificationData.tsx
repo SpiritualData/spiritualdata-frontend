@@ -12,7 +12,7 @@ export const headerData = {
 export const tiltHeadData = {
   bgText: "Psychic Initiative",
   title: "Psychic Ability Certification Initiative",
-  desc: "The Psychic Ability Certification program aims to provide practically undeniable evidence of psychic abilities through transparent and ethical testing. By applying scientific standards (witness verification, control experiments, and independent PhD-level review), Spiritual Data offers the world's first structured certification system covering every psychic ability rather than a single one. The programmes that exist certify mediumship alone; ours holds telekinesis, levitation, ESP, mediumship, and abilities we have no standard test for yet to one published protocol, which helps regulate the industry and motivates further research.",
+  desc: "The Psychic Ability Certification program tests claims of psychic ability under scientific conditions and publishes the full record of every assessment, whatever it shows. It is the world's first structured certification system covering every psychic ability rather than a single one: telekinesis, levitation, extrasensory perception, mediumship, and abilities that have no standard test yet, all held to one published protocol. Every assessment is witnessed, video recorded, pre-registered in public, run against a control, scored against a stated statistical threshold, and reviewed by PhD-level reviewers independent of Spiritual Data.",
 };
 
 export const scrollCardsData = [
@@ -142,7 +142,7 @@ export const certificationSubPagesData = [
     id: 4,
     eyebrow: "The prize",
     title: "Spiritual Data Prize for Proof of the Paranormal",
-    desc: "A standing prize for the first demonstration to reach the Super Psychic level of the published protocol, open to anyone, no entry fee, decided by reviewers holding a PhD who do not work for Spiritual Data. Currently unclaimed.",
+    desc: "A standing $1,000 prize plus travel costs for the first demonstration to reach the Super Psychic level of the published protocol. Open to anyone, anywhere, no entry fee, decided by reviewers holding a PhD who do not work for Spiritual Data. Currently unclaimed.",
     btn: "About the prize",
     link: "/initiatives/psychic-ability-certification/prize",
   },
