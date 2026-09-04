@@ -23,9 +23,12 @@
  * Keep it short: the prize pages this one sits beside state their conditions in
  * a sentence.
  *
- * PENDING JOSHUA. Nothing here is deployed. The sum is set at Joshua's figure
- * of 1,000 dollars plus travel costs; how the money is held is still unstated
- * because it is unverified. See
+ * PENDING JOSHUA. This page is deployed to the review site only,
+ * https://qa.spiritualdata.org/initiatives/psychic-ability-certification/prize,
+ * which is where Joshua reads it. It is not on the public site, and merging to
+ * main is his call. The sum is set at Joshua's figure of 1,000 dollars plus
+ * travel costs; how the money is held is still unstated because it is
+ * unverified. See
  * ../../../../psychic_certification/prize_for_proof_of_the_paranormal.md.
  */
 
