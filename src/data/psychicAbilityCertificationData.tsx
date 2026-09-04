@@ -12,7 +12,7 @@ export const headerData = {
 export const tiltHeadData = {
   bgText: "Psychic Initiative",
   title: "Psychic Ability Certification Initiative",
-  desc: "The Psychic Ability Certification program aims to provide practically undeniable evidence of psychic abilities through transparent and ethical testing. By applying scientific standards (witness verification, control experiments, and independent PhD-level review), Spiritual Data offers the world's first structured certification system for all psychic abilities, helping regulate the industry and motivating further research.",
+  desc: "The Psychic Ability Certification program aims to provide practically undeniable evidence of psychic abilities through transparent and ethical testing. By applying scientific standards (witness verification, control experiments, and independent PhD-level review), Spiritual Data offers the world's first structured certification system covering every psychic ability rather than a single one. The programmes that exist certify mediumship alone; ours holds telekinesis, levitation, ESP, mediumship, and abilities we have no standard test for yet to one published protocol, which helps regulate the industry and motivates further research.",
 };
 
 export const scrollCardsData = [
@@ -137,6 +137,14 @@ export const certificationSubPagesData = [
     desc: "What applying actually involves, step by step, from the first screening conversation to your follow-up session. Participation is free, and nothing is measured until you have read the consent documentation and signed.",
     btn: "How to apply",
     link: "/initiatives/psychic-ability-certification/apply",
+  },
+  {
+    id: 4,
+    eyebrow: "The prize",
+    title: "Spiritual Data Prize for Proof of the Paranormal",
+    desc: "A standing prize for the first demonstration to reach the Super Psychic level of the published protocol, open to anyone, no entry fee, decided by reviewers holding a PhD who do not work for Spiritual Data. Currently unclaimed.",
+    btn: "About the prize",
+    link: "/initiatives/psychic-ability-certification/prize",
   },
   {
     id: 1,
