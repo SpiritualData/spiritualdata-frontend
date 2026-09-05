@@ -187,10 +187,28 @@ const Prize: React.FC = () => {
             sx={{
               ...bodySx,
               maxWidth: DOC_MAX_WIDTH,
-              mb: { xs: 4, md: 6 },
+              mb: 2.5,
             }}
           >
             {paranormalPrizeMeta.intro}
+          </Typography>
+
+          {/*
+            Who we are, directly under the opening paragraph. Joshua asked for this
+            sentence here and on the About page on 2026-09-05, in these words, so a
+            skeptical reader knows what kind of organisation is offering the prize
+            before reading a line of it.
+          */}
+          <Typography
+            sx={{
+              ...bodySx,
+              color: theme.palette.text.primary,
+              fontWeight: 700,
+              maxWidth: DOC_MAX_WIDTH,
+              mb: { xs: 4, md: 6 },
+            }}
+          >
+            {paranormalPrizeMeta.identity}
           </Typography>
 
           {/* In-page index: this is a six-section document. */}
