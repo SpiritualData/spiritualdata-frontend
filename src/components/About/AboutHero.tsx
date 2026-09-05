@@ -11,6 +11,7 @@ import {
 import { useInView } from "../../hooks/useInView";
 import coreImage from "../../assets/images/about/about3.webp";
 import { useNavigate } from "react-router-dom";
+import { paranormalPrizeMeta } from "../../data/paranormalPrizeData";
 
 const AboutHero: React.FC = () => {
   const theme = useTheme();
@@ -119,6 +120,33 @@ const AboutHero: React.FC = () => {
                     justifyContent: "flex-end",
                   }}
                 >
+                  {/*
+                    Who we are, in Joshua's own words, 2026-09-05: "Spiritual Data
+                    is a skeptic organization focused on intellectual autonomy
+                    through awareness of information to avoid deception." He asked
+                    for this sentence on the About page and on the Prize for Proof
+                    of the Paranormal page, where it also appears under the opening
+                    paragraph. It is quoted, not paraphrased, and the US spelling
+                    of "organization" is his. The single source of the sentence is
+                    `paranormalPrizeMeta.identity` in
+                    ../../data/paranormalPrizeData.ts, so the two pages cannot
+                    drift apart.
+                  */}
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      color: theme.palette.text.primary,
+                      fontSize: "1rem",
+                      fontWeight: 700,
+                      fontFamily: theme.typography.fontFamily,
+                      textAlign: "justify",
+                      letterSpacing: 1,
+                      lineHeight: 1.4,
+                      mb: 2,
+                    }}
+                  >
+                    {paranormalPrizeMeta.identity}
+                  </Typography>
                   <Typography
                     variant="subtitle1"
                     sx={{

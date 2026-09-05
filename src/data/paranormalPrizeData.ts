@@ -34,6 +34,20 @@
  *    unclaimed too many times".
  * 6. Short. The prize pages this one sits beside state their conditions in a
  *    sentence.
+ * 7. The skeptic identity line under the intro is Joshua's own sentence, word for
+ *    word, 2026-09-05: "Spiritual Data is a skeptic organization focused on
+ *    intellectual autonomy through awareness of information to avoid deception."
+ *    It is on the About page too. Do not paraphrase it and do not localise its
+ *    spelling.
+ * 8. Section 2's opening paragraph is Joshua's wording, 2026-09-05, and the list
+ *    that follows it carries the heading "Complaints:" so a reader sees at once
+ *    that these are complaints other people make and not complaints we make.
+ * 9. What makes a session independent is its witnesses, not its reviewers. Joshua,
+ *    2026-09-05: the PhD reviewers "would likely be our advisors so I'm not sure
+ *    we should say they're independent". So the page never calls a reviewer
+ *    independent; it states that three or more independent witnesses are present
+ *    in person and the session is on video, and it says plainly that a reviewer
+ *    may be one of our own advisors.
  *
  * PENDING JOSHUA. This page is deployed to the review site only,
  * https://qa.spiritualdata.org/initiatives/psychic-ability-certification/prize,
@@ -77,9 +91,15 @@ export interface PrizeSection {
 
 export const paranormalPrizeMeta = {
   title: "Spiritual Data Prize for Proof of the Paranormal",
-  subtitle: "Spiritual Data · Version 1.2 · 2026-09-05",
-  intro: `Spiritual Data offers ${paranormalPrizeAmount} plus travel costs to the first person who demonstrates a psychic ability at the Super Psychic level of our published certification protocol and who agrees to be sponsored for an attempt at another organisation's award. It is open to anyone, there is no entry fee, and the decision is made by reviewers holding a PhD who are independent of Spiritual Data.`,
-  footer: "Version 1.2, 2026-09-05. Paid once.",
+  subtitle: "Spiritual Data · Version 1.3 · 2026-09-05",
+  intro: `Spiritual Data offers ${paranormalPrizeAmount} plus travel costs to the first person who demonstrates a psychic ability at the Super Psychic level of our published certification protocol and who agrees to be sponsored for an attempt at another organisation's award. It is open to anyone, there is no entry fee, and every session is witnessed in person by at least three independent witnesses and recorded on video.`,
+  /**
+   * Joshua's sentence, 2026-09-05, printed under the intro paragraph and on the
+   * About page. Word for word, US spelling included.
+   */
+  identity:
+    "Spiritual Data is a skeptic organization focused on intellectual autonomy through awareness of information to avoid deception.",
+  footer: "Version 1.3, 2026-09-05",
 };
 
 export const paranormalPrizeSections: PrizeSection[] = [
@@ -113,7 +133,11 @@ export const paranormalPrizeSections: PrizeSection[] = [
     blocks: [
       {
         kind: "paragraph",
-        text: "Prizes for evidence of the paranormal have been offered for decades and none has been claimed. Parapsychologists and practitioners make specific, practical complaints about how those prizes are run. This prize is built around answering them, so that the testing settles the question and the record shows plainly what it settled.",
+        text: "Prizes for evidence of the paranormal have been offered for decades and none has been claimed. Parapsychologists and believers have complaints about how these prizes are run. This prize is built around answering those concerns, so that the testing settles the question and the record shows plainly what it settled.",
+      },
+      {
+        kind: "subheading",
+        text: "Complaints:",
       },
       {
         kind: "list",
@@ -168,12 +192,12 @@ export const paranormalPrizeSections: PrizeSection[] = [
         ordered: false,
         items: [
           "**A written protocol agreement, signed before a session is scheduled.** The procedure, the conditions the ability needs, and the criteria for success are set out in writing and agreed by both the participant and the researcher, and they change only by agreement of both.",
-          "**Three or more witnesses present in person**, at least one a trained researcher and at least one independent of both the researcher and the participant.",
+          "**Three or more independent witnesses present in person**, none of them working for Spiritual Data and none with a prior relationship to the participant, and at least one of them a trained researcher.",
           "**The witnesses are present where the effect is.** For an ability that moves or affects an object, they are with the object. For an ability that receives information, they are with the information, which is often somewhere other than where the participant is.",
           "**At least one meaningful control experiment** during the same session.",
           "**Signed witness statements** describing what each witness observed.",
           "**Video recording of the session**, with no exceptions.",
-          "**Sign-off by one or two reviewers holding a PhD** who assess the session record afterwards and who do not work for Spiritual Data. Spiritual Data cannot certify anyone on its own authority.",
+          "**Sign-off by one or two reviewers holding a PhD**, who assess the session record afterwards. Where a reviewer is one of Spiritual Data's own scientific advisors we say so, and every reviewer is named in the published record. What makes a session independent is its witnesses and its video, which are there so a reader can check the reviewers' judgement against the same evidence.",
           "**Public pre-registration**: the procedure and the criteria for success are recorded publicly before the session, so a result stands as it was defined in advance.",
         ],
       },
