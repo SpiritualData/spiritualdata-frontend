@@ -322,16 +322,17 @@ const Prize: React.FC = () => {
                 mb: 1,
               }}
             >
-              {paranormalPrizeAmount} plus travel, unclaimed, open to anyone
+              {paranormalPrizeAmount} plus travel costs, open to anyone
             </Typography>
             <Typography
               sx={{ opacity: 0.85, lineHeight: 1.9, maxWidth: 760, mb: 3 }}
             >
-              There is no entry fee and no cost to take part. We pay travel to
-              the session. Applying begins a screening conversation, not a
-              test, and every applicant is eligible for the prize without doing
-              anything additional. Researchers who want to observe a session or
-              tighten a control are as welcome as applicants are.
+              There is no entry fee and no cost to take part. We arrange the
+              assessment in your location and find the witnesses there.
+              Applying begins a screening conversation, not a test, and every
+              applicant is eligible for the prize without doing anything
+              additional. Researchers who want to observe a session or tighten
+              a control are as welcome as applicants are.
             </Typography>
             <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
               <Button
