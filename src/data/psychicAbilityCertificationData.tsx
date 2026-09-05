@@ -224,7 +224,7 @@ export const applyStepsData = [
 export const applyProtectionsData = [
   "Participation is free. There is no fee.",
   "You may decline, ask anything, or withdraw at any point before your testing session, without giving a reason and without consequence.",
-  "Publication is part of participating. Every completed assessment is published, whatever the result, and you agree to that before you are tested rather than after you have seen how it went. This doesn't apply to the informal preliminary demonstration.",
+  "Publication is part of participating. Every completed assessment is published, whatever the result, and you agree to that before you are tested, never after you have seen how it went. This doesn't apply to the informal preliminary demonstration.",
   "Your name is optional. You can be published anonymously, with the same protocol, statistics, witness statements, and reviewer sign-off, minus identifying information.",
   "Every session is recorded, with no exceptions. Because a video shows who you are, it is not published if you are anonymous.",
   "A null result carries no stigma here. A session that demonstrates nothing is a normal outcome of honest testing.",
