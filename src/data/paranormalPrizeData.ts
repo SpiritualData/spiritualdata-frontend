@@ -166,7 +166,7 @@ export const paranormalPrizeSections: PrizeSection[] = [
       },
       {
         kind: "paragraph",
-        text: "**Where a result can be scored statistically, the threshold is a probability of less than 1 in 1 quadrillion against chance.** Where an ability is physical, such as moving an object, the demonstration is judged against a control condition run in the same session.",
+        text: "**Where a result can be scored statistically, the threshold at the Super Psychic level is a probability of less than 1 in 1 quadrillion against chance**, so that a result stands against the chance of someone among the billions of people alive having got it right by luck. The lower certification levels use 1 in 1 million, the standard the field uses. Where an ability is physical, such as moving an object, the demonstration is judged against a control condition run in the same session.",
       },
       {
         kind: "paragraph",
