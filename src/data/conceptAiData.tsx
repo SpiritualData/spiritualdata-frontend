@@ -81,7 +81,7 @@ export const capabilitiesData: capabilitiesData[] = [
   {
     title: "Statistical Truth Estimation",
     description:
-      "Concept AI weighs the evidence behind each concept and produces statistical conclusions rather than opinions. As new evidence is added, conclusions update, so the numbers reflect the current state of the evidence instead of a snapshot from the past.",
+      "Concept AI weighs the evidence behind each concept and produces statistical conclusions, with the arithmetic open to inspection. As new evidence is added, conclusions update, so the numbers reflect the current state of the evidence instead of a snapshot from the past.",
     image: cors2,
     icon: <FunctionsIcon fontSize="large" />,
   },
