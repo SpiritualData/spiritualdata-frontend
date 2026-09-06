@@ -8,6 +8,8 @@ import {
   applyProtectionsData,
   applyStepsData,
   certificationApplyFormUrl,
+  certificationVolunteerEmail,
+  certificationVolunteerRolesData,
 } from "../../../data/psychicAbilityCertificationData";
 
 const Apply: React.FC = () => {
@@ -312,6 +314,71 @@ const Apply: React.FC = () => {
               </Button>
             </Box>
           </Box>
+
+          <Paper
+            elevation={0}
+            sx={{
+              mt: 3,
+              p: { xs: 3, md: 5 },
+              borderRadius: 2,
+              border: `1px solid ${theme.palette.cosmic.secondary}`,
+              backgroundColor: theme.palette.cosmic.elevated,
+            }}
+          >
+            <Typography
+              variant="h5"
+              sx={{
+                fontFamily: "Sansation, sans-serif",
+                fontWeight: 700,
+                mb: 1,
+              }}
+            >
+              Not claiming an ability? We still need you
+            </Typography>
+            <Typography
+              sx={{
+                color: theme.palette.text.secondary,
+                lineHeight: 1.9,
+                maxWidth: 820,
+                mb: 3,
+              }}
+            >
+              No session can run without people from outside this organization.
+              The protocol requires an independent witness with no ties to us,
+              and sign-off by researchers holding PhDs, and that is exactly why
+              a result from it is worth anything. The commitment is per session,
+              not open-ended.
+            </Typography>
+            <Box sx={{ mb: 3 }}>
+              {certificationVolunteerRolesData.map((role) => (
+                <Box
+                  key={role.title}
+                  sx={{ display: "flex", gap: 1.5, alignItems: "flex-start", mb: 1.5 }}
+                >
+                  <CheckCircleOutlineIcon
+                    sx={{ mt: "2px", fontSize: 20, color: theme.palette.primary.focus }}
+                  />
+                  <Typography
+                    sx={{ color: theme.palette.text.secondary, lineHeight: 1.8 }}
+                  >
+                    <Box component="span" sx={{ fontWeight: 700, color: theme.palette.text.primary }}>
+                      {role.title}:
+                    </Box>{" "}
+                    {role.desc}
+                  </Typography>
+                </Box>
+              ))}
+            </Box>
+            <Button
+              href={`mailto:${certificationVolunteerEmail}?subject=${encodeURIComponent(
+                "Volunteering for the psychic ability certification"
+              )}`}
+              variant="contained"
+              sx={primaryButtonSx}
+            >
+              Volunteer with us
+            </Button>
+          </Paper>
         </Container>
       </Box>
     </>
