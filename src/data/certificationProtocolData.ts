@@ -40,7 +40,7 @@ export const certificationProtocolSections: ProtocolSection[] = [
     blocks: [
       {
         kind: "paragraph",
-        text: "This protocol is the standard every assessment is run under. It is binding rather than aspirational: a demonstration that does not meet it is not certified, and is not published as though it had been.",
+        text: "This protocol is the standard every assessment is run under, and it binds us: a demonstration that does not meet it is not certified, and is not published as though it had been.",
       },
       {
         kind: "paragraph",
@@ -71,7 +71,7 @@ export const certificationProtocolSections: ProtocolSection[] = [
       },
       {
         kind: "paragraph",
-        text: "**Video is where anonymity costs you something.** Every session is recorded, with no exceptions, because the witnesses and the reviewers need it. A video shows who you are, so we do not publish it if you are anonymous. It stays in the review record. That makes an anonymous assessment harder for an outside reader to check on their own, and it is a real trade. Decide it knowingly rather than by default.",
+        text: "**Video is where anonymity costs you something.** Every session is recorded, with no exceptions, because the witnesses and the reviewers need it. A video shows who you are, so we do not publish it if you are anonymous. It stays in the review record. That makes an anonymous assessment harder for an outside reader to check on their own, and it is a real trade. Decide it knowingly.",
       },
       {
         kind: "paragraph",
@@ -196,7 +196,7 @@ export const certificationProtocolSections: ProtocolSection[] = [
       },
       {
         kind: "paragraph",
-        text: "Agreeing to publication is a condition of participating, settled in writing before testing rather than after a result is known. What stays optional is your name. A participant who chooses anonymity is published without identifying information, and without the session video, which cannot be made anonymous.",
+        text: "Agreeing to publication is a condition of participating, settled in writing before testing, while nobody yet knows the result. What stays optional is your name. A participant who chooses anonymity is published without identifying information, and without the session video, which cannot be made anonymous.",
       },
       {
         kind: "paragraph",
