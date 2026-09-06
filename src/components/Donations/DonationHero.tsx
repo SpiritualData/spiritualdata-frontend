@@ -98,7 +98,7 @@ const DonationHero: React.FC = () => {
               justifyContent="center"
               sx={{ mb: 3 }}
             >
-              <DonationMethod title={"Donate Now — Make Science Serve the Soul"} />
+              <DonationMethod title={"Donate Now: Make Science Serve the Soul"} />
             </Stack>
           </Slide>
         </Fade>

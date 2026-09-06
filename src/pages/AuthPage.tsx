@@ -220,7 +220,7 @@ const AuthPage: React.FC = () => {
             >
               Go to Home
             </Button>
-            {/* SWITCH FORMS BUTTON (only on small–md screens) */}
+            {/* SWITCH FORMS BUTTON (only on small to md screens) */}
             {isMobile && (
               <Button
                 variant="outlined"

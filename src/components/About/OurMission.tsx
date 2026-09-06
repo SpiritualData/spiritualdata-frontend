@@ -55,7 +55,7 @@ const OurMission: React.FC = () => {
           >
             Provide a neutral source of truth for spiritual beliefs and the
             nature of reality. We create systems that allow undeniable evidence
-            to emerge — evidence that persuades both belief and scientific
+            to emerge, evidence that persuades both belief and scientific
             consensus to evolve.
           </Typography>
         </Box>

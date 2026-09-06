@@ -104,7 +104,7 @@ const WhySupportMatters: React.FC = () => {
                   mb: 2,
                 }}
               >
-                Your donation ensures that data serves humanity — not the other
+                Your donation ensures that data serves humanity, not the other
                 way around.
               </Typography>
 

@@ -14,7 +14,7 @@ const Initiatives = [
     title: "Evidence Engine",
     icon: initiativeImage1,
     description:
-      "Ranks claims based on evidence using a transparent scoring system—not opinion or popularity.",
+      "Ranks claims based on evidence using a transparent scoring system, not opinion or popularity.",
   },
   {
     title: "Experience Archive",
@@ -32,7 +32,7 @@ const Initiatives = [
     title: "Transparency Portal",
     icon: initiativeImage4,
     description:
-      "See exactly how each claim was analyzed—every step, source, and weight is open and verifiable.",
+      "See exactly how each claim was analyzed. Every step, source, and weight is open and verifiable.",
   },
   {
     title: "Community Insight Lab",
@@ -44,7 +44,7 @@ const Initiatives = [
     title: "Open Source Spirituality",
     icon: initiativeImage6,
     description:
-      "A global collaboration to develop transparent, unbiased spiritual knowledge—freely accessible to all.",
+      "A global collaboration to develop transparent, unbiased spiritual knowledge that's freely accessible to all.",
   },
 ];
 

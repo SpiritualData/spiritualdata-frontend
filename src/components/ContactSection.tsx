@@ -158,7 +158,7 @@ const ContactSection = ({
                 }}
               >
                 We're rethinking spiritual truth using open data, deep research,
-                and unbiased AI — no dogma, just clear, evidence-backed
+                and unbiased AI: no dogma, just clear, evidence-backed
                 insights.
               </Typography>
 

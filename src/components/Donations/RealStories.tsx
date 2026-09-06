@@ -31,7 +31,7 @@ const RealStories: React.FC = () => {
     },
     {
       quote:
-        "At its heart, Spiritual Data isn't just about spirituality. It's about truth—real, evolving, evidence-backed truth that both humans and AI can understand and build upon.",
+        "At its heart, Spiritual Data isn't just about spirituality. It's about truth: real, evolving, evidence-backed truth that both humans and AI can understand and build upon.",
       author: "Aiad",
       title: "Community Member",
       location: "",
@@ -147,7 +147,7 @@ const RealStories: React.FC = () => {
                           pt:2.5
                         }}
                       >
-                        — {testimonial.author}
+                        {testimonial.author}
                       </Typography>
                       <Typography
                         variant="body2"
@@ -181,8 +181,8 @@ const RealStories: React.FC = () => {
             mx: "auto",
           }}
         >
-          Together, we are proving that spiritual evolution can be measured —
-          and multiplied.
+          Together, we are proving that spiritual evolution can be measured, and
+          multiplied.
         </Typography>
       </Box>
     </Box>
