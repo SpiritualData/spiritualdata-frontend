@@ -70,7 +70,7 @@ export const whyChooseUsData: WhyChooseUsData = {
     {
       title: "Transparency at Every Step",
       description:
-        "The algorithms and data used to reach conclusions are shared openly so you can review and decide for yourself.",
+        "The algorithms and data used to reach conclusions are shared openly, so you can apply your own critical thinking and decide for yourself.",
     },
     {
       title: "Mission-Driven, Not Institution-Funded",

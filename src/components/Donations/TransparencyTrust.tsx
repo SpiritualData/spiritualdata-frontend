@@ -70,7 +70,7 @@ const TransparencyTrust: React.FC = () => {
               lineHeight: 1.6,
             }}
           >
-            We believe transparency is the foundation of faith — in science and
+            We believe transparency is the foundation of faith, in science and
             in giving.
           </Typography>
         </Box>

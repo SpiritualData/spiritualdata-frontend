@@ -43,7 +43,7 @@ const DonationTiers: React.FC = () => {
       amount: 500,
       title: "You Heal Connections",
       description:
-        "You support projects that rebuild human connection — helping people find peace through measurable, ethical science.",
+        "You support projects that rebuild human connection, helping people find peace through measurable, ethical science.",
       impact: "Science that serves the soul.",
     },
     {
@@ -89,7 +89,7 @@ const DonationTiers: React.FC = () => {
             fontWeight: 400,
           }}
         >
-          Every dollar you give fuels real change — restoring meaning,
+          Every dollar you give fuels real change, restoring meaning,
           compassion, and truth through science.
         </Typography>
 
@@ -229,8 +229,7 @@ const DonationTiers: React.FC = () => {
               lineHeight: 1.7,
             }}
           >
-            You're not just donating — you're restoring balance between what we
-            know and what we feel.
+            You are restoring balance between what we know and what we feel.
           </Typography>
           <Typography
             variant="body1"
@@ -245,7 +244,7 @@ const DonationTiers: React.FC = () => {
           </Typography>
 
           <Box sx={{ textAlign: "center" }}>
-                    <DonationMethod title="Donate Now — Make Science Serve the Soul" />
+                    <DonationMethod title="Donate Now: Make Science Serve the Soul" />
           </Box>
 
           <Typography

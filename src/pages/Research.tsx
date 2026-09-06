@@ -150,7 +150,7 @@ const Research = () => {
             mb: 2,
           }}
         >
-          Our research methodology emphasizes transparency, probabilistic reasoning, and multi-disciplinary evidence integration. By combining diverse data sources—from quantitative research to qualitative experiences—we aim to create AI systems that can navigate complex scientific questions while maintaining methodological rigor.
+          Our research methodology emphasizes transparency, probabilistic reasoning, and multi-disciplinary evidence integration. By combining diverse data sources, from quantitative research to qualitative experiences, we aim to create AI systems that can navigate complex scientific questions while maintaining methodological rigor.
         </Typography>
         <Typography
           sx={{

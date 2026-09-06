@@ -36,7 +36,7 @@ const ClientReviewsSection: React.FC = () => {
     {
       name: "Aiad",
       title: "Community Member",
-      text: "At its heart, Spiritual Data isn’t just about spirituality. It’s about truth—real, evolving, evidence-backed truth that both humans and AI can understand and build upon.",
+      text: "At its heart, Spiritual Data isn’t just about spirituality. It’s about truth: real, evolving, evidence-backed truth that both humans and AI can understand and build upon.",
       dark: true,
     },
     {

@@ -231,7 +231,7 @@ const WhyItMatters: React.FC = () => {
             lineHeight: 1.7,
           }}
         >
-          Your support fuels a mission that is bigger than belief — it's the next step in human evolution.
+          Your support fuels a mission bigger than belief. It is the next step in human evolution.
         </Typography>
       </Box>
     </Box>

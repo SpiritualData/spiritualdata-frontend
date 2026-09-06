@@ -237,7 +237,7 @@ const Footer = () => {
             justifyContent="space-between"
             alignItems="stretch"
           >
-            {/* COLUMN 1 — Brand & Purpose (White Text) */}
+            {/* COLUMN 1: Brand & Purpose (White Text) */}
             <Grid
               item
               xs={12}
@@ -319,7 +319,7 @@ const Footer = () => {
               </Typography>
             </Grid>
 
-            {/* COLUMN 2 — Explore */}
+            {/* COLUMN 2: Explore */}
             <Grid
               item
               xs={12}
@@ -364,7 +364,7 @@ const Footer = () => {
               </Box>
             </Grid>
 
-            {/* COLUMN 3 — Get Involved */}
+            {/* COLUMN 3: Get Involved */}
             <Grid
               item
               xs={12}
@@ -409,7 +409,7 @@ const Footer = () => {
               </Box>
             </Grid>
 
-            {/* COLUMN 4 — Follow Us (two-column layout, same theme colors) */}
+            {/* COLUMN 4: Follow Us (two-column layout, same theme colors) */}
             <Grid
               item
               xs={12}

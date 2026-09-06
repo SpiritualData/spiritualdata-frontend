@@ -12,7 +12,7 @@ export const headerData = {
 export const tiltHeadData = {
   bgText: "Psychic Initiative",
   title: "Psychic Ability Certification Initiative",
-  desc: "The Psychic Ability Certification program tests claims of psychic ability under scientific conditions and publishes the full record of every assessment, whatever it shows. It is the world's first structured certification system covering every psychic ability, one protocol holding telekinesis, levitation, extrasensory perception, mediumship, and abilities that have no standard test yet. Every assessment is witnessed, video recorded, pre-registered in public, run against a control, scored against a stated statistical threshold, witnessed in person by at least three independent witnesses, and recorded on video.",
+  desc: "The Psychic Ability Certification program tests claims of psychic ability under scientific conditions and publishes the full record of every assessment, whatever it shows. It is the world's first structured certification system covering every psychic ability, one protocol holding telekinesis, levitation, extrasensory perception, mediumship, and abilities that have no standard test yet. Every assessment is pre-registered in public, run against a control, scored against a stated statistical threshold, watched in person by at least three independent witnesses, and recorded on video.",
 };
 
 export const scrollCardsData = [
