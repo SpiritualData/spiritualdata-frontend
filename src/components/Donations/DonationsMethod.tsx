@@ -20,7 +20,7 @@ interface DonationMethodProps {
   title?:string
 }
 
-const DonationMethod: React.FC<DonationMethodProps> = ({ amount ,title = "Donate Now — Make Science Serve the Soul"}) => {
+const DonationMethod: React.FC<DonationMethodProps> = ({ amount ,title = "Donate Now: Make Science Serve the Soul"}) => {
   const [open, setOpen] = useState(false);
   const theme = useTheme();
 

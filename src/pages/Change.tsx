@@ -11,19 +11,19 @@ import { useInView } from "../hooks/useInView";
 const data = [
   {
     title: "Finding Answers",
-    desc: "Our AI engine is designed to analyze spiritual and scientific data across multiple domains—parapsychology, neuroscience, philosophy, and more. It estimates which claims are most likely true using transparent logic and evidence synthesis. Users can follow the data trail, explore multiple perspectives, and make up their own minds with confidence. We believe that statistics enabled by AI should empower independent thinking, while also serving as a more reliable authority than any human to represent scientific consensus. Humans can provide data and suggest corrections as needed to improve results over time.",
+    desc: "Our AI engine is designed to analyze spiritual and scientific data across multiple domains: parapsychology, neuroscience, philosophy, and more. It estimates which claims are most likely true using transparent logic and evidence synthesis. Users can follow the data trail, explore multiple perspectives, and make up their own minds with confidence. We believe that statistics enabled by AI should empower independent, critical thinking, while also serving as a more reliable authority than any human to represent scientific consensus. Humans can provide data and suggest corrections as needed to improve results over time.",
     link: "/initiatives/estimating-truth",
     linkText: "Learn about Truth Estimation",
   },
   {
     title: "Fixing the Record",
-    desc: "Many important spiritual discoveries—especially in consciousness and psi research—have been distorted, downplayed, or outright removed from public platforms like Wikipedia. We're advocating for fair, evidence-based representation of this knowledge, correcting the record and ensuring people have access to credible information. It's not about promoting belief—it's about restoring balance and transparency to the public conversation.",
+    desc: "Many important spiritual discoveries, especially in consciousness and psi research, have been distorted, downplayed, or outright removed from public platforms like Wikipedia. We're advocating for fair, evidence-based representation of this knowledge, correcting the record and ensuring people have access to credible information. It's about applying the same critical thinking to the public conversation that we apply everywhere else, so balance and transparency win out.",
     link: "/initiatives/wikipedia-advocacy",
     linkText: "Explore The Wikipedia Advocacy",
   },
   {
     title: "Proving What's Possible",
-    desc: "Despite decades of peer-reviewed research showing statistical evidence, systematic testing of advanced psychic ability with credible witnesses has been limited. Our Psychic Ability Certification program creates a transparent and scientific testing system for abilities like telekinesis, ESP, and levitation. The program includes strict scientific standards—independent witnesses, control experiments, video documentation, and independent PhD-level review. This helps create a regulated certification system, guides people to authentic practitioners, and motivates further scientific research.",
+    desc: "Despite decades of peer-reviewed research showing statistical evidence, systematic testing of advanced psychic ability with credible witnesses has been limited. Our Psychic Ability Certification program creates a transparent and scientific testing system for abilities like telekinesis, ESP, and levitation. The program includes strict scientific standards: independent witnesses, control experiments, video documentation, and PhD-level review. This helps create a regulated certification system, guides people to authentic practitioners, and motivates further scientific research.",
     link: "/initiatives/psychic-ability-certification",
     linkText: "Explore The Research In Action",
   },
@@ -93,15 +93,15 @@ const Change: React.FC = () => {
                       fontFamily: theme.typography.fontFamily,
                     }}
                   >
-                    We're building a new standard for truth—one grounded in
+                    We're building a new standard for truth, one grounded in
                     data, not ideology. At Spiritual Data, we aim to liberate
                     spiritual and scientific understanding from institutional
                     bias and dogma. Our approach is rooted in radical
                     transparency and collaboration: a scientific AGI that
                     evaluates spiritual questions based on probabilities, not
-                    beliefs. This is more than just technology—it's a movement
-                    to restore clarity and empower people to make informed,
-                    independent decisions about what's true.
+                    beliefs. This is more than technology. It is a movement to restore clarity and
+                    to give people what they need to make informed, independent
+                    decisions about what is true.
                   </Typography>
                 </Box>
               </Slide>
@@ -155,7 +155,7 @@ const Change: React.FC = () => {
                   <Typography color="text.secondary" mb={4}>
                     Building a scientific AGI is only part of the solution.
                     Changing the world's relationship to spiritual truth
-                    requires a multi-pronged approach—tools, advocacy, research,
+                    requires several things at once: tools, advocacy, research,
                     and education.
                   </Typography>
                 </Box>

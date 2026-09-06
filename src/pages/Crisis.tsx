@@ -17,7 +17,7 @@ const Crisis = () => {
       title: "Scientific Consensus Isn't Neutral",
       icon: initiativeImage1,
       description:
-        "Scientific consensus is often shaped more by institutions and cultural taboos than by evidence. Topics like consciousness and spirituality are frequently excluded from scientific discourse entirely—even when data exists.",
+        "Scientific consensus is often shaped more by institutions and cultural taboos than by evidence. Topics like consciousness and spirituality are frequently excluded from scientific discourse entirely, even when data exists.",
     },
     {
       title: "Spiritual Seekers Are Isolated",
@@ -29,7 +29,7 @@ const Crisis = () => {
       title: "Most People Can't Sort Truth from Noise",
       icon: initiativeImage3,
       description:
-        "We're expected to make life's biggest decisions with half the information. Between misinformation, sensationalism, and agenda-driven voices, it's nearly impossible to know what's real—especially in spiritual matters.",
+        "We're expected to make life's biggest decisions with half the information. Between misinformation, sensationalism, and agenda-driven voices, it's nearly impossible to know what's real, especially in spiritual matters.",
     },
   ];
 
@@ -79,17 +79,16 @@ const Crisis = () => {
               }}
             >
               In today's world, we're overwhelmed by distorted and fragmented
-              spiritual data—shaping beliefs, guiding donations, and even
-              influencing lives built on misinformation. Scientific consensus
+              spiritual data. It shapes beliefs, guides donations, and even
+              influences lives built on misinformation. Scientific consensus
               isn't always rooted in evidence, especially when it comes to
               spirituality and consciousness, which are often excluded from
               mainstream discourse. Meanwhile, spiritual seekers remain
               isolated, lacking the language or support to share their personal
               experiences. And for most, the noise is too loud to discern truth
-              from illusion. Spiritual Data was created to change that—blending
-              evidence-based analysis with open-minded exploration to help
-              people navigate life's most meaningful questions with clarity and
-              confidence.
+              from illusion. Spiritual Data was created to change that. We blend evidence-based
+              analysis with open-minded exploration so people can navigate
+              life's most meaningful questions with clarity and confidence.
             </Typography>
           </Grid>
 

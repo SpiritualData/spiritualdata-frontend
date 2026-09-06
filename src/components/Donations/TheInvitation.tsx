@@ -52,7 +52,7 @@ const TheInvitation: React.FC = () => {
             mb: 3,
           }}
         >
-          Your support is not just a donation — it's a statement of belief in a
+          Your support is more than a donation. It is a statement of belief in a
           better, more conscious future.
         </Typography>
 

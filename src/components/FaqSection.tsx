@@ -24,7 +24,7 @@ const faqs: Array<{
   {
     question: "What is Spiritual Data?",
     answer:
-      "Spiritual Data is a nonprofit project that aims to use all types of available data—including spiritual sources and scientific evidence—to calculate reliable, unbiased answers about reality and our existence.",
+      "Spiritual Data is a nonprofit project that uses all types of available data, including spiritual sources and scientific evidence, to calculate reliable, unbiased answers about reality and our existence.",
   },
   {
     question: "What's the chatbot for?",

@@ -82,7 +82,7 @@ const UseCases: React.FC<UseCasesProps> = ({ data }) => {
           }}
         >
           <b>
-            Quest adapts to your goals – spiritual, personal, or practical.
+            Quest adapts to your goals, whether spiritual, personal, or practical.
             <br /> Guiding you with clarity, structure, and support.
           </b>
           <br />

@@ -128,7 +128,7 @@ const AfterYouDonate: React.FC = () => {
             }}
           >
             Because when you give to Spiritual Data, you're not just funding
-            research — you're investing in the world's moral future.
+            research. You are investing in the world's moral future.
           </Typography>
         </Box>
       </Box>
