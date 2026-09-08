@@ -8,6 +8,7 @@ import {
   applyProtectionsData,
   applyStepsData,
   certificationApplyFormUrl,
+  certificationRecruitmentStatus,
   certificationVolunteerEmail,
   certificationVolunteerRolesData,
 } from "../../../data/psychicAbilityCertificationData";
@@ -83,12 +84,52 @@ const Apply: React.FC = () => {
             ← Psychic Ability Certification
           </Typography>
 
+          {/* Recruitment status, so nobody has to guess whether we are taking
+              applications today. Source of truth is the data file. */}
+          <Paper
+            elevation={0}
+            sx={{
+              display: "inline-flex",
+              flexDirection: "column",
+              gap: 0.75,
+              maxWidth: 820,
+              mb: 3,
+              p: { xs: 2, md: 2.5 },
+              borderRadius: 2,
+              border: `1px solid ${theme.palette.primary.focus}`,
+              borderLeft: `6px solid ${theme.palette.primary.focus}`,
+              backgroundColor: theme.palette.cosmic.elevated,
+            }}
+          >
+            <Box sx={{ display: "flex", gap: 1.25, alignItems: "center" }}>
+              <CheckCircleOutlineIcon
+                sx={{ fontSize: 20, color: theme.palette.primary.focus }}
+              />
+              <Typography
+                sx={{
+                  fontWeight: 700,
+                  letterSpacing: "0.5px",
+                  textTransform: "uppercase",
+                  fontSize: "13px",
+                }}
+              >
+                {certificationRecruitmentStatus.label}
+              </Typography>
+            </Box>
+            <Typography
+              sx={{ color: theme.palette.text.secondary, lineHeight: 1.8 }}
+            >
+              {certificationRecruitmentStatus.note}
+            </Typography>
+          </Paper>
+
           <Typography
             variant="h4"
             sx={{
               fontFamily: "Sansation, sans-serif",
               fontWeight: 700,
-              display: "inline-block",
+              display: "block",
+              width: "fit-content",
               borderBottom: `5px solid ${theme.palette.primary.focus}`,
               pb: "4px",
               mb: 2,
