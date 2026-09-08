@@ -90,6 +90,18 @@ export const psychicAbilityDetailsData = [
   },
 ];
 
+/**
+ * Recruitment status for the certification programme, shown wherever the site
+ * invites someone to apply. Set to open by Joshua on 7 September 2026, when he
+ * approved recruiting before any ethics review rather than after it. Flip
+ * `open` to false and update `label` and `note` if recruiting is ever paused.
+ */
+export const certificationRecruitmentStatus = {
+  open: true,
+  label: "Applications are open",
+  note: "We are recruiting participants now. Send the form in and we will come back to you to arrange the screening conversation. Taking part is free, and every completed assessment is published whatever it shows.",
+};
+
 export const certificationApplyFormUrl =
   "https://docs.google.com/forms/d/e/1FAIpQLSdi7zXNri8uXouwlOMV64WcYNXeQOlVX7nS7Su6YM9V4AyJCg/viewform?usp=sf_link";
 
