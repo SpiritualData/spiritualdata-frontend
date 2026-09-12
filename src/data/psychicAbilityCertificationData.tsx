@@ -261,7 +261,7 @@ export const applyProtectionsData = [
 export const witnessHeaderData = {
   image: bannerImage,
   heading: "Apply to be a Witness",
-  desc: "One session, watched in person, and a short signed statement of what you saw. This is the seat that makes a result mean something.",
+  desc: "One session, watched in person, and a short signed statement of what you saw.",
 };
 
 export const certificationWitnessFormUrl =
