@@ -151,6 +151,14 @@ export const certificationSubPagesData = [
     link: "/initiatives/psychic-ability-certification/apply",
   },
   {
+    id: 5,
+    eyebrow: "Take part",
+    title: "Apply to be a Witness",
+    desc: "Every session needs three or more people in the room from outside this organization, watching under agreed conditions and signing a statement of what they saw. One session, in person, and your name on the record.",
+    btn: "Witness a session",
+    link: "/initiatives/psychic-ability-certification/witness",
+  },
+  {
     id: 4,
     eyebrow: "The prize",
     title: "Spiritual Data Prize for Proof of the Paranormal",
@@ -242,4 +250,87 @@ export const applyProtectionsData = [
   "A null result carries no stigma here. A session that demonstrates nothing is a normal outcome of honest testing.",
   "You may bring a support person to the consent conversation, and to a testing session where it does not compromise the controlled conditions.",
   "Participants are 18 or older or have agreement from their parent or guardian.",
+];
+
+/**
+ * The witness page. Built 12 September 2026 so that every witness approach can
+ * be a single link instead of a protocol explanation, which is what Joshua
+ * asked for on 11 September. The form is the live register sign up recorded in
+ * psychic_certification/recruitment/witness_signup_form.md.
+ */
+export const witnessHeaderData = {
+  image: bannerImage,
+  heading: "Apply to be a Witness",
+  desc: "One session, watched in person, and a short signed statement of what you saw. This is the seat that makes a result mean something.",
+};
+
+export const certificationWitnessFormUrl =
+  "https://docs.google.com/forms/d/e/1FAIpQLScks49MPTdZpxheL9MS2Xbg6pf5lNFH7jUroJrZCHq2yWPEDA/viewform";
+
+/** What a witness actually does, in the order it happens. */
+export const witnessStepsData = [
+  {
+    id: 1,
+    title: "Put your name on the register",
+    duration: "Two minutes",
+    desc: "The form asks where you are, what you would be comfortable observing, and any connection you have to this field. Filling it in commits you to nothing.",
+  },
+  {
+    id: 2,
+    title: "We contact you when a session is near you",
+    duration: "Only then",
+    desc: "Witnesses travel to the effect, so a session has to be within reach of you before we write. You can say no to any individual session and stay on the register.",
+  },
+  {
+    id: 3,
+    title: "Read the brief and sign a disclosure",
+    duration: "About 15 minutes",
+    desc: "You get the agreed procedure and the success criteria before the session, in writing. The disclosure records any connection you have to the participant or to us, because that is what the reader of the record needs to judge.",
+  },
+  {
+    id: 4,
+    title: "Watch the session in person",
+    duration: "60 to 90 minutes",
+    desc: "You are in the room with the participant, or in the room with the target information where the ability is about receiving information. The session is recorded on continuous video alongside you.",
+  },
+  {
+    id: 5,
+    title: "Sign a statement of what you observed",
+    duration: "About 15 minutes",
+    desc: "In your own words: what happened, and whether the agreed conditions held. Your statement is published with the session record, including a statement that says the conditions failed.",
+  },
+];
+
+/** The terms, stated plainly, because they decide whether someone says yes. */
+export const witnessTermsData = [
+  "The commitment is one session. Saying yes once commits you to nothing after it.",
+  "The role is unpaid and there is no reimbursement. This is a free service, and nobody with a financial interest in an outcome holds a witness seat.",
+  "Your name and affiliation are published with the session record. You may withhold your name, and the record then says that a name was withheld.",
+  "Nobody employed or contracted by Spiritual Data counts toward the three witnesses a session requires, and neither does anyone with a prior relationship to the participant.",
+  "You see the procedure and the criteria for success before the session, and they are published before it runs.",
+  "Every completed assessment is published whatever it showed, including one that demonstrates nothing.",
+];
+
+/** Who we are asking. Specific, because a general ask gets a general answer. */
+export const witnessWhoData = [
+  {
+    title: "People who watch carefully",
+    desc: "Most witness seats need attention and a signature, not a qualification. If you can watch a procedure closely and describe what you saw, you can hold one.",
+  },
+  {
+    title: "Members of skeptical and rationalist groups",
+    desc: "Any skeptical or rationalist organisation can name someone for a seat at a session near them. An objection is more useful in the room than in a comment afterwards.",
+  },
+  {
+    title: "Researchers and academics",
+    desc: "Psychology, physics and statistics departments are where we look first for the seat that assesses whether the controls held.",
+  },
+  {
+    title: "Magicians and mentalists",
+    desc: "Where a claimed effect is physical, somebody who knows how such an effect can be produced by other means is the most useful person in the room.",
+  },
+  {
+    title: "Camera operators and videographers",
+    desc: "Every session carries a continuous video record. Holding the camera steady for 90 minutes is a real job, and it seats you where you can see everything.",
+  },
 ];
