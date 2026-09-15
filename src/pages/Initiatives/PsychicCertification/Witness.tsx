@@ -4,16 +4,15 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { Link as RouterLink } from "react-router-dom";
 import HeaderSection from "../../../components/Initiatives/NestedInitiativesHeader";
 import {
-  applyHeaderData,
-  applyProtectionsData,
-  applyStepsData,
-  certificationApplyFormUrl,
-  certificationRecruitmentStatus,
   certificationVolunteerEmail,
-  certificationVolunteerRolesData,
+  certificationWitnessFormUrl,
+  witnessHeaderData,
+  witnessStepsData,
+  witnessTermsData,
+  witnessWhoData,
 } from "../../../data/psychicAbilityCertificationData";
 
-const Apply: React.FC = () => {
+const Witness: React.FC = () => {
   const theme = useTheme();
 
   const primaryButtonSx = {
@@ -34,28 +33,9 @@ const Apply: React.FC = () => {
     },
   };
 
-  const secondaryButtonSx = {
-    backgroundColor: "transparent",
-    color: theme.palette.primary.hero,
-    border: `1px solid ${theme.palette.primary.hero}`,
-    borderRadius: 8,
-    height: 46,
-    px: 4,
-    fontWeight: 700,
-    fontSize: "14px",
-    textTransform: "uppercase",
-    fontFamily: "Poppins, sans-serif",
-    letterSpacing: "0.5px",
-    transition: "all 0.3s ease",
-    "&:hover": {
-      backgroundColor: theme.palette.primary.hero,
-      color: theme.palette.primary.focus,
-    },
-  };
-
   return (
     <>
-      <HeaderSection data={applyHeaderData} />
+      <HeaderSection data={witnessHeaderData} />
 
       <Box
         sx={{
@@ -84,45 +64,6 @@ const Apply: React.FC = () => {
             ← Psychic Ability Certification
           </Typography>
 
-          {/* Recruitment status, so nobody has to guess whether we are taking
-              applications today. Source of truth is the data file. */}
-          <Paper
-            elevation={0}
-            sx={{
-              display: "inline-flex",
-              flexDirection: "column",
-              gap: 0.75,
-              maxWidth: 820,
-              mb: 3,
-              p: { xs: 2, md: 2.5 },
-              borderRadius: 2,
-              border: `1px solid ${theme.palette.primary.focus}`,
-              borderLeft: `6px solid ${theme.palette.primary.focus}`,
-              backgroundColor: theme.palette.cosmic.elevated,
-            }}
-          >
-            <Box sx={{ display: "flex", gap: 1.25, alignItems: "center" }}>
-              <CheckCircleOutlineIcon
-                sx={{ fontSize: 20, color: theme.palette.primary.focus }}
-              />
-              <Typography
-                sx={{
-                  fontWeight: 700,
-                  letterSpacing: "0.5px",
-                  textTransform: "uppercase",
-                  fontSize: "13px",
-                }}
-              >
-                {certificationRecruitmentStatus.label}
-              </Typography>
-            </Box>
-            <Typography
-              sx={{ color: theme.palette.text.secondary, lineHeight: 1.8 }}
-            >
-              {certificationRecruitmentStatus.note}
-            </Typography>
-          </Paper>
-
           <Typography
             variant="h4"
             sx={{
@@ -135,7 +76,7 @@ const Apply: React.FC = () => {
               mb: 2,
             }}
           >
-            What applying involves
+            Why a session needs you
           </Typography>
 
           <Typography
@@ -146,10 +87,15 @@ const Apply: React.FC = () => {
               mb: { xs: 5, md: 7 },
             }}
           >
-            Applying starts a conversation, not a test. Nothing is measured
-            until you have had a screening conversation, read the written
-            consent documentation, asked whatever you want to ask, and signed.
-            The whole sequence is set out in the{" "}
+            Spiritual Data tests claimed psychic abilities against a protocol we
+            publish in full before any session runs. A test is worth something
+            when people outside this organization watched it happen and put
+            their names to what they saw. So every session needs three or more
+            witnesses in the room, present in person, alongside a continuous
+            video record. Critical thinking is the point of the seat: your job
+            is to check whether the agreed conditions actually held, and to say
+            so either way. You can read the whole standard before you decide
+            anything, in the{" "}
             <Typography
               component={RouterLink}
               to="/initiatives/psychic-ability-certification/ethics"
@@ -161,12 +107,12 @@ const Apply: React.FC = () => {
             >
               published ethics and testing protocol
             </Typography>
-            , and this page is a plain summary of it.
+            .
           </Typography>
 
-          {/* The six-step sequence, section 3.3 of the protocol */}
+          {/* The five steps, drawn from the witness search procedure */}
           <Box sx={{ display: "grid", gap: 2.5, mb: { xs: 6, md: 9 } }}>
-            {applyStepsData.map((step) => (
+            {witnessStepsData.map((step) => (
               <Paper
                 key={step.id}
                 elevation={0}
@@ -241,7 +187,55 @@ const Apply: React.FC = () => {
             ))}
           </Box>
 
-          {/* Participant protections, section 2 of the protocol */}
+          {/* Who we are asking */}
+          <Typography
+            variant="h4"
+            sx={{
+              fontFamily: "Sansation, sans-serif",
+              fontWeight: 700,
+              display: "block",
+              width: "fit-content",
+              borderBottom: `5px solid ${theme.palette.primary.focus}`,
+              pb: "4px",
+              mb: 3,
+            }}
+          >
+            Who we are asking
+          </Typography>
+
+          <Box sx={{ display: "grid", gap: 1.5, mb: { xs: 5, md: 7 } }}>
+            {witnessWhoData.map((who) => (
+              <Box
+                key={who.title}
+                sx={{ display: "flex", gap: 1.5, alignItems: "flex-start" }}
+              >
+                <CheckCircleOutlineIcon
+                  sx={{
+                    fontSize: 20,
+                    mt: "3px",
+                    color: theme.palette.primary.focus,
+                  }}
+                />
+                <Typography
+                  sx={{
+                    color: theme.palette.text.secondary,
+                    lineHeight: 1.8,
+                    maxWidth: 820,
+                  }}
+                >
+                  <Box
+                    component="span"
+                    sx={{ fontWeight: 700, color: theme.palette.text.primary }}
+                  >
+                    {who.title}:
+                  </Box>{" "}
+                  {who.desc}
+                </Typography>
+              </Box>
+            ))}
+          </Box>
+
+          {/* The terms */}
           <Paper
             elevation={0}
             sx={{
@@ -261,7 +255,7 @@ const Apply: React.FC = () => {
                 mb: 1,
               }}
             >
-              Free, voluntary, and yours to stop
+              The terms, in full
             </Typography>
             <Typography
               sx={{
@@ -271,14 +265,14 @@ const Apply: React.FC = () => {
                 mb: 3,
               }}
             >
-              These protections apply from the first conversation onward, and
-              they do not depend on anyone's permission but yours.
+              Everything that applies to you as a witness is on this page, so
+              you can decide from here.
             </Typography>
 
             <Box sx={{ display: "grid", gap: 1.5 }}>
-              {applyProtectionsData.map((protection) => (
+              {witnessTermsData.map((term) => (
                 <Box
-                  key={protection}
+                  key={term}
                   sx={{ display: "flex", gap: 1.5, alignItems: "flex-start" }}
                 >
                   <CheckCircleOutlineIcon
@@ -289,18 +283,16 @@ const Apply: React.FC = () => {
                     }}
                   />
                   <Typography
-                    sx={{
-                      color: theme.palette.text.secondary,
-                      lineHeight: 1.8,
-                    }}
+                    sx={{ color: theme.palette.text.secondary, lineHeight: 1.8 }}
                   >
-                    {protection}
+                    {term}
                   </Typography>
                 </Box>
               ))}
             </Box>
           </Paper>
 
+          {/* The one call to action */}
           <Box
             sx={{
               p: { xs: 3, md: 5 },
@@ -317,123 +309,57 @@ const Apply: React.FC = () => {
                 mb: 1,
               }}
             >
-              Start with the application form
+              Put your name on the register
             </Typography>
             <Typography
               sx={{ opacity: 0.85, lineHeight: 1.9, maxWidth: 760, mb: 3 }}
             >
-              Tell us what you can do and what you would be willing to
-              demonstrate. If a fair test of your ability is something we can
-              currently provide, we will arrange the screening conversation from
-              there. If it is not, we will say so.
+              The form takes about two minutes. We contact you only when a
+              session is scheduled near you, and you can say no to any session
+              and stay on the register. If you would like to talk it through
+              first, write to {certificationVolunteerEmail} and say so.
             </Typography>
             <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
               <Button
-                href={certificationApplyFormUrl}
+                href={certificationWitnessFormUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 variant="contained"
                 sx={primaryButtonSx}
               >
-                Apply to be tested
+                Volunteer to witness
               </Button>
               <Button
-                component={RouterLink}
-                to="/initiatives/psychic-ability-certification/certified"
+                href={`mailto:${certificationVolunteerEmail}?subject=${encodeURIComponent(
+                  "A question about witnessing an assessment"
+                )}`}
                 variant="outlined"
                 sx={{
-                  ...secondaryButtonSx,
+                  backgroundColor: "transparent",
                   color: theme.palette.primary.focus,
                   border: `1px solid ${theme.palette.primary.focus}`,
+                  borderRadius: 8,
+                  height: 46,
+                  px: 4,
+                  fontWeight: 700,
+                  fontSize: "14px",
+                  textTransform: "uppercase",
+                  fontFamily: "Poppins, sans-serif",
+                  letterSpacing: "0.5px",
                   "&:hover": {
                     backgroundColor: theme.palette.primary.focus,
                     color: theme.palette.primary.hero,
                   },
                 }}
               >
-                See the published record
+                Ask a question first
               </Button>
             </Box>
           </Box>
-
-          <Paper
-            elevation={0}
-            sx={{
-              mt: 3,
-              p: { xs: 3, md: 5 },
-              borderRadius: 2,
-              border: `1px solid ${theme.palette.cosmic.secondary}`,
-              backgroundColor: theme.palette.cosmic.elevated,
-            }}
-          >
-            <Typography
-              variant="h5"
-              sx={{
-                fontFamily: "Sansation, sans-serif",
-                fontWeight: 700,
-                mb: 1,
-              }}
-            >
-              Not claiming an ability? We still need you
-            </Typography>
-            <Typography
-              sx={{
-                color: theme.palette.text.secondary,
-                lineHeight: 1.9,
-                maxWidth: 820,
-                mb: 3,
-              }}
-            >
-              No session can run without people from outside this organization.
-              The protocol requires an independent witness with no ties to us,
-              and sign-off by researchers holding PhDs, and that is exactly why
-              a result from it is worth anything. The commitment is per session,
-              not open-ended.
-            </Typography>
-            <Box sx={{ mb: 3 }}>
-              {certificationVolunteerRolesData.map((role) => (
-                <Box
-                  key={role.title}
-                  sx={{ display: "flex", gap: 1.5, alignItems: "flex-start", mb: 1.5 }}
-                >
-                  <CheckCircleOutlineIcon
-                    sx={{ mt: "2px", fontSize: 20, color: theme.palette.primary.focus }}
-                  />
-                  <Typography
-                    sx={{ color: theme.palette.text.secondary, lineHeight: 1.8 }}
-                  >
-                    <Box component="span" sx={{ fontWeight: 700, color: theme.palette.text.primary }}>
-                      {role.title}:
-                    </Box>{" "}
-                    {role.desc}
-                  </Typography>
-                </Box>
-              ))}
-            </Box>
-            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
-              <Button
-                component={RouterLink}
-                to="/initiatives/psychic-ability-certification/witness"
-                variant="contained"
-                sx={primaryButtonSx}
-              >
-                Apply to be a witness
-              </Button>
-              <Button
-                href={`mailto:${certificationVolunteerEmail}?subject=${encodeURIComponent(
-                  "Volunteering for the psychic ability certification"
-                )}`}
-                variant="outlined"
-                sx={secondaryButtonSx}
-              >
-                Write to us instead
-              </Button>
-            </Box>
-          </Paper>
         </Container>
       </Box>
     </>
   );
 };
 
-export default Apply;
+export default Witness;
