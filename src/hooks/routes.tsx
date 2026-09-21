@@ -37,6 +37,7 @@ import Witness from "../pages/Initiatives/PsychicCertification/Witness";
 import Crisis from "../pages/Crisis";
 import Change from "../pages/Change";
 import OriginStory from "../pages/OriginStory";
+import Mentorship from "../pages/Mentorship";
 
 const useClerkRoutes = (): ReactElement => {
   const clerkPubKey: string = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -53,6 +54,7 @@ const useClerkRoutes = (): ReactElement => {
         <Route path="crisis" element={<Crisis />} />
         <Route path="change" element={<Change />} />
         <Route path="careers" element={<Careers />} />
+        <Route path="/mentorship" element={<Mentorship />} />
         <Route path="/challenges/revenue-challenge" element={<RevenueChallenge />} />
         <Route path="/challenges/builders-challenge" element={<BuildersChallenge />} />
         <Route path="/initiatives" element={<Initiatives />} />
