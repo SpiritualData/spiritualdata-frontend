@@ -82,8 +82,7 @@ const Mentorship: React.FC = () => {
         }}
       >
         <Container>
-          {/* The launch-date notice. The date itself is not set, so this shows a
-              marked placeholder until mentorshipLaunchDate.announced is true. */}
+          {/* The launch-date notice. The date is set: Sunday 25 October 2026. */}
           <Paper
             elevation={0}
             sx={{

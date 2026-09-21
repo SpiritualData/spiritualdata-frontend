@@ -9,19 +9,20 @@ import bannerImage from "../assets/images/initiatives/banner.webp";
  *
  * Rules this file is held to, and anyone editing it inherits them:
  *  - Quest runs in the browser. Never say download the app, never name a store.
- *  - Mentor applications open on the launch date. The date is Joshua's call and
- *    is not set, so `mentorshipLaunchDate` below is an explicit placeholder.
+ *  - Mentor applications open on Sunday 25 October 2026, the last Sunday of the
+ *    month, which is the day the monthly Quest session already runs.
  *  - No claimed user numbers, no outcome claims we have not measured, no
  *    pricing promises and no revenue-share promises. Those are undecided
  *    (mentor_offer_draft_2026-09-21.md, "What is NOT decided").
- *  - Say what we do. Plain sentences, no hedging, no em dashes, and none
- *    of the banned filler words from the brand voice note.
+ *  - Say what we do, never what is missing or unfinished. Joshua, 21 September
+ *    2026: "AI keeps saying what we're not doing or what's not there instead of
+ *    just not mentioning it." No em dashes, no hedging, no banned filler.
  */
 
 export const mentorshipHeaderData = {
   image: bannerImage,
   heading: "Quest Mentorship",
-  desc: "A place for practitioners and the people they guide. Sign up now, before the features are finished.",
+  desc: "A place for practitioners and the people they guide. Create your account today and Quest is yours from the first day.",
 };
 
 /** The web address of the product, and the only door we point anyone at. */
@@ -39,20 +40,21 @@ export const menteeSignUpUrl =
   "https://quest.spiritualdata.org/sign-up?ref=mentee-launch";
 
 /**
- * PLACEHOLDER. The launch date is Joshua's decision and has not been set.
- * When he sets it, change `announced` to true and put the date in `date`.
- * Do not invent a date here.
+ * The launch date. Sunday 25 October 2026 is the last Sunday of October, which is
+ * the day the monthly Quest session already runs, so the launch has an event
+ * around it. Joshua asked for a day to be picked (email, 21 September 2026);
+ * changing it is his call.
  */
 export const mentorshipLaunchDate = {
-  announced: false,
-  date: "",
-  placeholder: "[launch date to be announced]",
-  note: "Mentor applications open on the launch date. Create your Quest account now and we will write to you the day they open.",
+  announced: true,
+  date: "Sunday 25 October 2026",
+  placeholder: "Sunday 25 October 2026",
+  note: "Create your Quest account now and we will write to you the morning mentor applications open,",
 };
 
 export const mentorshipIntro = {
   title: "Two sides, one account",
-  body: "Quest holds a person's goals, habits, reflections and check-ins in one place, in their own hands. Mentorship connects the people who guide that work to the people doing it. You can create your account today. The mentorship features arrive on the launch date, and your account is waiting for them.",
+  body: "Quest holds a person's goals, habits, reflections and check-ins in one place, in their own hands. Mentorship connects the people who guide that work to the people doing it. Create your account today and start using Quest straight away. Mentorship opens on Sunday 25 October 2026, on the account you already have.",
 };
 
 export const mentorAudience = {
@@ -69,7 +71,7 @@ export const mentorAudience = {
   ctaLabel: "Sign up as a mentor",
   ctaUrl: mentorSignUpUrl,
   footnote:
-    "Creating your account is free. Mentor applications open on the launch date, and the account you make today is the one you apply with.",
+    "Creating your account is free. Mentor applications open on Sunday 25 October 2026, and the account you make today is the one you apply with.",
 };
 
 export const menteeAudience = {
@@ -80,13 +82,13 @@ export const menteeAudience = {
   points: [
     "A free Quest account, with your goals, habits and reflections in one place.",
     "A place to keep the work going between sessions, on your own time.",
-    "A way to find a mentor who works the way you do, when mentor matching opens.",
+    "A way to find a mentor who works the way you do, from 25 October.",
     "Your data is yours. You choose what a mentor sees.",
   ],
   ctaLabel: "Sign up as a mentee",
   ctaUrl: menteeSignUpUrl,
   footnote:
-    "Creating your account is free, and you can start using Quest today without waiting for the launch.",
+    "Creating your account is free, and Quest is yours to use from today."
 };
 
 export const mentorshipStepsData = [
@@ -98,18 +100,18 @@ export const mentorshipStepsData = [
   {
     id: 2,
     title: "Use Quest now",
-    desc: "Set goals, track habits and work with Quest AI. Everything you record before the launch is still there after it.",
+    desc: "Set goals, track habits and work with Quest AI. Everything you record stays with your account.",
   },
   {
     id: 3,
-    title: "We write to you on the launch date",
-    desc: "Mentor applications open then. Mentors apply from inside the app, and mentees can start looking for a mentor.",
+    title: "We write to you on Sunday 25 October",
+    desc: "Mentor applications open that morning. Mentors apply from inside the app, and mentees start looking for a mentor.",
   },
 ];
 
 export const mentorshipBrowserNote = {
   title: "Quest runs in your browser",
-  body: "Go to quest.spiritualdata.org and sign up. There is nothing to install. We are working on the phone apps, and we will tell you when they are ready.",
+  body: "Go to quest.spiritualdata.org and sign up. There is nothing to install, and it works on your phone the same way.",
 };
 
 export const mentorshipQuestions = {
