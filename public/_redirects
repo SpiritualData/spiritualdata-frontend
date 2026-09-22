@@ -1,1 +1,9 @@
+# Branded link domain for outbound email: links.spiritualdata.org proxies to the cockpit.
+# Inert until links.spiritualdata.org is added as a domain alias on the production
+# Netlify site (see ai-feedback-system/docs/LINKS_SUBDOMAIN_SETUP.md, Option B).
+# Must stay ABOVE the SPA catch-all, which would otherwise swallow it.
+# 200 (rewrite), not 301: a redirect would put the duckdns hostname back in the
+# recipient's address bar, which is the whole point of the change.
+https://links.spiritualdata.org/*  https://ai.batmanhq.duckdns.org/:splat  200
+
 /* /index.html 200
