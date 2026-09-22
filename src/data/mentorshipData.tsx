@@ -13,7 +13,12 @@ import bannerImage from "../assets/images/initiatives/banner.webp";
  *    month, which is the day the monthly Quest session already runs.
  *  - No claimed user numbers, no outcome claims we have not measured, no
  *    pricing promises and no revenue-share promises. Those are undecided
- *    (mentor_offer_draft_2026-09-21.md, "What is NOT decided").
+ *    (mentor_offer_draft_2026-09-21.md, "What is NOT decided"). The 1,000 and
+ *    10,000 below are the stated goal for 25 October, asked for by name by
+ *    Joshua on 21 September 2026: "Also important to mention explicitly the
+ *    1000 and 10,000. That was a key part of it to build excitement." Say them
+ *    as what we are building to, never as a count we hold today, and never
+ *    show a live total while it is small.
  *  - Say what we do, never what is missing or unfinished. Joshua, 21 September
  *    2026: "AI keeps saying what we're not doing or what's not there instead of
  *    just not mentioning it." No em dashes, no hedging, no banned filler.
@@ -54,7 +59,7 @@ export const mentorshipLaunchDate = {
 
 export const mentorshipIntro = {
   title: "Two sides, one account",
-  body: "Quest holds a person's goals, habits, reflections and check-ins in one place, in their own hands. Mentorship connects the people who guide that work to the people doing it. Create your account today and start using Quest straight away. Mentorship opens on Sunday 25 October 2026, on the account you already have.",
+  body: "Quest holds a person's goals, habits, reflections and check-ins in one place, in their own hands. Mentorship connects the people who guide that work to the people doing it. By Sunday 25 October 2026 we are bringing together 1,000 mentors and 10,000 people they guide, and the account you create today is the one you launch with. Create it now and start using Quest straight away.",
 };
 
 export const mentorAudience = {
