@@ -3,9 +3,11 @@ import bannerImage from "../assets/images/initiatives/banner.webp";
 /**
  * Copy and data for the /mentorship page.
  *
- * Sources: quest_subscribers_growth/mentorship_launch/kickoff_2026-09-21.md
- * (section 2, the niche and brand voice) and
- * registration_entry_point_2026-09-21.md (section 5, the build task).
+ * Sources: quest_subscribers_growth/ai_driven/source_of_truth/niche_and_brand_voice.md
+ * (the niche and brand voice of record), quest_subscribers_growth/NICHE_FUNNEL_FEATURES.md
+ * (the pain point and what each side pays for; that doc links back to this
+ * page, so change them together) and
+ * mentorship_launch/registration_entry_point_2026-09-21.md (section 5).
  *
  * Rules this file is held to, and anyone editing it inherits them:
  *  - Quest runs in the browser. Never say download the app, never name a store.
@@ -27,7 +29,7 @@ import bannerImage from "../assets/images/initiatives/banner.webp";
 export const mentorshipHeaderData = {
   image: bannerImage,
   heading: "Quest Mentorship",
-  desc: "A place for practitioners and the people they guide. Create your account today and Quest is yours from the first day.",
+  desc: "Guidance that keeps working between sessions. Quest connects people growing with purpose to mentors who value both inner experience and real evidence.",
 };
 
 /** The web address of the product, and the only door we point anyone at. */
@@ -57,20 +59,29 @@ export const mentorshipLaunchDate = {
   note: "Create your Quest account now and we will write to you the morning mentor applications open,",
 };
 
+/**
+ * The problem the visitor already has, said first. Mentors arrive because
+ * their work stops when the session ends and every session starts by catching
+ * up. Mentees arrive because insight fades within the week. This is the
+ * number one pain point in NICHE_FUNNEL_FEATURES.md, section 1; keep the two
+ * in step.
+ */
 export const mentorshipIntro = {
-  title: "Two sides, one account",
-  body: "Quest holds a person's goals, habits, reflections and check-ins in one place, in their own hands. Mentorship connects the people who guide that work to the people doing it. By Sunday 25 October 2026 we are bringing together 1,000 mentors and 10,000 people they guide, and the account you create today is the one you launch with. Create it now and start using Quest straight away.",
+  title: "The real work happens between sessions",
+  body: "A good session leaves you with a clear insight. By Wednesday the thread is lost: the notebook is closed, the mentor is elsewhere, and the next session starts by rebuilding what the last one established. Quest keeps that thread. It holds each person's goals, habits, reflections and check-ins in one place over time, so a mentor and the person they guide pick up exactly where they left off.",
+  goal: "By Sunday 25 October 2026 we are bringing together 1,000 mentors and 10,000 people they guide. The account you create today is the one you launch with.",
 };
 
 export const mentorAudience = {
   eyebrow: "For mentors",
-  title: "You already have clients. Bring the work with you.",
+  title: "Spend your hours guiding, not catching up.",
   intro:
-    "Coaches, spiritual directors, energy workers, psychics, therapists working outside the clinical frame, and teachers with their own practice.",
+    "For coaches, spiritual directors, energy workers, psychics, therapists working outside the clinical frame, and teachers with their own practice.",
   points: [
-    "Your client's work continues between sessions. Goals, habits and reflections stay in one place, and your client chooses what to share with you.",
-    "Less time chasing, reminding and re-reading notes, so the hours you have go to the people in front of you.",
-    "A profile and a booking page, so someone looking for the way you work can find you.",
+    "Walk into every check-in with the full picture: the goals, habits and reflections your client has chosen to share, and what changed since you last met.",
+    "Set what a check-in includes and what it costs. Clients pay from their mentorship balance when the check-in is done.",
+    "Your clients keep working between sessions, with Quest AI helping them on their own material, so your guidance carries through the week.",
+    "A profile and a booking page, so people looking for the way you work can find you.",
     "The option to pay for a client's Quest AI subscription and fold it into what you already offer.",
   ],
   ctaLabel: "Sign up as a mentor",
@@ -80,20 +91,80 @@ export const mentorAudience = {
 };
 
 export const menteeAudience = {
-  eyebrow: "For mentees",
-  title: "You want a human alongside the AI.",
+  eyebrow: "For people seeking guidance",
+  title: "Keep your insight alive, with a human beside you.",
   intro:
-    "For people open to spirituality and alternative methods who also want the best of science, critical thinking and AI.",
+    "For people open to spirituality and personal transformation who also value science, critical thinking and real results.",
   points: [
-    "A free Quest account, with your goals, habits and reflections in one place.",
-    "A place to keep the work going between sessions, on your own time.",
-    "A way to find a mentor who works the way you do, from 25 October.",
-    "Your data is yours. You choose what a mentor sees.",
+    "Your goals, habits and reflections held in one place, so an insight from Sunday is still there on Wednesday.",
+    "One mentorship balance you can spend with any mentor on Quest. Try a coach this month and a spiritual director the next.",
+    "Mentors who see your progress before you meet, so sessions start with what is next.",
+    "Quest AI takes the journaling and re-explaining off your plate, so you spend less time on a screen and more time living it.",
+    "Your data is yours. You choose what each mentor sees.",
   ],
-  ctaLabel: "Sign up as a mentee",
+  ctaLabel: "Sign up to find a mentor",
   ctaUrl: menteeSignUpUrl,
   footnote:
     "Creating your account is free, and Quest is yours to use from today."
+};
+
+/**
+ * Who a visitor will be connecting with. Drawn from the niche of record,
+ * quest_subscribers_growth/ai_driven/source_of_truth/niche_and_brand_voice.md.
+ */
+export const mentorshipPeople = {
+  title: "The people you will meet here",
+  intro:
+    "Quest is built by Spiritual Data, a nonprofit that studies spiritual experience with the tools of science. The people it brings together share that spirit.",
+  items: [
+    {
+      title: "Open to the spiritual, grounded in evidence",
+      desc: "People who take inner experience seriously and also want to know what actually works. Open inquiry, on both sides of the conversation.",
+    },
+    {
+      title: "Mentors with a practice of their own",
+      desc: "Coaches, spiritual directors, energy workers, psychics and teachers who respect their clients' experience and welcome seeing real progress over time.",
+    },
+    {
+      title: "Growing toward something that matters",
+      desc: "People working on big life goals, who track what they do and reflect on it, and who want a guide to help them see further.",
+    },
+    {
+      title: "Using AI to live more fully",
+      desc: "People who use AI as a means to a conscious life, handing it the busywork so they have more time for practice, people and presence.",
+    },
+  ],
+};
+
+/**
+ * How the mentorship model works. The balance and the priced check-in are
+ * live in quest-backend: MenteeBalance (one balance per mentee, across every
+ * mentor), a mentor-set check_in_price, and a completed check-in that debits
+ * it (app/models/subscription.py, app/api/endpoints/mentors/check_ins.py).
+ * No prices, cuts or payout terms here; those are Joshua's calls.
+ */
+export const mentorshipModel = {
+  title: "How mentorship works on Quest",
+  intro:
+    "Mentorship on Quest is built around the time between sessions, so every hour a mentor and client spend together goes further.",
+  items: [
+    {
+      title: "One balance, any mentor",
+      desc: "People add to a single mentorship balance and spend it on check-ins with whichever mentors suit them. A coach, a spiritual director and a teacher can all be paid from the same balance.",
+    },
+    {
+      title: "Check-ins with everything in front of you",
+      desc: "Each mentor defines what a check-in includes. When one comes up, the client's shared goals, habits, reflections and recent progress are already there, so a short check-in does the work of a long session.",
+    },
+    {
+      title: "Personal data that does the remembering",
+      desc: "Quest tracks the daily practice: habits kept, goals moved, reflections written. That record is what makes guidance specific, and it belongs to the person who wrote it.",
+    },
+    {
+      title: "AI on each side, if you want it",
+      desc: "Mentor and client can each bring their own Quest AI into their conversation, to summarise, prepare and follow up. Human guidance is the heart of it, and each person decides whether AI joins in.",
+    },
+  ],
 };
 
 export const mentorshipStepsData = [
@@ -110,7 +181,7 @@ export const mentorshipStepsData = [
   {
     id: 3,
     title: "We write to you on Sunday 25 October",
-    desc: "Mentor applications open that morning. Mentors apply from inside the app, and mentees start looking for a mentor.",
+    desc: "Mentor applications open that morning. Mentors apply from inside Quest and set up their check-ins, and everyone else starts choosing a mentor.",
   },
 ];
 
