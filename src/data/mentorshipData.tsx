@@ -29,7 +29,7 @@ import bannerImage from "../assets/images/initiatives/banner.webp";
 export const mentorshipHeaderData = {
   image: bannerImage,
   heading: "Quest Mentorship",
-  desc: "Guidance that keeps working between sessions. Quest connects people growing with purpose to mentors who value both inner experience and real evidence.",
+  desc: "Guidance that keeps working between sessions, with mentors who value inner experience and real evidence.",
 };
 
 /** The web address of the product, and the only door we point anyone at. */
