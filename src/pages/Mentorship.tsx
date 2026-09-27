@@ -16,6 +16,8 @@ import {
   mentorshipHeaderData,
   mentorshipIntro,
   mentorshipLaunchDate,
+  mentorshipModel,
+  mentorshipPeople,
   mentorshipQuestions,
   mentorshipStepsData,
   questWebUrl,
@@ -145,10 +147,20 @@ const Mentorship: React.FC = () => {
               maxWidth: 820,
               color: theme.palette.text.secondary,
               lineHeight: 1.9,
-              mb: { xs: 5, md: 7 },
+              mb: 2,
             }}
           >
             {mentorshipIntro.body}
+          </Typography>
+          <Typography
+            sx={{
+              maxWidth: 820,
+              fontWeight: 700,
+              lineHeight: 1.9,
+              mb: { xs: 5, md: 7 },
+            }}
+          >
+            {mentorshipIntro.goal}
           </Typography>
 
           {/* The two audiences, side by side, each with its own CTA. */}
@@ -259,6 +271,77 @@ const Mentorship: React.FC = () => {
               </Paper>
             ))}
           </Box>
+
+          {/* The model and the people: what is different about mentorship
+              here, and who a visitor will be connecting with. */}
+          {[mentorshipModel, mentorshipPeople].map((section) => (
+            <Box key={section.title} sx={{ mb: { xs: 6, md: 9 } }}>
+              <Typography
+                variant="h4"
+                sx={{
+                  fontFamily: "Sansation, sans-serif",
+                  fontWeight: 700,
+                  display: "block",
+                  width: "fit-content",
+                  borderBottom: `5px solid ${theme.palette.primary.focus}`,
+                  pb: "4px",
+                  mb: 3,
+                }}
+              >
+                {section.title}
+              </Typography>
+              <Typography
+                sx={{
+                  maxWidth: 820,
+                  color: theme.palette.text.secondary,
+                  lineHeight: 1.9,
+                  mb: 3,
+                }}
+              >
+                {section.intro}
+              </Typography>
+              <Box
+                sx={{
+                  display: "grid",
+                  gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+                  gap: { xs: 2.5, md: 3 },
+                }}
+              >
+                {section.items.map((item) => (
+                  <Paper
+                    key={item.title}
+                    elevation={0}
+                    sx={{
+                      p: { xs: 3, md: 4 },
+                      borderRadius: 2,
+                      border: `1px solid ${theme.palette.cosmic.secondary}`,
+                      borderLeft: `6px solid ${theme.palette.primary.focus}`,
+                      backgroundColor: theme.palette.cosmic.elevated,
+                    }}
+                  >
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        fontFamily: "Sansation, sans-serif",
+                        fontWeight: 700,
+                        mb: 1,
+                      }}
+                    >
+                      {item.title}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        color: theme.palette.text.secondary,
+                        lineHeight: 1.9,
+                      }}
+                    >
+                      {item.desc}
+                    </Typography>
+                  </Paper>
+                ))}
+              </Box>
+            </Box>
+          ))}
 
           {/* What happens, in order, so nobody expects a feature that is not
               open yet. */}
