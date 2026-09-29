@@ -6,7 +6,6 @@ import ContentSection from "../Home/ContentSection";
 import bm1 from "../../assets/images/about/bm1.webp";
 import bm2 from "../../assets/images/about/bm2.webp";
 import bm3 from "../../assets/images/about/bm3.webp";
-import bm4 from "../../assets/images/about/bm4.webp";
 import bm5 from "../../assets/images/about/bm5.webp";
 import yugen from "../../assets/images/about/yugen_korat.webp";
 import armin from "../../assets/images/about/armin_masoumian.jpg";
@@ -43,11 +42,10 @@ const BoardMembers: React.FC = () => {
       imageSrc: bm3,
     },
     {
-      heading: "Petra Frese",
+      heading: "Aazmeer ul Haque",
       subText:
-        "Dr. Petra Frese, a scientist and engineer turned spiritual healer, is an expert in brain health science and peak mental performance. After her multiple Near-Death Experiences, which dramatically widened her horizon and views on life, she integrated her spiritual insights into her science-based coaching practice. Petra is the founder of Peak Mind Academy, serving clients around the globe. She is the award-winning author of two bestselling books and earned the Excellence in Hypnosis Award. Petra holds two PhDs in Psychology. Her motto: \"Science plus Wisdom is LOVE.\"",
+        "Aazmeer works with six- to seven-figure executive coaches, B2B consultants, and TEDx speakers, helping them commercialize and narrate their deep expertise for business leaders. He built that skill under pressure: navigating severe ADHD symptoms, he spent years studying mental health and neuromarketing to turn chaos into a working system. He took that discipline into leadership at Handy Banjo, a workforce management company in Michigan, directing a team of over 20 people, where he learned that an organization's biggest threat isn't a lack of talent but the \"activity trap,\" people confusing motion with progress. Over the past year, Aazmeer has helped Spiritual Data untangle its processes and sharpen its core message. As a board member, his focus is direct: helping Joshua and the executive team tighten the narrative and the operations behind it.",
       buttonText: "Reach Out",
-      imageSrc: bm4,
     },
     {
       heading: "Sanjay Rout",

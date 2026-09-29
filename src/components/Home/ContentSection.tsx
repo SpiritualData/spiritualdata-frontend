@@ -235,17 +235,21 @@ const ContentSection = ({
             borderRadius: "100%",
           }}
         >
-          <img
-            style={{
-              width: altText === "discord" ? "60%" : "90%",
-              borderRadius: "1vw",
-              boxShadow:
-                altText === "discord" ? "none" : "0 4px 8px rgba(0, 0, 0, 0.7)",
-              transition: "transform 0.3s ease",
-            }}
-            src={imageSrc || imageSrc2}
-            alt={altText || "image"}
-          />
+          {(imageSrc || imageSrc2) && (
+            <img
+              style={{
+                width: altText === "discord" ? "60%" : "90%",
+                borderRadius: "1vw",
+                boxShadow:
+                  altText === "discord"
+                    ? "none"
+                    : "0 4px 8px rgba(0, 0, 0, 0.7)",
+                transition: "transform 0.3s ease",
+              }}
+              src={imageSrc || imageSrc2}
+              alt={altText || "image"}
+            />
+          )}
         </Grid>
       </Grid>
     </Grid>
