@@ -11,6 +11,7 @@ import yugen from "../../assets/images/about/yugen_korat.webp";
 import armin from "../../assets/images/about/armin_masoumian.jpg";
 import sander from "../../assets/images/about/sander_stepanov.jpg";
 import stephen from "../../assets/images/about/stephen_schwartz.jpeg";
+import aazmeer from "../../assets/images/about/aazmeer_ul_haque.jpeg";
 
 const BoardMembers: React.FC = () => {
   const { ref: sectionRef, inView: sectionInView } = useInView({
@@ -42,10 +43,11 @@ const BoardMembers: React.FC = () => {
       imageSrc: bm3,
     },
     {
-      heading: "Aazmeer ul Haque",
+      heading: "Aazmeer ul Haque (Azy)",
       subText:
-        "Aazmeer works with six- to seven-figure executive coaches, B2B consultants, and TEDx speakers, helping them commercialize and narrate their deep expertise for business leaders. He built that skill under pressure: navigating severe ADHD symptoms, he spent years studying mental health and neuromarketing to turn chaos into a working system. He took that discipline into leadership at Handy Banjo, a workforce management company in Michigan, directing a team of over 20 people, where he learned that an organization's biggest threat isn't a lack of talent but the \"activity trap,\" people confusing motion with progress. Over the past year, Aazmeer has helped Spiritual Data untangle its processes and sharpen its core message. As a board member, his focus is direct: helping Joshua and the executive team tighten the narrative and the operations behind it.",
+        "Aazmeer is an operator and growth strategist specializing in positioning, systems design, and audience development for mission-driven leaders and specialized advisory practices. As founder of Flolith Studio, he works with founders and domain experts to give their ideas clear operational shape and public reach. At Spiritual Data, Aazmeer advises the board on narrative positioning, organizational momentum, and systems to ensure empirical research and open data reach global audiences with clarity and integrity.",
       buttonText: "Reach Out",
+      imageSrc: aazmeer,
     },
     {
       heading: "Sanjay Rout",
