@@ -47,8 +47,14 @@ const HeaderSection = ({ data }: headerDataProps) => {
    * Step the desktop size down once a heading passes the length that fits.
    */
   const headingLength = data.heading.length;
-  const desktopHeadingSize =
-    headingLength > 34 ? "2.5rem" : headingLength > 26 ? "3rem" : "3.75rem";
+  const lengthSize =
+    headingLength > 34 ? 2.5 : headingLength > 26 ? 3 : 3.75;
+  /**
+   * A single long word ("Mentorship", "Certification") breaks mid-word in that
+   * narrow column at 1280px, so also cap the size by the longest word.
+   */
+  const longestWord = Math.max(...data.heading.split(/\s+/).map((w) => w.length));
+  const desktopHeadingSize = `${Math.min(lengthSize, 30 / longestWord)}rem`;
   return (
     <Box
       sx={{

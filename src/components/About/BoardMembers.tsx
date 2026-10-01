@@ -6,12 +6,12 @@ import ContentSection from "../Home/ContentSection";
 import bm1 from "../../assets/images/about/bm1.webp";
 import bm2 from "../../assets/images/about/bm2.webp";
 import bm3 from "../../assets/images/about/bm3.webp";
-import bm4 from "../../assets/images/about/bm4.webp";
 import bm5 from "../../assets/images/about/bm5.webp";
 import yugen from "../../assets/images/about/yugen_korat.webp";
 import armin from "../../assets/images/about/armin_masoumian.jpg";
 import sander from "../../assets/images/about/sander_stepanov.jpg";
 import stephen from "../../assets/images/about/stephen_schwartz.jpeg";
+import aazmeer from "../../assets/images/about/aazmeer_ul_haque.jpeg";
 
 const BoardMembers: React.FC = () => {
   const { ref: sectionRef, inView: sectionInView } = useInView({
@@ -43,11 +43,11 @@ const BoardMembers: React.FC = () => {
       imageSrc: bm3,
     },
     {
-      heading: "Petra Frese",
+      heading: "Aazmeer ul Haque (Azy)",
       subText:
-        "Dr. Petra Frese, a scientist and engineer turned spiritual healer, is an expert in brain health science and peak mental performance. After her multiple Near-Death Experiences, which dramatically widened her horizon and views on life, she integrated her spiritual insights into her science-based coaching practice. Petra is the founder of Peak Mind Academy, serving clients around the globe. She is the award-winning author of two bestselling books and earned the Excellence in Hypnosis Award. Petra holds two PhDs in Psychology. Her motto: \"Science plus Wisdom is LOVE.\"",
+        "Aazmeer is an operator and growth strategist specializing in positioning, systems design, and audience development for mission-driven leaders and specialized advisory practices. As founder of Flolith Studio, he works with founders and domain experts to give their ideas clear operational shape and public reach. At Spiritual Data, Aazmeer advises the board on narrative positioning, organizational momentum, and systems to ensure empirical research and open data reach global audiences with clarity and integrity.",
       buttonText: "Reach Out",
-      imageSrc: bm4,
+      imageSrc: aazmeer,
     },
     {
       heading: "Sanjay Rout",
