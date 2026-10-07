@@ -16,7 +16,9 @@ import bannerImage from "../assets/images/initiatives/banner.webp";
  *  - No claimed user numbers, no outcome claims we have not measured, no
  *    pricing promises and no revenue-share promises. Those are undecided
  *    (mentor_offer_draft_2026-09-21.md, "What is NOT decided"). The 1,000 and
- *    10,000 below are the stated goal for 25 October, asked for by name by
+ *    10,000 below are the stated goal for 31 December 2026 (25 October is when
+ *    mentorship opens and we share it widely, not the date of the goal; Joshua,
+ *    6 October 2026), asked for by name by
  *    Joshua on 21 September 2026: "Also important to mention explicitly the
  *    1000 and 10,000. That was a key part of it to build excitement." Say them
  *    as what we are building to, never as a count we hold today, and never
@@ -69,7 +71,7 @@ export const mentorshipLaunchDate = {
 export const mentorshipIntro = {
   title: "The real work happens between sessions",
   body: "A good session leaves you with a clear insight. By Wednesday the thread is lost: the notebook is closed, the mentor is elsewhere, and the next session starts by rebuilding what the last one established. Quest keeps that thread. It holds each person's goals, habits, reflections and check-ins in one place over time, so a mentor and the person they guide pick up exactly where they left off.",
-  goal: "By Sunday 25 October 2026 we are bringing together 1,000 mentors and 10,000 people they guide. The account you create today is the one you launch with.",
+  goal: "Mentorship opens on Sunday 25 October 2026, and we are growing it to 1,000 mentors and 10,000 people they guide by 31 December 2026. The account you create today is the one you open with.",
 };
 
 export const mentorAudience = {
