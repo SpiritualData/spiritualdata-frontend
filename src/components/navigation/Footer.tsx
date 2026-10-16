@@ -265,6 +265,8 @@ const Footer = () => {
                   style={{
                     height: 65,
                     objectFit: "contain",
+                    // The logo has the site navy baked in; lighten hides it on other dark backgrounds.
+                    mixBlendMode: "lighten",
                   }}
                 />
               </Box>

@@ -6,18 +6,24 @@ import AutoAwesomeRoundedIcon from "@mui/icons-material/AutoAwesomeRounded";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 import EventAvailableOutlinedIcon from "@mui/icons-material/EventAvailableOutlined";
 import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
+import InsightsOutlinedIcon from "@mui/icons-material/InsightsOutlined";
+import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
+import SelfImprovementOutlinedIcon from "@mui/icons-material/SelfImprovementOutlined";
+import TrendingUpRoundedIcon from "@mui/icons-material/TrendingUpRounded";
+import ScienceOutlinedIcon from "@mui/icons-material/ScienceOutlined";
 import {
   menteeAudience,
   mentorAudience,
+  mentorshipConnection,
   mentorshipFinal,
   mentorshipGoal,
   mentorshipHero,
-  mentorshipHeroCard,
   mentorshipModel,
   mentorshipPeople,
   mentorshipQuestions,
   mentorshipSteps,
 } from "../data/mentorshipData";
+import { questPalette as q } from "../styles/questPalette";
 
 /**
  * /mentorship: the registration door for the mentorship launch.
@@ -25,51 +31,74 @@ import {
  * Both CTAs go to the live Quest sign-up with a ref slug, so a mentor and a
  * mentee are counted separately with no new backend code. All copy lives in
  * src/data/mentorshipData.tsx. The look (warm paper, ink, Quest purple, pill
- * buttons) matches the Quest niche landing pages rather than the site theme,
- * so its colors are local constants here.
+ * buttons) matches the Quest niche landing pages; App.tsx gives the navbar and
+ * footer the same palette on this route.
  */
-const ink = "#16142a";
-const purple = "#6655db";
-const purpleDark = "#5545c7";
-const paper = "#f7f6f3";
-const muted = "#686675";
-const line = "#e2dfe8";
 const font = "Inter, system-ui, sans-serif";
 
-const modelIcons: Record<string, React.ReactElement> = {
-  wallet: <AccountBalanceWalletOutlinedIcon />,
-  checkin: <EventAvailableOutlinedIcon />,
-  record: <AutoStoriesOutlinedIcon />,
-  ai: <AutoAwesomeRoundedIcon />,
+const icons: Record<string, React.ReactElement> = {
+  wallet: <AccountBalanceWalletOutlinedIcon fontSize="small" />,
+  checkin: <EventAvailableOutlinedIcon fontSize="small" />,
+  record: <AutoStoriesOutlinedIcon fontSize="small" />,
+  ai: <AutoAwesomeRoundedIcon fontSize="small" />,
+  check: <InsightsOutlinedIcon fontSize="small" />,
+  talk: <ChatBubbleOutlineRoundedIcon fontSize="small" />,
+  meet: <EventAvailableOutlinedIcon fontSize="small" />,
+  mentor: <SelfImprovementOutlinedIcon fontSize="small" />,
+  growth: <TrendingUpRoundedIcon fontSize="small" />,
+  inquiry: <ScienceOutlinedIcon fontSize="small" />,
 };
 
 const headingSx = {
   fontFamily: font,
-  fontWeight: 650,
-  letterSpacing: "-0.05em",
-  lineHeight: 1.05,
-  color: ink,
+  fontWeight: 700,
+  letterSpacing: "-0.04em",
+  lineHeight: 1.08,
+  color: q.ink,
 };
 
 const eyebrowSx = {
   fontFamily: font,
   fontSize: "12px",
   fontWeight: 700,
-  letterSpacing: "0.2em",
+  letterSpacing: "0.18em",
   textTransform: "uppercase" as const,
-  color: purple,
+  color: q.purple,
 };
 
-const PillButton: React.FC<{ href: string; label: string; variant?: "solid" | "outline" | "light" }> = ({
+const bodySx = { fontFamily: font, fontSize: "16px", lineHeight: 1.65, color: q.muted };
+
+const cardSx = {
+  backgroundColor: "#fff",
+  border: `1px solid ${q.line}`,
+  borderRadius: "24px",
+};
+
+const IconTile: React.FC<{ name: string; size?: number }> = ({ name, size = 40 }) => (
+  <Box
+    className="icon-tile"
+    sx={{
+      width: size,
+      height: size,
+      borderRadius: "12px",
+      display: "grid",
+      placeItems: "center",
+      flexShrink: 0,
+      backgroundColor: q.lavender,
+      color: q.purple,
+      transition: "all .2s ease",
+    }}
+  >
+    {icons[name]}
+  </Box>
+);
+
+const PillButton: React.FC<{ href: string; label: string; variant?: "solid" | "outline" }> = ({
   href,
   label,
   variant = "solid",
 }) => {
-  const styles = {
-    solid: { bg: purple, color: "#fff", border: purple, hoverBg: purpleDark, shadow: `0 12px 30px -12px ${purple}` },
-    outline: { bg: "transparent", color: ink, border: "#cfccd6", hoverBg: "#fff", shadow: "none" },
-    light: { bg: "#fff", color: purple, border: "#fff", hoverBg: "#fff", shadow: "none" },
-  }[variant];
+  const solid = variant === "solid";
   return (
     <Box
       component="a"
@@ -79,21 +108,22 @@ const PillButton: React.FC<{ href: string; label: string; variant?: "solid" | "o
       sx={{
         display: "inline-flex",
         alignItems: "center",
-        justifyContent: "center",
         gap: 1,
         px: 3,
-        py: 1.75,
+        height: 48,
         borderRadius: 999,
         fontFamily: font,
-        fontSize: "14px",
+        fontSize: "15px",
         fontWeight: 600,
         textDecoration: "none",
-        backgroundColor: styles.bg,
-        color: styles.color,
-        border: `1px solid ${styles.border}`,
-        boxShadow: styles.shadow,
-        transition: "all .25s ease",
-        "&:hover": { transform: "translateY(-2px)", backgroundColor: styles.hoverBg },
+        whiteSpace: "nowrap",
+        backgroundColor: solid ? q.purple : "#fff",
+        color: solid ? "#fff" : q.ink,
+        border: `1px solid ${solid ? q.purple : q.line}`,
+        transition: "all .2s ease",
+        "&:hover": solid
+          ? { backgroundColor: q.purpleDark, borderColor: q.purpleDark }
+          : { borderColor: q.ink },
       }}
     >
       {label}
@@ -102,200 +132,191 @@ const PillButton: React.FC<{ href: string; label: string; variant?: "solid" | "o
   );
 };
 
-/** The sample check-in a mentor would see: an illustration, not real data. */
-const HeroCard: React.FC = () => {
-  const card = mentorshipHeroCard;
+const Avatar: React.FC<{ initial: string; name: string; role: string; dark?: boolean }> = ({ initial, name, role, dark }) => (
+  <Box sx={{ display: "flex", alignItems: "center", gap: 1.25, minWidth: 0 }}>
+    <Box
+      sx={{
+        width: 44,
+        height: 44,
+        borderRadius: 999,
+        display: "grid",
+        placeItems: "center",
+        flexShrink: 0,
+        fontFamily: font,
+        fontWeight: 700,
+        fontSize: "17px",
+        color: "#fff",
+        backgroundColor: dark ? q.ink : q.purple,
+      }}
+    >
+      {initial}
+    </Box>
+    <Box sx={{ minWidth: 0 }}>
+      <Typography sx={{ fontFamily: font, fontWeight: 600, fontSize: "15px", color: q.ink, lineHeight: 1.2 }}>{name}</Typography>
+      <Typography sx={{ fontFamily: font, fontSize: "12px", color: q.muted }}>{role}</Typography>
+    </Box>
+  </Box>
+);
+
+/** The hero illustration: a mentor and a mentee connected through a shared quest. */
+const ConnectionCard: React.FC = () => {
+  const c = mentorshipConnection;
   return (
-    <Box sx={{ position: "relative", pb: { xs: 0, md: 6 } }}>
-      <Box
-        sx={{
-          backgroundColor: "#fff",
-          borderRadius: "28px",
-          border: `1px solid ${line}`,
-          p: { xs: 3, md: 4 },
-          boxShadow: "0 40px 90px -40px rgba(22,20,42,.45)",
-          transform: { md: "rotate(1.5deg)" },
-        }}
-      >
-        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 1.5 }}>
-          <Typography sx={{ ...eyebrowSx, fontSize: "11px" }}>{card.eyebrow}</Typography>
-          <Typography sx={{ fontFamily: font, fontSize: "13px", color: muted }}>{card.day}</Typography>
+    <Box sx={{ ...cardSx, borderRadius: "28px", p: { xs: 2.5, sm: 3.5 }, boxShadow: "0 30px 80px -40px rgba(22,20,42,.35)" }}>
+      {/* The two people, linked */}
+      <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+        <Avatar {...c.mentor} />
+        <Box sx={{ flex: 1, display: "flex", alignItems: "center", minWidth: 24 }}>
+          <Box sx={{ flex: 1, height: "2px", backgroundImage: `linear-gradient(to right, ${q.purple} 50%, transparent 50%)`, backgroundSize: "8px 2px" }} />
+          <Box sx={{ width: 10, height: 10, borderRadius: 99, backgroundColor: q.purple, mx: 0.5 }} />
+          <Box sx={{ flex: 1, height: "2px", backgroundImage: `linear-gradient(to right, ${q.purple} 50%, transparent 50%)`, backgroundSize: "8px 2px" }} />
         </Box>
-        <Typography sx={{ ...headingSx, fontSize: { xs: "22px", md: "26px" }, letterSpacing: "-0.03em", mb: 2.5 }}>
-          {card.title}
-        </Typography>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2.5 }}>
-          <Box sx={{ flex: 1, height: 8, borderRadius: 99, backgroundColor: "#ecebf3" }}>
-            <Box sx={{ width: `${card.progress}%`, height: "100%", borderRadius: 99, backgroundColor: purple }} />
-          </Box>
-          <Typography sx={{ fontFamily: font, fontWeight: 700, fontSize: "14px", color: ink }}>{card.progress}%</Typography>
-        </Box>
-        <Box sx={{ display: "grid", gap: 1 }}>
-          {card.steps.map((step) => (
-            <Box
-              key={step.label}
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 1.5,
-                px: 1.5,
-                py: 1.25,
-                borderRadius: "14px",
-                backgroundColor: step.now ? "#f0eefc" : "transparent",
-              }}
-            >
-              <Box
-                sx={{
-                  width: 22,
-                  height: 22,
-                  borderRadius: 99,
-                  display: "grid",
-                  placeItems: "center",
-                  flexShrink: 0,
-                  backgroundColor: step.done ? purple : "transparent",
-                  border: step.done ? "none" : "1.5px solid #cfccd6",
-                }}
-              >
-                {step.done && <CheckRoundedIcon sx={{ fontSize: 15, color: "#fff" }} />}
-              </Box>
-              <Typography
-                sx={{
-                  fontFamily: font,
-                  fontSize: "15px",
-                  fontWeight: step.now ? 600 : 400,
-                  color: step.done ? "#9a98a6" : ink,
-                  textDecoration: step.done ? "line-through" : "none",
-                }}
-              >
-                {step.label}
-              </Typography>
-              {step.now && (
-                <Box sx={{ ml: "auto", px: 1.25, py: 0.4, borderRadius: 99, backgroundColor: ink, color: "#fff", fontFamily: font, fontSize: "10px", fontWeight: 700, letterSpacing: "0.08em" }}>
-                  NEXT
-                </Box>
-              )}
-            </Box>
-          ))}
-        </Box>
-        <Typography sx={{ fontFamily: font, fontSize: "14px", fontStyle: "italic", color: muted, mt: 2.5, pt: 2.5, borderTop: `1px solid ${line}` }}>
-          {card.reflection}
-        </Typography>
+        <Avatar {...c.mentee} dark />
       </Box>
-      <Box
-        sx={{
-          position: { xs: "relative", md: "absolute" },
-          left: { md: -32 },
-          bottom: { md: 0 },
-          mt: { xs: -2, md: 0 },
-          mx: { xs: 2, md: 0 },
-          maxWidth: 320,
-          backgroundColor: ink,
-          color: "#fff",
-          borderRadius: "18px",
-          p: 2.5,
-          boxShadow: "0 24px 50px -20px rgba(22,20,42,.6)",
-        }}
-      >
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1 }}>
-          <AutoAwesomeRoundedIcon sx={{ fontSize: 16, color: "#b9b0ff" }} />
-          <Typography sx={{ ...eyebrowSx, fontSize: "10px", color: "#b9b0ff" }}>Quest AI</Typography>
+
+      {/* The quest they share */}
+      <Box sx={{ mt: 3, p: 2.25, borderRadius: "18px", backgroundColor: q.paper }}>
+        <Typography sx={{ ...eyebrowSx, fontSize: "10px" }}>{c.quest.label}</Typography>
+        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 2, mt: 0.75 }}>
+          <Typography sx={{ fontFamily: font, fontWeight: 600, fontSize: "16px", color: q.ink }}>{c.quest.title}</Typography>
+          <Typography sx={{ fontFamily: font, fontWeight: 700, fontSize: "14px", color: q.ink }}>{c.quest.progress}%</Typography>
         </Box>
-        <Typography sx={{ fontFamily: font, fontSize: "14px", lineHeight: 1.6 }}>{card.aiMessage}</Typography>
+        <Box sx={{ height: 6, borderRadius: 99, backgroundColor: "#e4e1ee", mt: 1.5 }}>
+          <Box sx={{ width: `${c.quest.progress}%`, height: "100%", borderRadius: 99, backgroundColor: q.purple }} />
+        </Box>
+      </Box>
+
+      {/* How the mentor helps */}
+      <Box sx={{ mt: 2, display: "grid" }}>
+        {c.activity.map((item, index) => (
+          <Box
+            key={item.kind}
+            sx={{
+              display: "flex",
+              gap: 1.75,
+              alignItems: "center",
+              py: 1.75,
+              borderTop: index === 0 ? "none" : `1px solid ${q.line}`,
+            }}
+          >
+            <IconTile name={item.kind} />
+            <Box sx={{ minWidth: 0 }}>
+              <Typography sx={{ fontFamily: font, fontWeight: 600, fontSize: "14px", color: q.ink }}>{item.title}</Typography>
+              <Typography sx={{ fontFamily: font, fontSize: "14px", color: q.muted, lineHeight: 1.5 }}>{item.text}</Typography>
+            </Box>
+          </Box>
+        ))}
       </Box>
     </Box>
   );
 };
 
+const SectionHeading: React.FC<{ eyebrow: string; title: string; maxWidth?: number }> = ({ eyebrow, title, maxWidth = 640 }) => (
+  <Box sx={{ mb: { xs: 4, md: 6 } }}>
+    <Typography sx={eyebrowSx}>{eyebrow}</Typography>
+    <Typography component="h2" sx={{ ...headingSx, fontSize: { xs: "32px", md: "44px" }, mt: 1.5, maxWidth }}>
+      {title}
+    </Typography>
+  </Box>
+);
+
 const Mentorship: React.FC = () => {
   const audiences = [mentorAudience, menteeAudience];
-  const sectionPy = { xs: 9, md: 14 };
+  const sectionPy = { xs: 8, md: 12 };
 
   return (
-    <Box sx={{ backgroundColor: paper, color: ink, fontFamily: font, overflow: "hidden" }}>
+    <Box sx={{ backgroundColor: q.paper, color: q.ink, fontFamily: font, overflow: "hidden" }}>
       {/* Hero */}
-      <Container maxWidth="lg" sx={{ pt: { xs: 16, md: 22 }, pb: sectionPy }}>
-        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" }, gap: { xs: 7, md: 10 }, alignItems: "center" }}>
+      <Container maxWidth="lg" sx={{ pt: { xs: 15, md: 20 }, pb: sectionPy }}>
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1.05fr .95fr" }, gap: { xs: 6, md: 8 }, alignItems: "center" }}>
           <Box>
-            <Box sx={{ display: "flex", alignItems: "center", gap: 1.25, mb: 3 }}>
-              <Box sx={{ width: 8, height: 8, borderRadius: 99, backgroundColor: "#ef6c4a" }} />
-              <Typography sx={eyebrowSx}>{mentorshipHero.eyebrow}</Typography>
+            <Box
+              sx={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 1,
+                px: 1.5,
+                py: 0.75,
+                borderRadius: 999,
+                backgroundColor: q.lavender,
+                mb: 3,
+              }}
+            >
+              <Box sx={{ width: 7, height: 7, borderRadius: 99, backgroundColor: q.purple }} />
+              <Typography sx={{ ...eyebrowSx, fontSize: "11px" }}>{mentorshipHero.eyebrow}</Typography>
             </Box>
-            <Typography component="h1" sx={{ ...headingSx, fontSize: { xs: "44px", sm: "56px", md: "68px" } }}>
+            <Typography component="h1" sx={{ ...headingSx, fontSize: { xs: "42px", sm: "52px", md: "62px" } }}>
               {mentorshipHero.headline.before}
-              <Box component="span" sx={{ color: purple, fontStyle: "italic", fontWeight: 400 }}>
+              <Box component="span" sx={{ color: q.purple }}>
                 {mentorshipHero.headline.accent}
               </Box>
               {mentorshipHero.headline.after}
             </Typography>
-            <Typography sx={{ fontFamily: font, fontSize: { xs: "17px", md: "19px" }, lineHeight: 1.7, color: muted, mt: 3, maxWidth: 520 }}>
+            <Typography sx={{ ...bodySx, fontSize: { xs: "17px", md: "18px" }, mt: 3, maxWidth: 500 }}>
               {mentorshipHero.subtitle}
             </Typography>
-            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, mt: 4.5 }}>
+            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, mt: 4 }}>
               <PillButton href={mentorAudience.ctaUrl} label={mentorAudience.ctaLabel} />
               <PillButton href={menteeAudience.ctaUrl} label={menteeAudience.ctaLabel} variant="outline" />
             </Box>
-            <Typography sx={{ fontFamily: font, fontSize: "14px", color: muted, mt: 2.5 }}>{mentorshipHero.note}</Typography>
+            <Typography sx={{ ...bodySx, fontSize: "14px", mt: 2.5 }}>{mentorshipHero.note}</Typography>
           </Box>
-          <HeroCard />
+          <ConnectionCard />
         </Box>
       </Container>
 
-      {/* The goal */}
-      <Box sx={{ backgroundColor: ink, color: "#fff", py: { xs: 8, md: 10 } }}>
-        <Container maxWidth="lg">
-          <Typography sx={{ ...eyebrowSx, color: "#b9b0ff", mb: 3 }}>{mentorshipGoal.eyebrow}</Typography>
-          <Box sx={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", columnGap: { xs: 5, md: 8 }, rowGap: 3 }}>
-            {mentorshipGoal.stats.map((stat) => (
-              <Box key={stat.label}>
-                <Typography sx={{ fontFamily: font, fontWeight: 650, letterSpacing: "-0.05em", lineHeight: 1, fontSize: { xs: "56px", md: "88px" } }}>
-                  {stat.value}
-                </Typography>
-                <Typography sx={{ fontFamily: font, fontSize: "16px", color: "rgba(255,255,255,.7)", mt: 1 }}>{stat.label}</Typography>
-              </Box>
-            ))}
-            <Typography sx={{ fontFamily: font, fontSize: { xs: "18px", md: "22px" }, color: "#b9b0ff", pb: { md: 4.5 } }}>{mentorshipGoal.by}</Typography>
+      {/* The goal, as a quiet band in the page palette */}
+      <Container maxWidth="lg">
+        <Box
+          sx={{
+            ...cardSx,
+            backgroundColor: q.lavender,
+            border: `1px solid ${q.lavenderLine}`,
+            px: { xs: 3, md: 6 },
+            py: { xs: 4, md: 5 },
+            display: "grid",
+            gridTemplateColumns: { xs: "1fr 1fr", md: "auto auto 1fr" },
+            gap: { xs: 3, md: 7 },
+            alignItems: "center",
+          }}
+        >
+          {mentorshipGoal.stats.map((stat) => (
+            <Box key={stat.label}>
+              <Typography sx={{ ...headingSx, fontSize: { xs: "40px", md: "64px" }, lineHeight: 1 }}>{stat.value}</Typography>
+              <Typography sx={{ ...bodySx, fontSize: "15px", mt: 0.75 }}>{stat.label}</Typography>
+            </Box>
+          ))}
+          <Box sx={{ gridColumn: { xs: "1 / -1", md: "auto" }, borderLeft: { md: `1px solid ${q.lavenderLine}` }, pl: { md: 5 } }}>
+            <Typography sx={eyebrowSx}>{mentorshipGoal.eyebrow}</Typography>
+            <Typography sx={{ fontFamily: font, fontWeight: 600, fontSize: "18px", color: q.ink, mt: 1 }}>{mentorshipGoal.by}</Typography>
+            <Typography sx={{ ...bodySx, fontSize: "15px", mt: 0.75 }}>{mentorshipGoal.line}</Typography>
           </Box>
-          <Typography sx={{ fontFamily: font, fontSize: "16px", color: "rgba(255,255,255,.75)", mt: 4, maxWidth: 640, lineHeight: 1.7 }}>
-            {mentorshipGoal.line}
-          </Typography>
-        </Container>
-      </Box>
+        </Box>
+      </Container>
 
       {/* Two audiences */}
       <Container maxWidth="lg" sx={{ py: sectionPy }}>
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" }, gap: 3 }}>
-          {audiences.map((audience, index) => (
-            <Box
-              key={audience.eyebrow}
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                p: { xs: 3.5, md: 5 },
-                borderRadius: "28px",
-                backgroundColor: index === 0 ? "#fff" : "#efedfb",
-                border: `1px solid ${index === 0 ? line : "#dcd7f7"}`,
-                transition: "transform .25s ease, box-shadow .25s ease",
-                "&:hover": { transform: "translateY(-4px)", boxShadow: "0 30px 60px -35px rgba(22,20,42,.4)" },
-              }}
-            >
+          {audiences.map((audience) => (
+            <Box key={audience.eyebrow} sx={{ ...cardSx, display: "flex", flexDirection: "column", p: { xs: 3.5, md: 5 } }}>
               <Typography sx={eyebrowSx}>{audience.eyebrow}</Typography>
-              <Typography component="h2" sx={{ ...headingSx, fontSize: { xs: "30px", md: "36px" }, mt: 2 }}>
+              <Typography component="h2" sx={{ ...headingSx, fontSize: { xs: "28px", md: "32px" }, mt: 1.5 }}>
                 {audience.title}
               </Typography>
-              <Typography sx={{ fontFamily: font, fontSize: "15px", color: muted, lineHeight: 1.7, mt: 2 }}>{audience.who}</Typography>
-              <Box sx={{ display: "grid", gap: 1.75, mt: 3.5, mb: 4.5 }}>
+              <Typography sx={{ ...bodySx, fontSize: "15px", mt: 1.5 }}>{audience.who}</Typography>
+              <Box sx={{ display: "grid", gap: 1.5, mt: 3, mb: 4 }}>
                 {audience.points.map((point) => (
                   <Box key={point} sx={{ display: "flex", gap: 1.5, alignItems: "flex-start" }}>
-                    <Box sx={{ width: 24, height: 24, borderRadius: 99, backgroundColor: purple, display: "grid", placeItems: "center", flexShrink: 0, mt: "1px" }}>
-                      <CheckRoundedIcon sx={{ fontSize: 16, color: "#fff" }} />
+                    <Box sx={{ width: 22, height: 22, borderRadius: 99, backgroundColor: q.lavender, display: "grid", placeItems: "center", flexShrink: 0, mt: "2px" }}>
+                      <CheckRoundedIcon sx={{ fontSize: 15, color: q.purple }} />
                     </Box>
-                    <Typography sx={{ fontFamily: font, fontSize: "16px", lineHeight: 1.6, color: ink }}>{point}</Typography>
+                    <Typography sx={{ fontFamily: font, fontSize: "16px", lineHeight: 1.6, color: q.ink }}>{point}</Typography>
                   </Box>
                 ))}
               </Box>
-              <Box sx={{ mt: "auto", display: "flex", flexWrap: "wrap", alignItems: "center", gap: 2 }}>
+              <Box sx={{ mt: "auto" }}>
                 <PillButton href={audience.ctaUrl} label={audience.ctaLabel} />
-                <Typography sx={{ fontFamily: font, fontSize: "14px", color: muted }}>{audience.footnote}</Typography>
+                <Typography sx={{ ...bodySx, fontSize: "14px", mt: 1.5 }}>{audience.footnote}</Typography>
               </Box>
             </Box>
           ))}
@@ -303,31 +324,26 @@ const Mentorship: React.FC = () => {
       </Container>
 
       {/* How it works */}
-      <Box sx={{ backgroundColor: "#edebe6", py: sectionPy }}>
+      <Box sx={{ backgroundColor: "#fff", borderTop: `1px solid ${q.line}`, borderBottom: `1px solid ${q.line}`, py: sectionPy }}>
         <Container maxWidth="lg">
-          <Typography sx={eyebrowSx}>{mentorshipModel.eyebrow}</Typography>
-          <Typography component="h2" sx={{ ...headingSx, fontSize: { xs: "36px", md: "52px" }, mt: 2, mb: { xs: 5, md: 7 }, maxWidth: 640 }}>
-            {mentorshipModel.title}
-          </Typography>
-          <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "repeat(4, 1fr)" }, gap: 2.5 }}>
+          <SectionHeading eyebrow={mentorshipModel.eyebrow} title={mentorshipModel.title} />
+          <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "repeat(4, 1fr)" }, gap: 2 }}>
             {mentorshipModel.items.map((item) => (
               <Box
                 key={item.title}
                 sx={{
-                  p: 3.5,
-                  borderRadius: "24px",
-                  backgroundColor: "#fff",
-                  border: `1px solid ${line}`,
-                  transition: "all .25s ease",
-                  "&:hover": { borderColor: purple, transform: "translateY(-4px)" },
-                  "&:hover .model-icon": { backgroundColor: purple, color: "#fff" },
+                  ...cardSx,
+                  backgroundColor: q.paper,
+                  border: `1px solid transparent`,
+                  p: 3,
+                  transition: "all .2s ease",
+                  "&:hover": { borderColor: q.lavenderLine, backgroundColor: "#fff" },
+                  "&:hover .icon-tile": { backgroundColor: q.purple, color: "#fff" },
                 }}
               >
-                <Box className="model-icon" sx={{ width: 48, height: 48, borderRadius: "16px", display: "grid", placeItems: "center", backgroundColor: "#f0eefc", color: purple, transition: "all .25s ease", mb: 3 }}>
-                  {modelIcons[item.icon]}
-                </Box>
-                <Typography sx={{ ...headingSx, fontSize: "20px", letterSpacing: "-0.03em", lineHeight: 1.25 }}>{item.title}</Typography>
-                <Typography sx={{ fontFamily: font, fontSize: "15px", lineHeight: 1.65, color: muted, mt: 1.25 }}>{item.desc}</Typography>
+                <IconTile name={item.icon} size={44} />
+                <Typography sx={{ ...headingSx, fontSize: "18px", letterSpacing: "-0.02em", lineHeight: 1.3, mt: 2.5 }}>{item.title}</Typography>
+                <Typography sx={{ ...bodySx, fontSize: "15px", mt: 1 }}>{item.desc}</Typography>
               </Box>
             ))}
           </Box>
@@ -336,31 +352,19 @@ const Mentorship: React.FC = () => {
 
       {/* Who you will meet */}
       <Container maxWidth="lg" sx={{ py: sectionPy }}>
-        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" }, gap: { xs: 4, md: 10 }, alignItems: "center" }}>
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" }, gap: { xs: 4, md: 8 }, alignItems: "center" }}>
           <Box>
             <Typography sx={eyebrowSx}>{mentorshipPeople.eyebrow}</Typography>
-            <Typography component="h2" sx={{ ...headingSx, fontSize: { xs: "36px", md: "48px" }, mt: 2 }}>
+            <Typography component="h2" sx={{ ...headingSx, fontSize: { xs: "32px", md: "44px" }, mt: 1.5 }}>
               {mentorshipPeople.title}
             </Typography>
-            <Typography sx={{ fontFamily: font, fontSize: "17px", lineHeight: 1.7, color: muted, mt: 2.5 }}>{mentorshipPeople.intro}</Typography>
+            <Typography sx={{ ...bodySx, fontSize: "17px", mt: 2 }}>{mentorshipPeople.intro}</Typography>
           </Box>
-          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5 }}>
-            {mentorshipPeople.tags.map((tag, index) => (
-              <Box
-                key={tag}
-                sx={{
-                  px: 2.5,
-                  py: 1.5,
-                  borderRadius: 999,
-                  fontFamily: font,
-                  fontSize: "15px",
-                  fontWeight: 500,
-                  backgroundColor: index % 2 === 0 ? "#fff" : "#efedfb",
-                  border: `1px solid ${index % 2 === 0 ? line : "#dcd7f7"}`,
-                  color: ink,
-                }}
-              >
-                {tag}
+          <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" }, gap: 1.5 }}>
+            {mentorshipPeople.tags.map((tag) => (
+              <Box key={tag.text} sx={{ ...cardSx, borderRadius: "18px", p: 2.25, display: "flex", alignItems: "center", gap: 1.5 }}>
+                <IconTile name={tag.icon} size={36} />
+                <Typography sx={{ fontFamily: font, fontSize: "15px", fontWeight: 500, color: q.ink, lineHeight: 1.4 }}>{tag.text}</Typography>
               </Box>
             ))}
           </Box>
@@ -369,36 +373,32 @@ const Mentorship: React.FC = () => {
 
       {/* What happens next */}
       <Container maxWidth="lg" sx={{ pb: sectionPy }}>
-        <Typography sx={eyebrowSx}>What happens next</Typography>
-        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "repeat(3, 1fr)" }, gap: { xs: 2, md: 0 }, mt: 4, position: "relative" }}>
+        <SectionHeading eyebrow="What happens next" title="Three steps to your first check-in." maxWidth={820} />
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "repeat(3, 1fr)" }, gap: 2 }}>
           {mentorshipSteps.map((step, index) => {
             const last = index === mentorshipSteps.length - 1;
             return (
-              <Box key={step.id} sx={{ position: "relative", pr: { md: 4 }, display: "flex", flexDirection: { xs: "row", md: "column" }, gap: { xs: 2.5, md: 0 } }}>
-                <Box sx={{ display: "flex", alignItems: "center", mb: { md: 3 } }}>
-                  <Box
-                    sx={{
-                      width: 48,
-                      height: 48,
-                      borderRadius: 99,
-                      display: "grid",
-                      placeItems: "center",
-                      flexShrink: 0,
-                      fontFamily: font,
-                      fontWeight: 700,
-                      fontSize: "18px",
-                      backgroundColor: last ? purple : "#fff",
-                      color: last ? "#fff" : purple,
-                      border: `1.5px solid ${purple}`,
-                    }}
-                  >
-                    {step.id}
-                  </Box>
-                  {!last && <Box sx={{ display: { xs: "none", md: "block" }, flex: 1, height: "1.5px", ml: 2, backgroundImage: `linear-gradient(to right, ${purple} 50%, transparent 50%)`, backgroundSize: "10px 1.5px" }} />}
+              <Box key={step.id} sx={{ ...cardSx, p: 3, display: "flex", gap: 2, alignItems: "flex-start", borderColor: last ? q.lavenderLine : q.line, backgroundColor: last ? q.lavender : "#fff" }}>
+                <Box
+                  sx={{
+                    width: 36,
+                    height: 36,
+                    borderRadius: 99,
+                    display: "grid",
+                    placeItems: "center",
+                    flexShrink: 0,
+                    fontFamily: font,
+                    fontWeight: 700,
+                    fontSize: "15px",
+                    backgroundColor: last ? q.purple : q.lavender,
+                    color: last ? "#fff" : q.purple,
+                  }}
+                >
+                  {step.id}
                 </Box>
                 <Box>
-                  <Typography sx={{ ...headingSx, fontSize: "22px", letterSpacing: "-0.03em", lineHeight: 1.25 }}>{step.title}</Typography>
-                  <Typography sx={{ fontFamily: font, fontSize: "15px", lineHeight: 1.65, color: muted, mt: 1 }}>{step.desc}</Typography>
+                  <Typography sx={{ ...headingSx, fontSize: "18px", letterSpacing: "-0.02em", lineHeight: 1.3 }}>{step.title}</Typography>
+                  <Typography sx={{ ...bodySx, fontSize: "15px", mt: 0.75 }}>{step.desc}</Typography>
                 </Box>
               </Box>
             );
@@ -407,32 +407,43 @@ const Mentorship: React.FC = () => {
       </Container>
 
       {/* Final call */}
-      <Box sx={{ px: { xs: 2, md: 3 }, pb: { xs: 6, md: 8 } }}>
-        <Box sx={{ maxWidth: 1200, mx: "auto", borderRadius: "32px", backgroundColor: purple, color: "#fff", px: { xs: 3.5, md: 8 }, py: { xs: 6, md: 8 }, position: "relative", overflow: "hidden" }}>
-          <Box sx={{ position: "absolute", right: -80, top: -80, width: 320, height: 320, borderRadius: 999, border: "40px solid rgba(255,255,255,.08)" }} />
-          <Box sx={{ position: "absolute", right: 40, bottom: -120, width: 240, height: 240, borderRadius: 999, border: "30px solid rgba(255,255,255,.06)" }} />
-          <Box sx={{ position: "relative" }}>
-            <Typography sx={{ ...eyebrowSx, color: "rgba(255,255,255,.65)" }}>{mentorshipFinal.eyebrow}</Typography>
-            <Typography component="h2" sx={{ ...headingSx, color: "#fff", fontSize: { xs: "38px", md: "56px" }, mt: 2, maxWidth: 820 }}>
+      <Container maxWidth="lg" sx={{ pb: { xs: 8, md: 12 } }}>
+        <Box
+          sx={{
+            borderRadius: "28px",
+            px: { xs: 3.5, md: 7 },
+            py: { xs: 5, md: 7 },
+            background: `linear-gradient(135deg, ${q.lavender} 0%, #e6e2fb 100%)`,
+            border: `1px solid ${q.lavenderLine}`,
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            alignItems: { md: "center" },
+            justifyContent: "space-between",
+            gap: 4,
+          }}
+        >
+          <Box>
+            <Typography sx={eyebrowSx}>{mentorshipFinal.eyebrow}</Typography>
+            <Typography component="h2" sx={{ ...headingSx, fontSize: { xs: "32px", md: "44px" }, mt: 1.5 }}>
               {mentorshipFinal.heading}
             </Typography>
-            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, mt: 4.5 }}>
-              <PillButton href={mentorAudience.ctaUrl} label={mentorAudience.ctaLabel} variant="light" />
-              <PillButton href={menteeAudience.ctaUrl} label={menteeAudience.ctaLabel} variant="light" />
-            </Box>
-            <Typography sx={{ fontFamily: font, fontSize: "14px", color: "rgba(255,255,255,.8)", mt: 3.5 }}>
+            <Typography sx={{ ...bodySx, fontSize: "15px", mt: 1.5 }}>
               {mentorshipQuestions.text}{" "}
               <Box
                 component="a"
                 href={`mailto:${mentorshipQuestions.email}?subject=${encodeURIComponent(mentorshipQuestions.subject)}`}
-                sx={{ color: "#fff", fontWeight: 700, textUnderlineOffset: "4px" }}
+                sx={{ color: q.purple, fontWeight: 600, textUnderlineOffset: "3px" }}
               >
                 {mentorshipQuestions.email}
               </Box>
             </Typography>
           </Box>
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, flexShrink: 0 }}>
+            <PillButton href={mentorAudience.ctaUrl} label={mentorAudience.ctaLabel} />
+            <PillButton href={menteeAudience.ctaUrl} label={menteeAudience.ctaLabel} variant="outline" />
+          </Box>
         </Box>
-      </Box>
+      </Container>
     </Box>
   );
 };

@@ -64,19 +64,20 @@ export const mentorshipHero = {
   note: "Free account. Runs in your browser, on any phone or computer.",
 };
 
-/** The illustrative check-in card in the hero. A made-up client, clearly a sample. */
-export const mentorshipHeroCard = {
-  eyebrow: "Shared with you",
-  day: "Check-in Thursday",
-  title: "Maya: a steady morning practice",
-  progress: 64,
-  steps: [
-    { label: "Sit 10 minutes before work", done: true },
-    { label: "Sunday reflection, 3 weeks running", done: true },
-    { label: "Talk through the restless mornings", done: false, now: true },
+/**
+ * The hero illustration: how a mentor and a mentee work together on Quest.
+ * Made-up people, clearly a sample. Every activity is something Quest does:
+ * a linked quest the mentor can see, a direct chat, and priced check-ins.
+ */
+export const mentorshipConnection = {
+  mentor: { initial: "A", name: "Ana", role: "Mentor" },
+  mentee: { initial: "S", name: "Sam", role: "Mentee" },
+  quest: { label: "Shared quest", title: "A steady morning practice", progress: 64 },
+  activity: [
+    { kind: "check", title: "Keeps a check", text: "Ana sees Sam kept the practice 5 of 7 days." },
+    { kind: "talk", title: "Talks between sessions", text: "“How did the restless mornings go?”" },
+    { kind: "meet", title: "Meets for check-ins", text: "Thursday check-in, 30 minutes." },
   ],
-  reflection: "“Mornings felt easier once I stopped checking my phone first.”",
-  aiMessage: "Maya kept her practice 5 of 7 days. Want a question to open Thursday's check-in?",
 };
 
 /** The goal for 31 December 2026. Say it as what we are building to. */
@@ -144,10 +145,10 @@ export const mentorshipPeople = {
   intro:
     "Quest is built by Spiritual Data, a nonprofit that studies spiritual experience with the tools of science.",
   tags: [
-    "Mentors with a practice of their own",
-    "People growing toward big life goals",
-    "Open inquiry on both sides",
-    "AI as a means to a more conscious life",
+    { icon: "mentor", text: "Mentors with a practice of their own" },
+    { icon: "growth", text: "People growing toward big life goals" },
+    { icon: "inquiry", text: "Open inquiry on both sides" },
+    { icon: "ai", text: "AI as a means to a more conscious life" },
   ],
 };
 

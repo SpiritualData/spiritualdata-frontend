@@ -8,6 +8,7 @@ import Footer from "./components/navigation/Footer";
 import useClerkRoutes from "./hooks/routes";
 import ScrollToTop from "./components/ScrollToTop";
 import { GlobalStyles } from "@mui/material";
+import { questPaletteRoutes, withQuestPalette } from "./styles/questPalette";
 
 const App: React.FC = () => {
   const location = useLocation();
@@ -28,8 +29,12 @@ const App: React.FC = () => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
+  const pageTheme = questPaletteRoutes.includes(location.pathname.replace(/\/$/, ""))
+    ? withQuestPalette(theme as Theme)
+    : (theme as Theme);
+
   return (
-    <ThemeProvider theme={theme as Theme}>
+    <ThemeProvider theme={pageTheme}>
       <GlobalStyles
         styles={{
           html: { overscrollBehavior: "none" },
