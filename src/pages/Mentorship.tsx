@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Container, Typography } from "@mui/material";
+import { keyframes } from "@mui/system";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import NorthEastRoundedIcon from "@mui/icons-material/NorthEastRounded";
 import AutoAwesomeRoundedIcon from "@mui/icons-material/AutoAwesomeRounded";
@@ -35,6 +36,11 @@ import { questPalette as q } from "../styles/questPalette";
  * footer the same palette on this route.
  */
 const font = "Inter, system-ui, sans-serif";
+
+/** How long the hero card dwells on each of the three ways a mentor helps. */
+const stepMs = 3200;
+const fillBar = keyframes`from { transform: scaleX(0); } to { transform: scaleX(1); }`;
+const travel = keyframes`0% { left: 0%; } 50% { left: calc(100% - 10px); } 100% { left: 0%; }`;
 
 const icons: Record<string, React.ReactElement> = {
   wallet: <AccountBalanceWalletOutlinedIcon fontSize="small" />,
@@ -161,15 +167,38 @@ const Avatar: React.FC<{ initial: string; name: string; role: string; dark?: boo
 /** The hero illustration: a mentor and a mentee connected through a shared quest. */
 const ConnectionCard: React.FC = () => {
   const c = mentorshipConnection;
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [reducedMotion] = useState(
+    () => typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches,
+  );
+
+  useEffect(() => {
+    if (paused || reducedMotion) return;
+    const timer = window.setTimeout(() => setActive((active + 1) % c.activity.length), stepMs);
+    return () => window.clearTimeout(timer);
+  }, [active, paused, reducedMotion, c.activity.length]);
+
   return (
     <Box sx={{ ...cardSx, borderRadius: "28px", p: { xs: 2.5, sm: 3.5 }, boxShadow: "0 30px 80px -40px rgba(22,20,42,.35)" }}>
       {/* The two people, linked */}
       <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
         <Avatar {...c.mentor} />
-        <Box sx={{ flex: 1, display: "flex", alignItems: "center", minWidth: 24 }}>
-          <Box sx={{ flex: 1, height: "2px", backgroundImage: `linear-gradient(to right, ${q.purple} 50%, transparent 50%)`, backgroundSize: "8px 2px" }} />
-          <Box sx={{ width: 10, height: 10, borderRadius: 99, backgroundColor: q.purple, mx: 0.5 }} />
-          <Box sx={{ flex: 1, height: "2px", backgroundImage: `linear-gradient(to right, ${q.purple} 50%, transparent 50%)`, backgroundSize: "8px 2px" }} />
+        <Box sx={{ flex: 1, position: "relative", height: 10, minWidth: 24, display: "flex", alignItems: "center" }}>
+          <Box sx={{ flex: 1, height: "2px", backgroundImage: `linear-gradient(to right, ${q.lavenderLine} 50%, transparent 50%)`, backgroundSize: "8px 2px" }} />
+          <Box
+            sx={{
+              position: "absolute",
+              top: 0,
+              left: "calc(50% - 5px)",
+              width: 10,
+              height: 10,
+              borderRadius: 99,
+              backgroundColor: q.purple,
+              boxShadow: `0 0 0 4px ${q.lavender}`,
+              animation: reducedMotion ? "none" : `${travel} 3.2s ease-in-out infinite`,
+            }}
+          />
         </Box>
         <Avatar {...c.mentee} dark />
       </Box>
@@ -186,26 +215,61 @@ const ConnectionCard: React.FC = () => {
         </Box>
       </Box>
 
-      {/* How the mentor helps */}
-      <Box sx={{ mt: 2, display: "grid" }}>
-        {c.activity.map((item, index) => (
-          <Box
-            key={item.kind}
-            sx={{
-              display: "flex",
-              gap: 1.75,
-              alignItems: "center",
-              py: 1.75,
-              borderTop: index === 0 ? "none" : `1px solid ${q.line}`,
-            }}
-          >
-            <IconTile name={item.kind} />
-            <Box sx={{ minWidth: 0 }}>
-              <Typography sx={{ fontFamily: font, fontWeight: 600, fontSize: "14px", color: q.ink }}>{item.title}</Typography>
-              <Typography sx={{ fontFamily: font, fontSize: "14px", color: q.muted, lineHeight: 1.5 }}>{item.text}</Typography>
+      {/* How the mentor helps: one step at a time, on a loop */}
+      <Box sx={{ mt: 2, display: "grid", gap: 0.75 }} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+        {c.activity.map((item, index) => {
+          const isActive = index === active;
+          return (
+            <Box
+              key={item.kind}
+              component="button"
+              type="button"
+              onClick={() => setActive(index)}
+              aria-pressed={isActive}
+              sx={{
+                all: "unset",
+                boxSizing: "border-box",
+                cursor: "pointer",
+                position: "relative",
+                overflow: "hidden",
+                display: "flex",
+                gap: 1.75,
+                alignItems: "center",
+                px: 1.75,
+                py: 1.5,
+                borderRadius: "16px",
+                backgroundColor: isActive ? q.lavender : "transparent",
+                opacity: isActive ? 1 : 0.55,
+                transform: isActive ? "translateX(4px)" : "none",
+                transition: "background-color .35s ease, opacity .35s ease, transform .35s ease",
+                "&:hover": { opacity: 1 },
+                "&:focus-visible": { outline: `2px solid ${q.purple}`, outlineOffset: 2 },
+                "& .icon-tile": isActive ? { backgroundColor: q.purple, color: "#fff" } : {},
+              }}
+            >
+              <IconTile name={item.kind} />
+              <Box sx={{ minWidth: 0 }}>
+                <Typography sx={{ fontFamily: font, fontWeight: 600, fontSize: "14px", color: q.ink }}>{item.title}</Typography>
+                <Typography sx={{ fontFamily: font, fontSize: "14px", color: q.muted, lineHeight: 1.5 }}>{item.text}</Typography>
+              </Box>
+              {isActive && !paused && !reducedMotion && (
+                <Box
+                  key={`bar-${active}`}
+                  sx={{
+                    position: "absolute",
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    height: "2px",
+                    backgroundColor: q.purple,
+                    transformOrigin: "left",
+                    animation: `${fillBar} ${stepMs}ms linear forwards`,
+                  }}
+                />
+              )}
             </Box>
-          </Box>
-        ))}
+          );
+        })}
       </Box>
     </Box>
   );
