@@ -300,16 +300,36 @@ const SectionHeading: React.FC<{ eyebrow: string; title: string; maxWidth?: numb
   </Box>
 );
 
+/** How long each real screen stays up before the section moves to the next one. */
+const screenMs = 5500;
+
 const ScreensSection: React.FC = () => {
   const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [inView, setInView] = useState(false);
+  const [reducedMotion] = useState(
+    () => typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches,
+  );
+  const sectionRef = useRef<HTMLDivElement>(null);
   const images: Record<string, string> = { plan: planImage, reflection: reflectionImage };
-  const item = mentorshipScreens.items[active];
+  const items = mentorshipScreens.items;
+  const running = inView && !paused && !reducedMotion;
+
+  // Only move on while the section is on screen, so the visitor never misses the first screen.
+  useEffect(() => {
+    if (!sectionRef.current || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { threshold: 0.4 });
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <Box>
+    <Box ref={sectionRef} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
       <SectionHeading eyebrow={mentorshipScreens.eyebrow} title={mentorshipScreens.title} />
       <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: ".8fr 1.2fr" }, gap: { xs: 3, md: 6 }, alignItems: "center" }}>
+        {/* Both steps always show their full text, so choosing one never moves the page */}
         <Box sx={{ display: "grid", gap: 1.5, order: { xs: 2, md: 1 } }}>
-          {mentorshipScreens.items.map((screen, index) => {
+          {items.map((screen, index) => {
             const isActive = index === active;
             return (
               <Box
@@ -317,31 +337,82 @@ const ScreensSection: React.FC = () => {
                 component="button"
                 type="button"
                 onClick={() => setActive(index)}
-                onMouseEnter={() => setActive(index)}
                 aria-pressed={isActive}
                 sx={{
                   all: "unset",
                   boxSizing: "border-box",
+                  position: "relative",
+                  overflow: "hidden",
                   cursor: "pointer",
                   p: 3,
                   borderRadius: "20px",
                   backgroundColor: isActive ? "#fff" : "transparent",
                   border: `1px solid ${isActive ? q.lavenderLine : "transparent"}`,
                   boxShadow: isActive ? "0 20px 40px -28px rgba(22,20,42,.35)" : "none",
-                  transition: "all .25s ease",
+                  transition: "background-color .4s ease, border-color .4s ease, box-shadow .4s ease",
                   "&:hover": { backgroundColor: "#fff" },
                   "&:focus-visible": { outline: `2px solid ${q.purple}`, outlineOffset: 2 },
                 }}
               >
-                <Typography sx={{ ...eyebrowSx, color: isActive ? q.purple : q.muted }}>{screen.label}</Typography>
-                <Typography sx={{ ...headingSx, fontSize: "20px", letterSpacing: "-0.02em", mt: 1 }}>{screen.title}</Typography>
-                {isActive && <Typography sx={{ ...bodySx, fontSize: "15px", mt: 0.75 }}>{screen.desc}</Typography>}
+                <Box sx={{ opacity: isActive ? 1 : 0.55, transition: "opacity .4s ease" }}>
+                  <Typography sx={{ ...eyebrowSx, color: isActive ? q.purple : q.muted }}>{screen.label}</Typography>
+                  <Typography sx={{ ...headingSx, fontSize: "20px", letterSpacing: "-0.02em", mt: 1 }}>{screen.title}</Typography>
+                  <Typography sx={{ ...bodySx, fontSize: "15px", mt: 0.75 }}>{screen.desc}</Typography>
+                </Box>
+                {isActive && !reducedMotion && (
+                  <Box
+                    key={`${index}-bar`}
+                    onAnimationEnd={() => setActive((current) => (current + 1) % items.length)}
+                    sx={{
+                      position: "absolute",
+                      left: 0,
+                      bottom: 0,
+                      height: 3,
+                      width: "100%",
+                      backgroundColor: q.purple,
+                      transformOrigin: "left",
+                      animation: `${fillBar} ${screenMs}ms linear forwards`,
+                      animationPlayState: running ? "running" : "paused",
+                    }}
+                  />
+                )}
               </Box>
             );
           })}
         </Box>
-        <Box sx={{ order: { xs: 1, md: 2 }, borderRadius: "28px", overflow: "hidden", border: `1px solid ${q.line}`, boxShadow: "0 30px 80px -40px rgba(22,20,42,.45)", lineHeight: 0 }}>
-          <Box key={item.key} component="img" src={images[item.key]} alt={item.alt} sx={{ width: "100%", display: "block", animation: `${fadeIn} .35s ease` }} />
+        {/* Both screens stay loaded in one fixed frame and cross-fade, so there is no flash and no jump */}
+        <Box
+          sx={{
+            order: { xs: 1, md: 2 },
+            position: "relative",
+            aspectRatio: "1400 / 1100",
+            borderRadius: "28px",
+            overflow: "hidden",
+            border: `1px solid ${q.line}`,
+            backgroundColor: "#16142a",
+            boxShadow: "0 30px 80px -40px rgba(22,20,42,.45)",
+          }}
+        >
+          {items.map((screen, index) => (
+            <Box
+              key={screen.key}
+              component="img"
+              src={images[screen.key]}
+              alt={screen.alt}
+              aria-hidden={index !== active}
+              decoding="async"
+              sx={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                opacity: index === active ? 1 : 0,
+                transform: index === active ? "none" : "scale(1.02)",
+                transition: reducedMotion ? "none" : "opacity .6s ease, transform .6s ease",
+              }}
+            />
+          ))}
         </Box>
       </Box>
     </Box>
