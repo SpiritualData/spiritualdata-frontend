@@ -14,7 +14,7 @@ const styles = {
     padding: "10px",
     cursor: "pointer",
     position: "fixed",
-    bottom: { xs: "70px", md: "50px" },
+    bottom: { xs: "90px", md: "50px" },
     right: { xs: "20px", md: "50px" },
     zIndex: 999,
     minWidth: "unset",

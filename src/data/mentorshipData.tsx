@@ -59,9 +59,20 @@ export const mentorshipLaunchDate = "Sunday 25 October 2026";
 export const mentorshipHero = {
   eyebrow: "Quest Mentorship",
   headline: { before: "Guidance that keeps working ", accent: "between sessions", after: "." },
-  subtitle:
-    "Quest holds each person's goals, habits and reflections in one place, so a mentor and the person they guide pick up exactly where they left off.",
   note: "Free account. Runs in your browser, on any phone or computer.",
+  /** The toggle: one subtitle per audience; the hero card and buttons follow it. */
+  audiences: {
+    mentor: {
+      toggleLabel: "I'm a mentor",
+      subtitle:
+        "Quest holds each client's goals, habits and reflections in one place, so every check-in starts where the last one ended.",
+    },
+    mentee: {
+      toggleLabel: "I'm seeking guidance",
+      subtitle:
+        "Quest holds your goals, habits and reflections in one place, so what you work out with a mentor is still there on Wednesday.",
+    },
+  },
 };
 
 /**
@@ -73,10 +84,44 @@ export const mentorshipConnection = {
   mentor: { initial: "A", name: "Ana", role: "Mentor" },
   mentee: { initial: "S", name: "Sam", role: "Mentee" },
   quest: { label: "Shared quest", title: "A steady morning practice", progress: 64 },
-  activity: [
-    { kind: "check", title: "Keeps a check", text: "Ana sees Sam kept the practice 5 of 7 days." },
-    { kind: "talk", title: "Talks between sessions", text: "“How did the restless mornings go?”" },
-    { kind: "meet", title: "Meets for check-ins", text: "Thursday check-in, 30 minutes." },
+  /** The same three ways of working together, told from each side. */
+  activity: {
+    mentor: [
+      { kind: "check", title: "Keeps a check", text: "Ana sees Sam kept the practice 5 of 7 days." },
+      { kind: "talk", title: "Talks between sessions", text: "“How did the restless mornings go?”" },
+      { kind: "meet", title: "Meets for check-ins", text: "Thursday check-in, 30 minutes." },
+    ],
+    mentee: [
+      { kind: "check", title: "Ana keeps a check", text: "Sam shares the quest, and Ana follows the progress." },
+      { kind: "talk", title: "Ask between sessions", text: "“The mornings felt calmer once I changed my phone habit.”" },
+      { kind: "meet", title: "Meet for check-ins", text: "Thursday check-in, starting from what is next." },
+    ],
+  },
+};
+
+/**
+ * The real Quest screens a client works from between sessions. Plan and Daily
+ * Reflection only: the monthly review screenshot carries a real person's goals,
+ * so it stays off the public site. Images live in assets/images/mentorship.
+ */
+export const mentorshipScreens = {
+  eyebrow: "See it",
+  title: "What clients work from between sessions.",
+  items: [
+    {
+      key: "plan",
+      label: "Plan",
+      title: "The whole quest at a glance",
+      desc: "A goal broken into years, quarters, months, weeks and days.",
+      alt: "Quest dashboard showing a goal plan broken into time periods",
+    },
+    {
+      key: "reflection",
+      label: "Daily reflection",
+      title: "A few minutes to look back and plan ahead",
+      desc: "Reflect on yesterday and describe today in plain words. Quest turns it into goals.",
+      alt: "Quest daily reflection with a prompt for yesterday and a plan for today",
+    },
   ],
 };
 
@@ -101,6 +146,7 @@ export const mentorAudience = {
     "A profile and booking page so the right people find you.",
   ],
   ctaLabel: "Sign up as a mentor",
+  ctaShortLabel: "Sign up as a mentor",
   ctaUrl: mentorSignUpUrl,
   footnote: `Applications open ${mentorshipLaunchDate}.`,
 };
@@ -115,6 +161,7 @@ export const menteeAudience = {
     "Your data is yours. You choose what each mentor sees.",
   ],
   ctaLabel: "Sign up to find a mentor",
+  ctaShortLabel: "Find a mentor",
   ctaUrl: menteeSignUpUrl,
   footnote: "Quest is yours to use from today.",
 };
@@ -149,6 +196,19 @@ export const mentorshipPeople = {
     { icon: "growth", text: "People growing toward big life goals" },
     { icon: "inquiry", text: "Open inquiry on both sides" },
     { icon: "ai", text: "AI as a means to a more conscious life" },
+  ],
+};
+
+/** The questions that stop a sign-up. Facts only: no prices, no payout terms. */
+export const mentorshipFaq = {
+  eyebrow: "Questions",
+  title: "Before you sign up.",
+  items: [
+    { q: "Is it free?", a: "Creating your account is free, and you can start using Quest today." },
+    { q: "Do I need to download anything?", a: "No. Quest runs in your browser at quest.spiritualdata.org, on any phone or computer." },
+    { q: "Who sees my goals and reflections?", a: "You do. You choose what each mentor sees, and your data stays yours." },
+    { q: "When can mentors start?", a: `Mentor applications open on ${mentorshipLaunchDate}. The account you create today is the one you apply with.` },
+    { q: "Who is behind Quest?", a: "Spiritual Data, a nonprofit that studies spiritual experience with the tools of science." },
   ],
 };
 
