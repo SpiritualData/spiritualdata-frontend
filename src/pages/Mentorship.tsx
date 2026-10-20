@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Box, Container, Typography } from "@mui/material";
 import { keyframes } from "@mui/system";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
@@ -12,16 +12,21 @@ import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineR
 import SelfImprovementOutlinedIcon from "@mui/icons-material/SelfImprovementOutlined";
 import TrendingUpRoundedIcon from "@mui/icons-material/TrendingUpRounded";
 import ScienceOutlinedIcon from "@mui/icons-material/ScienceOutlined";
+import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import planImage from "../assets/images/mentorship/quest-plan.webp";
+import reflectionImage from "../assets/images/mentorship/daily-reflection.webp";
 import {
   menteeAudience,
   mentorAudience,
   mentorshipConnection,
+  mentorshipFaq,
   mentorshipFinal,
   mentorshipGoal,
   mentorshipHero,
   mentorshipModel,
   mentorshipPeople,
   mentorshipQuestions,
+  mentorshipScreens,
   mentorshipSteps,
 } from "../data/mentorshipData";
 import { questPalette as q } from "../styles/questPalette";
@@ -40,6 +45,7 @@ const font = "Inter, system-ui, sans-serif";
 /** How long the hero card dwells on each of the three ways a mentor helps. */
 const stepMs = 3200;
 const fillBar = keyframes`from { transform: scaleX(0); } to { transform: scaleX(1); }`;
+const fadeIn = keyframes`from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; }`;
 const travel = keyframes`0% { left: 0%; } 50% { left: calc(100% - 10px); } 100% { left: 0%; }`;
 
 const icons: Record<string, React.ReactElement> = {
@@ -99,10 +105,11 @@ const IconTile: React.FC<{ name: string; size?: number }> = ({ name, size = 40 }
   </Box>
 );
 
-const PillButton: React.FC<{ href: string; label: string; variant?: "solid" | "outline" }> = ({
+const PillButton: React.FC<{ href: string; label: string; variant?: "solid" | "outline"; compact?: boolean }> = ({
   href,
   label,
   variant = "solid",
+  compact = false,
 }) => {
   const solid = variant === "solid";
   return (
@@ -114,12 +121,14 @@ const PillButton: React.FC<{ href: string; label: string; variant?: "solid" | "o
       sx={{
         display: "inline-flex",
         alignItems: "center",
+        justifyContent: "center",
         gap: 1,
-        px: 3,
-        height: 48,
+        px: compact ? 2 : 3,
+        height: compact ? 46 : 48,
+        flex: compact ? 1 : "none",
         borderRadius: 999,
         fontFamily: font,
-        fontSize: "15px",
+        fontSize: compact ? "14px" : "15px",
         fontWeight: 600,
         textDecoration: "none",
         whiteSpace: "nowrap",
@@ -133,7 +142,7 @@ const PillButton: React.FC<{ href: string; label: string; variant?: "solid" | "o
       }}
     >
       {label}
-      <NorthEastRoundedIcon sx={{ fontSize: 16 }} />
+      {!compact && <NorthEastRoundedIcon sx={{ fontSize: 16 }} />}
     </Box>
   );
 };
@@ -164,9 +173,12 @@ const Avatar: React.FC<{ initial: string; name: string; role: string; dark?: boo
   </Box>
 );
 
+type Audience = "mentor" | "mentee";
+
 /** The hero illustration: a mentor and a mentee connected through a shared quest. */
-const ConnectionCard: React.FC = () => {
+const ConnectionCard: React.FC<{ audience: Audience }> = ({ audience }) => {
   const c = mentorshipConnection;
+  const activity = c.activity[audience];
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const [reducedMotion] = useState(
@@ -175,9 +187,11 @@ const ConnectionCard: React.FC = () => {
 
   useEffect(() => {
     if (paused || reducedMotion) return;
-    const timer = window.setTimeout(() => setActive((active + 1) % c.activity.length), stepMs);
+    const timer = window.setTimeout(() => setActive((active + 1) % activity.length), stepMs);
     return () => window.clearTimeout(timer);
-  }, [active, paused, reducedMotion, c.activity.length]);
+  }, [active, paused, reducedMotion, activity.length]);
+
+  useEffect(() => setActive(0), [audience]);
 
   return (
     <Box sx={{ ...cardSx, borderRadius: "28px", p: { xs: 2.5, sm: 3.5 }, boxShadow: "0 30px 80px -40px rgba(22,20,42,.35)" }}>
@@ -216,8 +230,8 @@ const ConnectionCard: React.FC = () => {
       </Box>
 
       {/* How the mentor helps: one step at a time, on a loop */}
-      <Box sx={{ mt: 2, display: "grid", gap: 0.75 }} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
-        {c.activity.map((item, index) => {
+      <Box key={audience} sx={{ mt: 2, display: "grid", gap: 0.75, animation: reducedMotion ? "none" : `${fadeIn} .4s ease` }} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+        {activity.map((item, index) => {
           const isActive = index === active;
           return (
             <Box
@@ -284,9 +298,120 @@ const SectionHeading: React.FC<{ eyebrow: string; title: string; maxWidth?: numb
   </Box>
 );
 
+const ScreensSection: React.FC = () => {
+  const [active, setActive] = useState(0);
+  const images: Record<string, string> = { plan: planImage, reflection: reflectionImage };
+  const item = mentorshipScreens.items[active];
+  return (
+    <Box>
+      <SectionHeading eyebrow={mentorshipScreens.eyebrow} title={mentorshipScreens.title} />
+      <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: ".8fr 1.2fr" }, gap: { xs: 3, md: 6 }, alignItems: "center" }}>
+        <Box sx={{ display: "grid", gap: 1.5, order: { xs: 2, md: 1 } }}>
+          {mentorshipScreens.items.map((screen, index) => {
+            const isActive = index === active;
+            return (
+              <Box
+                key={screen.key}
+                component="button"
+                type="button"
+                onClick={() => setActive(index)}
+                onMouseEnter={() => setActive(index)}
+                aria-pressed={isActive}
+                sx={{
+                  all: "unset",
+                  boxSizing: "border-box",
+                  cursor: "pointer",
+                  p: 3,
+                  borderRadius: "20px",
+                  backgroundColor: isActive ? "#fff" : "transparent",
+                  border: `1px solid ${isActive ? q.lavenderLine : "transparent"}`,
+                  boxShadow: isActive ? "0 20px 40px -28px rgba(22,20,42,.35)" : "none",
+                  transition: "all .25s ease",
+                  "&:hover": { backgroundColor: "#fff" },
+                  "&:focus-visible": { outline: `2px solid ${q.purple}`, outlineOffset: 2 },
+                }}
+              >
+                <Typography sx={{ ...eyebrowSx, color: isActive ? q.purple : q.muted }}>{screen.label}</Typography>
+                <Typography sx={{ ...headingSx, fontSize: "20px", letterSpacing: "-0.02em", mt: 1 }}>{screen.title}</Typography>
+                {isActive && <Typography sx={{ ...bodySx, fontSize: "15px", mt: 0.75 }}>{screen.desc}</Typography>}
+              </Box>
+            );
+          })}
+        </Box>
+        <Box sx={{ order: { xs: 1, md: 2 }, borderRadius: "28px", overflow: "hidden", border: `1px solid ${q.line}`, boxShadow: "0 30px 80px -40px rgba(22,20,42,.45)", lineHeight: 0 }}>
+          <Box key={item.key} component="img" src={images[item.key]} alt={item.alt} sx={{ width: "100%", display: "block", animation: `${fadeIn} .35s ease` }} />
+        </Box>
+      </Box>
+    </Box>
+  );
+};
+
+const FaqSection: React.FC = () => {
+  const [open, setOpen] = useState(0);
+  return (
+    <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: ".8fr 1.2fr" }, gap: { xs: 3, md: 8 } }}>
+      <Box>
+        <Typography sx={eyebrowSx}>{mentorshipFaq.eyebrow}</Typography>
+        <Typography component="h2" sx={{ ...headingSx, fontSize: { xs: "32px", md: "44px" }, mt: 1.5 }}>
+          {mentorshipFaq.title}
+        </Typography>
+      </Box>
+      <Box>
+        {mentorshipFaq.items.map((item, index) => {
+          const isOpen = open === index;
+          return (
+            <Box key={item.q} sx={{ borderTop: `1px solid ${q.line}`, ...(index === mentorshipFaq.items.length - 1 ? { borderBottom: `1px solid ${q.line}` } : {}) }}>
+              <Box
+                component="button"
+                type="button"
+                onClick={() => setOpen(isOpen ? -1 : index)}
+                aria-expanded={isOpen}
+                sx={{
+                  all: "unset",
+                  boxSizing: "border-box",
+                  width: "100%",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  gap: 2,
+                  py: 2.5,
+                  "&:focus-visible": { outline: `2px solid ${q.purple}`, outlineOffset: 2 },
+                }}
+              >
+                <Typography sx={{ fontFamily: font, fontSize: "17px", fontWeight: 600, color: q.ink }}>{item.q}</Typography>
+                <AddRoundedIcon sx={{ color: q.purple, flexShrink: 0, transition: "transform .25s ease", transform: isOpen ? "rotate(135deg)" : "none" }} />
+              </Box>
+              {isOpen && <Typography sx={{ ...bodySx, pb: 2.5, pr: 5 }}>{item.a}</Typography>}
+            </Box>
+          );
+        })}
+      </Box>
+    </Box>
+  );
+};
+
 const Mentorship: React.FC = () => {
+  const [audience, setAudience] = useState<Audience>("mentor");
+  const [showBar, setShowBar] = useState(false);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const finalRef = useRef<HTMLDivElement>(null);
   const audiences = [mentorAudience, menteeAudience];
   const sectionPy = { xs: 8, md: 12 };
+  const primary = audience === "mentor" ? mentorAudience : menteeAudience;
+  const secondary = audience === "mentor" ? menteeAudience : mentorAudience;
+
+  // The sticky bar shows once the hero buttons have scrolled away, and hides again at the closing call.
+  useEffect(() => {
+    if (!heroRef.current || !finalRef.current || typeof IntersectionObserver === "undefined") return;
+    const seen = { hero: true, final: false };
+    const update = () => setShowBar(!seen.hero && !seen.final);
+    const heroObserver = new IntersectionObserver(([e]) => { seen.hero = e.isIntersecting; update(); });
+    const finalObserver = new IntersectionObserver(([e]) => { seen.final = e.isIntersecting; update(); });
+    heroObserver.observe(heroRef.current);
+    finalObserver.observe(finalRef.current);
+    return () => { heroObserver.disconnect(); finalObserver.disconnect(); };
+  }, []);
 
   return (
     <Box sx={{ backgroundColor: q.paper, color: q.ink, fontFamily: font, overflow: "hidden" }}>
@@ -316,45 +441,65 @@ const Mentorship: React.FC = () => {
               </Box>
               {mentorshipHero.headline.after}
             </Typography>
-            <Typography sx={{ ...bodySx, fontSize: { xs: "17px", md: "18px" }, mt: 3, maxWidth: 500 }}>
-              {mentorshipHero.subtitle}
+            {/* One switch: the subtitle, the card and the buttons follow the visitor's side */}
+            <Box role="group" aria-label="I am a" sx={{ display: "inline-flex", p: 0.5, mt: 3, borderRadius: 999, backgroundColor: "#fff", border: `1px solid ${q.line}` }}>
+              {(["mentor", "mentee"] as Audience[]).map((side) => {
+                const isActive = audience === side;
+                return (
+                  <Box
+                    key={side}
+                    component="button"
+                    type="button"
+                    onClick={() => setAudience(side)}
+                    aria-pressed={isActive}
+                    sx={{
+                      all: "unset",
+                      boxSizing: "border-box",
+                      cursor: "pointer",
+                      px: { xs: 1.75, sm: 2.5 },
+                      py: 1,
+                      borderRadius: 999,
+                      fontFamily: font,
+                      fontSize: "14px",
+                      fontWeight: 600,
+                      whiteSpace: "nowrap",
+                      color: isActive ? "#fff" : q.muted,
+                      backgroundColor: isActive ? q.ink : "transparent",
+                      transition: "all .25s ease",
+                      "&:hover": { color: isActive ? "#fff" : q.ink },
+                      "&:focus-visible": { outline: `2px solid ${q.purple}`, outlineOffset: 2 },
+                    }}
+                  >
+                    {mentorshipHero.audiences[side].toggleLabel}
+                  </Box>
+                );
+              })}
+            </Box>
+            <Typography key={audience} sx={{ ...bodySx, fontSize: { xs: "17px", md: "18px" }, mt: 2.5, maxWidth: 500, minHeight: { sm: 87 }, animation: `${fadeIn} .35s ease` }}>
+              {mentorshipHero.audiences[audience].subtitle}
             </Typography>
-            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, mt: 4 }}>
-              <PillButton href={mentorAudience.ctaUrl} label={mentorAudience.ctaLabel} />
-              <PillButton href={menteeAudience.ctaUrl} label={menteeAudience.ctaLabel} variant="outline" />
+            <Box ref={heroRef} sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, mt: 3 }}>
+              <PillButton href={primary.ctaUrl} label={primary.ctaLabel} />
+              <PillButton href={secondary.ctaUrl} label={secondary.ctaLabel} variant="outline" />
             </Box>
-            <Typography sx={{ ...bodySx, fontSize: "14px", mt: 2.5 }}>{mentorshipHero.note}</Typography>
-          </Box>
-          <ConnectionCard />
-        </Box>
-      </Container>
+            <Typography sx={{ ...bodySx, fontSize: "14px", mt: 2 }}>{mentorshipHero.note}</Typography>
 
-      {/* The goal, as a quiet band in the page palette */}
-      <Container maxWidth="lg">
-        <Box
-          sx={{
-            ...cardSx,
-            backgroundColor: q.lavender,
-            border: `1px solid ${q.lavenderLine}`,
-            px: { xs: 3, md: 6 },
-            py: { xs: 4, md: 5 },
-            display: "grid",
-            gridTemplateColumns: { xs: "1fr 1fr", md: "auto auto 1fr" },
-            gap: { xs: 3, md: 7 },
-            alignItems: "center",
-          }}
-        >
-          {mentorshipGoal.stats.map((stat) => (
-            <Box key={stat.label}>
-              <Typography sx={{ ...headingSx, fontSize: { xs: "40px", md: "64px" }, lineHeight: 1 }}>{stat.value}</Typography>
-              <Typography sx={{ ...bodySx, fontSize: "15px", mt: 0.75 }}>{stat.label}</Typography>
+            {/* The goal, up front: the numbers Joshua asked to be stated */}
+            <Box sx={{ mt: { xs: 4, md: 5 }, pt: { xs: 3, md: 4 }, borderTop: `1px solid ${q.line}` }}>
+              <Typography sx={eyebrowSx}>{mentorshipGoal.eyebrow}</Typography>
+              <Box sx={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", columnGap: { xs: 3, md: 5 }, rowGap: 1, mt: 1.5 }}>
+                {mentorshipGoal.stats.map((stat) => (
+                  <Box key={stat.label}>
+                    <Typography sx={{ ...headingSx, fontSize: { xs: "36px", md: "44px" }, lineHeight: 1 }}>{stat.value}</Typography>
+                    <Typography sx={{ ...bodySx, fontSize: "14px", mt: 0.5 }}>{stat.label}</Typography>
+                  </Box>
+                ))}
+                <Typography sx={{ fontFamily: font, fontSize: "15px", fontWeight: 600, color: q.purple, pb: { xs: 0, sm: 3.25 } }}>{mentorshipGoal.by}</Typography>
+              </Box>
+              <Typography sx={{ ...bodySx, fontSize: "14px", mt: 1.5 }}>{mentorshipGoal.line}</Typography>
             </Box>
-          ))}
-          <Box sx={{ gridColumn: { xs: "1 / -1", md: "auto" }, borderLeft: { md: `1px solid ${q.lavenderLine}` }, pl: { md: 5 } }}>
-            <Typography sx={eyebrowSx}>{mentorshipGoal.eyebrow}</Typography>
-            <Typography sx={{ fontFamily: font, fontWeight: 600, fontSize: "18px", color: q.ink, mt: 1 }}>{mentorshipGoal.by}</Typography>
-            <Typography sx={{ ...bodySx, fontSize: "15px", mt: 0.75 }}>{mentorshipGoal.line}</Typography>
           </Box>
+          <ConnectionCard audience={audience} />
         </Box>
       </Container>
 
@@ -385,6 +530,11 @@ const Mentorship: React.FC = () => {
             </Box>
           ))}
         </Box>
+      </Container>
+
+      {/* Real Quest screens */}
+      <Container maxWidth="lg" sx={{ pb: sectionPy }}>
+        <ScreensSection />
       </Container>
 
       {/* How it works */}
@@ -470,9 +620,15 @@ const Mentorship: React.FC = () => {
         </Box>
       </Container>
 
+      {/* Questions */}
+      <Container maxWidth="lg" sx={{ pb: sectionPy }}>
+        <FaqSection />
+      </Container>
+
       {/* Final call */}
       <Container maxWidth="lg" sx={{ pb: { xs: 8, md: 12 } }}>
         <Box
+          ref={finalRef}
           sx={{
             borderRadius: "28px",
             px: { xs: 3.5, md: 7 },
@@ -508,6 +664,32 @@ const Mentorship: React.FC = () => {
           </Box>
         </Box>
       </Container>
+
+      {/* Sticky sign-up bar, phones and tablets only */}
+      <Box
+        aria-hidden={!showBar}
+        sx={{
+          display: { xs: "flex", md: "none" },
+          position: "fixed",
+          left: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: 1100,
+          gap: 1,
+          px: 2,
+          pt: 1.5,
+          pb: "calc(12px + env(safe-area-inset-bottom))",
+          backgroundColor: "rgba(247,246,243,.94)",
+          backdropFilter: "blur(12px)",
+          borderTop: `1px solid ${q.line}`,
+          transform: showBar ? "none" : "translateY(110%)",
+          visibility: showBar ? "visible" : "hidden",
+          transition: "transform .3s ease, visibility .3s",
+        }}
+      >
+        <PillButton compact href={mentorAudience.ctaUrl} label={mentorAudience.ctaShortLabel} />
+        <PillButton compact href={menteeAudience.ctaUrl} label={menteeAudience.ctaShortLabel} variant="outline" />
+      </Box>
     </Box>
   );
 };
