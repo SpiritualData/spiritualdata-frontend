@@ -44,6 +44,45 @@ export const menteeSignUpUrl =
   "https://quest.spiritualdata.org/sign-up?ref=mentee-launch";
 
 /**
+ * Every CTA opens a short form first (email plus one phrase), so a visitor is
+ * counted even if they never finish sign-up, and then goes on to the sign-up
+ * link above. The form posts to Quest's public community-interest endpoint
+ * (quest-backend app/api/endpoints/community_interest.py): no login, one row
+ * per email and category, linked to the account when the email matches one.
+ * The two category ids below are the two sides of the launch.
+ */
+export const questApiUrl = "https://api.prod.spiritualdata.org";
+export const mentorshipInterestPath = "/api/community-interest/signup";
+
+export const mentorshipInterest = {
+  mentor: {
+    categoryId: "mentor-launch",
+    categoryName: "Mentorship launch: mentors",
+    title: "Tell us what you mentor",
+    intro: "Two quick answers, then you create your free account.",
+    topicLabel: "What would you like to mentor for?",
+    topicPlaceholder: "e.g. a steady morning practice",
+  },
+  mentee: {
+    categoryId: "mentee-launch",
+    categoryName: "Mentorship launch: seeking a mentor",
+    title: "What are you looking for?",
+    intro: "Two quick answers, then you create your free account.",
+    topicLabel: "What would you like mentorship for?",
+    topicPlaceholder: "e.g. finding calm in a career change",
+  },
+  emailLabel: "Your email",
+  submitLabel: "Continue to sign up",
+  sendingLabel: "Saving...",
+  privacy: "We use your email to tell you when mentorship opens.",
+  successText: "Thank you. Taking you to sign up.",
+  errorText: "That did not save. Try again, or",
+  skipLabel: "continue to sign up.",
+  invalidEmail: "Enter a valid email address.",
+  topicRequired: "Add a few words.",
+};
+
+/**
  * The launch date. Sunday 25 October 2026 is the last Sunday of October, which is
  * the day the monthly Quest session already runs, so the launch has an event
  * around it. Joshua asked for a day to be picked (email, 21 September 2026);
@@ -146,7 +185,6 @@ export const mentorAudience = {
     "A profile and booking page so the right people find you.",
   ],
   ctaLabel: "Sign up as a mentor",
-  ctaShortLabel: "Sign up as a mentor",
   ctaUrl: mentorSignUpUrl,
   footnote: `Applications open ${mentorshipLaunchDate}.`,
 };
@@ -161,7 +199,6 @@ export const menteeAudience = {
     "Your data is yours. You choose what each mentor sees.",
   ],
   ctaLabel: "Sign up to find a mentor",
-  ctaShortLabel: "Find a mentor",
   ctaUrl: menteeSignUpUrl,
   footnote: "Quest is yours to use from today.",
 };
