@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Box, Container, Typography } from "@mui/material";
 import { keyframes } from "@mui/system";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
-import NorthEastRoundedIcon from "@mui/icons-material/NorthEastRounded";
+import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import AutoAwesomeRoundedIcon from "@mui/icons-material/AutoAwesomeRounded";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 import EventAvailableOutlinedIcon from "@mui/icons-material/EventAvailableOutlined";
@@ -30,12 +30,14 @@ import {
   mentorshipSteps,
 } from "../data/mentorshipData";
 import { questPalette as q } from "../styles/questPalette";
+import MentorshipInterestDialog, { MentorshipSide } from "../components/MentorshipInterestDialog";
 
 /**
  * /mentorship: the registration door for the mentorship launch.
  *
- * Both CTAs go to the live Quest sign-up with a ref slug, so a mentor and a
- * mentee are counted separately with no new backend code. All copy lives in
+ * Every CTA follows the mentor / seeking-guidance switch and opens a short
+ * form (email plus one phrase) before sending the visitor on to the live Quest
+ * sign-up with a ref slug, so the two sides are counted separately. All copy lives in
  * src/data/mentorshipData.tsx. The look (warm paper, ink, Quest purple, pill
  * buttons) matches the Quest niche landing pages; App.tsx gives the navbar and
  * footer the same palette on this route.
@@ -105,8 +107,8 @@ const IconTile: React.FC<{ name: string; size?: number }> = ({ name, size = 40 }
   </Box>
 );
 
-const PillButton: React.FC<{ href: string; label: string; variant?: "solid" | "outline"; compact?: boolean }> = ({
-  href,
+const PillButton: React.FC<{ onClick: () => void; label: string; variant?: "solid" | "outline"; compact?: boolean }> = ({
+  onClick,
   label,
   variant = "solid",
   compact = false,
@@ -114,11 +116,11 @@ const PillButton: React.FC<{ href: string; label: string; variant?: "solid" | "o
   const solid = variant === "solid";
   return (
     <Box
-      component="a"
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
+      component="button"
+      type="button"
+      onClick={onClick}
       sx={{
+        cursor: "pointer",
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
@@ -142,7 +144,7 @@ const PillButton: React.FC<{ href: string; label: string; variant?: "solid" | "o
       }}
     >
       {label}
-      {!compact && <NorthEastRoundedIcon sx={{ fontSize: 16 }} />}
+      {!compact && <ArrowForwardRoundedIcon sx={{ fontSize: 16 }} />}
     </Box>
   );
 };
@@ -394,12 +396,16 @@ const FaqSection: React.FC = () => {
 const Mentorship: React.FC = () => {
   const [audience, setAudience] = useState<Audience>("mentor");
   const [showBar, setShowBar] = useState(false);
+  const [formSide, setFormSide] = useState<MentorshipSide | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const finalRef = useRef<HTMLDivElement>(null);
-  const audiences = [mentorAudience, menteeAudience];
+  const cards: { side: MentorshipSide; content: typeof mentorAudience }[] = [
+    { side: "mentor", content: mentorAudience },
+    { side: "mentee", content: menteeAudience },
+  ];
   const sectionPy = { xs: 8, md: 12 };
   const primary = audience === "mentor" ? mentorAudience : menteeAudience;
-  const secondary = audience === "mentor" ? menteeAudience : mentorAudience;
+  const openForm = () => setFormSide(audience);
 
   // The sticky bar shows once the hero buttons have scrolled away, and hides again at the closing call.
   useEffect(() => {
@@ -479,8 +485,7 @@ const Mentorship: React.FC = () => {
               {mentorshipHero.audiences[audience].subtitle}
             </Typography>
             <Box ref={heroRef} sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, mt: 3 }}>
-              <PillButton href={primary.ctaUrl} label={primary.ctaLabel} />
-              <PillButton href={secondary.ctaUrl} label={secondary.ctaLabel} variant="outline" />
+              <PillButton onClick={openForm} label={primary.ctaLabel} />
             </Box>
             <Typography sx={{ ...bodySx, fontSize: "14px", mt: 2 }}>{mentorshipHero.note}</Typography>
 
@@ -506,15 +511,26 @@ const Mentorship: React.FC = () => {
       {/* Two audiences */}
       <Container maxWidth="lg" sx={{ py: sectionPy }}>
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" }, gap: 3 }}>
-          {audiences.map((audience) => (
-            <Box key={audience.eyebrow} sx={{ ...cardSx, display: "flex", flexDirection: "column", p: { xs: 3.5, md: 5 } }}>
-              <Typography sx={eyebrowSx}>{audience.eyebrow}</Typography>
+          {cards.map(({ side, content }) => (
+            <Box
+              key={content.eyebrow}
+              sx={{
+                ...cardSx,
+                display: "flex",
+                flexDirection: "column",
+                p: { xs: 3.5, md: 5 },
+                borderColor: side === audience ? q.lavenderBright : q.line,
+                boxShadow: side === audience ? `0 0 0 3px ${q.lavender}` : "none",
+                transition: "all .25s ease",
+              }}
+            >
+              <Typography sx={eyebrowSx}>{content.eyebrow}</Typography>
               <Typography component="h2" sx={{ ...headingSx, fontSize: { xs: "28px", md: "32px" }, mt: 1.5 }}>
-                {audience.title}
+                {content.title}
               </Typography>
-              <Typography sx={{ ...bodySx, fontSize: "15px", mt: 1.5 }}>{audience.who}</Typography>
-              <Box sx={{ display: "grid", gap: 1.5, mt: 3, mb: 4 }}>
-                {audience.points.map((point) => (
+              <Typography sx={{ ...bodySx, fontSize: "15px", mt: 1.5 }}>{content.who}</Typography>
+              <Box sx={{ display: "grid", gap: 1.5, mt: 3 }}>
+                {content.points.map((point) => (
                   <Box key={point} sx={{ display: "flex", gap: 1.5, alignItems: "flex-start" }}>
                     <Box sx={{ width: 22, height: 22, borderRadius: 99, backgroundColor: q.lavender, display: "grid", placeItems: "center", flexShrink: 0, mt: "2px" }}>
                       <CheckRoundedIcon sx={{ fontSize: 15, color: q.purple }} />
@@ -523,12 +539,13 @@ const Mentorship: React.FC = () => {
                   </Box>
                 ))}
               </Box>
-              <Box sx={{ mt: "auto" }}>
-                <PillButton href={audience.ctaUrl} label={audience.ctaLabel} />
-                <Typography sx={{ ...bodySx, fontSize: "14px", mt: 1.5 }}>{audience.footnote}</Typography>
-              </Box>
             </Box>
           ))}
+        </Box>
+        {/* One call to action, for the side the visitor chose at the top */}
+        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1.5, mt: 4 }}>
+          <PillButton onClick={openForm} label={primary.ctaLabel} />
+          <Typography sx={{ ...bodySx, fontSize: "14px" }}>{primary.footnote}</Typography>
         </Box>
       </Container>
 
@@ -659,8 +676,7 @@ const Mentorship: React.FC = () => {
             </Typography>
           </Box>
           <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, flexShrink: 0 }}>
-            <PillButton href={mentorAudience.ctaUrl} label={mentorAudience.ctaLabel} />
-            <PillButton href={menteeAudience.ctaUrl} label={menteeAudience.ctaLabel} variant="outline" />
+            <PillButton onClick={openForm} label={primary.ctaLabel} />
           </Box>
         </Box>
       </Container>
@@ -687,9 +703,9 @@ const Mentorship: React.FC = () => {
           transition: "transform .3s ease, visibility .3s",
         }}
       >
-        <PillButton compact href={mentorAudience.ctaUrl} label={mentorAudience.ctaShortLabel} />
-        <PillButton compact href={menteeAudience.ctaUrl} label={menteeAudience.ctaShortLabel} variant="outline" />
+        <PillButton compact onClick={openForm} label={primary.ctaLabel} />
       </Box>
+      <MentorshipInterestDialog side={formSide} onClose={() => setFormSide(null)} />
     </Box>
   );
 };
