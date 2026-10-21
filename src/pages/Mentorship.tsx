@@ -35,7 +35,9 @@ import MentorshipInterestDialog, { MentorshipSide } from "../components/Mentorsh
 /**
  * /mentorship: the registration door for the mentorship launch.
  *
- * Every CTA follows the mentor / seeking-guidance switch and opens a short
+ * The whole page follows the mentor / seeking-guidance switch: headline, hero
+ * card, every section and every CTA are written for the chosen side, and a
+ * small link lets a visitor who picked wrong switch. Every CTA opens a short
  * form (email plus one phrase) before sending the visitor on to the live Quest
  * sign-up with a ref slug, so the two sides are counted separately. All copy lives in
  * src/data/mentorshipData.tsx. The look (warm paper, ink, Quest purple, pill
@@ -303,7 +305,7 @@ const SectionHeading: React.FC<{ eyebrow: string; title: string; maxWidth?: numb
 /** How long each real screen stays up before the section moves to the next one. */
 const screenMs = 5500;
 
-const ScreensSection: React.FC = () => {
+const ScreensSection: React.FC<{ audience: Audience }> = ({ audience }) => {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const [inView, setInView] = useState(false);
@@ -312,7 +314,7 @@ const ScreensSection: React.FC = () => {
   );
   const sectionRef = useRef<HTMLDivElement>(null);
   const images: Record<string, string> = { plan: planImage, reflection: reflectionImage };
-  const items = mentorshipScreens.items;
+  const { title: screensTitle, items } = mentorshipScreens[audience];
   const running = inView && !paused && !reducedMotion;
 
   // Only move on while the section is on screen, so the visitor never misses the first screen.
@@ -325,7 +327,7 @@ const ScreensSection: React.FC = () => {
 
   return (
     <Box ref={sectionRef} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
-      <SectionHeading eyebrow={mentorshipScreens.eyebrow} title={mentorshipScreens.title} />
+      <SectionHeading eyebrow={mentorshipScreens.eyebrow} title={screensTitle} />
       <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: ".8fr 1.2fr" }, gap: { xs: 3, md: 6 }, alignItems: "center" }}>
         {/* Both steps always show their full text, so choosing one never moves the page */}
         <Box sx={{ display: "grid", gap: 1.5, order: { xs: 2, md: 1 } }}>
@@ -419,8 +421,9 @@ const ScreensSection: React.FC = () => {
   );
 };
 
-const FaqSection: React.FC = () => {
+const FaqSection: React.FC<{ audience: Audience }> = ({ audience }) => {
   const [open, setOpen] = useState(0);
+  const faqItems = mentorshipFaq[audience];
   return (
     <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: ".8fr 1.2fr" }, gap: { xs: 3, md: 8 } }}>
       <Box>
@@ -430,10 +433,10 @@ const FaqSection: React.FC = () => {
         </Typography>
       </Box>
       <Box>
-        {mentorshipFaq.items.map((item, index) => {
+        {faqItems.map((item, index) => {
           const isOpen = open === index;
           return (
-            <Box key={item.q} sx={{ borderTop: `1px solid ${q.line}`, ...(index === mentorshipFaq.items.length - 1 ? { borderBottom: `1px solid ${q.line}` } : {}) }}>
+            <Box key={item.q} sx={{ borderTop: `1px solid ${q.line}`, ...(index === faqItems.length - 1 ? { borderBottom: `1px solid ${q.line}` } : {}) }}>
               <Box
                 component="button"
                 type="button"
@@ -470,13 +473,20 @@ const Mentorship: React.FC = () => {
   const [formSide, setFormSide] = useState<MentorshipSide | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const finalRef = useRef<HTMLDivElement>(null);
-  const cards: { side: MentorshipSide; content: typeof mentorAudience }[] = [
-    { side: "mentor", content: mentorAudience },
-    { side: "mentee", content: menteeAudience },
-  ];
   const sectionPy = { xs: 8, md: 12 };
+  // Everything below the hero reads from the side the visitor chose.
+  const hero = mentorshipHero.audiences[audience];
   const primary = audience === "mentor" ? mentorAudience : menteeAudience;
+  const model = mentorshipModel[audience];
+  const people = mentorshipPeople[audience];
+  const steps = mentorshipSteps[audience];
+  const final = mentorshipFinal[audience];
+  const otherSide: Audience = audience === "mentor" ? "mentee" : "mentor";
   const openForm = () => setFormSide(audience);
+  const switchSide = () => {
+    setAudience(otherSide);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   // The sticky bar shows once the hero buttons have scrolled away, and hides again at the closing call.
   useEffect(() => {
@@ -511,12 +521,12 @@ const Mentorship: React.FC = () => {
               <Box sx={{ width: 7, height: 7, borderRadius: 99, backgroundColor: q.purple }} />
               <Typography sx={{ ...eyebrowSx, fontSize: "11px" }}>{mentorshipHero.eyebrow}</Typography>
             </Box>
-            <Typography component="h1" sx={{ ...headingSx, fontSize: { xs: "42px", sm: "52px", md: "62px" } }}>
-              {mentorshipHero.headline.before}
+            <Typography key={`h1-${audience}`} component="h1" sx={{ ...headingSx, fontSize: { xs: "42px", sm: "52px", md: "62px" }, animation: `${fadeIn} .35s ease` }}>
+              {hero.headline.before}
               <Box component="span" sx={{ color: q.purple }}>
-                {mentorshipHero.headline.accent}
+                {hero.headline.accent}
               </Box>
-              {mentorshipHero.headline.after}
+              {hero.headline.after}
             </Typography>
             {/* One switch: the subtitle, the card and the buttons follow the visitor's side */}
             <Box role="group" aria-label="I am a" sx={{ display: "inline-flex", p: 0.5, mt: 3, borderRadius: 999, backgroundColor: "#fff", border: `1px solid ${q.line}` }}>
@@ -553,7 +563,7 @@ const Mentorship: React.FC = () => {
               })}
             </Box>
             <Typography key={audience} sx={{ ...bodySx, fontSize: { xs: "17px", md: "18px" }, mt: 2.5, maxWidth: 500, minHeight: { sm: 87 }, animation: `${fadeIn} .35s ease` }}>
-              {mentorshipHero.audiences[audience].subtitle}
+              {hero.subtitle}
             </Typography>
             <Box ref={heroRef} sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, mt: 3 }}>
               <PillButton onClick={openForm} label={primary.ctaLabel} />
@@ -572,65 +582,64 @@ const Mentorship: React.FC = () => {
                 ))}
                 <Typography sx={{ fontFamily: font, fontSize: "15px", fontWeight: 600, color: q.purple, pb: { xs: 0, sm: 3.25 } }}>{mentorshipGoal.by}</Typography>
               </Box>
-              <Typography sx={{ ...bodySx, fontSize: "14px", mt: 1.5 }}>{mentorshipGoal.line}</Typography>
+              <Typography sx={{ ...bodySx, fontSize: "14px", mt: 1.5 }}>{mentorshipGoal.lines[audience]}</Typography>
             </Box>
           </Box>
           <ConnectionCard audience={audience} />
         </Box>
       </Container>
 
-      {/* Two audiences */}
+      {/* The chosen side, and only that side */}
       <Container maxWidth="lg" sx={{ py: sectionPy }}>
-        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" }, gap: 3 }}>
-          {cards.map(({ side, content }) => (
-            <Box
-              key={content.eyebrow}
-              sx={{
-                ...cardSx,
-                display: "flex",
-                flexDirection: "column",
-                p: { xs: 3.5, md: 5 },
-                borderColor: side === audience ? q.lavenderBright : q.line,
-                boxShadow: side === audience ? `0 0 0 3px ${q.lavender}` : "none",
-                transition: "all .25s ease",
-              }}
-            >
-              <Typography sx={eyebrowSx}>{content.eyebrow}</Typography>
-              <Typography component="h2" sx={{ ...headingSx, fontSize: { xs: "28px", md: "32px" }, mt: 1.5 }}>
-                {content.title}
+        <Box key={`aud-${audience}`} sx={{ animation: `${fadeIn} .4s ease` }}>
+          <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" }, gap: { xs: 4, md: 8 }, alignItems: "center" }}>
+            <Box>
+              <Typography sx={eyebrowSx}>{primary.eyebrow}</Typography>
+              <Typography component="h2" sx={{ ...headingSx, fontSize: { xs: "32px", md: "44px" }, mt: 1.5 }}>
+                {primary.title}
               </Typography>
-              <Typography sx={{ ...bodySx, fontSize: "15px", mt: 1.5 }}>{content.who}</Typography>
-              <Box sx={{ display: "grid", gap: 1.5, mt: 3 }}>
-                {content.points.map((point) => (
-                  <Box key={point} sx={{ display: "flex", gap: 1.5, alignItems: "flex-start" }}>
-                    <Box sx={{ width: 22, height: 22, borderRadius: 99, backgroundColor: q.lavender, display: "grid", placeItems: "center", flexShrink: 0, mt: "2px" }}>
-                      <CheckRoundedIcon sx={{ fontSize: 15, color: q.purple }} />
-                    </Box>
-                    <Typography sx={{ fontFamily: font, fontSize: "16px", lineHeight: 1.6, color: q.ink }}>{point}</Typography>
-                  </Box>
-                ))}
-              </Box>
+              <Typography sx={{ ...bodySx, fontSize: "17px", mt: 2 }}>{primary.who}</Typography>
             </Box>
-          ))}
-        </Box>
-        {/* One call to action, for the side the visitor chose at the top */}
-        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1.5, mt: 4 }}>
-          <PillButton onClick={openForm} label={primary.ctaLabel} />
-          <Typography sx={{ ...bodySx, fontSize: "14px" }}>{primary.footnote}</Typography>
+            <Box sx={{ display: "grid", gap: 1.5 }}>
+              {primary.points.map((point) => (
+                <Box key={point} sx={{ ...cardSx, borderRadius: "18px", p: 2.5, display: "flex", gap: 1.75, alignItems: "flex-start" }}>
+                  <Box sx={{ width: 24, height: 24, borderRadius: 99, backgroundColor: q.lavender, display: "grid", placeItems: "center", flexShrink: 0, mt: "1px" }}>
+                    <CheckRoundedIcon sx={{ fontSize: 16, color: q.purple }} />
+                  </Box>
+                  <Typography sx={{ fontFamily: font, fontSize: "16px", lineHeight: 1.6, color: q.ink }}>{point}</Typography>
+                </Box>
+              ))}
+            </Box>
+          </Box>
+          <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1.5, mt: { xs: 5, md: 6 } }}>
+            <PillButton onClick={openForm} label={primary.ctaLabel} />
+            <Typography sx={{ ...bodySx, fontSize: "14px" }}>{primary.footnote}</Typography>
+            <Typography sx={{ ...bodySx, fontSize: "14px" }}>
+              {primary.switchPrompt}{" "}
+              <Box
+                component="button"
+                type="button"
+                onClick={switchSide}
+                sx={{ all: "unset", cursor: "pointer", color: q.purple, fontWeight: 600, textDecoration: "underline", textUnderlineOffset: "3px", "&:focus-visible": { outline: `2px solid ${q.purple}`, outlineOffset: 2 } }}
+              >
+                {primary.switchLabel}
+              </Box>
+            </Typography>
+          </Box>
         </Box>
       </Container>
 
       {/* Real Quest screens */}
       <Container maxWidth="lg" sx={{ pb: sectionPy }}>
-        <ScreensSection />
+        <ScreensSection audience={audience} />
       </Container>
 
       {/* How it works */}
       <Box sx={{ backgroundColor: "#fff", borderTop: `1px solid ${q.line}`, borderBottom: `1px solid ${q.line}`, py: sectionPy }}>
         <Container maxWidth="lg">
-          <SectionHeading eyebrow={mentorshipModel.eyebrow} title={mentorshipModel.title} />
+          <SectionHeading eyebrow={mentorshipModel.eyebrow} title={model.title} />
           <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "repeat(4, 1fr)" }, gap: 2 }}>
-            {mentorshipModel.items.map((item) => (
+            {model.items.map((item) => (
               <Box
                 key={item.title}
                 sx={{
@@ -656,14 +665,14 @@ const Mentorship: React.FC = () => {
       <Container maxWidth="lg" sx={{ py: sectionPy }}>
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" }, gap: { xs: 4, md: 8 }, alignItems: "center" }}>
           <Box>
-            <Typography sx={eyebrowSx}>{mentorshipPeople.eyebrow}</Typography>
+            <Typography sx={eyebrowSx}>{people.eyebrow}</Typography>
             <Typography component="h2" sx={{ ...headingSx, fontSize: { xs: "32px", md: "44px" }, mt: 1.5 }}>
-              {mentorshipPeople.title}
+              {people.title}
             </Typography>
-            <Typography sx={{ ...bodySx, fontSize: "17px", mt: 2 }}>{mentorshipPeople.intro}</Typography>
+            <Typography sx={{ ...bodySx, fontSize: "17px", mt: 2 }}>{people.intro}</Typography>
           </Box>
           <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" }, gap: 1.5 }}>
-            {mentorshipPeople.tags.map((tag) => (
+            {people.tags.map((tag) => (
               <Box key={tag.text} sx={{ ...cardSx, borderRadius: "18px", p: 2.25, display: "flex", alignItems: "center", gap: 1.5 }}>
                 <IconTile name={tag.icon} size={36} />
                 <Typography sx={{ fontFamily: font, fontSize: "15px", fontWeight: 500, color: q.ink, lineHeight: 1.4 }}>{tag.text}</Typography>
@@ -675,10 +684,10 @@ const Mentorship: React.FC = () => {
 
       {/* What happens next */}
       <Container maxWidth="lg" sx={{ pb: sectionPy }}>
-        <SectionHeading eyebrow="What happens next" title="Three steps to your first check-in." maxWidth={820} />
+        <SectionHeading eyebrow={mentorshipSteps.eyebrow} title={steps.title} maxWidth={820} />
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "repeat(3, 1fr)" }, gap: 2 }}>
-          {mentorshipSteps.map((step, index) => {
-            const last = index === mentorshipSteps.length - 1;
+          {steps.items.map((step, index) => {
+            const last = index === steps.items.length - 1;
             return (
               <Box key={step.id} sx={{ ...cardSx, p: 3, display: "flex", gap: 2, alignItems: "flex-start", borderColor: last ? q.lavenderLine : q.line, backgroundColor: last ? q.lavender : "#fff" }}>
                 <Box
@@ -710,7 +719,7 @@ const Mentorship: React.FC = () => {
 
       {/* Questions */}
       <Container maxWidth="lg" sx={{ pb: sectionPy }}>
-        <FaqSection />
+        <FaqSection key={audience} audience={audience} />
       </Container>
 
       {/* Final call */}
@@ -733,7 +742,7 @@ const Mentorship: React.FC = () => {
           <Box>
             <Typography sx={eyebrowSx}>{mentorshipFinal.eyebrow}</Typography>
             <Typography component="h2" sx={{ ...headingSx, fontSize: { xs: "32px", md: "44px" }, mt: 1.5 }}>
-              {mentorshipFinal.heading}
+              {final.heading}
             </Typography>
             <Typography sx={{ ...bodySx, fontSize: "15px", mt: 1.5 }}>
               {mentorshipQuestions.text}{" "}
