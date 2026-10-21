@@ -16,7 +16,6 @@ export type MentorshipSide = "mentor" | "mentee";
 const font = "Inter, system-ui, sans-serif";
 const copy = mentorshipInterest;
 const topicMaxLength = 200;
-const redirectDelayMs = 1400;
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const fieldSx = {
@@ -42,7 +41,8 @@ const errorSx = { fontFamily: font, fontSize: "13px", color: "#b3261e", mt: 0.75
 /**
  * The short form behind every mentorship CTA: an email and one phrase about
  * what the visitor wants to mentor for, or wants mentorship for. It saves the
- * answer, then sends them on to Quest sign-up with the launch ref slug.
+ * answer, then offers a button to create a free Quest account (the sign-up link
+ * with the launch ref slug). It never redirects on its own.
  */
 const MentorshipInterestDialog: React.FC<{ side: MentorshipSide | null; onClose: () => void }> = ({ side, onClose }) => {
   const [email, setEmail] = useState("");
@@ -79,7 +79,6 @@ const MentorshipInterestDialog: React.FC<{ side: MentorshipSide | null; onClose:
       });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       setStatus("done");
-      window.setTimeout(() => window.location.assign(audience.ctaUrl), redirectDelayMs);
     } catch {
       setStatus("failed");
     }
@@ -103,9 +102,42 @@ const MentorshipInterestDialog: React.FC<{ side: MentorshipSide | null; onClose:
             <Box sx={{ width: 52, height: 52, borderRadius: 99, backgroundColor: q.lavender, display: "grid", placeItems: "center", mx: "auto", mb: 2 }}>
               <CheckRoundedIcon sx={{ color: q.purple }} />
             </Box>
-            <Typography role="status" sx={{ fontFamily: font, fontSize: "18px", fontWeight: 600, color: q.ink }}>
-              {copy.successText}
+            <Typography role="status" component="h2" sx={{ fontFamily: font, fontSize: "22px", fontWeight: 700, letterSpacing: "-0.02em", color: q.ink }}>
+              {copy.successTitle}
             </Typography>
+            <Typography sx={{ fontFamily: font, fontSize: "15px", lineHeight: 1.55, color: q.muted, mt: 1, mb: 3 }}>{copy.successBody}</Typography>
+            <Box
+              component="a"
+              href={audience.ctaUrl}
+              sx={{
+                boxSizing: "border-box",
+                width: "100%",
+                height: 50,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: 999,
+                fontFamily: font,
+                fontSize: "15px",
+                fontWeight: 600,
+                textDecoration: "none",
+                color: "#fff",
+                backgroundColor: q.purple,
+                transition: "background-color .2s ease",
+                "&:hover": { backgroundColor: q.purpleDark },
+                "&:focus-visible": { outline: `2px solid ${q.ink}`, outlineOffset: 2 },
+              }}
+            >
+              {copy.successCta}
+            </Box>
+            <Box
+              component="button"
+              type="button"
+              onClick={onClose}
+              sx={{ all: "unset", cursor: "pointer", mt: 2, fontFamily: font, fontSize: "14px", fontWeight: 600, color: q.muted, textDecoration: "underline", textUnderlineOffset: "3px", "&:hover": { color: q.ink }, "&:focus-visible": { outline: `2px solid ${q.purple}`, outlineOffset: 2 } }}
+            >
+              {copy.successClose}
+            </Box>
           </Box>
         ) : (
           <Box component="form" onSubmit={submit} noValidate>
