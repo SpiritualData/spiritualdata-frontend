@@ -206,7 +206,7 @@ const Navbar = () => {
                   component="img"
                   src={navbarLogo}
                   alt="Logo"
-                  sx={{ height: { xs: 40, md: 50 }, objectFit: "contain" }}
+                  sx={{ height: { xs: 40, md: 50 }, objectFit: "contain", mixBlendMode: "lighten" }}
                 />
               </Box>
 
@@ -244,7 +244,7 @@ const Navbar = () => {
                   component="img"
                   src={navbarLogo}
                   alt="Logo"
-                  sx={{ height: 54, objectFit: "contain" }}
+                  sx={{ height: 54, objectFit: "contain", mixBlendMode: "lighten" }}
                 />
               </Box>
               <Box

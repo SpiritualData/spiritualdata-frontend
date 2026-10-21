@@ -1,529 +1,792 @@
-import React from "react";
-import {
-  Box,
-  Button,
-  Container,
-  Paper,
-  Typography,
-  useTheme,
-} from "@mui/material";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import HeaderSection from "../components/Initiatives/NestedInitiativesHeader";
+import React, { useEffect, useRef, useState } from "react";
+import { Box, Container, Typography } from "@mui/material";
+import { keyframes } from "@mui/system";
+import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
+import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
+import AutoAwesomeRoundedIcon from "@mui/icons-material/AutoAwesomeRounded";
+import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
+import EventAvailableOutlinedIcon from "@mui/icons-material/EventAvailableOutlined";
+import AutoStoriesOutlinedIcon from "@mui/icons-material/AutoStoriesOutlined";
+import InsightsOutlinedIcon from "@mui/icons-material/InsightsOutlined";
+import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
+import SelfImprovementOutlinedIcon from "@mui/icons-material/SelfImprovementOutlined";
+import TrendingUpRoundedIcon from "@mui/icons-material/TrendingUpRounded";
+import ScienceOutlinedIcon from "@mui/icons-material/ScienceOutlined";
+import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import planImage from "../assets/images/mentorship/quest-plan.webp";
+import reflectionImage from "../assets/images/mentorship/daily-reflection.webp";
 import {
   menteeAudience,
   mentorAudience,
-  mentorshipBrowserNote,
-  mentorshipHeaderData,
-  mentorshipIntro,
-  mentorshipLaunchDate,
+  mentorshipConnection,
+  mentorshipFaq,
+  mentorshipFinal,
+  mentorshipGoal,
+  mentorshipHero,
   mentorshipModel,
   mentorshipPeople,
   mentorshipQuestions,
-  mentorshipStepsData,
-  questWebUrl,
+  mentorshipScreens,
+  mentorshipSteps,
 } from "../data/mentorshipData";
+import { questPalette as q } from "../styles/questPalette";
+import MentorshipInterestDialog, { MentorshipSide } from "../components/MentorshipInterestDialog";
 
 /**
  * /mentorship: the registration door for the mentorship launch.
  *
- * Both CTAs go to the live Quest sign-up with a ref slug, so a mentor and a
- * mentee are counted separately with no new backend code. All copy lives in
- * src/data/mentorshipData.tsx, including the launch-date placeholder.
+ * The whole page follows the mentor / seeking-guidance switch: headline, hero
+ * card, every section and every CTA are written for the chosen side, and a
+ * small link lets a visitor who picked wrong switch. Every CTA opens a short
+ * form (email plus one phrase) before sending the visitor on to the live Quest
+ * sign-up with a ref slug, so the two sides are counted separately. All copy lives in
+ * src/data/mentorshipData.tsx. The look (warm paper, ink, Quest purple, pill
+ * buttons) matches the Quest niche landing pages; App.tsx gives the navbar and
+ * footer the same palette on this route.
  */
-const Mentorship: React.FC = () => {
-  const theme = useTheme();
+const font = "Inter, system-ui, sans-serif";
 
-  const primaryButtonSx = {
-    backgroundColor: theme.palette.primary.focus,
-    color: theme.palette.primary.hero,
-    borderRadius: 8,
-    height: 46,
-    px: 4,
-    fontWeight: 700,
-    fontSize: "14px",
-    textTransform: "uppercase",
-    fontFamily: "Poppins, sans-serif",
-    letterSpacing: "0.5px",
-    transition: "all 0.3s ease",
-    "&:hover": {
-      backgroundColor: theme.palette.primary.hero,
-      color: theme.palette.primary.focus,
-    },
-  };
+/** How long the hero card dwells on each of the three ways a mentor helps. */
+const stepMs = 3200;
+const fillBar = keyframes`from { transform: scaleX(0); } to { transform: scaleX(1); }`;
+const fadeIn = keyframes`from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; }`;
+const travel = keyframes`0% { left: 0%; } 50% { left: calc(100% - 10px); } 100% { left: 0%; }`;
 
-  const secondaryButtonSx = {
-    backgroundColor: "transparent",
-    color: theme.palette.primary.hero,
-    border: `1px solid ${theme.palette.primary.hero}`,
-    borderRadius: 8,
-    height: 46,
-    px: 4,
-    fontWeight: 700,
-    fontSize: "14px",
-    textTransform: "uppercase",
-    fontFamily: "Poppins, sans-serif",
-    letterSpacing: "0.5px",
-    transition: "all 0.3s ease",
-    "&:hover": {
-      backgroundColor: theme.palette.primary.hero,
-      color: theme.palette.primary.focus,
-    },
-  };
+const icons: Record<string, React.ReactElement> = {
+  wallet: <AccountBalanceWalletOutlinedIcon fontSize="small" />,
+  checkin: <EventAvailableOutlinedIcon fontSize="small" />,
+  record: <AutoStoriesOutlinedIcon fontSize="small" />,
+  ai: <AutoAwesomeRoundedIcon fontSize="small" />,
+  check: <InsightsOutlinedIcon fontSize="small" />,
+  talk: <ChatBubbleOutlineRoundedIcon fontSize="small" />,
+  meet: <EventAvailableOutlinedIcon fontSize="small" />,
+  mentor: <SelfImprovementOutlinedIcon fontSize="small" />,
+  growth: <TrendingUpRoundedIcon fontSize="small" />,
+  inquiry: <ScienceOutlinedIcon fontSize="small" />,
+};
 
-  const audiences = [mentorAudience, menteeAudience];
+const headingSx = {
+  fontFamily: font,
+  fontWeight: 700,
+  letterSpacing: "-0.04em",
+  lineHeight: 1.08,
+  color: q.ink,
+};
+
+const eyebrowSx = {
+  fontFamily: font,
+  fontSize: "12px",
+  fontWeight: 700,
+  letterSpacing: "0.18em",
+  textTransform: "uppercase" as const,
+  color: q.purple,
+};
+
+const bodySx = { fontFamily: font, fontSize: "16px", lineHeight: 1.65, color: q.muted };
+
+const cardSx = {
+  backgroundColor: "#fff",
+  border: `1px solid ${q.line}`,
+  borderRadius: "24px",
+};
+
+const IconTile: React.FC<{ name: string; size?: number }> = ({ name, size = 40 }) => (
+  <Box
+    className="icon-tile"
+    sx={{
+      width: size,
+      height: size,
+      borderRadius: "12px",
+      display: "grid",
+      placeItems: "center",
+      flexShrink: 0,
+      backgroundColor: q.lavender,
+      color: q.purple,
+      transition: "all .2s ease",
+    }}
+  >
+    {icons[name]}
+  </Box>
+);
+
+const PillButton: React.FC<{ onClick: () => void; label: string; variant?: "solid" | "outline"; compact?: boolean }> = ({
+  onClick,
+  label,
+  variant = "solid",
+  compact = false,
+}) => {
+  const solid = variant === "solid";
+  return (
+    <Box
+      component="button"
+      type="button"
+      onClick={onClick}
+      sx={{
+        cursor: "pointer",
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 1,
+        px: compact ? 2 : 3,
+        height: compact ? 46 : 48,
+        flex: compact ? 1 : "none",
+        borderRadius: 999,
+        fontFamily: font,
+        fontSize: compact ? "14px" : "15px",
+        fontWeight: 600,
+        textDecoration: "none",
+        whiteSpace: "nowrap",
+        backgroundColor: solid ? q.purple : "#fff",
+        color: solid ? "#fff" : q.ink,
+        border: `1px solid ${solid ? q.purple : q.line}`,
+        transition: "all .2s ease",
+        "&:hover": solid
+          ? { backgroundColor: q.purpleDark, borderColor: q.purpleDark }
+          : { borderColor: q.ink },
+      }}
+    >
+      {label}
+      {!compact && <ArrowForwardRoundedIcon sx={{ fontSize: 16 }} />}
+    </Box>
+  );
+};
+
+const Avatar: React.FC<{ initial: string; name: string; role: string; dark?: boolean }> = ({ initial, name, role, dark }) => (
+  <Box sx={{ display: "flex", alignItems: "center", gap: 1.25, minWidth: 0 }}>
+    <Box
+      sx={{
+        width: 44,
+        height: 44,
+        borderRadius: 999,
+        display: "grid",
+        placeItems: "center",
+        flexShrink: 0,
+        fontFamily: font,
+        fontWeight: 700,
+        fontSize: "17px",
+        color: "#fff",
+        backgroundColor: dark ? q.ink : q.purple,
+      }}
+    >
+      {initial}
+    </Box>
+    <Box sx={{ minWidth: 0 }}>
+      <Typography sx={{ fontFamily: font, fontWeight: 600, fontSize: "15px", color: q.ink, lineHeight: 1.2 }}>{name}</Typography>
+      <Typography sx={{ fontFamily: font, fontSize: "12px", color: q.muted }}>{role}</Typography>
+    </Box>
+  </Box>
+);
+
+type Audience = "mentor" | "mentee";
+
+/** The hero illustration: a mentor and a mentee connected through a shared quest. */
+const ConnectionCard: React.FC<{ audience: Audience }> = ({ audience }) => {
+  const c = mentorshipConnection;
+  const activity = c.activity[audience];
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [reducedMotion] = useState(
+    () => typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches,
+  );
+
+  useEffect(() => {
+    if (paused || reducedMotion) return;
+    const timer = window.setTimeout(() => setActive((active + 1) % activity.length), stepMs);
+    return () => window.clearTimeout(timer);
+  }, [active, paused, reducedMotion, activity.length]);
+
+  useEffect(() => setActive(0), [audience]);
 
   return (
-    <>
-      <HeaderSection data={mentorshipHeaderData} />
-
-      <Box
-        sx={{
-          width: "100%",
-          backgroundColor: theme.palette.cosmic.primary,
-          py: { xs: 6, md: 10 },
-        }}
-      >
-        <Container>
-          {/* The launch-date notice. The date is set: Sunday 25 October 2026. */}
-          <Paper
-            elevation={0}
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 0.75,
-              maxWidth: 820,
-              mb: 4,
-              p: { xs: 2, md: 2.5 },
-              borderRadius: 2,
-              border: `1px solid ${theme.palette.primary.focus}`,
-              borderLeft: `6px solid ${theme.palette.primary.focus}`,
-              backgroundColor: theme.palette.cosmic.elevated,
-            }}
-          >
-            <Box sx={{ display: "flex", gap: 1.25, alignItems: "center" }}>
-              <CheckCircleOutlineIcon
-                sx={{ fontSize: 20, color: theme.palette.primary.focus }}
-              />
-              <Typography
-                sx={{
-                  fontWeight: 700,
-                  letterSpacing: "0.5px",
-                  textTransform: "uppercase",
-                  fontSize: "13px",
-                }}
-              >
-                Sign-ups are open now
-              </Typography>
-            </Box>
-            <Typography
-              sx={{ color: theme.palette.text.secondary, lineHeight: 1.8 }}
-            >
-              {mentorshipLaunchDate.note}{" "}
-              <Box component="span" sx={{ fontWeight: 700 }}>
-                {mentorshipLaunchDate.announced
-                  ? mentorshipLaunchDate.date
-                  : mentorshipLaunchDate.placeholder}
-              </Box>
-            </Typography>
-          </Paper>
-
-          <Typography
-            variant="h4"
-            sx={{
-              fontFamily: "Sansation, sans-serif",
-              fontWeight: 700,
-              display: "block",
-              width: "fit-content",
-              borderBottom: `5px solid ${theme.palette.primary.focus}`,
-              pb: "4px",
-              mb: 2,
-            }}
-          >
-            {mentorshipIntro.title}
-          </Typography>
-
-          <Typography
-            sx={{
-              maxWidth: 820,
-              color: theme.palette.text.secondary,
-              lineHeight: 1.9,
-              mb: 2,
-            }}
-          >
-            {mentorshipIntro.body}
-          </Typography>
-          <Typography
-            sx={{
-              maxWidth: 820,
-              fontWeight: 700,
-              lineHeight: 1.9,
-              mb: { xs: 5, md: 7 },
-            }}
-          >
-            {mentorshipIntro.goal}
-          </Typography>
-
-          {/* The two audiences, side by side, each with its own CTA. */}
+    <Box sx={{ ...cardSx, borderRadius: "28px", p: { xs: 2.5, sm: 3.5 }, boxShadow: "0 30px 80px -40px rgba(22,20,42,.35)" }}>
+      {/* The two people, linked */}
+      <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+        <Avatar {...c.mentor} />
+        <Box sx={{ flex: 1, position: "relative", height: 10, minWidth: 24, display: "flex", alignItems: "center" }}>
+          <Box sx={{ flex: 1, height: "2px", backgroundImage: `linear-gradient(to right, ${q.lavenderLine} 50%, transparent 50%)`, backgroundSize: "8px 2px" }} />
           <Box
             sx={{
-              display: "grid",
-              gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-              gap: { xs: 3, md: 4 },
-              mb: { xs: 6, md: 9 },
+              position: "absolute",
+              top: 0,
+              left: "calc(50% - 5px)",
+              width: 10,
+              height: 10,
+              borderRadius: 99,
+              backgroundColor: q.purple,
+              boxShadow: `0 0 0 4px ${q.lavender}`,
+              animation: reducedMotion ? "none" : `${travel} 3.2s ease-in-out infinite`,
             }}
-          >
-            {audiences.map((audience) => (
-              <Paper
-                key={audience.eyebrow}
-                elevation={0}
-                sx={{
-                  p: { xs: 3, md: 4 },
-                  borderRadius: 2,
-                  border: `1px solid ${theme.palette.cosmic.secondary}`,
-                  borderTop: `6px solid ${theme.palette.primary.focus}`,
-                  backgroundColor: theme.palette.cosmic.elevated,
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <Typography
-                  sx={{
-                    fontSize: "12px",
-                    fontWeight: 700,
-                    letterSpacing: "1px",
-                    textTransform: "uppercase",
-                    color: theme.palette.text.secondary,
-                    mb: 1,
-                  }}
-                >
-                  {audience.eyebrow}
-                </Typography>
-                <Typography
-                  variant="h5"
-                  sx={{
-                    fontFamily: "Sansation, sans-serif",
-                    fontWeight: 700,
-                    mb: 1.5,
-                  }}
-                >
-                  {audience.title}
-                </Typography>
-                <Typography
-                  sx={{
-                    color: theme.palette.text.secondary,
-                    lineHeight: 1.9,
-                    mb: 2.5,
-                  }}
-                >
-                  {audience.intro}
-                </Typography>
+          />
+        </Box>
+        <Avatar {...c.mentee} dark />
+      </Box>
 
-                <Box sx={{ display: "grid", gap: 1.5, mb: 3 }}>
-                  {audience.points.map((point) => (
-                    <Box
-                      key={point}
-                      sx={{
-                        display: "flex",
-                        gap: 1.5,
-                        alignItems: "flex-start",
-                      }}
-                    >
-                      <CheckCircleOutlineIcon
-                        sx={{
-                          fontSize: 20,
-                          mt: "3px",
-                          color: theme.palette.primary.focus,
-                        }}
-                      />
-                      <Typography
-                        sx={{
-                          color: theme.palette.text.secondary,
-                          lineHeight: 1.8,
-                        }}
-                      >
-                        {point}
-                      </Typography>
-                    </Box>
-                  ))}
-                </Box>
+      {/* The quest they share */}
+      <Box sx={{ mt: 3, p: 2.25, borderRadius: "18px", backgroundColor: q.paper }}>
+        <Typography sx={{ ...eyebrowSx, fontSize: "10px" }}>{c.quest.label}</Typography>
+        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 2, mt: 0.75 }}>
+          <Typography sx={{ fontFamily: font, fontWeight: 600, fontSize: "16px", color: q.ink }}>{c.quest.title}</Typography>
+          <Typography sx={{ fontFamily: font, fontWeight: 700, fontSize: "14px", color: q.ink }}>{c.quest.progress}%</Typography>
+        </Box>
+        <Box sx={{ height: 6, borderRadius: 99, backgroundColor: "#e4e1ee", mt: 1.5 }}>
+          <Box sx={{ width: `${c.quest.progress}%`, height: "100%", borderRadius: 99, backgroundColor: q.purple }} />
+        </Box>
+      </Box>
 
-                <Box sx={{ mt: "auto" }}>
-                  <Button
-                    href={audience.ctaUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    variant="contained"
-                    sx={primaryButtonSx}
-                  >
-                    {audience.ctaLabel}
-                  </Button>
-                  <Typography
-                    sx={{
-                      mt: 2,
-                      fontSize: "14px",
-                      color: theme.palette.text.secondary,
-                      lineHeight: 1.8,
-                    }}
-                  >
-                    {audience.footnote}
-                  </Typography>
-                </Box>
-              </Paper>
-            ))}
-          </Box>
-
-          {/* The model and the people: what is different about mentorship
-              here, and who a visitor will be connecting with. */}
-          {[mentorshipModel, mentorshipPeople].map((section) => (
-            <Box key={section.title} sx={{ mb: { xs: 6, md: 9 } }}>
-              <Typography
-                variant="h4"
-                sx={{
-                  fontFamily: "Sansation, sans-serif",
-                  fontWeight: 700,
-                  display: "block",
-                  width: "fit-content",
-                  borderBottom: `5px solid ${theme.palette.primary.focus}`,
-                  pb: "4px",
-                  mb: 3,
-                }}
-              >
-                {section.title}
-              </Typography>
-              <Typography
-                sx={{
-                  maxWidth: 820,
-                  color: theme.palette.text.secondary,
-                  lineHeight: 1.9,
-                  mb: 3,
-                }}
-              >
-                {section.intro}
-              </Typography>
-              <Box
-                sx={{
-                  display: "grid",
-                  gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-                  gap: { xs: 2.5, md: 3 },
-                }}
-              >
-                {section.items.map((item) => (
-                  <Paper
-                    key={item.title}
-                    elevation={0}
-                    sx={{
-                      p: { xs: 3, md: 4 },
-                      borderRadius: 2,
-                      border: `1px solid ${theme.palette.cosmic.secondary}`,
-                      borderLeft: `6px solid ${theme.palette.primary.focus}`,
-                      backgroundColor: theme.palette.cosmic.elevated,
-                    }}
-                  >
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        fontFamily: "Sansation, sans-serif",
-                        fontWeight: 700,
-                        mb: 1,
-                      }}
-                    >
-                      {item.title}
-                    </Typography>
-                    <Typography
-                      sx={{
-                        color: theme.palette.text.secondary,
-                        lineHeight: 1.9,
-                      }}
-                    >
-                      {item.desc}
-                    </Typography>
-                  </Paper>
-                ))}
+      {/* How the mentor helps: one step at a time, on a loop */}
+      <Box key={audience} sx={{ mt: 2, display: "grid", gap: 0.75, animation: reducedMotion ? "none" : `${fadeIn} .4s ease` }} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+        {activity.map((item, index) => {
+          const isActive = index === active;
+          return (
+            <Box
+              key={item.kind}
+              component="button"
+              type="button"
+              onClick={() => setActive(index)}
+              aria-pressed={isActive}
+              sx={{
+                all: "unset",
+                boxSizing: "border-box",
+                cursor: "pointer",
+                position: "relative",
+                overflow: "hidden",
+                display: "flex",
+                gap: 1.75,
+                alignItems: "center",
+                px: 1.75,
+                py: 1.5,
+                borderRadius: "16px",
+                backgroundColor: isActive ? q.lavender : "transparent",
+                opacity: isActive ? 1 : 0.55,
+                transform: isActive ? "translateX(4px)" : "none",
+                transition: "background-color .35s ease, opacity .35s ease, transform .35s ease",
+                "&:hover": { opacity: 1 },
+                "&:focus-visible": { outline: `2px solid ${q.purple}`, outlineOffset: 2 },
+                "& .icon-tile": isActive ? { backgroundColor: q.purple, color: "#fff" } : {},
+              }}
+            >
+              <IconTile name={item.kind} />
+              <Box sx={{ minWidth: 0 }}>
+                <Typography sx={{ fontFamily: font, fontWeight: 600, fontSize: "14px", color: q.ink }}>{item.title}</Typography>
+                <Typography sx={{ fontFamily: font, fontSize: "14px", color: q.muted, lineHeight: 1.5 }}>{item.text}</Typography>
               </Box>
+              {isActive && !paused && !reducedMotion && (
+                <Box
+                  key={`bar-${active}`}
+                  sx={{
+                    position: "absolute",
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    height: "2px",
+                    backgroundColor: q.purple,
+                    transformOrigin: "left",
+                    animation: `${fillBar} ${stepMs}ms linear forwards`,
+                  }}
+                />
+              )}
             </Box>
+          );
+        })}
+      </Box>
+    </Box>
+  );
+};
+
+const SectionHeading: React.FC<{ eyebrow: string; title: string; maxWidth?: number }> = ({ eyebrow, title, maxWidth = 640 }) => (
+  <Box sx={{ mb: { xs: 4, md: 6 } }}>
+    <Typography sx={eyebrowSx}>{eyebrow}</Typography>
+    <Typography component="h2" sx={{ ...headingSx, fontSize: { xs: "32px", md: "44px" }, mt: 1.5, maxWidth }}>
+      {title}
+    </Typography>
+  </Box>
+);
+
+/** How long each real screen stays up before the section moves to the next one. */
+const screenMs = 5500;
+
+const ScreensSection: React.FC<{ audience: Audience }> = ({ audience }) => {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [inView, setInView] = useState(false);
+  const [reducedMotion] = useState(
+    () => typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches,
+  );
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const images: Record<string, string> = { plan: planImage, reflection: reflectionImage };
+  const { title: screensTitle, items } = mentorshipScreens[audience];
+  const running = inView && !paused && !reducedMotion;
+
+  // Only move on while the section is on screen, so the visitor never misses the first screen.
+  useEffect(() => {
+    if (!sectionRef.current || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { threshold: 0.4 });
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <Box ref={sectionRef} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+      <SectionHeading eyebrow={mentorshipScreens.eyebrow} title={screensTitle} />
+      <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: ".8fr 1.2fr" }, gap: { xs: 3, md: 6 }, alignItems: "center" }}>
+        {/* Both steps always show their full text, so choosing one never moves the page */}
+        <Box sx={{ display: "grid", gap: 1.5, order: { xs: 2, md: 1 } }}>
+          {items.map((screen, index) => {
+            const isActive = index === active;
+            return (
+              <Box
+                key={screen.key}
+                component="button"
+                type="button"
+                onClick={() => setActive(index)}
+                aria-pressed={isActive}
+                sx={{
+                  all: "unset",
+                  boxSizing: "border-box",
+                  position: "relative",
+                  overflow: "hidden",
+                  cursor: "pointer",
+                  p: 3,
+                  borderRadius: "20px",
+                  backgroundColor: isActive ? "#fff" : "transparent",
+                  border: `1px solid ${isActive ? q.lavenderLine : "transparent"}`,
+                  boxShadow: isActive ? "0 20px 40px -28px rgba(22,20,42,.35)" : "none",
+                  transition: "background-color .4s ease, border-color .4s ease, box-shadow .4s ease",
+                  "&:hover": { backgroundColor: "#fff" },
+                  "&:focus-visible": { outline: `2px solid ${q.purple}`, outlineOffset: 2 },
+                }}
+              >
+                <Box sx={{ opacity: isActive ? 1 : 0.55, transition: "opacity .4s ease" }}>
+                  <Typography sx={{ ...eyebrowSx, color: isActive ? q.purple : q.muted }}>{screen.label}</Typography>
+                  <Typography sx={{ ...headingSx, fontSize: "20px", letterSpacing: "-0.02em", mt: 1 }}>{screen.title}</Typography>
+                  <Typography sx={{ ...bodySx, fontSize: "15px", mt: 0.75 }}>{screen.desc}</Typography>
+                </Box>
+                {isActive && !reducedMotion && (
+                  <Box
+                    key={`${index}-bar`}
+                    onAnimationEnd={() => setActive((current) => (current + 1) % items.length)}
+                    sx={{
+                      position: "absolute",
+                      left: 0,
+                      bottom: 0,
+                      height: 3,
+                      width: "100%",
+                      backgroundColor: q.purple,
+                      transformOrigin: "left",
+                      animation: `${fillBar} ${screenMs}ms linear forwards`,
+                      animationPlayState: running ? "running" : "paused",
+                    }}
+                  />
+                )}
+              </Box>
+            );
+          })}
+        </Box>
+        {/* Both screens stay loaded in one fixed frame and cross-fade, so there is no flash and no jump */}
+        <Box
+          sx={{
+            order: { xs: 1, md: 2 },
+            position: "relative",
+            aspectRatio: "1400 / 1100",
+            borderRadius: "28px",
+            overflow: "hidden",
+            border: `1px solid ${q.line}`,
+            backgroundColor: "#16142a",
+            boxShadow: "0 30px 80px -40px rgba(22,20,42,.45)",
+          }}
+        >
+          {items.map((screen, index) => (
+            <Box
+              key={screen.key}
+              component="img"
+              src={images[screen.key]}
+              alt={screen.alt}
+              aria-hidden={index !== active}
+              decoding="async"
+              sx={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                opacity: index === active ? 1 : 0,
+                transform: index === active ? "none" : "scale(1.02)",
+                transition: reducedMotion ? "none" : "opacity .6s ease, transform .6s ease",
+              }}
+            />
           ))}
+        </Box>
+      </Box>
+    </Box>
+  );
+};
 
-          {/* What happens, in order, so nobody expects a feature that is not
-              open yet. */}
-          <Typography
-            variant="h4"
-            sx={{
-              fontFamily: "Sansation, sans-serif",
-              fontWeight: 700,
-              display: "block",
-              width: "fit-content",
-              borderBottom: `5px solid ${theme.palette.primary.focus}`,
-              pb: "4px",
-              mb: 3,
-            }}
-          >
-            What happens next
-          </Typography>
-
-          <Box sx={{ display: "grid", gap: 2.5, mb: { xs: 6, md: 9 } }}>
-            {mentorshipStepsData.map((step) => (
-              <Paper
-                key={step.id}
-                elevation={0}
-                sx={{
-                  p: { xs: 3, md: 4 },
-                  borderRadius: 2,
-                  border: `1px solid ${theme.palette.cosmic.secondary}`,
-                  backgroundColor: theme.palette.cosmic.elevated,
-                  display: "flex",
-                  flexDirection: { xs: "column", sm: "row" },
-                  gap: { xs: 1.5, sm: 3 },
-                }}
-              >
-                <Typography
-                  sx={{
-                    fontFamily: "Sansation, sans-serif",
-                    fontWeight: 700,
-                    fontSize: "2.5rem",
-                    lineHeight: 1,
-                    color: theme.palette.primary.focus,
-                    textShadow: `0 0 1px ${theme.palette.primary.hero}`,
-                    minWidth: 56,
-                  }}
-                >
-                  {step.id}
-                </Typography>
-                <Box>
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      fontFamily: "Sansation, sans-serif",
-                      fontWeight: 700,
-                    }}
-                  >
-                    {step.title}
-                  </Typography>
-                  <Typography
-                    sx={{
-                      color: theme.palette.text.secondary,
-                      lineHeight: 1.9,
-                      mt: 1,
-                    }}
-                  >
-                    {step.desc}
-                  </Typography>
-                </Box>
-              </Paper>
-            ))}
-          </Box>
-
-          {/* Where the product actually is today: the browser. */}
-          <Box
-            sx={{
-              p: { xs: 3, md: 5 },
-              borderRadius: 2,
-              backgroundColor: theme.palette.darkcard.main,
-              color: theme.palette.darkcard.contrastText,
-            }}
-          >
-            <Typography
-              variant="h5"
-              sx={{
-                fontFamily: "Sansation, sans-serif",
-                fontWeight: 700,
-                mb: 1,
-              }}
-            >
-              {mentorshipBrowserNote.title}
-            </Typography>
-            <Typography
-              sx={{ opacity: 0.85, lineHeight: 1.9, maxWidth: 760, mb: 3 }}
-            >
-              {mentorshipBrowserNote.body}
-            </Typography>
-            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
-              <Button
-                href={mentorAudience.ctaUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                variant="contained"
-                sx={primaryButtonSx}
-              >
-                {mentorAudience.ctaLabel}
-              </Button>
-              <Button
-                href={menteeAudience.ctaUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                variant="outlined"
-                sx={{
-                  ...secondaryButtonSx,
-                  color: theme.palette.primary.focus,
-                  border: `1px solid ${theme.palette.primary.focus}`,
-                  "&:hover": {
-                    backgroundColor: theme.palette.primary.focus,
-                    color: theme.palette.primary.hero,
-                  },
-                }}
-              >
-                {menteeAudience.ctaLabel}
-              </Button>
-            </Box>
-            <Typography sx={{ opacity: 0.7, mt: 3, fontSize: "14px" }}>
-              Open Quest directly at{" "}
+const FaqSection: React.FC<{ audience: Audience }> = ({ audience }) => {
+  const [open, setOpen] = useState(0);
+  const faqItems = mentorshipFaq[audience];
+  return (
+    <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: ".8fr 1.2fr" }, gap: { xs: 3, md: 8 } }}>
+      <Box>
+        <Typography sx={eyebrowSx}>{mentorshipFaq.eyebrow}</Typography>
+        <Typography component="h2" sx={{ ...headingSx, fontSize: { xs: "32px", md: "44px" }, mt: 1.5 }}>
+          {mentorshipFaq.title}
+        </Typography>
+      </Box>
+      <Box>
+        {faqItems.map((item, index) => {
+          const isOpen = open === index;
+          return (
+            <Box key={item.q} sx={{ borderTop: `1px solid ${q.line}`, ...(index === faqItems.length - 1 ? { borderBottom: `1px solid ${q.line}` } : {}) }}>
               <Box
-                component="a"
-                href={questWebUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                component="button"
+                type="button"
+                onClick={() => setOpen(isOpen ? -1 : index)}
+                aria-expanded={isOpen}
                 sx={{
-                  color: theme.palette.primary.focus,
-                  fontWeight: 700,
+                  all: "unset",
+                  boxSizing: "border-box",
+                  width: "100%",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  gap: 2,
+                  py: 2.5,
+                  "&:focus-visible": { outline: `2px solid ${q.purple}`, outlineOffset: 2 },
                 }}
               >
-                quest.spiritualdata.org
+                <Typography sx={{ fontFamily: font, fontSize: "17px", fontWeight: 600, color: q.ink }}>{item.q}</Typography>
+                <AddRoundedIcon sx={{ color: q.purple, flexShrink: 0, transition: "transform .25s ease", transform: isOpen ? "rotate(135deg)" : "none" }} />
               </Box>
-            </Typography>
-          </Box>
+              {isOpen && <Typography sx={{ ...bodySx, pb: 2.5, pr: 5 }}>{item.a}</Typography>}
+            </Box>
+          );
+        })}
+      </Box>
+    </Box>
+  );
+};
 
-          <Paper
-            elevation={0}
-            sx={{
-              mt: 3,
-              p: { xs: 3, md: 5 },
-              borderRadius: 2,
-              border: `1px solid ${theme.palette.cosmic.secondary}`,
-              backgroundColor: theme.palette.cosmic.elevated,
-            }}
-          >
-            <Typography
-              variant="h5"
+const Mentorship: React.FC = () => {
+  const [audience, setAudience] = useState<Audience>("mentor");
+  const [showBar, setShowBar] = useState(false);
+  const [formSide, setFormSide] = useState<MentorshipSide | null>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const finalRef = useRef<HTMLDivElement>(null);
+  const sectionPy = { xs: 8, md: 12 };
+  // Everything below the hero reads from the side the visitor chose.
+  const hero = mentorshipHero.audiences[audience];
+  const primary = audience === "mentor" ? mentorAudience : menteeAudience;
+  const model = mentorshipModel[audience];
+  const people = mentorshipPeople[audience];
+  const steps = mentorshipSteps[audience];
+  const final = mentorshipFinal[audience];
+  const otherSide: Audience = audience === "mentor" ? "mentee" : "mentor";
+  const openForm = () => setFormSide(audience);
+  const switchSide = () => {
+    setAudience(otherSide);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // The sticky bar shows once the hero buttons have scrolled away, and hides again at the closing call.
+  useEffect(() => {
+    if (!heroRef.current || !finalRef.current || typeof IntersectionObserver === "undefined") return;
+    const seen = { hero: true, final: false };
+    const update = () => setShowBar(!seen.hero && !seen.final);
+    const heroObserver = new IntersectionObserver(([e]) => { seen.hero = e.isIntersecting; update(); });
+    const finalObserver = new IntersectionObserver(([e]) => { seen.final = e.isIntersecting; update(); });
+    heroObserver.observe(heroRef.current);
+    finalObserver.observe(finalRef.current);
+    return () => { heroObserver.disconnect(); finalObserver.disconnect(); };
+  }, []);
+
+  return (
+    <Box sx={{ backgroundColor: q.paper, color: q.ink, fontFamily: font, overflow: "hidden" }}>
+      {/* Hero */}
+      <Container maxWidth="lg" sx={{ pt: { xs: 15, md: 20 }, pb: sectionPy }}>
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1.05fr .95fr" }, gap: { xs: 6, md: 8 }, alignItems: "center" }}>
+          <Box>
+            <Box
               sx={{
-                fontFamily: "Sansation, sans-serif",
-                fontWeight: 700,
-                mb: 1,
-              }}
-            >
-              {mentorshipQuestions.title}
-            </Typography>
-            <Typography
-              sx={{
-                color: theme.palette.text.secondary,
-                lineHeight: 1.9,
-                maxWidth: 820,
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 1,
+                px: 1.5,
+                py: 0.75,
+                borderRadius: 999,
+                backgroundColor: q.lavender,
                 mb: 3,
               }}
             >
-              {mentorshipQuestions.body}
+              <Box sx={{ width: 7, height: 7, borderRadius: 99, backgroundColor: q.purple }} />
+              <Typography sx={{ ...eyebrowSx, fontSize: "11px" }}>{mentorshipHero.eyebrow}</Typography>
+            </Box>
+            <Typography key={`h1-${audience}`} component="h1" sx={{ ...headingSx, fontSize: { xs: "42px", sm: "52px", md: "62px" }, animation: `${fadeIn} .35s ease` }}>
+              {hero.headline.before}
+              <Box component="span" sx={{ color: q.purple }}>
+                {hero.headline.accent}
+              </Box>
+              {hero.headline.after}
             </Typography>
-            <Button
-              href={`mailto:${mentorshipQuestions.email}?subject=${encodeURIComponent(
-                mentorshipQuestions.subject
-              )}`}
-              variant="outlined"
-              sx={secondaryButtonSx}
-            >
-              Write to us
-            </Button>
-          </Paper>
+            {/* One switch: the subtitle, the card and the buttons follow the visitor's side */}
+            <Box role="group" aria-label="I am a" sx={{ display: "inline-flex", p: 0.5, mt: 3, borderRadius: 999, backgroundColor: "#fff", border: `1px solid ${q.line}` }}>
+              {(["mentor", "mentee"] as Audience[]).map((side) => {
+                const isActive = audience === side;
+                return (
+                  <Box
+                    key={side}
+                    component="button"
+                    type="button"
+                    onClick={() => setAudience(side)}
+                    aria-pressed={isActive}
+                    sx={{
+                      all: "unset",
+                      boxSizing: "border-box",
+                      cursor: "pointer",
+                      px: { xs: 1.75, sm: 2.5 },
+                      py: 1,
+                      borderRadius: 999,
+                      fontFamily: font,
+                      fontSize: "14px",
+                      fontWeight: 600,
+                      whiteSpace: "nowrap",
+                      color: isActive ? "#fff" : q.muted,
+                      backgroundColor: isActive ? q.ink : "transparent",
+                      transition: "all .25s ease",
+                      "&:hover": { color: isActive ? "#fff" : q.ink },
+                      "&:focus-visible": { outline: `2px solid ${q.purple}`, outlineOffset: 2 },
+                    }}
+                  >
+                    {mentorshipHero.audiences[side].toggleLabel}
+                  </Box>
+                );
+              })}
+            </Box>
+            <Typography key={audience} sx={{ ...bodySx, fontSize: { xs: "17px", md: "18px" }, mt: 2.5, maxWidth: 500, minHeight: { sm: 87 }, animation: `${fadeIn} .35s ease` }}>
+              {hero.subtitle}
+            </Typography>
+            <Box ref={heroRef} sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, mt: 3 }}>
+              <PillButton onClick={openForm} label={primary.ctaLabel} />
+            </Box>
+            <Typography sx={{ ...bodySx, fontSize: "14px", mt: 2 }}>{mentorshipHero.note}</Typography>
+
+            {/* The goal, up front: the numbers Joshua asked to be stated */}
+            <Box sx={{ mt: { xs: 4, md: 5 }, pt: { xs: 3, md: 4 }, borderTop: `1px solid ${q.line}` }}>
+              <Typography sx={eyebrowSx}>{mentorshipGoal.eyebrow}</Typography>
+              <Box sx={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", columnGap: { xs: 3, md: 5 }, rowGap: 1, mt: 1.5 }}>
+                {mentorshipGoal.stats.map((stat) => (
+                  <Box key={stat.label}>
+                    <Typography sx={{ ...headingSx, fontSize: { xs: "36px", md: "44px" }, lineHeight: 1 }}>{stat.value}</Typography>
+                    <Typography sx={{ ...bodySx, fontSize: "14px", mt: 0.5 }}>{stat.label}</Typography>
+                  </Box>
+                ))}
+                <Typography sx={{ fontFamily: font, fontSize: "15px", fontWeight: 600, color: q.purple, pb: { xs: 0, sm: 3.25 } }}>{mentorshipGoal.by}</Typography>
+              </Box>
+              <Typography sx={{ ...bodySx, fontSize: "14px", mt: 1.5 }}>{mentorshipGoal.lines[audience]}</Typography>
+            </Box>
+          </Box>
+          <ConnectionCard audience={audience} />
+        </Box>
+      </Container>
+
+      {/* The chosen side, and only that side */}
+      <Container maxWidth="lg" sx={{ py: sectionPy }}>
+        <Box key={`aud-${audience}`} sx={{ animation: `${fadeIn} .4s ease` }}>
+          <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" }, gap: { xs: 4, md: 8 }, alignItems: "center" }}>
+            <Box>
+              <Typography sx={eyebrowSx}>{primary.eyebrow}</Typography>
+              <Typography component="h2" sx={{ ...headingSx, fontSize: { xs: "32px", md: "44px" }, mt: 1.5 }}>
+                {primary.title}
+              </Typography>
+              <Typography sx={{ ...bodySx, fontSize: "17px", mt: 2 }}>{primary.who}</Typography>
+            </Box>
+            <Box sx={{ display: "grid", gap: 1.5 }}>
+              {primary.points.map((point) => (
+                <Box key={point} sx={{ ...cardSx, borderRadius: "18px", p: 2.5, display: "flex", gap: 1.75, alignItems: "flex-start" }}>
+                  <Box sx={{ width: 24, height: 24, borderRadius: 99, backgroundColor: q.lavender, display: "grid", placeItems: "center", flexShrink: 0, mt: "1px" }}>
+                    <CheckRoundedIcon sx={{ fontSize: 16, color: q.purple }} />
+                  </Box>
+                  <Typography sx={{ fontFamily: font, fontSize: "16px", lineHeight: 1.6, color: q.ink }}>{point}</Typography>
+                </Box>
+              ))}
+            </Box>
+          </Box>
+          <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 1.5, mt: { xs: 5, md: 6 } }}>
+            <PillButton onClick={openForm} label={primary.ctaLabel} />
+            <Typography sx={{ ...bodySx, fontSize: "14px" }}>{primary.footnote}</Typography>
+            <Typography sx={{ ...bodySx, fontSize: "14px" }}>
+              {primary.switchPrompt}{" "}
+              <Box
+                component="button"
+                type="button"
+                onClick={switchSide}
+                sx={{ all: "unset", cursor: "pointer", color: q.purple, fontWeight: 600, textDecoration: "underline", textUnderlineOffset: "3px", "&:focus-visible": { outline: `2px solid ${q.purple}`, outlineOffset: 2 } }}
+              >
+                {primary.switchLabel}
+              </Box>
+            </Typography>
+          </Box>
+        </Box>
+      </Container>
+
+      {/* Real Quest screens */}
+      <Container maxWidth="lg" sx={{ pb: sectionPy }}>
+        <ScreensSection audience={audience} />
+      </Container>
+
+      {/* How it works */}
+      <Box sx={{ backgroundColor: "#fff", borderTop: `1px solid ${q.line}`, borderBottom: `1px solid ${q.line}`, py: sectionPy }}>
+        <Container maxWidth="lg">
+          <SectionHeading eyebrow={mentorshipModel.eyebrow} title={model.title} />
+          <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "repeat(4, 1fr)" }, gap: 2 }}>
+            {model.items.map((item) => (
+              <Box
+                key={item.title}
+                sx={{
+                  ...cardSx,
+                  backgroundColor: q.paper,
+                  border: `1px solid transparent`,
+                  p: 3,
+                  transition: "all .2s ease",
+                  "&:hover": { borderColor: q.lavenderLine, backgroundColor: "#fff" },
+                  "&:hover .icon-tile": { backgroundColor: q.purple, color: "#fff" },
+                }}
+              >
+                <IconTile name={item.icon} size={44} />
+                <Typography sx={{ ...headingSx, fontSize: "18px", letterSpacing: "-0.02em", lineHeight: 1.3, mt: 2.5 }}>{item.title}</Typography>
+                <Typography sx={{ ...bodySx, fontSize: "15px", mt: 1 }}>{item.desc}</Typography>
+              </Box>
+            ))}
+          </Box>
         </Container>
       </Box>
-    </>
+
+      {/* Who you will meet */}
+      <Container maxWidth="lg" sx={{ py: sectionPy }}>
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" }, gap: { xs: 4, md: 8 }, alignItems: "center" }}>
+          <Box>
+            <Typography sx={eyebrowSx}>{people.eyebrow}</Typography>
+            <Typography component="h2" sx={{ ...headingSx, fontSize: { xs: "32px", md: "44px" }, mt: 1.5 }}>
+              {people.title}
+            </Typography>
+            <Typography sx={{ ...bodySx, fontSize: "17px", mt: 2 }}>{people.intro}</Typography>
+          </Box>
+          <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" }, gap: 1.5 }}>
+            {people.tags.map((tag) => (
+              <Box key={tag.text} sx={{ ...cardSx, borderRadius: "18px", p: 2.25, display: "flex", alignItems: "center", gap: 1.5 }}>
+                <IconTile name={tag.icon} size={36} />
+                <Typography sx={{ fontFamily: font, fontSize: "15px", fontWeight: 500, color: q.ink, lineHeight: 1.4 }}>{tag.text}</Typography>
+              </Box>
+            ))}
+          </Box>
+        </Box>
+      </Container>
+
+      {/* What happens next */}
+      <Container maxWidth="lg" sx={{ pb: sectionPy }}>
+        <SectionHeading eyebrow={mentorshipSteps.eyebrow} title={steps.title} maxWidth={820} />
+        <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "repeat(3, 1fr)" }, gap: 2 }}>
+          {steps.items.map((step, index) => {
+            const last = index === steps.items.length - 1;
+            return (
+              <Box key={step.id} sx={{ ...cardSx, p: 3, display: "flex", gap: 2, alignItems: "flex-start", borderColor: last ? q.lavenderLine : q.line, backgroundColor: last ? q.lavender : "#fff" }}>
+                <Box
+                  sx={{
+                    width: 36,
+                    height: 36,
+                    borderRadius: 99,
+                    display: "grid",
+                    placeItems: "center",
+                    flexShrink: 0,
+                    fontFamily: font,
+                    fontWeight: 700,
+                    fontSize: "15px",
+                    backgroundColor: last ? q.purple : q.lavender,
+                    color: last ? "#fff" : q.purple,
+                  }}
+                >
+                  {step.id}
+                </Box>
+                <Box>
+                  <Typography sx={{ ...headingSx, fontSize: "18px", letterSpacing: "-0.02em", lineHeight: 1.3 }}>{step.title}</Typography>
+                  <Typography sx={{ ...bodySx, fontSize: "15px", mt: 0.75 }}>{step.desc}</Typography>
+                </Box>
+              </Box>
+            );
+          })}
+        </Box>
+      </Container>
+
+      {/* Questions */}
+      <Container maxWidth="lg" sx={{ pb: sectionPy }}>
+        <FaqSection key={audience} audience={audience} />
+      </Container>
+
+      {/* Final call */}
+      <Container maxWidth="lg" sx={{ pb: { xs: 8, md: 12 } }}>
+        <Box
+          ref={finalRef}
+          sx={{
+            borderRadius: "28px",
+            px: { xs: 3.5, md: 7 },
+            py: { xs: 5, md: 7 },
+            background: `linear-gradient(135deg, ${q.lavender} 0%, #e6e2fb 100%)`,
+            border: `1px solid ${q.lavenderLine}`,
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            alignItems: { md: "center" },
+            justifyContent: "space-between",
+            gap: 4,
+          }}
+        >
+          <Box>
+            <Typography sx={eyebrowSx}>{mentorshipFinal.eyebrow}</Typography>
+            <Typography component="h2" sx={{ ...headingSx, fontSize: { xs: "32px", md: "44px" }, mt: 1.5 }}>
+              {final.heading}
+            </Typography>
+            <Typography sx={{ ...bodySx, fontSize: "15px", mt: 1.5 }}>
+              {mentorshipQuestions.text}{" "}
+              <Box
+                component="a"
+                href={`mailto:${mentorshipQuestions.email}?subject=${encodeURIComponent(mentorshipQuestions.subject)}`}
+                sx={{ color: q.purple, fontWeight: 600, textUnderlineOffset: "3px" }}
+              >
+                {mentorshipQuestions.email}
+              </Box>
+            </Typography>
+          </Box>
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1.5, flexShrink: 0 }}>
+            <PillButton onClick={openForm} label={primary.ctaLabel} />
+          </Box>
+        </Box>
+      </Container>
+
+      {/* Sticky sign-up bar, phones and tablets only */}
+      <Box
+        aria-hidden={!showBar}
+        sx={{
+          display: { xs: "flex", md: "none" },
+          position: "fixed",
+          left: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: 1100,
+          gap: 1,
+          px: 2,
+          pt: 1.5,
+          pb: "calc(12px + env(safe-area-inset-bottom))",
+          backgroundColor: "rgba(247,246,243,.94)",
+          backdropFilter: "blur(12px)",
+          borderTop: `1px solid ${q.line}`,
+          transform: showBar ? "none" : "translateY(110%)",
+          visibility: showBar ? "visible" : "hidden",
+          transition: "transform .3s ease, visibility .3s",
+        }}
+      >
+        <PillButton compact onClick={openForm} label={primary.ctaLabel} />
+      </Box>
+      <MentorshipInterestDialog side={formSide} onClose={() => setFormSide(null)} />
+    </Box>
   );
 };
 

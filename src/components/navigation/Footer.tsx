@@ -126,10 +126,12 @@ const Footer = () => {
         sx={{
           bgcolor: "primary.hover",
           color: "text.primary",
-          px: { xs: 3, sm: 6, md: 10, lg: 28 },
-          py: { xs: 5, sm: 7, md: 9 },
+          px: { xs: 3, sm: 5, md: 8 },
+          py: { xs: 5, md: 6 },
         }}
       >
+        {/* One content width, centred, so the footer keeps its proportions on wide screens */}
+        <Box sx={{ maxWidth: 1200, mx: "auto" }}>
         {/* Top CTA */}
         <Grid container spacing={4} justifyContent="space-between">
           <Grid
@@ -142,12 +144,12 @@ const Footer = () => {
           >
             <Typography
               fontWeight={600}
-              mb={2}
+              mb={1.5}
               sx={{
                 fontSize: {
-                  xs: "1.75rem",
-                  sm: "2.25rem",
-                  md: "2.75rem",
+                  xs: "1.4rem",
+                  sm: "1.6rem",
+                  md: "1.9rem",
                   color: theme.palette.primary.main,
                 },
               }}
@@ -186,7 +188,6 @@ const Footer = () => {
               flexDirection: "column",
               justifyContent: "flex-end",
               flexGrow: 1,
-              ml: { xs: 0, md: 20 },
             }}
             component="div"
             {...({} as any)}
@@ -227,8 +228,8 @@ const Footer = () => {
         <Box
           sx={{
             borderTop: `0.5px solid ${theme.palette.primary.dark}`,
-            mt: 6,
-            pt: { xs: 4, sm: 6 },
+            mt: 4,
+            pt: { xs: 4, sm: 5 },
           }}
         >
           <Grid
@@ -265,6 +266,8 @@ const Footer = () => {
                   style={{
                     height: 65,
                     objectFit: "contain",
+                    // The logo has the site navy baked in; lighten hides it on other dark backgrounds.
+                    mixBlendMode: "lighten",
                   }}
                 />
               </Box>
@@ -541,7 +544,7 @@ const Footer = () => {
 
         {/* Bottom Footer */}
         <Box
-          mt={6}
+          mt={4}
           display="flex"
           flexDirection={{ xs: "column", sm: "row" }}
           justifyContent="space-between"
@@ -549,7 +552,7 @@ const Footer = () => {
           textAlign={{ xs: "left", sm: "center" }}
           gap={{ xs: 2, sm: 0 }}
           borderTop={`0.5px solid ${theme.palette.primary.dark}`}
-          pt={3}
+          pt={2.5}
         >
           <Box>
             {[
@@ -595,6 +598,7 @@ const Footer = () => {
           >
             © Copyright 2026 Spiritual Data. All Rights Reserved.
           </Typography>
+        </Box>
         </Box>
       </Box>
     </>
