@@ -45,8 +45,10 @@ export const menteeSignUpUrl =
 
 /**
  * Every CTA opens a short form first (email plus one phrase), so a visitor is
- * counted even if they never finish sign-up, and then goes on to the sign-up
- * link above. The form posts to Quest's public community-interest endpoint
+ * counted even if they never finish sign-up. After it, the visitor is never
+ * redirected (Joshua, 21 October 2026): they see a thank-you and a button to
+ * create a free Quest account for their own goals, using the sign-up link
+ * above. The form posts to Quest's public community-interest endpoint
  * (quest-backend app/api/endpoints/community_interest.py): no login, one row
  * per email and category, linked to the account when the email matches one.
  * The two category ids below are the two sides of the launch.
@@ -75,7 +77,10 @@ export const mentorshipInterest = {
   submitLabel: "Continue to sign up",
   sendingLabel: "Saving...",
   privacy: "We use your email to tell you when mentorship opens.",
-  successText: "Thank you. Taking you to sign up.",
+  successTitle: "Thank you. You are on the list.",
+  successBody: "We will email you when mentorship opens. Until then, create a free account and start using Quest for your own goals and habits.",
+  successCta: "Create your free account",
+  successClose: "Not now",
   errorText: "That did not save. Try again, or",
   skipLabel: "continue to sign up.",
   invalidEmail: "Enter a valid email address.",
