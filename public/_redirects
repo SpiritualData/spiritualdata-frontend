@@ -6,4 +6,13 @@
 # recipient's address bar, which is the whole point of the change.
 https://links.spiritualdata.org/*  https://ai.batmanhq.duckdns.org/:splat  200
 
+# Quest niche landing pages under /start. public/start/ is the static export of
+# quest_subscribers_growth/landing_pages/demo, built with LP_BASE_PATH=/start NEXT_PUBLIC_AD_PIXELS=1.
+# Build output: do not edit by hand. The X and LinkedIn pixels inside fire only on spiritualdata.org.
+# Must stay ABOVE the SPA catch-all.
+/start/inner-work        /start/inner-work/index.html        200
+/start/building-habits   /start/building-habits/index.html   200
+/start/life-management   /start/life-management/index.html   200
+/start/mentor            /start/mentor/index.html            200
+
 /* /index.html 200
