@@ -4,7 +4,7 @@
  * - First touch: the utm tags and referrer host of the session's first page load are kept in sessionStorage.
  * - Visit ping: POST /api/landing-visits once per page, per day, per browser (event "visit").
  * - Click ping: the same endpoint with event "cta_click" when a Quest sign-up link or button is used.
- * - Sign-up links get ref=landing-<slug> plus the utm tags and referrer_host, which the Quest app reads and
+ * - Sign-up links get ref=landing-<slug>, vid (the anonymous visitor id) plus the utm tags and referrer_host, which the Quest app reads and
  *   sends with its sign-up attribution call.
  * No cookies, no IP address, no personal data. It only sends from the production hosts, like the /start pages.
  */
@@ -64,7 +64,7 @@ export function touchFromLocation(search: string, referrer: string, ownHost: str
 }
 
 /** A sign-up link with the landing page and the first-touch tags added. Existing values in the link win. */
-export function decorateSignUpUrl(url: string, slug: string | null, touch: FirstTouch): string {
+export function decorateSignUpUrl(url: string, slug: string | null, touch: FirstTouch, visitor = ""): string {
   try {
     const parsed = new URL(url, "https://" + SIGN_UP_HOST);
     if (parsed.hostname !== SIGN_UP_HOST || !parsed.pathname.startsWith("/sign-up")) return url;
@@ -72,6 +72,7 @@ export function decorateSignUpUrl(url: string, slug: string | null, touch: First
       if (value && !parsed.searchParams.has(key)) parsed.searchParams.set(key, value);
     };
     if (slug) parsed.searchParams.set("ref", "landing-" + slug);
+    set("vid", visitor.slice(0, 64));
     (Object.keys(touch) as Array<keyof FirstTouch>).forEach((key) => set(key, touch[key]));
     return parsed.toString();
   } catch {
@@ -166,8 +167,9 @@ export function prepareSignUp(url: string): string {
   if (!isSignUpUrl(url)) return url;
   const touch = firstTouch();
   const slug = pageSlugForPath(window.location.pathname);
-  if (slug && isLiveHost()) send(buildPayload(slug, visitorId(), "cta_click", touch));
-  return decorateSignUpUrl(url, slug, touch);
+  const visitor = visitorId();
+  if (slug && isLiveHost()) send(buildPayload(slug, visitor, "cta_click", touch));
+  return decorateSignUpUrl(url, slug, touch, visitor);
 }
 
 let installed = false;
