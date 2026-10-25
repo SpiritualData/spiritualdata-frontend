@@ -8,6 +8,7 @@ import Footer from "./components/navigation/Footer";
 import useClerkRoutes from "./hooks/routes";
 import ScrollToTop from "./components/ScrollToTop";
 import { GlobalStyles } from "@mui/material";
+import { installSignUpTracking, trackPageView } from "./utils/funnelTracking";
 import { questPaletteRoutes, withQuestPalette } from "./styles/questPalette";
 
 const App: React.FC = () => {
@@ -27,6 +28,14 @@ const App: React.FC = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    installSignUpTracking();
+  }, []);
+
+  useEffect(() => {
+    trackPageView(location.pathname);
   }, [location.pathname]);
 
   const pageTheme = questPaletteRoutes.includes(location.pathname.replace(/\/$/, ""))
