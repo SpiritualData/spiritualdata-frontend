@@ -11,7 +11,7 @@ import { styled } from "@mui/system";
 import { alpha } from "@mui/material/styles";
 import { useInView } from "../../hooks/useInView";
 
-// A faint watermark above the title, kept clear of the description so it never sits under body text.
+// A faint watermark above the title on the brand navy, kept clear of the description.
 const BackgroundText = styled("div")(({ theme }) => ({
   position: "absolute",
   top: 0,
@@ -20,7 +20,7 @@ const BackgroundText = styled("div")(({ theme }) => ({
   fontSize: "clamp(3.5rem, 11vw, 10rem)",
   lineHeight: 1,
   fontWeight: 900,
-  color: alpha(theme.palette.text.primary, 0.07),
+  color: alpha(theme.palette.darkcard.contrastText, 0.05),
   whiteSpace: "nowrap",
   userSelect: "none",
   zIndex: 0,
@@ -49,7 +49,7 @@ const TitleHead = ({ data }: TiltHeadProps) => {
         pt: { xs: 9, md: 14 },
         pb: { xs: 8, md: 12 },
         overflow: "hidden",
-        bgcolor: theme.palette.primary.main,
+        bgcolor: theme.palette.darkcard.main,
         position: "relative",
       }}
     >
@@ -68,6 +68,7 @@ const TitleHead = ({ data }: TiltHeadProps) => {
               position: "relative",
               fontFamily: "Sansation, sans-serif",
               fontWeight: 700,
+              color: theme.palette.darkcard.contrastText,
               display: "inline-block",
               borderBottom: `5px solid ${theme.palette.primary.focus}`,
               paddingBottom: "4px",
@@ -81,7 +82,6 @@ const TitleHead = ({ data }: TiltHeadProps) => {
         <Fade in={inView} timeout={2000}>
           <Typography
             variant="body1"
-            color="text.secondary"
             sx={{
               mt: 3,
               maxWidth: 760,
@@ -89,6 +89,7 @@ const TitleHead = ({ data }: TiltHeadProps) => {
               fontFamily: "Sansation, sans-serif",
               fontSize: { xs: "1rem", md: "1.125rem" },
               lineHeight: 1.75,
+              color: alpha(theme.palette.darkcard.contrastText, 0.85),
             }}
           >
             {data.desc}
