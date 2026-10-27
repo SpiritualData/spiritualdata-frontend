@@ -508,14 +508,25 @@ const WhyChooseUs = ({ data }: WhyChooseUsProps) => {
                   </Box>
                   <Box
                     sx={{
-                      overflow: "hidden",
-                      height: isActive ? accordionDetailHeight : 0,
                       opacity: isActive ? 1 : 0,
                       transform: isActive
                         ? "translateY(0px)"
                         : "translateY(-6px)",
-                      transition:
-                        "height 420ms cubic-bezier(0.22, 1, 0.36, 1), opacity 300ms ease, transform 420ms cubic-bezier(0.22, 1, 0.36, 1)",
+                      ...(isQuestStyle
+                        ? {
+                            // Size to the text so the full description always shows.
+                            display: "grid",
+                            gridTemplateRows: isActive ? "1fr" : "0fr",
+                            transition:
+                              "grid-template-rows 420ms cubic-bezier(0.22, 1, 0.36, 1), opacity 300ms ease, transform 420ms cubic-bezier(0.22, 1, 0.36, 1)",
+                            "& > *": { overflow: "hidden", minHeight: 0 },
+                          }
+                        : {
+                            overflow: "hidden",
+                            height: isActive ? accordionDetailHeight : 0,
+                            transition:
+                              "height 420ms cubic-bezier(0.22, 1, 0.36, 1), opacity 300ms ease, transform 420ms cubic-bezier(0.22, 1, 0.36, 1)",
+                          }),
                     }}
                   >
                     <Typography
@@ -523,7 +534,7 @@ const WhyChooseUs = ({ data }: WhyChooseUsProps) => {
                         color: alpha(theme.palette.text.secondary, 0.92),
                         fontSize: { xs: 17, md: 17 },
                         lineHeight: 1.6,
-                        mt: 1.4,
+                        ...(isQuestStyle ? { pt: 1.4 } : { mt: 1.4 }),
                         pl: { xs: "46px", md: "44px" },
                         pr: { xs: 0, md: 5 },
                         pb: 0.2,

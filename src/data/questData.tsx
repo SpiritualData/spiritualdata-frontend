@@ -240,7 +240,7 @@ export const callToAction: callToAction = {
   buttonText: "Start Your First Quest",
   buttonLink: "https://quest.spiritualdata.org/sign-up",
   footerNote:
-    "Free community access: $5 single quest or $10/month with structured followups",
+    "Free forever, with full Quest AI features free for your first 31 days. After that, stay on Free or subscribe to Quest AI for $10 a month or $100 a year. Quest Guided is $50 a month or $500 a year and includes a monthly 30 minute one-on-one call with Joshua, the founder.",
   additionalFooterNote1: "",
   additionalFooterNote2: "Your data stays private",
 };
