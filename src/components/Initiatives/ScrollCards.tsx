@@ -23,7 +23,7 @@ export default function ScrollStackCards({ data }: ScrollStackCardsProps) {
         position: "relative",
         width: "100%",
         height: { xs: "auto", md: `calc(${data.length * 100}vh + 50vh)` },
-        backgroundColor: theme.palette.cosmic.primary,
+        backgroundColor: theme.palette.text.primary, // brand navy, one step lighter than the cards
       }}
     >
       {data.map((card, i) => (
