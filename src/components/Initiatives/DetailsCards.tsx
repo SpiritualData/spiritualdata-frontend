@@ -38,23 +38,6 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
     justifyContent: "space-between",
   };
 
-  const BackgroundText = styled("div")(({ theme }) => ({
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    fontSize: "5rem",
-    fontWeight: 900,
-    color: theme.palette.primary.main,
-    whiteSpace: "nowrap",
-    userSelect: "none",
-    zIndex: 0,
-    pointerEvents: "none",
-    textShadow: "0px 0px 20px rgba(0,0,0,0.15)",
-    textAlign: "center",
-    letterSpacing: 10,
-    lineHeight: 1,
-  }));
 
   const DirectionAwareCard = styled(Paper)<{ image?: string }>(
     ({ theme, image }) => ({
@@ -209,10 +192,6 @@ const DetailsCards = ({ data }: DetailsCardsProps) => {
                 overflow: "visible",
               }}
             >
-              <BackgroundText>
-                {data[0]?.secSubHead1} <br />
-                {data[0]?.secSubHead2}
-              </BackgroundText>
 
               <Typography
                 variant="h1"
