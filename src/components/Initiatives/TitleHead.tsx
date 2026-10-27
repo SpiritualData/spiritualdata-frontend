@@ -8,21 +8,23 @@ import {
   Slide,
 } from "@mui/material";
 import { styled } from "@mui/system";
+import { alpha } from "@mui/material/styles";
 import { useInView } from "../../hooks/useInView";
 
+// A faint watermark above the title, kept clear of the description so it never sits under body text.
 const BackgroundText = styled("div")(({ theme }) => ({
   position: "absolute",
-  top: "50%",
+  top: 0,
   left: "50%",
-  transform: "translate(-50%, -50%)",
-  fontSize: "12rem",
+  transform: "translateX(-50%)",
+  fontSize: "clamp(3.5rem, 11vw, 10rem)",
+  lineHeight: 1,
   fontWeight: 900,
-  color: theme.palette.primary.main,
+  color: alpha(theme.palette.text.primary, 0.07),
   whiteSpace: "nowrap",
   userSelect: "none",
   zIndex: 0,
   pointerEvents: "none",
-  textShadow: "0px 4px 20px rgba(0,0,0,0.08)",
 }));
 
 interface TiltCard {
@@ -44,7 +46,8 @@ const TitleHead = ({ data }: TiltHeadProps) => {
       ref={ref}
       sx={{
         textAlign: "center",
-        py: { xs: 8, md: 12 },
+        pt: { xs: 9, md: 14 },
+        pb: { xs: 8, md: 12 },
         overflow: "hidden",
         bgcolor: theme.palette.primary.main,
         position: "relative",
@@ -81,14 +84,11 @@ const TitleHead = ({ data }: TiltHeadProps) => {
             color="text.secondary"
             sx={{
               mt: 3,
-              maxWidth: 1000,
+              maxWidth: 760,
               mx: "auto",
               fontFamily: "Sansation, sans-serif",
-              letterSpacing: 1,
-              backgroundColor: "rgba(255, 255, 255, 0.7)",
-              padding: 3,
-              borderRadius: 2,
-              backdropFilter: "blur(5px)",
+              fontSize: { xs: "1rem", md: "1.125rem" },
+              lineHeight: 1.75,
             }}
           >
             {data.desc}
