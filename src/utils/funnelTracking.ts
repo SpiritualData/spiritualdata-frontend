@@ -63,20 +63,41 @@ export function touchFromLocation(search: string, referrer: string, ownHost: str
   };
 }
 
-/** A sign-up link with the landing page and the first-touch tags added. Existing values in the link win. */
+/**
+ * A Quest entry link with the landing page and the first-touch tags added. Existing values in the link win.
+ * Every entry link (sign-up, sign-in, the app's root) gets vid and the first-touch tags, because the Sign In
+ * buttons in the navigation bar and drawer are where most visitors enter the app, and a new person can create
+ * the account from there. Before this, only /sign-up links were tagged, so a YouTube or Meta visitor who used
+ * Sign In reached the app with nothing and the account read as direct or unknown. The app stores these tags
+ * from any address and sends them through POST /api/users/signup-attribution, which only tags an account
+ * created in the last 24 hours, so a returning person signing in is never re-attributed.
+ * ref=landing-<slug> stays on /sign-up links only: the app posts ref to /api/users/referral/record, which writes
+ * a campaign source onto any account that has none, whatever its age.
+ */
 export function decorateSignUpUrl(url: string, slug: string | null, touch: FirstTouch, visitor = ""): string {
   try {
     const parsed = new URL(url, "https://" + SIGN_UP_HOST);
-    if (parsed.hostname !== SIGN_UP_HOST || !parsed.pathname.startsWith("/sign-up")) return url;
+    if (!isQuestEntryUrl(url)) return url;
     const set = (key: string, value: string) => {
       if (value && !parsed.searchParams.has(key)) parsed.searchParams.set(key, value);
     };
-    if (slug) parsed.searchParams.set("ref", "landing-" + slug);
+    if (slug && parsed.pathname.startsWith("/sign-up")) parsed.searchParams.set("ref", "landing-" + slug);
     set("vid", visitor.slice(0, 64));
     (Object.keys(touch) as Array<keyof FirstTouch>).forEach((key) => set(key, touch[key]));
     return parsed.toString();
   } catch {
     return url;
+  }
+}
+
+/** A link into the Quest app where a person can sign up or sign in: /sign-up, /sign-in or the app's root. */
+export function isQuestEntryUrl(url: string): boolean {
+  try {
+    const parsed = new URL(url, "https://" + SIGN_UP_HOST);
+    const path = parsed.pathname.replace(/\/+$/, "");
+    return parsed.hostname === SIGN_UP_HOST && (path === "" || path.startsWith("/sign-up") || path.startsWith("/sign-in"));
+  } catch {
+    return false;
   }
 }
 
@@ -162,19 +183,23 @@ export function trackPageView(pathname: string): void {
   send(buildPayload(slug, visitorId(), "visit", touch));
 }
 
-/** The sign-up URL ready to open, and the click counted when this page is a tracked landing page. */
+/**
+ * A Quest entry URL ready to open with its tags. A sign-up link click is also counted as a call-to-action click
+ * when this page is a tracked landing page; sign-in and root links are tagged but not counted, since returning
+ * people use them too.
+ */
 export function prepareSignUp(url: string): string {
-  if (!isSignUpUrl(url)) return url;
+  if (!isQuestEntryUrl(url)) return url;
   const touch = firstTouch();
   const slug = pageSlugForPath(window.location.pathname);
   const visitor = visitorId();
-  if (slug && isLiveHost()) send(buildPayload(slug, visitor, "cta_click", touch));
+  if (slug && isLiveHost() && isSignUpUrl(url)) send(buildPayload(slug, visitor, "cta_click", touch));
   return decorateSignUpUrl(url, slug, touch, visitor);
 }
 
 let installed = false;
 
-/** Once per app: tags sign-up links on click and sign-up buttons that call window.open. */
+/** Once per app: tags Quest entry links on click and entry buttons (Sign In, sign-up) that call window.open. */
 export function installSignUpTracking(): void {
   if (installed || typeof window === "undefined") return;
   installed = true;
@@ -182,7 +207,7 @@ export function installSignUpTracking(): void {
     "click",
     (event) => {
       const anchor = (event.target as Element | null)?.closest?.("a[href]") as HTMLAnchorElement | null;
-      if (!anchor || !isSignUpUrl(anchor.href)) return;
+      if (!anchor || !isQuestEntryUrl(anchor.href)) return;
       anchor.href = prepareSignUp(anchor.href);
     },
     true,
